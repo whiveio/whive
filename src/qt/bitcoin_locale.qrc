@@ -1,8 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
     <qresource prefix="/translations">
-        <file alias="de">locale/whive_de.qm</file>
-        <file alias="en">locale/whive_en.qm</file>
-        <file alias="uk">locale/whive_uk.qm</file>
-        <file alias="uk">locale/whive_ru.qm</file>
+        <file alias="de">locale/whiveyes_de.qm</file>
+        <file alias="en">locale/whiveyes_en.qm</file>
+        <file alias="uk">locale/whiveyes_uk.qm</file>
+        <file alias="uk">locale/whiveyes_ru.qm</file>
     </qresource>
 </RCC>

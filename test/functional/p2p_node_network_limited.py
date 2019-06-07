@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The Bitcoin Core developers
+# Copyright (c) 2017-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Tests NODE_NETWORK_LIMITED.
@@ -11,13 +11,7 @@ and that it responds to getdata requests for blocks correctly:
 from test_framework.messages import CInv, msg_getdata, msg_verack, NODE_BLOOM, NODE_NETWORK_LIMITED, NODE_WITNESS
 from test_framework.mininode import P2PInterface, mininode_lock
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import (
-    assert_equal,
-    disconnect_nodes,
-    connect_nodes_bi,
-    wait_until,
-)
-
+from test_framework.util import assert_equal, disconnect_nodes, connect_nodes_bi, sync_blocks, wait_until
 
 class P2PIgnoreInv(P2PInterface):
     firstAddrnServices = 0
@@ -68,13 +62,8 @@ class NodeNetworkLimitedTest(BitcoinTestFramework):
 
         self.log.info("Mine enough blocks to reach the NODE_NETWORK_LIMITED range.")
         connect_nodes_bi(self.nodes, 0, 1)
-<<<<<<< HEAD
         blocks = self.nodes[1].generate(292)
         sync_blocks([self.nodes[0], self.nodes[1]])
-=======
-        blocks = self.nodes[1].generatetoaddress(292, self.nodes[1].get_deterministic_priv_key().address)
-        self.sync_blocks([self.nodes[0], self.nodes[1]])
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
         self.log.info("Make sure we can max retrieve block at tip-288.")
         node.send_getdata_for_block(blocks[1])  # last block in valid range
@@ -100,7 +89,7 @@ class NodeNetworkLimitedTest(BitcoinTestFramework):
         # because node 2 is in IBD and node 0 is a NODE_NETWORK_LIMITED peer, sync must not be possible
         connect_nodes_bi(self.nodes, 0, 2)
         try:
-            self.sync_blocks([self.nodes[0], self.nodes[2]], timeout=5)
+            sync_blocks([self.nodes[0], self.nodes[2]], timeout=5)
         except:
             pass
         # node2 must remain at heigh 0
@@ -110,7 +99,7 @@ class NodeNetworkLimitedTest(BitcoinTestFramework):
         connect_nodes_bi(self.nodes, 1, 2)
 
         # sync must be possible
-        self.sync_blocks()
+        sync_blocks(self.nodes)
 
         # disconnect all peers
         self.disconnect_all()
@@ -122,7 +111,7 @@ class NodeNetworkLimitedTest(BitcoinTestFramework):
         connect_nodes_bi(self.nodes, 0, 1)
 
         # sync must be possible, node 1 is no longer in IBD and should therefore connect to node 0 (NODE_NETWORK_LIMITED)
-        self.sync_blocks([self.nodes[0], self.nodes[1]])
+        sync_blocks([self.nodes[0], self.nodes[1]])
 
 if __name__ == '__main__':
     NodeNetworkLimitedTest().main()

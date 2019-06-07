@@ -61,20 +61,10 @@ fi
 CPPFLAGS="-I$depends_prefix/include/ $CPPFLAGS"
 LDFLAGS="-L$depends_prefix/lib $LDFLAGS"
 
-<<<<<<< HEAD
 CC="@CC@"
 CXX="@CXX@"
 OBJC="${CC}"
 PYTHONPATH=$depends_prefix/native/lib/python/dist-packages:$PYTHONPATH
-=======
-if test -n "@CC@" -a -z "${CC}"; then
-  CC="@CC@"
-fi
-if test -n "@CXX@" -a -z "${CXX}"; then
-  CXX="@CXX@"
-fi
-PYTHONPATH=$depends_prefix/native/lib/python3/dist-packages:$PYTHONPATH
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
 if test -n "@AR@"; then
   AR=@AR@

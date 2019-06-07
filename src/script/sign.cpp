@@ -83,8 +83,6 @@ static bool CreateSig(const BaseSignatureCreator& creator, SignatureData& sigdat
         assert(i.second);
         return true;
     }
-    // Could not make signature or signature not found, add keyid to missing
-    sigdata.missing_sigs.push_back(keyid);
     return false;
 }
 
@@ -119,28 +117,17 @@ static bool SignStep(const SigningProvider& provider, const BaseSignatureCreator
     case TX_PUBKEYHASH: {
         CKeyID keyID = CKeyID(uint160(vSolutions[0]));
         CPubKey pubkey;
-<<<<<<< HEAD
         GetPubKey(provider, sigdata, keyID, pubkey);
-=======
-        if (!GetPubKey(provider, sigdata, keyID, pubkey)) {
-            // Pubkey could not be found, add to missing
-            sigdata.missing_pubkeys.push_back(keyID);
-            return false;
-        }
->>>>>>> upstream/0.18
         if (!CreateSig(creator, sigdata, provider, sig, pubkey, scriptPubKey, sigversion)) return false;
         ret.push_back(std::move(sig));
         ret.push_back(ToByteVector(pubkey));
         return true;
     }
     case TX_SCRIPTHASH:
-        h160 = uint160(vSolutions[0]);
-        if (GetCScript(provider, sigdata, h160, scriptRet)) {
+        if (GetCScript(provider, sigdata, uint160(vSolutions[0]), scriptRet)) {
             ret.push_back(std::vector<unsigned char>(scriptRet.begin(), scriptRet.end()));
             return true;
         }
-        // Could not find redeemScript, add to missing
-        sigdata.missing_redeem_script = h160;
         return false;
 
     case TX_MULTISIG: {
@@ -168,8 +155,6 @@ static bool SignStep(const SigningProvider& provider, const BaseSignatureCreator
             ret.push_back(std::vector<unsigned char>(scriptRet.begin(), scriptRet.end()));
             return true;
         }
-        // Could not find witnessScript, add to missing
-        sigdata.missing_witness_script = uint256(vSolutions[0]);
         return false;
 
     default:
@@ -248,7 +233,6 @@ bool ProduceSignature(const SigningProvider& provider, const BaseSignatureCreato
     return sigdata.complete;
 }
 
-<<<<<<< HEAD
 bool PSBTInputSigned(PSBTInput& input)
 {
     return !input.final_script_sig.empty() || !input.final_script_witness.IsNull();
@@ -309,8 +293,6 @@ bool SignPSBTInput(const SigningProvider& provider, PartiallySignedTransaction& 
     return sig_complete;
 }
 
-=======
->>>>>>> upstream/0.18
 class SignatureExtractorChecker final : public BaseSignatureChecker
 {
 private:
@@ -527,7 +509,6 @@ bool IsSolvable(const SigningProvider& provider, const CScript& script)
     return false;
 }
 
-<<<<<<< HEAD
 PartiallySignedTransaction::PartiallySignedTransaction(const CTransaction& tx) : tx(tx)
 {
     inputs.resize(tx.vin.size());
@@ -683,9 +664,6 @@ void PSBTOutput::Merge(const PSBTOutput& output)
 }
 
 bool PublicOnlySigningProvider::GetCScript(const CScriptID &scriptid, CScript& script) const
-=======
-bool HidingSigningProvider::GetCScript(const CScriptID& scriptid, CScript& script) const
->>>>>>> upstream/0.18
 {
     return m_provider->GetCScript(scriptid, script);
 }
@@ -697,22 +675,6 @@ bool PublicOnlySigningProvider::GetPubKey(const CKeyID &address, CPubKey& pubkey
 
 bool FlatSigningProvider::GetCScript(const CScriptID& scriptid, CScript& script) const { return LookupHelper(scripts, scriptid, script); }
 bool FlatSigningProvider::GetPubKey(const CKeyID& keyid, CPubKey& pubkey) const { return LookupHelper(pubkeys, keyid, pubkey); }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
-bool FlatSigningProvider::GetKeyOrigin(const CKeyID& keyid, KeyOriginInfo& info) const
-{
-    std::pair<CPubKey, KeyOriginInfo> out;
-    bool ret = LookupHelper(origins, keyid, out);
-    if (ret) info = std::move(out.second);
-    return ret;
-}
-<<<<<<< HEAD
->>>>>>> upstream/0.18
-=======
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 bool FlatSigningProvider::GetKey(const CKeyID& keyid, CKey& key) const { return LookupHelper(keys, keyid, key); }
 
 FlatSigningProvider Merge(const FlatSigningProvider& a, const FlatSigningProvider& b)

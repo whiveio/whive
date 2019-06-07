@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
-=======
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
->>>>>>> upstream/0.18
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,8 +11,8 @@
 #include <chainparams.h>
 #include <coins.h>
 #include <consensus/consensus.h>
-#include <consensus/merkle.h>
 #include <consensus/tx_verify.h>
+#include <consensus/merkle.h>
 #include <consensus/validation.h>
 #include <hash.h>
 #include <net.h>
@@ -27,22 +22,21 @@
 #include <primitives/transaction.h>
 #include <script/standard.h>
 #include <timedata.h>
-<<<<<<< HEAD
 #include <util.h>
 #include <utilmoneystr.h>
-=======
-#include <util/moneystr.h>
-#include <util/system.h>
-<<<<<<< HEAD
->>>>>>> upstream/0.18
-=======
-#include <util/validation.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 #include <validationinterface.h>
 
 #include <algorithm>
 #include <queue>
 #include <utility>
+
+// Unconfirmed transactions in the memory pool often depend on other
+// transactions in the memory pool. When we select transactions from the
+// pool, we select by highest fee rate of a transaction combined with all
+// its ancestors.
+
+uint64_t nLastBlockTx = 0;
+uint64_t nLastBlockWeight = 0;
 
 int64_t UpdateTime(CBlockHeader* pblock, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
 {
@@ -103,14 +97,7 @@ void BlockAssembler::resetBlock()
     nFees = 0;
 }
 
-<<<<<<< HEAD
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
-=======
-Optional<int64_t> BlockAssembler::m_last_block_num_txs{nullopt};
-Optional<int64_t> BlockAssembler::m_last_block_weight{nullopt};
-
-std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn)
->>>>>>> upstream/0.18
 {
     int64_t nTimeStart = GetTimeMicros();
 
@@ -128,7 +115,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblocktemplate->vTxSigOpsCost.push_back(-1); // updated at end
 
     LOCK2(cs_main, mempool.cs);
-    CBlockIndex* pindexPrev = ::ChainActive().Tip();
+    CBlockIndex* pindexPrev = chainActive.Tip();
     assert(pindexPrev != nullptr);
     nHeight = pindexPrev->nHeight + 1;
 
@@ -162,8 +149,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     int64_t nTime1 = GetTimeMicros();
 
-    m_last_block_num_txs = nBlockTx;
-    m_last_block_weight = nBlockWeight;
+    nLastBlockTx = nBlockTx;
+    nLastBlockWeight = nBlockWeight;
 
     // Create coinbase transaction.
     CMutableTransaction coinbaseTx;

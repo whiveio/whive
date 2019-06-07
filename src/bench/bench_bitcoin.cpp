@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2019 The Bitcoin Core developers
+// Copyright (c) 2015-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,15 +6,10 @@
 
 #include <crypto/sha256.h>
 #include <key.h>
-<<<<<<< HEAD
 #include <random.h>
 #include <util.h>
 #include <utilstrencodings.h>
 #include <validation.h>
-=======
-#include <util/strencodings.h>
-#include <util/system.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
 #include <memory>
 
@@ -28,8 +23,7 @@ static const int64_t DEFAULT_PLOT_HEIGHT = 768;
 
 static void SetupBenchArgs()
 {
-    SetupHelpOptions(gArgs);
-
+    gArgs.AddArg("-?", "Print this help message and exit", false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-list", "List benchmarks without executing them. Can be combined with -scaling and -filter", false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-evals=<n>", strprintf("Number of measurement evaluations to perform. (default: %u)", DEFAULT_BENCH_EVALUATIONS), false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-filter=<regex>", strprintf("Regular expression filter to select benchmark by name (default: %s)", DEFAULT_BENCH_FILTER), false, OptionsCategory::OPTIONS);
@@ -38,6 +32,18 @@ static void SetupBenchArgs()
     gArgs.AddArg("-plot-plotlyurl=<uri>", strprintf("URL to use for plotly.js (default: %s)", DEFAULT_PLOT_PLOTLYURL), false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-plot-width=<x>", strprintf("Plot width in pixel (default: %u)", DEFAULT_PLOT_WIDTH), false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-plot-height=<x>", strprintf("Plot height in pixel (default: %u)", DEFAULT_PLOT_HEIGHT), false, OptionsCategory::OPTIONS);
+
+    // Hidden
+    gArgs.AddArg("-h", "", false, OptionsCategory::HIDDEN);
+    gArgs.AddArg("-help", "", false, OptionsCategory::HIDDEN);
+}
+
+static fs::path SetDataDir()
+{
+    fs::path ret = fs::temp_directory_path() / "bench_bitcoin" / fs::unique_path();
+    fs::create_directories(ret);
+    gArgs.ForceSetArg("-datadir", ret.string());
+    return ret;
 }
 
 int main(int argc, char** argv)
@@ -55,7 +61,6 @@ int main(int argc, char** argv)
         return EXIT_SUCCESS;
     }
 
-<<<<<<< HEAD
     // Set the datadir after parsing the bench options
     const fs::path bench_datadir{SetDataDir()};
 
@@ -64,8 +69,6 @@ int main(int argc, char** argv)
     ECC_Start();
     SetupEnvironment();
 
-=======
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     int64_t evaluations = gArgs.GetArg("-evals", DEFAULT_BENCH_EVALUATIONS);
     std::string regex_filter = gArgs.GetArg("-filter", DEFAULT_BENCH_FILTER);
     std::string scaling_str = gArgs.GetArg("-scaling", DEFAULT_BENCH_SCALING);
@@ -87,6 +90,10 @@ int main(int argc, char** argv)
     }
 
     benchmark::BenchRunner::RunAll(*printer, evaluations, scaling_factor, regex_filter, is_list_only);
+
+    fs::remove_all(bench_datadir);
+
+    ECC_Stop();
 
     return EXIT_SUCCESS;
 }

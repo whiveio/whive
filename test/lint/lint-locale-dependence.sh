@@ -11,11 +11,7 @@ KNOWN_VIOLATIONS=(
     "src/dbwrapper.cpp:.*vsnprintf"
     "src/httprpc.cpp.*trim"
     "src/init.cpp:.*atoi"
-<<<<<<< HEAD
     "src/netbase.cpp.*to_lower"
-=======
-    "src/init.cpp:.*fprintf"
->>>>>>> upstream/0.18
     "src/qt/rpcconsole.cpp:.*atoi"
     "src/qt/rpcconsole.cpp:.*isdigit"
     "src/rest.cpp:.*strtol"
@@ -24,7 +20,6 @@ KNOWN_VIOLATIONS=(
     "src/test/getarg_tests.cpp.*split"
     "src/torcontrol.cpp:.*atoi"
     "src/torcontrol.cpp:.*strtol"
-<<<<<<< HEAD
     "src/uint256.cpp:.*isspace"
     "src/uint256.cpp:.*tolower"
     "src/util.cpp:.*atoi"
@@ -39,13 +34,6 @@ KNOWN_VIOLATIONS=(
     "src/utilstrencodings.cpp:.*strtoul"
     "src/utilstrencodings.cpp:.*strtoull"
     "src/utilstrencodings.h:.*atoi"
-=======
-    "src/util/strencodings.cpp:.*atoi"
-    "src/util/strencodings.cpp:.*strtol"
-    "src/util/strencodings.cpp:.*strtoul"
-    "src/util/strencodings.h:.*atoi"
-    "src/util/system.cpp:.*atoi"
->>>>>>> upstream/0.18
 )
 
 REGEXP_IGNORE_EXTERNAL_DEPENDENCIES="^src/(crypto/ctaes/|leveldb/|secp256k1/|tinyformat.h|univalue/)"

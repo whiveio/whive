@@ -40,18 +40,16 @@ void WalletFrame::setClientModel(ClientModel *_clientModel)
     this->clientModel = _clientModel;
 }
 
-void WalletFrame::addWallet(WalletModel *walletModel)
+bool WalletFrame::addWallet(WalletModel *walletModel)
 {
-    if (!gui || !clientModel || !walletModel) return;
+    if (!gui || !clientModel || !walletModel) {
+        return false;
+    }
 
-<<<<<<< HEAD
     const QString name = walletModel->getWalletName();
     if (mapWalletViews.count(name) > 0) {
         return false;
     }
-=======
-    if (mapWalletViews.count(walletModel) > 0) return;
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
     WalletView *walletView = new WalletView(platformStyle, this);
     walletView->setBitcoinGUI(gui);
@@ -72,7 +70,6 @@ void WalletFrame::addWallet(WalletModel *walletModel)
     // Ensure a walletView is able to show the main window
     connect(walletView, SIGNAL(showNormalIfMinimized()), gui, SLOT(showNormalIfMinimized()));
 
-<<<<<<< HEAD
     connect(walletView, SIGNAL(outOfSyncWarningClicked()), this, SLOT(outOfSyncWarningClicked()));
 
     return true;
@@ -82,35 +79,23 @@ bool WalletFrame::setCurrentWallet(const QString& name)
 {
     if (mapWalletViews.count(name) == 0)
         return false;
-=======
-    connect(walletView, &WalletView::outOfSyncWarningClicked, this, &WalletFrame::outOfSyncWarningClicked);
-}
-
-void WalletFrame::setCurrentWallet(WalletModel* wallet_model)
-{
-    if (mapWalletViews.count(wallet_model) == 0) return;
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
     WalletView *walletView = mapWalletViews.value(name);
     walletStack->setCurrentWidget(walletView);
     assert(walletView);
     walletView->updateEncryptionStatus();
+    return true;
 }
 
-<<<<<<< HEAD
 bool WalletFrame::removeWallet(const QString &name)
 {
     if (mapWalletViews.count(name) == 0)
         return false;
-=======
-void WalletFrame::removeWallet(WalletModel* wallet_model)
-{
-    if (mapWalletViews.count(wallet_model) == 0) return;
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
     WalletView *walletView = mapWalletViews.take(name);
     walletStack->removeWidget(walletView);
     delete walletView;
+    return true;
 }
 
 void WalletFrame::removeAllWallets()

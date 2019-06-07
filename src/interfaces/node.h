@@ -149,6 +149,9 @@ public:
     //! Get network active.
     virtual bool getNetworkActive() = 0;
 
+    //! Get max tx fee.
+    virtual CAmount getMaxTxFee() = 0;
+
     //! Estimate smart fee.
     virtual CFeeRate estimateSmartFee(int num_blocks, bool conservative, int* returned_target = nullptr) = 0;
 
@@ -172,11 +175,6 @@ public:
 
     //! Return interfaces for accessing wallets (if any).
     virtual std::vector<std::unique_ptr<Wallet>> getWallets() = 0;
-
-    //! Attempts to load a wallet from file or directory.
-    //! The loaded wallet is also notified to handlers previously registered
-    //! with handleLoadWallet.
-    virtual std::unique_ptr<Wallet> loadWallet(const std::string& name, std::string& error, std::string& warning) = 0;
 
     //! Register handler for init messages.
     using InitMessageFn = std::function<void(const std::string& message)>;

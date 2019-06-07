@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The Bitcoin Core developers
+# Copyright (c) 2017-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test HD Wallet keypool restore function.
@@ -17,6 +17,7 @@ from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
     connect_nodes_bi,
+    sync_blocks,
 )
 
 
@@ -53,38 +54,12 @@ class KeypoolRestoreTest(BitcoinTestFramework):
         self.nodes[0].generate(1)
         sync_blocks(self.nodes)
 
-<<<<<<< HEAD
         self.log.info("Restart node with wallet backup")
         self.stop_node(1)
         shutil.copyfile(wallet_backup_path, wallet_path)
         self.start_node(1, self.extra_args[1])
         connect_nodes_bi(self.nodes, 0, 1)
         self.sync_all()
-=======
-            # Make sure we're creating the outputs we expect
-            address_details = self.nodes[idx].validateaddress(addr_extpool)
-            if i == 0:
-                assert not address_details["isscript"] and not address_details["iswitness"]
-            elif i == 1:
-                assert address_details["isscript"] and not address_details["iswitness"]
-            else:
-                assert not address_details["isscript"] and address_details["iswitness"]
-
-
-            self.log.info("Send funds to wallet")
-            self.nodes[0].sendtoaddress(addr_oldpool, 10)
-            self.nodes[0].generate(1)
-            self.nodes[0].sendtoaddress(addr_extpool, 5)
-            self.nodes[0].generate(1)
-            self.sync_blocks()
-
-            self.log.info("Restart node with wallet backup")
-            self.stop_node(idx)
-            shutil.copyfile(wallet_backup_path, wallet_path)
-            self.start_node(idx, self.extra_args[idx])
-            connect_nodes_bi(self.nodes, 0, idx)
-            self.sync_all()
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
         self.log.info("Verify keypool is restored and balance is correct")
         assert_equal(self.nodes[1].getbalance(), 15)

@@ -13,17 +13,7 @@
 from decimal import Decimal
 
 from test_framework.test_framework import BitcoinTestFramework
-<<<<<<< HEAD
 from test_framework.util import assert_equal, assert_raises_rpc_error, connect_nodes, disconnect_nodes, sync_blocks, sync_mempools
-=======
-from test_framework.util import (
-    assert_equal,
-    assert_raises_rpc_error,
-    connect_nodes,
-    disconnect_nodes,
-)
-
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
 class AbandonConflictTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -35,12 +25,12 @@ class AbandonConflictTest(BitcoinTestFramework):
 
     def run_test(self):
         self.nodes[1].generate(100)
-        self.sync_blocks()
+        sync_blocks(self.nodes)
         balance = self.nodes[0].getbalance()
         txA = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), Decimal("10"))
         txB = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), Decimal("10"))
         txC = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), Decimal("10"))
-        self.sync_mempools()
+        sync_mempools(self.nodes)
         self.nodes[1].generate(1)
 
         # Can not abandon non-wallet transaction
@@ -48,7 +38,7 @@ class AbandonConflictTest(BitcoinTestFramework):
         # Can not abandon confirmed transaction
         assert_raises_rpc_error(-5, 'Transaction not eligible for abandonment', lambda: self.nodes[0].abandontransaction(txid=txA))
 
-        self.sync_blocks()
+        sync_blocks(self.nodes)
         newbalance = self.nodes[0].getbalance()
         assert(balance - newbalance < Decimal("0.001")) #no more than fees lost
         balance = newbalance
@@ -165,7 +155,7 @@ class AbandonConflictTest(BitcoinTestFramework):
         self.nodes[1].generate(1)
 
         connect_nodes(self.nodes[0], 1)
-        self.sync_blocks()
+        sync_blocks(self.nodes)
 
         # Verify that B and C's 10 BTC outputs are available for spending again because AB1 is now conflicted
         newbalance = self.nodes[0].getbalance()

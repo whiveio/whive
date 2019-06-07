@@ -1,4 +1,4 @@
-This directory contains the WhiveQT graphical user interface (GUI). It uses the cross-platform framework [Qt](https://www1.qt.io/developers/).
+This directory contains the CranepayQT graphical user interface (GUI). It uses the cross-platform framework [Qt](https://www1.qt.io/developers/).
 
 The current precise version for Qt 5 is specified in [qt.mk](/depends/packages/qt.mk).
 
@@ -9,7 +9,7 @@ See build instructions ([macOS](/doc/build-osx.md), [Windows](/doc/build-windows
 To run:
 
 ```sh
-./src/qt/whive-qt
+./src/qt/whiveyes-qt
 ```
 
 ## Files and directories
@@ -32,13 +32,13 @@ Tests.
 
 ### bitcoingui.(h/cpp)
 
-Represents the main window of the Whive UI.
+Represents the main window of the Whiveyes UI.
 
 ### \*model.(h/cpp)
 
 The model. When it has a corresponding controller, it generally inherits from  [QAbstractTableModel](https://doc.qt.io/qt-5/qabstracttablemodel.html). Models that are used by controllers as helpers inherit from other Qt classes like [QValidator](https://doc.qt.io/qt-5/qvalidator.html).
 
-ClientModel is used by the main application `whivegui` and several models like `peertablemodel`.
+ClientModel is used by the main application `whiveyesgui` and several models like `peertablemodel`.
 
 ### \*page.(h/cpp)
 
@@ -50,7 +50,7 @@ Various dialogs, e.g. to open a URL. Inherit from [QDialog](https://doc.qt.io/qt
 
 ### paymentserver.(h/cpp)
 
-Handles URI based application switching (e.g. when following a whive:... link from a browser).
+Handles URI based application switching (e.g. when following a whiveyes:... link from a browser).
 
 ### walletview.(h/cpp)
 
@@ -60,7 +60,7 @@ Represents the view to a single wallet.
 
 * UI elements like BitcoinAmountField, which inherit from QWidget.
 * `bitcoinstrings.cpp`: automatically generated
-* `bitcoinunits.(h/cpp)`: WHV / mCRP / etc handling
+* `bitcoinunits.(h/cpp)`: WHV / mWHV / etc handling
 * `callback.h`
 * `guiconstants.h`: UI colors, app name, etc
 * `guiutil.h`: several helper functions
@@ -86,7 +86,7 @@ Instructions for macOS:
 1. Make sure you installed everything through Homebrew mentioned in the [macOS build instructions](/doc/build-osx.md)
 2. Use `./configure` with the `--enable-debug` flag
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "whive-qt" as project name, enter src/qt as location
+4. Enter "whiveyes-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."

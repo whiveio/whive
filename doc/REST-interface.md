@@ -20,8 +20,7 @@ Supported API
 
 Given a transaction hash: returns a transaction in binary, hex-encoded binary, or JSON formats.
 
-By default, this endpoint will only search the mempool.
-To query for a confirmed transaction, enable the transaction index via "txindex=1" command line / configuration option.
+For full TX query capability, one must enable the transaction index via "txindex=1" command line / configuration option.
 
 #### Blocks
 `GET /rest/block/<BLOCK-HASH>.<bin|hex|json>`
@@ -92,7 +91,6 @@ $ curl localhost:18332/rest/getutxos/checkmempool/b2cdfd7b89def827ff8af7cd9bff76
 
 Returns various information about the TX mempool.
 Only supports JSON as output format.
-* loaded : (boolean) if the mempool is fully loaded
 * size : (numeric) the number of transactions in the TX mempool
 * bytes : (numeric) size of the TX mempool in bytes
 * usage : (numeric) total TX mempool memory usage
@@ -106,4 +104,4 @@ Only supports JSON as output format.
 
 Risks
 -------------
-Running a web browser on the same node with a REST enabled whived can be a risk. Accessing prepared XSS websites could read out tx/block data of your node by placing links like `<script src="http://127.0.0.1:48887/rest/tx/1234567890.json">` which might break the nodes privacy.
+Running a web browser on the same node with a REST enabled whiveyesd can be a risk. Accessing prepared XSS websites could read out tx/block data of your node by placing links like `<script src="http://127.0.0.1:8372/rest/tx/1234567890.json">` which might break the nodes privacy.

@@ -1,27 +1,17 @@
 Release Process
 ====================
 
-## Branch updates
-
-### Before every release candidate
+Before every release candidate:
 
 * Update translations (ping wumpus on IRC) see [translation_process.md](https://github.com/bitcoin/bitcoin/blob/master/doc/translation_process.md#synchronising-translations).
-* Update manpages, see [gen-manpages.sh](https://github.com/bitcoin/bitcoin/blob/master/contrib/devtools/README.md#gen-manpagessh).
-<<<<<<< HEAD
-=======
-* Update release candidate version in `configure.ac` (`CLIENT_VERSION_RC`).
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
-### Before every major and minor release
+* Update manpages, see [gen-manpages.sh](https://github.com/bitcoin/bitcoin/blob/master/contrib/devtools/README.md#gen-manpagessh).
+
+Before every minor and major release:
 
 * Update [bips.md](bips.md) to account for changes since the last release.
-<<<<<<< HEAD
 * Update version in `configure.ac` (don't forget to set `CLIENT_VERSION_IS_RELEASE` to `true`)
 * Write release notes (see below)
-=======
-* Update version in `configure.ac` (don't forget to set `CLIENT_VERSION_RC` to `0`).
-* Write release notes (see "Write the release notes" below).
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 * Update `src/chainparams.cpp` nMinimumChainWork with information from the getblockchaininfo rpc.
 * Update `src/chainparams.cpp` defaultAssumeValid with information from the getblockhash rpc.
   - The selected value must not be orphaned so it may be useful to set the value two blocks back from the tip.
@@ -29,38 +19,13 @@ Release Process
   - This update should be reviewed with a reindex-chainstate with assumevalid=0 to catch any defect
      that causes rejection of blocks in the past history.
 
-### Before every major release
+Before every major release:
 
 * Update hardcoded [seeds](/contrib/seeds/README.md), see [this pull request](https://github.com/bitcoin/bitcoin/pull/7415) for an example.
 * Update [`BLOCK_CHAIN_SIZE`](/src/qt/intro.cpp) to the current size plus some overhead.
 * Update `src/chainparams.cpp` chainTxData with statistics about the transaction count and rate. Use the output of the RPC `getchaintxstats`, see
   [this pull request](https://github.com/bitcoin/bitcoin/pull/12270) for an example. Reviewers can verify the results by running `getchaintxstats <window_block_count> <window_last_block_hash>` with the `window_block_count` and `window_last_block_hash` from your output.
-* In `configure.ac` and `build_msvc/bitcoin_config.h` on _the master branch_:
-  - update `CLIENT_VERSION_MINOR` version
-* In `configure.ac` and `build_msvc/bitcoin_config.h` on _a new release branch_ (see [this commit](https://github.com/bitcoin/bitcoin/commit/742f7dd972fca3dd4a33cfff90bf901b71a687e7)):
-  - update `CLIENT_VERSION_MINOR` version
-  - set `CLIENT_VERSION_REVISION` to `0`
-  - set `CLIENT_VERSION_IS_RELEASE` to `true`
-
-#### Before branch-off
-
-- Clear the release notes and move them to the wiki (see "Write the release notes" below).
-
-#### After branch-off (on master)
-
-- Update the version of `contrib/gitian-descriptors/*.yml`.
-
-#### After branch-off (on the major release branch)
-
-- Update the versions and the link to the release notes draft in `doc/release-notes.md`.
-
-#### Before final release
-
-- Merge the release notes from the wiki into the branch.
-- Ensure the "Needs release note" label is removed from all relevant pull requests and issues.
-
-
-## Building
+* Update version of `contrib/gitian-descriptors/*.yml`: usually one'd want to do this on master after branching off the release - but be sure to at least do it before a new major release
 
 ### First time / New builders
 
@@ -74,26 +39,22 @@ Check out the source code in the following directory hierarchy.
     git clone https://github.com/devrandom/gitian-builder.git
     git clone https://github.com/bitcoin/bitcoin.git
 
-### Write the release notes
+### Bitcoin maintainers/release engineers, suggestion for writing release notes
 
-Open a draft of the release notes for collaborative editing at https://github.com/bitcoin-core/bitcoin-devwiki/wiki.
+Write release notes. git shortlog helps a lot, for example:
 
-For the period during which the notes are being edited on the wiki, the version on the branch should be wiped and replaced with a link to the wiki which should be used for all announcements until `-final`.
-
-Write the release notes. `git shortlog` helps a lot, for example:
-
-    git shortlog --no-merges v(current version, e.g. 0.19.2)..v(new version, e.g. 0.20.0)
+    git shortlog --no-merges v(current version, e.g. 0.7.2)..v(new version, e.g. 0.8.0)
 
 (or ping @wumpus on IRC, he has specific tooling to generate the list of merged pulls
-and sort them into categories based on labels).
+and sort them into categories based on labels)
 
 Generate list of authors:
 
-    git log --format='- %aN' v(current version, e.g. 0.20.0)..v(new version, e.g. 0.20.1) | sort -fiu
+    git log --format='- %aN' v(current version, e.g. 0.16.0)..v(new version, e.g. 0.16.1) | sort -fiu
 
-Tag the version (or release candidate) in git:
+Tag version (or release candidate) in git
 
-    git tag -s v(new version, e.g. 0.20.0)
+    git tag -s v(new version, e.g. 0.8.0)
 
 ### Setup and perform Gitian builds
 
@@ -103,7 +64,7 @@ Setup Gitian descriptors:
 
     pushd ./bitcoin
     export SIGNER="(your Gitian key, ie bluematt, sipa, etc)"
-    export VERSION=(new version, e.g. 0.20.0)
+    export VERSION=(new version, e.g. 0.8.0)
     git fetch
     git checkout v${VERSION}
     popd
@@ -252,6 +213,7 @@ Create (and optionally verify) the signed Windows binaries:
     ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../bitcoin/contrib/gitian-descriptors/gitian-win-signer.yml
     ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../bitcoin/contrib/gitian-descriptors/gitian-win-signer.yml
     mv build/out/bitcoin-*win64-setup.exe ../bitcoin-${VERSION}-win64-setup.exe
+    mv build/out/bitcoin-*win32-setup.exe ../bitcoin-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed macOS/Windows binaries:
@@ -259,7 +221,7 @@ Commit your signature for the signed macOS/Windows binaries:
     pushd gitian.sigs
     git add ${VERSION}-osx-signed/"${SIGNER}"
     git add ${VERSION}-win-signed/"${SIGNER}"
-    git commit -m "Add ${SIGNER} ${VERSION} signed binaries signatures"
+    git commit -a
     git push  # Assuming you can push to the gitian.sigs tree
     popd
 
@@ -280,6 +242,8 @@ bitcoin-${VERSION}-x86_64-linux-gnu.tar.gz
 bitcoin-${VERSION}-osx64.tar.gz
 bitcoin-${VERSION}-osx.dmg
 bitcoin-${VERSION}.tar.gz
+bitcoin-${VERSION}-win32-setup.exe
+bitcoin-${VERSION}-win32.zip
 bitcoin-${VERSION}-win64-setup.exe
 bitcoin-${VERSION}-win64.zip
 ```
@@ -324,54 +288,22 @@ bitcoin.org (see below for bitcoin.org update instructions).
   - After the pull request is merged, the website will automatically show the newest version within 15 minutes, as well
     as update the OS download links. Ping @saivann/@harding (saivann/harding on Freenode) in case anything goes wrong
 
-- Update other repositories and websites for new version
-
-  - bitcoincore.org blog post
-
-<<<<<<< HEAD
-  - Update title of #bitcoin on Freenode IRC
-=======
-  - bitcoincore.org RPC documentation update
-
-  - Update packaging repo
->>>>>>> upstream/0.18
-
-      - Notify BlueMatt so that he can start building [the PPAs](https://launchpad.net/~bitcoin/+archive/ubuntu/bitcoin)
-
-      - Create a new branch for the major release "0.xx" (used to build the snap package)
-
-      - Notify MarcoFalke so that he can start building the snap package
-
-        - https://code.launchpad.net/~bitcoin-core/bitcoin-core-snap/+git/packaging (Click "Import Now" to fetch the branch)
-        - https://code.launchpad.net/~bitcoin-core/bitcoin-core-snap/+git/packaging/+ref/0.xx (Click "Create snap package")
-        - Name it "bitcoin-core-snap-0.xx"
-        - Leave owner and series as-is
-        - Select architectures that are compiled via gitian
-        - Leave "automatically build when branch changes" unticked
-        - Tick "automatically upload to store"
-        - Put "bitcoin-core" in the registered store package name field
-        - Tick the "edge" box
-        - Put "0.xx" in the track field
-        - Click "create snap package"
-        - Click "Request builds" for every new release on this branch (after updating the snapcraft.yml in the branch to reflect the latest gitian results)
-        - Promote release on https://snapcraft.io/bitcoin-core/releases if it passes sanity checks
-
-  - This repo
-
-      - Archive the release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
-
-      - Create a [new GitHub release](https://github.com/bitcoin/bitcoin/releases/new) with a link to the archived release notes
-
-      - Create a pinned meta-issue for testing the release candidate (see [this issue](https://github.com/bitcoin/bitcoin/issues/15555) for an example) and provide a link to it in the release announcements where useful
-
 - Announce the release:
 
   - bitcoin-dev and bitcoin-core-dev mailing list
 
   - Bitcoin Core announcements list https://bitcoincore.org/en/list/announcements/join/
 
+  - bitcoincore.org blog post
+
   - Update title of #bitcoin on Freenode IRC
 
   - Optionally twitter, reddit /r/Bitcoin, ... but this will usually sort out itself
+
+  - Notify BlueMatt so that he can start building [the PPAs](https://launchpad.net/~bitcoin/+archive/ubuntu/bitcoin)
+
+  - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
+
+  - Create a [new GitHub release](https://github.com/bitcoin/bitcoin/releases/new) with a link to the archived release notes.
 
   - Celebrate

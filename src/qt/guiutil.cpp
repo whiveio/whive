@@ -112,7 +112,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
     widget->setFont(fixedPitchFont());
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Whive address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Whiveyes address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
     widget->setValidator(new BitcoinAddressEntryValidator(parent));
     widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
@@ -120,8 +120,8 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no whive: URI
-    if(!uri.isValid() || uri.scheme() != QString("whive"))
+    // return if URI is not valid or is no whiveyes: URI
+    if(!uri.isValid() || uri.scheme() != QString("whiveyes"))
         return false;
 
     SendCoinsRecipient rv;
@@ -183,13 +183,7 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-<<<<<<< HEAD
-    QString ret = QString("whive:%1").arg(info.address);
-=======
-    bool bech_32 = info.address.startsWith(QString::fromStdString(Params().Bech32HRP() + "1"));
-
-    QString ret = QString("bitcoin:%1").arg(bech_32 ? info.address.toUpper() : info.address);
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
+    QString ret = QString("whiveyes:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
@@ -256,11 +250,6 @@ QList<QModelIndex> getEntryData(QAbstractItemView *view, int column)
     if(!view || !view->selectionModel())
         return QList<QModelIndex>();
     return view->selectionModel()->selectedRows(column);
-}
-
-QString getDefaultDataDirectory()
-{
-    return boostPathToQString(GetDefaultDataDir());
 }
 
 QString getSaveFileName(QWidget *parent, const QString &caption, const QString &dir,
@@ -389,7 +378,7 @@ bool openBitcoinConf()
 
     configFile.close();
 
-    /* Open whive.conf with the associated application */
+    /* Open whiveyes.conf with the associated application */
     return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
 
@@ -537,15 +526,15 @@ fs::path static StartupShortcutPath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Whive.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Whiveyes.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Whive (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Whive (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Whiveyes (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Whiveyes (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for Whive*.lnk
+    // check for Whiveyes*.lnk
     return fs::exists(StartupShortcutPath());
 }
 
@@ -635,8 +624,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "whive.desktop";
-    return GetAutostartDir() / strprintf("whive-%s.lnk", chain);
+        return GetAutostartDir() / "whiveyes.desktop";
+    return GetAutostartDir() / strprintf("whiveyes-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -676,13 +665,13 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (!optionFile.good())
             return false;
         std::string chain = gArgs.GetChainName();
-        // Write a whive.desktop file to the autostart directory:
+        // Write a whiveyes.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Whive\n";
+            optionFile << "Name=Whiveyes\n";
         else
-            optionFile << strprintf("Name=Whive (%s)\n", chain);
+            optionFile << strprintf("Name=Whiveyes (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -708,7 +697,7 @@ LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef
         return nullptr;
     }
 
-    // loop through the list of startup items and try to find the whive app
+    // loop through the list of startup items and try to find the whiveyes app
     for(int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
         UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
@@ -765,7 +754,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
     LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitcoinAppUrl);
 
     if(fAutoStart && !foundItem) {
-        // add whive app to startup item list
+        // add whiveyes app to startup item list
         LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, nullptr, nullptr, bitcoinAppUrl, nullptr, nullptr);
     }
     else if(!fAutoStart && foundItem) {

@@ -148,16 +148,12 @@ static bool rest_headers(HTTPRequest* req,
     headers.reserve(count);
     {
         LOCK(cs_main);
-<<<<<<< HEAD
-=======
-        tip = ::ChainActive().Tip();
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
         const CBlockIndex* pindex = LookupBlockIndex(hash);
-        while (pindex != nullptr && ::ChainActive().Contains(pindex)) {
+        while (pindex != nullptr && chainActive.Contains(pindex)) {
             headers.push_back(pindex);
             if (headers.size() == (unsigned long)count)
                 break;
-            pindex = ::ChainActive().Next(pindex);
+            pindex = chainActive.Next(pindex);
         }
     }
 
@@ -216,10 +212,6 @@ static bool rest_block(HTTPRequest* req,
     CBlockIndex* pblockindex = nullptr;
     {
         LOCK(cs_main);
-<<<<<<< HEAD
-=======
-        tip = ::ChainActive().Tip();
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
         pblockindex = LookupBlockIndex(hash);
         if (!pblockindex) {
             return RESTERR(req, HTTP_NOT_FOUND, hashStr + " not found");
@@ -313,7 +305,7 @@ static bool rest_mempool_info(HTTPRequest* req, const std::string& strURIPart)
 
     switch (rf) {
     case RetFormat::JSON: {
-        UniValue mempoolInfoObject = MempoolInfoToJSON(::mempool);
+        UniValue mempoolInfoObject = mempoolInfoToJSON();
 
         std::string strJSON = mempoolInfoObject.write() + "\n";
         req->WriteHeader("Content-Type", "application/json");
@@ -335,7 +327,7 @@ static bool rest_mempool_contents(HTTPRequest* req, const std::string& strURIPar
 
     switch (rf) {
     case RetFormat::JSON: {
-        UniValue mempoolObject = MempoolToJSON(::mempool, true);
+        UniValue mempoolObject = mempoolToJSON(true);
 
         std::string strJSON = mempoolObject.write() + "\n";
         req->WriteHeader("Content-Type", "application/json");
@@ -532,7 +524,7 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
         // serialize data
         // use exact same output as mentioned in Bip64
         CDataStream ssGetUTXOResponse(SER_NETWORK, PROTOCOL_VERSION);
-        ssGetUTXOResponse << ::ChainActive().Height() << ::ChainActive().Tip()->GetBlockHash() << bitmap << outs;
+        ssGetUTXOResponse << chainActive.Height() << chainActive.Tip()->GetBlockHash() << bitmap << outs;
         std::string ssGetUTXOResponseString = ssGetUTXOResponse.str();
 
         req->WriteHeader("Content-Type", "application/octet-stream");
@@ -542,7 +534,7 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
 
     case RetFormat::HEX: {
         CDataStream ssGetUTXOResponse(SER_NETWORK, PROTOCOL_VERSION);
-        ssGetUTXOResponse << ::ChainActive().Height() << ::ChainActive().Tip()->GetBlockHash() << bitmap << outs;
+        ssGetUTXOResponse << chainActive.Height() << chainActive.Tip()->GetBlockHash() << bitmap << outs;
         std::string strHex = HexStr(ssGetUTXOResponse.begin(), ssGetUTXOResponse.end()) + "\n";
 
         req->WriteHeader("Content-Type", "text/plain");
@@ -555,8 +547,8 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
 
         // pack in some essentials
         // use more or less the same output as mentioned in Bip64
-        objGetUTXOResponse.pushKV("chainHeight", ::ChainActive().Height());
-        objGetUTXOResponse.pushKV("chaintipHash", ::ChainActive().Tip()->GetBlockHash().GetHex());
+        objGetUTXOResponse.pushKV("chainHeight", chainActive.Height());
+        objGetUTXOResponse.pushKV("chaintipHash", chainActive.Tip()->GetBlockHash().GetHex());
         objGetUTXOResponse.pushKV("bitmap", bitmapStringRepresentation);
 
         UniValue utxos(UniValue::VARR);
@@ -585,55 +577,6 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
     }
 }
 
-<<<<<<< HEAD
-=======
-static bool rest_blockhash_by_height(HTTPRequest* req,
-                       const std::string& str_uri_part)
-{
-    if (!CheckWarmup(req)) return false;
-    std::string height_str;
-    const RetFormat rf = ParseDataFormat(height_str, str_uri_part);
-
-    int32_t blockheight;
-    if (!ParseInt32(height_str, &blockheight) || blockheight < 0) {
-        return RESTERR(req, HTTP_BAD_REQUEST, "Invalid height: " + SanitizeString(height_str));
-    }
-
-    CBlockIndex* pblockindex = nullptr;
-    {
-        LOCK(cs_main);
-        if (blockheight > ::ChainActive().Height()) {
-            return RESTERR(req, HTTP_NOT_FOUND, "Block height out of range");
-        }
-        pblockindex = ::ChainActive()[blockheight];
-    }
-    switch (rf) {
-    case RetFormat::BINARY: {
-        CDataStream ss_blockhash(SER_NETWORK, PROTOCOL_VERSION);
-        ss_blockhash << pblockindex->GetBlockHash();
-        req->WriteHeader("Content-Type", "application/octet-stream");
-        req->WriteReply(HTTP_OK, ss_blockhash.str());
-        return true;
-    }
-    case RetFormat::HEX: {
-        req->WriteHeader("Content-Type", "text/plain");
-        req->WriteReply(HTTP_OK, pblockindex->GetBlockHash().GetHex() + "\n");
-        return true;
-    }
-    case RetFormat::JSON: {
-        req->WriteHeader("Content-Type", "application/json");
-        UniValue resp = UniValue(UniValue::VOBJ);
-        resp.pushKV("blockhash", pblockindex->GetBlockHash().GetHex());
-        req->WriteReply(HTTP_OK, resp.write() + "\n");
-        return true;
-    }
-    default: {
-        return RESTERR(req, HTTP_NOT_FOUND, "output format not found (available: " + AvailableDataFormatsString() + ")");
-    }
-    }
-}
-
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 static const struct {
     const char* prefix;
     bool (*handler)(HTTPRequest* req, const std::string& strReq);

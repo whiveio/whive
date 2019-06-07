@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,12 +19,7 @@
 #include <util.h>
 #include <httpserver.h>
 #include <httprpc.h>
-<<<<<<< HEAD
 #include <utilstrencodings.h>
-=======
-#include <util/threadnames.h>
-#include <util/strencodings.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 #include <walletinitinterface.h>
 
 #include <stdio.h>
@@ -35,13 +30,13 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called Whive,
- * which enables instant payments to anyone, anywhere in the world. Whive uses peer-to-peer technology to operate
+ * This is the developer documentation of the reference client for an experimental new digital currency called Whiveyes,
+ * which enables instant payments to anyone, anywhere in the world. Whiveyes uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *
  * The software is a community-driven open source project, released under the MIT license.
  *
- * See https://github.com/whive/whive and https://whive.org/ for further information about the project.
+ * See https://github.com/whiveyes/whiveyes and https://whiveyes.org/ for further information about the project.
  *
  * \section Navigation
  * Use the buttons <code>Namespaces</code>, <code>Classes</code> or <code>Files</code> at the top of the page to start navigating the code.
@@ -64,12 +59,10 @@ static bool AppInit(int argc, char* argv[])
 {
     bool fRet = false;
 
-    util::ThreadRename("init");
-
     //
     // Parameters
     //
-    // If Qt is used, parameters/whive.conf are parsed in qt/bitcoin.cpp's main()
+    // If Qt is used, parameters/whiveyes.conf are parsed in qt/bitcoin.cpp's main()
     SetupServerArgs();
     std::string error;
     if (!gArgs.ParseParameters(argc, argv, error)) {
@@ -87,7 +80,7 @@ static bool AppInit(int argc, char* argv[])
         }
         else
         {
-            strUsage += "\nUsage:  whived [options]                     Start " PACKAGE_NAME " Daemon\n";
+            strUsage += "\nUsage:  whiveyesd [options]                     Start " PACKAGE_NAME " Daemon\n";
             strUsage += "\n" + gArgs.GetHelpMessage();
         }
 
@@ -117,12 +110,12 @@ static bool AppInit(int argc, char* argv[])
         // Error out when loose non-argument tokens are encountered on command line
         for (int i = 1; i < argc; i++) {
             if (!IsSwitchChar(argv[i][0])) {
-                fprintf(stderr, "Error: Command line contains unexpected token '%s', see whived -h for a list of options.\n", argv[i]);
+                fprintf(stderr, "Error: Command line contains unexpected token '%s', see whiveyesd -h for a list of options.\n", argv[i]);
                 return false;
             }
         }
 
-        // -server defaults to true for whived but not for the GUI so do this here
+        // -server defaults to true for whiveyesd but not for the GUI so do this here
         gArgs.SoftSetBoolArg("-server", true);
         // Set this early so that parameter interactions go to console
         InitLogging();
@@ -149,7 +142,7 @@ static bool AppInit(int argc, char* argv[])
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
-            fprintf(stdout, "Whive server starting\n");
+            fprintf(stdout, "Whiveyes server starting\n");
 
             // Daemonize
             if (daemon(1, 0)) { // don't chdir (1), do close FDs (0)
@@ -193,7 +186,7 @@ int main(int argc, char* argv[])
 {
     SetupEnvironment();
 
-    // Connect whived signal handlers
+    // Connect whiveyesd signal handlers
     noui_connect();
 
     return (AppInit(argc, argv) ? EXIT_SUCCESS : EXIT_FAILURE);

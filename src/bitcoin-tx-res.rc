@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,14 +22,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Whive"
-            VALUE "FileDescription",    "whive-tx (CLI Whive transaction editor utility)"
+            VALUE "CompanyName",        "Whiveyes"
+            VALUE "FileDescription",    "whiveyes-tx (CLI Whiveyes transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "whive-tx"
+            VALUE "InternalName",       "whiveyes-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "whive-tx.exe"
-            VALUE "ProductName",        "whive-tx"
+            VALUE "OriginalFilename",   "whiveyes-tx.exe"
+            VALUE "ProductName",        "whiveyes-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

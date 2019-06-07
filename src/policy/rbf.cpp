@@ -3,9 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <policy/rbf.h>
-#include <util/rbf.h>
 
-<<<<<<< HEAD
 bool SignalsOptInRBF(const CTransaction &tx)
 {
     for (const CTxIn &txin : tx.vin) {
@@ -17,9 +15,6 @@ bool SignalsOptInRBF(const CTransaction &tx)
 }
 
 RBFTransactionState IsRBFOptIn(const CTransaction &tx, CTxMemPool &pool)
-=======
-RBFTransactionState IsRBFOptIn(const CTransaction& tx, const CTxMemPool& pool)
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 {
     AssertLockHeld(pool.cs);
 

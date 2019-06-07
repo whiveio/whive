@@ -164,7 +164,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             total += subtotal;
         }
         else
-        {   // User-entered whive address / amount:
+        {   // User-entered whiveyes address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -218,9 +218,9 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
         }
 
         // reject absurdly high fee. (This can never happen because the
-        // wallet caps the fee at m_default_max_tx_fee. This merely serves as a
+        // wallet caps the fee at maxTxFee. This merely serves as a
         // belt-and-suspenders check)
-        if (nFeeRequired > m_wallet->getDefaultMaxTxFee())
+        if (nFeeRequired > m_node.getMaxTxFee())
             return AbsurdFee;
     }
 
@@ -247,7 +247,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
                 rcp.paymentRequest.SerializeToString(&value);
                 vOrderForm.emplace_back("PaymentRequest", std::move(value));
             }
-            else if (!rcp.message.isEmpty()) // Message from normal whive:URI (whive:123...?message=example)
+            else if (!rcp.message.isEmpty()) // Message from normal whiveyes:URI (whiveyes:123...?message=example)
                 vOrderForm.emplace_back("Message", rcp.message.toStdString());
         }
 
@@ -466,7 +466,7 @@ WalletModel::UnlockContext::~UnlockContext()
     }
 }
 
-void WalletModel::UnlockContext::CopyFrom(UnlockContext&& rhs)
+void WalletModel::UnlockContext::CopyFrom(const UnlockContext& rhs)
 {
     // Transfer context; old object no longer relocks wallet
     *this = rhs;
@@ -563,14 +563,6 @@ bool WalletModel::privateKeysDisabled() const
     return m_wallet->IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS);
 }
 
-<<<<<<< HEAD
-=======
-bool WalletModel::canGetAddresses() const
-{
-    return m_wallet->canGetAddresses();
-}
-
->>>>>>> upstream/0.18
 QString WalletModel::getWalletName() const
 {
     return QString::fromStdString(m_wallet->getWalletName());

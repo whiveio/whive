@@ -20,29 +20,21 @@ bench_bench_bitcoin_SOURCES = \
   bench/checkqueue.cpp \
   bench/examples.cpp \
   bench/rollingbloom.cpp \
-  bench/chacha20.cpp \
   bench/crypto_hash.cpp \
   bench/ccoins_caching.cpp \
   bench/merkle_root.cpp \
   bench/mempool_eviction.cpp \
-  bench/rpc_mempool.cpp \
   bench/verify_script.cpp \
   bench/base58.cpp \
   bench/bech32.cpp \
   bench/lockedpool.cpp \
-  bench/poly1305.cpp \
-  bench/prevector.cpp \
-  test/setup_common.h \
-  test/setup_common.cpp \
-  test/util.h \
-  test/util.cpp
+  bench/prevector.cpp
 
 nodist_bench_bench_bitcoin_SOURCES = $(GENERATED_BENCH_FILES)
 
 bench_bench_bitcoin_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CLFAGS) $(EVENT_PTHREADS_CFLAGS) -I$(builddir)/bench/
 bench_bench_bitcoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 bench_bench_bitcoin_LDADD = \
-  $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
@@ -53,9 +45,7 @@ bench_bench_bitcoin_LDADD = \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
   $(LIBSECP256K1) \
-  $(LIBUNIVALUE) \
-  $(EVENT_PTHREADS_LIBS) \
-  $(EVENT_LIBS)
+  $(LIBUNIVALUE)
 
 if ENABLE_ZMQ
 bench_bench_bitcoin_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
@@ -63,14 +53,9 @@ endif
 
 if ENABLE_WALLET
 bench_bench_bitcoin_SOURCES += bench/coin_selection.cpp
-bench_bench_bitcoin_SOURCES += bench/wallet_balance.cpp
 endif
 
-<<<<<<< HEAD
 bench_bench_bitcoin_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-=======
-bench_bench_bitcoin_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS)
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 bench_bench_bitcoin_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 CLEAN_BITCOIN_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_BENCH_FILES)

@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
-=======
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -78,47 +73,11 @@ BerkeleyEnvironment* GetWalletEnv(const fs::path& wallet_path, std::string& data
         database_filename = "wallet.dat";
     }
     LOCK(cs_db);
-<<<<<<< HEAD
     // Note: An ununsed temporary BerkeleyEnvironment object may be created inside the
     // emplace function if the key already exists. This is a little inefficient,
     // but not a big concern since the map will be changed in the future to hold
     // pointers instead of objects, anyway.
     return &g_dbenvs.emplace(std::piecewise_construct, std::forward_as_tuple(env_directory.string()), std::forward_as_tuple(env_directory)).first->second;
-=======
-    auto env = g_dbenvs.find(env_directory.string());
-    if (env == g_dbenvs.end()) return false;
-    auto database = env->second.lock();
-    return database && database->IsDatabaseLoaded(database_filename);
-}
-
-fs::path WalletDataFilePath(const fs::path& wallet_path)
-{
-    fs::path env_directory;
-    std::string database_filename;
-    SplitWalletPath(wallet_path, env_directory, database_filename);
-    return env_directory / database_filename;
-}
-
-/**
- * @param[in] wallet_path Path to wallet directory. Or (for backwards compatibility only) a path to a berkeley btree data file inside a wallet directory.
- * @param[out] database_filename Filename of berkeley btree data file inside the wallet directory.
- * @return A shared pointer to the BerkeleyEnvironment object for the wallet directory, never empty because ~BerkeleyEnvironment
- * erases the weak pointer from the g_dbenvs map.
- * @post A new BerkeleyEnvironment weak pointer is inserted into g_dbenvs if the directory path key was not already in the map.
- */
-std::shared_ptr<BerkeleyEnvironment> GetWalletEnv(const fs::path& wallet_path, std::string& database_filename)
-{
-    fs::path env_directory;
-    SplitWalletPath(wallet_path, env_directory, database_filename);
-    LOCK(cs_db);
-    auto inserted = g_dbenvs.emplace(env_directory.string(), std::weak_ptr<BerkeleyEnvironment>());
-    if (inserted.second) {
-        auto env = std::make_shared<BerkeleyEnvironment>(env_directory.string());
-        inserted.first->second = env;
-        return env;
-    }
-    return inserted.first->second.lock();
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 }
 
 //
@@ -364,13 +323,15 @@ bool BerkeleyBatch::VerifyEnvironment(const fs::path& file_path, std::string& er
     BerkeleyEnvironment* env = GetWalletEnv(file_path, walletFile);
     fs::path walletDir = env->Directory();
 
-<<<<<<< HEAD
     LogPrintf("Using BerkeleyDB version %s\n", DbEnv::version(0, 0, 0));
     LogPrintf("Using wallet %s\n", walletFile);
-=======
-    LogPrintf("Using BerkeleyDB version %s\n", DbEnv::version(nullptr, nullptr, nullptr));
-    LogPrintf("Using wallet %s\n", file_path.string());
->>>>>>> upstream/0.18
+
+    // Wallet file must be a plain filename without a directory
+    if (walletFile != fs::basename(walletFile) + fs::extension(walletFile))
+    {
+        errorStr = strprintf(_("Wallet %s resides outside wallet directory %s"), walletFile, walletDir.string());
+        return false;
+    }
 
     if (!env->Open(true /* retry */)) {
         errorStr = strprintf(_("Error initializing wallet database environment %s!"), walletDir);

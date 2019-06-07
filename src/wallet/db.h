@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
-=======
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -92,15 +87,6 @@ public:
     }
 };
 
-<<<<<<< HEAD
-=======
-/** Return whether a wallet database is currently loaded. */
-bool IsWalletLoaded(const fs::path& wallet_path);
-
-/** Given a wallet directory path or legacy file path, return path to main data file in the wallet database. */
-fs::path WalletDataFilePath(const fs::path& wallet_path);
-
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 /** Get BerkeleyEnvironment and database filename given a wallet path. */
 BerkeleyEnvironment* GetWalletEnv(const fs::path& wallet_path, std::string& database_filename);
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The Bitcoin Core developers
+# Copyright (c) 2017-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Class for bitcoind node under test"""
@@ -28,6 +28,9 @@ from .util import (
     p2p_port,
 )
 
+# For Python 3.4 compatibility
+JSONDecodeError = getattr(json, "JSONDecodeError", ValueError)
+
 BITCOIND_PROC_WAIT_TIMEOUT = 60
 
 
@@ -55,17 +58,7 @@ class TestNode():
     To make things easier for the test writer, any unrecognised messages will
     be dispatched to the RPC connection."""
 
-<<<<<<< HEAD
     def __init__(self, i, datadir, *, rpchost, timewait, bitcoind, bitcoin_cli, mocktime, coverage_dir, extra_conf=None, extra_args=None, use_cli=False):
-=======
-    def __init__(self, i, datadir, *, rpchost, timewait, bitcoind, bitcoin_cli, coverage_dir, cwd, extra_conf=None, extra_args=None, use_cli=False, start_perf=False):
-        """
-        Kwargs:
-            start_perf (bool): If True, begin profiling the node with `perf` as soon as
-                the node starts.
-        """
-
->>>>>>> upstream/0.18
         self.index = i
         self.datadir = datadir
         self.stdout_dir = os.path.join(self.datadir, "stdout")
@@ -74,29 +67,21 @@ class TestNode():
         self.rpc_timeout = timewait
         self.binary = bitcoind
         self.coverage_dir = coverage_dir
-<<<<<<< HEAD
         if extra_conf != None:
-=======
-        self.cwd = cwd
-        if extra_conf is not None:
->>>>>>> upstream/0.18
             append_config(datadir, extra_conf)
         # Most callers will just need to add extra args to the standard list below.
         # For those callers that need more flexibility, they can just set the args property directly.
         # Note that common args are set in the config file (see initialize_datadir)
         self.extra_args = extra_args
-        # Configuration for logging is set as command-line args rather than in the bitcoin.conf file.
-        # This means that starting a bitcoind using the temp dir to debug a failed test won't
-        # spam debug.log.
         self.args = [
             self.binary,
             "-datadir=" + self.datadir,
             "-logtimemicros",
-            "-logthreadnames",
             "-debug",
             "-debugexclude=libevent",
             "-debugexclude=leveldb",
-            "-uacomment=testnode%d" % i,
+            "-mocktime=" + str(mocktime),
+            "-uacomment=testnode%d" % i
         ]
 
         self.cli = TestNodeCLI(bitcoin_cli, self.datadir)
@@ -154,7 +139,7 @@ class TestNode():
             assert self.rpc_connected and self.rpc is not None, self._node_msg("Error: no RPC connection")
             return getattr(self.rpc, name)
 
-    def start(self, extra_args=None, *, cwd=None, stdout=None, stderr=None, **kwargs):
+    def start(self, extra_args=None, *, stdout=None, stderr=None, **kwargs):
         """Start the node."""
         if extra_args is None:
             extra_args = self.extra_args
@@ -167,9 +152,6 @@ class TestNode():
         self.stderr = stderr
         self.stdout = stdout
 
-        if cwd is None:
-            cwd = self.cwd
-
         # Delete any existing cookie file -- if such a file exists (eg due to
         # unclean shutdown), it will get overwritten anyway by bitcoind, and
         # potentially interfere with our attempt to authenticate
@@ -178,7 +160,7 @@ class TestNode():
         # add environment variable LIBC_FATAL_STDERR_=1 so that libc errors are written to stderr and not the terminal
         subp_env = dict(os.environ, LIBC_FATAL_STDERR_="1")
 
-        self.process = subprocess.Popen(self.args + extra_args, env=subp_env, stdout=stdout, stderr=stderr, cwd=cwd, **kwargs)
+        self.process = subprocess.Popen(self.args + extra_args, env=subp_env, stdout=stdout, stderr=stderr, **kwargs)
 
         self.running = True
         self.log.debug("bitcoind started, waiting for RPC to come up")
@@ -281,114 +263,6 @@ class TestNode():
                 if re.search(re.escape(expected_msg), log, flags=re.MULTILINE) is None:
                     self._raise_assertion_error('Expected message "{}" does not partially match log:\n\n{}\n\n'.format(expected_msg, print_log))
 
-<<<<<<< HEAD
-=======
-    @contextlib.contextmanager
-    def assert_memory_usage_stable(self, *, increase_allowed=0.03):
-        """Context manager that allows the user to assert that a node's memory usage (RSS)
-        hasn't increased beyond some threshold percentage.
-
-        Args:
-            increase_allowed (float): the fractional increase in memory allowed until failure;
-                e.g. `0.12` for up to 12% increase allowed.
-        """
-        before_memory_usage = self.get_mem_rss_kilobytes()
-
-        yield
-
-        after_memory_usage = self.get_mem_rss_kilobytes()
-
-        if not (before_memory_usage and after_memory_usage):
-            self.log.warning("Unable to detect memory usage (RSS) - skipping memory check.")
-            return
-
-        perc_increase_memory_usage = (after_memory_usage / before_memory_usage) - 1
-
-        if perc_increase_memory_usage > increase_allowed:
-            self._raise_assertion_error(
-                "Memory usage increased over threshold of {:.3f}% from {} to {} ({:.3f}%)".format(
-                    increase_allowed * 100, before_memory_usage, after_memory_usage,
-                    perc_increase_memory_usage * 100))
-
-    @contextlib.contextmanager
-    def profile_with_perf(self, profile_name):
-        """
-        Context manager that allows easy profiling of node activity using `perf`.
-
-        See `test/functional/README.md` for details on perf usage.
-
-        Args:
-            profile_name (str): This string will be appended to the
-                profile data filename generated by perf.
-        """
-        subp = self._start_perf(profile_name)
-
-        yield
-
-        if subp:
-            self._stop_perf(profile_name)
-
-    def _start_perf(self, profile_name=None):
-        """Start a perf process to profile this node.
-
-        Returns the subprocess running perf."""
-        subp = None
-
-        def test_success(cmd):
-            return subprocess.call(
-                # shell=True required for pipe use below
-                cmd, shell=True,
-                stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL) == 0
-
-        if not sys.platform.startswith('linux'):
-            self.log.warning("Can't profile with perf; only available on Linux platforms")
-            return None
-
-        if not test_success('which perf'):
-            self.log.warning("Can't profile with perf; must install perf-tools")
-            return None
-
-        if not test_success('readelf -S {} | grep .debug_str'.format(shlex.quote(self.binary))):
-            self.log.warning(
-                "perf output won't be very useful without debug symbols compiled into bitcoind")
-
-        output_path = tempfile.NamedTemporaryFile(
-            dir=self.datadir,
-            prefix="{}.perf.data.".format(profile_name or 'test'),
-            delete=False,
-        ).name
-
-        cmd = [
-            'perf', 'record',
-            '-g',                     # Record the callgraph.
-            '--call-graph', 'dwarf',  # Compatibility for gcc's --fomit-frame-pointer.
-            '-F', '101',              # Sampling frequency in Hz.
-            '-p', str(self.process.pid),
-            '-o', output_path,
-        ]
-        subp = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        self.perf_subprocesses[profile_name] = subp
-
-        return subp
-
-    def _stop_perf(self, profile_name):
-        """Stop (and pop) a perf subprocess."""
-        subp = self.perf_subprocesses.pop(profile_name)
-        output_path = subp.args[subp.args.index('-o') + 1]
-
-        subp.terminate()
-        subp.wait(timeout=10)
-
-        stderr = subp.stderr.read().decode()
-        if 'Consider tweaking /proc/sys/kernel/perf_event_paranoid' in stderr:
-            self.log.warning(
-                "perf couldn't collect data! Try "
-                "'sudo sysctl -w kernel.perf_event_paranoid=-1'")
-        else:
-            report_cmd = "perf report -i {}".format(output_path)
-            self.log.info("See perf output by running '{}'".format(report_cmd))
-
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     def assert_start_raises_init_error(self, extra_args=None, expected_msg=None, match=ErrorMatch.FULL_TEXT, *args, **kwargs):
         """Attempt to start the node and expect it to raise an error.
 
@@ -535,5 +409,5 @@ class TestNodeCLI():
             raise subprocess.CalledProcessError(returncode, self.binary, output=cli_stderr)
         try:
             return json.loads(cli_stdout, parse_float=decimal.Decimal)
-        except json.JSONDecodeError:
+        except JSONDecodeError:
             return cli_stdout.rstrip("\n")

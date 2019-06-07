@@ -36,15 +36,9 @@ public:
 
     void setClientModel(ClientModel *clientModel);
 
-<<<<<<< HEAD
     bool addWallet(WalletModel *walletModel);
     bool setCurrentWallet(const QString& name);
     bool removeWallet(const QString &name);
-=======
-    void addWallet(WalletModel *walletModel);
-    void setCurrentWallet(WalletModel* wallet_model);
-    void removeWallet(WalletModel* wallet_model);
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     void removeAllWallets();
 
     bool handlePaymentRequest(const SendCoinsRecipient& recipient);

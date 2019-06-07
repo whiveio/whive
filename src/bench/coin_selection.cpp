@@ -33,13 +33,7 @@ static void addCoin(const CAmount& nValue, const CWallet& wallet, std::vector<Ou
 // (https://github.com/bitcoin/bitcoin/issues/7883#issuecomment-224807484)
 static void CoinSelection(benchmark::State& state)
 {
-<<<<<<< HEAD
     const CWallet wallet("dummy", WalletDatabase::CreateDummy());
-=======
-    auto chain = interfaces::MakeChain();
-    const CWallet wallet(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
-    std::vector<std::unique_ptr<CWalletTx>> wtxs;
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     LOCK(wallet.cs_wallet);
 
     // Add coins.
@@ -63,12 +57,7 @@ static void CoinSelection(benchmark::State& state)
 }
 
 typedef std::set<CInputCoin> CoinSet;
-<<<<<<< HEAD
 static const CWallet testWallet("dummy", WalletDatabase::CreateDummy());
-=======
-static auto testChain = interfaces::MakeChain();
-static const CWallet testWallet(testChain.get(), WalletLocation(), WalletDatabase::CreateDummy());
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 std::vector<std::unique_ptr<CWalletTx>> wtxn;
 
 // Copied from src/wallet/test/coinselector_tests.cpp

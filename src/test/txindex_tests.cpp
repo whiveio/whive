@@ -1,18 +1,12 @@
-// Copyright (c) 2017-2019 The Bitcoin Core developers
+// Copyright (c) 2017-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <index/txindex.h>
 #include <script/standard.h>
-<<<<<<< HEAD
 #include <test/test_bitcoin.h>
 #include <util.h>
 #include <utiltime.h>
-=======
-#include <test/setup_common.h>
-#include <util/system.h>
-#include <util/time.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 #include <validation.h>
 
 #include <boost/test/unit_test.hpp>
@@ -55,7 +49,7 @@ BOOST_FIXTURE_TEST_CASE(txindex_initial_sync, TestChain100Setup)
 
     // Check that new transactions in new blocks make it into the index.
     for (int i = 0; i < 10; i++) {
-        CScript coinbase_script_pub_key = GetScriptForDestination(PKHash(coinbaseKey.GetPubKey()));
+        CScript coinbase_script_pub_key = GetScriptForDestination(coinbaseKey.GetPubKey().GetID());
         std::vector<CMutableTransaction> no_txns;
         const CBlock& block = CreateAndProcessBlock(no_txns, coinbase_script_pub_key);
         const CTransaction& txn = *block.vtx[0];
@@ -68,13 +62,7 @@ BOOST_FIXTURE_TEST_CASE(txindex_initial_sync, TestChain100Setup)
         }
     }
 
-    // shutdown sequence (c.f. Shutdown() in init.cpp)
-    txindex.Stop();
-
-    threadGroup.interrupt_all();
-    threadGroup.join_all();
-
-    // Rest of shutdown sequence and destructors happen in ~TestingSetup()
+    txindex.Stop(); // Stop thread before calling destructor
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -50,6 +50,10 @@ class CNetAddr
         void SetRaw(Network network, const uint8_t *data);
 
     public:
+        /**
+          * Transform an arbitrary string into a non-routable ipv6 address.
+          * Useful for mapping resolved addresses back to their source.
+         */
         bool SetInternal(const std::string& name);
 
         bool SetSpecial(const std::string &strName); // for Tor addresses
@@ -66,8 +70,8 @@ class CNetAddr
         bool IsRFC4380() const; // IPv6 Teredo tunnelling (2001::/32)
         bool IsRFC4843() const; // IPv6 ORCHID (2001:10::/28)
         bool IsRFC4862() const; // IPv6 autoconfig (FE80::/64)
-        bool IsRFC6052() const; // IPv6 well-known prefix for IPv4-embedded address (64:FF9B::/96)
-        bool IsRFC6145() const; // IPv6 IPv4-translated address (::FFFF:0:0:0/96) (actually defined in RFC2765)
+        bool IsRFC6052() const; // IPv6 well-known prefix (64:FF9B::/96)
+        bool IsRFC6145() const; // IPv6 IPv4-translated address (::FFFF:0:0:0/96)
         bool IsTor() const;
         bool IsLocal() const;
         bool IsRoutable() const;

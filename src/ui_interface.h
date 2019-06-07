@@ -10,18 +10,11 @@
 #include <stdint.h>
 #include <string>
 
-<<<<<<< HEAD
 #include <boost/signals2/last_value.hpp>
 #include <boost/signals2/signal.hpp>
 
 class CWallet;
-=======
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 class CBlockIndex;
-
-namespace interfaces {
-class Wallet;
-} // namespace interfaces
 
 /** General change type (added, updated, removed). */
 enum ChangeType
@@ -79,14 +72,6 @@ public:
         MSG_ERROR = (ICON_ERROR | BTN_OK | MODAL)
     };
 
-<<<<<<< HEAD
-=======
-#define ADD_SIGNALS_DECL_WRAPPER(signal_name, rtype, ...)                                  \
-    rtype signal_name(__VA_ARGS__);                                                        \
-    using signal_name##Sig = rtype(__VA_ARGS__);                                           \
-    boost::signals2::connection signal_name##_connect(std::function<signal_name##Sig> fn);
-
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     /** Show message box. */
     boost::signals2::signal<bool (const std::string& message, const std::string& caption, unsigned int style), boost::signals2::last_value<bool> > ThreadSafeMessageBox;
 
@@ -108,11 +93,7 @@ public:
     boost::signals2::signal<void ()> NotifyAlertChanged;
 
     /** A wallet has been loaded. */
-<<<<<<< HEAD
     boost::signals2::signal<void (std::shared_ptr<CWallet> wallet)> LoadWallet;
-=======
-    ADD_SIGNALS_DECL_WRAPPER(LoadWallet, void, std::unique_ptr<interfaces::Wallet>& wallet);
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
     /**
      * Show progress e.g. for verifychain.
@@ -135,6 +116,10 @@ void InitWarning(const std::string& str);
 
 /** Show error message **/
 bool InitError(const std::string& str);
+
+std::string AmountHighWarn(const std::string& optname);
+
+std::string AmountErrMsg(const char* const optname, const std::string& strValue);
 
 extern CClientUIInterface uiInterface;
 

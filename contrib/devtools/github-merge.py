@@ -50,61 +50,20 @@ def git_config_get(option, default=None):
     except subprocess.CalledProcessError:
         return default
 
-<<<<<<< HEAD
 def retrieve_pr_info(repo,pull):
-=======
-def get_response(req_url, ghtoken):
-    req = Request(req_url)
-    if ghtoken is not None:
-        req.add_header('Authorization', 'token ' + ghtoken)
-    return urlopen(req)
-
-def retrieve_json(req_url, ghtoken, use_pagination=False):
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     '''
-    Retrieve json from github.
-    Return None if an error happens.
+    Retrieve pull request information from github.
+    Return None if no title can be found, or an error happens.
     '''
     try:
-<<<<<<< HEAD
         req = Request("https://api.github.com/repos/"+repo+"/pulls/"+pull)
         result = urlopen(req)
-=======
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
         reader = codecs.getreader('utf-8')
-        if not use_pagination:
-            return json.load(reader(get_response(req_url, ghtoken)))
-
-        obj = []
-        page_num = 1
-        while True:
-            req_url_page = '{}?page={}'.format(req_url, page_num)
-            result = get_response(req_url_page, ghtoken)
-            obj.extend(json.load(reader(result)))
-
-            link = result.headers.get('link', None)
-            if link is not None:
-                link_next = [l for l in link.split(',') if 'rel="next"' in l]
-                if len(link_next) > 0:
-                    page_num = int(link_next[0][link_next[0].find("page=")+5:link_next[0].find(">")])
-                    continue
-            break
+        obj = json.load(reader(result))
         return obj
     except Exception as e:
         print('Warning: unable to retrieve pull information from github: %s' % e)
         return None
-
-def retrieve_pr_info(repo,pull,ghtoken):
-    req_url = "https://api.github.com/repos/"+repo+"/pulls/"+pull
-    return retrieve_json(req_url,ghtoken)
-
-def retrieve_pr_comments(repo,pull,ghtoken):
-    req_url = "https://api.github.com/repos/"+repo+"/issues/"+pull+"/comments"
-    return retrieve_json(req_url,ghtoken,use_pagination=True)
-
-def retrieve_pr_reviews(repo,pull,ghtoken):
-    req_url = "https://api.github.com/repos/"+repo+"/pulls/"+pull+"/reviews"
-    return retrieve_json(req_url,ghtoken,use_pagination=True)
 
 def ask_prompt(text):
     print(text,end=" ",file=stderr)
@@ -170,16 +129,6 @@ def tree_sha512sum(commit='HEAD'):
         raise IOError('Non-zero return value executing git cat-file')
     return overall.hexdigest()
 
-def get_acks_from_comments(head_commit, comments):
-    assert len(head_commit) == 6
-    ack_str ='\n\nACKs for commit {}:\n'.format(head_commit)
-    for c in comments:
-        review = [l for l in c['body'].split('\r\n') if 'ACK' in l and head_commit in l]
-        if review:
-            ack_str += '  {}:\n'.format(c['user']['login'])
-            ack_str += '    {}\n'.format(review[0])
-    return ack_str
-
 def print_merge_details(pull, title, branch, base_branch, head_branch):
     print('%s#%s%s %s %sinto %s%s' % (ATTR_RESET+ATTR_PR,pull,ATTR_RESET,title,ATTR_RESET+ATTR_PR,branch,ATTR_RESET))
     subprocess.check_call([GIT,'log','--graph','--topo-order','--pretty=format:'+COMMIT_FORMAT,base_branch+'..'+head_branch])
@@ -226,9 +175,6 @@ def main():
     # Receive pull information from github
     info = retrieve_pr_info(repo,pull)
     if info is None:
-        sys.exit(1)
-    comments = retrieve_pr_comments(repo,pull,ghtoken) + retrieve_pr_reviews(repo,pull,ghtoken)
-    if comments is None:
         sys.exit(1)
     title = info['title'].strip()
     body = info['body'].strip()
@@ -283,7 +229,6 @@ def main():
         message = firstline + '\n\n'
         message += subprocess.check_output([GIT,'log','--no-merges','--topo-order','--pretty=format:%h %s (%an)',base_branch+'..'+head_branch]).decode('utf-8')
         message += '\n\nPull request description:\n\n  ' + body.replace('\n', '\n  ') + '\n'
-        message += get_acks_from_comments(head_commit=subprocess.check_output([GIT,'log','-1','--pretty=format:%H',head_branch]).decode('utf-8')[:6], comments=comments)
         try:
             subprocess.check_call([GIT,'merge','-q','--commit','--no-edit','--no-ff','-m',message.encode('utf-8'),head_branch])
         except subprocess.CalledProcessError:

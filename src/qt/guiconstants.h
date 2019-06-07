@@ -37,12 +37,18 @@ static const bool DEFAULT_SPLASHSCREEN = true;
  */
 static const int TOOLTIP_WRAP_THRESHOLD = 80;
 
+/* Maximum allowed URI length */
+static const int MAX_URI_LENGTH = 255;
+
+/* QRCodeDialog -- size of exported QR Code image */
+#define QR_IMAGE_SIZE 300
+
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "Whive"
-#define QAPP_ORG_DOMAIN "whive.org"
-#define QAPP_APP_NAME_DEFAULT "Whive-Qt"
-#define QAPP_APP_NAME_TESTNET "Whive-Qt-testnet"
+#define QAPP_ORG_NAME "Whiveyes"
+#define QAPP_ORG_DOMAIN "whiveyes.org"
+#define QAPP_APP_NAME_DEFAULT "Whiveyes-Qt"
+#define QAPP_APP_NAME_TESTNET "Whiveyes-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

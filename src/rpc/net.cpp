@@ -12,7 +12,6 @@
 #include <net_processing.h>
 #include <netbase.h>
 #include <policy/policy.h>
-#include <policy/settings.h>
 #include <rpc/protocol.h>
 #include <sync.h>
 #include <timedata.h>
@@ -199,7 +198,6 @@ static UniValue addnode(const JSONRPCRequest& request)
     if (request.fHelp || request.params.size() != 2 ||
         (strCommand != "onetry" && strCommand != "add" && strCommand != "remove"))
         throw std::runtime_error(
-<<<<<<< HEAD
             "addnode \"node\" \"add|remove|onetry\"\n"
             "\nAttempts to add or remove a node from the addnode list.\n"
             "Or try a connection to a node once.\n"
@@ -209,22 +207,8 @@ static UniValue addnode(const JSONRPCRequest& request)
             "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
             "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
             "\nExamples:\n"
-            + HelpExampleCli("addnode", "\"192.168.0.6:8333\" \"onetry\"")
-=======
-            RPCHelpMan{"addnode",
-                "\nAttempts to add or remove a node from the addnode list.\n"
-                "Or try a connection to a node once.\n"
-                "Nodes added using addnode (or -connect) are protected from DoS disconnection and are not required to be\n"
-                "full nodes/support SegWit as other outbound peers are (though such peers will not be synced from).\n",
-                {
-                    {"node", RPCArg::Type::STR, RPCArg::Optional::NO, "The node (see getpeerinfo for nodes)"},
-                    {"command", RPCArg::Type::STR, RPCArg::Optional::NO, "'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once"},
-                },
-                RPCResults{},
-                RPCExamples{
-                    HelpExampleCli("addnode", "\"192.168.0.6:8333\" \"onetry\"")
->>>>>>> upstream/0.18
-            + HelpExampleRpc("addnode", "\"192.168.0.6:8333\", \"onetry\"")
+            + HelpExampleCli("addnode", "\"192.168.0.6:8372\" \"onetry\"")
+            + HelpExampleRpc("addnode", "\"192.168.0.6:8372\", \"onetry\"")
         );
 
     if(!g_connman)
@@ -257,7 +241,6 @@ static UniValue disconnectnode(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() == 0 || request.params.size() >= 3)
         throw std::runtime_error(
-<<<<<<< HEAD
             "disconnectnode \"[address]\" [nodeid]\n"
             "\nImmediately disconnects from the specified peer node.\n"
             "\nStrictly one out of 'address' and 'nodeid' can be provided to identify the node.\n"
@@ -266,22 +249,9 @@ static UniValue disconnectnode(const JSONRPCRequest& request)
             "1. \"address\"     (string, optional) The IP address/port of the node\n"
             "2. \"nodeid\"      (number, optional) The node ID (see getpeerinfo for node IDs)\n"
             "\nExamples:\n"
-            + HelpExampleCli("disconnectnode", "\"192.168.0.6:8333\"")
-=======
-            RPCHelpMan{"disconnectnode",
-                "\nImmediately disconnects from the specified peer node.\n"
-                "\nStrictly one out of 'address' and 'nodeid' can be provided to identify the node.\n"
-                "\nTo disconnect by nodeid, either set 'address' to the empty string, or call using the named 'nodeid' argument only.\n",
-                {
-                    {"address", RPCArg::Type::STR, /* default */ "fallback to nodeid", "The IP address/port of the node"},
-                    {"nodeid", RPCArg::Type::NUM, /* default */ "fallback to address", "The node ID (see getpeerinfo for node IDs)"},
-                },
-                RPCResults{},
-                RPCExamples{
-                    HelpExampleCli("disconnectnode", "\"192.168.0.6:8333\"")
->>>>>>> upstream/0.18
+            + HelpExampleCli("disconnectnode", "\"192.168.0.6:8372\"")
             + HelpExampleCli("disconnectnode", "\"\" 1")
-            + HelpExampleRpc("disconnectnode", "\"192.168.0.6:8333\"")
+            + HelpExampleRpc("disconnectnode", "\"192.168.0.6:8372\"")
             + HelpExampleRpc("disconnectnode", "\"\", 1")
         );
 
@@ -314,29 +284,19 @@ static UniValue getaddednodeinfo(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
-<<<<<<< HEAD
             "getaddednodeinfo ( \"node\" )\n"
             "\nReturns information about the given added node, or all added nodes\n"
             "(note that onetry addnodes are not listed here)\n"
             "\nArguments:\n"
             "1. \"node\"   (string, optional) If provided, return information about this specific node, otherwise all nodes are returned.\n"
             "\nResult:\n"
-=======
-            RPCHelpMan{"getaddednodeinfo",
-                "\nReturns information about the given added node, or all added nodes\n"
-                "(note that onetry addnodes are not listed here)\n",
-                {
-                    {"node", RPCArg::Type::STR, /* default */ "all nodes", "If provided, return information about this specific node, otherwise all nodes are returned."},
-                },
-                RPCResult{
->>>>>>> upstream/0.18
             "[\n"
             "  {\n"
             "    \"addednode\" : \"192.168.0.201\",   (string) The node IP address or name (as provided to addnode)\n"
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [                    (list of objects) Only when connected = true\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:8333\",  (string) The whive server IP and port we're connected to\n"
+            "         \"address\" : \"192.168.0.201:8333\",  (string) The whiveyes server IP and port we're connected to\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "     ]\n"
@@ -503,7 +463,7 @@ static UniValue getnetworkinfo(const JSONRPCRequest& request)
     obj.pushKV("protocolversion",PROTOCOL_VERSION);
     if(g_connman)
         obj.pushKV("localservices", strprintf("%016x", g_connman->GetLocalServices()));
-    obj.pushKV("localrelay", g_relay_txes);
+    obj.pushKV("localrelay",     fRelayTxes);
     obj.pushKV("timeoffset",    GetTimeOffset());
     if (g_connman) {
         obj.pushKV("networkactive", g_connman->GetNetworkActive());
@@ -531,7 +491,6 @@ static UniValue getnetworkinfo(const JSONRPCRequest& request)
 
 static UniValue setban(const JSONRPCRequest& request)
 {
-<<<<<<< HEAD
     std::string strCommand;
     if (!request.params[1].isNull())
         strCommand = request.params[1].get_str();
@@ -552,32 +511,6 @@ static UniValue setban(const JSONRPCRequest& request)
                             );
     if(!g_connman)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
-=======
-    const RPCHelpMan help{"setban",
-                "\nAttempts to add or remove an IP/Subnet from the banned list.\n",
-                {
-                    {"subnet", RPCArg::Type::STR, RPCArg::Optional::NO, "The IP/Subnet (see getpeerinfo for nodes IP) with an optional netmask (default is /32 = single IP)"},
-                    {"command", RPCArg::Type::STR, RPCArg::Optional::NO, "'add' to add an IP/Subnet to the list, 'remove' to remove an IP/Subnet from the list"},
-                    {"bantime", RPCArg::Type::NUM, /* default */ "0", "time in seconds how long (or until when if [absolute] is set) the IP is banned (0 or empty means using the default time of 24h which can also be overwritten by the -bantime startup argument)"},
-                    {"absolute", RPCArg::Type::BOOL, /* default */ "false", "If set, the bantime must be an absolute timestamp in seconds since epoch (Jan 1 1970 GMT)"},
-                },
-                RPCResults{},
-                RPCExamples{
-                    HelpExampleCli("setban", "\"192.168.0.6\" \"add\" 86400")
-                            + HelpExampleCli("setban", "\"192.168.0.0/24\" \"add\"")
-                            + HelpExampleRpc("setban", "\"192.168.0.6\", \"add\", 86400")
-                },
-    };
-    std::string strCommand;
-    if (!request.params[1].isNull())
-        strCommand = request.params[1].get_str();
-    if (request.fHelp || !help.IsValidNumArgs(request.params.size()) || (strCommand != "add" && strCommand != "remove")) {
-        throw std::runtime_error(help.ToString());
-    }
-    if (!g_banman) {
-        throw JSONRPCError(RPC_DATABASE_ERROR, "Error: Ban database not loaded");
-    }
->>>>>>> upstream/0.18
 
     CSubNet subNet;
     CNetAddr netAddr;
@@ -675,21 +608,10 @@ static UniValue setnetworkactive(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 1) {
         throw std::runtime_error(
-<<<<<<< HEAD
             "setnetworkactive true|false\n"
             "\nDisable/enable all p2p network activity.\n"
             "\nArguments:\n"
             "1. \"state\"        (boolean, required) true to enable networking, false to disable\n"
-=======
-            RPCHelpMan{"setnetworkactive",
-                "\nDisable/enable all p2p network activity.\n",
-                {
-                    {"state", RPCArg::Type::BOOL, RPCArg::Optional::NO, "true to enable networking, false to disable"},
-                },
-                RPCResults{},
-                RPCExamples{""},
-            }.ToString()
->>>>>>> upstream/0.18
         );
     }
 
@@ -702,64 +624,6 @@ static UniValue setnetworkactive(const JSONRPCRequest& request)
     return g_connman->GetNetworkActive();
 }
 
-<<<<<<< HEAD
-=======
-static UniValue getnodeaddresses(const JSONRPCRequest& request)
-{
-    if (request.fHelp || request.params.size() > 1) {
-        throw std::runtime_error(
-            RPCHelpMan{"getnodeaddresses",
-                "\nReturn known addresses which can potentially be used to find new nodes in the network\n",
-                {
-                    {"count", RPCArg::Type::NUM, /* default */ "1", "How many addresses to return. Limited to the smaller of " + std::to_string(ADDRMAN_GETADDR_MAX) + " or " + std::to_string(ADDRMAN_GETADDR_MAX_PCT) + "% of all known addresses."},
-                },
-                RPCResult{
-            "[\n"
-            "  {\n"
-            "    \"time\": ttt,                (numeric) Timestamp in seconds since epoch (Jan 1 1970 GMT) keeping track of when the node was last seen\n"
-            "    \"services\": n,              (numeric) The services offered\n"
-            "    \"address\": \"host\",          (string) The address of the node\n"
-            "    \"port\": n                   (numeric) The port of the node\n"
-            "  }\n"
-            "  ,....\n"
-            "]\n"
-                },
-                RPCExamples{
-                    HelpExampleCli("getnodeaddresses", "8")
-            + HelpExampleRpc("getnodeaddresses", "8")
-                },
-            }.ToString());
-    }
-    if (!g_connman) {
-        throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
-    }
-
-    int count = 1;
-    if (!request.params[0].isNull()) {
-        count = request.params[0].get_int();
-        if (count <= 0) {
-            throw JSONRPCError(RPC_INVALID_PARAMETER, "Address count out of range");
-        }
-    }
-    // returns a shuffled list of CAddress
-    std::vector<CAddress> vAddr = g_connman->GetAddresses();
-    UniValue ret(UniValue::VARR);
-
-    int address_return_count = std::min<int>(count, vAddr.size());
-    for (int i = 0; i < address_return_count; ++i) {
-        UniValue obj(UniValue::VOBJ);
-        const CAddress& addr = vAddr[i];
-        obj.pushKV("time", (int)addr.nTime);
-        obj.pushKV("services", (uint64_t)addr.nServices);
-        obj.pushKV("address", addr.ToStringIP());
-        obj.pushKV("port", addr.GetPort());
-        ret.push_back(obj);
-    }
-    return ret;
-}
-
-// clang-format off
->>>>>>> upstream/0.18
 static const CRPCCommand commands[] =
 { //  category              name                      actor (function)         argNames
   //  --------------------- ------------------------  -----------------------  ----------

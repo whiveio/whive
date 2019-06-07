@@ -9,14 +9,7 @@
 #ifndef BITCOIN_UTILSTRENCODINGS_H
 #define BITCOIN_UTILSTRENCODINGS_H
 
-<<<<<<< HEAD:src/utilstrencodings.h
 #include <stdint.h>
-=======
-#include <attributes.h>
-
-#include <cstdint>
-#include <iterator>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9:src/util/strencodings.h
 #include <string>
 #include <vector>
 
@@ -53,12 +46,12 @@ bool IsHex(const std::string& str);
 * Return true if the string is a hex number, optionally prefixed with "0x"
 */
 bool IsHexNumber(const std::string& str);
-std::vector<unsigned char> DecodeBase64(const char* p, bool* pf_invalid = nullptr);
-std::string DecodeBase64(const std::string& str, bool* pf_invalid = nullptr);
+std::vector<unsigned char> DecodeBase64(const char* p, bool* pfInvalid = nullptr);
+std::string DecodeBase64(const std::string& str);
 std::string EncodeBase64(const unsigned char* pch, size_t len);
 std::string EncodeBase64(const std::string& str);
-std::vector<unsigned char> DecodeBase32(const char* p, bool* pf_invalid = nullptr);
-std::string DecodeBase32(const std::string& str, bool* pf_invalid = nullptr);
+std::vector<unsigned char> DecodeBase32(const char* p, bool* pfInvalid = nullptr);
+std::string DecodeBase32(const std::string& str);
 std::string EncodeBase32(const unsigned char* pch, size_t len);
 std::string EncodeBase32(const std::string& str);
 
@@ -115,25 +108,28 @@ bool ParseUInt64(const std::string& str, uint64_t *out);
 bool ParseDouble(const std::string& str, double *out);
 
 template<typename T>
-std::string HexStr(const T itbegin, const T itend)
+std::string HexStr(const T itbegin, const T itend, bool fSpaces=false)
 {
     std::string rv;
     static const char hexmap[16] = { '0', '1', '2', '3', '4', '5', '6', '7',
                                      '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
-    rv.reserve(std::distance(itbegin, itend) * 2);
+    rv.reserve((itend-itbegin)*3);
     for(T it = itbegin; it < itend; ++it)
     {
         unsigned char val = (unsigned char)(*it);
+        if(fSpaces && it != itbegin)
+            rv.push_back(' ');
         rv.push_back(hexmap[val>>4]);
         rv.push_back(hexmap[val&15]);
     }
+
     return rv;
 }
 
 template<typename T>
-inline std::string HexStr(const T& vch)
+inline std::string HexStr(const T& vch, bool fSpaces=false)
 {
-    return HexStr(vch.begin(), vch.end());
+    return HexStr(vch.begin(), vch.end(), fSpaces);
 }
 
 /**
@@ -188,52 +184,4 @@ bool ConvertBits(const O& outfn, I it, I end) {
     return true;
 }
 
-<<<<<<< HEAD:src/utilstrencodings.h
 #endif // BITCOIN_UTILSTRENCODINGS_H
-=======
-/**
- * Converts the given character to its lowercase equivalent.
- * This function is locale independent. It only converts uppercase
- * characters in the standard 7-bit ASCII range.
- * @param[in] c     the character to convert to lowercase.
- * @return          the lowercase equivalent of c; or the argument
- *                  if no conversion is possible.
- */
-constexpr char ToLower(char c)
-{
-    return (c >= 'A' && c <= 'Z' ? (c - 'A') + 'a' : c);
-}
-
-/**
- * Converts the given string to its lowercase equivalent.
- * This function is locale independent. It only converts uppercase
- * characters in the standard 7-bit ASCII range.
- * @param[in,out] str   the string to convert to lowercase.
- */
-void Downcase(std::string& str);
-
-/**
- * Converts the given character to its uppercase equivalent.
- * This function is locale independent. It only converts lowercase
- * characters in the standard 7-bit ASCII range.
- * @param[in] c     the character to convert to uppercase.
- * @return          the uppercase equivalent of c; or the argument
- *                  if no conversion is possible.
- */
-constexpr char ToUpper(char c)
-{
-    return (c >= 'a' && c <= 'z' ? (c - 'a') + 'A' : c);
-}
-
-/**
- * Capitalizes the first character of the given string.
- * This function is locale independent. It only capitalizes the
- * first character of the argument if it has an uppercase equivalent
- * in the standard 7-bit ASCII range.
- * @param[in] str   the string to capitalize.
- * @return          string with the first letter capitalized.
- */
-std::string Capitalize(std::string str);
-
-#endif // BITCOIN_UTIL_STRENCODINGS_H
->>>>>>> upstream/0.18:src/util/strencodings.h

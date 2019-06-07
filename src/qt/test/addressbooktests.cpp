@@ -1,6 +1,6 @@
 #include <qt/test/addressbooktests.h>
 #include <qt/test/util.h>
-#include <test/setup_common.h>
+#include <test/test_bitcoin.h>
 
 #include <interfaces/node.h>
 #include <qt/addressbookpage.h>
@@ -57,12 +57,7 @@ void EditAddressAndSubmit(
 void TestAddAddressesToSendBook()
 {
     TestChain100Setup test;
-<<<<<<< HEAD
     std::shared_ptr<CWallet> wallet = std::make_shared<CWallet>("mock", WalletDatabase::CreateMock());
-=======
-    auto chain = interfaces::MakeChain();
-    std::shared_ptr<CWallet> wallet = std::make_shared<CWallet>(chain.get(), WalletLocation(), WalletDatabase::CreateMock());
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     bool firstRun;
     wallet->LoadWallet(firstRun);
 
@@ -99,7 +94,6 @@ void TestAddAddressesToSendBook()
     }
 
     auto check_addbook_size = [&wallet](int expected_size) {
-        LOCK(wallet->cs_wallet);
         QCOMPARE(static_cast<int>(wallet->mapAddressBook.size()), expected_size);
     };
 

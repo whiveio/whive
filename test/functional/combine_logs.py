@@ -9,7 +9,6 @@ from collections import defaultdict, namedtuple
 import heapq
 import itertools
 import os
-import pathlib
 import re
 import sys
 
@@ -39,30 +38,9 @@ def main():
         print("Unexpected arguments" + str(unknown_args))
         sys.exit(1)
 
-<<<<<<< HEAD
     log_events = read_logs(unknown_args[0])
-=======
-    if not args.testdir:
-        print("Opening latest test directory: {}".format(testdir), file=sys.stderr)
 
-    colors = defaultdict(lambda: '')
-    if args.color:
-        colors["test"] = "\033[0;36m"  # CYAN
-        colors["node0"] = "\033[0;34m"  # BLUE
-        colors["node1"] = "\033[0;32m"  # GREEN
-        colors["node2"] = "\033[0;31m"  # RED
-        colors["node3"] = "\033[0;33m"  # YELLOW
-        colors["reset"] = "\033[0m"  # Reset font color
-
-    log_events = read_logs(testdir)
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
-
-    if args.html:
-        print_logs_html(log_events)
-    else:
-        print_logs_plain(log_events, colors)
-        print_node_warnings(testdir, colors)
-
+    print_logs(log_events, color=args.color, html=args.html)
 
 def read_logs(tmp_dir):
     """Reads log files.
@@ -79,52 +57,6 @@ def read_logs(tmp_dir):
 
     return heapq.merge(*[get_log_events(source, f) for source, f in files])
 
-<<<<<<< HEAD
-=======
-
-def print_node_warnings(tmp_dir, colors):
-    """Print nodes' errors and warnings"""
-
-    warnings = []
-    for stream in ['stdout', 'stderr']:
-        for i in itertools.count():
-            folder = "{}/node{}/{}".format(tmp_dir, i, stream)
-            if not os.path.isdir(folder):
-                break
-            for (_, _, fns) in os.walk(folder):
-                for fn in fns:
-                    warning = pathlib.Path('{}/{}'.format(folder, fn)).read_text().strip()
-                    if warning:
-                        warnings.append(("node{} {}".format(i, stream), warning))
-
-    print()
-    for w in warnings:
-        print("{} {} {} {}".format(colors[w[0].split()[0]], w[0], w[1], colors["reset"]))
-
-
-def find_latest_test_dir():
-    """Returns the latest tmpfile test directory prefix."""
-    tmpdir = tempfile.gettempdir()
-
-    def join_tmp(basename):
-        return os.path.join(tmpdir, basename)
-
-    def is_valid_test_tmpdir(basename):
-        fullpath = join_tmp(basename)
-        return (
-            os.path.isdir(fullpath)
-            and basename.startswith(TMPDIR_PREFIX)
-            and os.access(fullpath, os.R_OK)
-        )
-
-    testdir_paths = [
-        join_tmp(name) for name in os.listdir(tmpdir) if is_valid_test_tmpdir(name)
-    ]
-
-    return max(testdir_paths, key=os.path.getmtime) if testdir_paths else None
-
-
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 def get_log_events(source, logfile):
     """Generator function that returns individual log events.
 
@@ -153,15 +85,22 @@ def get_log_events(source, logfile):
     except FileNotFoundError:
         print("File %s could not be opened. Continuing without it." % logfile, file=sys.stderr)
 
+def print_logs(log_events, color=False, html=False):
+    """Renders the iterator of log events into text or html."""
+    if not html:
+        colors = defaultdict(lambda: '')
+        if color:
+            colors["test"] = "\033[0;36m"   # CYAN
+            colors["node0"] = "\033[0;34m"  # BLUE
+            colors["node1"] = "\033[0;32m"  # GREEN
+            colors["node2"] = "\033[0;31m"  # RED
+            colors["node3"] = "\033[0;33m"  # YELLOW
+            colors["reset"] = "\033[0m"     # Reset font color
 
-def print_logs_plain(log_events, colors):
-        """Renders the iterator of log events into text."""
         for event in log_events:
             print("{0} {1: <5} {2} {3}".format(colors[event.source.rstrip()], event.source, event.event, colors["reset"]))
 
-
-def print_logs_html(log_events):
-        """Renders the iterator of log events into html."""
+    else:
         try:
             import jinja2
         except ImportError:

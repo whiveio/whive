@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,16 +20,9 @@
 #include <script/script.h>
 #include <script/sign.h>
 #include <univalue.h>
-<<<<<<< HEAD
 #include <util.h>
 #include <utilmoneystr.h>
 #include <utilstrencodings.h>
-=======
-#include <util/rbf.h>
-#include <util/system.h>
-#include <util/moneystr.h>
-#include <util/strencodings.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
 #include <memory>
 #include <stdio.h>
@@ -42,8 +35,7 @@ static const int CONTINUE_EXECUTION=-1;
 
 static void SetupBitcoinTxArgs()
 {
-    SetupHelpOptions(gArgs);
-
+    gArgs.AddArg("-?", "This help message", false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-create", "Create new, empty TX.", false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-json", "Select JSON output", false, OptionsCategory::OPTIONS);
     gArgs.AddArg("-txid", "Output only the hex-encoded transaction id of the resultant transaction.", false, OptionsCategory::OPTIONS);
@@ -74,6 +66,10 @@ static void SetupBitcoinTxArgs()
 
     gArgs.AddArg("load=NAME:FILENAME", "Load JSON file FILENAME into register NAME", false, OptionsCategory::REGISTER_COMMANDS);
     gArgs.AddArg("set=NAME:JSON-STRING", "Set register NAME to given JSON-STRING", false, OptionsCategory::REGISTER_COMMANDS);
+
+    // Hidden
+    gArgs.AddArg("-h", "", false, OptionsCategory::HIDDEN);
+    gArgs.AddArg("-help", "", false, OptionsCategory::HIDDEN);
 }
 
 //
@@ -104,9 +100,9 @@ static int AppInitRawTx(int argc, char* argv[])
 
     if (argc < 2 || HelpRequested(gArgs)) {
         // First part of help message is specific to this utility
-        std::string strUsage = PACKAGE_NAME " whive-tx utility version " + FormatFullVersion() + "\n\n" +
-            "Usage:  whive-tx [options] <hex-tx> [commands]  Update hex-encoded whive transaction\n" +
-            "or:     whive-tx [options] -create [commands]   Create hex-encoded whive transaction\n" +
+        std::string strUsage = PACKAGE_NAME " whiveyes-tx utility version " + FormatFullVersion() + "\n\n" +
+            "Usage:  whiveyes-tx [options] <hex-tx> [commands]  Update hex-encoded whiveyes transaction\n" +
+            "or:     whiveyes-tx [options] -create [commands]   Create hex-encoded whiveyes transaction\n" +
             "\n";
         strUsage += gArgs.GetHelpMessage();
 
@@ -329,7 +325,7 @@ static void MutateTxAddOutPubKey(CMutableTransaction& tx, const std::string& str
     }
     if (bScriptHash) {
         // Get the ID for the script, and then construct a P2SH destination for it.
-        scriptPubKey = GetScriptForDestination(ScriptHash(scriptPubKey));
+        scriptPubKey = GetScriptForDestination(CScriptID(scriptPubKey));
     }
 
     // construct TxOut, append to transaction output list
@@ -403,7 +399,7 @@ static void MutateTxAddOutMultiSig(CMutableTransaction& tx, const std::string& s
                         "redeemScript exceeds size limit: %d > %d", scriptPubKey.size(), MAX_SCRIPT_ELEMENT_SIZE));
         }
         // Get the ID for the script, and then construct a P2SH destination for it.
-        scriptPubKey = GetScriptForDestination(ScriptHash(scriptPubKey));
+        scriptPubKey = GetScriptForDestination(CScriptID(scriptPubKey));
     }
 
     // construct TxOut, append to transaction output list
@@ -475,7 +471,7 @@ static void MutateTxAddOutScript(CMutableTransaction& tx, const std::string& str
             throw std::runtime_error(strprintf(
                         "redeemScript exceeds size limit: %d > %d", scriptPubKey.size(), MAX_SCRIPT_ELEMENT_SIZE));
         }
-        scriptPubKey = GetScriptForDestination(ScriptHash(scriptPubKey));
+        scriptPubKey = GetScriptForDestination(CScriptID(scriptPubKey));
     }
 
     // construct TxOut, append to transaction output list
@@ -793,7 +789,7 @@ static int CommandLineRawTx(int argc, char* argv[])
             if (argc < 2)
                 throw std::runtime_error("too few parameters");
 
-            // param: hex-encoded whive transaction
+            // param: hex-encoded whiveyes transaction
             std::string strHexTx(argv[1]);
             if (strHexTx == "-")                 // "-" implies standard input
                 strHexTx = readStdin();

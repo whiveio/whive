@@ -23,9 +23,9 @@
 
 static const uint64_t GB_BYTES = 1000000000LL;
 /* Minimum free space (in GB) needed for data directory */
-constexpr uint64_t BLOCK_CHAIN_SIZE = 2;
+constexpr uint64_t BLOCK_CHAIN_SIZE = 1;
 /* Minimum free space (in GB) needed for data directory when pruned; Does not include prune target */
-static const uint64_t CHAIN_STATE_SIZE = 2;
+static const uint64_t CHAIN_STATE_SIZE = 1;
 /* Total required space (in GB) depending on user choice (prune, not prune) */
 static uint64_t requiredSpace;
 
@@ -128,7 +128,7 @@ Intro::Intro(QWidget *parent) :
         .arg(tr(PACKAGE_NAME))
         .arg(BLOCK_CHAIN_SIZE)
         .arg(2019)
-        .arg(tr("Whive"))
+        .arg(tr("Whiveyes"))
     );
     ui->lblExplanation2->setText(ui->lblExplanation2->text().arg(tr(PACKAGE_NAME)));
 
@@ -147,7 +147,7 @@ Intro::Intro(QWidget *parent) :
     }
     requiredSpace += CHAIN_STATE_SIZE;
     ui->sizeWarningLabel->setText(
-        tr("%1 will download and store a copy of the Whive block chain.").arg(tr(PACKAGE_NAME)) + " " +
+        tr("%1 will download and store a copy of the Whiveyes block chain.").arg(tr(PACKAGE_NAME)) + " " +
         storageRequiresMsg.arg(requiredSpace) + " " +
         tr("The wallet will also be stored in this directory.")
     );
@@ -170,7 +170,7 @@ QString Intro::getDataDirectory()
 void Intro::setDataDirectory(const QString &dataDir)
 {
     ui->dataDirectory->setText(dataDir);
-    if(dataDir == GUIUtil::getDefaultDataDirectory())
+    if(dataDir == getDefaultDataDirectory())
     {
         ui->dataDirDefault->setChecked(true);
         ui->dataDirectory->setEnabled(false);
@@ -182,6 +182,11 @@ void Intro::setDataDirectory(const QString &dataDir)
     }
 }
 
+QString Intro::getDefaultDataDirectory()
+{
+    return GUIUtil::boostPathToQString(GetDefaultDataDir());
+}
+
 bool Intro::pickDataDirectory(interfaces::Node& node)
 {
     QSettings settings;
@@ -190,7 +195,7 @@ bool Intro::pickDataDirectory(interfaces::Node& node)
     if(!gArgs.GetArg("-datadir", "").empty())
         return true;
     /* 1) Default data directory for operating system */
-    QString dataDir = GUIUtil::getDefaultDataDirectory();
+    QString dataDir = getDefaultDataDirectory();
     /* 2) Allow QSettings to override default dir */
     dataDir = settings.value("strDataDir", dataDir).toString();
 
@@ -226,10 +231,10 @@ bool Intro::pickDataDirectory(interfaces::Node& node)
         settings.setValue("fReset", false);
     }
     /* Only override -datadir if different from the default, to make it possible to
-     * override -datadir in the whive.conf file in the default data directory
-     * (to be consistent with whived behavior)
+     * override -datadir in the whiveyes.conf file in the default data directory
+     * (to be consistent with whiveyesd behavior)
      */
-    if(dataDir != GUIUtil::getDefaultDataDirectory()) {
+    if(dataDir != getDefaultDataDirectory()) {
         node.softSetArg("-datadir", GUIUtil::qstringToBoostPath(dataDir).string()); // use OS locale for path setting
     }
     return true;
@@ -283,7 +288,7 @@ void Intro::on_ellipsisButton_clicked()
 
 void Intro::on_dataDirDefault_clicked()
 {
-    setDataDirectory(GUIUtil::getDefaultDataDirectory());
+    setDataDirectory(getDefaultDataDirectory());
 }
 
 void Intro::on_dataDirCustom_clicked()

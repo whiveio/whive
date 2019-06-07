@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2010 ArtForz -- public domain half-a-node
 # Copyright (c) 2012 Jeff Garzik
-# Copyright (c) 2010-2019 The Bitcoin Core developers
+# Copyright (c) 2010-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Bitcoin test framework primitive and message structures
@@ -24,7 +24,7 @@ import struct
 import time
 
 from test_framework.siphash import siphash256
-from test_framework.util import hex_str_to_bytes, assert_equal
+from test_framework.util import hex_str_to_bytes, bytes_to_hex_str
 
 MIN_VERSION_SUPPORTED = 60001
 MY_VERSION = 70014  # past bip-31 for ping/pong
@@ -181,7 +181,7 @@ def FromHex(obj, hex_string):
 
 # Convert a binary-serializable object to hex (eg for submission via RPC)
 def ToHex(obj):
-    return obj.serialize().hex()
+    return bytes_to_hex_str(obj.serialize())
 
 # Objects that map to bitcoind objects, which can be serialized/deserialized
 
@@ -307,7 +307,7 @@ class CTxIn():
 
     def __repr__(self):
         return "CTxIn(prevout=%s scriptSig=%s nSequence=%i)" \
-            % (repr(self.prevout), self.scriptSig.hex(),
+            % (repr(self.prevout), bytes_to_hex_str(self.scriptSig),
                self.nSequence)
 
 
@@ -329,7 +329,7 @@ class CTxOut():
     def __repr__(self):
         return "CTxOut(nValue=%i.%08i scriptPubKey=%s)" \
             % (self.nValue // COIN, self.nValue % COIN,
-               self.scriptPubKey.hex())
+               bytes_to_hex_str(self.scriptPubKey))
 
 
 class CScriptWitness():
@@ -339,7 +339,7 @@ class CScriptWitness():
 
     def __repr__(self):
         return "CScriptWitness(%s)" % \
-               (",".join([x.hex() for x in self.stack]))
+               (",".join([bytes_to_hex_str(x) for x in self.stack]))
 
     def is_null(self):
         if self.stack:
@@ -563,8 +563,6 @@ class CBlockHeader():
             % (self.nVersion, self.hashPrevBlock, self.hashMerkleRoot,
                time.ctime(self.nTime), self.nBits, self.nNonce)
 
-BLOCK_HEADER_SIZE = len(CBlockHeader().serialize())
-assert_equal(BLOCK_HEADER_SIZE, 80)
 
 class CBlock(CBlockHeader):
     def __init__(self, header=None):
@@ -575,7 +573,7 @@ class CBlock(CBlockHeader):
         super(CBlock, self).deserialize(f)
         self.vtx = deser_vector(f, CTransaction)
 
-    def serialize(self, with_witness=True):
+    def serialize(self, with_witness=False):
         r = b""
         r += super(CBlock, self).serialize()
         if with_witness:

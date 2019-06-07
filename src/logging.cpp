@@ -4,14 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <logging.h>
-<<<<<<< HEAD
 #include <utiltime.h>
-=======
-#include <util/threadnames.h>
-#include <util/time.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
-
-#include <mutex>
 
 const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
@@ -175,7 +168,7 @@ std::vector<CLogCategoryActive> ListActiveLogCategories()
     return ret;
 }
 
-std::string BCLog::Logger::LogTimestampStr(const std::string& str)
+std::string BCLog::Logger::LogTimestampStr(const std::string &str)
 {
     std::string strStamped;
 
@@ -197,24 +190,21 @@ std::string BCLog::Logger::LogTimestampStr(const std::string& str)
     } else
         strStamped = str;
 
+    if (!str.empty() && str[str.size()-1] == '\n')
+        m_started_new_line = true;
+    else
+        m_started_new_line = false;
+
     return strStamped;
 }
 
 void BCLog::Logger::LogPrintStr(const std::string &str)
 {
-    std::string str_prefixed = str;
-
-    if (m_log_threadnames && m_started_new_line) {
-        str_prefixed.insert(0, "[" + util::ThreadGetInternalName() + "] ");
-    }
-
-    str_prefixed = LogTimestampStr(str_prefixed);
-
-    m_started_new_line = !str.empty() && str[str.size()-1] == '\n';
+    std::string strTimestamped = LogTimestampStr(str);
 
     if (m_print_to_console) {
         // print to console
-        fwrite(str_prefixed.data(), 1, str_prefixed.size(), stdout);
+        fwrite(strTimestamped.data(), 1, strTimestamped.size(), stdout);
         fflush(stdout);
     }
     if (m_print_to_file) {
@@ -222,7 +212,7 @@ void BCLog::Logger::LogPrintStr(const std::string &str)
 
         // buffer if we haven't opened the log yet
         if (m_fileout == nullptr) {
-            m_msgs_before_open.push_back(str_prefixed);
+            m_msgs_before_open.push_back(strTimestamped);
         }
         else
         {
@@ -235,12 +225,8 @@ void BCLog::Logger::LogPrintStr(const std::string &str)
                 }
                 setbuf(m_fileout, nullptr); // unbuffered
             }
-<<<<<<< HEAD
 
             FileWriteStr(strTimestamped, m_fileout);
-=======
-            FileWriteStr(str_prefixed, m_fileout);
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
         }
     }
 }

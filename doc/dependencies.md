@@ -1,7 +1,7 @@
 Dependencies
 ============
 
-These are the dependencies currently used by Whive Core. You can find instructions for installing them in the `build-*.md` file for your platform.
+These are the dependencies currently used by Whiveyes Core. You can find instructions for installing them in the `build-*.md` file for your platform.
 
 | Dependency | Version used | Minimum required | CVEs | Shared | [Bundled Qt library](https://doc.qt.io/qt-5/configure-options.html#third-party-libraries) |
 | --- | --- | --- | --- | --- | --- |
@@ -15,47 +15,16 @@ These are the dependencies currently used by Whive Core. You can find instructio
 | GCC |  | [4.8+](https://gcc.gnu.org/) (C++11 support) |  |  |  |
 | HarfBuzz-NG |  |  |  |  |  |
 | libevent | [2.1.8-stable](https://github.com/libevent/libevent/releases) | 2.0.22 | No |  |  |
-<<<<<<< HEAD
-| libjpeg |  |  |  |  | [Yes](https://github.com/whive/whive/blob/master/depends/packages/qt.mk#L65) |
-| libpng |  |  |  |  | [Yes](https://github.com/whive/whive/blob/master/depends/packages/qt.mk#L64) |
-=======
-| libjpeg |  |  |  |  | [Yes](https://github.com/bitcoin/bitcoin/blob/master/depends/packages/qt.mk#L65) |
-| libpng |  |  |  |  | [Yes](https://github.com/bitcoin/bitcoin/blob/master/depends/packages/qt.mk#L64) |
-| librsvg | |  |  |  |  |
-<<<<<<< HEAD
->>>>>>> upstream/0.18
-=======
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
+| libjpeg |  |  |  |  | [Yes](https://github.com/whiveyes/whiveyes/blob/master/depends/packages/qt.mk#L65) |
+| libpng |  |  |  |  | [Yes](https://github.com/whiveyes/whiveyes/blob/master/depends/packages/qt.mk#L64) |
 | MiniUPnPc | [2.0.20180203](http://miniupnp.free.fr/files) |  | No |  |  |
 | OpenSSL | [1.0.1k](https://www.openssl.org/source) |  | Yes |  |  |
-| PCRE |  |  |  |  | [Yes](https://github.com/whive/whive/blob/master/depends/packages/qt.mk#L66) |
+| PCRE |  |  |  |  | [Yes](https://github.com/whiveyes/whiveyes/blob/master/depends/packages/qt.mk#L66) |
 | protobuf | [2.6.1](https://github.com/google/protobuf/releases) |  | No |  |  |
-| Python (tests) |  | [3.5](https://www.python.org/downloads) |  |  |  |
+| Python (tests) |  | [3.4](https://www.python.org/downloads) |  |  |  |
 | qrencode | [3.4.4](https://fukuchi.org/works/qrencode) |  | No |  |  |
-<<<<<<< HEAD
 | Qt | [5.9.7](https://download.qt.io/official_releases/qt/) | [5.2] | No |  |  |
-| XCB |  |  |  |  | [Yes](https://github.com/whive/whive/blob/master/depends/packages/qt.mk#L87) (Linux only) |
-| xkbcommon |  |  |  |  | [Yes](https://github.com/whive/whive/blob/master/depends/packages/qt.mk#L86) (Linux only) |
+| XCB |  |  |  |  | [Yes](https://github.com/whiveyes/whiveyes/blob/master/depends/packages/qt.mk#L87) (Linux only) |
+| xkbcommon |  |  |  |  | [Yes](https://github.com/whiveyes/whiveyes/blob/master/depends/packages/qt.mk#L86) (Linux only) |
 | ZeroMQ | [4.2.5](https://github.com/zeromq/libzmq/releases) | 4.0.0 | No |  |  |
-=======
-| Qt | [5.9.7](https://download.qt.io/official_releases/qt/) | [5.5.1](https://github.com/bitcoin/bitcoin/issues/13478) | No |  |  |
-| XCB |  |  |  |  | [Yes](https://github.com/bitcoin/bitcoin/blob/master/depends/packages/qt.mk#L87) (Linux only) |
-| xkbcommon |  |  |  |  | [Yes](https://github.com/bitcoin/bitcoin/blob/master/depends/packages/qt.mk#L86) (Linux only) |
-| ZeroMQ | [4.3.1](https://github.com/zeromq/libzmq/releases) | 4.0.0 | No |  |  |
->>>>>>> upstream/0.18
 | zlib | [1.2.11](https://zlib.net/) |  |  |  | No |
-
-Controlling dependencies
-------------------------
-Some dependencies are not needed in all configurations. The following are some factors that affect the dependency list.
-
-#### Options passed to `./configure`
-* MiniUPnPc is not needed with  `--with-miniupnpc=no`.
-* Berkeley DB is not needed with `--disable-wallet`.
-* protobuf is not needed with `--disable-bip70`.
-* Qt is not needed with `--without-gui`.
-* If the qrencode dependency is absent, QR support won't be added. To force an error when that happens, pass `--with-qrencode`.
-* ZeroMQ is needed only with the `--with-zmq` option.
-
-#### Other
-* librsvg is only needed if you need to run `make deploy` on (cross-compilation to) macOS.

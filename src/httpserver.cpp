@@ -6,14 +6,8 @@
 
 #include <chainparamsbase.h>
 #include <compat.h>
-<<<<<<< HEAD
 #include <util.h>
 #include <utilstrencodings.h>
-=======
-#include <util/threadnames.h>
-#include <util/system.h>
-#include <util/strencodings.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 #include <netbase.h>
 #include <rpc/protocol.h> // For HTTP status codes
 #include <sync.h>
@@ -22,7 +16,7 @@
 #include <memory>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
+#include <string.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -291,7 +285,7 @@ static void http_reject_request_cb(struct evhttp_request* req, void*)
 /** Event dispatcher thread */
 static bool ThreadHTTP(struct event_base* base)
 {
-    util::ThreadRename("http");
+    RenameThread("bitcoin-http");
     LogPrint(BCLog::HTTP, "Entering http event loop\n");
     event_base_dispatch(base);
     // Event loop will be interrupted by InterruptHTTPServer()
@@ -338,9 +332,9 @@ static bool HTTPBindAddresses(struct evhttp* http)
 }
 
 /** Simple wrapper to set thread name and run work queue */
-static void HTTPWorkQueueRun(WorkQueue<HTTPClosure>* queue, int worker_num)
+static void HTTPWorkQueueRun(WorkQueue<HTTPClosure>* queue)
 {
-    util::ThreadRename(strprintf("httpworker.%i", worker_num));
+    RenameThread("bitcoin-httpworker");
     queue->Run();
 }
 
@@ -443,7 +437,7 @@ void StartHTTPServer()
     threadHTTP = std::thread(std::move(task), eventBase);
 
     for (int i = 0; i < rpcThreads; i++) {
-        g_thread_http_workers.emplace_back(HTTPWorkQueueRun, workQueue, i);
+        g_thread_http_workers.emplace_back(HTTPWorkQueueRun, workQueue);
     }
 }
 
@@ -674,4 +668,16 @@ void UnregisterHTTPHandler(const std::string &prefix, bool exactMatch)
         LogPrint(BCLog::HTTP, "Unregistering HTTP handler for %s (exactmatch %d)\n", prefix, exactMatch);
         pathHandlers.erase(i);
     }
+}
+
+std::string urlDecode(const std::string &urlEncoded) {
+    std::string res;
+    if (!urlEncoded.empty()) {
+        char *decoded = evhttp_uridecode(urlEncoded.c_str(), false, nullptr);
+        if (decoded) {
+            res = std::string(decoded);
+            free(decoded);
+        }
+    }
+    return res;
 }

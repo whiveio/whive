@@ -46,7 +46,7 @@ class QProgressDialog;
 QT_END_NAMESPACE
 
 /**
-  Whive GUI main class. This class represents the main window of the Whive UI. It communicates with both the client and
+  Whiveyes GUI main class. This class represents the main window of the Whiveyes UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
 class BitcoinGUI : public QMainWindow
@@ -66,7 +66,7 @@ public:
 
 #ifdef ENABLE_WALLET
     /** Set the wallet model.
-        The wallet model represents a whive wallet, and offers access to the list of transactions, address book and sending
+        The wallet model represents a whiveyes wallet, and offers access to the list of transactions, address book and sending
         functionality.
     */
     bool addWallet(WalletModel *walletModel);
@@ -123,8 +123,6 @@ private:
     QAction* openRPCConsoleAction = nullptr;
     QAction* openAction = nullptr;
     QAction* showHelpMessageAction = nullptr;
-    QAction* m_open_wallet_action{nullptr};
-    QAction* m_close_wallet_action{nullptr};
     QAction* m_wallet_selector_label_action = nullptr;
     QAction* m_wallet_selector_action = nullptr;
 

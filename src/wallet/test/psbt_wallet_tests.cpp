@@ -1,22 +1,16 @@
-// Copyright (c) 2017-2019 The Bitcoin Core developers
+// Copyright (c) 2017-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <key_io.h>
 #include <script/sign.h>
-<<<<<<< HEAD
 #include <utilstrencodings.h>
-=======
-#include <util/bip32.h>
-#include <util/strencodings.h>
-#include <wallet/psbtwallet.h>
->>>>>>> upstream/0.18
 #include <wallet/rpcwallet.h>
 #include <wallet/wallet.h>
 #include <univalue.h>
 
 #include <boost/test/unit_test.hpp>
-#include <test/setup_common.h>
+#include <test/test_bitcoin.h>
 #include <wallet/test/wallet_test_fixture.h>
 
 extern bool ParseHDKeypath(std::string keypath_str, std::vector<uint32_t>& keypath);
@@ -66,8 +60,7 @@ BOOST_AUTO_TEST_CASE(psbt_updater_test)
     ssData >> psbtx;
 
     // Fill transaction with our data
-    bool complete = true;
-    BOOST_REQUIRE_EQUAL(TransactionError::OK, FillPSBT(&m_wallet, psbtx, complete, SIGHASH_ALL, false, true));
+    FillPSBT(&m_wallet, psbtx, SIGHASH_ALL, false, true);
 
     // Get the final tx
     CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);

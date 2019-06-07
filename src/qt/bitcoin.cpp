@@ -28,11 +28,6 @@
 
 #include <interfaces/handler.h>
 #include <interfaces/node.h>
-<<<<<<< HEAD
-=======
-#include <noui.h>
-#include <util/threadnames.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 #include <rpc/server.h>
 #include <ui_interface.h>
 #include <uint256.h>
@@ -58,6 +53,9 @@
 
 #if defined(QT_STATICPLUGIN)
 #include <QtPlugin>
+#if QT_VERSION < 0x050400
+Q_IMPORT_PLUGIN(AccessibleFactory)
+#endif
 #if defined(QT_QPA_PLATFORM_XCB)
 Q_IMPORT_PLUGIN(QXcbIntegrationPlugin);
 #elif defined(QT_QPA_PLATFORM_WINDOWS)
@@ -260,7 +258,6 @@ void BitcoinCore::initialize()
     try
     {
         qDebug() << __func__ << ": Running initialization in thread";
-        util::ThreadRename("qt-init");
         bool rv = m_node.appInitMain();
         Q_EMIT initializeResult(rv);
     } catch (const std::exception& e) {
@@ -558,7 +555,6 @@ static void SetupUIArgs()
 int main(int argc, char *argv[])
 {
     SetupEnvironment();
-    util::ThreadRename("main");
 
     std::unique_ptr<interfaces::Node> node = interfaces::MakeNode();
 
@@ -585,16 +581,11 @@ int main(int argc, char *argv[])
     //   Need to pass name here as CAmount is a typedef (see http://qt-project.org/doc/qt-5/qmetatype.html#qRegisterMetaType)
     //   IMPORTANT if it is no longer a typedef use the normal variant above
     qRegisterMetaType< CAmount >("CAmount");
-<<<<<<< HEAD
     qRegisterMetaType< std::function<void(void)> >("std::function<void(void)>");
 #ifdef ENABLE_WALLET
     qRegisterMetaType<WalletModel*>("WalletModel*");
 #endif
 
-=======
-    qRegisterMetaType< std::function<void()> >("std::function<void()>");
-    qRegisterMetaType<QMessageBox::Icon>("QMessageBox::Icon");
->>>>>>> upstream/0.18
     /// 2. Parse command-line options. We do this after qt in order to show an error if there are problems parsing these
     // Command-line options take precedence:
     node->setupServerArgs();

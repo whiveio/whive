@@ -102,16 +102,12 @@ AddressBookPage::AddressBookPage(const PlatformStyle *platformStyle, Mode _mode,
     switch(tab)
     {
     case SendingTab:
-        ui->labelExplanation->setText(tr("These are your Whive addresses for sending payments. Always check the amount and the receiving address before sending coins."));
+        ui->labelExplanation->setText(tr("These are your Whiveyes addresses for sending payments. Always check the amount and the receiving address before sending coins."));
         ui->deleteAddress->setVisible(true);
         ui->newAddress->setVisible(true);
         break;
     case ReceivingTab:
-<<<<<<< HEAD
-        ui->labelExplanation->setText(tr("These are your Whive addresses for receiving payments. It is recommended to use a new receiving address for each transaction."));
-=======
-        ui->labelExplanation->setText(tr("These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses."));
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
+        ui->labelExplanation->setText(tr("These are your Whiveyes addresses for receiving payments. It is recommended to use a new receiving address for each transaction."));
         ui->deleteAddress->setVisible(false);
         ui->newAddress->setVisible(false);
         break;

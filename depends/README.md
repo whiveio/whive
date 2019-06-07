@@ -20,6 +20,7 @@ created. To use it for Bitcoin:
 
 Common `host-platform-triplets` for cross compilation are:
 
+- `i686-w64-mingw32` for Win32
 - `x86_64-w64-mingw32` for Win64
 - `x86_64-apple-darwin14` for macOS
 - `arm-linux-gnueabihf` for Linux ARM 32 bit
@@ -34,7 +35,7 @@ Install the required dependencies: Ubuntu & Debian
 
 For macOS cross compilation:
 
-    sudo apt-get install curl librsvg2-bin libtiff-tools bsdmainutils cmake imagemagick libcap-dev libz-dev libbz2-dev python3-setuptools
+    sudo apt-get install curl librsvg2-bin libtiff-tools bsdmainutils cmake imagemagick libcap-dev libz-dev libbz2-dev python-setuptools
 
 For Win32/Win64 cross compilation:
 
@@ -42,21 +43,7 @@ For Win32/Win64 cross compilation:
 
 For linux (including i386, ARM) cross compilation:
 
-<<<<<<< HEAD
     sudo apt-get install curl g++-aarch64-linux-gnu g++-4.8-aarch64-linux-gnu gcc-4.8-aarch64-linux-gnu binutils-aarch64-linux-gnu g++-arm-linux-gnueabihf g++-4.8-arm-linux-gnueabihf gcc-4.8-arm-linux-gnueabihf binutils-arm-linux-gnueabihf g++-4.8-multilib gcc-4.8-multilib binutils-gold bsdmainutils
-=======
-Common linux dependencies:
-
-    sudo apt-get install make automake cmake curl g++-multilib libtool binutils-gold bsdmainutils pkg-config python3 patch
-
-For linux ARM cross compilation:
-
-    sudo apt-get install g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf
-
-For linux AARCH64 cross compilation:
-
-    sudo apt-get install g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
 For linux RISC-V 64-bit cross compilation (there are no packages for 32-bit):
 
@@ -76,10 +63,6 @@ The following can be set when running make: make FOO=bar
     NO_WALLET: Don't download/build/cache libs needed to enable the wallet
     NO_UPNP: Don't download/build/cache packages needed for enabling upnp
     DEBUG: disable some optimizations and enable more runtime checking
-<<<<<<< HEAD
-=======
-    RAPIDCHECK: build rapidcheck (experimental, requires cmake)
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     HOST_ID_SALT: Optional salt to use when generating host package ids
     BUILD_ID_SALT: Optional salt to use when generating build package ids
 

@@ -47,7 +47,7 @@
         <item row="6" column="0">
          <widget class="QLabel" name="label_3">
           <property name="toolTip">
-           <string>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</string>
+           <string>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whiveyes network.</string>
           </property>
           <property name="text">
            <string>&amp;Message:</string>
@@ -93,7 +93,7 @@
         <item row="6" column="2">
          <widget class="QLineEdit" name="reqMessage">
           <property name="toolTip">
-           <string>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</string>
+           <string>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whiveyes network.</string>
           </property>
          </widget>
         </item>
@@ -108,7 +108,7 @@
              </size>
             </property>
             <property name="text">
-             <string>&amp;Create new receiving address</string>
+             <string>&amp;Request payment</string>
             </property>
             <property name="icon">
              <iconset resource="../bitcoin.qrc">
@@ -189,7 +189,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="useLegacyAddress">
+           <widget class="QCheckBox" name="useBech32">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -206,10 +206,10 @@
              <enum>Qt::StrongFocus</enum>
             </property>
             <property name="toolTip">
-             <string>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When checked, an address compatible with older wallets will be created instead.</string>
+             <string>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</string>
             </property>
             <property name="text">
-             <string>Generate legacy address</string>
+             <string>Generate native segwit (Bech32) address</string>
             </property>
            </widget>
           </item>
@@ -360,7 +360,7 @@
  <tabstops>
   <tabstop>reqLabel</tabstop>
   <tabstop>reqAmount</tabstop>
-  <tabstop>useLegacyAddress</tabstop>
+  <tabstop>useBech32</tabstop>
   <tabstop>reqMessage</tabstop>
   <tabstop>receiveButton</tabstop>
   <tabstop>clearButton</tabstop>

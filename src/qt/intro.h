@@ -47,6 +47,11 @@ public:
      */
     static bool pickDataDirectory(interfaces::Node& node);
 
+    /**
+     * Determine default data directory for operating system.
+     */
+    static QString getDefaultDataDirectory();
+
 Q_SIGNALS:
     void requestCheck();
     void stopThread();

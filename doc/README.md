@@ -1,39 +1,39 @@
-Whive Core
+Whiveyes Core
 =============
 
 Setup
 ---------------------
-Whive Core is the original Whive client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Whive transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Whiveyes Core is the original Whiveyes client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Whiveyes transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Whive Core, visit [whive.org](https://whive.org/).
+To download Whiveyes Core, visit [whiveyes.org](https://whiveyes.org/).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Whive Core on your native platform.
+The following are some helpful notes on how to run Whiveyes Core on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
 - `bin/cranapay-qt` (GUI) or
-- `bin/whived` (headless)
+- `bin/whiveyesd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run whive-qt.exe.
+Unpack the files into a directory, and then run whiveyes-qt.exe.
 
 ### macOS
 
-Drag Whive Core to your applications folder, and then run Whive Core.
+Drag Whiveyes Core to your applications folder, and then run Whiveyes Core.
 
 ### Need Help?
 
-* See the documentation at the [Whive Forum](https://forum.whive.org)
+* See the documentation at the [Whiveyes Forum](https://forum.whiveyes.org)
 for help and more information.
 
 Building
 ---------------------
-The following are developer notes on how to build Whive Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Whiveyes Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -45,24 +45,9 @@ The following are developer notes on how to build Whive Core on your native plat
 
 Development
 ---------------------
-<<<<<<< HEAD
-The Whive repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Whiveyes repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
-=======
-The Bitcoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
-
-- [Developer Notes](developer-notes.md)
-- [Productivity Notes](productivity.md)
-- [Release Notes](release-notes.md)
-- [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://dev.visucore.com/bitcoin/doxygen/)
-- [Translation Process](translation_process.md)
-- [Translation Strings Policy](translation_strings_policy.md)
-<<<<<<< HEAD
->>>>>>> upstream/0.18
 - [Travis CI](travis-ci.md)
-=======
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 - [JSON-RPC Interface](JSON-RPC-interface.md)
 - [Unauthenticated REST Interface](REST-interface.md)
 - [Dnsseed Policy](dnsseed-policy.md)
@@ -72,7 +57,7 @@ The Bitcoin repo's [root README](/README.md) contains relevant information on th
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
-- [whive.conf Configuration File](whive-conf.md)
+- [whiveyes.conf Configuration File](whiveyes-conf.md)
 - [Files](files.md)
 - [Fuzz-testing](fuzzing.md)
 - [Reduce Traffic](reduce-traffic.md)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2010 ArtForz -- public domain half-a-node
 # Copyright (c) 2012 Jeff Garzik
-# Copyright (c) 2010-2019 The Bitcoin Core developers
+# Copyright (c) 2010-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Bitcoin P2P network half-a-node.
@@ -138,13 +138,8 @@ class P2PConnection(asyncio.Protocol):
             while True:
                 if len(self.recvbuf) < 4:
                     return
-<<<<<<< HEAD
                 if self.recvbuf[:4] != MAGIC_BYTES[self.network]:
                     raise ValueError("got garbage %s" % repr(self.recvbuf))
-=======
-                if self.recvbuf[:4] != self.magic_bytes:
-                    raise ValueError("magic bytes mismatch: {} != {}".format(repr(self.magic_bytes), repr(self.recvbuf)))
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
                 if len(self.recvbuf) < 4 + 12 + 4 + 4:
                     return
                 command = self.recvbuf[4:4+12].split(b"\x00", 1)[0]
@@ -188,7 +183,10 @@ class P2PConnection(asyncio.Protocol):
         def maybe_write():
             if not self._transport:
                 return
-            if self._transport.is_closing():
+            # Python <3.4.4 does not have is_closing, so we have to check for
+            # its existence explicitly as long as Bitcoin Core supports all
+            # Python 3.4 versions.
+            if hasattr(self._transport, 'is_closing') and self._transport.is_closing():
                 return
             self._transport.write(tmsg)
         NetworkThread.network_event_loop.call_soon_threadsafe(maybe_write)
@@ -329,14 +327,6 @@ class P2PInterface(P2PConnection):
         wait_until(test_function, timeout=timeout, lock=mininode_lock)
 
     # Message receiving helper methods
-
-    def wait_for_tx(self, txid, timeout=60):
-        def test_function():
-            if not self.last_message.get('tx'):
-                return False
-            return self.last_message['tx'].tx.rehash() == txid
-
-        wait_until(test_function, timeout=timeout, lock=mininode_lock)
 
     def wait_for_block(self, blockhash, timeout=60):
         test_function = lambda: self.last_message.get("block") and self.last_message["block"].block.rehash() == blockhash
@@ -512,18 +502,7 @@ class P2PDataStore(P2PInterface):
                 self.block_store[block.sha256] = block
                 self.last_block_hash = block.sha256
 
-<<<<<<< HEAD
         self.send_message(msg_headers([CBlockHeader(blocks[-1])]))
-=======
-        reject_reason = [reject_reason] if reject_reason else []
-        with node.assert_debug_log(expected_msgs=reject_reason):
-            if force_send:
-                for b in blocks:
-                    self.send_message(msg_block(block=b))
-            else:
-                self.send_message(msg_headers([CBlockHeader(block) for block in blocks]))
-                wait_until(lambda: blocks[-1].sha256 in self.getdata_requests, timeout=timeout, lock=mininode_lock)
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
         if request_block:
             wait_until(lambda: blocks[-1].sha256 in self.getdata_requests, timeout=timeout, lock=mininode_lock)

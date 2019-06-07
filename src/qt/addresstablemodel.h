@@ -30,7 +30,7 @@ public:
 
     enum ColumnIndex {
         Label = 0,   /**< User specified label */
-        Address = 1  /**< Whive address */
+        Address = 1  /**< Whiveyes address */
     };
 
     enum RoleIndex {

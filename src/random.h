@@ -13,56 +13,8 @@
 #include <stdint.h>
 #include <limits>
 
-<<<<<<< HEAD
 /* Seed OpenSSL PRNG with additional entropy data */
 void RandAddSeed();
-=======
-/**
- * Overall design of the RNG and entropy sources.
- *
- * We maintain a single global 256-bit RNG state for all high-quality randomness.
- * The following (classes of) functions interact with that state by mixing in new
- * entropy, and optionally extracting random output from it:
- *
- * - The GetRand*() class of functions, as well as construction of FastRandomContext objects,
- *   perform 'fast' seeding, consisting of mixing in:
- *   - A stack pointer (indirectly committing to calling thread and call stack)
- *   - A high-precision timestamp (rdtsc when available, c++ high_resolution_clock otherwise)
- *   - 64 bits from the hardware RNG (rdrand) when available.
- *   These entropy sources are very fast, and only designed to protect against situations
- *   where a VM state restore/copy results in multiple systems with the same randomness.
- *   FastRandomContext on the other hand does not protect against this once created, but
- *   is even faster (and acceptable to use inside tight loops).
- *
- * - The GetStrongRand*() class of function perform 'slow' seeding, including everything
- *   that fast seeding includes, but additionally:
- *   - OS entropy (/dev/urandom, getrandom(), ...). The application will terminate if
- *     this entropy source fails.
- *   - Bytes from OpenSSL's RNG (which itself may be seeded from various sources)
- *   - Another high-precision timestamp (indirectly committing to a benchmark of all the
- *     previous sources).
- *   These entropy sources are slower, but designed to make sure the RNG state contains
- *   fresh data that is unpredictable to attackers.
- *
- * - RandAddSeedSleep() seeds everything that fast seeding includes, but additionally:
- *   - A high-precision timestamp before and after sleeping 1ms.
- *   - (On Windows) Once every 10 minutes, performance monitoring data from the OS.
- -   - Once every minute, strengthen the entropy for 10 ms using repeated SHA512.
- *   These just exploit the fact the system is idle to improve the quality of the RNG
- *   slightly.
- *
- * On first use of the RNG (regardless of what function is called first), all entropy
- * sources used in the 'slow' seeder are included, but also:
- * - 256 bits from the hardware RNG (rdseed or rdrand) when available.
- * - (On Windows) Performance monitoring data from the OS.
- * - (On Windows) Through OpenSSL, the screen contents.
- * - Strengthen the entropy for 100 ms using repeated SHA512.
- *
- * When mixing in new entropy, H = SHA512(entropy || old_rng_state) is computed, and
- * (up to) the first 32 bytes of H are produced as output, while the last 32 bytes
- * become the new RNG state.
-*/
->>>>>>> upstream/0.18
 
 /**
  * Functions to gather random data via the OpenSSL PRNG
@@ -108,7 +60,7 @@ private:
         if (requires_seed) {
             RandomSeed();
         }
-        rng.Keystream(bytebuf, sizeof(bytebuf));
+        rng.Output(bytebuf, sizeof(bytebuf));
         bytebuf_size = sizeof(bytebuf);
     }
 

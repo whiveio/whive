@@ -33,17 +33,6 @@ Configuration files
 * `trusted-keys`: This file should contain a \n-delimited list of all PGP fingerprints of authorized commit signers (primary, not subkeys).
 * `allow-revsig-commits`: This file should contain a \n-delimited list of git commit hashes. See next section for more info.
 
-<<<<<<< HEAD
-=======
-Import trusted keys
--------------------
-In order to check the commit signatures, you must add the trusted PGP keys to your machine. [GnuPG](https://gnupg.org/) may be used to import the trusted keys by running the following command:
-
-```sh
-gpg --recv-keys $(<contrib/verify-commits/trusted-keys)
-```
-
->>>>>>> upstream/0.18
 Key expiry/revocation
 ---------------------
 

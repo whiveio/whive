@@ -162,21 +162,10 @@ bool DecodeHexBlk(CBlock& block, const std::string& strHexBlk)
     return true;
 }
 
-<<<<<<< HEAD
-bool DecodeBase64PSBT(PartiallySignedTransaction& psbt, const std::string& base64_tx, std::string& error)
+bool DecodePSBT(PartiallySignedTransaction& psbt, const std::string& base64_tx, std::string& error)
 {
-    bool invalid;
-    std::string tx_data = DecodeBase64(base64_tx, &invalid);
-    if (invalid) {
-        error = "invalid base64";
-        return false;
-    }
-    return DecodeRawPSBT(psbt, tx_data, error);
-}
-
-bool DecodeRawPSBT(PartiallySignedTransaction& psbt, const std::string& tx_data, std::string& error)
-{
-    CDataStream ss_data(tx_data.data(), tx_data.data() + tx_data.size(), SER_NETWORK, PROTOCOL_VERSION);
+    std::vector<unsigned char> tx_data = DecodeBase64(base64_tx.c_str());
+    CDataStream ss_data(tx_data, SER_NETWORK, PROTOCOL_VERSION);
     try {
         ss_data >> psbt;
         if (!ss_data.empty()) {
@@ -191,9 +180,6 @@ bool DecodeRawPSBT(PartiallySignedTransaction& psbt, const std::string& tx_data,
 }
 
 uint256 ParseHashStr(const std::string& strHex, const std::string& strName)
-=======
-bool ParseHashStr(const std::string& strHex, uint256& result)
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 {
     if (!IsHex(strHex)) // Note: IsHex("") is false
         throw std::runtime_error(strName + " must be hexadecimal string (not '" + strHex + "')");

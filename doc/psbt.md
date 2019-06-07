@@ -1,6 +1,6 @@
-# PSBT Howto for Whive Core
+# PSBT Howto for Whiveyes Core
 
-Since Whive Core 2.0.0, an RPC interface exists for Partially Signed Whive
+Since Whiveyes Core 2.0.0, an RPC interface exists for Partially Signed Whiveyes
 Transactions (PSBTs, as specified in
 
 This document describes the overall workflow for producing signed transactions
@@ -9,7 +9,7 @@ scenarios.
 
 ## PSBT in general
 
-PSBT is an interchange format for Whive transactions that are not fully signed
+PSBT is an interchange format for Whiveyes transactions that are not fully signed
 yet, together with relevant metadata to help entities work towards signing it.
 It is intended to simplify workflows where multiple parties need to cooperate to
 produce a transaction. Examples include hardware wallets, multisig setups, and
@@ -17,7 +17,7 @@ produce a transaction. Examples include hardware wallets, multisig setups, and
 
 ### Overall workflow
 
-Overall, the construction of a fully signed Whive transaction goes through the
+Overall, the construction of a fully signed Whiveyes transaction goes through the
 following steps:
 
 - A **Creator** proposes a particular transaction to be created. They construct
@@ -31,7 +31,7 @@ following steps:
   partial signature for the inputs for which they have relevant key(s).
 - A **Finalizer** is run for each input to convert the partial signatures and
   possibly script information into a final `scriptSig` and/or `scriptWitness`.
-- An **Extractor** produces a valid Whive transaction (in network format)
+- An **Extractor** produces a valid Whiveyes transaction (in network format)
   from a PSBT for which all inputs are finalized.
 
 Generally, each of the above (excluding Creator and Extractor) will simply
@@ -45,7 +45,7 @@ The names above in bold are the names of the roles defined in BIP174. They're
 useful in understanding the underlying steps, but in practice, software and
 hardware implementations will typically implement multiple roles simultaneously.
 
-## PSBT in Whive Core
+## PSBT in Whiveyes Core
 
 ### RPCs
 
@@ -66,9 +66,6 @@ hardware implementations will typically implement multiple roles simultaneously.
   input a PSBT, adds UTXO, key, and script data to inputs and outputs that miss
   it, and optionally signs inputs. Where possible it also finalizes the partial
   signatures.
-- **`utxoupdatepsbt` (Updater)** is a node RPC that takes a PSBT and updates it
-  to include information available from the UTXO set (works only for SegWit
-  inputs).
 - **`finalizepsbt` (Finalizer, Extractor)** is a utility RPC that finalizes any
   partial signatures, and if all inputs are finalized, converts the result to a
   fully signed transaction which can be broadcast with `sendrawtransaction`.
@@ -76,25 +73,18 @@ hardware implementations will typically implement multiple roles simultaneously.
   can be used at any point in the workflow to merge information added to
   different versions of the same PSBT. In particular it is useful to combine the
   output of multiple Updaters or Signers.
-- **`joinpsbts`** (Creator) is a utility RPC that joins multiple PSBTs together,
-  concatenating the inputs and outputs. This can be used to construct CoinJoin
-  transactions.
 - **`decodepsbt`** is a diagnostic utility RPC which will show all information in
   a PSBT in human-readable form, as well as compute its eventual fee if known.
-- **`analyzepsbt`** is a utility RPC that examines an RPC and reports the
-  next steps in the workflow if known, computes the fee of the resulting
-  transaction, and estimates the weight and feerate if possible.
-
 
 ### Workflows
 
-#### Multisig with multiple Whive Core instances
+#### Multisig with multiple Whiveyes Core instances
 
 Alice, Bob, and Carol want to create a 2-of-3 multisig address. They're all using
-Whive Core. We assume their wallets only contain the multisig funds. In case
+Whiveyes Core. We assume their wallets only contain the multisig funds. In case
 they also have a personal wallet, this can be accomplished through the
 multiwallet feature - possibly resulting in a need to add `-rpcwallet=name` to
-the command line in case `cranepawhiveis used.
+the command line in case `cranepawhiveyesis used.
 
 Setup:
 - All three call `getnewaddress` to create a new address; call these addresses

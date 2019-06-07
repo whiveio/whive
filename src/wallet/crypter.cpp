@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
-=======
-// Copyright (c) 2009-2019 The Bitcoin Core developers
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -188,7 +184,7 @@ bool CCryptoKeyStore::Unlock(const CKeyingMaterial& vMasterKeyIn)
         if (!SetCrypted())
             return false;
 
-        bool keyPass = mapCryptedKeys.empty(); // Always pass when there are no encrypted keys
+        bool keyPass = false;
         bool keyFail = false;
         CryptedKeyMap::const_iterator mi = mapCryptedKeys.begin();
         for (; mi != mapCryptedKeys.end(); ++mi)

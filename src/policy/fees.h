@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_POLICY_FEES_H
@@ -92,12 +92,16 @@ enum class FeeReason {
     MAXTXFEE,
 };
 
+std::string StringForFeeReason(FeeReason reason);
+
 /* Used to determine type of fee estimation requested */
 enum class FeeEstimateMode {
     UNSET,        //! Use default settings based on other criteria
     ECONOMICAL,   //! Force estimateSmartFee to use non-conservative estimates
     CONSERVATIVE, //! Force estimateSmartFee to use conservative estimates
 };
+
+bool FeeModeFromString(const std::string& mode_string, FeeEstimateMode& fee_estimate_mode);
 
 /* Used to return detailed information about a feerate bucket */
 struct EstimatorBucket

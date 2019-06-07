@@ -1,8 +1,8 @@
-// Copyright (c) 2013-2019 The Bitcoin Core developers
+// Copyright (c) 2013-2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <consensus/tx_check.h>
+#include <consensus/tx_verify.h>
 #include <consensus/validation.h>
 #include <test/data/sighash.json.h>
 #include <hash.h>
@@ -10,15 +10,9 @@
 #include <script/script.h>
 #include <serialize.h>
 #include <streams.h>
-<<<<<<< HEAD
 #include <test/test_bitcoin.h>
 #include <util.h>
 #include <utilstrencodings.h>
-=======
-#include <test/setup_common.h>
-#include <util/system.h>
-#include <util/strencodings.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 #include <version.h>
 
 #include <iostream>

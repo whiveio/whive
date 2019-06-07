@@ -133,7 +133,7 @@ For example, to describe a function use:
  */
 bool function(int arg1, const char *arg2)
 ```
-A complete list of `@xxx` commands can be found at http://www.doxygen.nl/manual/commands.html.
+A complete list of `@xxx` commands can be found at http://www.stack.nl/~dimitri/doxygen/manual/commands.html.
 As Doxygen recognizes the comments by the delimiters (`/**` and `*/` in this case), you don't
 *need* to provide any commands for a comment to be valid; just a description text is fine.
 
@@ -174,13 +174,8 @@ Not OK (used plenty in the current source, but not picked up):
 //
 ```
 
-<<<<<<< HEAD
 A full list of comment syntaxes picked up by doxygen can be found at http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html,
 but if possible use one of the above styles.
-=======
-A full list of comment syntaxes picked up by Doxygen can be found at http://www.doxygen.nl/manual/docblocks.html,
-but the above styles are favored.
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
 Documentation can be generated with `make docs` and cleaned up with `make clean-docs`.
 
@@ -427,14 +422,6 @@ Wallet
 General C++
 -------------
 
-For general C++ guidelines, you may refer to the [C++ Core
-Guidelines](https://isocpp.github.io/CppCoreGuidelines/).
-
-Common misconceptions are clarified in those sections:
-
-- Passing (non-)fundamental types in the [C++ Core
-  Guideline](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rf-conventional)
-
 - Assertions should not have side-effects
 
   - *Rationale*: Even though the source code is set to refuse to compile
@@ -572,8 +559,8 @@ class AddressBookPage
     Mode m_mode;
 }
 
-AddressBookPage::AddressBookPage(Mode _mode)
-    : m_mode(_mode)
+AddressBookPage::AddressBookPage(Mode _mode) :
+      m_mode(_mode)
 ...
 ```
 
@@ -771,6 +758,54 @@ would be to revert the upstream fix before applying the updates to Bitcoin's
 copy of LevelDB. In general you should be wary of any upstream changes affecting
 what data is returned from LevelDB queries.
 
+Git and GitHub tips
+---------------------
+
+- For resolving merge/rebase conflicts, it can be useful to enable diff3 style using
+  `git config merge.conflictstyle diff3`. Instead of
+
+        <<<
+        yours
+        ===
+        theirs
+        >>>
+
+  you will see
+
+        <<<
+        yours
+        |||
+        original
+        ===
+        theirs
+        >>>
+
+  This may make it much clearer what caused the conflict. In this style, you can often just look
+  at what changed between *original* and *theirs*, and mechanically apply that to *yours* (or the other way around).
+
+- When reviewing patches which change indentation in C++ files, use `git diff -w` and `git show -w`. This makes
+  the diff algorithm ignore whitespace changes. This feature is also available on github.com, by adding `?w=1`
+  at the end of any URL which shows a diff.
+
+- When reviewing patches that change symbol names in many places, use `git diff --word-diff`. This will instead
+  of showing the patch as deleted/added *lines*, show deleted/added *words*.
+
+- When reviewing patches that move code around, try using
+  `git diff --patience commit~:old/file.cpp commit:new/file/name.cpp`, and ignoring everything except the
+  moved body of code which should show up as neither `+` or `-` lines. In case it was not a pure move, this may
+  even work when combined with the `-w` or `--word-diff` options described above.
+
+- When looking at other's pull requests, it may make sense to add the following section to your `.git/config`
+  file:
+
+        [remote "upstream-pull"]
+                fetch = +refs/pull/*:refs/remotes/upstream-pull/*
+                url = git@github.com:bitcoin/bitcoin.git
+
+  This will add an `upstream-pull` remote to your git repository, which can be fetched using `git fetch --all`
+  or `git fetch upstream-pull`. Afterwards, you can use `upstream-pull/NUMBER/head` in arguments to `git show`,
+  `git checkout` and anywhere a commit id would be acceptable to see the changes from pull request NUMBER.
+
 Scripted diffs
 --------------
 
@@ -855,7 +890,8 @@ A few guidelines for introducing and reviewing new RPC interfaces:
     from there.
 
 - A RPC method must either be a wallet method or a non-wallet method. Do not
-  introduce new methods that differ in behavior based on presence of a wallet.
+  introduce new methods such as `signrawtransaction` that differ in behavior
+  based on presence of a wallet.
 
   - *Rationale*: as well as complicating the implementation and interfering
     with the introduction of multi-wallet, wallet and non-wallet code should be

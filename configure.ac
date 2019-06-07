@@ -1,35 +1,23 @@
 dnl require autoconf 2.60 (AS_ECHO/AS_ECHO_N)
 AC_PREREQ([2.60])
-<<<<<<< HEAD
 define(_CLIENT_VERSION_MAJOR, 2)
 define(_CLIENT_VERSION_MINOR, 0)
 define(_CLIENT_VERSION_REVISION, 0)
 define(_CLIENT_VERSION_BUILD, 0)
-=======
-define(_CLIENT_VERSION_MAJOR, 0)
-define(_CLIENT_VERSION_MINOR, 18)
-<<<<<<< HEAD
-define(_CLIENT_VERSION_REVISION, 0)
-=======
-define(_CLIENT_VERSION_REVISION, 99)
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
-define(_CLIENT_VERSION_BUILD, 0)
-define(_CLIENT_VERSION_RC, 0)
->>>>>>> upstream/0.18
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2019)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
-define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Whive Core]])
-AC_INIT([Whive Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/whive/whive/issues],[whive],[https://whive.org/])
+define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Whiveyes Core]])
+AC_INIT([Whiveyes Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[https://github.com/whiveyes/whiveyes/issues],[whiveyes],[https://whiveyes.org/])
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-BITCOIN_DAEMON_NAME=whived
-BITCOIN_GUI_NAME=whive-qt
-BITCOIN_CLI_NAME=whive-cli
-BITCOIN_TX_NAME=whive-tx
+BITCOIN_DAEMON_NAME=whiveyesd
+BITCOIN_GUI_NAME=whiveyes-qt
+BITCOIN_CLI_NAME=whiveyes-cli
+BITCOIN_TX_NAME=whiveyes-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -95,8 +83,8 @@ AC_PATH_TOOL(RANLIB, ranlib)
 AC_PATH_TOOL(STRIP, strip)
 AC_PATH_TOOL(GCOV, gcov)
 AC_PATH_PROG(LCOV, lcov)
-dnl Python 3.5 is specified in .python-version and should be used if available, see doc/dependencies.md
-AC_PATH_PROGS([PYTHON], [python3.5 python3.6 python3.7 python3.8 python3 python])
+dnl Python 3.x is supported from 3.4 on (see https://github.com/bitcoin/bitcoin/issues/7893)
+AC_PATH_PROGS([PYTHON], [python3.7 python3.6 python3.5 python3.4 python3 python])
 AC_PATH_PROG(GENHTML, genhtml)
 AC_PATH_PROG([GIT], [git])
 AC_PATH_PROG(CCACHE,ccache)
@@ -195,8 +183,8 @@ AC_ARG_ENABLE([glibc-back-compat],
   [use_glibc_compat=no])
 
 AC_ARG_ENABLE([asm],
-  [AS_HELP_STRING([--disable-asm],
-  [disable assembly routines (enabled by default)])],
+  [AS_HELP_STRING([--enable-asm],
+  [Enable assembly routines (default is yes)])],
   [use_asm=$enableval],
   [use_asm=yes])
 
@@ -326,13 +314,6 @@ if test "x$CXXFLAGS_overridden" = "xno"; then
   AX_CHECK_COMPILE_FLAG([-Wimplicit-fallthrough],[NOWARN_CXXFLAGS="$NOWARN_CXXFLAGS -Wno-implicit-fallthrough"],,[[$CXXFLAG_WERROR]])
 fi
 
-enable_hwcrc32=no
-enable_sse41=no
-enable_avx2=no
-enable_shani=no
-
-if test "x$use_asm" = "xyes"; then
-
 # Check for optional instruction set support. Enabling these does _not_ imply that all code will
 # be compiled with them, rather that specific objects/libs may use them after checking for runtime
 # compatibility.
@@ -409,8 +390,6 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
  [ AC_MSG_RESULT(no)]
 )
 CXXFLAGS="$TEMP_CXXFLAGS"
-
-fi
 
 CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
@@ -714,10 +693,6 @@ if test x$TARGET_OS != xwindows; then
   AX_CHECK_COMPILE_FLAG([-fPIC],[PIC_FLAGS="-fPIC"])
 fi
 
-# All versions of gcc that we commonly use for building are subject to bug
-# https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90348. To work around that, set
-# -fstack-reuse=none for all gcc builds. (Only gcc understands this flag)
-AX_CHECK_COMPILE_FLAG([-fstack-reuse=none],[HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -fstack-reuse=none"])
 if test x$use_hardening != xno; then
   use_hardening=yes
   AX_CHECK_COMPILE_FLAG([-Wstack-protector],[HARDENED_CXXFLAGS="$HARDENED_CXXFLAGS -Wstack-protector"])
@@ -816,23 +791,8 @@ AC_LINK_IFELSE([AC_LANG_SOURCE([
   }
   ])],
   [
-   case $host in
-     *mingw*)
-        # mingw32's implementation of thread_local has also been shown to behave
-        # erroneously under concurrent usage; see:
-        # https://gist.github.com/jamesob/fe9a872051a88b2025b1aa37bfa98605
-        AC_MSG_RESULT(no)
-        ;;
-      *darwin*)
-        # TODO enable thread_local on later versions of Darwin where it is
-        # supported (per https://stackoverflow.com/a/29929949)
-        AC_MSG_RESULT(no)
-        ;;
-      *)
-        AC_DEFINE(HAVE_THREAD_LOCAL,1,[Define if thread_local is supported.])
-        AC_MSG_RESULT(yes)
-        ;;
-    esac
+    AC_DEFINE(HAVE_THREAD_LOCAL,1,[Define if thread_local is supported.])
+    AC_MSG_RESULT(yes)
   ],
   [
     AC_MSG_RESULT(no)
@@ -929,7 +889,7 @@ define(MINIMUM_REQUIRED_BOOST, 1.47.0)
 dnl Check for boost libs
 AX_BOOST_BASE([MINIMUM_REQUIRED_BOOST])
 if test x$want_boost = xno; then
-    AC_MSG_ERROR([[only libwhiveconsensus can be built without boost]])
+    AC_MSG_ERROR([[only libwhiveyesconsensus can be built without boost]])
 fi
 AX_BOOST_SYSTEM
 AX_BOOST_FILESYSTEM
@@ -1235,7 +1195,7 @@ AC_MSG_CHECKING([whether to build libraries])
 AM_CONDITIONAL([BUILD_BITCOIN_LIBS], [test x$build_bitcoin_libs = xyes])
 if test x$build_bitcoin_libs = xyes; then
   AC_DEFINE(HAVE_CONSENSUS_LIB, 1, [Define this symbol if the consensus lib has been built])
-  AC_CONFIG_FILES([libwhiveconsensus.pc:libwhiveconsensus.pc.in])
+  AC_CONFIG_FILES([libwhiveyesconsensus.pc:libwhiveyesconsensus.pc.in])
 fi
 AC_MSG_RESULT($build_bitcoin_libs)
 

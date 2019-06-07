@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Copyright (c) 2011-2017 The Bitcoin Core developers
-=======
-// Copyright (c) 2011-2019 The Bitcoin Core developers
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,13 +8,8 @@
 #include <key.h>
 #include <key_io.h>
 #include <script/script.h>
-<<<<<<< HEAD
 #include <utilstrencodings.h>
 #include <test/test_bitcoin.h>
-=======
-#include <util/strencodings.h>
-#include <test/setup_common.h>
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
 #include <boost/test/unit_test.hpp>
 

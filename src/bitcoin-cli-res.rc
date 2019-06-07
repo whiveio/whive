@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 The Whive Core developers
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,14 +22,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Whive"
-            VALUE "FileDescription",    "whive-cli (JSON-RPC client for " PACKAGE_NAME ")"
+            VALUE "CompanyName",        "Whiveyes"
+            VALUE "FileDescription",    "whiveyes-cli (JSON-RPC client for " PACKAGE_NAME ")"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "whive-cli"
+            VALUE "InternalName",       "whiveyes-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "whive-cli.exe"
-            VALUE "ProductName",        "whive-cli"
+            VALUE "OriginalFilename",   "whiveyes-cli.exe"
+            VALUE "ProductName",        "whiveyes-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

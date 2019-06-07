@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2019 The Bitcoin Core developers
+# Copyright (c) 2014-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test behavior of headers messages to announce blocks.
@@ -103,6 +103,7 @@ from test_framework.mininode import (
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
+    sync_blocks,
     wait_until,
 )
 
@@ -225,14 +226,8 @@ class SendHeadersTest(BitcoinTestFramework):
         to-be-reorged-out blocks are mined, so that we don't break later tests.
         return the list of block hashes newly mined."""
 
-<<<<<<< HEAD
         self.nodes[0].generate(length)  # make sure all invalidated blocks are node0's
         sync_blocks(self.nodes, wait=0.1)
-=======
-        # make sure all invalidated blocks are node0's
-        self.nodes[0].generatetoaddress(length, self.nodes[0].get_deterministic_priv_key().address)
-        self.sync_blocks(self.nodes, wait=0.1)
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
         for x in self.nodes[0].p2ps:
             x.wait_for_block_announcement(int(self.nodes[0].getbestblockhash(), 16))
             x.clear_block_announcements()
@@ -240,13 +235,8 @@ class SendHeadersTest(BitcoinTestFramework):
         tip_height = self.nodes[1].getblockcount()
         hash_to_invalidate = self.nodes[1].getblockhash(tip_height - (length - 1))
         self.nodes[1].invalidateblock(hash_to_invalidate)
-<<<<<<< HEAD
         all_hashes = self.nodes[1].generate(length + 1)  # Must be longer than the orig chain
         sync_blocks(self.nodes, wait=0.1)
-=======
-        all_hashes = self.nodes[1].generatetoaddress(length + 1, self.nodes[1].get_deterministic_priv_key().address)  # Must be longer than the orig chain
-        self.sync_blocks(self.nodes, wait=0.1)
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
         return [int(x, 16) for x in all_hashes]
 
     def run_test(self):
@@ -502,7 +492,7 @@ class SendHeadersTest(BitcoinTestFramework):
 
         # Now announce a header that forks the last two blocks
         tip = blocks[0].sha256
-        height -= 2
+        height -= 1
         blocks = []
 
         # Create extra blocks for later

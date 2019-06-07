@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2019 The Bitcoin Core developers
+# Copyright (c) 2014-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Run regression test suite.
 
 This module calls down into individual test cases via subprocess. It will
 forward all unrecognized arguments onto the individual test scripts.
+
+Functional tests are disabled on Windows by default. Use --force to run them anyway.
 
 For a description of arguments recognized by test scripts, see
 `test/functional/test_framework/test_framework.py:BitcoinTestFramework.main`.
@@ -50,17 +52,8 @@ if os.name == 'posix':
 TEST_EXIT_PASSED = 0
 TEST_EXIT_SKIPPED = 77
 
-<<<<<<< HEAD
 # 20 minutes represented in seconds
 TRAVIS_TIMEOUT_DURATION = 20 * 60
-=======
-EXTENDED_SCRIPTS = [
-    # These tests are not run by the travis build process.
-    # Longest test should go first, to favor running tests in parallel
-    'feature_pruning.py',
-    'feature_dbcrash.py',
-]
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 
 BASE_SCRIPTS = [
     # Scripts that are run by the travis build process.
@@ -99,15 +92,14 @@ BASE_SCRIPTS = [
     'wallet_txn_clone.py',
     'wallet_txn_clone.py --segwit',
     'rpc_getchaintips.py',
-    'rpc_misc.py',
     'interface_rest.py',
     'mempool_spend_coinbase.py',
     'mempool_reorg.py',
     'mempool_persist.py',
     'wallet_multiwallet.py',
     'wallet_multiwallet.py --usecli',
-    'wallet_createwallet.py',
-    'wallet_createwallet.py --usecli',
+    'wallet_disableprivatekeys.py',
+    'wallet_disableprivatekeys.py --usecli',
     'interface_http.py',
     'rpc_psbt.py',
     'rpc_users.py',
@@ -122,23 +114,10 @@ BASE_SCRIPTS = [
     'rpc_net.py',
     'wallet_keypool.py',
     'p2p_mempool.py',
-    'p2p_blocksonly.py',
     'mining_prioritisetransaction.py',
     'p2p_invalid_locator.py',
     'p2p_invalid_block.py',
     'p2p_invalid_tx.py',
-<<<<<<< HEAD
-=======
-    'feature_assumevalid.py',
-    'example_test.py',
-    'wallet_txn_doublespend.py',
-    'wallet_txn_clone.py --mineblock',
-    'feature_notifications.py',
-    'rpc_getblockfilter.py',
-    'rpc_invalidateblock.py',
-    'feature_rbf.py',
-    'mempool_packages.py',
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     'rpc_createmultisig.py',
     'feature_versionbits_warning.py',
     'rpc_preciousblock.py',
@@ -180,7 +159,6 @@ BASE_SCRIPTS = [
     # Put them in a random line within the section that fits their approximate run-time
 ]
 
-<<<<<<< HEAD
 EXTENDED_SCRIPTS = [
     # These tests are not run by the travis build process.
     # Longest test should go first, to favor running tests in parallel
@@ -207,8 +185,6 @@ EXTENDED_SCRIPTS = [
     'feature_rbf.py',
 ]
 
-=======
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
 # Place EXTENDED_SCRIPTS first since it has the 3 longest running tests
 ALL_SCRIPTS = EXTENDED_SCRIPTS + BASE_SCRIPTS
 
@@ -231,6 +207,7 @@ def main():
     parser.add_argument('--coverage', action='store_true', help='generate a basic coverage report for the RPC interface')
     parser.add_argument('--exclude', '-x', help='specify a comma-separated-list of scripts to exclude.')
     parser.add_argument('--extended', action='store_true', help='run the extended test suite in addition to the basic tests')
+    parser.add_argument('--force', '-f', action='store_true', help='run tests even on platforms where they are disabled by default (e.g. windows).')
     parser.add_argument('--help', '-h', '-?', action='store_true', help='print help text and exit')
     parser.add_argument('--jobs', '-j', type=int, default=4, help='how many test scripts to run in parallel. Default=4.')
     parser.add_argument('--keepcache', '-k', action='store_true', help='the default behavior is to flush the cache directory on startup. --keepcache retains the cache from the previous testrun.')
@@ -256,15 +233,17 @@ def main():
 
     # Create base test directory
     tmpdir = "%s/test_runner_₿_🏃_%s" % (args.tmpdirprefix, datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/0.18
     os.makedirs(tmpdir)
 
     logging.debug("Temporary test directory at %s" % tmpdir)
 
     enable_bitcoind = config["components"].getboolean("ENABLE_BITCOIND")
+
+    if config["environment"]["EXEEXT"] == ".exe" and not args.force:
+        # https://github.com/bitcoin/bitcoin/commit/d52802551752140cf41f0d9a225a43e84404d3e9
+        # https://github.com/bitcoin/bitcoin/pull/5677#issuecomment-136646964
+        print("Tests currently disabled on Windows by default. Use --force option to enable")
+        sys.exit(0)
 
     if not enable_bitcoind:
         print("No functional tests to run.")
@@ -396,18 +375,16 @@ def run_tests(test_list, src_dir, build_dir, tmpdir, jobs=1, enable_coverage=Fal
     print_results(test_results, max_len_name, (int(time.time() - start_time)))
 
     if coverage:
-        coverage_passed = coverage.report_rpc_coverage()
+        coverage.report_rpc_coverage()
 
         logging.debug("Cleaning up coverage data")
         coverage.cleanup()
-    else:
-        coverage_passed = True
 
     # Clear up the temp directory if all subdirectories are gone
     if not os.listdir(tmpdir):
         os.rmdir(tmpdir)
 
-    all_passed = all(map(lambda test_result: test_result.was_successful, test_results)) and coverage_passed
+    all_passed = all(map(lambda test_result: test_result.was_successful, test_results))
 
     # This will be a no-op unless failfast is True in which case there may be dangling
     # processes which need to be killed.
@@ -475,15 +452,6 @@ class TestHandler:
                               log_stderr))
         if not self.jobs:
             raise IndexError('pop from empty list')
-<<<<<<< HEAD
-=======
-
-        # Print remaining running jobs when all jobs have been started.
-        if not self.test_list:
-            print("Remaining jobs: [{}]".format(", ".join(j[0] for j in self.jobs)))
-
-        dot_count = 0
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
         while True:
             # Return first proc that finishes
             time.sleep(.5)
@@ -607,10 +575,8 @@ class RPCCoverage():
         if uncovered:
             print("Uncovered RPC commands:")
             print("".join(("  - %s\n" % command) for command in sorted(uncovered)))
-            return False
         else:
             print("All RPC commands covered.")
-            return True
 
     def cleanup(self):
         return shutil.rmtree(self.dir)

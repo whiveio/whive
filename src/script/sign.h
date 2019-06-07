@@ -20,34 +20,6 @@ class CTransaction;
 
 struct CMutableTransaction;
 
-<<<<<<< HEAD
-=======
-struct KeyOriginInfo
-{
-    unsigned char fingerprint[4]; //!< First 32 bits of the Hash160 of the public key at the root of the path
-    std::vector<uint32_t> path;
-
-    friend bool operator==(const KeyOriginInfo& a, const KeyOriginInfo& b)
-    {
-        return std::equal(std::begin(a.fingerprint), std::end(a.fingerprint), std::begin(b.fingerprint)) && a.path == b.path;
-    }
-
-    ADD_SERIALIZE_METHODS;
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
-    {
-        READWRITE(fingerprint);
-        READWRITE(path);
-    }
-
-    void clear()
-    {
-        memset(fingerprint, 0, 4);
-        path.clear();
-    }
-};
-
->>>>>>> upstream/0.18
 /** An interface to be implemented by keystores that support signing. */
 class SigningProvider
 {
@@ -75,14 +47,6 @@ struct FlatSigningProvider final : public SigningProvider
 {
     std::map<CScriptID, CScript> scripts;
     std::map<CKeyID, CPubKey> pubkeys;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    std::map<CKeyID, std::pair<CPubKey, KeyOriginInfo>> origins;
->>>>>>> upstream/0.18
-=======
-    std::map<CKeyID, std::pair<CPubKey, KeyOriginInfo>> origins;
->>>>>>> 3001cc61cf11e016c403ce83c9cbcfd3efcbcfd9
     std::map<CKeyID, CKey> keys;
 
     bool GetCScript(const CScriptID& scriptid, CScript& script) const override;
@@ -134,20 +98,38 @@ struct SignatureData {
     CScript witness_script; ///< The witnessScript (if any) for the input. witnessScripts are used in P2WSH outputs.
     CScriptWitness scriptWitness; ///< The scriptWitness of an input. Contains complete signatures or the traditional partial signatures format. scriptWitness is part of a transaction input per BIP 144.
     std::map<CKeyID, SigPair> signatures; ///< BIP 174 style partial signatures for the input. May contain all signatures necessary for producing a final scriptSig or scriptWitness.
-<<<<<<< HEAD
     std::map<CKeyID, CPubKey> misc_pubkeys;
-=======
-    std::map<CKeyID, std::pair<CPubKey, KeyOriginInfo>> misc_pubkeys;
-    std::vector<CKeyID> missing_pubkeys; ///< KeyIDs of pubkeys which could not be found
-    std::vector<CKeyID> missing_sigs; ///< KeyIDs of pubkeys for signatures which could not be found
-    uint160 missing_redeem_script; ///< ScriptID of the missing redeemScript (if any)
-    uint256 missing_witness_script; ///< SHA256 of the missing witnessScript (if any)
->>>>>>> upstream/0.18
 
     SignatureData() {}
     explicit SignatureData(const CScript& script) : scriptSig(script) {}
     void MergeSignatureData(SignatureData sigdata);
 };
+
+// Magic bytes
+static constexpr uint8_t PSBT_MAGIC_BYTES[5] = {'p', 's', 'b', 't', 0xff};
+
+// Global types
+static constexpr uint8_t PSBT_GLOBAL_UNSIGNED_TX = 0x00;
+
+// Input types
+static constexpr uint8_t PSBT_IN_NON_WITNESS_UTXO = 0x00;
+static constexpr uint8_t PSBT_IN_WITNESS_UTXO = 0x01;
+static constexpr uint8_t PSBT_IN_PARTIAL_SIG = 0x02;
+static constexpr uint8_t PSBT_IN_SIGHASH = 0x03;
+static constexpr uint8_t PSBT_IN_REDEEMSCRIPT = 0x04;
+static constexpr uint8_t PSBT_IN_WITNESSSCRIPT = 0x05;
+static constexpr uint8_t PSBT_IN_BIP32_DERIVATION = 0x06;
+static constexpr uint8_t PSBT_IN_SCRIPTSIG = 0x07;
+static constexpr uint8_t PSBT_IN_SCRIPTWITNESS = 0x08;
+
+// Output types
+static constexpr uint8_t PSBT_OUT_REDEEMSCRIPT = 0x00;
+static constexpr uint8_t PSBT_OUT_WITNESSSCRIPT = 0x01;
+static constexpr uint8_t PSBT_OUT_BIP32_DERIVATION = 0x02;
+
+// The separator is 0x00. Reading this in means that the unserializer can interpret it
+// as a 0 length key which indicates that this is the separator. The separator has no value.
+static constexpr uint8_t PSBT_SEPARATOR = 0x00;
 
 // Takes a stream and multiple arguments and serializes them as if first serialized into a vector and then into the stream
 // The resulting output into the stream has the total serialized length of all of the objects followed by all objects concatenated with each other.
@@ -217,7 +199,6 @@ void SerializeHDKeypaths(Stream& s, const std::map<CPubKey, std::vector<uint32_t
     }
 }
 
-<<<<<<< HEAD
 /** A structure for PSBTs which contain per-input information */
 struct PSBTInput
 {
@@ -726,8 +707,6 @@ struct PartiallySignedTransaction
     }
 };
 
-=======
->>>>>>> upstream/0.18
 /** Produce a script signature using a generic signature creator. */
 bool ProduceSignature(const SigningProvider& provider, const BaseSignatureCreator& creator, const CScript& scriptPubKey, SignatureData& sigdata);
 
@@ -735,15 +714,12 @@ bool ProduceSignature(const SigningProvider& provider, const BaseSignatureCreato
 bool SignSignature(const SigningProvider &provider, const CScript& fromPubKey, CMutableTransaction& txTo, unsigned int nIn, const CAmount& amount, int nHashType);
 bool SignSignature(const SigningProvider &provider, const CTransaction& txFrom, CMutableTransaction& txTo, unsigned int nIn, int nHashType);
 
-<<<<<<< HEAD
 /** Checks whether a PSBTInput is already signed. */
 bool PSBTInputSigned(PSBTInput& input);
 
 /** Signs a PSBTInput, verifying that all provided data matches what is being signed. */
 bool SignPSBTInput(const SigningProvider& provider, PartiallySignedTransaction& psbt, SignatureData& sigdata, int index, int sighash = SIGHASH_ALL);
 
-=======
->>>>>>> upstream/0.18
 /** Extract signature data from a transaction input, and insert it. */
 SignatureData DataFromTransaction(const CMutableTransaction& tx, unsigned int nIn, const CTxOut& txout);
 void UpdateInput(CTxIn& input, const SignatureData& data);

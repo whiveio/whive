@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 The Bitcoin Core developers
+// Copyright (c) 2018 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,7 +10,7 @@
 #include <miner.h>
 #include <pow.h>
 #include <random.h>
-#include <test/setup_common.h>
+#include <test/test_bitcoin.h>
 #include <validation.h>
 #include <validationinterface.h>
 
@@ -144,7 +144,7 @@ BOOST_AUTO_TEST_CASE(processnewblock_signals_ordering)
     const CBlockIndex* initial_tip = nullptr;
     {
         LOCK(cs_main);
-        initial_tip = ::ChainActive().Tip();
+        initial_tip = chainActive.Tip();
     }
     TestSubscriber sub(initial_tip->GetBlockHash());
     RegisterValidationInterface(&sub);
@@ -178,8 +178,7 @@ BOOST_AUTO_TEST_CASE(processnewblock_signals_ordering)
 
     UnregisterValidationInterface(&sub);
 
-    LOCK(cs_main);
-    BOOST_CHECK_EQUAL(sub.m_expected_tip, ::ChainActive().Tip()->GetBlockHash());
+    BOOST_CHECK_EQUAL(sub.m_expected_tip, chainActive.Tip()->GetBlockHash());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
