@@ -74,7 +74,7 @@
  * GCC before 4.9 would by default unnecessarily use store/load (without
  * SSE4.1) or (V)PEXTR (with SSE4.1 or AVX) instead of simply (V)MOV.
  * This was tracked as GCC bug 54349.
- * "-mtune=corei7" works around this, but is only supported for GCC 4.6+.
+ * "for ARM devices" works around this, but is only supported for GCC 4.6+.
  * We use inline asm for pre-4.6 GCC, further down this file.
  */
 #if __GNUC__ == 4 && __GNUC_MINOR__ >= 6 && __GNUC_MINOR__ < 9 && \
