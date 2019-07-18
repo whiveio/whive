@@ -13,13 +13,8 @@
 #include <random.h>
 #include <script/script.h>
 #include <script/standard.h>
-<<<<<<< HEAD
-#include <util.h>
-#include <utilstrencodings.h>
-=======
 #include <test/setup_common.h>
 #include <util/strencodings.h>
->>>>>>> upstream/master
 
 #include <openssl/x509.h>
 #include <openssl/x509_vfy.h>

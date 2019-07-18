@@ -6,16 +6,10 @@
 #include <config/bitcoin-config.h>
 #endif
 
-<<<<<<< HEAD
-#include <chainparams.h>
-#include <qt/test/rpcnestedtests.h>
-#include <util.h>
-=======
 #include <interfaces/node.h>
 #include <qt/bitcoin.h>
 #include <qt/test/apptests.h>
 #include <qt/test/rpcnestedtests.h>
->>>>>>> upstream/master
 #include <qt/test/uritests.h>
 #include <qt/test/compattests.h>
 #include <test/setup_common.h>
@@ -49,16 +43,6 @@ Q_IMPORT_PLUGIN(QCocoaIntegrationPlugin);
 // This is all you need to run all the tests
 int main(int argc, char *argv[])
 {
-<<<<<<< HEAD
-    SetupEnvironment();
-    SetupNetworking();
-    SelectParams(CBaseChainParams::MAIN);
-    noui_connect();
-    ClearDatadirCache();
-    fs::path pathTemp = fs::temp_directory_path() / strprintf("test_bitcoin-qt_%lu_%i", (unsigned long)GetTime(), (int)GetRand(100000));
-    fs::create_directories(pathTemp);
-    gArgs.ForceSetArg("-datadir", pathTemp.string());
-=======
     // Initialize persistent globals with the testing setup state for sanity.
     // E.g. -datadir in gArgs is set to a temp directory dummy value (instead
     // of defaulting to the default datadir), or globalChainParams is set to
@@ -70,7 +54,6 @@ int main(int argc, char *argv[])
     }
 
     auto node = interfaces::MakeNode();
->>>>>>> upstream/master
 
     bool fInvalid = false;
 

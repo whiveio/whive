@@ -11,10 +11,6 @@
 #include <qt/walletmodel.h>
 
 #include <key.h>
-<<<<<<< HEAD
-#include <pubkey.h>
-=======
->>>>>>> upstream/master
 #include <key_io.h>
 #include <wallet/wallet.h>
 
