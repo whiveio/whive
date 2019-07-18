@@ -8,10 +8,6 @@
 
 #include <hash.h>
 #include <tinyformat.h>
-<<<<<<< HEAD
-#include <utilstrencodings.h>
-=======
->>>>>>> upstream/master
 #include <crypto/common.h>
 #include <hashdb.h>
 
