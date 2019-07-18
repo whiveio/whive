@@ -6,17 +6,11 @@
 
 #include <clientversion.h>
 #include <sync.h>
-<<<<<<< HEAD
-#include <utilstrencodings.h>
-#include <utilmoneystr.h>
-#include <test/test_bitcoin.h>
-=======
 #include <test/util.h>
 #include <util/strencodings.h>
 #include <util/moneystr.h>
 #include <util/time.h>
 #include <test/setup_common.h>
->>>>>>> upstream/master
 
 #include <stdint.h>
 #include <thread>

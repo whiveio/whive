@@ -4,12 +4,8 @@
 
 #include <policy/policy.h>
 #include <txmempool.h>
-<<<<<<< HEAD
-#include <util.h>
-=======
 #include <util/system.h>
 #include <util/time.h>
->>>>>>> upstream/master
 
 #include <test/test_bitcoin.h>
 

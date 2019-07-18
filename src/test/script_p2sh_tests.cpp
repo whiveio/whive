@@ -9,13 +9,8 @@
 #include <script/script.h>
 #include <script/script_error.h>
 #include <script/sign.h>
-<<<<<<< HEAD
-#include <script/ismine.h>
-#include <test/test_bitcoin.h>
-=======
 #include <script/signingprovider.h>
 #include <test/setup_common.h>
->>>>>>> upstream/master
 
 #include <vector>
 

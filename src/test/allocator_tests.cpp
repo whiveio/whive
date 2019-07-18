@@ -2,17 +2,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-<<<<<<< HEAD
-#include <util.h>
-
-#include <support/allocators/secure.h>
-#include <test/test_bitcoin.h>
-=======
 #include <util/memory.h>
 #include <util/system.h>
 
 #include <test/setup_common.h>
->>>>>>> upstream/master
 
 #include <memory>
 

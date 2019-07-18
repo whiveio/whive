@@ -4,12 +4,8 @@
 
 #include <addrdb.h>
 #include <addrman.h>
-<<<<<<< HEAD
-#include <test/test_bitcoin.h>
-=======
 #include <clientversion.h>
 #include <test/setup_common.h>
->>>>>>> upstream/master
 #include <string>
 #include <boost/test/unit_test.hpp>
 #include <serialize.h>
@@ -17,12 +13,8 @@
 #include <net.h>
 #include <netbase.h>
 #include <chainparams.h>
-<<<<<<< HEAD
-#include <util.h>
-=======
 #include <util/memory.h>
 #include <util/system.h>
->>>>>>> upstream/master
 
 #include <memory>
 

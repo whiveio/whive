@@ -5,12 +5,8 @@
 #include <serialize.h>
 #include <streams.h>
 #include <hash.h>
-<<<<<<< HEAD
-#include <test/test_bitcoin.h>
-=======
 #include <test/setup_common.h>
 #include <util/strencodings.h>
->>>>>>> upstream/master
 
 #include <stdint.h>
 

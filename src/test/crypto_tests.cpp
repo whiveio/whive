@@ -4,14 +4,11 @@
 
 #include <crypto/aes.h>
 #include <crypto/chacha20.h>
-<<<<<<< HEAD
-=======
 #include <crypto/chacha_poly_aead.h>
 #include <crypto/poly1305.h>
 #include <crypto/hkdf_sha256_32.h>
 #include <crypto/hmac_sha256.h>
 #include <crypto/hmac_sha512.h>
->>>>>>> upstream/master
 #include <crypto/ripemd160.h>
 #include <crypto/sha1.h>
 #include <crypto/sha256.h>
@@ -532,8 +529,6 @@ BOOST_AUTO_TEST_CASE(chacha20_testvector)
                  "fab78c9");
 }
 
-<<<<<<< HEAD
-=======
 BOOST_AUTO_TEST_CASE(poly1305_testvector)
 {
     // RFC 7539, section 2.5.2.
@@ -749,7 +744,6 @@ BOOST_AUTO_TEST_CASE(chacha20_poly1305_aead_testvector)
         "f039c6689eaeef0456685200feaab9d54bbd9acde4410a3b6f4321296f4a8ca2604b49727d8892c57e005d799b2a38e85e809f20146e08eec75169691c8d4f54a0d51a1e1c7b381e0474eb02f994be9415ef3ffcbd2343f0601e1f3b172a1d494f838824e4df570f8e3b0c04e27966e36c82abd352d07054ef7bd36b84c63f9369afe7ed79b94f953873006b920c3fa251a771de1b63da927058ade119aa898b8c97e42a606b2f6df1e2d957c22f7593c1e2002f4252f4c9ae4bf773499e5cfcfe14dfc1ede26508953f88553bf4a76a802f6a0068d59295b01503fd9a600067624203e880fdf53933b96e1f4d9eb3f4e363dd8165a278ff667a41ee42b9892b077cefff92b93441f7be74cf10e6cd");
 }
 
->>>>>>> upstream/master
 BOOST_AUTO_TEST_CASE(countbits_tests)
 {
     FastRandomContext ctx;

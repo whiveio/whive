@@ -8,24 +8,16 @@
 #include <consensus/consensus.h>
 #include <consensus/validation.h>
 #include <crypto/sha256.h>
-<<<<<<< HEAD:src/test/test_bitcoin.cpp
-#include <validation.h>
-#include <miner.h>
-#include <net_processing.h>
-=======
 #include <init.h>
 #include <miner.h>
 #include <net.h>
 #include <noui.h>
->>>>>>> upstream/master:src/test/setup_common.cpp
 #include <pow.h>
 #include <ui_interface.h>
 #include <streams.h>
 #include <rpc/server.h>
 #include <rpc/register.h>
 #include <script/sigcache.h>
-<<<<<<< HEAD:src/test/test_bitcoin.cpp
-=======
 #include <streams.h>
 #include <txdb.h>
 #include <util/memory.h>
@@ -34,7 +26,6 @@
 #include <util/validation.h>
 #include <validation.h>
 #include <validationinterface.h>
->>>>>>> upstream/master:src/test/setup_common.cpp
 
 void CConnmanTest::AddNode(CNode& node)
 {
@@ -81,16 +72,11 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
     InitSignatureCache();
     InitScriptExecutionCache();
     fCheckBlockIndex = true;
-<<<<<<< HEAD:src/test/test_bitcoin.cpp
-    SelectParams(chainName);
-    noui_connect();
-=======
     static bool noui_connected = false;
     if (!noui_connected) {
         noui_connect();
         noui_connected = true;
     }
->>>>>>> upstream/master:src/test/setup_common.cpp
 }
 
 BasicTestingSetup::~BasicTestingSetup()
@@ -103,38 +89,6 @@ BasicTestingSetup::~BasicTestingSetup()
 TestingSetup::TestingSetup(const std::string& chainName) : BasicTestingSetup(chainName)
 {
     const CChainParams& chainparams = Params();
-<<<<<<< HEAD:src/test/test_bitcoin.cpp
-        // Ideally we'd move all the RPC tests to the functional testing framework
-        // instead of unit tests, but for now we need these here.
-
-        RegisterAllCoreRPCCommands(tableRPC);
-        ClearDatadirCache();
-
-        // We have to run a scheduler thread to prevent ActivateBestChain
-        // from blocking due to queue overrun.
-        threadGroup.create_thread(boost::bind(&CScheduler::serviceQueue, &scheduler));
-        GetMainSignals().RegisterBackgroundSignalScheduler(scheduler);
-
-        mempool.setSanityCheck(1.0);
-        pblocktree.reset(new CBlockTreeDB(1 << 20, true));
-        pcoinsdbview.reset(new CCoinsViewDB(1 << 23, true));
-        pcoinsTip.reset(new CCoinsViewCache(pcoinsdbview.get()));
-        if (!LoadGenesisBlock(chainparams)) {
-            throw std::runtime_error("LoadGenesisBlock failed.");
-        }
-        {
-            CValidationState state;
-            if (!ActivateBestChain(state, chainparams)) {
-                throw std::runtime_error(strprintf("ActivateBestChain failed. (%s)", FormatStateMessage(state)));
-            }
-        }
-        nScriptCheckThreads = 3;
-        for (int i=0; i < nScriptCheckThreads-1; i++)
-            threadGroup.create_thread(&ThreadScriptCheck);
-        g_connman = std::unique_ptr<CConnman>(new CConnman(0x1337, 0x1337)); // Deterministic randomness for tests.
-        connman = g_connman.get();
-        peerLogic.reset(new PeerLogicValidation(connman, scheduler, /*enable_bip61=*/true));
-=======
     // Ideally we'd move all the RPC tests to the functional testing framework
     // instead of unit tests, but for now we need these here.
     RegisterAllCoreRPCCommands(tableRPC);
@@ -163,7 +117,6 @@ TestingSetup::TestingSetup(const std::string& chainName) : BasicTestingSetup(cha
 
     g_banman = MakeUnique<BanMan>(GetDataDir() / "banlist.dat", nullptr, DEFAULT_MISBEHAVING_BANTIME);
     g_connman = MakeUnique<CConnman>(0x1337, 0x1337); // Deterministic randomness for tests.
->>>>>>> upstream/master:src/test/setup_common.cpp
 }
 
 TestingSetup::~TestingSetup()

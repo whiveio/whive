@@ -4,16 +4,9 @@
 
 #include <index/txindex.h>
 #include <script/standard.h>
-<<<<<<< HEAD
-#include <test/test_bitcoin.h>
-#include <util.h>
-#include <utiltime.h>
-#include <validation.h>
-=======
 #include <test/setup_common.h>
 #include <util/system.h>
 #include <util/time.h>
->>>>>>> upstream/master
 
 #include <boost/test/unit_test.hpp>
 

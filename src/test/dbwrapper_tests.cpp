@@ -4,13 +4,8 @@
 
 #include <dbwrapper.h>
 #include <uint256.h>
-<<<<<<< HEAD
-#include <random.h>
-#include <test/test_bitcoin.h>
-=======
 #include <test/setup_common.h>
 #include <util/memory.h>
->>>>>>> upstream/master
 
 #include <memory>
 
@@ -31,13 +26,8 @@ BOOST_FIXTURE_TEST_SUITE(dbwrapper_tests, BasicTestingSetup)
 BOOST_AUTO_TEST_CASE(dbwrapper)
 {
     // Perform tests both obfuscated and non-obfuscated.
-<<<<<<< HEAD
-    for (bool obfuscate : {false, true}) {
-        fs::path ph = SetDataDir(std::string("dbwrapper").append(obfuscate ? "_true" : "_false"));
-=======
     for (const bool obfuscate : {false, true}) {
         fs::path ph = GetDataDir() / (obfuscate ? "dbwrapper_obfuscate_true" : "dbwrapper_obfuscate_false");
->>>>>>> upstream/master
         CDBWrapper dbw(ph, (1 << 20), true, false, obfuscate);
         char key = 'k';
         uint256 in = InsecureRand256();
@@ -56,13 +46,8 @@ BOOST_AUTO_TEST_CASE(dbwrapper)
 BOOST_AUTO_TEST_CASE(dbwrapper_batch)
 {
     // Perform tests both obfuscated and non-obfuscated.
-<<<<<<< HEAD
-    for (bool obfuscate : {false, true}) {
-        fs::path ph = SetDataDir(std::string("dbwrapper_batch").append(obfuscate ? "_true" : "_false"));
-=======
     for (const bool obfuscate : {false, true}) {
         fs::path ph = GetDataDir() / (obfuscate ? "dbwrapper_batch_obfuscate_true" : "dbwrapper_batch_obfuscate_false");
->>>>>>> upstream/master
         CDBWrapper dbw(ph, (1 << 20), true, false, obfuscate);
 
         char key = 'i';
@@ -97,13 +82,8 @@ BOOST_AUTO_TEST_CASE(dbwrapper_batch)
 BOOST_AUTO_TEST_CASE(dbwrapper_iterator)
 {
     // Perform tests both obfuscated and non-obfuscated.
-<<<<<<< HEAD
-    for (bool obfuscate : {false, true}) {
-        fs::path ph = SetDataDir(std::string("dbwrapper_iterator").append(obfuscate ? "_true" : "_false"));
-=======
     for (const bool obfuscate : {false, true}) {
         fs::path ph = GetDataDir() / (obfuscate ? "dbwrapper_iterator_obfuscate_true" : "dbwrapper_iterator_obfuscate_false");
->>>>>>> upstream/master
         CDBWrapper dbw(ph, (1 << 20), true, false, obfuscate);
 
         // The two keys are intentionally chosen for ordering

@@ -8,16 +8,8 @@
 #include <txmempool.h>
 #include <script/standard.h>
 #include <script/sign.h>
-<<<<<<< HEAD
-#include <test/test_bitcoin.h>
-#include <utiltime.h>
-#include <core_io.h>
-#include <keystore.h>
-#include <policy/policy.h>
-=======
 #include <script/signingprovider.h>
 #include <test/setup_common.h>
->>>>>>> upstream/master
 
 #include <boost/test/unit_test.hpp>
 
@@ -157,15 +149,9 @@ BOOST_FIXTURE_TEST_CASE(checkinputs_test, TestChain100Setup)
     CScript p2pkh_scriptPubKey = GetScriptForDestination(coinbaseKey.GetPubKey().GetID());
     CScript p2wpkh_scriptPubKey = GetScriptForWitness(p2pkh_scriptPubKey);
 
-<<<<<<< HEAD
-    CBasicKeyStore keystore;
-    keystore.AddKey(coinbaseKey);
-    keystore.AddCScript(p2pk_scriptPubKey);
-=======
     FillableSigningProvider keystore;
     BOOST_CHECK(keystore.AddKey(coinbaseKey));
     BOOST_CHECK(keystore.AddCScript(p2pk_scriptPubKey));
->>>>>>> upstream/master
 
     // flags to test: SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY, SCRIPT_VERIFY_CHECKSEQUENCE_VERIFY, SCRIPT_VERIFY_NULLDUMMY, uncompressed pubkey thing
 

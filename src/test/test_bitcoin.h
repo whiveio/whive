@@ -13,11 +13,7 @@
 #include <scheduler.h>
 #include <txmempool.h>
 
-<<<<<<< HEAD:src/test/test_bitcoin.h
-#include <memory>
-=======
 #include <type_traits>
->>>>>>> upstream/master:src/test/setup_common.h
 
 #include <boost/thread.hpp>
 

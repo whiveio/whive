@@ -10,13 +10,9 @@
 #include <miner.h>
 #include <pow.h>
 #include <random.h>
-<<<<<<< HEAD
-#include <test/test_bitcoin.h>
-=======
 #include <script/standard.h>
 #include <test/setup_common.h>
 #include <util/time.h>
->>>>>>> upstream/master
 #include <validation.h>
 #include <validationinterface.h>
 

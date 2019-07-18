@@ -19,12 +19,8 @@
 #include <script/signingprovider.h>
 #include <script/script_error.h>
 #include <script/standard.h>
-<<<<<<< HEAD
-#include <utilstrencodings.h>
-=======
 #include <streams.h>
 #include <util/strencodings.h>
->>>>>>> upstream/master
 
 #include <map>
 #include <string>
@@ -425,13 +421,8 @@ BOOST_AUTO_TEST_CASE(test_big_witness_transaction) {
 
     CKey key;
     key.MakeNewKey(true); // Need to use compressed keys in segwit or the signing will fail
-<<<<<<< HEAD
-    CBasicKeyStore keystore;
-    keystore.AddKeyPubKey(key, key.GetPubKey());
-=======
     FillableSigningProvider keystore;
     BOOST_CHECK(keystore.AddKeyPubKey(key, key.GetPubKey()));
->>>>>>> upstream/master
     CKeyID hash = key.GetPubKey().GetID();
     CScript scriptPubKey = CScript() << OP_0 << std::vector<unsigned char>(hash.begin(), hash.end());
 

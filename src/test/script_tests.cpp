@@ -9,19 +9,12 @@
 #include <script/script.h>
 #include <script/script_error.h>
 #include <script/sign.h>
-<<<<<<< HEAD
-#include <util.h>
-#include <utilstrencodings.h>
-#include <test/test_bitcoin.h>
-#include <rpc/server.h>
-=======
 #include <script/signingprovider.h>
 #include <util/system.h>
 #include <util/strencodings.h>
 #include <test/setup_common.h>
 #include <rpc/util.h>
 #include <streams.h>
->>>>>>> upstream/master
 
 #if defined(HAVE_CONSENSUS_LIB)
 #include <script/bitcoinconsensus.h>
