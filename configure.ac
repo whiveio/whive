@@ -140,15 +140,12 @@ AC_ARG_ENABLE([extended-functional-tests],
     [use_extended_functional_tests=$enableval],
     [use_extended_functional_tests=no])
 
-<<<<<<< HEAD
-=======
 AC_ARG_ENABLE([fuzz],
     AS_HELP_STRING([--enable-fuzz],
     [enable building of fuzz targets (default no). enabling this will disable all other targets]),
     [enable_fuzz=$enableval],
     [enable_fuzz=no])
 
->>>>>>> upstream/master
 AC_ARG_WITH([qrencode],
   [AS_HELP_STRING([--with-qrencode],
   [enable QR code support (default is yes if qt is enabled and libqrencode is found)])],

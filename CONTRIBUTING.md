@@ -250,20 +250,11 @@ topic branch. The review is followed by a description of how the reviewer did
 the review. The following
 language is used within pull-request comments:
 
-<<<<<<< HEAD
-  - ACK means "I have tested the code and I agree it should be merged";
-  - NACK means "I disagree this should be merged", and must be accompanied by
-    sound technical justification (or in certain cases of copyright/patent/licensing
-    issues, legal justification). NACKs without accompanying reasoning may be
-    disregarded;
-  - utACK means "I have not tested the code, but I have reviewed it and it looks
-=======
   - "I have tested the code", involving
     change-specific manual testing in addition to running the unit and functional
     tests, and in case it is not obvious how the manual testing was done, it should
     be described;
   - "I have not tested the code, but I have reviewed it and it looks
->>>>>>> upstream/master
     OK, I agree it can be merged";
   - Nit refers to trivial, often non-blocking issues.
 
