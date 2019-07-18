@@ -14,18 +14,10 @@ namespace {
 
 UniValue getzmqnotifications(const JSONRPCRequest& request)
 {
-<<<<<<< HEAD
-    if (request.fHelp || request.params.size() != 0) {
-        throw std::runtime_error(
-            "getzmqnotifications\n"
-            "\nReturns information about the active ZeroMQ notifications.\n"
-            "\nResult:\n"
-=======
             RPCHelpMan{"getzmqnotifications",
                 "\nReturns information about the active ZeroMQ notifications.\n",
                 {},
                 RPCResult{
->>>>>>> upstream/master
             "[\n"
             "  {                        (json object)\n"
             "    \"type\": \"pubhashtx\",   (string) Type of notification\n"
@@ -36,13 +28,8 @@ UniValue getzmqnotifications(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("getzmqnotifications", "")
             + HelpExampleRpc("getzmqnotifications", "")
-<<<<<<< HEAD
-        );
-    }
-=======
                 },
             }.Check(request);
->>>>>>> upstream/master
 
     UniValue result(UniValue::VARR);
     if (g_zmq_notification_interface != nullptr) {

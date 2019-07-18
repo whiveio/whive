@@ -13,14 +13,9 @@
 #include <fs.h>
 #include <rpc/client.h>
 #include <rpc/protocol.h>
-<<<<<<< HEAD
-#include <util.h>
-#include <utilstrencodings.h>
-=======
 #include <rpc/request.h>
 #include <util/system.h>
 #include <util/strencodings.h>
->>>>>>> upstream/master
 
 #include <memory>
 #include <stdio.h>

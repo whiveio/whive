@@ -112,8 +112,6 @@ const WalletInitInterface& g_wallet_init_interface = DummyWalletInit();
 
 static const char* FEE_ESTIMATES_FILENAME="fee_estimates.dat";
 
-<<<<<<< HEAD
-=======
 /**
  * The PID file facilities.
  */
@@ -139,7 +137,6 @@ NODISCARD static bool CreatePidFile()
     }
 }
 
->>>>>>> upstream/master
 //////////////////////////////////////////////////////////////////////////////
 //
 // Shutdown
@@ -389,12 +386,8 @@ void SetupServerArgs()
     gArgs.AddArg("-alertnotify=<cmd>", "Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)", false, OptionsCategory::OPTIONS);
 #endif
     gArgs.AddArg("-assumevalid=<hex>", strprintf("If this block is in the chain assume that it and its ancestors are valid and potentially skip their script verification (0 to verify all, default: %s, testnet: %s)", defaultChainParams->GetConsensus().defaultAssumeValid.GetHex(), testnetChainParams->GetConsensus().defaultAssumeValid.GetHex()), false, OptionsCategory::OPTIONS);
-<<<<<<< HEAD
-    gArgs.AddArg("-blocksdir=<dir>", "Specify blocks directory (default: <datadir>/blocks)", false, OptionsCategory::OPTIONS);
-=======
     gArgs.AddArg("-blocksdir=<dir>", "Specify directory to hold blocks subdirectory for *.dat files (default: <datadir>)", false, OptionsCategory::OPTIONS);
 #if HAVE_SYSTEM
->>>>>>> upstream/master
     gArgs.AddArg("-blocknotify=<cmd>", "Execute command when the best block changes (%s in cmd is replaced by block hash)", false, OptionsCategory::OPTIONS);
 #endif
     gArgs.AddArg("-blockreconstructionextratxn=<n>", strprintf("Extra transactions to keep in memory for compact block reconstructions (default: %u)", DEFAULT_BLOCK_RECONSTRUCTION_EXTRA_TXN), false, OptionsCategory::OPTIONS);
@@ -488,11 +481,6 @@ void SetupServerArgs()
 #endif
 
     gArgs.AddArg("-checkblocks=<n>", strprintf("How many blocks to check at startup (default: %u, 0 = all)", DEFAULT_CHECKBLOCKS), true, OptionsCategory::DEBUG_TEST);
-<<<<<<< HEAD
-    gArgs.AddArg("-checklevel=<n>", strprintf("How thorough the block verification of -checkblocks is (0-4, default: %u)", DEFAULT_CHECKLEVEL), true, OptionsCategory::DEBUG_TEST);
-    gArgs.AddArg("-checkblockindex", strprintf("Do a full consistency check for mapBlockIndex, setBlockIndexCandidates, chainActive and mapBlocksUnlinked occasionally. (default: %u)", defaultChainParams->DefaultConsistencyChecks()), true, OptionsCategory::DEBUG_TEST);
-    gArgs.AddArg("-checkmempool=<n>", strprintf("Run checks every <n> transactions (default: %u)", defaultChainParams->DefaultConsistencyChecks()), true, OptionsCategory::DEBUG_TEST);
-=======
     gArgs.AddArg("-checklevel=<n>", strprintf("How thorough the block verification of -checkblocks is: "
         "level 0 reads the blocks from disk, "
         "level 1 verifies block validity, "
@@ -503,7 +491,6 @@ void SetupServerArgs()
         "(0-4, default: %u)", DEFAULT_CHECKLEVEL), true, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-checkblockindex", strprintf("Do a full consistency check for the block tree, setBlockIndexCandidates, ::ChainActive() and mapBlocksUnlinked occasionally. (default: %u, regtest: %u)", defaultChainParams->DefaultConsistencyChecks(), regtestChainParams->DefaultConsistencyChecks()), true, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-checkmempool=<n>", strprintf("Run checks every <n> transactions (default: %u, regtest: %u)", defaultChainParams->DefaultConsistencyChecks(), regtestChainParams->DefaultConsistencyChecks()), true, OptionsCategory::DEBUG_TEST);
->>>>>>> upstream/master
     gArgs.AddArg("-checkpoints", strprintf("Disable expensive verification for known chain history (default: %u)", DEFAULT_CHECKPOINTS_ENABLED), true, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-deprecatedrpc=<method>", "Allows deprecated RPC method(s) to be used", true, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-dropmessagestest=<n>", "Randomly drop 1 of every <n> network messages", true, OptionsCategory::DEBUG_TEST);
@@ -875,26 +862,12 @@ static std::string ResolveErrMsg(const char * const optname, const std::string& 
  */
 void InitLogging()
 {
-<<<<<<< HEAD
-    g_logger->m_print_to_file = !gArgs.IsArgNegated("-debuglogfile");
-    g_logger->m_file_path = AbsPathForConfigVal(gArgs.GetArg("-debuglogfile", DEFAULT_DEBUGLOGFILE));
-
-    // Add newlines to the logfile to distinguish this execution from the last
-    // one; called before console logging is set up, so this is only sent to
-    // debug.log.
-    LogPrintf("\n\n\n\n\n");
-
-    g_logger->m_print_to_console = gArgs.GetBoolArg("-printtoconsole", !gArgs.GetBoolArg("-daemon", false));
-    g_logger->m_log_timestamps = gArgs.GetBoolArg("-logtimestamps", DEFAULT_LOGTIMESTAMPS);
-    g_logger->m_log_time_micros = gArgs.GetBoolArg("-logtimemicros", DEFAULT_LOGTIMEMICROS);
-=======
     LogInstance().m_print_to_file = !gArgs.IsArgNegated("-debuglogfile");
     LogInstance().m_file_path = AbsPathForConfigVal(gArgs.GetArg("-debuglogfile", DEFAULT_DEBUGLOGFILE));
     LogInstance().m_print_to_console = gArgs.GetBoolArg("-printtoconsole", !gArgs.GetBoolArg("-daemon", false));
     LogInstance().m_log_timestamps = gArgs.GetBoolArg("-logtimestamps", DEFAULT_LOGTIMESTAMPS);
     LogInstance().m_log_time_micros = gArgs.GetBoolArg("-logtimemicros", DEFAULT_LOGTIMEMICROS);
     LogInstance().m_log_threadnames = gArgs.GetBoolArg("-logthreadnames", DEFAULT_LOGTHREADNAMES);
->>>>>>> upstream/master
 
     fLogIPs = gArgs.GetBoolArg("-logips", DEFAULT_LOGIPS);
 
@@ -1191,51 +1164,6 @@ bool AppInitParameterInteraction()
 
     nMaxTipAge = gArgs.GetArg("-maxtipage", DEFAULT_MAX_TIP_AGE);
 
-<<<<<<< HEAD
-    fEnableReplacement = gArgs.GetBoolArg("-mempoolreplacement", DEFAULT_ENABLE_REPLACEMENT);
-    if ((!fEnableReplacement) && gArgs.IsArgSet("-mempoolreplacement")) {
-        // Minimal effort at forwards compatibility
-        std::string strReplacementModeList = gArgs.GetArg("-mempoolreplacement", "");  // default is impossible
-        std::vector<std::string> vstrReplacementModes;
-        boost::split(vstrReplacementModes, strReplacementModeList, boost::is_any_of(","));
-        fEnableReplacement = (std::find(vstrReplacementModes.begin(), vstrReplacementModes.end(), "fee") != vstrReplacementModes.end());
-    }
-
-    if (gArgs.IsArgSet("-vbparams")) {
-        // Allow overriding version bits parameters for testing
-        if (!chainparams.MineBlocksOnDemand()) {
-            return InitError("Version bits parameters may only be overridden on regtest.");
-        }
-        for (const std::string& strDeployment : gArgs.GetArgs("-vbparams")) {
-            std::vector<std::string> vDeploymentParams;
-            boost::split(vDeploymentParams, strDeployment, boost::is_any_of(":"));
-            if (vDeploymentParams.size() != 3) {
-                return InitError("Version bits parameters malformed, expecting deployment:start:end");
-            }
-            int64_t nStartTime, nTimeout;
-            if (!ParseInt64(vDeploymentParams[1], &nStartTime)) {
-                return InitError(strprintf("Invalid nStartTime (%s)", vDeploymentParams[1]));
-            }
-            if (!ParseInt64(vDeploymentParams[2], &nTimeout)) {
-                return InitError(strprintf("Invalid nTimeout (%s)", vDeploymentParams[2]));
-            }
-            bool found = false;
-            for (int j=0; j<(int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++j)
-            {
-                if (vDeploymentParams[0].compare(VersionBitsDeploymentInfo[j].name) == 0) {
-                    UpdateVersionBitsParameters(Consensus::DeploymentPos(j), nStartTime, nTimeout);
-                    found = true;
-                    LogPrintf("Setting version bits activation parameters for %s to start=%ld, timeout=%ld\n", vDeploymentParams[0], nStartTime, nTimeout);
-                    break;
-                }
-            }
-            if (!found) {
-                return InitError(strprintf("Invalid deployment (%s)", vDeploymentParams[0]));
-            }
-        }
-    }
-=======
->>>>>>> upstream/master
     return true;
 }
 
@@ -1298,17 +1226,10 @@ bool AppInitMain()
             // and because this needs to happen before any other debug.log printing
             g_logger->ShrinkDebugFile();
         }
-<<<<<<< HEAD
-        if (!g_logger->OpenDebugLog()) {
-            return InitError(strprintf("Could not open debug log file %s",
-                                       g_logger->m_file_path.string()));
-        }
-=======
     }
     if (!LogInstance().StartLogging()) {
             return InitError(strprintf("Could not open debug log file %s",
                 LogInstance().m_file_path.string()));
->>>>>>> upstream/master
     }
 
     if (!g_logger->m_log_timestamps)
@@ -1602,17 +1523,6 @@ bool AppInitMain()
                     assert(chainActive.Tip() != nullptr);
                 }
 
-<<<<<<< HEAD
-                if (!fReset) {
-                    // Note that RewindBlockIndex MUST run even if we're about to -reindex-chainstate.
-                    // It both disconnects blocks based on chainActive, and drops block data in
-                    // mapBlockIndex based on lack of available witness data.
-                    uiInterface.InitMessage(_("Rewinding blocks..."));
-                    if (!RewindBlockIndex(chainparams)) {
-                        strLoadError = _("Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain");
-                        break;
-                    }
-=======
             if (!fReset) {
                 // Note that RewindBlockIndex MUST run even if we're about to -reindex-chainstate.
                 // It both disconnects blocks based on ::ChainActive(), and drops block data in
@@ -1621,7 +1531,6 @@ bool AppInitMain()
                 if (!RewindBlockIndex(chainparams)) {
                     strLoadError = _("Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain");
                     break;
->>>>>>> upstream/master
                 }
 
                 if (!is_coinsview_empty) {
@@ -1737,12 +1646,8 @@ bool AppInitMain()
 
 #if HAVE_SYSTEM
     if (gArgs.IsArgSet("-blocknotify"))
-<<<<<<< HEAD
-        uiInterface.NotifyBlockTip.connect(BlockNotifyCallback);
-=======
         uiInterface.NotifyBlockTip_connect(BlockNotifyCallback);
 #endif
->>>>>>> upstream/master
 
     std::vector<fs::path> vImportFiles;
     for (const std::string& strFile : gArgs.GetArgs("-loadblock")) {
@@ -1774,13 +1679,8 @@ bool AppInitMain()
     //// debug print
     {
         LOCK(cs_main);
-<<<<<<< HEAD
-        LogPrintf("mapBlockIndex.size() = %u\n", mapBlockIndex.size());
-        chain_active_height = chainActive.Height();
-=======
         LogPrintf("block tree size = %u\n", ::BlockIndex().size());
         chain_active_height = ::ChainActive().Height();
->>>>>>> upstream/master
     }
     LogPrintf("nBestHeight = %d\n", chain_active_height);
 

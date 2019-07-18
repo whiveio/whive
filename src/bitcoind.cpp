@@ -12,17 +12,6 @@
 #include <clientversion.h>
 #include <compat.h>
 #include <fs.h>
-<<<<<<< HEAD
-#include <rpc/server.h>
-#include <init.h>
-#include <noui.h>
-#include <shutdown.h>
-#include <util.h>
-#include <httpserver.h>
-#include <httprpc.h>
-#include <utilstrencodings.h>
-#include <walletinitinterface.h>
-=======
 #include <interfaces/chain.h>
 #include <init.h>
 #include <noui.h>
@@ -30,7 +19,6 @@
 #include <util/system.h>
 #include <util/threadnames.h>
 #include <util/strencodings.h>
->>>>>>> upstream/master
 
 #include <stdio.h>
 
@@ -120,11 +108,7 @@ static bool AppInit(int argc, char* argv[])
         // Error out when loose non-argument tokens are encountered on command line
         for (int i = 1; i < argc; i++) {
             if (!IsSwitchChar(argv[i][0])) {
-<<<<<<< HEAD
-                fprintf(stderr, "Error: Command line contains unexpected token '%s', see whiveyesd -h for a list of options.\n", argv[i]);
-=======
-                tfm::format(std::cerr, "Error: Command line contains unexpected token '%s', see bitcoind -h for a list of options.\n", argv[i]);
->>>>>>> upstream/master
+                tfm::format(std::cerr, "Error: Command line contains unexpected token '%s', see whiveyesd -h for a list of options.\n", argv[i]);
                 return false;
             }
         }
@@ -156,11 +140,7 @@ static bool AppInit(int argc, char* argv[])
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
-<<<<<<< HEAD
-            fprintf(stdout, "Whiveyes server starting\n");
-=======
-            tfm::format(std::cout, "Bitcoin server starting\n");
->>>>>>> upstream/master
+            tfm::format(std::cout, "Whiveyes server starting\n");
 
             // Daemonize
             if (daemon(1, 0)) { // don't chdir (1), do close FDs (0)

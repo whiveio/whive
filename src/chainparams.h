@@ -69,17 +69,12 @@ public:
     /** If this is a test chain */
     bool IsTestChain() const { return m_is_test_chain; }
     uint64_t PruneAfterHeight() const { return nPruneAfterHeight; }
-<<<<<<< HEAD
-    /** Make miner stop after a block is found. In RPC, don't return until nGenProcLimit blocks are generated */
-    bool MineBlocksOnDemand() const { return fMineBlocksOnDemand; }
-=======
     /** Minimum free space (in GB) needed for data directory */
     uint64_t AssumedBlockchainSize() const { return m_assumed_blockchain_size; }
     /** Minimum free space (in GB) needed for data directory when pruned; Does not include prune target*/
     uint64_t AssumedChainStateSize() const { return m_assumed_chain_state_size; }
     /** Whether it is possible to mine blocks on demand (no retargeting) */
     bool MineBlocksOnDemand() const { return consensus.fPowNoRetargeting; }
->>>>>>> upstream/master
     /** Return the BIP70 network string (main, test or regtest) */
     std::string NetworkIDString() const { return strNetworkID; }
     /** Return true if the fallback fee is by default enabled for this network */

@@ -6,10 +6,6 @@
 #include <arith_uint256.h>
 
 #include <uint256.h>
-<<<<<<< HEAD
-#include <utilstrencodings.h>
-=======
->>>>>>> upstream/master
 #include <crypto/common.h>
 
 #include <stdio.h>

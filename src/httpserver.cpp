@@ -423,12 +423,7 @@ bool UpdateHTTPServerLogging(bool enable) {
 #endif
 }
 
-<<<<<<< HEAD
-std::thread threadHTTP;
-std::future<bool> threadResult;
-=======
 static std::thread threadHTTP;
->>>>>>> upstream/master
 static std::vector<std::thread> g_thread_http_workers;
 
 void StartHTTPServer()
