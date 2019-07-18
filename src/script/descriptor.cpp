@@ -59,8 +59,6 @@ struct PubkeyProvider
     virtual bool GetPrivKey(int pos, const SigningProvider& arg, CKey& key) const = 0;
 };
 
-<<<<<<< HEAD
-=======
 class OriginPubkeyProvider final : public PubkeyProvider
 {
     KeyOriginInfo m_origin;
@@ -96,7 +94,6 @@ public:
     }
 };
 
->>>>>>> upstream/master
 /** An object representing a parsed constant public key in a descriptor. */
 class ConstPubkeyProvider final : public PubkeyProvider
 {
@@ -165,22 +162,6 @@ public:
     size_t GetSize() const override { return 33; }
     bool GetPubKey(int pos, const SigningProvider& arg, CPubKey& out) const override
     {
-<<<<<<< HEAD
-        if (IsHardened()) {
-            CExtKey key;
-            if (!GetExtKey(arg, key)) return false;
-            for (auto entry : m_path) {
-                key.Derive(key, entry);
-            }
-            if (m_derive == DeriveType::UNHARDENED) key.Derive(key, pos);
-            if (m_derive == DeriveType::HARDENED) key.Derive(key, pos | 0x80000000UL);
-            out = key.Neuter().pubkey;
-        } else {
-            // TODO: optimize by caching
-            CExtPubKey key = m_extkey;
-            for (auto entry : m_path) {
-                key.Derive(key, entry);
-=======
         if (key) {
             if (IsHardened()) {
                 CKey priv_key;
@@ -195,7 +176,6 @@ public:
                 if (m_derive == DeriveType::UNHARDENED) extkey.Derive(extkey, pos);
                 assert(m_derive != DeriveType::HARDENED);
                 *key = extkey.pubkey;
->>>>>>> upstream/master
             }
             if (m_derive == DeriveType::UNHARDENED) key.Derive(key, pos);
             assert(m_derive != DeriveType::HARDENED);

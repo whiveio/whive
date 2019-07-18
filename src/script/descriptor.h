@@ -46,9 +46,6 @@ struct Descriptor {
      * output_script: the expanded scriptPubKeys will be put here.
      * out: scripts and public keys necessary for solving the expanded scriptPubKeys will be put here (may be equal to provider).
      */
-<<<<<<< HEAD
-    virtual bool Expand(int pos, const SigningProvider& provider, std::vector<CScript>& output_scripts, FlatSigningProvider& out) const = 0;
-=======
     virtual bool Expand(int pos, const SigningProvider& provider, std::vector<CScript>& output_scripts, FlatSigningProvider& out, std::vector<unsigned char>* cache = nullptr) const = 0;
 
     /** Expand a descriptor at a specified position using cached expansion data.
@@ -67,7 +64,6 @@ struct Descriptor {
      * out: any private keys available for the specified pos will be placed here.
      */
     virtual void ExpandPrivate(int pos, const SigningProvider& provider, FlatSigningProvider& out) const = 0;
->>>>>>> upstream/master
 };
 
 /** Parse a descriptor string. Included private keys are put in out. Returns nullptr if parsing fails. */
