@@ -28,33 +28,6 @@ namespace RPCServer
     void OnStopped(std::function<void ()> slot);
 }
 
-<<<<<<< HEAD
-/** Wrapper for UniValue::VType, which includes typeAny:
- * Used to denote don't care type. */
-struct UniValueType {
-    UniValueType(UniValue::VType _type) : typeAny(false), type(_type) {}
-    UniValueType() : typeAny(true) {}
-    bool typeAny;
-    UniValue::VType type;
-};
-
-class JSONRPCRequest
-{
-public:
-    UniValue id;
-    std::string strMethod;
-    UniValue params;
-    bool fHelp;
-    std::string URI;
-    std::string authUser;
-    std::string peerAddr;
-
-    JSONRPCRequest() : id(NullUniValue), params(NullUniValue), fHelp(false) {}
-    void parse(const UniValue& valRequest);
-};
-
-=======
->>>>>>> upstream/master
 /** Query whether RPC is running */
 bool IsRPCRunning();
 

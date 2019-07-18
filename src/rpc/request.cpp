@@ -8,17 +8,9 @@
 #include <fs.h>
 
 #include <random.h>
-<<<<<<< HEAD:src/rpc/protocol.cpp
-#include <tinyformat.h>
-#include <util.h>
-#include <utilstrencodings.h>
-#include <utiltime.h>
-#include <version.h>
-=======
 #include <rpc/protocol.h>
 #include <util/system.h>
 #include <util/strencodings.h>
->>>>>>> upstream/master:src/rpc/request.cpp
 
 #include <fstream>
 

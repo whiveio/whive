@@ -27,12 +27,7 @@ public:
 static const CRPCConvertParam vRPCConvertParams[] =
 {
     { "setmocktime", 0, "timestamp" },
-<<<<<<< HEAD
-    { "generate", 0, "nblocks" },
-    { "generate", 1, "maxtries" },
-=======
     { "utxoupdatepsbt", 1, "descriptors" },
->>>>>>> upstream/master
     { "generatetoaddress", 0, "nblocks" },
     { "generatetoaddress", 2, "maxtries" },
     { "getnetworkhashps", 0, "nblocks" },
@@ -178,13 +173,10 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "rescanblockchain", 0, "start_height"},
     { "rescanblockchain", 1, "stop_height"},
     { "createwallet", 1, "disable_private_keys"},
-<<<<<<< HEAD
-=======
     { "createwallet", 2, "blank"},
     { "createwallet", 4, "avoid_reuse"},
     { "getnodeaddresses", 0, "count"},
     { "stop", 0, "wait" },
->>>>>>> upstream/master
 };
 
 class CRPCConvertTable

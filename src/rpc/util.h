@@ -5,9 +5,6 @@
 #ifndef BITCOIN_RPC_UTIL_H
 #define BITCOIN_RPC_UTIL_H
 
-<<<<<<< HEAD
-#include <pubkey.h>
-=======
 #include <node/transaction.h>
 #include <outputtype.h>
 #include <pubkey.h>
@@ -15,7 +12,6 @@
 #include <rpc/request.h>
 #include <script/script.h>
 #include <script/sign.h>
->>>>>>> upstream/master
 #include <script/standard.h>
 #include <univalue.h>
 
@@ -24,13 +20,9 @@
 #include <string>
 #include <vector>
 
-<<<<<<< HEAD
-class CKeyStore;
-=======
 #include <boost/variant.hpp>
 
 class FillableSigningProvider;
->>>>>>> upstream/master
 class CPubKey;
 class CScript;
 
@@ -40,8 +32,6 @@ CTxDestination AddAndGetMultisigDestination(const int required, const std::vecto
 
 UniValue DescribeAddress(const CTxDestination& dest);
 
-<<<<<<< HEAD
-=======
 //! Parse a confirm target option and raise an RPC error if it is invalid.
 unsigned int ParseConfirmTarget(const UniValue& value, unsigned int max_target);
 
@@ -225,5 +215,4 @@ private:
     const RPCExamples m_examples;
 };
 
->>>>>>> upstream/master
 #endif // BITCOIN_RPC_UTIL_H

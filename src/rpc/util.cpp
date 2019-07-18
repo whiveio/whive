@@ -3,13 +3,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <key_io.h>
-<<<<<<< HEAD
-#include <keystore.h>
-#include <rpc/protocol.h>
-=======
 #include <outputtype.h>
 #include <script/signingprovider.h>
->>>>>>> upstream/master
 #include <rpc/util.h>
 #include <script/descriptor.h>
 #include <tinyformat.h>
@@ -143,8 +138,6 @@ UniValue DescribeAddress(const CTxDestination& dest)
 {
     return boost::apply_visitor(DescribeAddressVisitor(), dest);
 }
-<<<<<<< HEAD
-=======
 
 unsigned int ParseConfirmTarget(const UniValue& value, unsigned int max_target)
 {
@@ -634,4 +627,3 @@ std::vector<CScript> EvalDescriptorStringOrObject(const UniValue& scanobject, Fl
     }
     return ret;
 }
->>>>>>> upstream/master

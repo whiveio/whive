@@ -7,20 +7,11 @@
 
 #include <fs.h>
 #include <key_io.h>
-<<<<<<< HEAD
-#include <random.h>
-#include <shutdown.h>
-#include <sync.h>
-#include <ui_interface.h>
-#include <util.h>
-#include <utilstrencodings.h>
-=======
 #include <rpc/util.h>
 #include <shutdown.h>
 #include <sync.h>
 #include <util/strencodings.h>
 #include <util/system.h>
->>>>>>> upstream/master
 
 #include <boost/bind.hpp>
 #include <boost/signals2/signal.hpp>
@@ -249,27 +240,14 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
 
 static UniValue uptime(const JSONRPCRequest& jsonRequest)
 {
-<<<<<<< HEAD
-    if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
-        throw std::runtime_error(
-                "uptime\n"
-                        "\nReturns the total uptime of the server.\n"
-                        "\nResult:\n"
-=======
             RPCHelpMan{"uptime",
                 "\nReturns the total uptime of the server.\n",
                             {},
                             RPCResult{
->>>>>>> upstream/master
                         "ttt        (numeric) The number of seconds that the server has been running\n"
                         "\nExamples:\n"
                 + HelpExampleCli("uptime", "")
                 + HelpExampleRpc("uptime", "")
-<<<<<<< HEAD
-        );
-
-    return GetTime() - GetStartupTime();
-=======
                 },
             }.Check(jsonRequest);
 
@@ -315,7 +293,6 @@ static UniValue getrpcinfo(const JSONRPCRequest& request)
     result.pushKV("logpath", log_path);
 
     return result;
->>>>>>> upstream/master
 }
 
 /**
