@@ -11,12 +11,6 @@
 #include <consensus/validation.h>
 #include <validation.h>
 #include <coins.h>
-<<<<<<< HEAD
-#include <tinyformat.h>
-#include <util.h>
-#include <utilstrencodings.h>
-=======
->>>>>>> upstream/master
 
 
 CAmount GetDustThreshold(const CTxOut& txout, const CFeeRate& dustRelayFeeIn)
