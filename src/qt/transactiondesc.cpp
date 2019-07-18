@@ -15,10 +15,15 @@
 #include <validation.h>
 #include <script/script.h>
 #include <timedata.h>
+<<<<<<< HEAD
 #include <util.h>
 #include <wallet/db.h>
 #include <wallet/wallet.h>
+=======
+#include <util/system.h>
+>>>>>>> upstream/master
 #include <policy/policy.h>
+#include <wallet/ismine.h>
 
 #include <stdint.h>
 #include <string>

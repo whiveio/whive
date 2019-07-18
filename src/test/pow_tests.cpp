@@ -5,9 +5,14 @@
 #include <chain.h>
 #include <chainparams.h>
 #include <pow.h>
+<<<<<<< HEAD
 #include <random.h>
 #include <util.h>
 #include <test/test_bitcoin.h>
+=======
+#include <util/system.h>
+#include <test/setup_common.h>
+>>>>>>> upstream/master
 
 #include <boost/test/unit_test.hpp>
 

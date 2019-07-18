@@ -6,11 +6,15 @@
 
 #include <wallet/db.h>
 
+<<<<<<< HEAD
 #include <addrman.h>
 #include <hash.h>
 #include <protocol.h>
 #include <utilstrencodings.h>
 #include <wallet/walletutil.h>
+=======
+#include <util/strencodings.h>
+>>>>>>> upstream/master
 
 #include <stdint.h>
 
@@ -533,7 +537,9 @@ void BerkeleyBatch::Flush()
     if (fReadOnly)
         nMinutes = 1;
 
-    env->dbenv->txn_checkpoint(nMinutes ? gArgs.GetArg("-dblogsize", DEFAULT_WALLET_DBLOGSIZE) * 1024 : 0, nMinutes, 0);
+    if (env) { // env is nullptr for dummy databases (i.e. in tests). Don't actually flush if env is nullptr so we don't segfault
+        env->dbenv->txn_checkpoint(nMinutes ? gArgs.GetArg("-dblogsize", DEFAULT_WALLET_DBLOGSIZE) * 1024 : 0, nMinutes, 0);
+    }
 }
 
 void BerkeleyDatabase::IncrementUpdateCounter()

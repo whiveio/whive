@@ -3,8 +3,12 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <bench/bench.h>
+<<<<<<< HEAD
 #include <validation.h>
 #include <utiltime.h>
+=======
+#include <util/time.h>
+>>>>>>> upstream/master
 
 // Sanity test: this should loop ten times, and
 // min/max/average should be close to 100ms.

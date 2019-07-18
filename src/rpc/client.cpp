@@ -27,8 +27,12 @@ public:
 static const CRPCConvertParam vRPCConvertParams[] =
 {
     { "setmocktime", 0, "timestamp" },
+<<<<<<< HEAD
     { "generate", 0, "nblocks" },
     { "generate", 1, "maxtries" },
+=======
+    { "utxoupdatepsbt", 1, "descriptors" },
+>>>>>>> upstream/master
     { "generatetoaddress", 0, "nblocks" },
     { "generatetoaddress", 2, "maxtries" },
     { "getnetworkhashps", 0, "nblocks" },
@@ -37,6 +41,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "sendtoaddress", 4, "subtractfeefromamount" },
     { "sendtoaddress", 5 , "replaceable" },
     { "sendtoaddress", 6 , "conf_target" },
+    { "sendtoaddress", 8, "avoid_reuse" },
     { "settxfee", 0, "amount" },
     { "sethdseed", 0, "newkeypool" },
     { "getreceivedbyaddress", 1, "minconf" },
@@ -53,6 +58,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "listreceivedbylabel", 2, "include_watchonly" },
     { "getbalance", 1, "minconf" },
     { "getbalance", 2, "include_watchonly" },
+    { "getbalance", 3, "avoid_reuse" },
     { "getblockhash", 0, "height" },
     { "waitforblockheight", 0, "height" },
     { "waitforblockheight", 1, "timeout" },
@@ -150,6 +156,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "setban", 2, "bantime" },
     { "setban", 3, "absolute" },
     { "setnetworkactive", 0, "state" },
+    { "setwalletflag", 1, "value" },
     { "getmempoolancestors", 1, "verbose" },
     { "getmempooldescendants", 1, "verbose" },
     { "bumpfee", 1, "options" },
@@ -171,6 +178,13 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "rescanblockchain", 0, "start_height"},
     { "rescanblockchain", 1, "stop_height"},
     { "createwallet", 1, "disable_private_keys"},
+<<<<<<< HEAD
+=======
+    { "createwallet", 2, "blank"},
+    { "createwallet", 4, "avoid_reuse"},
+    { "getnodeaddresses", 0, "count"},
+    { "stop", 0, "wait" },
+>>>>>>> upstream/master
 };
 
 class CRPCConvertTable

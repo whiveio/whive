@@ -25,7 +25,36 @@ Before every major release:
 * Update [`BLOCK_CHAIN_SIZE`](/src/qt/intro.cpp) to the current size plus some overhead.
 * Update `src/chainparams.cpp` chainTxData with statistics about the transaction count and rate. Use the output of the RPC `getchaintxstats`, see
   [this pull request](https://github.com/bitcoin/bitcoin/pull/12270) for an example. Reviewers can verify the results by running `getchaintxstats <window_block_count> <window_last_block_hash>` with the `window_block_count` and `window_last_block_hash` from your output.
+<<<<<<< HEAD
 * Update version of `contrib/gitian-descriptors/*.yml`: usually one'd want to do this on master after branching off the release - but be sure to at least do it before a new major release
+=======
+* On both the master branch and the new release branch:
+  - update `CLIENT_VERSION_MINOR` in [`configure.ac`](../configure.ac)
+  - update `CLIENT_VERSION_MINOR`, `PACKAGE_VERSION`, and `PACKAGE_STRING` in [`build_msvc/bitcoin_config.h`](/build_msvc/bitcoin_config.h)
+* On the new release branch in [`configure.ac`](../configure.ac) and [`build_msvc/bitcoin_config.h`](/build_msvc/bitcoin_config.h) (see [this commit](https://github.com/bitcoin/bitcoin/commit/742f7dd)):
+  - set `CLIENT_VERSION_REVISION` to `0`
+  - set `CLIENT_VERSION_IS_RELEASE` to `true`
+
+#### Before branch-off
+
+- Clear the release notes and move them to the wiki (see "Write the release notes" below).
+
+#### After branch-off (on master)
+
+- Update the version of `contrib/gitian-descriptors/*.yml`.
+
+#### After branch-off (on the major release branch)
+
+- Update the versions and the link to the release notes draft in `doc/release-notes.md`.
+
+#### Before final release
+
+- Merge the release notes from the wiki into the branch.
+- Ensure the "Needs release note" label is removed from all relevant pull requests and issues.
+
+
+## Building
+>>>>>>> upstream/master
 
 ### First time / New builders
 
@@ -238,6 +267,7 @@ The list of files should be:
 bitcoin-${VERSION}-aarch64-linux-gnu.tar.gz
 bitcoin-${VERSION}-arm-linux-gnueabihf.tar.gz
 bitcoin-${VERSION}-i686-pc-linux-gnu.tar.gz
+bitcoin-${VERSION}-riscv64-linux-gnu.tar.gz
 bitcoin-${VERSION}-x86_64-linux-gnu.tar.gz
 bitcoin-${VERSION}-osx64.tar.gz
 bitcoin-${VERSION}-osx.dmg
@@ -288,6 +318,48 @@ bitcoin.org (see below for bitcoin.org update instructions).
   - After the pull request is merged, the website will automatically show the newest version within 15 minutes, as well
     as update the OS download links. Ping @saivann/@harding (saivann/harding on Freenode) in case anything goes wrong
 
+<<<<<<< HEAD
+=======
+- Update other repositories and websites for new version
+
+  - bitcoincore.org blog post
+
+  - bitcoincore.org maintained versions update:
+    [table](https://github.com/bitcoin-core/bitcoincore.org/commits/master/_includes/posts/maintenance-table.md)
+
+  - bitcoincore.org RPC documentation update
+
+  - Update packaging repo
+
+      - Notify BlueMatt so that he can start building [the PPAs](https://launchpad.net/~bitcoin/+archive/ubuntu/bitcoin)
+
+      - Create a new branch for the major release "0.xx" (used to build the snap package)
+
+      - Notify MarcoFalke so that he can start building the snap package
+
+        - https://code.launchpad.net/~bitcoin-core/bitcoin-core-snap/+git/packaging (Click "Import Now" to fetch the branch)
+        - https://code.launchpad.net/~bitcoin-core/bitcoin-core-snap/+git/packaging/+ref/0.xx (Click "Create snap package")
+        - Name it "bitcoin-core-snap-0.xx"
+        - Leave owner and series as-is
+        - Select architectures that are compiled via gitian
+        - Leave "automatically build when branch changes" unticked
+        - Tick "automatically upload to store"
+        - Put "bitcoin-core" in the registered store package name field
+        - Tick the "edge" box
+        - Put "0.xx" in the track field
+        - Click "create snap package"
+        - Click "Request builds" for every new release on this branch (after updating the snapcraft.yml in the branch to reflect the latest gitian results)
+        - Promote release on https://snapcraft.io/bitcoin-core/releases if it passes sanity checks
+
+  - This repo
+
+      - Archive the release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
+
+      - Create a [new GitHub release](https://github.com/bitcoin/bitcoin/releases/new) with a link to the archived release notes
+
+      - Create a pinned meta-issue for testing the release candidate (see [this issue](https://github.com/bitcoin/bitcoin/issues/15555) for an example) and provide a link to it in the release announcements where useful
+
+>>>>>>> upstream/master
 - Announce the release:
 
   - bitcoin-dev and bitcoin-core-dev mailing list

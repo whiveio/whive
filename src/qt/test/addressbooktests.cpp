@@ -3,8 +3,6 @@
 #include <test/test_bitcoin.h>
 
 #include <interfaces/node.h>
-#include <qt/addressbookpage.h>
-#include <qt/addresstablemodel.h>
 #include <qt/editaddressdialog.h>
 #include <qt/callback.h>
 #include <qt/optionsmodel.h>
@@ -13,7 +11,10 @@
 #include <qt/walletmodel.h>
 
 #include <key.h>
+<<<<<<< HEAD
 #include <pubkey.h>
+=======
+>>>>>>> upstream/master
 #include <key_io.h>
 #include <wallet/wallet.h>
 

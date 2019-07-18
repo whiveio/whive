@@ -7,13 +7,14 @@
 #define BITCOIN_RPC_SERVER_H
 
 #include <amount.h>
-#include <rpc/protocol.h>
+#include <rpc/request.h>
 #include <uint256.h>
 
 #include <list>
 #include <map>
 #include <stdint.h>
 #include <string>
+#include <functional>
 
 #include <univalue.h>
 
@@ -27,6 +28,7 @@ namespace RPCServer
     void OnStopped(std::function<void ()> slot);
 }
 
+<<<<<<< HEAD
 /** Wrapper for UniValue::VType, which includes typeAny:
  * Used to denote don't care type. */
 struct UniValueType {
@@ -51,6 +53,8 @@ public:
     void parse(const UniValue& valRequest);
 };
 
+=======
+>>>>>>> upstream/master
 /** Query whether RPC is running */
 bool IsRPCRunning();
 

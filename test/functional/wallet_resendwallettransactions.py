@@ -16,8 +16,40 @@ class ResendWalletTransactionsTest(BitcoinTestFramework):
         self.skip_if_no_wallet()
 
     def run_test(self):
+<<<<<<< HEAD
         # Should raise RPC_WALLET_ERROR (-4) if walletbroadcast is disabled.
         assert_raises_rpc_error(-4, "Error: Wallet transaction broadcasting is disabled with -walletbroadcast", self.nodes[0].resendwallettransactions)
+=======
+        node = self.nodes[0]  # alias
+
+        node.add_p2p_connection(P2PStoreTxInvs())
+
+        self.log.info("Create a new transaction and wait until it's broadcast")
+        txid = int(node.sendtoaddress(node.getnewaddress(), 1), 16)
+
+        # Wallet rebroadcast is first scheduled 1 sec after startup (see
+        # nNextResend in ResendWalletTransactions()). Sleep for just over a
+        # second to be certain that it has been called before the first
+        # setmocktime call below.
+        time.sleep(1.1)
+
+        # Can take a few seconds due to transaction trickling
+        wait_until(lambda: node.p2p.tx_invs_received[txid] >= 1, lock=mininode_lock)
+
+        # Add a second peer since txs aren't rebroadcast to the same peer (see filterInventoryKnown)
+        node.add_p2p_connection(P2PStoreTxInvs())
+
+        self.log.info("Create a block")
+        # Create and submit a block without the transaction.
+        # Transactions are only rebroadcast if there has been a block at least five minutes
+        # after the last time we tried to broadcast. Use mocktime and give an extra minute to be sure.
+        block_time = int(time.time()) + 6 * 60
+        node.setmocktime(block_time)
+        block = create_block(int(node.getbestblockhash(), 16), create_coinbase(node.getblockcount() + 1), block_time)
+        block.rehash()
+        block.solve()
+        node.submitblock(ToHex(block))
+>>>>>>> upstream/master
 
         # Should return an empty array if there aren't unconfirmed wallet transactions.
         self.stop_node(0)

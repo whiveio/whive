@@ -23,7 +23,11 @@ Instrumentation
 To build Bitcoin Core using AFL instrumentation (this assumes that the
 `AFLPATH` was set as above):
 ```
+<<<<<<< HEAD
 ./configure --disable-ccache --disable-shared --enable-tests CC=${AFLPATH}/afl-gcc CXX=${AFLPATH}/afl-g++
+=======
+./configure --disable-ccache --disable-shared --enable-tests --enable-fuzz CC=${AFLPATH}/afl-gcc CXX=${AFLPATH}/afl-g++
+>>>>>>> upstream/master
 export AFL_HARDEN=1
 cd src/
 make test/test_bitcoin_fuzzy
@@ -65,7 +69,12 @@ Fuzzing
 
 To start the actual fuzzing use:
 ```
+<<<<<<< HEAD
 $AFLPATH/afl-fuzz -i ${AFLIN} -o ${AFLOUT} -m52 -- test/test_bitcoin_fuzzy
+=======
+./configure --disable-ccache --enable-fuzz --with-sanitizers=fuzzer,address CC=clang CXX=clang++
+make
+>>>>>>> upstream/master
 ```
 
 You may have to change a few kernel parameters to test optimally - `afl-fuzz`

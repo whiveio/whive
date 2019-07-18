@@ -70,15 +70,27 @@ transactions. Without the `-deprecatedrpc=accounts` setting, it will only return
 incoming transactions (because it used to be possible to create transactions
 spending from specific accounts, but this is no longer possible with labels).
 
+<<<<<<< HEAD
 When `-deprecatedrpc=accounts` is set, it's possible to pass the empty string ""
 to list transactions that don't have any label. Without
 `-deprecatedrpc=accounts`, passing the empty string is an error because returning
 only non-labeled transactions is not generally useful behavior and can cause
 confusion.
+=======
+- The `sendmany` RPC had an argument `minconf` that was not well specified and
+  would lead to RPC errors even when the wallet's coin selection would succeed.
+  The `sendtoaddress` RPC never had this check, so to normalize the behavior,
+  `minconf` is now ignored in `sendmany`. If the coin selection does not
+  succeed due to missing coins, it will still throw an RPC error. Be reminded
+  that coin selection is influenced by the `-spendzeroconfchange`,
+  `-limitancestorcount`, `-limitdescendantcount` and `-walletrejectlongchains`
+  command line arguments.
+>>>>>>> upstream/master
 
 0.17.1 change log
 =================
 
+<<<<<<< HEAD
 ### P2P protocol and network code
 - #14685 `9406502` Fix a deserialization overflow edge case (kazcw)
 - #14728 `b901578` Fix uninitialized read when stringifying an addrLocal (kazcw)
@@ -128,6 +140,50 @@ confusion.
 ### Documentation
 - #14161 `5f51fd6` doc/descriptors.md tweaks (ryanofsky)
 - #14276 `85aacc4` Add autogen.sh in ARM Cross-compilation (walterwhite81)
+=======
+RPC
+---
+
+
+Tests
+-----
+
+- The regression test chain, that can be enabled by the `-regtest` command line
+  flag, now requires transactions to not violate standard policy by default.
+  Making the default the same as for mainnet, makes it easier to test mainnet
+  behavior on regtest. Be reminded that the testnet still allows non-standard
+  txs by default and that the policy can be locally adjusted with the
+  `-acceptnonstdtxn` command line flag for both test chains.
+
+Configuration
+------------
+
+- An error is issued where previously a warning was issued when a setting in
+  the config file was specified in the default section, but not overridden for
+  the selected network. This change takes only effect if the selected network
+  is not mainnet.
+
+Network
+-------
+
+- When fetching a transaction announced by multiple peers, previous versions of
+  Bitcoin Core would sequentially attempt to download the transaction from each
+  announcing peer until the transaction is received, in the order that those
+  peers' announcements were received.  In this release, the download logic has
+  changed to randomize the fetch order across peers and to prefer sending
+  download requests to outbound peers over inbound peers. This fixes an issue
+  where inbound peers can prevent a node from getting a transaction.
+
+Wallet
+------
+
+- When in pruned mode, a rescan that was triggered by an `importwallet`,
+  `importpubkey`, `importaddress`, or `importprivkey` RPC will only fail when
+  blocks have been pruned. Previously it would fail when `-prune` has been set.
+  This change allows to set `-prune` to a high value (e.g. the disk size) and
+  the calls to any of the import RPCs would fail when the first block is
+  pruned.
+>>>>>>> upstream/master
 
 Credits
 =======

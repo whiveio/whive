@@ -11,8 +11,12 @@
 #include <serialize.h>
 #include <streams.h>
 #include <univalue.h>
+<<<<<<< HEAD
 #include <util.h>
 #include <utilstrencodings.h>
+=======
+#include <util/strencodings.h>
+>>>>>>> upstream/master
 #include <version.h>
 
 #include <boost/algorithm/string/classification.hpp>

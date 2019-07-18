@@ -4,12 +4,20 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <clientversion.h>
 #include <key.h>
 #include <key_io.h>
+<<<<<<< HEAD
 #include <uint256.h>
 #include <util.h>
 #include <utilstrencodings.h>
 #include <test/test_bitcoin.h>
+=======
+#include <streams.h>
+#include <util/system.h>
+#include <util/strencodings.h>
+#include <test/setup_common.h>
+>>>>>>> upstream/master
 
 #include <string>
 #include <vector>

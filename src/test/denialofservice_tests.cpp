@@ -5,13 +5,19 @@
 // Unit tests for denial-of-service detection/prevention code
 
 #include <chainparams.h>
-#include <keystore.h>
 #include <net.h>
 #include <net_processing.h>
-#include <pow.h>
 #include <script/sign.h>
+#include <script/signingprovider.h>
+#include <script/standard.h>
 #include <serialize.h>
+<<<<<<< HEAD
 #include <util.h>
+=======
+#include <util/memory.h>
+#include <util/system.h>
+#include <util/time.h>
+>>>>>>> upstream/master
 #include <validation.h>
 
 #include <test/test_bitcoin.h>
@@ -335,8 +341,13 @@ BOOST_AUTO_TEST_CASE(DoS_mapOrphans)
 {
     CKey key;
     key.MakeNewKey(true);
+<<<<<<< HEAD
     CBasicKeyStore keystore;
     keystore.AddKey(key);
+=======
+    FillableSigningProvider keystore;
+    BOOST_CHECK(keystore.AddKey(key));
+>>>>>>> upstream/master
 
     // 50 orphan transactions:
     for (int i = 0; i < 50; i++)

@@ -3,16 +3,19 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <consensus/tx_verify.h>
-#include <core_io.h>
 #include <key.h>
-#include <keystore.h>
 #include <validation.h>
 #include <policy/policy.h>
 #include <script/script.h>
 #include <script/script_error.h>
 #include <script/sign.h>
+<<<<<<< HEAD
 #include <script/ismine.h>
 #include <test/test_bitcoin.h>
+=======
+#include <script/signingprovider.h>
+#include <test/setup_common.h>
+>>>>>>> upstream/master
 
 #include <vector>
 
@@ -56,7 +59,7 @@ BOOST_AUTO_TEST_CASE(sign)
     // scriptPubKey: HASH160 <hash> EQUAL
 
     // Test SignSignature() (and therefore the version of Solver() that signs transactions)
-    CBasicKeyStore keystore;
+    FillableSigningProvider keystore;
     CKey key[4];
     for (int i = 0; i < 4; i++)
     {
@@ -98,7 +101,6 @@ BOOST_AUTO_TEST_CASE(sign)
         txTo[i].vin[0].prevout.n = i;
         txTo[i].vin[0].prevout.hash = txFrom.GetHash();
         txTo[i].vout[0].nValue = 1;
-        BOOST_CHECK_MESSAGE(IsMine(keystore, txFrom.vout[i].scriptPubKey), strprintf("IsMine %d", i));
     }
     for (int i = 0; i < 8; i++)
     {
@@ -153,7 +155,7 @@ BOOST_AUTO_TEST_CASE(set)
 {
     LOCK(cs_main);
     // Test the CScript::Set* methods
-    CBasicKeyStore keystore;
+    FillableSigningProvider keystore;
     CKey key[4];
     std::vector<CPubKey> keys;
     for (int i = 0; i < 4; i++)
@@ -195,7 +197,6 @@ BOOST_AUTO_TEST_CASE(set)
         txTo[i].vin[0].prevout.hash = txFrom.GetHash();
         txTo[i].vout[0].nValue = 1*CENT;
         txTo[i].vout[0].scriptPubKey = inner[i];
-        BOOST_CHECK_MESSAGE(IsMine(keystore, txFrom.vout[i].scriptPubKey), strprintf("IsMine %d", i));
     }
     for (int i = 0; i < 4; i++)
     {
@@ -260,7 +261,7 @@ BOOST_AUTO_TEST_CASE(AreInputsStandard)
     LOCK(cs_main);
     CCoinsView coinsDummy;
     CCoinsViewCache coins(&coinsDummy);
-    CBasicKeyStore keystore;
+    FillableSigningProvider keystore;
     CKey key[6];
     std::vector<CPubKey> keys;
     for (int i = 0; i < 6; i++)

@@ -128,7 +128,6 @@ BITCOIN_CORE_H = \
   interfaces/wallet.h \
   key.h \
   key_io.h \
-  keystore.h \
   dbwrapper.h \
   limitedmap.h \
   logging.h \
@@ -155,15 +154,22 @@ BITCOIN_CORE_H = \
   rpc/client.h \
   rpc/mining.h \
   rpc/protocol.h \
+<<<<<<< HEAD
   rpc/server.h \
   rpc/rawtransaction.h \
+=======
+  rpc/rawtransaction_util.h \
+>>>>>>> upstream/master
   rpc/register.h \
+  rpc/request.h \
+  rpc/server.h \
   rpc/util.h \
   scheduler.h \
   script/descriptor.h \
-  script/ismine.h \
+  script/keyorigin.h \
   script/sigcache.h \
   script/sign.h \
+  script/signingprovider.h \
   script/standard.h \
   shutdown.h \
   streams.h \
@@ -194,6 +200,12 @@ BITCOIN_CORE_H = \
   wallet/db.h \
   wallet/feebumper.h \
   wallet/fees.h \
+<<<<<<< HEAD
+=======
+  wallet/ismine.h \
+  wallet/load.h \
+  wallet/psbtwallet.h \
+>>>>>>> upstream/master
   wallet/rpcwallet.h \
   wallet/wallet.h \
   wallet/walletdb.h \
@@ -282,7 +294,13 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/db.cpp \
   wallet/feebumper.cpp \
   wallet/fees.cpp \
+<<<<<<< HEAD
   wallet/init.cpp \
+=======
+  wallet/ismine.cpp \
+  wallet/load.cpp \
+  wallet/psbtwallet.cpp \
+>>>>>>> upstream/master
   wallet/rpcdump.cpp \
   wallet/rpcwallet.cpp \
   wallet/wallet.cpp \
@@ -297,6 +315,8 @@ crypto_libbitcoin_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
+  crypto/chacha_poly_aead.h \
+  crypto/chacha_poly_aead.cpp \
   crypto/chacha20.h \
   crypto/chacha20.cpp \
   crypto/common.h \
@@ -395,15 +415,19 @@ libbitcoin_common_a_SOURCES = \
   core_write.cpp \
   key.cpp \
   key_io.cpp \
+<<<<<<< HEAD
   keystore.cpp \
+=======
+  merkleblock.cpp \
+>>>>>>> upstream/master
   netaddress.cpp \
   netbase.cpp \
   policy/feerate.cpp \
   protocol.cpp \
   scheduler.cpp \
   script/descriptor.cpp \
-  script/ismine.cpp \
   script/sign.cpp \
+  script/signingprovider.cpp \
   script/standard.cpp \
   warnings.cpp \
   $(BITCOIN_CORE_H)
@@ -425,7 +449,7 @@ libbitcoin_util_a_SOURCES = \
   interfaces/node.cpp \
   logging.cpp \
   random.cpp \
-  rpc/protocol.cpp \
+  rpc/request.cpp \
   support/cleanse.cpp \
   sync.cpp \
   threadinterrupt.cpp \
@@ -522,7 +546,11 @@ whiveyes_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 # bitcoinconsensus library #
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h
+<<<<<<< HEAD
 libwhiveyesconsensus_la_SOURCES = $(crypto_libbitcoin_crypto_base_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
+=======
+libbitcoinconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libbitcoin_crypto_base_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
+>>>>>>> upstream/master
 
 if GLIBC_BACK_COMPAT
   libwhiveyesconsensus_la_SOURCES += compat/glibc_compat.cpp

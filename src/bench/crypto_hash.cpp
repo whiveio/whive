@@ -5,11 +5,13 @@
 #include <iostream>
 
 #include <bench/bench.h>
-#include <bloom.h>
 #include <hash.h>
 #include <random.h>
 #include <uint256.h>
+<<<<<<< HEAD
 #include <utiltime.h>
+=======
+>>>>>>> upstream/master
 #include <crypto/ripemd160.h>
 #include <crypto/sha1.h>
 #include <crypto/sha256.h>

@@ -5,13 +5,21 @@
 #include <util.h>
 
 #include <clientversion.h>
-#include <primitives/transaction.h>
 #include <sync.h>
+<<<<<<< HEAD
 #include <utilstrencodings.h>
 #include <utilmoneystr.h>
 #include <test/test_bitcoin.h>
+=======
+#include <test/util.h>
+#include <util/strencodings.h>
+#include <util/moneystr.h>
+#include <util/time.h>
+#include <test/setup_common.h>
+>>>>>>> upstream/master
 
 #include <stdint.h>
+#include <thread>
 #include <vector>
 #ifndef WIN32
 #include <signal.h>
@@ -806,6 +814,27 @@ BOOST_AUTO_TEST_CASE(gettime)
     BOOST_CHECK((GetTime() & ~0xFFFFFFFFLL) == 0);
 }
 
+BOOST_AUTO_TEST_CASE(util_time_GetTime)
+{
+    SetMockTime(111);
+    // Check that mock time does not change after a sleep
+    for (const auto& num_sleep : {0, 1}) {
+        MilliSleep(num_sleep);
+        BOOST_CHECK_EQUAL(111, GetTime()); // Deprecated time getter
+        BOOST_CHECK_EQUAL(111, GetTime<std::chrono::seconds>().count());
+        BOOST_CHECK_EQUAL(111000, GetTime<std::chrono::milliseconds>().count());
+        BOOST_CHECK_EQUAL(111000000, GetTime<std::chrono::microseconds>().count());
+    }
+
+    SetMockTime(0);
+    // Check that system time changes after a sleep
+    const auto ms_0 = GetTime<std::chrono::milliseconds>();
+    const auto us_0 = GetTime<std::chrono::microseconds>();
+    MilliSleep(1);
+    BOOST_CHECK(ms_0 < GetTime<std::chrono::milliseconds>());
+    BOOST_CHECK(us_0 < GetTime<std::chrono::microseconds>());
+}
+
 BOOST_AUTO_TEST_CASE(test_IsDigit)
 {
     BOOST_CHECK_EQUAL(IsDigit('0'), true);
@@ -1115,7 +1144,7 @@ static void TestOtherProcess(fs::path dirname, std::string lockname, int fd)
 
 BOOST_AUTO_TEST_CASE(test_LockDirectory)
 {
-    fs::path dirname = SetDataDir("test_LockDirectory") / fs::unique_path();
+    fs::path dirname = GetDataDir() / "lock_dir";
     const std::string lockname = ".lock";
 #ifndef WIN32
     // Revert SIGCHLD to default, otherwise boost.test will catch and fail on
@@ -1204,7 +1233,7 @@ BOOST_AUTO_TEST_CASE(test_LockDirectory)
 BOOST_AUTO_TEST_CASE(test_DirIsWritable)
 {
     // Should be able to write to the data dir.
-    fs::path tmpdirname = SetDataDir("test_DirIsWritable");
+    fs::path tmpdirname = GetDataDir();
     BOOST_CHECK_EQUAL(DirIsWritable(tmpdirname), true);
 
     // Should not be able to write to a non-existent dir.

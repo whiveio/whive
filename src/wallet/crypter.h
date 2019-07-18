@@ -7,9 +7,9 @@
 #ifndef BITCOIN_WALLET_CRYPTER_H
 #define BITCOIN_WALLET_CRYPTER_H
 
-#include <keystore.h>
 #include <serialize.h>
 #include <support/allocators/secure.h>
+#include <script/signingprovider.h>
 
 #include <atomic>
 
@@ -111,6 +111,7 @@ public:
     }
 };
 
+<<<<<<< HEAD
 /** Keystore which keeps the private keys encrypted.
  * It derives from the basic key store, which is used if no encryption is active.
  */
@@ -160,5 +161,10 @@ public:
      */
     boost::signals2::signal<void (CCryptoKeyStore* wallet)> NotifyStatusChanged;
 };
+=======
+bool EncryptSecret(const CKeyingMaterial& vMasterKey, const CKeyingMaterial &vchPlaintext, const uint256& nIV, std::vector<unsigned char> &vchCiphertext);
+bool DecryptSecret(const CKeyingMaterial& vMasterKey, const std::vector<unsigned char>& vchCiphertext, const uint256& nIV, CKeyingMaterial& vchPlaintext);
+bool DecryptKey(const CKeyingMaterial& vMasterKey, const std::vector<unsigned char>& vchCryptedSecret, const CPubKey& vchPubKey, CKey& key);
+>>>>>>> upstream/master
 
 #endif // BITCOIN_WALLET_CRYPTER_H

@@ -6,7 +6,12 @@
 #ifndef BITCOIN_OUTPUTTYPE_H
 #define BITCOIN_OUTPUTTYPE_H
 
+<<<<<<< HEAD
 #include <keystore.h>
+=======
+#include <attributes.h>
+#include <script/signingprovider.h>
+>>>>>>> upstream/master
 #include <script/standard.h>
 
 #include <string>
@@ -43,7 +48,7 @@ std::vector<CTxDestination> GetAllDestinationsForKey(const CPubKey& key);
  * This function will automatically add the script (and any other
  * necessary scripts) to the keystore.
  */
-CTxDestination AddAndGetDestinationForScript(CKeyStore& keystore, const CScript& script, OutputType);
+CTxDestination AddAndGetDestinationForScript(FillableSigningProvider& keystore, const CScript& script, OutputType);
 
 #endif // BITCOIN_OUTPUTTYPE_H
 

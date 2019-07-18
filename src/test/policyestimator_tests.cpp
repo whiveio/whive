@@ -6,7 +6,12 @@
 #include <policy/fees.h>
 #include <txmempool.h>
 #include <uint256.h>
+<<<<<<< HEAD
 #include <util.h>
+=======
+#include <util/system.h>
+#include <util/time.h>
+>>>>>>> upstream/master
 
 #include <test/test_bitcoin.h>
 

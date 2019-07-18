@@ -110,7 +110,11 @@ class NULLDUMMYTest(BitcoinTestFramework):
         witness and add_witness_commitment(block)
         block.rehash()
         block.solve()
+<<<<<<< HEAD
         node.submitblock(bytes_to_hex_str(block.serialize(True)))
+=======
+        node.submitblock(block.serialize().hex())
+>>>>>>> upstream/master
         if (accept):
             assert_equal(node.getbestblockhash(), block.hash)
             self.tip = block.sha256

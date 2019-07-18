@@ -3,10 +3,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <key.h>
-#include <keystore.h>
-#include <script/ismine.h>
 #include <script/script.h>
-#include <script/script_error.h>
+#include <script/signingprovider.h>
 #include <script/standard.h>
 #include <test/test_bitcoin.h>
 
@@ -383,6 +381,7 @@ BOOST_AUTO_TEST_CASE(script_standard_GetScriptFor_)
     BOOST_CHECK(result == expected);
 }
 
+<<<<<<< HEAD
 BOOST_AUTO_TEST_CASE(script_standard_IsMine)
 {
     CKey keys[2];
@@ -743,4 +742,6 @@ BOOST_AUTO_TEST_CASE(script_standard_IsMine)
     }
 }
 
+=======
+>>>>>>> upstream/master
 BOOST_AUTO_TEST_SUITE_END()

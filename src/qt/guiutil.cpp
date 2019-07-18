@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Bitcoin Core developers
+// Copyright (c) 2011-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,10 +11,10 @@
 
 #include <base58.h>
 #include <chainparams.h>
-#include <primitives/transaction.h>
-#include <key_io.h>
 #include <interfaces/node.h>
+#include <key_io.h>
 #include <policy/policy.h>
+#include <primitives/transaction.h>
 #include <protocol.h>
 #include <script/script.h>
 #include <script/standard.h>
@@ -58,8 +58,14 @@
 #include <QMouseEvent>
 
 
+<<<<<<< HEAD
 #if QT_VERSION >= 0x50200
 #include <QFontDatabase>
+=======
+#include <objc/objc-runtime.h>
+#include <CoreServices/CoreServices.h>
+#include <QProcess>
+>>>>>>> upstream/master
 #endif
 
 static fs::detail::utf8_codecvt_facet utf8;
@@ -378,8 +384,21 @@ bool openBitcoinConf()
 
     configFile.close();
 
+<<<<<<< HEAD
     /* Open whiveyes.conf with the associated application */
     return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
+=======
+    /* Open bitcoin.conf with the associated application */
+    bool res = QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
+#ifdef Q_OS_MAC
+    // Workaround for macOS-specific behavior; see #15409.
+    if (!res) {
+        res = QProcess::startDetached("/usr/bin/open", QStringList{"-t", boostPathToQString(pathConfig)});
+    }
+#endif
+
+    return res;
+>>>>>>> upstream/master
 }
 
 ToolTipToRichTextFilter::ToolTipToRichTextFilter(int _size_threshold, QObject *parent) :
@@ -831,9 +850,6 @@ QString formatServicesStr(quint64 mask)
                 break;
             case NODE_WITNESS:
                 strList.append("WITNESS");
-                break;
-            case NODE_XTHIN:
-                strList.append("XTHIN");
                 break;
             default:
                 strList.append(QString("%1[%2]").arg("UNKNOWN").arg(check));

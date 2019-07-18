@@ -52,11 +52,20 @@ if os.name == 'posix':
 TEST_EXIT_PASSED = 0
 TEST_EXIT_SKIPPED = 77
 
+<<<<<<< HEAD
 # 20 minutes represented in seconds
 TRAVIS_TIMEOUT_DURATION = 20 * 60
+=======
+EXTENDED_SCRIPTS = [
+    # These tests are not run by default.
+    # Longest test should go first, to favor running tests in parallel
+    'feature_pruning.py',
+    'feature_dbcrash.py',
+]
+>>>>>>> upstream/master
 
 BASE_SCRIPTS = [
-    # Scripts that are run by the travis build process.
+    # Scripts that are run by default.
     # Longest test should go first, to favor running tests in parallel
     'wallet_hd.py',
     'wallet_backup.py',
@@ -94,6 +103,7 @@ BASE_SCRIPTS = [
     'rpc_getchaintips.py',
     'interface_rest.py',
     'mempool_spend_coinbase.py',
+    'wallet_avoidreuse.py',
     'mempool_reorg.py',
     'mempool_persist.py',
     'wallet_multiwallet.py',
@@ -214,6 +224,7 @@ def main():
     parser.add_argument('--quiet', '-q', action='store_true', help='only print results summary and failure logs')
     parser.add_argument('--tmpdirprefix', '-t', default=tempfile.gettempdir(), help="Root directory for datadirs")
     parser.add_argument('--failfast', action='store_true', help='stop execution after the first test failure')
+    parser.add_argument('--filter', help='filter scripts to run by regular expression')
     args, unknown_args = parser.parse_known_args()
 
     # args to be passed on always start with two dashes; tests are the remaining unknown args
@@ -254,11 +265,27 @@ def main():
     test_list = []
     if tests:
         # Individual tests have been specified. Run specified tests that exist
+<<<<<<< HEAD
         # in the ALL_SCRIPTS list. Accept the name with or without .py extension.
         tests = [re.sub("\.py$", "", test) + ".py" for test in tests]
+=======
+        # in the ALL_SCRIPTS list. Accept names with or without a .py extension.
+        # Specified tests can contain wildcards, but in that case the supplied
+        # paths should be coherent, e.g. the same path as that provided to call
+        # test_runner.py. Examples:
+        #   `test/functional/test_runner.py test/functional/wallet*`
+        #   `test/functional/test_runner.py ./test/functional/wallet*`
+        #   `test_runner.py wallet*`
+        #   but not:
+        #   `test/functional/test_runner.py wallet*`
+        # Multiple wildcards can be passed:
+        #   `test_runner.py tool* mempool*`
+>>>>>>> upstream/master
         for test in tests:
-            if test in ALL_SCRIPTS:
-                test_list.append(test)
+            script = test.split("/")[-1]
+            script = script + ".py" if ".py" not in script else script
+            if script in ALL_SCRIPTS:
+                test_list.append(script)
             else:
                 print("{}WARNING!{} Test '{}' not found in full test list.".format(BOLD[1], BOLD[0], test))
     elif args.extended:
@@ -276,6 +303,9 @@ def main():
                 test_list.remove(exclude_test)
             else:
                 print("{}WARNING!{} Test '{}' not found in current test list.".format(BOLD[1], BOLD[0], exclude_test))
+
+    if args.filter:
+        test_list = list(filter(re.compile(args.filter).search, test_list))
 
     if not test_list:
         print("No valid test scripts specified. Check that your test is in one "
@@ -457,8 +487,14 @@ class TestHandler:
             time.sleep(.5)
             for job in self.jobs:
                 (name, start_time, proc, testdir, log_out, log_err) = job
+<<<<<<< HEAD
                 if os.getenv('TRAVIS') == 'true' and int(time.time() - start_time) > TRAVIS_TIMEOUT_DURATION:
                     # In travis, timeout individual tests (to stop tests hanging and not providing useful output).
+=======
+                if int(time.time() - start_time) > self.timeout_duration:
+                    # Timeout individual tests if timeout is specified (to stop
+                    # tests hanging and not providing useful output).
+>>>>>>> upstream/master
                     proc.send_signal(signal.SIGINT)
                 if proc.poll() is not None:
                     log_out.seek(0), log_err.seek(0)
@@ -542,8 +578,13 @@ def check_script_list(src_dir):
     missed_tests = list(python_files - set(map(lambda x: x.split()[0], ALL_SCRIPTS + NON_SCRIPTS)))
     if len(missed_tests) != 0:
         print("%sWARNING!%s The following scripts are not being run: %s. Check the test lists in test_runner.py." % (BOLD[1], BOLD[0], str(missed_tests)))
+<<<<<<< HEAD
         if os.getenv('TRAVIS') == 'true':
             # On travis this warning is an error to prevent merging incomplete commits into master
+=======
+        if fail_on_warn:
+            # On CI this warning is an error to prevent merging incomplete commits into master
+>>>>>>> upstream/master
             sys.exit(1)
 
 class RPCCoverage():

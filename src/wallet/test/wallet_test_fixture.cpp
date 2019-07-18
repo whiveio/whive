@@ -4,11 +4,17 @@
 
 #include <wallet/test/wallet_test_fixture.h>
 
+<<<<<<< HEAD
 #include <rpc/server.h>
 #include <wallet/db.h>
 
 WalletTestingSetup::WalletTestingSetup(const std::string& chainName):
     TestingSetup(chainName), m_wallet("mock", WalletDatabase::CreateMock())
+=======
+WalletTestingSetup::WalletTestingSetup(const std::string& chainName)
+    : TestingSetup(chainName),
+      m_wallet(m_chain.get(), WalletLocation(), WalletDatabase::CreateMock())
+>>>>>>> upstream/master
 {
     bool fFirstRun;
     m_wallet.LoadWallet(fFirstRun);

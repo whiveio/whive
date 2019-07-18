@@ -3,11 +3,16 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <key_io.h>
+<<<<<<< HEAD
 #include <script/sign.h>
 #include <utilstrencodings.h>
 #include <wallet/rpcwallet.h>
+=======
+#include <util/bip32.h>
+#include <util/strencodings.h>
+#include <wallet/psbtwallet.h>
+>>>>>>> upstream/master
 #include <wallet/wallet.h>
-#include <univalue.h>
 
 #include <boost/test/unit_test.hpp>
 #include <test/test_bitcoin.h>

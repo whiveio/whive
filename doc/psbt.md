@@ -75,6 +75,14 @@ hardware implementations will typically implement multiple roles simultaneously.
   output of multiple Updaters or Signers.
 - **`decodepsbt`** is a diagnostic utility RPC which will show all information in
   a PSBT in human-readable form, as well as compute its eventual fee if known.
+<<<<<<< HEAD
+=======
+- **`analyzepsbt`** is a utility RPC that examines a PSBT and reports the
+  current status of its inputs, the next step in the workflow if known, and if
+  possible, computes the fee of the resulting transaction and estimates the
+  final weight and feerate.
+
+>>>>>>> upstream/master
 
 ### Workflows
 

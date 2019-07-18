@@ -1,6 +1,10 @@
 #include <qt/test/wallettests.h>
 #include <qt/test/util.h>
 
+<<<<<<< HEAD
+=======
+#include <interfaces/chain.h>
+>>>>>>> upstream/master
 #include <interfaces/node.h>
 #include <qt/bitcoinamountfield.h>
 #include <qt/callback.h>
@@ -69,7 +73,8 @@ uint256 SendCoins(CWallet& wallet, SendCoinsDialog& sendCoinsDialog, const CTxDe
         if (status == CT_NEW) txid = hash;
     }));
     ConfirmSend();
-    QMetaObject::invokeMethod(&sendCoinsDialog, "on_sendButton_clicked");
+    bool invoked = QMetaObject::invokeMethod(&sendCoinsDialog, "on_sendButton_clicked");
+    assert(invoked);
     return txid;
 }
 
@@ -142,7 +147,13 @@ void TestGUI()
         wallet->AddKeyPubKey(test.coinbaseKey, test.coinbaseKey.GetPubKey());
     }
     {
+<<<<<<< HEAD
         LOCK(cs_main);
+=======
+        auto locked_chain = wallet->chain().lock();
+        LockAssertion lock(::cs_main);
+
+>>>>>>> upstream/master
         WalletRescanReserver reserver(wallet.get());
         reserver.reserve();
         wallet->ScanForWalletTransactions(chainActive.Genesis(), nullptr, reserver, true);

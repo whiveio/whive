@@ -24,6 +24,9 @@ from test_framework.util import (
 class InvalidTxRequestTest(BitcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
+        self.extra_args = [[
+            "-acceptnonstdtxn=1",
+        ]]
         self.setup_clean_chain = True
 
     def skip_test_if_missing_module(self):

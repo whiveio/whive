@@ -1,15 +1,24 @@
+<<<<<<< HEAD:src/util.cpp
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
 // Copyright (c) 2018-2019 WhiveYes Core developers
+=======
+// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2019 The Bitcoin Core developers
+>>>>>>> upstream/master:src/util/system.cpp
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <util.h>
 
 #include <chainparamsbase.h>
+<<<<<<< HEAD:src/util.cpp
 #include <random.h>
 #include <serialize.h>
 #include <utilstrencodings.h>
+=======
+#include <util/strencodings.h>
+>>>>>>> upstream/master:src/util/system.cpp
 
 #include <stdarg.h>
 
@@ -700,7 +709,7 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 {
     std::string message = FormatException(pex, pszThread);
     LogPrintf("\n\n************************\n%s\n", message);
-    fprintf(stderr, "\n\n************************\n%s\n", message.c_str());
+    tfm::format(std::cerr, "\n\n************************\n%s\n", message.c_str());
 }
 
 fs::path GetDefaultDataDir()
@@ -733,19 +742,21 @@ static fs::path g_blocks_path_cached;
 static fs::path g_blocks_path_cache_net_specific;
 static fs::path pathCached;
 static fs::path pathCachedNetSpecific;
-static CCriticalSection csPathCached;
+static RecursiveMutex csPathCached;
 
 const fs::path &GetBlocksDir(bool fNetSpecific)
 {
-
     LOCK(csPathCached);
+<<<<<<< HEAD:src/util.cpp
 
     fs::path &path = fNetSpecific ? g_blocks_path_cache_net_specific : g_blocks_path_cached;
+=======
+    fs::path &path = g_blocks_path_cache_net_specific;
+>>>>>>> upstream/master:src/util/system.cpp
 
-    // This can be called during exceptions by LogPrintf(), so we cache the
-    // value so we don't have to do memory allocations after that.
-    if (!path.empty())
-        return path;
+    // Cache the path to avoid calling fs::create_directories on every call of
+    // this function
+    if (!path.empty()) return path;
 
     if (gArgs.IsArgSet("-blocksdir")) {
         path = fs::system_complete(gArgs.GetArg("-blocksdir", ""));
@@ -766,15 +777,12 @@ const fs::path &GetBlocksDir(bool fNetSpecific)
 
 const fs::path &GetDataDir(bool fNetSpecific)
 {
-
     LOCK(csPathCached);
-
     fs::path &path = fNetSpecific ? pathCachedNetSpecific : pathCached;
 
-    // This can be called during exceptions by LogPrintf(), so we cache the
-    // value so we don't have to do memory allocations after that.
-    if (!path.empty())
-        return path;
+    // Cache the path to avoid calling fs::create_directories on every call of
+    // this function
+    if (!path.empty()) return path;
 
     if (gArgs.IsArgSet("-datadir")) {
         path = fs::system_complete(gArgs.GetArg("-datadir", ""));
@@ -946,7 +954,7 @@ bool ArgsManager::ReadConfigFiles(std::string& error, bool ignore_invalid_keys)
                 }
             }
             for (const std::string& to_include : includeconf) {
-                fprintf(stderr, "warning: -includeconf cannot be used from included files; ignoring -includeconf=%s\n", to_include.c_str());
+                tfm::format(std::cerr, "warning: -includeconf cannot be used from included files; ignoring -includeconf=%s\n", to_include.c_str());
             }
         }
     }
@@ -1148,6 +1156,7 @@ fs::path GetSpecialFolderPath(int nFolder, bool fCreate)
 }
 #endif
 
+#if HAVE_SYSTEM
 void runCommand(const std::string& strCommand)
 {
     if (strCommand.empty()) return;
@@ -1155,6 +1164,7 @@ void runCommand(const std::string& strCommand)
     if (nErr)
         LogPrintf("runCommand error: system(%s) returned %d\n", strCommand, nErr);
 }
+#endif
 
 void RenameThread(const char* name)
 {
@@ -1220,10 +1230,11 @@ int GetNumCores()
 
 std::string CopyrightHolders(const std::string& strPrefix)
 {
-    std::string strCopyrightHolders = strPrefix + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
+    const auto copyright_devs = strprintf(_(COPYRIGHT_HOLDERS), COPYRIGHT_HOLDERS_SUBSTITUTION);
+    std::string strCopyrightHolders = strPrefix + copyright_devs;
 
-    // Check for untranslated substitution to make sure Bitcoin Core copyright is not removed by accident
-    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Bitcoin Core") == std::string::npos) {
+    // Make sure Bitcoin Core copyright is not removed by accident
+    if (copyright_devs.find("Bitcoin Core") == std::string::npos) {
         strCopyrightHolders += "\n" + strPrefix + "The Bitcoin Core developers";
     }
     return strCopyrightHolders;

@@ -40,7 +40,19 @@ EXCLUDE = [
 ]
 EXCLUDE_COMPILED = re.compile('|'.join([fnmatch.translate(m) for m in EXCLUDE]))
 
+<<<<<<< HEAD
 INCLUDE = ['*.h', '*.cpp', '*.cc', '*.c', '*.py']
+=======
+EXCLUDE_DIRS = [
+    # git subtrees
+    "src/crypto/ctaes/",
+    "src/leveldb/",
+    "src/secp256k1/",
+    "src/univalue/",
+]
+
+INCLUDE = ['*.h', '*.cpp', '*.cc', '*.c', '*.mm', '*.py']
+>>>>>>> upstream/master
 INCLUDE_COMPILED = re.compile('|'.join([fnmatch.translate(m) for m in INCLUDE]))
 
 def applies_to_file(filename):
@@ -86,11 +98,14 @@ def compile_copyright_regex(copyright_style, year_style, name):
 EXPECTED_HOLDER_NAMES = [
     "Satoshi Nakamoto\n",
     "The Bitcoin Core developers\n",
+<<<<<<< HEAD
     "The Bitcoin Core developers \n",
     "Bitcoin Core Developers\n",
     "the Bitcoin Core developers\n",
     "The Bitcoin developers\n",
     "The LevelDB Authors\. All rights reserved\.\n",
+=======
+>>>>>>> upstream/master
     "BitPay Inc\.\n",
     "BitPay, Inc\.\n",
     "University of Illinois at Urbana-Champaign\.\n",
@@ -105,7 +120,6 @@ EXPECTED_HOLDER_NAMES = [
     "Diederik Huys, Pieter Wuille +\*\n",
     "Thomas Daede, Cory Fields +\*\n",
     "Jan-Klaas Kollhof\n",
-    "Sam Rushing\n",
     "ArtForz -- public domain half-a-node\n",
 ]
 

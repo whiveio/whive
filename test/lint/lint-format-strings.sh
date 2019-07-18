@@ -11,6 +11,7 @@
 export LC_ALL=C
 
 FUNCTION_NAMES_AND_NUMBER_OF_LEADING_ARGUMENTS=(
+<<<<<<< HEAD
     FatalError,0
     fprintf,1
     LogConnectFailure,1
@@ -25,6 +26,23 @@ FUNCTION_NAMES_AND_NUMBER_OF_LEADING_ARGUMENTS=(
     vsnprintf,1
     vsprintf,1
     WalletLogPrintf,0
+=======
+    "FatalError,0"
+    "fprintf,1"
+    "tfm::format,1" # Assuming tfm::::format(std::ostream&, ...
+    "LogConnectFailure,1"
+    "LogPrint,1"
+    "LogPrintf,0"
+    "printf,0"
+    "snprintf,2"
+    "sprintf,1"
+    "strprintf,0"
+    "vfprintf,1"
+    "vprintf,1"
+    "vsnprintf,1"
+    "vsprintf,1"
+    "WalletLogPrintf,0"
+>>>>>>> upstream/master
 )
 
 EXIT_CODE=0

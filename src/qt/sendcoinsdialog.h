@@ -110,7 +110,11 @@ class SendConfirmationDialog : public QMessageBox
     Q_OBJECT
 
 public:
+<<<<<<< HEAD
     SendConfirmationDialog(const QString &title, const QString &text, int secDelay = SEND_CONFIRM_DELAY, QWidget *parent = 0);
+=======
+    SendConfirmationDialog(const QString& title, const QString& text, const QString& informative_text = "", const QString& detailed_text = "", int secDelay = SEND_CONFIRM_DELAY, QWidget* parent = nullptr);
+>>>>>>> upstream/master
     int exec();
 
 private Q_SLOTS:

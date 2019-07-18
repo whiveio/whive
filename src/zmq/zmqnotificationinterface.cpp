@@ -7,8 +7,12 @@
 
 #include <version.h>
 #include <validation.h>
+<<<<<<< HEAD
 #include <streams.h>
 #include <util.h>
+=======
+#include <util/system.h>
+>>>>>>> upstream/master
 
 void zmqError(const char *str)
 {

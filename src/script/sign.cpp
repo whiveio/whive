@@ -8,6 +8,7 @@
 #include <key.h>
 #include <policy/policy.h>
 #include <primitives/transaction.h>
+#include <script/signingprovider.h>
 #include <script/standard.h>
 #include <uint256.h>
 
@@ -474,22 +475,10 @@ public:
     }
 };
 
-template<typename M, typename K, typename V>
-bool LookupHelper(const M& map, const K& key, V& value)
-{
-    auto it = map.find(key);
-    if (it != map.end()) {
-        value = it->second;
-        return true;
-    }
-    return false;
-}
-
 }
 
 const BaseSignatureCreator& DUMMY_SIGNATURE_CREATOR = DummySignatureCreator(32, 32);
 const BaseSignatureCreator& DUMMY_MAXIMUM_SIGNATURE_CREATOR = DummySignatureCreator(33, 32);
-const SigningProvider& DUMMY_SIGNING_PROVIDER = SigningProvider();
 
 bool IsSolvable(const SigningProvider& provider, const CScript& script)
 {
@@ -509,6 +498,7 @@ bool IsSolvable(const SigningProvider& provider, const CScript& script)
     return false;
 }
 
+<<<<<<< HEAD
 PartiallySignedTransaction::PartiallySignedTransaction(const CTransaction& tx) : tx(tx)
 {
     inputs.resize(tx.vin.size());
@@ -687,4 +677,20 @@ FlatSigningProvider Merge(const FlatSigningProvider& a, const FlatSigningProvide
     ret.keys = a.keys;
     ret.keys.insert(b.keys.begin(), b.keys.end());
     return ret;
+=======
+bool IsSegWitOutput(const SigningProvider& provider, const CScript& script)
+{
+    std::vector<valtype> solutions;
+    auto whichtype = Solver(script, solutions);
+    if (whichtype == TX_WITNESS_V0_SCRIPTHASH || whichtype == TX_WITNESS_V0_KEYHASH || whichtype == TX_WITNESS_UNKNOWN) return true;
+    if (whichtype == TX_SCRIPTHASH) {
+        auto h160 = uint160(solutions[0]);
+        CScript subscript;
+        if (provider.GetCScript(h160, subscript)) {
+            whichtype = Solver(subscript, solutions);
+            if (whichtype == TX_WITNESS_V0_SCRIPTHASH || whichtype == TX_WITNESS_V0_KEYHASH || whichtype == TX_WITNESS_UNKNOWN) return true;
+        }
+    }
+    return false;
+>>>>>>> upstream/master
 }

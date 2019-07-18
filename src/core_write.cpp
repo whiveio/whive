@@ -12,9 +12,14 @@
 #include <serialize.h>
 #include <streams.h>
 #include <univalue.h>
+<<<<<<< HEAD
 #include <util.h>
 #include <utilmoneystr.h>
 #include <utilstrencodings.h>
+=======
+#include <util/system.h>
+#include <util/strencodings.h>
+>>>>>>> upstream/master
 
 UniValue ValueFromAmount(const CAmount& amount)
 {

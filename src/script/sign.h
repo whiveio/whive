@@ -10,6 +10,7 @@
 #include <hash.h>
 #include <pubkey.h>
 #include <script/interpreter.h>
+#include <script/keyorigin.h>
 #include <streams.h>
 
 class CKey;
@@ -17,9 +18,11 @@ class CKeyID;
 class CScript;
 class CScriptID;
 class CTransaction;
+class SigningProvider;
 
 struct CMutableTransaction;
 
+<<<<<<< HEAD
 /** An interface to be implemented by keystores that support signing. */
 class SigningProvider
 {
@@ -56,6 +59,8 @@ struct FlatSigningProvider final : public SigningProvider
 
 FlatSigningProvider Merge(const FlatSigningProvider& a, const FlatSigningProvider& b);
 
+=======
+>>>>>>> upstream/master
 /** Interface for signature creators. */
 class BaseSignatureCreator {
 public:
@@ -729,5 +734,8 @@ void UpdateInput(CTxIn& input, const SignatureData& data);
  * provider is used to look up public keys and redeemscripts by hash.
  * Solvability is unrelated to whether we consider this output to be ours. */
 bool IsSolvable(const SigningProvider& provider, const CScript& script);
+
+/** Check whether a scriptPubKey is known to be segwit. */
+bool IsSegWitOutput(const SigningProvider& provider, const CScript& script);
 
 #endif // BITCOIN_SCRIPT_SIGN_H

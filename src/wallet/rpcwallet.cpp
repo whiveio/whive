@@ -5,27 +5,38 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <amount.h>
-#include <chain.h>
 #include <consensus/validation.h>
 #include <core_io.h>
 #include <httpserver.h>
 #include <validation.h>
 #include <key_io.h>
+<<<<<<< HEAD
 #include <net.h>
+=======
+#include <node/transaction.h>
+>>>>>>> upstream/master
 #include <outputtype.h>
 #include <policy/feerate.h>
 #include <policy/fees.h>
-#include <policy/policy.h>
 #include <policy/rbf.h>
 #include <rpc/mining.h>
 #include <rpc/rawtransaction.h>
 #include <rpc/server.h>
 #include <rpc/util.h>
 #include <script/sign.h>
+<<<<<<< HEAD
 #include <shutdown.h>
 #include <timedata.h>
 #include <util.h>
 #include <utilmoneystr.h>
+=======
+#include <util/bip32.h>
+#include <util/fees.h>
+#include <util/moneystr.h>
+#include <util/system.h>
+#include <util/url.h>
+#include <util/validation.h>
+>>>>>>> upstream/master
 #include <wallet/coincontrol.h>
 #include <wallet/feebumper.h>
 #include <wallet/rpcwallet.h>
@@ -40,6 +51,25 @@
 #include <functional>
 
 static const std::string WALLET_ENDPOINT_BASE = "/wallet/";
+
+static inline bool GetAvoidReuseFlag(CWallet * const pwallet, const UniValue& param) {
+    bool can_avoid_reuse = pwallet->IsWalletFlagSet(WALLET_FLAG_AVOID_REUSE);
+    bool avoid_reuse = param.isNull() ? can_avoid_reuse : param.get_bool();
+
+    if (avoid_reuse && !can_avoid_reuse) {
+        throw JSONRPCError(RPC_WALLET_ERROR, "wallet does not have the \"avoid reuse\" feature enabled");
+    }
+
+    return avoid_reuse;
+}
+
+/** Checks if a CKey is in the given CWallet compressed or otherwise*/
+bool HaveKey(const CWallet& wallet, const CKey& key)
+{
+    CKey key2;
+    key2.Set(key.begin(), key.end(), !key.IsCompressed());
+    return wallet.HaveKey(key.GetPubKey().GetID()) || wallet.HaveKey(key2.GetPubKey().GetID());
+}
 
 bool GetWalletNameFromJSONRPCRequest(const JSONRPCRequest& request, std::string& wallet_name)
 {
@@ -146,6 +176,7 @@ static UniValue getnewaddress(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 2)
         throw std::runtime_error(
             "getnewaddress ( \"label\" \"address_type\" )\n"
@@ -156,11 +187,27 @@ static UniValue getnewaddress(const JSONRPCRequest& request)
             "1. \"label\"          (string, optional) The label name for the address to be linked to. If not provided, the default label \"\" is used. It can also be set to the empty string \"\" to represent the default label. The label does not need to exist, it will be created if there is no label by the given name.\n"
             "2. \"address_type\"   (string, optional) The address type to use. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\". Default is set by -addresstype.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"getnewaddress",
+                "\nReturns a new Bitcoin address for receiving payments.\n"
+                "If 'label' is specified, it is added to the address book \n"
+                "so payments received with the address will be associated with 'label'.\n",
+                {
+                    {"label", RPCArg::Type::STR, /* default */ "\"\"", "The label name for the address to be linked to. It can also be set to the empty string \"\" to represent the default label. The label does not need to exist, it will be created if there is no label by the given name."},
+                    {"address_type", RPCArg::Type::STR, /* default */ "set by -addresstype", "The address type to use. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\"."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "\"address\"    (string) The new bitcoin address\n"
             "\nExamples:\n"
             + HelpExampleCli("getnewaddress", "")
             + HelpExampleRpc("getnewaddress", "")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     if (pwallet->IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS)) {
         throw JSONRPCError(RPC_WALLET_ERROR, "Error: Private keys are disabled for this wallet");
@@ -180,19 +227,11 @@ static UniValue getnewaddress(const JSONRPCRequest& request)
         }
     }
 
-    if (!pwallet->IsLocked()) {
-        pwallet->TopUpKeyPool();
+    CTxDestination dest;
+    std::string error;
+    if (!pwallet->GetNewDestination(output_type, label, dest, error)) {
+        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, error);
     }
-
-    // Generate a new key that is added to wallet
-    CPubKey newKey;
-    if (!pwallet->GetKeyFromPool(newKey)) {
-        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
-    }
-    pwallet->LearnRelatedScripts(newKey, output_type);
-    CTxDestination dest = GetDestinationForKey(newKey, output_type);
-
-    pwallet->SetAddressBook(dest, label, "receive");
 
     return EncodeDestination(dest);
 }
@@ -259,6 +298,7 @@ static UniValue getrawchangeaddress(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
             "getrawchangeaddress ( \"address_type\" )\n"
@@ -267,22 +307,41 @@ static UniValue getrawchangeaddress(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"address_type\"           (string, optional) The address type to use. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\". Default is set by -changetype.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"getrawchangeaddress",
+                "\nReturns a new Bitcoin address, for receiving change.\n"
+                "This is for use with raw transactions, NOT normal use.\n",
+                {
+                    {"address_type", RPCArg::Type::STR, /* default */ "set by -changetype", "The address type to use. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\"."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "\"address\"    (string) The address\n"
             "\nExamples:\n"
             + HelpExampleCli("getrawchangeaddress", "")
             + HelpExampleRpc("getrawchangeaddress", "")
+<<<<<<< HEAD
        );
+=======
+                },
+            }.Check(request);
+
+    LOCK(pwallet->cs_wallet);
+>>>>>>> upstream/master
 
     if (pwallet->IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS)) {
         throw JSONRPCError(RPC_WALLET_ERROR, "Error: Private keys are disabled for this wallet");
     }
 
+<<<<<<< HEAD
     LOCK2(cs_main, pwallet->cs_wallet);
 
     if (!pwallet->IsLocked()) {
         pwallet->TopUpKeyPool();
     }
 
+=======
+>>>>>>> upstream/master
     OutputType output_type = pwallet->m_default_change_type != OutputType::CHANGE_AUTO ? pwallet->m_default_change_type : pwallet->m_default_address_type;
     if (!request.params[0].isNull()) {
         if (!ParseOutputType(request.params[0].get_str(), output_type)) {
@@ -290,16 +349,11 @@ static UniValue getrawchangeaddress(const JSONRPCRequest& request)
         }
     }
 
-    CReserveKey reservekey(pwallet);
-    CPubKey vchPubKey;
-    if (!reservekey.GetReservedKey(vchPubKey, true))
-        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, "Error: Keypool ran out, please call keypoolrefill first");
-
-    reservekey.KeepKey();
-
-    pwallet->LearnRelatedScripts(vchPubKey, output_type);
-    CTxDestination dest = GetDestinationForKey(vchPubKey, output_type);
-
+    CTxDestination dest;
+    std::string error;
+    if (!pwallet->GetNewChangeDestination(output_type, dest, error)) {
+        throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT, error);
+    }
     return EncodeDestination(dest);
 }
 
@@ -313,6 +367,7 @@ static UniValue setlabel(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (!IsDeprecatedRPCEnabled("accounts") && request.strMethod == "setaccount") {
         if (request.fHelp) {
             throw std::runtime_error("setaccount (Deprecated, will be removed in V0.18. To use this command, start bitcoind with -deprecatedrpc=accounts)");
@@ -331,6 +386,20 @@ static UniValue setlabel(const JSONRPCRequest& request)
             + HelpExampleCli("setlabel", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\" \"tabby\"")
             + HelpExampleRpc("setlabel", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\", \"tabby\"")
         );
+=======
+            RPCHelpMan{"setlabel",
+                "\nSets the label associated with the given address.\n",
+                {
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The bitcoin address to be associated with a label."},
+                    {"label", RPCArg::Type::STR, RPCArg::Optional::NO, "The label to assign to the address."},
+                },
+                RPCResults{},
+                RPCExamples{
+                    HelpExampleCli("setlabel", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\" \"tabby\"")
+            + HelpExampleRpc("setlabel", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\", \"tabby\"")
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK2(cs_main, pwallet->cs_wallet);
 
@@ -465,7 +534,11 @@ static UniValue getaddressesbyaccount(const JSONRPCRequest& request)
 
 static CTransactionRef SendMoney(CWallet * const pwallet, const CTxDestination &address, CAmount nValue, bool fSubtractFeeFromAmount, const CCoinControl& coin_control, mapValue_t mapValue, std::string fromAccount)
 {
+<<<<<<< HEAD
     CAmount curBalance = pwallet->GetBalance();
+=======
+    CAmount curBalance = pwallet->GetBalance(0, coin_control.m_avoid_address_reuse).m_mine_trusted;
+>>>>>>> upstream/master
 
     // Check amount
     if (nValue <= 0)
@@ -482,7 +555,6 @@ static CTransactionRef SendMoney(CWallet * const pwallet, const CTxDestination &
     CScript scriptPubKey = GetScriptForDestination(address);
 
     // Create and send the transaction
-    CReserveKey reservekey(pwallet);
     CAmount nFeeRequired;
     std::string strError;
     std::vector<CRecipient> vecSend;
@@ -490,13 +562,21 @@ static CTransactionRef SendMoney(CWallet * const pwallet, const CTxDestination &
     CRecipient recipient = {scriptPubKey, nValue, fSubtractFeeFromAmount};
     vecSend.push_back(recipient);
     CTransactionRef tx;
+<<<<<<< HEAD
     if (!pwallet->CreateTransaction(vecSend, tx, reservekey, nFeeRequired, nChangePosRet, strError, coin_control)) {
+=======
+    if (!pwallet->CreateTransaction(locked_chain, vecSend, tx, nFeeRequired, nChangePosRet, strError, coin_control)) {
+>>>>>>> upstream/master
         if (!fSubtractFeeFromAmount && nValue + nFeeRequired > curBalance)
             strError = strprintf("Error: This transaction requires a transaction fee of at least %s", FormatMoney(nFeeRequired));
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
     CValidationState state;
+<<<<<<< HEAD
     if (!pwallet->CommitTransaction(tx, std::move(mapValue), {} /* orderForm */, std::move(fromAccount), reservekey, g_connman.get(), state)) {
+=======
+    if (!pwallet->CommitTransaction(tx, std::move(mapValue), {} /* orderForm */, state)) {
+>>>>>>> upstream/master
         strError = strprintf("Error: The transaction was rejected! Reason given: %s", FormatStateMessage(state));
         throw JSONRPCError(RPC_WALLET_ERROR, strError);
     }
@@ -512,6 +592,7 @@ static UniValue sendtoaddress(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 8)
         throw std::runtime_error(
             "sendtoaddress \"address\" amount ( \"comment\" \"comment_to\" subtractfeefromamount replaceable conf_target \"estimate_mode\")\n"
@@ -523,6 +604,17 @@ static UniValue sendtoaddress(const JSONRPCRequest& request)
             "3. \"comment\"            (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
             "4. \"comment_to\"         (string, optional) A comment to store the name of the person or organization \n"
+=======
+            RPCHelpMan{"sendtoaddress",
+                "\nSend an amount to a given address." +
+                    HelpRequiringPassphrase(pwallet) + "\n",
+                {
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The bitcoin address to send to."},
+                    {"amount", RPCArg::Type::AMOUNT, RPCArg::Optional::NO, "The amount in " + CURRENCY_UNIT + " to send. eg 0.1"},
+                    {"comment", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "A comment used to store what the transaction is for.\n"
+            "                             This is not part of the transaction, just kept in your wallet."},
+                    {"comment_to", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "A comment to store the name of the person or organization\n"
+>>>>>>> upstream/master
             "                             to which you're sending the transaction. This is not part of the \n"
             "                             transaction, just kept in your wallet.\n"
             "5. subtractfeefromamount  (boolean, optional, default=false) The fee will be deducted from the amount being sent.\n"
@@ -532,15 +624,28 @@ static UniValue sendtoaddress(const JSONRPCRequest& request)
             "8. \"estimate_mode\"      (string, optional, default=UNSET) The fee estimate mode, must be one of:\n"
             "       \"UNSET\"\n"
             "       \"ECONOMICAL\"\n"
+<<<<<<< HEAD
             "       \"CONSERVATIVE\"\n"
             "\nResult:\n"
+=======
+            "       \"CONSERVATIVE\""},
+                    {"avoid_reuse", RPCArg::Type::BOOL, /* default */ "true", "(only available if avoid_reuse wallet flag is set) Avoid spending from dirty addresses; addresses are considered\n"
+            "                             dirty if they have previously been used in a transaction."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "\"txid\"                  (string) The transaction id.\n"
             "\nExamples:\n"
             + HelpExampleCli("sendtoaddress", "\"1M72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd\" 0.1")
             + HelpExampleCli("sendtoaddress", "\"1M72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd\" 0.1 \"donation\" \"seans outpost\"")
             + HelpExampleCli("sendtoaddress", "\"1M72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd\" 0.1 \"\" \"\" true")
             + HelpExampleRpc("sendtoaddress", "\"1M72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd\", 0.1, \"donation\", \"seans outpost\"")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -585,6 +690,9 @@ static UniValue sendtoaddress(const JSONRPCRequest& request)
         }
     }
 
+    coin_control.m_avoid_address_reuse = GetAvoidReuseFlag(pwallet, request.params[8]);
+    // We also enable partial spend avoidance if reuse avoidance is set.
+    coin_control.m_avoid_partial_spends |= coin_control.m_avoid_address_reuse;
 
     EnsureWalletIsUnlocked(pwallet);
 
@@ -601,6 +709,7 @@ static UniValue listaddressgroupings(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
             "listaddressgroupings\n"
@@ -608,6 +717,14 @@ static UniValue listaddressgroupings(const JSONRPCRequest& request)
             "made public by common use as inputs or as the resulting change\n"
             "in past transactions\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"listaddressgroupings",
+                "\nLists groups of addresses which have had their common ownership\n"
+                "made public by common use as inputs or as the resulting change\n"
+                "in past transactions\n",
+                {},
+                RPCResult{
+>>>>>>> upstream/master
             "[\n"
             "  [\n"
             "    [\n"
@@ -622,7 +739,12 @@ static UniValue listaddressgroupings(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("listaddressgroupings", "")
             + HelpExampleRpc("listaddressgroupings", "")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -660,6 +782,7 @@ static UniValue signmessage(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 2)
         throw std::runtime_error(
             "signmessage \"address\" \"message\"\n"
@@ -669,6 +792,16 @@ static UniValue signmessage(const JSONRPCRequest& request)
             "1. \"address\"         (string, required) The bitcoin address to use for the private key.\n"
             "2. \"message\"         (string, required) The message to create a signature of.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"signmessage",
+                "\nSign a message with the private key of an address" +
+                    HelpRequiringPassphrase(pwallet) + "\n",
+                {
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The bitcoin address to use for the private key."},
+                    {"message", RPCArg::Type::STR, RPCArg::Optional::NO, "The message to create a signature of."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "\"signature\"          (string) The signature of the message encoded in base 64\n"
             "\nExamples:\n"
             "\nUnlock the wallet for 30 seconds\n"
@@ -679,7 +812,12 @@ static UniValue signmessage(const JSONRPCRequest& request)
             + HelpExampleCli("verifymessage", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\" \"signature\" \"my message\"") +
             "\nAs json rpc\n"
             + HelpExampleRpc("signmessage", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\", \"my message\"")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK2(cs_main, pwallet->cs_wallet);
 
@@ -723,6 +861,7 @@ static UniValue getreceivedbyaddress(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "getreceivedbyaddress \"address\" ( minconf )\n"
@@ -731,6 +870,15 @@ static UniValue getreceivedbyaddress(const JSONRPCRequest& request)
             "1. \"address\"         (string, required) The bitcoin address for transactions.\n"
             "2. minconf             (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"getreceivedbyaddress",
+                "\nReturns the total amount received by the given address in transactions with at least minconf confirmations.\n",
+                {
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The bitcoin address for transactions."},
+                    {"minconf", RPCArg::Type::NUM, /* default */ "1", "Only include transactions confirmed at least this many times."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "amount   (numeric) The total amount in " + CURRENCY_UNIT + " received at this address.\n"
             "\nExamples:\n"
             "\nThe amount from transactions with at least 1 confirmation\n"
@@ -741,7 +889,12 @@ static UniValue getreceivedbyaddress(const JSONRPCRequest& request)
             + HelpExampleCli("getreceivedbyaddress", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\" 6") +
             "\nAs a json rpc call\n"
             + HelpExampleRpc("getreceivedbyaddress", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\", 6")
+<<<<<<< HEAD
        );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -790,6 +943,7 @@ static UniValue getreceivedbylabel(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (!IsDeprecatedRPCEnabled("accounts") && request.strMethod == "getreceivedbyaccount") {
         if (request.fHelp) {
             throw std::runtime_error("getreceivedbyaccount (Deprecated, will be removed in V0.18. To use this command, start bitcoind with -deprecatedrpc=accounts)");
@@ -805,6 +959,15 @@ static UniValue getreceivedbylabel(const JSONRPCRequest& request)
             "1. \"label\"        (string, required) The selected label, may be the default label using \"\".\n"
             "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"getreceivedbylabel",
+                "\nReturns the total amount received by addresses with <label> in transactions with at least [minconf] confirmations.\n",
+                {
+                    {"label", RPCArg::Type::STR, RPCArg::Optional::NO, "The selected label, may be the default label using \"\"."},
+                    {"minconf", RPCArg::Type::NUM, /* default */ "1", "Only include transactions confirmed at least this many times."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "amount              (numeric) The total amount in " + CURRENCY_UNIT + " received for this label.\n"
             "\nExamples:\n"
             "\nAmount received by the default label with at least 1 confirmation\n"
@@ -815,7 +978,12 @@ static UniValue getreceivedbylabel(const JSONRPCRequest& request)
             + HelpExampleCli("getreceivedbylabel", "\"tabby\" 6") +
             "\nAs a json rpc call\n"
             + HelpExampleRpc("getreceivedbylabel", "\"tabby\", 6")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -862,6 +1030,7 @@ static UniValue getbalance(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || (request.params.size() > 3 ))
         throw std::runtime_error(
            (IsDeprecatedRPCEnabled("accounts") ? std::string(
@@ -900,13 +1069,34 @@ static UniValue getbalance(const JSONRPCRequest& request)
             "\nResult:\n"
             "amount              (numeric) The total amount in " + CURRENCY_UNIT + " received for this account.\n"
             "\nExamples:\n"
+=======
+            RPCHelpMan{"getbalance",
+                "\nReturns the total available balance.\n"
+                "The available balance is what the wallet considers currently spendable, and is\n"
+                "thus affected by options which limit spendability such as -spendzeroconfchange.\n",
+                {
+                    {"dummy", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "Remains for backward compatibility. Must be excluded or set to \"*\"."},
+                    {"minconf", RPCArg::Type::NUM, /* default */ "0", "Only include transactions confirmed at least this many times."},
+                    {"include_watchonly", RPCArg::Type::BOOL, /* default */ "false", "Also include balance in watch-only addresses (see 'importaddress')"},
+                    {"avoid_reuse", RPCArg::Type::BOOL, /* default */ "true", "(only available if avoid_reuse wallet flag is set) Do not include balance in dirty outputs; addresses are considered dirty if they have previously been used in a transaction."},
+                },
+                RPCResult{
+            "amount              (numeric) The total amount in " + CURRENCY_UNIT + " received for this wallet.\n"
+                },
+                RPCExamples{
+>>>>>>> upstream/master
             "\nThe total amount in the wallet with 1 or more confirmations\n"
             + HelpExampleCli("getbalance", "") +
             "\nThe total amount in the wallet at least 6 blocks confirmed\n"
             + HelpExampleCli("getbalance", "\"*\" 6") +
             "\nAs a json rpc call\n"
             + HelpExampleRpc("getbalance", "\"*\", 6")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -930,6 +1120,7 @@ static UniValue getbalance(const JSONRPCRequest& request)
         filter = filter | ISMINE_WATCH_ONLY;
     }
 
+<<<<<<< HEAD
     if (!account_value.isNull()) {
 
         const std::string& account_param = account_value.get_str();
@@ -941,6 +1132,11 @@ static UniValue getbalance(const JSONRPCRequest& request)
             return ValueFromAmount(pwallet->GetLegacyBalance(filter, min_depth, account));
         }
     }
+=======
+    bool avoid_reuse = GetAvoidReuseFlag(pwallet, request.params[3]);
+
+    const auto bal = pwallet->GetBalance(min_depth, avoid_reuse);
+>>>>>>> upstream/master
 
     return ValueFromAmount(pwallet->GetBalance(filter, min_depth));
 }
@@ -954,10 +1150,19 @@ static UniValue getunconfirmedbalance(const JSONRPCRequest &request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 0)
         throw std::runtime_error(
                 "getunconfirmedbalance\n"
                 "Returns the server's total unconfirmed balance\n");
+=======
+            RPCHelpMan{"getunconfirmedbalance",
+                "DEPRECATED\nIdentical to getbalances().mine.untrusted_pending\n",
+                {},
+                RPCResults{},
+                RPCExamples{""},
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -1120,6 +1325,7 @@ static UniValue sendmany(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     std::string help_text;
     if (!IsDeprecatedRPCEnabled("accounts")) {
         help_text = "sendmany \"\" {\"address\":amount,...} ( minconf \"comment\" [\"address\",...] replaceable conf_target \"estimate_mode\")\n"
@@ -1137,6 +1343,21 @@ static UniValue sendmany(const JSONRPCRequest& request)
             "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
             "4. \"comment\"             (string, optional) A comment\n"
             "5. subtractfeefrom         (array, optional) A json array with addresses.\n"
+=======
+    RPCHelpMan{"sendmany",
+                "\nSend multiple times. Amounts are double-precision floating point numbers." +
+                    HelpRequiringPassphrase(pwallet) + "\n",
+                {
+                    {"dummy", RPCArg::Type::STR, RPCArg::Optional::NO, "Must be set to \"\" for backwards compatibility.", "\"\""},
+                    {"amounts", RPCArg::Type::OBJ, RPCArg::Optional::NO, "A json object with addresses and amounts",
+                        {
+                            {"address", RPCArg::Type::AMOUNT, RPCArg::Optional::NO, "The bitcoin address is the key, the numeric amount (can be string) in " + CURRENCY_UNIT + " is the value"},
+                        },
+                    },
+                    {"minconf", RPCArg::Type::NUM, RPCArg::Optional::OMITTED_NAMED_ARG, "Ignored dummy value"},
+                    {"comment", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "A comment"},
+                    {"subtractfeefrom", RPCArg::Type::ARR, RPCArg::Optional::OMITTED_NAMED_ARG, "A json array with addresses.\n"
+>>>>>>> upstream/master
             "                           The fee will be equally deducted from the amount of each selected address.\n"
             "                           Those recipients will receive less bitcoins than you enter in their corresponding amount field.\n"
             "                           If no addresses are specified here, the sender pays the fee.\n"
@@ -1160,6 +1381,7 @@ static UniValue sendmany(const JSONRPCRequest& request)
             + HelpExampleCli("sendmany", "\"\" \"{\\\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\\\":0.01,\\\"1353tsE8YMTA4EuV7dgUXGjNFf9KpVvKHz\\\":0.02}\" 6 \"testing\"") +
             "\nSend two amounts to two different addresses, subtract fee from amount:\n"
             + HelpExampleCli("sendmany", "\"\" \"{\\\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\\\":0.01,\\\"1353tsE8YMTA4EuV7dgUXGjNFf9KpVvKHz\\\":0.02}\" 1 \"\" \"[\\\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\\\",\\\"1353tsE8YMTA4EuV7dgUXGjNFf9KpVvKHz\\\"]\"") +
+<<<<<<< HEAD
             "\nAs a json rpc call\n"
             + HelpExampleRpc("sendmany", "\"\", {\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\":0.01,\"1353tsE8YMTA4EuV7dgUXGjNFf9KpVvKHz\":0.02}, 6, \"testing\"");
     } else {
@@ -1202,6 +1424,12 @@ static UniValue sendmany(const JSONRPCRequest& request)
             "\nAs a json rpc call\n"
             + HelpExampleRpc("sendmany", "\"\", {\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\":0.01,\"1353tsE8YMTA4EuV7dgUXGjNFf9KpVvKHz\":0.02}, 6, \"testing\"");
     }
+=======
+            "\nAs a JSON-RPC call\n"
+            + HelpExampleRpc("sendmany", "\"\", {\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\":0.01,\"1353tsE8YMTA4EuV7dgUXGjNFf9KpVvKHz\":0.02}, 6, \"testing\"")
+                },
+    }.Check(request);
+>>>>>>> upstream/master
 
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 8) throw std::runtime_error(help_text);
 
@@ -1293,16 +1521,23 @@ static UniValue sendmany(const JSONRPCRequest& request)
     std::shuffle(vecSend.begin(), vecSend.end(), FastRandomContext());
 
     // Send
-    CReserveKey keyChange(pwallet);
     CAmount nFeeRequired = 0;
     int nChangePosRet = -1;
     std::string strFailReason;
     CTransactionRef tx;
+<<<<<<< HEAD
     bool fCreated = pwallet->CreateTransaction(vecSend, tx, keyChange, nFeeRequired, nChangePosRet, strFailReason, coin_control);
     if (!fCreated)
         throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, strFailReason);
     CValidationState state;
     if (!pwallet->CommitTransaction(tx, std::move(mapValue), {} /* orderForm */, std::move(strAccount), keyChange, g_connman.get(), state)) {
+=======
+    bool fCreated = pwallet->CreateTransaction(*locked_chain, vecSend, tx, nFeeRequired, nChangePosRet, strFailReason, coin_control);
+    if (!fCreated)
+        throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, strFailReason);
+    CValidationState state;
+    if (!pwallet->CommitTransaction(tx, std::move(mapValue), {} /* orderForm */, state)) {
+>>>>>>> upstream/master
         strFailReason = strprintf("Transaction commit failed:: %s", FormatStateMessage(state));
         throw JSONRPCError(RPC_WALLET_ERROR, strFailReason);
     }
@@ -1319,6 +1554,7 @@ static UniValue addmultisigaddress(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 4) {
         std::string msg = "addmultisigaddress nrequired [\"key\",...] ( \"label\" \"address_type\" )\n"
             "\nAdd a nrequired-to-sign multisignature address to the wallet. Requires a new wallet backup.\n"
@@ -1338,6 +1574,25 @@ static UniValue addmultisigaddress(const JSONRPCRequest& request)
             "4. \"address_type\"                 (string, optional) The address type to use. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\". Default is set by -addresstype.\n"
 
             "\nResult:\n"
+=======
+            RPCHelpMan{"addmultisigaddress",
+                "\nAdd a nrequired-to-sign multisignature address to the wallet. Requires a new wallet backup.\n"
+                "Each key is a Bitcoin address or hex-encoded public key.\n"
+                "This functionality is only intended for use with non-watchonly addresses.\n"
+                "See `importaddress` for watchonly p2sh address support.\n"
+                "If 'label' is specified, assign address to that label.\n",
+                {
+                    {"nrequired", RPCArg::Type::NUM, RPCArg::Optional::NO, "The number of required signatures out of the n keys or addresses."},
+                    {"keys", RPCArg::Type::ARR, RPCArg::Optional::NO, "A json array of bitcoin addresses or hex-encoded public keys",
+                        {
+                            {"key", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "bitcoin address or hex-encoded public key"},
+                        },
+                        },
+                    {"label", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "A label to assign the addresses to."},
+                    {"address_type", RPCArg::Type::STR, /* default */ "set by -addresstype", "The address type to use. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\"."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "{\n"
             "  \"address\":\"multisigaddress\",    (string) The value of the new multisig address.\n"
             "  \"redeemScript\":\"script\"         (string) The string value of the hex-encoded redemption script.\n"
@@ -1347,9 +1602,14 @@ static UniValue addmultisigaddress(const JSONRPCRequest& request)
             + HelpExampleCli("addmultisigaddress", "2 \"[\\\"16sSauSf5pF2UkUwvKGq4qjNRzBZYqgEL5\\\",\\\"171sgjn4YtPu27adkKGrdDwzRTxnRkBfKV\\\"]\"") +
             "\nAs json rpc call\n"
             + HelpExampleRpc("addmultisigaddress", "2, \"[\\\"16sSauSf5pF2UkUwvKGq4qjNRzBZYqgEL5\\\",\\\"171sgjn4YtPu27adkKGrdDwzRTxnRkBfKV\\\"]\"")
+<<<<<<< HEAD
         ;
         throw std::runtime_error(msg);
     }
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK2(cs_main, pwallet->cs_wallet);
 
@@ -1378,8 +1638,8 @@ static UniValue addmultisigaddress(const JSONRPCRequest& request)
     }
 
     // Construct using pay-to-script-hash:
-    CScript inner = CreateMultisigRedeemscript(required, pubkeys);
-    CTxDestination dest = AddAndGetDestinationForScript(*pwallet, inner, output_type);
+    CScript inner;
+    CTxDestination dest = AddAndGetMultisigDestination(required, pubkeys, output_type, *pwallet, inner);
     pwallet->SetAddressBook(dest, label, "send");
 
     UniValue result(UniValue::VOBJ);
@@ -1682,6 +1942,7 @@ static UniValue listreceivedbyaddress(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 4)
         throw std::runtime_error(
             "listreceivedbyaddress ( minconf include_empty include_watchonly address_filter )\n"
@@ -1692,6 +1953,17 @@ static UniValue listreceivedbyaddress(const JSONRPCRequest& request)
             "3. include_watchonly (bool, optional, default=false) Whether to include watch-only addresses (see 'importaddress').\n"
             "4. address_filter    (string, optional) If present, only return information on this address.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"listreceivedbyaddress",
+                "\nList balances by receiving address.\n",
+                {
+                    {"minconf", RPCArg::Type::NUM, /* default */ "1", "The minimum number of confirmations before payments are included."},
+                    {"include_empty", RPCArg::Type::BOOL, /* default */ "false", "Whether to include addresses that haven't received any payments."},
+                    {"include_watchonly", RPCArg::Type::BOOL, /* default */ "false", "Whether to include watch-only addresses (see 'importaddress')."},
+                    {"address_filter", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "If present, only return information on this address."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "[\n"
             "  {\n"
             "    \"involvesWatchonly\" : true,        (bool) Only returned if imported addresses were involved in transaction\n"
@@ -1713,7 +1985,12 @@ static UniValue listreceivedbyaddress(const JSONRPCRequest& request)
             + HelpExampleCli("listreceivedbyaddress", "6 true")
             + HelpExampleRpc("listreceivedbyaddress", "6, true, true")
             + HelpExampleRpc("listreceivedbyaddress", "6, true, true, \"1M72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd\"")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -1733,6 +2010,7 @@ static UniValue listreceivedbylabel(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (!IsDeprecatedRPCEnabled("accounts") && request.strMethod == "listreceivedbyaccount") {
         if (request.fHelp) {
             throw std::runtime_error("listreceivedbyaccount (Deprecated, will be removed in V0.18. To use this command, start bitcoind with -deprecatedrpc=accounts)");
@@ -1750,6 +2028,16 @@ static UniValue listreceivedbylabel(const JSONRPCRequest& request)
             "3. include_watchonly (bool, optional, default=false) Whether to include watch-only addresses (see 'importaddress').\n"
 
             "\nResult:\n"
+=======
+            RPCHelpMan{"listreceivedbylabel",
+                "\nList received transactions by label.\n",
+                {
+                    {"minconf", RPCArg::Type::NUM, /* default */ "1", "The minimum number of confirmations before payments are included."},
+                    {"include_empty", RPCArg::Type::BOOL, /* default */ "false", "Whether to include labels that haven't received any payments."},
+                    {"include_watchonly", RPCArg::Type::BOOL, /* default */ "false", "Whether to include watch-only addresses (see 'importaddress')."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "[\n"
             "  {\n"
             "    \"involvesWatchonly\" : true,   (bool) Only returned if imported addresses were involved in transaction\n"
@@ -1765,7 +2053,12 @@ static UniValue listreceivedbylabel(const JSONRPCRequest& request)
             + HelpExampleCli("listreceivedbylabel", "")
             + HelpExampleCli("listreceivedbylabel", "6 true")
             + HelpExampleRpc("listreceivedbylabel", "6, true, true")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -1905,6 +2198,7 @@ UniValue listtransactions(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     std::string help_text {};
     if (!IsDeprecatedRPCEnabled("accounts")) {
         help_text = "listtransactions (label count skip include_watchonly)\n"
@@ -1919,6 +2213,19 @@ UniValue listtransactions(const JSONRPCRequest& request)
             "3. skip           (numeric, optional, default=0) The number of transactions to skip\n"
             "4. include_watchonly (bool, optional, default=false) Include transactions to watch-only addresses (see 'importaddress')\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"listtransactions",
+                "\nIf a label name is provided, this will return only incoming transactions paying to addresses with the specified label.\n"
+                "\nReturns up to 'count' most recent transactions skipping the first 'from' transactions.\n",
+                {
+                    {"label", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "If set, should be a valid label name to return only incoming transactions\n"
+            "              with the specified label, or \"*\" to disable filtering and return all transactions."},
+                    {"count", RPCArg::Type::NUM, /* default */ "10", "The number of transactions to return"},
+                    {"skip", RPCArg::Type::NUM, /* default */ "0", "The number of transactions to skip"},
+                    {"include_watchonly", RPCArg::Type::BOOL, /* default */ "false", "Include transactions to watch-only addresses (see 'importaddress')"},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "[\n"
             "  {\n"
             "    \"address\":\"address\",    (string) The bitcoin address of the transaction.\n"
@@ -1951,6 +2258,7 @@ UniValue listtransactions(const JSONRPCRequest& request)
             + HelpExampleCli("listtransactions", "") +
             "\nList transactions 100 to 120\n"
             + HelpExampleCli("listtransactions", "\"*\" 20 100") +
+<<<<<<< HEAD
             "\nAs a json rpc call\n"
             + HelpExampleRpc("listtransactions", "\"*\", 20, 100");
     } else {
@@ -2012,6 +2320,12 @@ UniValue listtransactions(const JSONRPCRequest& request)
             + HelpExampleRpc("listtransactions", "\"*\", 20, 100");
     }
     if (request.fHelp || request.params.size() > 4) throw std::runtime_error(help_text);
+=======
+            "\nAs a JSON-RPC call\n"
+            + HelpExampleRpc("listtransactions", "\"*\", 20, 100")
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -2192,6 +2506,7 @@ static UniValue listsinceblock(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 4)
         throw std::runtime_error(
             "listsinceblock ( \"blockhash\" target_confirmations include_watchonly include_removed )\n"
@@ -2205,6 +2520,20 @@ static UniValue listsinceblock(const JSONRPCRequest& request)
             "4. include_removed:         (bool, optional, default=true) Show transactions that were removed due to a reorg in the \"removed\" array\n"
             "                                                           (not guaranteed to work on pruned nodes)\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"listsinceblock",
+                "\nGet all transactions in blocks since block [blockhash], or all transactions if omitted.\n"
+                "If \"blockhash\" is no longer a part of the main chain, transactions from the fork point onward are included.\n"
+                "Additionally, if include_removed is set, transactions affecting the wallet which were removed are returned in the \"removed\" array.\n",
+                {
+                    {"blockhash", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "If set, the block hash to list transactions since, otherwise list all transactions."},
+                    {"target_confirmations", RPCArg::Type::NUM, /* default */ "1", "Return the nth block hash from the main chain. e.g. 1 would mean the best block hash. Note: this is not used as a filter, but only affects [lastblock] in the return value"},
+                    {"include_watchonly", RPCArg::Type::BOOL, /* default */ "false", "Include transactions to watch-only addresses (see 'importaddress')"},
+                    {"include_removed", RPCArg::Type::BOOL, /* default */ "true", "Show transactions that were removed due to a reorg in the \"removed\" array\n"
+            "                                                           (not guaranteed to work on pruned nodes)"},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "{\n"
             "  \"transactions\": [\n"
             "    \"account\":\"accountname\",       (string) DEPRECATED. This field will be removed in V0.18. To see this deprecated field, start bitcoind with -deprecatedrpc=accounts. The account name associated with the transaction. Will be \"\" for the default account.\n"
@@ -2239,7 +2568,12 @@ static UniValue listsinceblock(const JSONRPCRequest& request)
             + HelpExampleCli("listsinceblock", "")
             + HelpExampleCli("listsinceblock", "\"000000000000000bacf66f7497b7dc45ef753ee9a7d38571037cdb1a57f663ad\" 6")
             + HelpExampleRpc("listsinceblock", "\"000000000000000bacf66f7497b7dc45ef753ee9a7d38571037cdb1a57f663ad\", 6")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -2333,6 +2667,7 @@ static UniValue gettransaction(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "gettransaction \"txid\" ( include_watchonly )\n"
@@ -2341,6 +2676,15 @@ static UniValue gettransaction(const JSONRPCRequest& request)
             "1. \"txid\"                  (string, required) The transaction id\n"
             "2. \"include_watchonly\"     (bool, optional, default=false) Whether to include watch-only addresses in balance calculation and details[]\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"gettransaction",
+                "\nGet detailed information about in-wallet transaction <txid>\n",
+                {
+                    {"txid", RPCArg::Type::STR, RPCArg::Optional::NO, "The transaction id"},
+                    {"include_watchonly", RPCArg::Type::BOOL, /* default */ "false", "Whether to include watch-only addresses in balance calculation and details[]"},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "{\n"
             "  \"amount\" : x.xxx,        (numeric) The transaction amount in " + CURRENCY_UNIT + "\n"
             "  \"fee\": x.xxx,            (numeric) The amount of the fee in " + CURRENCY_UNIT + ". This is negative and only available for the \n"
@@ -2376,7 +2720,12 @@ static UniValue gettransaction(const JSONRPCRequest& request)
             + HelpExampleCli("gettransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
             + HelpExampleCli("gettransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\" true")
             + HelpExampleRpc("gettransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -2429,6 +2778,7 @@ static UniValue abandontransaction(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 1) {
         throw std::runtime_error(
             "abandontransaction \"txid\"\n"
@@ -2445,6 +2795,23 @@ static UniValue abandontransaction(const JSONRPCRequest& request)
             + HelpExampleRpc("abandontransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
         );
     }
+=======
+            RPCHelpMan{"abandontransaction",
+                "\nMark in-wallet transaction <txid> as abandoned\n"
+                "This will mark this transaction and all its in-wallet descendants as abandoned which will allow\n"
+                "for their inputs to be respent.  It can be used to replace \"stuck\" or evicted transactions.\n"
+                "It only works on transactions which are not included in a block and are not currently in the mempool.\n"
+                "It has no effect on transactions which are already abandoned.\n",
+                {
+                    {"txid", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The transaction id"},
+                },
+                RPCResults{},
+                RPCExamples{
+                    HelpExampleCli("abandontransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
+            + HelpExampleRpc("abandontransaction", "\"1075db55d416d3ca199f55b6084e2115b9345e16c5cf302fc80e9d5fbf5d48d\"")
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -2475,6 +2842,7 @@ static UniValue backupwallet(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
             "backupwallet \"destination\"\n"
@@ -2485,6 +2853,19 @@ static UniValue backupwallet(const JSONRPCRequest& request)
             + HelpExampleCli("backupwallet", "\"backup.dat\"")
             + HelpExampleRpc("backupwallet", "\"backup.dat\"")
         );
+=======
+            RPCHelpMan{"backupwallet",
+                "\nSafely copies current wallet file to destination, which can be a directory or a path with filename.\n",
+                {
+                    {"destination", RPCArg::Type::STR, RPCArg::Optional::NO, "The destination directory or file"},
+                },
+                RPCResults{},
+                RPCExamples{
+                    HelpExampleCli("backupwallet", "\"backup.dat\"")
+            + HelpExampleRpc("backupwallet", "\"backup.dat\"")
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -2510,6 +2891,7 @@ static UniValue keypoolrefill(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
             "keypoolrefill ( newsize )\n"
@@ -2521,6 +2903,20 @@ static UniValue keypoolrefill(const JSONRPCRequest& request)
             + HelpExampleCli("keypoolrefill", "")
             + HelpExampleRpc("keypoolrefill", "")
         );
+=======
+            RPCHelpMan{"keypoolrefill",
+                "\nFills the keypool."+
+                    HelpRequiringPassphrase(pwallet) + "\n",
+                {
+                    {"newsize", RPCArg::Type::NUM, /* default */ "100", "The new keypool size"},
+                },
+                RPCResults{},
+                RPCExamples{
+                    HelpExampleCli("keypoolrefill", "")
+            + HelpExampleRpc("keypoolrefill", "")
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     if (pwallet->IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS)) {
         throw JSONRPCError(RPC_WALLET_ERROR, "Error: Private keys are disabled for this wallet");
@@ -2556,6 +2952,7 @@ static UniValue walletpassphrase(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 2) {
         throw std::runtime_error(
             "walletpassphrase \"passphrase\" timeout\n"
@@ -2564,6 +2961,11 @@ static UniValue walletpassphrase(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"passphrase\"     (string, required) The wallet passphrase\n"
             "2. timeout            (numeric, required) The time to keep the decryption key in seconds; capped at 100000000 (~3 years).\n"
+=======
+            RPCHelpMan{"walletpassphrase",
+                "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
+                "This is needed prior to performing transactions related to private keys such as sending bitcoins\n"
+>>>>>>> upstream/master
             "\nNote:\n"
             "Issuing the walletpassphrase command while the wallet is already unlocked will set a new unlock\n"
             "time that overrides the old one.\n"
@@ -2574,8 +2976,13 @@ static UniValue walletpassphrase(const JSONRPCRequest& request)
             + HelpExampleCli("walletlock", "") +
             "\nAs json rpc call\n"
             + HelpExampleRpc("walletpassphrase", "\"my pass phrase\", 60")
+<<<<<<< HEAD
         );
     }
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK2(cs_main, pwallet->cs_wallet);
 
@@ -2642,6 +3049,7 @@ static UniValue walletpassphrasechange(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 2) {
         throw std::runtime_error(
             "walletpassphrasechange \"oldpassphrase\" \"newpassphrase\"\n"
@@ -2654,6 +3062,20 @@ static UniValue walletpassphrasechange(const JSONRPCRequest& request)
             + HelpExampleRpc("walletpassphrasechange", "\"old one\", \"new one\"")
         );
     }
+=======
+            RPCHelpMan{"walletpassphrasechange",
+                "\nChanges the wallet passphrase from 'oldpassphrase' to 'newpassphrase'.\n",
+                {
+                    {"oldpassphrase", RPCArg::Type::STR, RPCArg::Optional::NO, "The current passphrase"},
+                    {"newpassphrase", RPCArg::Type::STR, RPCArg::Optional::NO, "The new passphrase"},
+                },
+                RPCResults{},
+                RPCExamples{
+                    HelpExampleCli("walletpassphrasechange", "\"old one\" \"new one\"")
+            + HelpExampleRpc("walletpassphrasechange", "\"old one\", \"new one\"")
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK2(cs_main, pwallet->cs_wallet);
 
@@ -2693,6 +3115,7 @@ static UniValue walletlock(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 0) {
         throw std::runtime_error(
             "walletlock\n"
@@ -2700,6 +3123,15 @@ static UniValue walletlock(const JSONRPCRequest& request)
             "After calling this method, you will need to call walletpassphrase again\n"
             "before being able to call any methods which require the wallet to be unlocked.\n"
             "\nExamples:\n"
+=======
+            RPCHelpMan{"walletlock",
+                "\nRemoves the wallet encryption key from memory, locking the wallet.\n"
+                "After calling this method, you will need to call walletpassphrase again\n"
+                "before being able to call any methods which require the wallet to be unlocked.\n",
+                {},
+                RPCResults{},
+                RPCExamples{
+>>>>>>> upstream/master
             "\nSet the passphrase for 2 minutes to perform a transaction\n"
             + HelpExampleCli("walletpassphrase", "\"my pass phrase\" 120") +
             "\nPerform a send (requires passphrase set)\n"
@@ -2708,8 +3140,13 @@ static UniValue walletlock(const JSONRPCRequest& request)
             + HelpExampleCli("walletlock", "") +
             "\nAs json rpc call\n"
             + HelpExampleRpc("walletlock", "")
+<<<<<<< HEAD
         );
     }
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK2(cs_main, pwallet->cs_wallet);
 
@@ -2733,6 +3170,7 @@ static UniValue encryptwallet(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 1) {
         throw std::runtime_error(
             "encryptwallet \"passphrase\"\n"
@@ -2745,6 +3183,19 @@ static UniValue encryptwallet(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"passphrase\"    (string) The pass phrase to encrypt the wallet with. It must be at least 1 character, but should be long.\n"
             "\nExamples:\n"
+=======
+            RPCHelpMan{"encryptwallet",
+                "\nEncrypts the wallet with 'passphrase'. This is for first time encryption.\n"
+                "After this, any calls that interact with private keys such as sending or signing \n"
+                "will require the passphrase to be set prior the making these calls.\n"
+                "Use the walletpassphrase call for this, and then walletlock call.\n"
+                "If the wallet is already encrypted, use the walletpassphrasechange call.\n",
+                {
+                    {"passphrase", RPCArg::Type::STR, RPCArg::Optional::NO, "The pass phrase to encrypt the wallet with. It must be at least 1 character, but should be long."},
+                },
+                RPCResults{},
+                RPCExamples{
+>>>>>>> upstream/master
             "\nEncrypt your wallet\n"
             + HelpExampleCli("encryptwallet", "\"my pass phrase\"") +
             "\nNow set the passphrase to use the wallet, such as for signing or sending bitcoin\n"
@@ -2755,10 +3206,19 @@ static UniValue encryptwallet(const JSONRPCRequest& request)
             + HelpExampleCli("walletlock", "") +
             "\nAs a json rpc call\n"
             + HelpExampleRpc("encryptwallet", "\"my pass phrase\"")
+<<<<<<< HEAD
         );
     }
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK2(cs_main, pwallet->cs_wallet);
+
+    if (pwallet->IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS)) {
+        throw JSONRPCError(RPC_WALLET_ENCRYPTION_FAILED, "Error: wallet does not contain private keys, nothing to encrypt.");
+    }
 
     if (pwallet->IsCrypted()) {
         throw JSONRPCError(RPC_WALLET_WRONG_ENC_STATE, "Error: running with an encrypted wallet, but encryptwallet was called.");
@@ -2795,6 +3255,7 @@ static UniValue lockunspent(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
         throw std::runtime_error(
             "lockunspent unlock ([{\"txid\":\"txid\",\"vout\":n},...])\n"
@@ -2817,6 +3278,30 @@ static UniValue lockunspent(const JSONRPCRequest& request)
             "     ]\n"
 
             "\nResult:\n"
+=======
+            RPCHelpMan{"lockunspent",
+                "\nUpdates list of temporarily unspendable outputs.\n"
+                "Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.\n"
+                "If no transaction outputs are specified when unlocking then all current locked transaction outputs are unlocked.\n"
+                "A locked transaction output will not be chosen by automatic coin selection, when spending bitcoins.\n"
+                "Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list\n"
+                "is always cleared (by virtue of process exit) when a node stops or fails.\n"
+                "Also see the listunspent call\n",
+                {
+                    {"unlock", RPCArg::Type::BOOL, RPCArg::Optional::NO, "Whether to unlock (true) or lock (false) the specified transactions"},
+                    {"transactions", RPCArg::Type::ARR, /* default */ "empty array", "A json array of objects. Each object the txid (string) vout (numeric).",
+                        {
+                            {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
+                                {
+                                    {"txid", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The transaction id"},
+                                    {"vout", RPCArg::Type::NUM, RPCArg::Optional::NO, "The output number"},
+                                },
+                            },
+                        },
+                    },
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "true|false    (boolean) Whether the command was successful or not\n"
 
             "\nExamples:\n"
@@ -2830,7 +3315,12 @@ static UniValue lockunspent(const JSONRPCRequest& request)
             + HelpExampleCli("lockunspent", "true \"[{\\\"txid\\\":\\\"a08e6907dbbd3d809776dbfc5d82e371b764ed838b5655e72f463568df1aadf0\\\",\\\"vout\\\":1}]\"") +
             "\nAs a json rpc call\n"
             + HelpExampleRpc("lockunspent", "false, \"[{\\\"txid\\\":\\\"a08e6907dbbd3d809776dbfc5d82e371b764ed838b5655e72f463568df1aadf0\\\",\\\"vout\\\":1}]\"")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -2924,12 +3414,20 @@ static UniValue listlockunspent(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 0)
         throw std::runtime_error(
             "listlockunspent\n"
             "\nReturns list of temporarily unspendable outputs.\n"
             "See the lockunspent call to lock and unlock transactions for spending.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"listlockunspent",
+                "\nReturns list of temporarily unspendable outputs.\n"
+                "See the lockunspent call to lock and unlock transactions for spending.\n",
+                {},
+                RPCResult{
+>>>>>>> upstream/master
             "[\n"
             "  {\n"
             "    \"txid\" : \"transactionid\",     (string) The transaction id locked\n"
@@ -2948,7 +3446,12 @@ static UniValue listlockunspent(const JSONRPCRequest& request)
             + HelpExampleCli("lockunspent", "true \"[{\\\"txid\\\":\\\"a08e6907dbbd3d809776dbfc5d82e371b764ed838b5655e72f463568df1aadf0\\\",\\\"vout\\\":1}]\"") +
             "\nAs a json rpc call\n"
             + HelpExampleRpc("listlockunspent", "")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK2(cs_main, pwallet->cs_wallet);
 
@@ -2977,6 +3480,7 @@ static UniValue settxfee(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 1) {
         throw std::runtime_error(
             "settxfee amount\n"
@@ -2984,12 +3488,25 @@ static UniValue settxfee(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. amount         (numeric or string, required) The transaction fee in " + CURRENCY_UNIT + "/kB\n"
             "\nResult\n"
+=======
+            RPCHelpMan{"settxfee",
+                "\nSet the transaction fee per kB for this wallet. Overrides the global -paytxfee command line parameter.\n",
+                {
+                    {"amount", RPCArg::Type::AMOUNT, RPCArg::Optional::NO, "The transaction fee in " + CURRENCY_UNIT + "/kB"},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "true|false        (boolean) Returns true if successful\n"
             "\nExamples:\n"
             + HelpExampleCli("settxfee", "0.00001")
             + HelpExampleRpc("settxfee", "0.00001")
+<<<<<<< HEAD
         );
     }
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK2(cs_main, pwallet->cs_wallet);
 
@@ -2999,6 +3516,74 @@ static UniValue settxfee(const JSONRPCRequest& request)
     return true;
 }
 
+<<<<<<< HEAD
+=======
+static UniValue getbalances(const JSONRPCRequest& request)
+{
+    std::shared_ptr<CWallet> const rpc_wallet = GetWalletForJSONRPCRequest(request);
+    if (!EnsureWalletIsAvailable(rpc_wallet.get(), request.fHelp)) {
+        return NullUniValue;
+    }
+    CWallet& wallet = *rpc_wallet;
+
+    RPCHelpMan{
+        "getbalances",
+        "Returns an object with all balances in " + CURRENCY_UNIT + ".\n",
+        {},
+        RPCResult{
+            "{\n"
+            "    \"mine\": {                        (object) balances from outputs that the wallet can sign\n"
+            "      \"trusted\": xxx                 (numeric) trusted balance (outputs created by the wallet or confirmed outputs)\n"
+            "      \"untrusted_pending\": xxx       (numeric) untrusted pending balance (outputs created by others that are in the mempool)\n"
+            "      \"immature\": xxx                (numeric) balance from immature coinbase outputs\n"
+            "      \"used\": xxx                    (numeric) (only present if avoid_reuse is set) balance from coins sent to addresses that were previously spent from (potentially privacy violating)\n"
+            "    },\n"
+            "    \"watchonly\": {                   (object) watchonly balances (not present if wallet does not watch anything)\n"
+            "      \"trusted\": xxx                 (numeric) trusted balance (outputs created by the wallet or confirmed outputs)\n"
+            "      \"untrusted_pending\": xxx       (numeric) untrusted pending balance (outputs created by others that are in the mempool)\n"
+            "      \"immature\": xxx                (numeric) balance from immature coinbase outputs\n"
+            "    },\n"
+            "}\n"},
+        RPCExamples{
+            HelpExampleCli("getbalances", "") +
+            HelpExampleRpc("getbalances", "")},
+    }.Check(request);
+
+    // Make sure the results are valid at least up to the most recent block
+    // the user could have gotten from another RPC command prior to now
+    wallet.BlockUntilSyncedToCurrentChain();
+
+    auto locked_chain = wallet.chain().lock();
+    LOCK(wallet.cs_wallet);
+
+    UniValue obj(UniValue::VOBJ);
+
+    const auto bal = wallet.GetBalance();
+    UniValue balances{UniValue::VOBJ};
+    {
+        UniValue balances_mine{UniValue::VOBJ};
+        balances_mine.pushKV("trusted", ValueFromAmount(bal.m_mine_trusted));
+        balances_mine.pushKV("untrusted_pending", ValueFromAmount(bal.m_mine_untrusted_pending));
+        balances_mine.pushKV("immature", ValueFromAmount(bal.m_mine_immature));
+        if (wallet.IsWalletFlagSet(WALLET_FLAG_AVOID_REUSE)) {
+            // If the AVOID_REUSE flag is set, bal has been set to just the un-reused address balance. Get
+            // the total balance, and then subtract bal to get the reused address balance.
+            const auto full_bal = wallet.GetBalance(0, false);
+            balances_mine.pushKV("used", ValueFromAmount(full_bal.m_mine_trusted + full_bal.m_mine_untrusted_pending - bal.m_mine_trusted - bal.m_mine_untrusted_pending));
+        }
+        balances.pushKV("mine", balances_mine);
+    }
+    if (wallet.HaveWatchOnly()) {
+        UniValue balances_watchonly{UniValue::VOBJ};
+        balances_watchonly.pushKV("trusted", ValueFromAmount(bal.m_watchonly_trusted));
+        balances_watchonly.pushKV("untrusted_pending", ValueFromAmount(bal.m_watchonly_untrusted_pending));
+        balances_watchonly.pushKV("immature", ValueFromAmount(bal.m_watchonly_immature));
+        balances.pushKV("watchonly", balances_watchonly);
+    }
+    return balances;
+}
+
+>>>>>>> upstream/master
 static UniValue getwalletinfo(const JSONRPCRequest& request)
 {
     std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
@@ -3008,11 +3593,18 @@ static UniValue getwalletinfo(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 0)
         throw std::runtime_error(
             "getwalletinfo\n"
             "Returns an object containing various wallet state info.\n"
             "\nResult:\n"
+=======
+    RPCHelpMan{"getwalletinfo",
+                "Returns an object containing various wallet state info.\n",
+                {},
+                RPCResult{
+>>>>>>> upstream/master
             "{\n"
             "  \"walletname\": xxxxx,               (string) the wallet name\n"
             "  \"walletversion\": xxxxx,            (numeric) the wallet version\n"
@@ -3028,11 +3620,25 @@ static UniValue getwalletinfo(const JSONRPCRequest& request)
             "  \"hdseedid\": \"<hash160>\"            (string, optional) the Hash160 of the HD seed (only present when HD is enabled)\n"
             "  \"hdmasterkeyid\": \"<hash160>\"       (string, optional) alias for hdseedid retained for backwards-compatibility. Will be removed in V0.18.\n"
             "  \"private_keys_enabled\": true|false (boolean) false if privatekeys are disabled for this wallet (enforced watch-only wallet)\n"
+<<<<<<< HEAD
+=======
+            "  \"avoid_reuse\": true|false          (boolean) whether this wallet tracks clean/dirty coins in terms of reuse\n"
+            "  \"scanning\":                        (json object) current scanning details, or false if no scan is in progress\n"
+            "    {\n"
+            "      \"duration\" : xxxx              (numeric) elapsed seconds since scan start\n"
+            "      \"progress\" : x.xxxx,           (numeric) scanning progress percentage [0.0, 1.0]\n"
+            "    }\n"
+>>>>>>> upstream/master
             "}\n"
             "\nExamples:\n"
             + HelpExampleCli("getwalletinfo", "")
             + HelpExampleRpc("getwalletinfo", "")
+<<<<<<< HEAD
         );
+=======
+                },
+    }.Check(request);
+>>>>>>> upstream/master
 
     // Make sure the results are valid at least up to the most recent block
     // the user could have gotten from another RPC command prior to now
@@ -3064,6 +3670,7 @@ static UniValue getwalletinfo(const JSONRPCRequest& request)
         obj.pushKV("hdmasterkeyid", seed_id.GetHex());
     }
     obj.pushKV("private_keys_enabled", !pwallet->IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS));
+<<<<<<< HEAD
     return obj;
 }
 
@@ -3075,6 +3682,60 @@ static UniValue listwallets(const JSONRPCRequest& request)
             "Returns a list of currently loaded wallets.\n"
             "For full information on the wallet, use \"getwalletinfo\"\n"
             "\nResult:\n"
+=======
+    obj.pushKV("avoid_reuse", pwallet->IsWalletFlagSet(WALLET_FLAG_AVOID_REUSE));
+    if (pwallet->IsScanning()) {
+        UniValue scanning(UniValue::VOBJ);
+        scanning.pushKV("duration", pwallet->ScanningDuration() / 1000);
+        scanning.pushKV("progress", pwallet->ScanningProgress());
+        obj.pushKV("scanning", scanning);
+    } else {
+        obj.pushKV("scanning", false);
+    }
+    return obj;
+}
+
+static UniValue listwalletdir(const JSONRPCRequest& request)
+{
+            RPCHelpMan{"listwalletdir",
+                "Returns a list of wallets in the wallet directory.\n",
+                {},
+                RPCResult{
+            "{\n"
+            "  \"wallets\" : [                (json array of objects)\n"
+            "    {\n"
+            "      \"name\" : \"name\"          (string) The wallet name\n"
+            "    }\n"
+            "    ,...\n"
+            "  ]\n"
+            "}\n"
+                },
+                RPCExamples{
+                    HelpExampleCli("listwalletdir", "")
+            + HelpExampleRpc("listwalletdir", "")
+                },
+            }.Check(request);
+
+    UniValue wallets(UniValue::VARR);
+    for (const auto& path : ListWalletDir()) {
+        UniValue wallet(UniValue::VOBJ);
+        wallet.pushKV("name", path.string());
+        wallets.push_back(wallet);
+    }
+
+    UniValue result(UniValue::VOBJ);
+    result.pushKV("wallets", wallets);
+    return result;
+}
+
+static UniValue listwallets(const JSONRPCRequest& request)
+{
+            RPCHelpMan{"listwallets",
+                "Returns a list of currently loaded wallets.\n"
+                "For full information on the wallet, use \"getwalletinfo\"\n",
+                {},
+                RPCResult{
+>>>>>>> upstream/master
             "[                         (json array of strings)\n"
             "  \"walletname\"            (string) the wallet name\n"
             "   ...\n"
@@ -3082,7 +3743,12 @@ static UniValue listwallets(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("listwallets", "")
             + HelpExampleRpc("listwallets", "")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     UniValue obj(UniValue::VARR);
 
@@ -3101,6 +3767,7 @@ static UniValue listwallets(const JSONRPCRequest& request)
 
 static UniValue loadwallet(const JSONRPCRequest& request)
 {
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
             "loadwallet \"filename\"\n"
@@ -3110,6 +3777,16 @@ static UniValue loadwallet(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"filename\"    (string, required) The wallet directory or .dat file.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"loadwallet",
+                "\nLoads a wallet from a wallet file or directory."
+                "\nNote that all wallet command-line options used when starting bitcoind will be"
+                "\napplied to the new wallet (eg -zapwallettxes, upgradewallet, rescan, etc).\n",
+                {
+                    {"filename", RPCArg::Type::STR, RPCArg::Optional::NO, "The wallet directory or .dat file."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "{\n"
             "  \"name\" :    <wallet_name>,        (string) The wallet name if loaded successfully.\n"
             "  \"warning\" : <warning>,            (string) Warning message if wallet was not loaded cleanly.\n"
@@ -3117,9 +3794,16 @@ static UniValue loadwallet(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("loadwallet", "\"test.dat\"")
             + HelpExampleRpc("loadwallet", "\"test.dat\"")
+<<<<<<< HEAD
         );
     std::string wallet_file = request.params[0].get_str();
     std::string error;
+=======
+                },
+            }.Check(request);
+
+    WalletLocation location(request.params[0].get_str());
+>>>>>>> upstream/master
 
     fs::path wallet_path = fs::absolute(wallet_file, GetWalletDir());
     if (fs::symlink_status(wallet_path).type() == fs::file_not_found) {
@@ -3152,8 +3836,76 @@ static UniValue loadwallet(const JSONRPCRequest& request)
     return obj;
 }
 
+static UniValue setwalletflag(const JSONRPCRequest& request)
+{
+    std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
+    CWallet* const pwallet = wallet.get();
+
+    if (!EnsureWalletIsAvailable(pwallet, request.fHelp)) {
+        return NullUniValue;
+    }
+
+            std::string flags = "";
+            for (auto& it : WALLET_FLAG_MAP)
+                if (it.second & MUTABLE_WALLET_FLAGS)
+                    flags += (flags == "" ? "" : ", ") + it.first;
+            RPCHelpMan{"setwalletflag",
+                "\nChange the state of the given wallet flag for a wallet.\n",
+                {
+                    {"flag", RPCArg::Type::STR, RPCArg::Optional::NO, "The name of the flag to change. Current available flags: " + flags},
+                    {"value", RPCArg::Type::BOOL, /* default */ "true", "The new state."},
+                },
+                RPCResult{
+            "{\n"
+            "    \"flag_name\": string   (string) The name of the flag that was modified\n"
+            "    \"flag_state\": bool    (bool) The new state of the flag\n"
+            "    \"warnings\": string    (string) Any warnings associated with the change\n"
+            "}\n"
+                },
+                RPCExamples{
+                    HelpExampleCli("setwalletflag", "avoid_reuse")
+                  + HelpExampleRpc("setwalletflag", "\"avoid_reuse\"")
+                },
+            }.Check(request);
+
+    std::string flag_str = request.params[0].get_str();
+    bool value = request.params[1].isNull() || request.params[1].get_bool();
+
+    if (!WALLET_FLAG_MAP.count(flag_str)) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Unknown wallet flag: %s", flag_str));
+    }
+
+    auto flag = WALLET_FLAG_MAP.at(flag_str);
+
+    if (!(flag & MUTABLE_WALLET_FLAGS)) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Wallet flag is immutable: %s", flag_str));
+    }
+
+    UniValue res(UniValue::VOBJ);
+
+    if (pwallet->IsWalletFlagSet(flag) == value) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Wallet flag is already set to %s: %s", value ? "true" : "false", flag_str));
+    }
+
+    res.pushKV("flag_name", flag_str);
+    res.pushKV("flag_state", value);
+
+    if (value) {
+        pwallet->SetWalletFlag(flag);
+    } else {
+        pwallet->UnsetWalletFlag(flag);
+    }
+
+    if (flag && value && WALLET_FLAG_CAVEATS.count(flag)) {
+        res.pushKV("warnings", WALLET_FLAG_CAVEATS.at(flag));
+    }
+
+    return res;
+}
+
 static UniValue createwallet(const JSONRPCRequest& request)
 {
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2) {
         throw std::runtime_error(
             "createwallet \"wallet_name\" ( disable_private_keys )\n"
@@ -3162,6 +3914,19 @@ static UniValue createwallet(const JSONRPCRequest& request)
             "1. \"wallet_name\"          (string, required) The name for the new wallet. If this is a path, the wallet will be created at the path location.\n"
             "2. disable_private_keys   (boolean, optional, default: false) Disable the possibility of private keys (only watchonlys are possible in this mode).\n"
             "\nResult:\n"
+=======
+    RPCHelpMan{
+        "createwallet",
+        "\nCreates and loads a new wallet.\n",
+        {
+            {"wallet_name", RPCArg::Type::STR, RPCArg::Optional::NO, "The name for the new wallet. If this is a path, the wallet will be created at the path location."},
+            {"disable_private_keys", RPCArg::Type::BOOL, /* default */ "false", "Disable the possibility of private keys (only watchonlys are possible in this mode)."},
+            {"blank", RPCArg::Type::BOOL, /* default */ "false", "Create a blank wallet. A blank wallet has no keys or HD seed. One can be set using sethdseed."},
+            {"passphrase", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "Encrypt the wallet with this passphrase."},
+            {"avoid_reuse", RPCArg::Type::BOOL, /* default */ "false", "Keep track of coin reuse, and treat dirty and clean coins differently with privacy considerations in mind."},
+        },
+        RPCResult{
+>>>>>>> upstream/master
             "{\n"
             "  \"name\" :    <wallet_name>,        (string) The wallet name if created successfully. If the wallet was created using a full path, the wallet_name will be the full path.\n"
             "  \"warning\" : <warning>,            (string) Warning message if wallet was not loaded cleanly.\n"
@@ -3169,6 +3934,7 @@ static UniValue createwallet(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("createwallet", "\"testwallet\"")
             + HelpExampleRpc("createwallet", "\"testwallet\"")
+<<<<<<< HEAD
         );
     }
     std::string wallet_name = request.params[0].get_str();
@@ -3198,6 +3964,45 @@ static UniValue createwallet(const JSONRPCRequest& request)
 
     wallet->postInitProcess();
 
+=======
+        },
+    }.Check(request);
+
+    uint64_t flags = 0;
+    if (!request.params[1].isNull() && request.params[1].get_bool()) {
+        flags |= WALLET_FLAG_DISABLE_PRIVATE_KEYS;
+    }
+
+    if (!request.params[2].isNull() && request.params[2].get_bool()) {
+        flags |= WALLET_FLAG_BLANK_WALLET;
+    }
+    SecureString passphrase;
+    passphrase.reserve(100);
+    if (!request.params[3].isNull()) {
+        passphrase = request.params[3].get_str().c_str();
+        if (passphrase.empty()) {
+            // Empty string is invalid
+            throw JSONRPCError(RPC_WALLET_ENCRYPTION_FAILED, "Cannot encrypt a wallet with a blank password");
+        }
+    }
+
+    if (!request.params[4].isNull() && request.params[4].get_bool()) {
+        flags |= WALLET_FLAG_AVOID_REUSE;
+    }
+
+    std::string error;
+    std::string warning;
+    WalletCreationStatus status;
+    std::shared_ptr<CWallet> wallet = CreateWallet(*g_rpc_interfaces->chain, request.params[0].get_str(), error, warning, status, passphrase, flags);
+    if (status == WalletCreationStatus::CREATION_FAILED) {
+        throw JSONRPCError(RPC_WALLET_ERROR, error);
+    } else if (status == WalletCreationStatus::ENCRYPTION_FAILED) {
+        throw JSONRPCError(RPC_WALLET_ENCRYPTION_FAILED, error);
+    } else if (status != WalletCreationStatus::SUCCESS) {
+        throw JSONRPCError(RPC_WALLET_ERROR, "Wallet creation failed");
+    }
+
+>>>>>>> upstream/master
     UniValue obj(UniValue::VOBJ);
     obj.pushKV("name", wallet->GetName());
     obj.pushKV("warning", warning);
@@ -3207,6 +4012,7 @@ static UniValue createwallet(const JSONRPCRequest& request)
 
 static UniValue unloadwallet(const JSONRPCRequest& request)
 {
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 1) {
         throw std::runtime_error(
             "unloadwallet ( \"wallet_name\" )\n"
@@ -3219,6 +4025,20 @@ static UniValue unloadwallet(const JSONRPCRequest& request)
             + HelpExampleRpc("unloadwallet", "wallet_name")
         );
     }
+=======
+            RPCHelpMan{"unloadwallet",
+                "Unloads the wallet referenced by the request endpoint otherwise unloads the wallet specified in the argument.\n"
+                "Specifying the wallet name on a wallet endpoint is invalid.",
+                {
+                    {"wallet_name", RPCArg::Type::STR, /* default */ "the wallet name from the RPC request", "The name of the wallet to unload."},
+                },
+                RPCResults{},
+                RPCExamples{
+                    HelpExampleCli("unloadwallet", "wallet_name")
+            + HelpExampleRpc("unloadwallet", "wallet_name")
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     std::string wallet_name;
     if (GetWalletNameFromJSONRPCRequest(request, wallet_name)) {
@@ -3300,6 +4120,7 @@ static UniValue listunspent(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 5)
         throw std::runtime_error(
             "listunspent ( minconf maxconf  [\"addresses\",...] [include_unsafe] [query_options])\n"
@@ -3324,6 +4145,33 @@ static UniValue listunspent(const JSONRPCRequest& request)
             "      \"minimumSumAmount\" (numeric or string, default=unlimited) Minimum sum value of all UTXOs in " + CURRENCY_UNIT + "\n"
             "    }\n"
             "\nResult\n"
+=======
+    RPCHelpMan{
+                "listunspent",
+                "\nReturns array of unspent transaction outputs\n"
+                "with between minconf and maxconf (inclusive) confirmations.\n"
+                "Optionally filter to only include txouts paid to specified addresses.\n",
+                {
+                    {"minconf", RPCArg::Type::NUM, /* default */ "1", "The minimum confirmations to filter"},
+                    {"maxconf", RPCArg::Type::NUM, /* default */ "9999999", "The maximum confirmations to filter"},
+                    {"addresses", RPCArg::Type::ARR, /* default */ "empty array", "A json array of bitcoin addresses to filter",
+                        {
+                            {"address", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "bitcoin address"},
+                        },
+                    },
+                    {"include_unsafe", RPCArg::Type::BOOL, /* default */ "true", "Include outputs that are not safe to spend\n"
+            "                  See description of \"safe\" attribute below."},
+                    {"query_options", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED_NAMED_ARG, "JSON with query options",
+                        {
+                            {"minimumAmount", RPCArg::Type::AMOUNT, /* default */ "0", "Minimum value of each UTXO in " + CURRENCY_UNIT + ""},
+                            {"maximumAmount", RPCArg::Type::AMOUNT, /* default */ "unlimited", "Maximum value of each UTXO in " + CURRENCY_UNIT + ""},
+                            {"maximumCount", RPCArg::Type::NUM, /* default */ "unlimited", "Maximum number of UTXOs"},
+                            {"minimumSumAmount", RPCArg::Type::AMOUNT, /* default */ "unlimited", "Minimum sum value of all UTXOs in " + CURRENCY_UNIT + ""},
+                        },
+                        "query_options"},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "[                   (array of json object)\n"
             "  {\n"
             "    \"txid\" : \"txid\",          (string) the transaction id \n"
@@ -3337,6 +4185,11 @@ static UniValue listunspent(const JSONRPCRequest& request)
             "    \"redeemScript\" : n        (string) The redeemScript if scriptPubKey is P2SH\n"
             "    \"spendable\" : xxx,        (bool) Whether we have the private keys to spend this output\n"
             "    \"solvable\" : xxx,         (bool) Whether we know how to spend this output, ignoring the lack of keys\n"
+<<<<<<< HEAD
+=======
+            "    \"reused\" : xxx,           (bool) (only present if avoid_reuse is set) Whether this output is reused/dirty (sent to an address that was previously spent from)\n"
+            "    \"desc\" : xxx,             (string, only when solvable) A descriptor for spending this output\n"
+>>>>>>> upstream/master
             "    \"safe\" : xxx              (bool) Whether this output is considered safe to spend. Unconfirmed transactions\n"
             "                              from outside keys and unconfirmed replacement transactions are considered unsafe\n"
             "                              and are not eligible for spending by fundrawtransaction and sendtoaddress.\n"
@@ -3350,7 +4203,12 @@ static UniValue listunspent(const JSONRPCRequest& request)
             + HelpExampleRpc("listunspent", "6, 9999999 \"[\\\"1PGFqEzfmQch1gKD3ra4k18PNj3tTUUSqg\\\",\\\"1LtvqCaApEdUGFkpKMM4MstjcaL4dKg8SP\\\"]\"")
             + HelpExampleCli("listunspent", "6 9999999 '[]' true '{ \"minimumAmount\": 0.005 }'")
             + HelpExampleRpc("listunspent", "6, 9999999, [] , true, { \"minimumAmount\": 0.005 } ")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     int nMinDepth = 1;
     if (!request.params[0].isNull()) {
@@ -3414,16 +4272,27 @@ static UniValue listunspent(const JSONRPCRequest& request)
     UniValue results(UniValue::VARR);
     std::vector<COutput> vecOutputs;
     {
+<<<<<<< HEAD
         LOCK2(cs_main, pwallet->cs_wallet);
         pwallet->AvailableCoins(vecOutputs, !include_unsafe, nullptr, nMinimumAmount, nMaximumAmount, nMinimumSumAmount, nMaximumCount, nMinDepth, nMaxDepth);
+=======
+        CCoinControl cctl;
+        cctl.m_avoid_address_reuse = false;
+        auto locked_chain = pwallet->chain().lock();
+        LOCK(pwallet->cs_wallet);
+        pwallet->AvailableCoins(*locked_chain, vecOutputs, !include_unsafe, &cctl, nMinimumAmount, nMaximumAmount, nMinimumSumAmount, nMaximumCount, nMinDepth, nMaxDepth);
+>>>>>>> upstream/master
     }
 
     LOCK(pwallet->cs_wallet);
+
+    const bool avoid_reuse = pwallet->IsWalletFlagSet(WALLET_FLAG_AVOID_REUSE);
 
     for (const COutput& out : vecOutputs) {
         CTxDestination address;
         const CScript& scriptPubKey = out.tx->tx->vout[out.i].scriptPubKey;
         bool fValidAddress = ExtractDestination(scriptPubKey, address);
+        bool reused = avoid_reuse && pwallet->IsUsedDestination(address);
 
         if (destinations.size() && (!fValidAddress || !destinations.count(address)))
             continue;
@@ -3457,6 +4326,14 @@ static UniValue listunspent(const JSONRPCRequest& request)
         entry.pushKV("confirmations", out.nDepth);
         entry.pushKV("spendable", out.fSpendable);
         entry.pushKV("solvable", out.fSolvable);
+<<<<<<< HEAD
+=======
+        if (out.fSolvable) {
+            auto descriptor = InferDescriptor(scriptPubKey, *pwallet);
+            entry.pushKV("desc", descriptor->ToString());
+        }
+        if (avoid_reuse) entry.pushKV("reused", reused);
+>>>>>>> upstream/master
         entry.pushKV("safe", out.fSafe);
         results.push_back(entry);
     }
@@ -3589,6 +4466,7 @@ static UniValue fundrawtransaction(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
         throw std::runtime_error(
                             "fundrawtransaction \"hexstring\" ( options iswitness )\n"
@@ -3613,6 +4491,31 @@ static UniValue fundrawtransaction(const JSONRPCRequest& request)
                             "     \"lockUnspents\"           (boolean, optional, default false) Lock selected unspent outputs\n"
                             "     \"feeRate\"                (numeric, optional, default not set: makes wallet determine the fee) Set a specific fee rate in " + CURRENCY_UNIT + "/kB\n"
                             "     \"subtractFeeFromOutputs\" (array, optional) A json array of integers.\n"
+=======
+    RPCHelpMan{"fundrawtransaction",
+                "\nAdd inputs to a transaction until it has enough in value to meet its out value.\n"
+                "This will not modify existing inputs, and will add at most one change output to the outputs.\n"
+                "No existing outputs will be modified unless \"subtractFeeFromOutputs\" is specified.\n"
+                "Note that inputs which were signed may need to be resigned after completion since in/outputs have been added.\n"
+                "The inputs added will not be signed, use signrawtransactionwithkey\n"
+                " or signrawtransactionwithwallet for that.\n"
+                "Note that all existing inputs must have their previous output transaction be in the wallet.\n"
+                "Note that all inputs selected must be of standard form and P2SH scripts must be\n"
+                "in the wallet using importaddress or addmultisigaddress (to calculate fees).\n"
+                "You can see whether this is the case by checking the \"solvable\" field in the listunspent output.\n"
+                "Only pay-to-pubkey, multisig, and P2SH versions thereof are currently supported for watch-only\n",
+                {
+                    {"hexstring", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The hex string of the raw transaction"},
+                    {"options", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED_NAMED_ARG, "for backward compatibility: passing in a true instead of an object will result in {\"includeWatching\":true}",
+                        {
+                            {"changeAddress", RPCArg::Type::STR, /* default */ "pool address", "The bitcoin address to receive the change"},
+                            {"changePosition", RPCArg::Type::NUM, /* default */ "random", "The index of the change output"},
+                            {"change_type", RPCArg::Type::STR, /* default */ "set by -changetype", "The output type to use. Only valid if changeAddress is not specified. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\"."},
+                            {"includeWatching", RPCArg::Type::BOOL, /* default */ "false", "Also select inputs which are watch only"},
+                            {"lockUnspents", RPCArg::Type::BOOL, /* default */ "false", "Lock selected unspent outputs"},
+                            {"feeRate", RPCArg::Type::AMOUNT, /* default */ "not set: makes wallet determine the fee", "Set a specific fee rate in " + CURRENCY_UNIT + "/kB"},
+                            {"subtractFeeFromOutputs", RPCArg::Type::ARR, /* default */ "empty array", "A json array of integers.\n"
+>>>>>>> upstream/master
                             "                              The fee will be equally deducted from the amount of each specified output.\n"
                             "                              The outputs are specified by their zero-based index, before any change output is added.\n"
                             "                              Those recipients will receive less bitcoins than you enter in their corresponding amount field.\n"
@@ -3624,6 +4527,7 @@ static UniValue fundrawtransaction(const JSONRPCRequest& request)
                             "     \"estimate_mode\"          (string, optional, default=UNSET) The fee estimate mode, must be one of:\n"
                             "         \"UNSET\"\n"
                             "         \"ECONOMICAL\"\n"
+<<<<<<< HEAD
                             "         \"CONSERVATIVE\"\n"
                             "   }\n"
                             "                         for backward compatibility: passing in a true instead of an object will result in {\"includeWatching\":true}\n"
@@ -3631,6 +4535,20 @@ static UniValue fundrawtransaction(const JSONRPCRequest& request)
                             "                              If iswitness is not present, heuristic tests will be used in decoding\n"
 
                             "\nResult:\n"
+=======
+                            "         \"CONSERVATIVE\""},
+                        },
+                        "options"},
+                    {"iswitness", RPCArg::Type::BOOL, /* default */ "depends on heuristic tests", "Whether the transaction hex is a serialized witness transaction.\n"
+                        "If iswitness is not present, heuristic tests will be used in decoding.\n"
+                        "If true, only witness deserialization will be tried.\n"
+                        "If false, only non-witness deserialization will be tried.\n"
+                        "This boolean should reflect whether the transaction has inputs\n"
+                        "(e.g. fully valid, or on-chain transactions), if known by the caller."
+                    },
+                },
+                RPCResult{
+>>>>>>> upstream/master
                             "{\n"
                             "  \"hex\":       \"value\", (string)  The resulting raw transaction (hex-encoded string)\n"
                             "  \"fee\":       n,         (numeric) Fee in " + CURRENCY_UNIT + " the resulting transaction pays\n"
@@ -3645,7 +4563,12 @@ static UniValue fundrawtransaction(const JSONRPCRequest& request)
                             + HelpExampleCli("signrawtransaction", "\"fundedtransactionhex\"") +
                             "\nSend the transaction\n"
                             + HelpExampleCli("sendrawtransaction", "\"signedtransactionhex\"")
+<<<<<<< HEAD
                             );
+=======
+                                },
+    }.Check(request);
+>>>>>>> upstream/master
 
     RPCTypeCheck(request.params, {UniValue::VSTR, UniValueType(), UniValue::VBOOL});
 
@@ -3678,6 +4601,7 @@ UniValue signrawtransactionwithwallet(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
         throw std::runtime_error(
             "signrawtransactionwithwallet \"hexstring\" ( [{\"txid\":\"id\",\"vout\":n,\"scriptPubKey\":\"hex\",\"redeemScript\":\"hex\"},...] sighashtype )\n"
@@ -3700,6 +4624,30 @@ UniValue signrawtransactionwithwallet(const JSONRPCRequest& request)
             "       ,...\n"
             "    ]\n"
             "3. \"sighashtype\"                    (string, optional, default=ALL) The signature hash type. Must be one of\n"
+=======
+            RPCHelpMan{"signrawtransactionwithwallet",
+                "\nSign inputs for raw transaction (serialized, hex-encoded).\n"
+                "The second optional argument (may be null) is an array of previous transaction outputs that\n"
+                "this transaction depends on but may not yet be in the block chain." +
+                    HelpRequiringPassphrase(pwallet) + "\n",
+                {
+                    {"hexstring", RPCArg::Type::STR, RPCArg::Optional::NO, "The transaction hex string"},
+                    {"prevtxs", RPCArg::Type::ARR, RPCArg::Optional::OMITTED_NAMED_ARG, "A json array of previous dependent transaction outputs",
+                        {
+                            {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
+                                {
+                                    {"txid", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The transaction id"},
+                                    {"vout", RPCArg::Type::NUM, RPCArg::Optional::NO, "The output number"},
+                                    {"scriptPubKey", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "script key"},
+                                    {"redeemScript", RPCArg::Type::STR_HEX, RPCArg::Optional::OMITTED, "(required for P2SH) redeem script"},
+                                    {"witnessScript", RPCArg::Type::STR_HEX, RPCArg::Optional::OMITTED, "(required for P2WSH or P2SH-P2WSH) witness script"},
+                                    {"amount", RPCArg::Type::AMOUNT, RPCArg::Optional::OMITTED, "(required for Segwit inputs) the amount spent"},
+                                },
+                            },
+                        },
+                    },
+                    {"sighashtype", RPCArg::Type::STR, /* default */ "ALL", "The signature hash type. Must be one of\n"
+>>>>>>> upstream/master
             "       \"ALL\"\n"
             "       \"NONE\"\n"
             "       \"SINGLE\"\n"
@@ -3726,7 +4674,12 @@ UniValue signrawtransactionwithwallet(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("signrawtransactionwithwallet", "\"myhex\"")
             + HelpExampleRpc("signrawtransactionwithwallet", "\"myhex\"")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     RPCTypeCheck(request.params, {UniValue::VSTR, UniValue::VARR, UniValue::VSTR}, true);
 
@@ -3751,6 +4704,7 @@ static UniValue bumpfee(const JSONRPCRequest& request)
     if (!EnsureWalletIsAvailable(pwallet, request.fHelp))
         return NullUniValue;
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2) {
         throw std::runtime_error(
             "bumpfee \"txid\" ( options ) \n"
@@ -3771,6 +4725,26 @@ static UniValue bumpfee(const JSONRPCRequest& request)
             "   {\n"
             "     \"confTarget\"        (numeric, optional) Confirmation target (in blocks)\n"
             "     \"totalFee\"          (numeric, optional) Total fee (NOT feerate) to pay, in satoshis.\n"
+=======
+            RPCHelpMan{"bumpfee",
+                "\nBumps the fee of an opt-in-RBF transaction T, replacing it with a new transaction B.\n"
+                "An opt-in RBF transaction with the given txid must be in the wallet.\n"
+                "The command will pay the additional fee by reducing change outputs or adding inputs when necessary. It may add a new change output if one does not already exist.\n"
+                "If `totalFee` is given, adding inputs is not supported, so there must be a single change output that is big enough or it will fail.\n"
+                "All inputs in the original transaction will be included in the replacement transaction.\n"
+                "The command will fail if the wallet or mempool contains a transaction that spends one of T's outputs.\n"
+                "By default, the new fee will be calculated automatically using estimatesmartfee.\n"
+                "The user can specify a confirmation target for estimatesmartfee.\n"
+                "Alternatively, the user can specify totalFee, or use RPC settxfee to set a higher fee rate.\n"
+                "At a minimum, the new fee rate must be high enough to pay an additional new relay fee (incrementalfee\n"
+                "returned by getnetworkinfo) to enter the node's mempool.\n",
+                {
+                    {"txid", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The txid to be bumped"},
+                    {"options", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED_NAMED_ARG, "",
+                        {
+                            {"confTarget", RPCArg::Type::NUM, /* default */ "fallback to wallet's default", "Confirmation target (in blocks)"},
+                            {"totalFee", RPCArg::Type::NUM, /* default */ "fallback to 'confTarget'", "Total fee (NOT feerate) to pay, in satoshis.\n"
+>>>>>>> upstream/master
             "                         In rare cases, the actual fee paid might be slightly higher than the specified\n"
             "                         totalFee if the tx change output has to be removed because it is too close to\n"
             "                         the dust threshold.\n"
@@ -3795,8 +4769,14 @@ static UniValue bumpfee(const JSONRPCRequest& request)
             "}\n"
             "\nExamples:\n"
             "\nBump the fee, get the new transaction\'s txid\n" +
+<<<<<<< HEAD
             HelpExampleCli("bumpfee", "<txid>"));
     }
+=======
+                    HelpExampleCli("bumpfee", "<txid>")
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     RPCTypeCheck(request.params, {UniValue::VSTR, UniValue::VOBJ});
     uint256 hash;
@@ -3949,6 +4929,7 @@ UniValue rescanblockchain(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 2) {
         throw std::runtime_error(
             "rescanblockchain (\"start_height\") (\"stop_height\")\n"
@@ -3957,6 +4938,16 @@ UniValue rescanblockchain(const JSONRPCRequest& request)
             "1. \"start_height\"    (numeric, optional) block height where the rescan should start\n"
             "2. \"stop_height\"     (numeric, optional) the last block height that should be scanned\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"rescanblockchain",
+                "\nRescan the local blockchain for wallet related transactions.\n"
+                "Note: Use \"getwalletinfo\" to query the scanning progress.\n",
+                {
+                    {"start_height", RPCArg::Type::NUM, /* default */ "0", "block height where the rescan should start"},
+                    {"stop_height", RPCArg::Type::NUM, RPCArg::Optional::OMITTED_NAMED_ARG, "the last block height that should be scanned. If none is provided it will rescan up to the tip at return time of this call."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "{\n"
             "  \"start_height\"     (numeric) The block height where the rescan has started. If omitted, rescan started from the genesis block.\n"
             "  \"stop_height\"      (numeric) The height of the last rescanned block. If omitted, rescan stopped at the chain tip.\n"
@@ -3964,8 +4955,13 @@ UniValue rescanblockchain(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("rescanblockchain", "100000 120000")
             + HelpExampleRpc("rescanblockchain", "100000, 120000")
+<<<<<<< HEAD
             );
     }
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     WalletRescanReserver reserver(pwallet);
     if (!reserver.reserve()) {
@@ -4156,6 +5152,7 @@ UniValue getaddressinfo(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 1) {
         throw std::runtime_error(
             "getaddressinfo \"address\"\n"
@@ -4164,6 +5161,15 @@ UniValue getaddressinfo(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"address\"                    (string, required) The bitcoin address to get the information of.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"getaddressinfo",
+                "\nReturn information about the given bitcoin address. Some information requires the address\n"
+                "to be in the wallet.\n",
+                {
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The bitcoin address to get the information of."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "{\n"
             "  \"address\" : \"address\",        (string) The bitcoin address validated\n"
             "  \"scriptPubKey\" : \"hex\",       (string) The hex encoded scriptPubKey generated by the address\n"
@@ -4201,8 +5207,13 @@ UniValue getaddressinfo(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("getaddressinfo", "\"1PSSGeFHDnKNxiEyFrD1wcEaHr9hrQDDWc\"")
             + HelpExampleRpc("getaddressinfo", "\"1PSSGeFHDnKNxiEyFrD1wcEaHr9hrQDDWc\"")
+<<<<<<< HEAD
         );
     }
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK(pwallet->cs_wallet);
 
@@ -4276,6 +5287,7 @@ static UniValue getaddressesbylabel(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() != 1)
         throw std::runtime_error(
             "getaddressesbylabel \"label\"\n"
@@ -4283,6 +5295,14 @@ static UniValue getaddressesbylabel(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"label\"  (string, required) The label.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"getaddressesbylabel",
+                "\nReturns the list of addresses assigned the specified label.\n",
+                {
+                    {"label", RPCArg::Type::STR, RPCArg::Optional::NO, "The label."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "{ (json object with addresses as keys)\n"
             "  \"address\": { (json object with information about address)\n"
             "    \"purpose\": \"string\" (string)  Purpose of address (\"send\" for sending address, \"receive\" for receiving address)\n"
@@ -4291,7 +5311,12 @@ static UniValue getaddressesbylabel(const JSONRPCRequest& request)
             "\nExamples:\n"
             + HelpExampleCli("getaddressesbylabel", "\"tabby\"")
             + HelpExampleRpc("getaddressesbylabel", "\"tabby\"")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK(pwallet->cs_wallet);
 
@@ -4321,6 +5346,7 @@ static UniValue listlabels(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 1)
         throw std::runtime_error(
             "listlabels ( \"purpose\" )\n"
@@ -4328,6 +5354,14 @@ static UniValue listlabels(const JSONRPCRequest& request)
             "\nArguments:\n"
             "1. \"purpose\"    (string, optional) Address purpose to list labels for ('send','receive'). An empty string is the same as not providing this argument.\n"
             "\nResult:\n"
+=======
+            RPCHelpMan{"listlabels",
+                "\nReturns the list of all labels, or labels that are assigned to addresses with a specific purpose.\n",
+                {
+                    {"purpose", RPCArg::Type::STR, RPCArg::Optional::OMITTED_NAMED_ARG, "Address purpose to list labels for ('send','receive'). An empty string is the same as not providing this argument."},
+                },
+                RPCResult{
+>>>>>>> upstream/master
             "[               (json array of string)\n"
             "  \"label\",      (string) Label name\n"
             "  ...\n"
@@ -4341,7 +5375,12 @@ static UniValue listlabels(const JSONRPCRequest& request)
             + HelpExampleCli("listlabels", "send") +
             "\nAs json rpc call\n"
             + HelpExampleRpc("listlabels", "receive")
+<<<<<<< HEAD
         );
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     LOCK(pwallet->cs_wallet);
 
@@ -4375,6 +5414,7 @@ UniValue sethdseed(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() > 2) {
         throw std::runtime_error(
             "sethdseed ( \"newkeypool\" \"seed\" )\n"
@@ -4384,6 +5424,15 @@ UniValue sethdseed(const JSONRPCRequest& request)
             + HelpRequiringPassphrase(pwallet) +
             "\nArguments:\n"
             "1. \"newkeypool\"         (boolean, optional, default=true) Whether to flush old unused addresses, including change addresses, from the keypool and regenerate it.\n"
+=======
+            RPCHelpMan{"sethdseed",
+                "\nSet or generate a new HD wallet seed. Non-HD wallets will not be upgraded to being a HD wallet. Wallets that are already\n"
+                "HD will have a new HD seed set so that new keys added to the keypool will be derived from this new seed.\n"
+                "\nNote that you will need to MAKE A NEW BACKUP of your wallet after setting the HD wallet seed." +
+                    HelpRequiringPassphrase(pwallet) + "\n",
+                {
+                    {"newkeypool", RPCArg::Type::BOOL, /* default */ "true", "Whether to flush old unused addresses, including change addresses, from the keypool and regenerate it.\n"
+>>>>>>> upstream/master
             "                             If true, the next address from getnewaddress and change address from getrawchangeaddress will be from this new seed.\n"
             "                             If false, addresses (including change addresses if the wallet already had HD Chain Split enabled) from the existing\n"
             "                             keypool will be used until it has been depleted.\n"
@@ -4394,8 +5443,13 @@ UniValue sethdseed(const JSONRPCRequest& request)
             + HelpExampleCli("sethdseed", "false")
             + HelpExampleCli("sethdseed", "true \"wifkey\"")
             + HelpExampleRpc("sethdseed", "true, \"wifkey\"")
+<<<<<<< HEAD
             );
     }
+=======
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     if (IsInitialBlockDownload()) {
         throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Cannot set a new HD seed while still in Initial Block Download");
@@ -4601,6 +5655,7 @@ UniValue walletprocesspsbt(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 4)
         throw std::runtime_error(
             "walletprocesspsbt \"psbt\" ( sign \"sighashtype\" bip32derivs )\n"
@@ -4612,6 +5667,16 @@ UniValue walletprocesspsbt(const JSONRPCRequest& request)
             "1. \"psbt\"                      (string, required) The transaction base64 string\n"
             "2. sign                          (boolean, optional, default=true) Also sign the transaction when updating\n"
             "3. \"sighashtype\"            (string, optional, default=ALL) The signature hash type to sign with if not specified by the PSBT. Must be one of\n"
+=======
+            RPCHelpMan{"walletprocesspsbt",
+                "\nUpdate a PSBT with input information from our wallet and then sign inputs\n"
+                "that we can sign for." +
+                    HelpRequiringPassphrase(pwallet) + "\n",
+                {
+                    {"psbt", RPCArg::Type::STR, RPCArg::Optional::NO, "The transaction base64 string"},
+                    {"sign", RPCArg::Type::BOOL, /* default */ "true", "Also sign the transaction when updating"},
+                    {"sighashtype", RPCArg::Type::STR, /* default */ "ALL", "The signature hash type to sign with if not specified by the PSBT. Must be one of\n"
+>>>>>>> upstream/master
             "       \"ALL\"\n"
             "       \"NONE\"\n"
             "       \"SINGLE\"\n"
@@ -4626,10 +5691,18 @@ UniValue walletprocesspsbt(const JSONRPCRequest& request)
             "  \"complete\" : true|false,   (boolean) If the transaction has a complete set of signatures\n"
             "  ]\n"
             "}\n"
+<<<<<<< HEAD
 
             "\nExamples:\n"
             + HelpExampleCli("walletprocesspsbt", "\"psbt\"")
         );
+=======
+                },
+                RPCExamples{
+                    HelpExampleCli("walletprocesspsbt", "\"psbt\"")
+                },
+            }.Check(request);
+>>>>>>> upstream/master
 
     RPCTypeCheck(request.params, {UniValue::VSTR, UniValue::VBOOL, UniValue::VSTR});
 
@@ -4666,6 +5739,7 @@ UniValue walletcreatefundedpsbt(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
+<<<<<<< HEAD
     if (request.fHelp || request.params.size() < 2 || request.params.size() > 5)
         throw std::runtime_error(
                             "walletcreatefundedpsbt [{\"txid\":\"id\",\"vout\":n},...] [{\"address\":amount},{\"data\":\"hex\"},...] ( locktime ) ( replaceable ) ( options bip32derivs )\n"
@@ -4703,6 +5777,50 @@ UniValue walletcreatefundedpsbt(const JSONRPCRequest& request)
                             "     \"lockUnspents\"           (boolean, optional, default false) Lock selected unspent outputs\n"
                             "     \"feeRate\"                (numeric, optional, default not set: makes wallet determine the fee) Set a specific fee rate in " + CURRENCY_UNIT + "/kB\n"
                             "     \"subtractFeeFromOutputs\" (array, optional) A json array of integers.\n"
+=======
+            RPCHelpMan{"walletcreatefundedpsbt",
+                "\nCreates and funds a transaction in the Partially Signed Transaction format. Inputs will be added if supplied inputs are not enough\n"
+                "Implements the Creator and Updater roles.\n",
+                {
+                    {"inputs", RPCArg::Type::ARR, RPCArg::Optional::NO, "A json array of json objects",
+                        {
+                            {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
+                                {
+                                    {"txid", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The transaction id"},
+                                    {"vout", RPCArg::Type::NUM, RPCArg::Optional::NO, "The output number"},
+                                    {"sequence", RPCArg::Type::NUM, RPCArg::Optional::NO, "The sequence number"},
+                                },
+                            },
+                        },
+                        },
+                    {"outputs", RPCArg::Type::ARR, RPCArg::Optional::NO, "a json array with outputs (key-value pairs), where none of the keys are duplicated.\n"
+                            "That is, each address can only appear once and there can only be one 'data' object.\n"
+                            "For compatibility reasons, a dictionary, which holds the key-value pairs directly, is also\n"
+                            "                             accepted as second parameter.",
+                        {
+                            {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
+                                {
+                                    {"address", RPCArg::Type::AMOUNT, RPCArg::Optional::NO, "A key-value pair. The key (string) is the bitcoin address, the value (float or string) is the amount in " + CURRENCY_UNIT + ""},
+                                },
+                                },
+                            {"", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED, "",
+                                {
+                                    {"data", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "A key-value pair. The key must be \"data\", the value is hex-encoded data"},
+                                },
+                            },
+                        },
+                    },
+                    {"locktime", RPCArg::Type::NUM, /* default */ "0", "Raw locktime. Non-0 value also locktime-activates inputs"},
+                    {"options", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED_NAMED_ARG, "",
+                        {
+                            {"changeAddress", RPCArg::Type::STR_HEX, /* default */ "pool address", "The bitcoin address to receive the change"},
+                            {"changePosition", RPCArg::Type::NUM, /* default */ "random", "The index of the change output"},
+                            {"change_type", RPCArg::Type::STR, /* default */ "set by -changetype", "The output type to use. Only valid if changeAddress is not specified. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\"."},
+                            {"includeWatching", RPCArg::Type::BOOL, /* default */ "false", "Also select inputs which are watch only"},
+                            {"lockUnspents", RPCArg::Type::BOOL, /* default */ "false", "Lock selected unspent outputs"},
+                            {"feeRate", RPCArg::Type::AMOUNT, /* default */ "not set: makes wallet determine the fee", "Set a specific fee rate in " + CURRENCY_UNIT + "/kB"},
+                            {"subtractFeeFromOutputs", RPCArg::Type::ARR, /* default */ "empty array", "A json array of integers.\n"
+>>>>>>> upstream/master
                             "                              The fee will be equally deducted from the amount of each specified output.\n"
                             "                              The outputs are specified by their zero-based index, before any change output is added.\n"
                             "                              Those recipients will receive less bitcoins than you enter in their corresponding amount field.\n"
@@ -4726,7 +5844,12 @@ UniValue walletcreatefundedpsbt(const JSONRPCRequest& request)
                             "\nExamples:\n"
                             "\nCreate a transaction with no inputs\n"
                             + HelpExampleCli("walletcreatefundedpsbt", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\" \"[{\\\"data\\\":\\\"00010203\\\"}]\"")
+<<<<<<< HEAD
                             );
+=======
+                                },
+                            }.Check(request);
+>>>>>>> upstream/master
 
     RPCTypeCheck(request.params, {
         UniValue::VARR,
@@ -4785,13 +5908,22 @@ static const CRPCCommand commands[] =
     { "hidden",             "addwitnessaddress",                &addwitnessaddress,             {"address","p2sh"} },
     { "wallet",             "backupwallet",                     &backupwallet,                  {"destination"} },
     { "wallet",             "bumpfee",                          &bumpfee,                       {"txid", "options"} },
+<<<<<<< HEAD
     { "wallet",             "createwallet",                     &createwallet,                  {"wallet_name", "disable_private_keys"} },
+=======
+    { "wallet",             "createwallet",                     &createwallet,                  {"wallet_name", "disable_private_keys", "blank", "passphrase", "avoid_reuse"} },
+>>>>>>> upstream/master
     { "wallet",             "dumpprivkey",                      &dumpprivkey,                   {"address"}  },
     { "wallet",             "dumpwallet",                       &dumpwallet,                    {"filename"} },
     { "wallet",             "encryptwallet",                    &encryptwallet,                 {"passphrase"} },
     { "wallet",             "getaddressinfo",                   &getaddressinfo,                {"address"} },
+<<<<<<< HEAD
     { "wallet",             "getbalance",                       &getbalance,                    {"account|dummy","minconf","include_watchonly"} },
     { "wallet",             "getnewaddress",                    &getnewaddress,                 {"label|account","address_type"} },
+=======
+    { "wallet",             "getbalance",                       &getbalance,                    {"dummy","minconf","include_watchonly","avoid_reuse"} },
+    { "wallet",             "getnewaddress",                    &getnewaddress,                 {"label","address_type"} },
+>>>>>>> upstream/master
     { "wallet",             "getrawchangeaddress",              &getrawchangeaddress,           {"address_type"} },
     { "wallet",             "getreceivedbyaddress",             &getreceivedbyaddress,          {"address","minconf"} },
     { "wallet",             "gettransaction",                   &gettransaction,                {"txid","include_watchonly"} },
@@ -4813,9 +5945,19 @@ static const CRPCCommand commands[] =
     { "wallet",             "listwallets",                      &listwallets,                   {} },
     { "wallet",             "loadwallet",                       &loadwallet,                    {"filename"} },
     { "wallet",             "lockunspent",                      &lockunspent,                   {"unlock","transactions"} },
+<<<<<<< HEAD
     { "wallet",             "sendmany",                         &sendmany,                      {"fromaccount|dummy","amounts","minconf","comment","subtractfeefrom","replaceable","conf_target","estimate_mode"} },
     { "wallet",             "sendtoaddress",                    &sendtoaddress,                 {"address","amount","comment","comment_to","subtractfeefromamount","replaceable","conf_target","estimate_mode"} },
+=======
+    { "wallet",             "removeprunedfunds",                &removeprunedfunds,             {"txid"} },
+    { "wallet",             "rescanblockchain",                 &rescanblockchain,              {"start_height", "stop_height"} },
+    { "wallet",             "sendmany",                         &sendmany,                      {"dummy","amounts","minconf","comment","subtractfeefrom","replaceable","conf_target","estimate_mode"} },
+    { "wallet",             "sendtoaddress",                    &sendtoaddress,                 {"address","amount","comment","comment_to","subtractfeefromamount","replaceable","conf_target","estimate_mode","avoid_reuse"} },
+    { "wallet",             "sethdseed",                        &sethdseed,                     {"newkeypool","seed"} },
+    { "wallet",             "setlabel",                         &setlabel,                      {"address","label"} },
+>>>>>>> upstream/master
     { "wallet",             "settxfee",                         &settxfee,                      {"amount"} },
+    { "wallet",             "setwalletflag",                    &setwalletflag,                 {"flag","value"} },
     { "wallet",             "signmessage",                      &signmessage,                   {"address","message"} },
     { "wallet",             "signrawtransactionwithwallet",     &signrawtransactionwithwallet,  {"hexstring","prevtxs","sighashtype"} },
     { "wallet",             "unloadwallet",                     &unloadwallet,                  {"wallet_name"} },

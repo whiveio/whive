@@ -2,11 +2,14 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+<<<<<<< HEAD
+=======
+#include <clientversion.h>
+#include <crypto/siphash.h>
+>>>>>>> upstream/master
 #include <hash.h>
 #include <utilstrencodings.h>
 #include <test/test_bitcoin.h>
-
-#include <vector>
 
 #include <boost/test/unit_test.hpp>
 

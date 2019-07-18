@@ -217,11 +217,19 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             return TransactionCreationFailed;
         }
 
+<<<<<<< HEAD
         // reject absurdly high fee. (This can never happen because the
         // wallet caps the fee at maxTxFee. This merely serves as a
         // belt-and-suspenders check)
         if (nFeeRequired > m_node.getMaxTxFee())
+=======
+        // Reject absurdly high fee. (This can never happen because the
+        // wallet never creates transactions with fee greater than
+        // m_default_max_tx_fee. This merely a belt-and-suspenders check).
+        if (nFeeRequired > m_wallet->getDefaultMaxTxFee()) {
+>>>>>>> upstream/master
             return AbsurdFee;
+        }
     }
 
     return SendCoinsReturn(OK);
@@ -367,13 +375,19 @@ bool WalletModel::changePassphrase(const SecureString &oldPass, const SecureStri
 static void NotifyUnload(WalletModel* walletModel)
 {
     qDebug() << "NotifyUnload";
+<<<<<<< HEAD
     QMetaObject::invokeMethod(walletModel, "unload", Qt::QueuedConnection);
+=======
+    bool invoked = QMetaObject::invokeMethod(walletModel, "unload");
+    assert(invoked);
+>>>>>>> upstream/master
 }
 
 static void NotifyKeyStoreStatusChanged(WalletModel *walletmodel)
 {
     qDebug() << "NotifyKeyStoreStatusChanged";
-    QMetaObject::invokeMethod(walletmodel, "updateStatus", Qt::QueuedConnection);
+    bool invoked = QMetaObject::invokeMethod(walletmodel, "updateStatus", Qt::QueuedConnection);
+    assert(invoked);
 }
 
 static void NotifyAddressBookChanged(WalletModel *walletmodel,
@@ -385,35 +399,48 @@ static void NotifyAddressBookChanged(WalletModel *walletmodel,
     QString strPurpose = QString::fromStdString(purpose);
 
     qDebug() << "NotifyAddressBookChanged: " + strAddress + " " + strLabel + " isMine=" + QString::number(isMine) + " purpose=" + strPurpose + " status=" + QString::number(status);
-    QMetaObject::invokeMethod(walletmodel, "updateAddressBook", Qt::QueuedConnection,
+    bool invoked = QMetaObject::invokeMethod(walletmodel, "updateAddressBook", Qt::QueuedConnection,
                               Q_ARG(QString, strAddress),
                               Q_ARG(QString, strLabel),
                               Q_ARG(bool, isMine),
                               Q_ARG(QString, strPurpose),
                               Q_ARG(int, status));
+    assert(invoked);
 }
 
 static void NotifyTransactionChanged(WalletModel *walletmodel, const uint256 &hash, ChangeType status)
 {
     Q_UNUSED(hash);
     Q_UNUSED(status);
-    QMetaObject::invokeMethod(walletmodel, "updateTransaction", Qt::QueuedConnection);
+    bool invoked = QMetaObject::invokeMethod(walletmodel, "updateTransaction", Qt::QueuedConnection);
+    assert(invoked);
 }
 
 static void ShowProgress(WalletModel *walletmodel, const std::string &title, int nProgress)
 {
     // emits signal "showProgress"
-    QMetaObject::invokeMethod(walletmodel, "showProgress", Qt::QueuedConnection,
+    bool invoked = QMetaObject::invokeMethod(walletmodel, "showProgress", Qt::QueuedConnection,
                               Q_ARG(QString, QString::fromStdString(title)),
                               Q_ARG(int, nProgress));
+    assert(invoked);
 }
 
 static void NotifyWatchonlyChanged(WalletModel *walletmodel, bool fHaveWatchonly)
 {
-    QMetaObject::invokeMethod(walletmodel, "updateWatchOnlyFlag", Qt::QueuedConnection,
+    bool invoked = QMetaObject::invokeMethod(walletmodel, "updateWatchOnlyFlag", Qt::QueuedConnection,
                               Q_ARG(bool, fHaveWatchonly));
+    assert(invoked);
 }
 
+<<<<<<< HEAD
+=======
+static void NotifyCanGetAddressesChanged(WalletModel* walletmodel)
+{
+    bool invoked = QMetaObject::invokeMethod(walletmodel, "canGetAddressesChanged");
+    assert(invoked);
+}
+
+>>>>>>> upstream/master
 void WalletModel::subscribeToCoreSignals()
 {
     // Connect signals to wallet

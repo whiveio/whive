@@ -9,12 +9,19 @@
 #include <wallet/wallet.h>
 #include <policy/fees.h>
 #include <policy/policy.h>
+<<<<<<< HEAD
 #include <policy/rbf.h>
 #include <validation.h> //for mempool access
 #include <txmempool.h>
 #include <utilmoneystr.h>
 #include <util.h>
 #include <net.h>
+=======
+#include <util/moneystr.h>
+#include <util/rbf.h>
+#include <util/system.h>
+#include <util/validation.h>
+>>>>>>> upstream/master
 
 //! Check whether transaction has descendant in wallet or mempool, or has been
 //! mined, or conflicts with a mined transaction. Return a feebumper::Result.
@@ -207,6 +214,108 @@ Result CreateTransaction(const CWallet* wallet, const uint256& txid, const CCoin
         }
     }
 
+<<<<<<< HEAD
+=======
+    return Result::OK;
+}
+
+
+Result CreateRateBumpTransaction(CWallet* wallet, const uint256& txid, const CCoinControl& coin_control, std::vector<std::string>& errors,
+                                 CAmount& old_fee, CAmount& new_fee, CMutableTransaction& mtx)
+{
+    // We are going to modify coin control later, copy to re-use
+    CCoinControl new_coin_control(coin_control);
+
+    auto locked_chain = wallet->chain().lock();
+    LOCK(wallet->cs_wallet);
+    errors.clear();
+    auto it = wallet->mapWallet.find(txid);
+    if (it == wallet->mapWallet.end()) {
+        errors.push_back("Invalid or non-wallet transaction id");
+        return Result::INVALID_ADDRESS_OR_KEY;
+    }
+    const CWalletTx& wtx = it->second;
+
+    Result result = PreconditionChecks(*locked_chain, wallet, wtx, errors);
+    if (result != Result::OK) {
+        return result;
+    }
+
+    // Fill in recipients(and preserve a single change key if there is one)
+    std::vector<CRecipient> recipients;
+    for (const auto& output : wtx.tx->vout) {
+        if (!wallet->IsChange(output)) {
+            CRecipient recipient = {output.scriptPubKey, output.nValue, false};
+            recipients.push_back(recipient);
+        } else {
+            CTxDestination change_dest;
+            ExtractDestination(output.scriptPubKey, change_dest);
+            new_coin_control.destChange = change_dest;
+        }
+    }
+
+    // Get the fee rate of the original transaction. This is calculated from
+    // the tx fee/vsize, so it may have been rounded down. Add 1 satoshi to the
+    // result.
+    old_fee = wtx.GetDebit(ISMINE_SPENDABLE) - wtx.tx->GetValueOut();
+    int64_t txSize = GetVirtualTransactionSize(*(wtx.tx));
+    // Feerate of thing we are bumping
+    CFeeRate feerate(old_fee, txSize);
+    feerate += CFeeRate(1);
+
+    // The node has a configurable incremental relay fee. Increment the fee by
+    // the minimum of that and the wallet's conservative
+    // WALLET_INCREMENTAL_RELAY_FEE value to future proof against changes to
+    // network wide policy for incremental relay fee that our node may not be
+    // aware of. This ensures we're over the over the required relay fee rate
+    // (BIP 125 rule 4).  The replacement tx will be at least as large as the
+    // original tx, so the total fee will be greater (BIP 125 rule 3)
+    CFeeRate node_incremental_relay_fee = wallet->chain().relayIncrementalFee();
+    CFeeRate wallet_incremental_relay_fee = CFeeRate(WALLET_INCREMENTAL_RELAY_FEE);
+    feerate += std::max(node_incremental_relay_fee, wallet_incremental_relay_fee);
+
+    // Fee rate must also be at least the wallet's GetMinimumFeeRate
+    CFeeRate min_feerate(GetMinimumFeeRate(*wallet, new_coin_control, /* feeCalc */ nullptr));
+
+    // Set the required fee rate for the replacement transaction in coin control.
+    new_coin_control.m_feerate = std::max(feerate, min_feerate);
+
+    // Fill in required inputs we are double-spending(all of them)
+    // N.B.: bip125 doesn't require all the inputs in the replaced transaction to be
+    // used in the replacement transaction, but it's very important for wallets to make
+    // sure that happens. If not, it would be possible to bump a transaction A twice to
+    // A2 and A3 where A2 and A3 don't conflict (or alternatively bump A to A2 and A2
+    // to A3 where A and A3 don't conflict). If both later get confirmed then the sender
+    // has accidentally double paid.
+    for (const auto& inputs : wtx.tx->vin) {
+        new_coin_control.Select(COutPoint(inputs.prevout));
+    }
+    new_coin_control.fAllowOtherInputs = true;
+
+    // We cannot source new unconfirmed inputs(bip125 rule 2)
+    new_coin_control.m_min_depth = 1;
+
+    CTransactionRef tx_new = MakeTransactionRef();
+    CAmount fee_ret;
+    int change_pos_in_out = -1; // No requested location for change
+    std::string fail_reason;
+    if (!wallet->CreateTransaction(*locked_chain, recipients, tx_new, fee_ret, change_pos_in_out, fail_reason, new_coin_control, false)) {
+        errors.push_back("Unable to create transaction: " + fail_reason);
+        return Result::WALLET_ERROR;
+    }
+
+    // Write back new fee if successful
+    new_fee = fee_ret;
+
+    // Write back transaction
+    mtx = CMutableTransaction(*tx_new);
+    // Mark new tx not replaceable, if requested.
+    if (!coin_control.m_signal_bip125_rbf.get_value_or(wallet->m_signal_rbf)) {
+        for (auto& input : mtx.vin) {
+            if (input.nSequence < 0xfffffffe) input.nSequence = 0xfffffffe;
+        }
+    }
+>>>>>>> upstream/master
 
     return Result::OK;
 }
@@ -240,9 +349,12 @@ Result CommitTransaction(CWallet* wallet, const uint256& txid, CMutableTransacti
     mapValue_t mapValue = oldWtx.mapValue;
     mapValue["replaces_txid"] = oldWtx.GetHash().ToString();
 
-    CReserveKey reservekey(wallet);
     CValidationState state;
+<<<<<<< HEAD
     if (!wallet->CommitTransaction(tx, std::move(mapValue), oldWtx.vOrderForm, oldWtx.strFromAccount, reservekey, g_connman.get(), state)) {
+=======
+    if (!wallet->CommitTransaction(tx, std::move(mapValue), oldWtx.vOrderForm, state)) {
+>>>>>>> upstream/master
         // NOTE: CommitTransaction never returns false, so this should never happen.
         errors.push_back(strprintf("The transaction was rejected: %s", FormatStateMessage(state)));
         return Result::WALLET_ERROR;
