@@ -1,13 +1,9 @@
 Whive Core integration/staging tree
 =====================================
 
-<<<<<<< HEAD
 [![pipeline status](http://192.168.0.39/xyephy/whive/badges/master/pipeline.svg)](http://192.168.0.39/xyephy/whive/commits/master)
 
 https://whive.io
-=======
-https://bitcoincore.org
->>>>>>> upstream/master
 
 What is Whive?
 ----------------
