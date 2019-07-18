@@ -14,23 +14,11 @@
 #include <fs.h>
 #include <key.h>
 #include <key_io.h>
-<<<<<<< HEAD
-#include <keystore.h>
-#include <validation.h>
-#include <net.h>
-=======
->>>>>>> upstream/master
 #include <policy/fees.h>
 #include <policy/policy.h>
 #include <primitives/block.h>
 #include <primitives/transaction.h>
 #include <script/script.h>
-<<<<<<< HEAD
-#include <shutdown.h>
-#include <timedata.h>
-#include <txmempool.h>
-#include <utilmoneystr.h>
-=======
 #include <script/signingprovider.h>
 #include <util/bip32.h>
 #include <util/error.h>
@@ -40,7 +28,6 @@
 #include <util/validation.h>
 #include <validation.h>
 #include <wallet/coincontrol.h>
->>>>>>> upstream/master
 #include <wallet/fees.h>
 #include <wallet/walletutil.h>
 
@@ -377,10 +364,7 @@ bool CWallet::AddKeyPubKeyWithDB(WalletBatch &batch, const CKey& secret, const C
                                                  secret.GetPrivKey(),
                                                  mapKeyMetadata[pubkey.GetID()]);
     }
-<<<<<<< HEAD
-=======
     UnsetWalletFlagWithDB(batch, WALLET_FLAG_BLANK_WALLET);
->>>>>>> upstream/master
     return true;
 }
 
@@ -422,8 +406,6 @@ void CWallet::LoadScriptMetadata(const CScriptID& script_id, const CKeyMetadata 
     m_script_metadata[script_id] = meta;
 }
 
-<<<<<<< HEAD
-=======
 void CWallet::UpgradeKeyMetadata()
 {
     AssertLockHeld(cs_wallet);
@@ -461,7 +443,6 @@ void CWallet::UpgradeKeyMetadata()
     SetWalletFlag(WALLET_FLAG_KEY_ORIGIN_METADATA);
 }
 
->>>>>>> upstream/master
 bool CWallet::LoadCryptedKey(const CPubKey &vchPubKey, const std::vector<unsigned char> &vchCryptedSecret)
 {
     return AddCryptedKeyInner(vchPubKey, vchCryptedSecret);
@@ -493,15 +474,11 @@ bool CWallet::AddCScriptWithDB(WalletBatch& batch, const CScript& redeemScript)
 {
     if (!FillableSigningProvider::AddCScript(redeemScript))
         return false;
-<<<<<<< HEAD
-    return WalletBatch(*database).WriteCScript(Hash160(redeemScript), redeemScript);
-=======
     if (batch.WriteCScript(Hash160(redeemScript), redeemScript)) {
         UnsetWalletFlagWithDB(batch, WALLET_FLAG_BLANK_WALLET);
         return true;
     }
     return false;
->>>>>>> upstream/master
 }
 
 bool CWallet::LoadCScript(const CScript& redeemScript)
@@ -554,15 +531,11 @@ bool CWallet::AddWatchOnlyWithDB(WalletBatch &batch, const CScript& dest)
     const CKeyMetadata& meta = m_script_metadata[CScriptID(dest)];
     UpdateTimeFirstKey(meta.nCreateTime);
     NotifyWatchonlyChanged(true);
-<<<<<<< HEAD
-    return WalletBatch(*database).WriteWatchOnly(dest, meta);
-=======
     if (batch.WriteWatchOnly(dest, meta)) {
         UnsetWalletFlagWithDB(batch, WALLET_FLAG_BLANK_WALLET);
         return true;
     }
     return false;
->>>>>>> upstream/master
 }
 
 bool CWallet::AddWatchOnlyWithDB(WalletBatch &batch, const CScript& dest, int64_t create_time)
@@ -635,13 +608,9 @@ bool CWallet::Unlock(const SecureString& strWalletPassphrase)
                 return false;
             if (!crypter.Decrypt(pMasterKey.second.vchCryptedKey, _vMasterKey))
                 continue; // try another master key
-<<<<<<< HEAD
-            if (CCryptoKeyStore::Unlock(_vMasterKey))
-=======
             if (Unlock(_vMasterKey, accept_no_keys)) {
                 // Now that we've unlocked, upgrade the key metadata
                 UpgradeKeyMetadata();
->>>>>>> upstream/master
                 return true;
         }
     }
@@ -1777,9 +1746,6 @@ void CWallet::SetWalletFlag(uint64_t flags)
         throw std::runtime_error(std::string(__func__) + ": writing wallet flags failed");
 }
 
-<<<<<<< HEAD
-bool CWallet::IsWalletFlagSet(uint64_t flag)
-=======
 void CWallet::UnsetWalletFlag(uint64_t flag)
 {
     WalletBatch batch(*database);
@@ -1795,7 +1761,6 @@ void CWallet::UnsetWalletFlagWithDB(WalletBatch& batch, uint64_t flag)
 }
 
 bool CWallet::IsWalletFlagSet(uint64_t flag) const
->>>>>>> upstream/master
 {
     return (m_wallet_flags & flag);
 }
@@ -2294,12 +2259,9 @@ CAmount CWalletTx::GetAvailableCredit(bool fUseCache, const isminefilter& filter
     if (pwallet == nullptr)
         return 0;
 
-<<<<<<< HEAD
-=======
     // Avoid caching ismine for NO or ALL cases (could remove this check and simplify in the future).
     bool allow_cache = (filter & ISMINE_ALL) && (filter & ISMINE_ALL) != ISMINE_ALL;
 
->>>>>>> upstream/master
     // Must wait until coinbase is safely deep enough in the chain before valuing it
     if (IsCoinBase() && GetBlocksToMaturity() > 0)
         return 0;
@@ -2324,12 +2286,7 @@ CAmount CWalletTx::GetAvailableCredit(bool fUseCache, const isminefilter& filter
     uint256 hashTx = GetHash();
     for (unsigned int i = 0; i < tx->vout.size(); i++)
     {
-<<<<<<< HEAD
-        if (!pwallet->IsSpent(hashTx, i))
-        {
-=======
         if (!pwallet->IsSpent(locked_chain, hashTx, i) && (allow_used_addresses || !pwallet->IsUsedDestination(hashTx, i))) {
->>>>>>> upstream/master
             const CTxOut &txout = tx->vout[i];
             nCredit += pwallet->GetCredit(txout, filter);
             if (!MoneyRange(nCredit))
@@ -2472,25 +2429,14 @@ void CWallet::ResendWalletTransactions(int64_t nBestBlockTime, CConnman* connman
  */
 
 
-<<<<<<< HEAD
-CAmount CWallet::GetBalance(const isminefilter& filter, const int min_depth) const
-{
-    CAmount nTotal = 0;
-=======
 CWallet::Balance CWallet::GetBalance(const int min_depth, bool avoid_reuse) const
 {
     Balance ret;
     isminefilter reuse_filter = avoid_reuse ? ISMINE_NO : ISMINE_USED;
->>>>>>> upstream/master
     {
         LOCK2(cs_main, cs_wallet);
         for (const auto& entry : mapWallet)
         {
-<<<<<<< HEAD
-            const CWalletTx* pcoin = &entry.second;
-            if (pcoin->IsTrusted() && pcoin->GetDepthInMainChain() >= min_depth) {
-                nTotal += pcoin->GetAvailableCredit(true, filter);
-=======
             const CWalletTx& wtx = entry.second;
             const bool is_trusted{wtx.IsTrusted(*locked_chain)};
             const int tx_depth{wtx.GetDepthInMainChain(*locked_chain)};
@@ -2499,7 +2445,6 @@ CWallet::Balance CWallet::GetBalance(const int min_depth, bool avoid_reuse) cons
             if (is_trusted && tx_depth >= min_depth) {
                 ret.m_mine_trusted += tx_credit_mine;
                 ret.m_watchonly_trusted += tx_credit_watchonly;
->>>>>>> upstream/master
             }
         }
     }
@@ -2713,15 +2658,11 @@ void CWallet::AvailableCoins(std::vector<COutput> &vCoins, bool fOnlySafe, const
                 continue;
             }
 
-<<<<<<< HEAD
-            bool solvable = IsSolvable(*this, pcoin->tx->vout[i].scriptPubKey);
-=======
             if (!allow_used_addresses && IsUsedDestination(wtxid, i)) {
                 continue;
             }
 
             bool solvable = IsSolvable(*this, wtx.tx->vout[i].scriptPubKey);
->>>>>>> upstream/master
             bool spendable = ((mine & ISMINE_SPENDABLE) != ISMINE_NO) || (((mine & ISMINE_WATCH_ONLY) != ISMINE_NO) && (coinControl && coinControl->fAllowWatchOnly && solvable));
 
             vCoins.push_back(COutput(pcoin, i, nDepth, spendable, solvable, safeTx, (coinControl && coinControl->fAllowWatchOnly)));
@@ -2992,11 +2933,7 @@ bool CWallet::FundTransaction(CMutableTransaction& tx, CAmount& nFeeRet, int& nC
     LOCK2(cs_main, cs_wallet);
 
     CTransactionRef tx_new;
-<<<<<<< HEAD
-    if (!CreateTransaction(vecSend, tx_new, reservekey, nFeeRet, nChangePosInOut, strFailReason, coinControl, false)) {
-=======
     if (!CreateTransaction(*locked_chain, vecSend, tx_new, nFeeRet, nChangePosInOut, strFailReason, coinControl, false)) {
->>>>>>> upstream/master
         return false;
     }
 
@@ -3052,11 +2989,7 @@ OutputType CWallet::TransactionChangeType(OutputType change_type, const std::vec
     return m_default_address_type;
 }
 
-<<<<<<< HEAD
-bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransactionRef& tx, CReserveKey& reservekey, CAmount& nFeeRet,
-=======
 bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std::vector<CRecipient>& vecSend, CTransactionRef& tx, CAmount& nFeeRet,
->>>>>>> upstream/master
                          int& nChangePosInOut, std::string& strFailReason, const CCoinControl& coin_control, bool sign)
 {
     CAmount nValue = 0;
@@ -3303,17 +3236,6 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
                     return false;
                 }
 
-<<<<<<< HEAD
-                // If we made it here and we aren't even able to meet the relay fee on the next pass, give up
-                // because we must be at the maximum allowed fee.
-                if (nFeeNeeded < ::minRelayTxFee.GetFee(nBytes))
-                {
-                    strFailReason = _("Transaction too large for fee policy");
-                    return false;
-                }
-
-=======
->>>>>>> upstream/master
                 if (nFeeRet >= nFeeNeeded) {
                     // Reduce fee to only the needed amount if possible. This
                     // prevents potential overpayment in fees if the coins
@@ -3468,11 +3390,7 @@ bool CWallet::CreateTransaction(interfaces::Chain::Lock& locked_chain, const std
 /**
  * Call after CreateTransaction unless you want to abort
  */
-<<<<<<< HEAD
-bool CWallet::CommitTransaction(CTransactionRef tx, mapValue_t mapValue, std::vector<std::pair<std::string, std::string>> orderForm, std::string fromAccount, CReserveKey& reservekey, CConnman* connman, CValidationState& state)
-=======
 bool CWallet::CommitTransaction(CTransactionRef tx, mapValue_t mapValue, std::vector<std::pair<std::string, std::string>> orderForm, CValidationState& state)
->>>>>>> upstream/master
 {
     {
         LOCK2(cs_main, cs_wallet);
@@ -3810,8 +3728,6 @@ bool CWallet::TopUpKeyPool(unsigned int kpSize)
     return true;
 }
 
-<<<<<<< HEAD
-=======
 void CWallet::AddKeypoolPubkeyWithDB(const CPubKey& pubkey, const bool internal, WalletBatch& batch)
 {
     LOCK(cs_wallet);
@@ -3828,7 +3744,6 @@ void CWallet::AddKeypoolPubkeyWithDB(const CPubKey& pubkey, const bool internal,
     m_pool_key_to_index[pubkey.GetID()] = index;
 }
 
->>>>>>> upstream/master
 bool CWallet::ReserveKeyFromKeyPool(int64_t& nIndex, CKeyPool& keypool, bool fRequestedInternal)
 {
     nIndex = -1;
@@ -4134,11 +4049,7 @@ std::set<CTxDestination> CWallet::GetLabelAddresses(const std::string& label) co
     return result;
 }
 
-<<<<<<< HEAD
-void CWallet::DeleteLabel(const std::string& label)
-=======
 bool ReserveDestination::GetReservedDestination(const OutputType type, CTxDestination& dest, bool internal)
->>>>>>> upstream/master
 {
     WalletBatch batch(*database);
     batch.EraseAccount(label);
@@ -4529,20 +4440,12 @@ std::shared_ptr<CWallet> CWallet::CreateWalletFromFile(const std::string& name, 
                 walletFile));
         }
         else if (nLoadWalletRet == DBErrors::TOO_NEW) {
-<<<<<<< HEAD
-            InitError(strprintf(_("Error loading %s: Wallet requires newer version of %s"), walletFile, _(PACKAGE_NAME)));
-=======
             chain.initError(strprintf(_("Error loading %s: Wallet requires newer version of %s"), walletFile, PACKAGE_NAME));
->>>>>>> upstream/master
             return nullptr;
         }
         else if (nLoadWalletRet == DBErrors::NEED_REWRITE)
         {
-<<<<<<< HEAD
-            InitError(strprintf(_("Wallet needed to be rewritten: restart %s to complete"), _(PACKAGE_NAME)));
-=======
             chain.initError(strprintf(_("Wallet needed to be rewritten: restart %s to complete"), PACKAGE_NAME));
->>>>>>> upstream/master
             return nullptr;
         }
         else {
@@ -4621,15 +4524,8 @@ std::shared_ptr<CWallet> CWallet::CreateWalletFromFile(const std::string& name, 
         }
         walletInstance->SetMinVersion(FEATURE_LATEST);
 
-<<<<<<< HEAD
-        if ((wallet_creation_flags & WALLET_FLAG_DISABLE_PRIVATE_KEYS)) {
-            //selective allow to set flags
-            walletInstance->SetWalletFlag(WALLET_FLAG_DISABLE_PRIVATE_KEYS);
-        } else {
-=======
         walletInstance->SetWalletFlags(wallet_creation_flags, false);
         if (!(wallet_creation_flags & (WALLET_FLAG_DISABLE_PRIVATE_KEYS | WALLET_FLAG_BLANK_WALLET))) {
->>>>>>> upstream/master
             // generate a new seed
             CPubKey seed = walletInstance->GenerateNewSeed();
             walletInstance->SetHDSeed(seed);
@@ -4959,8 +4855,6 @@ std::vector<OutputGroup> CWallet::GroupOutputs(const std::vector<COutput>& outpu
     }
     return groups;
 }
-<<<<<<< HEAD
-=======
 
 bool CWallet::GetKeyOrigin(const CKeyID& keyID, KeyOriginInfo& info) const
 {
@@ -5190,4 +5084,3 @@ bool CWallet::AddCryptedKeyInner(const CPubKey &vchPubKey, const std::vector<uns
     ImplicitlyLearnRelatedKeyScripts(vchPubKey);
     return true;
 }
->>>>>>> upstream/master

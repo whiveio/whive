@@ -10,10 +10,7 @@
 #include <amount.h>
 #include <outputtype.h>
 #include <policy/feerate.h>
-<<<<<<< HEAD
-=======
 #include <script/sign.h>
->>>>>>> upstream/master
 #include <streams.h>
 #include <tinyformat.h>
 #include <ui_interface.h>
@@ -23,11 +20,7 @@
 #include <script/sign.h>
 #include <util.h>
 #include <wallet/crypter.h>
-<<<<<<< HEAD
-#include <wallet/coinselection.h>
-=======
 #include <wallet/ismine.h>
->>>>>>> upstream/master
 #include <wallet/walletdb.h>
 #include <wallet/rpcwallet.h>
 
@@ -42,8 +35,6 @@
 #include <utility>
 #include <vector>
 
-<<<<<<< HEAD
-=======
 #include <boost/signals2/signal.hpp>
 
 //! Explicitly unload and delete the wallet.
@@ -53,7 +44,6 @@
 //! by the shared pointer deleter.
 void UnloadWallet(std::shared_ptr<CWallet>&& wallet);
 
->>>>>>> upstream/master
 bool AddWallet(const std::shared_ptr<CWallet>& wallet);
 bool RemoveWallet(const std::shared_ptr<CWallet>& wallet);
 bool HasWallets();
@@ -136,8 +126,6 @@ enum WalletFlags : uint64_t {
     // wallet flags in the upper section (> 1 << 31) will lead to not opening the wallet if flag is unknown
     // unknown wallet flags in the lower section <= (1 << 31) will be tolerated
 
-<<<<<<< HEAD
-=======
     // will categorize coins as clean (not reused) and dirty (reused), and handle
     // them with privacy considerations in mind
     WALLET_FLAG_AVOID_REUSE = (1ULL << 0),
@@ -145,16 +133,10 @@ enum WalletFlags : uint64_t {
     // Indicates that the metadata has already been upgraded to contain key origins
     WALLET_FLAG_KEY_ORIGIN_METADATA = (1ULL << 1),
 
->>>>>>> upstream/master
     // will enforce the rule that the wallet can't contain any private keys (only watch-only/pubkeys)
     WALLET_FLAG_DISABLE_PRIVATE_KEYS = (1ULL << 32),
 };
 
-<<<<<<< HEAD
-static constexpr uint64_t g_known_wallet_flags = WALLET_FLAG_DISABLE_PRIVATE_KEYS;
-
-/** A key pool entry */
-=======
 static constexpr uint64_t KNOWN_WALLET_FLAGS =
         WALLET_FLAG_AVOID_REUSE
     |   WALLET_FLAG_BLANK_WALLET
@@ -217,7 +199,6 @@ extern const std::map<uint64_t,std::string> WALLET_FLAG_CAVEATS;
  * index (m_pool_key_to_index). The CKeyPool object is used to
  * serialize/deserialize the pool data to/from the database.
  */
->>>>>>> upstream/master
 class CKeyPool
 {
 public:
@@ -263,8 +244,6 @@ public:
     }
 };
 
-<<<<<<< HEAD
-=======
 /** A wrapper to reserve an address from a wallet
  *
  * ReserveDestination is used to reserve an address.
@@ -318,7 +297,6 @@ public:
     void KeepDestination();
 };
 
->>>>>>> upstream/master
 /** Address book data */
 class CAddressBookData
 {
@@ -825,11 +803,7 @@ class WalletRescanReserver; //forward declarations for ScanForWalletTransactions
  * A CWallet is an extension of a keystore, which also maintains a set of transactions and balances,
  * and provides the ability to create new transactions.
  */
-<<<<<<< HEAD
-class CWallet final : public CCryptoKeyStore, public CValidationInterface
-=======
 class CWallet final : public FillableSigningProvider, private interfaces::Chain::Notifications
->>>>>>> upstream/master
 {
 private:
     CKeyingMaterial vMasterKey GUARDED_BY(cs_KeyStore);
@@ -1018,27 +992,19 @@ public:
     std::map<CKeyID, CKeyMetadata> mapKeyMetadata;
 
     // Map from Script ID to key metadata (for watch-only keys).
-<<<<<<< HEAD
-    std::map<CScriptID, CKeyMetadata> m_script_metadata;
-=======
     std::map<CScriptID, CKeyMetadata> m_script_metadata GUARDED_BY(cs_wallet);
->>>>>>> upstream/master
 
     typedef std::map<unsigned int, CMasterKey> MasterKeyMap;
     MasterKeyMap mapMasterKeys;
     unsigned int nMasterKeyMaxID = 0;
 
     /** Construct wallet with specified name and database implementation. */
-<<<<<<< HEAD
-    CWallet(std::string name, std::unique_ptr<WalletDatabase> database) : m_name(std::move(name)), database(std::move(database))
-=======
     CWallet(interfaces::Chain* chain, const WalletLocation& location, std::unique_ptr<WalletDatabase> database)
         : fUseCrypto(false),
           fDecryptionThoroughlyChecked(false),
           m_chain(chain),
           m_location(location),
           database(std::move(database))
->>>>>>> upstream/master
     {
     }
 
@@ -1048,16 +1014,11 @@ public:
         encrypted_batch = nullptr;
     }
 
-<<<<<<< HEAD
-    std::map<uint256, CWalletTx> mapWallet;
-    std::list<CAccountingEntry> laccentries;
-=======
     bool IsCrypted() const { return fUseCrypto; }
     bool IsLocked() const;
     bool Lock();
 
     std::map<uint256, CWalletTx> mapWallet GUARDED_BY(cs_wallet);
->>>>>>> upstream/master
 
     typedef std::pair<CWalletTx*, CAccountingEntry*> TxPair;
     typedef std::multimap<int64_t, TxPair > TxItems;
@@ -1099,9 +1060,6 @@ public:
     bool SelectCoinsMinConf(const CAmount& nTargetValue, const CoinEligibilityFilter& eligibility_filter, std::vector<OutputGroup> groups,
         std::set<CInputCoin>& setCoinsRet, CAmount& nValueRet, const CoinSelectionParams& coin_selection_params, bool& bnb_used) const;
 
-<<<<<<< HEAD
-    bool IsSpent(const uint256& hash, unsigned int n) const;
-=======
     bool IsSpent(interfaces::Chain::Lock& locked_chain, const uint256& hash, unsigned int n) const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
 
     // Whether this or any UTXO with the same CTxDestination has been spent.
@@ -1109,7 +1067,6 @@ public:
     bool IsUsedDestination(const uint256& hash, unsigned int n) const;
     void SetUsedDestinationState(const uint256& hash, unsigned int n, bool used);
 
->>>>>>> upstream/master
     std::vector<OutputGroup> GroupOutputs(const std::vector<COutput>& outputs, bool single_coin) const;
 
     bool IsLockedCoin(uint256 hash, unsigned int n) const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
@@ -1203,18 +1160,6 @@ public:
     int64_t RescanFromTime(int64_t startTime, const WalletRescanReserver& reserver, bool update);
     CBlockIndex* ScanForWalletTransactions(CBlockIndex* pindexStart, CBlockIndex* pindexStop, const WalletRescanReserver& reserver, bool fUpdate = false);
     void TransactionRemovedFromMempool(const CTransactionRef &ptx) override;
-<<<<<<< HEAD
-    void ReacceptWalletTransactions();
-    void ResendWalletTransactions(int64_t nBestBlockTime, CConnman* connman) override;
-    // ResendWalletTransactionsBefore may only be called if fBroadcastTransactions!
-    std::vector<uint256> ResendWalletTransactionsBefore(int64_t nTime, CConnman* connman);
-    CAmount GetBalance(const isminefilter& filter=ISMINE_SPENDABLE, const int min_depth=0) const;
-    CAmount GetUnconfirmedBalance() const;
-    CAmount GetImmatureBalance() const;
-    CAmount GetUnconfirmedWatchOnlyBalance() const;
-    CAmount GetImmatureWatchOnlyBalance() const;
-    CAmount GetLegacyBalance(const isminefilter& filter, int minDepth, const std::string* account) const;
-=======
     void ReacceptWalletTransactions(interfaces::Chain::Lock& locked_chain) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
     void ResendWalletTransactions();
     struct Balance {
@@ -1226,7 +1171,6 @@ public:
         CAmount m_watchonly_immature{0};
     };
     Balance GetBalance(int min_depth = 0, bool avoid_reuse = true) const;
->>>>>>> upstream/master
     CAmount GetAvailableBalance(const CCoinControl* coinControl = nullptr) const;
 
     OutputType TransactionChangeType(OutputType change_type, const std::vector<CRecipient>& vecSend);
@@ -1243,15 +1187,9 @@ public:
      * selected by SelectCoins(); Also create the change output, when needed
      * @note passing nChangePosInOut as -1 will result in setting a random position
      */
-<<<<<<< HEAD
-    bool CreateTransaction(const std::vector<CRecipient>& vecSend, CTransactionRef& tx, CReserveKey& reservekey, CAmount& nFeeRet, int& nChangePosInOut,
-                           std::string& strFailReason, const CCoinControl& coin_control, bool sign = true);
-    bool CommitTransaction(CTransactionRef tx, mapValue_t mapValue, std::vector<std::pair<std::string, std::string>> orderForm, std::string fromAccount, CReserveKey& reservekey, CConnman* connman, CValidationState& state);
-=======
     bool CreateTransaction(interfaces::Chain::Lock& locked_chain, const std::vector<CRecipient>& vecSend, CTransactionRef& tx, CAmount& nFeeRet, int& nChangePosInOut,
                            std::string& strFailReason, const CCoinControl& coin_control, bool sign = true);
     bool CommitTransaction(CTransactionRef tx, mapValue_t mapValue, std::vector<std::pair<std::string, std::string>> orderForm, CValidationState& state);
->>>>>>> upstream/master
 
     void ListAccountCreditDebit(const std::string& strAccount, std::list<CAccountingEntry>& entries);
     bool AddAccountingEntry(const CAccountingEntry&);
@@ -1404,8 +1342,6 @@ public:
     /** Watch-only address added */
     boost::signals2::signal<void (bool fHaveWatchOnly)> NotifyWatchonlyChanged;
 
-<<<<<<< HEAD
-=======
     /** Keypool has new keys */
     boost::signals2::signal<void ()> NotifyCanGetAddressesChanged;
 
@@ -1415,7 +1351,6 @@ public:
      */
     boost::signals2::signal<void (CWallet* wallet)> NotifyStatusChanged;
 
->>>>>>> upstream/master
     /** Inquire whether this wallet broadcasts transactions. */
     bool GetBroadcastTransactions() const { return fBroadcastTransactions; }
     /** Set whether this wallet broadcasts transactions. */
@@ -1507,42 +1442,8 @@ public:
         LogPrintf(("%s " + fmt).c_str(), GetDisplayName(), parameters...);
     };
 
-<<<<<<< HEAD
-};
-
-/** A key allocated from the key pool. */
-class CReserveKey final : public CReserveScript
-{
-protected:
-    CWallet* pwallet;
-    int64_t nIndex;
-    CPubKey vchPubKey;
-    bool fInternal;
-public:
-    explicit CReserveKey(CWallet* pwalletIn)
-    {
-        nIndex = -1;
-        pwallet = pwalletIn;
-        fInternal = false;
-    }
-
-    CReserveKey() = default;
-    CReserveKey(const CReserveKey&) = delete;
-    CReserveKey& operator=(const CReserveKey&) = delete;
-
-    ~CReserveKey()
-    {
-        ReturnKey();
-    }
-
-    void ReturnKey();
-    bool GetReservedKey(CPubKey &pubkey, bool internal = false);
-    void KeepKey();
-    void KeepScript() override { KeepKey(); }
-=======
     /** Implement lookup of key origin information through wallet key metadata. */
     bool GetKeyOrigin(const CKeyID& keyid, KeyOriginInfo& info) const override;
->>>>>>> upstream/master
 };
 
 

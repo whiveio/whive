@@ -7,14 +7,8 @@
 #include <init.h>
 #include <net.h>
 #include <outputtype.h>
-<<<<<<< HEAD
-#include <util.h>
-#include <utilmoneystr.h>
-#include <validation.h>
-=======
 #include <util/system.h>
 #include <util/moneystr.h>
->>>>>>> upstream/master
 #include <walletinitinterface.h>
 #include <wallet/wallet.h>
 #include <wallet/walletutil.h>

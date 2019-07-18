@@ -16,12 +16,6 @@ class CScript;
 /** IsMine() return codes */
 enum isminetype : unsigned int
 {
-<<<<<<< HEAD:src/script/ismine.h
-    ISMINE_NO = 0,
-    ISMINE_WATCH_ONLY = 1,
-    ISMINE_SPENDABLE = 2,
-    ISMINE_ALL = ISMINE_WATCH_ONLY | ISMINE_SPENDABLE
-=======
     ISMINE_NO         = 0,
     ISMINE_WATCH_ONLY = 1 << 0,
     ISMINE_SPENDABLE  = 1 << 1,
@@ -29,7 +23,6 @@ enum isminetype : unsigned int
     ISMINE_ALL        = ISMINE_WATCH_ONLY | ISMINE_SPENDABLE,
     ISMINE_ALL_USED   = ISMINE_ALL | ISMINE_USED,
     ISMINE_ENUM_ELEMENTS,
->>>>>>> upstream/master:src/wallet/ismine.h
 };
 /** used for bitflags of isminetype */
 typedef uint8_t isminefilter;
@@ -37,9 +30,6 @@ typedef uint8_t isminefilter;
 isminetype IsMine(const CWallet& wallet, const CScript& scriptPubKey);
 isminetype IsMine(const CWallet& wallet, const CTxDestination& dest);
 
-<<<<<<< HEAD:src/script/ismine.h
-#endif // BITCOIN_SCRIPT_ISMINE_H
-=======
 /**
  * Cachable amount subdivided into watchonly and spendable parts.
  */
@@ -60,4 +50,3 @@ struct CachableAmount
 };
 
 #endif // BITCOIN_WALLET_ISMINE_H
->>>>>>> upstream/master:src/wallet/ismine.h

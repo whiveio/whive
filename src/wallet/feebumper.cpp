@@ -9,19 +9,10 @@
 #include <wallet/wallet.h>
 #include <policy/fees.h>
 #include <policy/policy.h>
-<<<<<<< HEAD
-#include <policy/rbf.h>
-#include <validation.h> //for mempool access
-#include <txmempool.h>
-#include <utilmoneystr.h>
-#include <util.h>
-#include <net.h>
-=======
 #include <util/moneystr.h>
 #include <util/rbf.h>
 #include <util/system.h>
 #include <util/validation.h>
->>>>>>> upstream/master
 
 //! Check whether transaction has descendant in wallet or mempool, or has been
 //! mined, or conflicts with a mined transaction. Return a feebumper::Result.
@@ -214,8 +205,6 @@ Result CreateTransaction(const CWallet* wallet, const uint256& txid, const CCoin
         }
     }
 
-<<<<<<< HEAD
-=======
     return Result::OK;
 }
 
@@ -315,7 +304,6 @@ Result CreateRateBumpTransaction(CWallet* wallet, const uint256& txid, const CCo
             if (input.nSequence < 0xfffffffe) input.nSequence = 0xfffffffe;
         }
     }
->>>>>>> upstream/master
 
     return Result::OK;
 }
@@ -350,11 +338,7 @@ Result CommitTransaction(CWallet* wallet, const uint256& txid, CMutableTransacti
     mapValue["replaces_txid"] = oldWtx.GetHash().ToString();
 
     CValidationState state;
-<<<<<<< HEAD
-    if (!wallet->CommitTransaction(tx, std::move(mapValue), oldWtx.vOrderForm, oldWtx.strFromAccount, reservekey, g_connman.get(), state)) {
-=======
     if (!wallet->CommitTransaction(tx, std::move(mapValue), oldWtx.vOrderForm, state)) {
->>>>>>> upstream/master
         // NOTE: CommitTransaction never returns false, so this should never happen.
         errors.push_back(strprintf("The transaction was rejected: %s", FormatStateMessage(state)));
         return Result::WALLET_ERROR;

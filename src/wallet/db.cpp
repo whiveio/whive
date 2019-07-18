@@ -6,15 +6,7 @@
 
 #include <wallet/db.h>
 
-<<<<<<< HEAD
-#include <addrman.h>
-#include <hash.h>
-#include <protocol.h>
-#include <utilstrencodings.h>
-#include <wallet/walletutil.h>
-=======
 #include <util/strencodings.h>
->>>>>>> upstream/master
 
 #include <stdint.h>
 
