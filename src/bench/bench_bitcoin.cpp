@@ -4,17 +4,8 @@
 
 #include <bench/bench.h>
 
-<<<<<<< HEAD
-#include <crypto/sha256.h>
-#include <key.h>
-#include <random.h>
-#include <util.h>
-#include <utilstrencodings.h>
-#include <validation.h>
-=======
 #include <util/strencodings.h>
 #include <util/system.h>
->>>>>>> upstream/master
 
 #include <memory>
 
