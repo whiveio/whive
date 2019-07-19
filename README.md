@@ -1,17 +1,12 @@
 Whive Core integration/staging tree
 =====================================
 
-[![pipeline status](http://192.168.0.39/xyephy/whive/badges/master/pipeline.svg)](http://192.168.0.39/xyephy/whive/commits/master)
-
 https://whive.io
 
 What is Whive?
 ----------------
 
-Whive, is a peer-to-peer protocol that extends the Bitcoin blockchain and allows for building of a suite of applications that solve social challenges across the globe by allowing for trustless human-to-machine interactions.
-
-For more information, as well as an immediately useable, binary version of
-the Whive Core software, see https://whivetokcore.org/en/download/, 
+Whive, is a peer-to-peer blockchain protocol that extends the Bitcoin Blockchain incentivizing the building of sustainable energy solutions through Trustless Rewards. The Whive protocol seeks to empower communities to access latent resources such as; Solar Energy & Irrigated Water through Distributed Applications. We achieve this through a Merge-Mined Auxilary Chain(AuxChain) that extends Bitcoin's distributed trust model through Trustless Rewards.
 
 License
 -------
@@ -60,7 +55,7 @@ Translations
 ------------
 
 Changes to translations as well as new translations can be submitted to
-[Whive Core's Transifex page](https://www.transifex.com/projects/p/whivetok/).
+[Whive Core's Transifex page](https://www.transifex.com/projects/p/whive/).
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
 [translation process](doc/translation_process.md) for details on how this works.
@@ -68,4 +63,4 @@ Translations are periodically pulled from Transifex and merged into the git repo
 **Important**: We do not accept translation changes as GitHub pull requests because the next
 pull from Transifex would automatically overwrite them again.
 
-Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/whivetok-translators).
+Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/whive-translators).

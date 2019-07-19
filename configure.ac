@@ -790,29 +790,6 @@ AC_LINK_IFELSE([AC_LANG_SOURCE([
   ]
 )
 
-<<<<<<< HEAD
-TEMP_LDFLAGS="$LDFLAGS"
-LDFLAGS="$TEMP_LDFLAGS $PTHREAD_CFLAGS"
-AC_MSG_CHECKING([for thread_local support])
-AC_LINK_IFELSE([AC_LANG_SOURCE([
-  #include <thread>
-  static thread_local int foo = 0;
-  static void run_thread() { foo++;}
-  int main(){
-  for(int i = 0; i < 10; i++) { std::thread(run_thread).detach();}
-  return foo;
-  }
-  ])],
-  [
-    AC_DEFINE(HAVE_THREAD_LOCAL,1,[Define if thread_local is supported.])
-    AC_MSG_RESULT(yes)
-  ],
-  [
-    AC_MSG_RESULT(no)
-  ]
-)
-LDFLAGS="$TEMP_LDFLAGS"
-=======
 if test "x$use_thread_local" = xyes || { test "x$use_thread_local" = xauto && test "x$use_glibc_compat" = xno; }; then
   TEMP_LDFLAGS="$LDFLAGS"
   LDFLAGS="$TEMP_LDFLAGS $PTHREAD_CFLAGS"
@@ -856,7 +833,6 @@ if test "x$use_thread_local" = xyes || { test "x$use_thread_local" = xauto && te
   )
   LDFLAGS="$TEMP_LDFLAGS"
 fi
->>>>>>> upstream/master
 
 # Check for different ways of gathering OS randomness
 AC_MSG_CHECKING(for Linux getrandom syscall)
@@ -974,16 +950,7 @@ if test x$use_upnp != xno; then
   )
 fi
 
-<<<<<<< HEAD
-BITCOIN_QT_INIT
-
-dnl sets $bitcoin_enable_qt, $bitcoin_enable_qt_test, $bitcoin_enable_qt_dbus
-BITCOIN_QT_CONFIGURE([$use_pkgconfig])
-
-if test x$build_bitcoin_utils$build_bitcoind$bitcoin_enable_qt$use_tests$use_bench = xnonononono; then
-=======
 if test x$build_bitcoin_wallet$build_bitcoin_cli$build_bitcoin_tx$build_bitcoind$bitcoin_enable_qt$use_tests$use_bench = xnonononononono; then
->>>>>>> upstream/master
     use_boost=no
 else
     use_boost=yes
