@@ -444,13 +444,6 @@ class ImportMultiTest (BitcoinTestFramework):
                 "scriptPubKey": address['scriptPubKey'],
             }])
         assert_raises_rpc_error(-3, 'Expected number or "now" timestamp value for key. got type string',
-<<<<<<< HEAD
-            self.nodes[1].importmulti, [{
-                "scriptPubKey": address['scriptPubKey'],
-                "timestamp": "",
-            }])
-
-=======
                                 self.nodes[1].importmulti, [{
                                     "scriptPubKey": key.p2pkh_script,
                                     "timestamp": ""
@@ -869,7 +862,6 @@ class ImportMultiTest (BitcoinTestFramework):
         for i in range(0, 5):
             addr = wrpc.getnewaddress('', 'bech32')
             assert_equal(addr, addresses[i])
->>>>>>> upstream/master
 
 if __name__ == '__main__':
     ImportMultiTest ().main ()

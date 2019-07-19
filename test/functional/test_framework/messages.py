@@ -1098,14 +1098,9 @@ class msg_generic():
     def __repr__(self):
         return "msg_generic()"
 
-<<<<<<< HEAD
-class msg_witness_block(msg_block):
-
-=======
 
 class msg_no_witness_block(msg_block):
     __slots__ = ()
->>>>>>> upstream/master
     def serialize(self):
         return self.block.serialize(with_witness=False)
 
@@ -1362,13 +1357,9 @@ class msg_blocktxn():
     def __repr__(self):
         return "msg_blocktxn(block_transactions=%s)" % (repr(self.block_transactions))
 
-<<<<<<< HEAD
-class msg_witness_blocktxn(msg_blocktxn):
-=======
 
 class msg_no_witness_blocktxn(msg_blocktxn):
     __slots__ = ()
 
->>>>>>> upstream/master
     def serialize(self):
         return self.block_transactions.serialize(with_witness=False)

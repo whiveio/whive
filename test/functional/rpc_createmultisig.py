@@ -5,10 +5,6 @@
 """Test transaction signing using the signrawtransaction* RPCs."""
 
 from test_framework.test_framework import BitcoinTestFramework
-<<<<<<< HEAD
-import decimal
-
-=======
 from test_framework.util import (
     assert_raises_rpc_error,
     assert_equal,
@@ -19,7 +15,6 @@ import binascii
 import decimal
 import itertools
 
->>>>>>> upstream/master
 class RpcCreateMultiSigTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -51,8 +46,6 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
 
         self.checkbalances()
 
-<<<<<<< HEAD
-=======
         # Test mixed compressed and uncompressed pubkeys
         self.log.info('Mixed compressed and uncompressed multisigs are not allowed')
         pk0 = node0.getaddressinfo(node0.getnewaddress())['pubkey']
@@ -86,7 +79,6 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
             self.nodes[0].importaddress(a)
         assert_raises_rpc_error(-5, 'no full public key for address', lambda: self.nodes[0].addmultisigaddress(nrequired=1, keys=addresses))
 
->>>>>>> upstream/master
     def checkbalances(self):
         node0,node1,node2 = self.nodes
         node0.generate(100)
@@ -135,16 +127,12 @@ class RpcCreateMultiSigTest(BitcoinTestFramework):
         outval = value - decimal.Decimal("0.00001000")
         rawtx = node2.createrawtransaction([{"txid": txid, "vout": vout}], [{self.final: outval}])
 
-<<<<<<< HEAD
-        rawtx2 = node2.signrawtransactionwithkey(rawtx, self.priv[0:self.nsigs-1], prevtxs)
-=======
         prevtx_err = dict(prevtxs[0])
         del prevtx_err["redeemScript"]
 
         assert_raises_rpc_error(-8, "Missing redeemScript/witnessScript", node2.signrawtransactionwithkey, rawtx, self.priv[0:self.nsigs-1], [prevtx_err])
 
         rawtx2 = node2.signrawtransactionwithkey(rawtx, self.priv[0:self.nsigs - 1], prevtxs)
->>>>>>> upstream/master
         rawtx3 = node2.signrawtransactionwithkey(rawtx2["hex"], [self.priv[-1]], prevtxs)
 
         self.moved += outval

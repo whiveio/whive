@@ -375,11 +375,7 @@ class BIP68Test(BitcoinTestFramework):
         add_witness_commitment(block)
         block.solve()
 
-<<<<<<< HEAD
-        self.nodes[0].submitblock(bytes_to_hex_str(block.serialize(True)))
-=======
         self.nodes[0].submitblock(block.serialize().hex())
->>>>>>> upstream/master
         assert_equal(self.nodes[0].getbestblockhash(), block.hash)
 
     def activateCSV(self):

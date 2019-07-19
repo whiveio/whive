@@ -28,11 +28,6 @@ from .util import (
     disconnect_nodes,
     get_datadir_path,
     initialize_datadir,
-<<<<<<< HEAD
-    p2p_port,
-    set_node_times,
-=======
->>>>>>> upstream/master
     sync_blocks,
     sync_mempools,
 )
@@ -423,41 +418,12 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
     def _initialize_chain(self):
         """Initialize a pre-mined blockchain for use by the test.
 
-<<<<<<< HEAD
-        Create a cache of a 200-block-long chain (with wallet) for MAX_NODES
-=======
         Create a cache of a 199-block-long chain
->>>>>>> upstream/master
         Afterward, create num_nodes copies from the cache."""
 
         CACHE_NODE_ID = 0  # Use node 0 to create the cache for all other nodes
         cache_node_dir = get_datadir_path(self.options.cachedir, CACHE_NODE_ID)
         assert self.num_nodes <= MAX_NODES
-<<<<<<< HEAD
-        create_cache = False
-        for i in range(MAX_NODES):
-            if not os.path.isdir(get_datadir_path(self.options.cachedir, i)):
-                create_cache = True
-                break
-
-        if create_cache:
-            self.log.debug("Creating data directories from cached datadir")
-
-            # find and delete old cache directories if any exist
-            for i in range(MAX_NODES):
-                if os.path.isdir(get_datadir_path(self.options.cachedir, i)):
-                    shutil.rmtree(get_datadir_path(self.options.cachedir, i))
-
-            # Create cache directories, run bitcoinds:
-            for i in range(MAX_NODES):
-                datadir = initialize_datadir(self.options.cachedir, i)
-                args = [self.options.bitcoind, "-datadir=" + datadir, '-disablewallet']
-                if i > 0:
-                    args.append("-connect=127.0.0.1:" + str(p2p_port(0)))
-                self.nodes.append(TestNode(i, get_datadir_path(self.options.cachedir, i), extra_conf=["bind=127.0.0.1"], extra_args=[], rpchost=None, timewait=self.rpc_timewait, bitcoind=self.options.bitcoind, bitcoin_cli=self.options.bitcoincli, mocktime=self.mocktime, coverage_dir=None))
-                self.nodes[i].args = args
-                self.start_node(i)
-=======
 
         if not os.path.isdir(cache_node_dir):
             self.log.debug("Creating cache directory {}".format(cache_node_dir))
@@ -477,30 +443,12 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
                     cwd=self.options.tmpdir,
                 ))
             self.start_node(CACHE_NODE_ID)
->>>>>>> upstream/master
 
             # Wait for RPC connections to be ready
             self.nodes[CACHE_NODE_ID].wait_for_rpc_connection()
 
             # Create a 200-block-long chain; each of the 4 first nodes
             # gets 25 mature blocks and 25 immature.
-<<<<<<< HEAD
-            # Note: To preserve compatibility with older versions of
-            # initialize_chain, only 4 nodes will generate coins.
-            #
-            # blocks are created with timestamps 10 minutes apart
-            # starting from 2010 minutes in the past
-            self.enable_mocktime()
-            block_time = self.mocktime - (201 * 10 * 60)
-            for i in range(2):
-                for peer in range(4):
-                    for j in range(25):
-                        set_node_times(self.nodes, block_time)
-                        self.nodes[peer].generatetoaddress(1, self.nodes[peer].get_deterministic_priv_key()[0])
-                        block_time += 10 * 60
-                    # Must sync before next peer starts generating blocks
-                    sync_blocks(self.nodes)
-=======
             # The 4th node gets only 24 immature blocks so that the very last
             # block in the cache does not age too much (have an old tip age).
             # This is needed so that we are out of IBD when the test starts,
@@ -512,7 +460,6 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
                 )
 
             assert_equal(self.nodes[CACHE_NODE_ID].getblockchaininfo()["blocks"], 199)
->>>>>>> upstream/master
 
             # Shut it down, and clean up cache directories:
             self.stop_nodes()

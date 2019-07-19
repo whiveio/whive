@@ -42,15 +42,11 @@ class RawTransactionsTest(BitcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3
-<<<<<<< HEAD
-        self.extra_args = [["-addresstype=legacy"], ["-addresstype=legacy"], ["-addresstype=legacy"]]
-=======
         self.extra_args = [
             ["-txindex"],
             ["-txindex"],
             ["-txindex"],
         ]
->>>>>>> upstream/master
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -445,8 +441,6 @@ class RawTransactionsTest(BitcoinTestFramework):
         decrawtx = self.nodes[0].decoderawtransaction(rawtx)
         assert_equal(decrawtx['version'], 0x7fffffff)
 
-<<<<<<< HEAD
-=======
         self.log.info('sendrawtransaction/testmempoolaccept with maxfeerate')
 
         txId = self.nodes[0].sendtoaddress(self.nodes[2].getnewaddress(), 1.0)
@@ -472,6 +466,5 @@ class RawTransactionsTest(BitcoinTestFramework):
         self.nodes[2].sendrawtransaction(hexstring=rawTxSigned['hex'], maxfeerate='0.00070000')
 
 
->>>>>>> upstream/master
 if __name__ == '__main__':
     RawTransactionsTest().main()

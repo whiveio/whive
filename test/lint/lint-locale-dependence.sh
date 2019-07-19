@@ -11,10 +11,6 @@ KNOWN_VIOLATIONS=(
     "src/dbwrapper.cpp:.*vsnprintf"
     "src/httprpc.cpp.*trim"
     "src/init.cpp:.*atoi"
-<<<<<<< HEAD
-    "src/netbase.cpp.*to_lower"
-=======
->>>>>>> upstream/master
     "src/qt/rpcconsole.cpp:.*atoi"
     "src/qt/rpcconsole.cpp:.*isdigit"
     "src/rest.cpp:.*strtol"
@@ -206,14 +202,8 @@ GIT_GREP_OUTPUT=$(git grep -E "[^a-zA-Z0-9_\`'\"<>](${REGEXP_LOCALE_DEPENDENT_FU
 
 EXIT_CODE=0
 for LOCALE_DEPENDENT_FUNCTION in "${LOCALE_DEPENDENT_FUNCTIONS[@]}"; do
-<<<<<<< HEAD
-    MATCHES=$(grep -E "[^a-zA-Z0-9_\`'\"<>]${LOCALE_DEPENDENT_FUNCTION}(|_r|_s)[^a-zA-Z0-9_\`'\"<>]" <<< "${GIT_GREP_OUTPUT}" | \
-        grep -vE "\.(c|cpp|h):\s*(//|\*|/\*|\").*${LOCALE_DEPENDENT_FUNCTION}" | \
-        grep -vE 'fprintf\(.*(stdout|stderr)')
-=======
     MATCHES=$(grep -E "[^a-zA-Z0-9_\`'\"<>]${LOCALE_DEPENDENT_FUNCTION}(_r|_s)?[^a-zA-Z0-9_\`'\"<>]" <<< "${GIT_GREP_OUTPUT}" | \
         grep -vE "\.(c|cpp|h):\s*(//|\*|/\*|\").*${LOCALE_DEPENDENT_FUNCTION}")
->>>>>>> upstream/master
     if [[ ${REGEXP_IGNORE_EXTERNAL_DEPENDENCIES} != "" ]]; then
         MATCHES=$(grep -vE "${REGEXP_IGNORE_EXTERNAL_DEPENDENCIES}" <<< "${MATCHES}")
     fi

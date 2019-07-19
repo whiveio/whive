@@ -16,10 +16,6 @@ class ResendWalletTransactionsTest(BitcoinTestFramework):
         self.skip_if_no_wallet()
 
     def run_test(self):
-<<<<<<< HEAD
-        # Should raise RPC_WALLET_ERROR (-4) if walletbroadcast is disabled.
-        assert_raises_rpc_error(-4, "Error: Wallet transaction broadcasting is disabled with -walletbroadcast", self.nodes[0].resendwallettransactions)
-=======
         node = self.nodes[0]  # alias
 
         node.add_p2p_connection(P2PStoreTxInvs())
@@ -49,7 +45,6 @@ class ResendWalletTransactionsTest(BitcoinTestFramework):
         block.rehash()
         block.solve()
         node.submitblock(ToHex(block))
->>>>>>> upstream/master
 
         # Should return an empty array if there aren't unconfirmed wallet transactions.
         self.stop_node(0)

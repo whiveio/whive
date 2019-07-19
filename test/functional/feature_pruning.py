@@ -244,26 +244,9 @@ class PruneTest(BitcoinTestFramework):
             else:
                 return index
 
-<<<<<<< HEAD
-        def prune(index, expected_ret=None):
-            ret = node.pruneblockchain(height(index))
-            # Check the return value. When use_timestamp is True, just check
-            # that the return value is less than or equal to the expected
-            # value, because when more than one block is generated per second,
-            # a timestamp will not be granular enough to uniquely identify an
-            # individual block.
-            if expected_ret is None:
-                expected_ret = index
-            if use_timestamp:
-                assert_greater_than(ret, 0)
-                assert_greater_than(expected_ret + 1, ret)
-            else:
-                assert_equal(ret, expected_ret)
-=======
         def prune(index):
             ret = node.pruneblockchain(height=height(index))
             assert_equal(ret, node.getblockchaininfo()['pruneheight'])
->>>>>>> upstream/master
 
         def has_block(index):
             return os.path.isfile(os.path.join(self.nodes[node_number].datadir, "regtest", "blocks", "blk{:05}.dat".format(index)))
@@ -308,14 +291,8 @@ class PruneTest(BitcoinTestFramework):
             raise AssertionError("blk00001.dat is still there, should be pruned by now")
 
         # height=1000 should not prune anything more, because tip-288 is in blk00002.dat.
-<<<<<<< HEAD
-        prune(1000, 1001 - MIN_BLOCKS_TO_KEEP)
-        if not has_block(2):
-            raise AssertionError("blk00002.dat is still there, should be pruned by now")
-=======
         prune(1000)
         assert has_block(2), "blk00002.dat is still there, should be pruned by now"
->>>>>>> upstream/master
 
         # advance the tip so blk00002.dat and blk00003.dat can be pruned (the last 288 blocks should now be in blk00004.dat)
         node.generate(288)

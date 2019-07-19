@@ -140,25 +140,12 @@ def test_witness_block(node, p2p, block, accepted, with_witness=True, reason=Non
 
     - Submit the block over the p2p interface
     - use the getbestblockhash rpc to check for acceptance."""
-<<<<<<< HEAD
-    if with_witness:
-        p2p.send_message(msg_witness_block(block))
-    else:
-        p2p.send_message(msg_block(block))
-    p2p.sync_with_ping()
-    assert_equal(node.getbestblockhash() == block.hash, accepted)
-    if (reason is not None and not accepted):
-        # Check the rejection reason as well.
-        with mininode_lock:
-            assert_equal(p2p.last_message["reject"].reason, reason)
-=======
     reason = [reason] if reason else []
     with node.assert_debug_log(expected_msgs=reason):
         p2p.send_message(msg_block(block) if with_witness else msg_no_witness_block(block))
         p2p.sync_with_ping()
         assert_equal(node.getbestblockhash() == block.hash, accepted)
 
->>>>>>> upstream/master
 
 class TestP2PConn(P2PInterface):
     def __init__(self):
@@ -834,11 +821,7 @@ class SegWitTest(BitcoinTestFramework):
         block.solve()
 
         # Test the test -- witness serialization should be different
-<<<<<<< HEAD
-        assert(msg_witness_block(block).serialize() != msg_block(block).serialize())
-=======
         assert msg_block(block).serialize() != msg_no_witness_block(block).serialize()
->>>>>>> upstream/master
 
         # This empty block should be valid.
         test_witness_block(self.nodes[0], self.test_node, block, accepted=True)
@@ -931,22 +914,13 @@ class SegWitTest(BitcoinTestFramework):
 
         # We can't send over the p2p network, because this is too big to relay
         # TODO: repeat this test with a block that can be relayed
-<<<<<<< HEAD
-        self.nodes[0].submitblock(bytes_to_hex_str(block.serialize(True)))
-=======
         self.nodes[0].submitblock(block.serialize().hex())
->>>>>>> upstream/master
 
         assert(self.nodes[0].getbestblockhash() != block.hash)
 
         block.vtx[0].wit.vtxinwit[0].scriptWitness.stack.pop()
-<<<<<<< HEAD
-        assert(get_virtual_size(block) < MAX_BLOCK_BASE_SIZE)
-        self.nodes[0].submitblock(bytes_to_hex_str(block.serialize(True)))
-=======
         assert get_virtual_size(block) < MAX_BLOCK_BASE_SIZE
         self.nodes[0].submitblock(block.serialize().hex())
->>>>>>> upstream/master
 
         assert(self.nodes[0].getbestblockhash() == block.hash)
 
@@ -1025,11 +999,7 @@ class SegWitTest(BitcoinTestFramework):
         assert_equal(vsize, MAX_BLOCK_BASE_SIZE + 1)
         # Make sure that our test case would exceed the old max-network-message
         # limit
-<<<<<<< HEAD
-        assert(len(block.serialize(True)) > 2 * 1024 * 1024)
-=======
         assert len(block.serialize()) > 2 * 1024 * 1024
->>>>>>> upstream/master
 
         test_witness_block(self.nodes[0], self.test_node, block, accepted=False)
 
@@ -1057,23 +1027,14 @@ class SegWitTest(BitcoinTestFramework):
         add_witness_commitment(block, nonce=1)
         block.vtx[0].wit = CTxWitness()  # drop the nonce
         block.solve()
-<<<<<<< HEAD
-        self.nodes[0].submitblock(bytes_to_hex_str(block.serialize(True)))
-        assert(self.nodes[0].getbestblockhash() != block.hash)
-=======
         self.nodes[0].submitblock(block.serialize().hex())
         assert self.nodes[0].getbestblockhash() != block.hash
->>>>>>> upstream/master
 
         # Now redo commitment with the standard nonce, but let bitcoind fill it in.
         add_witness_commitment(block, nonce=0)
         block.vtx[0].wit = CTxWitness()
         block.solve()
-<<<<<<< HEAD
-        self.nodes[0].submitblock(bytes_to_hex_str(block.serialize(True)))
-=======
         self.nodes[0].submitblock(block.serialize().hex())
->>>>>>> upstream/master
         assert_equal(self.nodes[0].getbestblockhash(), block.hash)
 
         # This time, add a tx with non-empty witness, but don't supply
@@ -1088,11 +1049,7 @@ class SegWitTest(BitcoinTestFramework):
         block_2.vtx[0].vout.pop()
         block_2.vtx[0].wit = CTxWitness()
 
-<<<<<<< HEAD
-        self.nodes[0].submitblock(bytes_to_hex_str(block_2.serialize(True)))
-=======
         self.nodes[0].submitblock(block_2.serialize().hex())
->>>>>>> upstream/master
         # Tip should not advance!
         assert(self.nodes[0].getbestblockhash() != block_2.hash)
 

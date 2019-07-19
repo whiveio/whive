@@ -25,11 +25,7 @@ def create_transactions(node, address, amt, fees):
     for utxo in utxos:
         inputs.append({"txid": utxo["txid"], "vout": utxo["vout"]})
         ins_total += utxo['amount']
-<<<<<<< HEAD
-        if ins_total > amt:
-=======
         if ins_total >= amt + max(fees):
->>>>>>> upstream/master
             break
     # make sure there was enough utxos
     assert ins_total >= amt + max(fees)
@@ -138,8 +134,6 @@ class WalletTest(BitcoinTestFramework):
         # getbalance with minconf=2 will show the new balance.
         assert_equal(self.nodes[1].getbalance(minconf=2), Decimal('0'))
 
-<<<<<<< HEAD
-=======
         # check mempool transactions count for wallet unconfirmed balance after
         # dynamically loading the wallet.
         before = self.nodes[1].getunconfirmedbalance()
@@ -199,6 +193,5 @@ class WalletTest(BitcoinTestFramework):
         assert_equal(self.nodes[0].getbalance(minconf=0), total_amount + 1)  # The reorg recovered our fee of 1 coin
 
 
->>>>>>> upstream/master
 if __name__ == '__main__':
     WalletTest().main()

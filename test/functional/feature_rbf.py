@@ -144,24 +144,13 @@ class ReplaceByFeeTest(BitcoinTestFramework):
         tx1b_hex = txToHex(tx1b)
 
         # This will raise an exception due to insufficient fee
-<<<<<<< HEAD
-        assert_raises_rpc_error(-26, "insufficient fee", self.nodes[0].sendrawtransaction, tx1b_hex, True)
-        # This will raise an exception due to transaction replacement being disabled
-        assert_raises_rpc_error(-26, "txn-mempool-conflict", self.nodes[1].sendrawtransaction, tx1b_hex, True)
-=======
         assert_raises_rpc_error(-26, "insufficient fee", self.nodes[0].sendrawtransaction, tx1b_hex, 0)
->>>>>>> upstream/master
 
         # Extra 0.1 BTC fee
         tx1b = CTransaction()
         tx1b.vin = [CTxIn(tx0_outpoint, nSequence=0)]
         tx1b.vout = [CTxOut(int(0.9 * COIN), CScript([b'b' * 35]))]
         tx1b_hex = txToHex(tx1b)
-<<<<<<< HEAD
-        # Replacement still disabled even with "enough fee"
-        assert_raises_rpc_error(-26, "txn-mempool-conflict", self.nodes[1].sendrawtransaction, tx1b_hex, True)
-=======
->>>>>>> upstream/master
         # Works when enabled
         tx1b_txid = self.nodes[0].sendrawtransaction(tx1b_hex, True)
 

@@ -6,9 +6,6 @@
 """
 
 from test_framework.test_framework import BitcoinTestFramework
-<<<<<<< HEAD
-from test_framework.util import assert_equal, assert_raises_rpc_error, find_output, disconnect_nodes, connect_nodes_bi, sync_blocks
-=======
 from test_framework.util import (
     assert_equal,
     assert_greater_than,
@@ -17,7 +14,6 @@ from test_framework.util import (
     disconnect_nodes,
     find_output,
 )
->>>>>>> upstream/master
 
 import json
 import os
@@ -163,19 +159,12 @@ class PSBTTest(BitcoinTestFramework):
         new_psbt = self.nodes[0].converttopsbt(rawtx['hex'])
         self.nodes[0].decodepsbt(new_psbt)
 
-<<<<<<< HEAD
-        # Make sure that a psbt with signatures cannot be converted
-        signedtx = self.nodes[0].signrawtransactionwithwallet(rawtx['hex'])
-        assert_raises_rpc_error(-22, "TX decode failed", self.nodes[0].converttopsbt, signedtx['hex'])
-        assert_raises_rpc_error(-22, "TX decode failed", self.nodes[0].converttopsbt, signedtx['hex'], False)
-=======
         # Make sure that a non-psbt with signatures cannot be converted
         # Error could be either "TX decode failed" (segwit inputs causes parsing to fail) or "Inputs must not have scriptSigs and scriptWitnesses"
         # We must set iswitness=True because the serialized transaction has inputs and is therefore a witness transaction
         signedtx = self.nodes[0].signrawtransactionwithwallet(rawtx['hex'])
         assert_raises_rpc_error(-22, "", self.nodes[0].converttopsbt, hexstring=signedtx['hex'], iswitness=True)
         assert_raises_rpc_error(-22, "", self.nodes[0].converttopsbt, hexstring=signedtx['hex'], permitsigdata=False, iswitness=True)
->>>>>>> upstream/master
         # Unless we allow it to convert and strip signatures
         self.nodes[0].converttopsbt(signedtx['hex'], True)
 
@@ -312,8 +301,6 @@ class PSBTTest(BitcoinTestFramework):
 
         self.test_utxo_conversion()
 
-<<<<<<< HEAD
-=======
         # Test that psbts with p2pkh outputs are created properly
         p2pkh = self.nodes[0].getnewaddress(address_type='legacy')
         psbt = self.nodes[1].walletcreatefundedpsbt([], [{p2pkh : 1}], 0, {"includeWatching" : True}, True)
@@ -402,7 +389,6 @@ class PSBTTest(BitcoinTestFramework):
         signed = self.nodes[1].walletprocesspsbt(updated)['psbt']
         analyzed = self.nodes[0].analyzepsbt(signed)
         assert analyzed['inputs'][0]['has_utxo'] and analyzed['inputs'][0]['is_final'] and analyzed['next'] == 'extractor'
->>>>>>> upstream/master
 
 if __name__ == '__main__':
     PSBTTest().main()
