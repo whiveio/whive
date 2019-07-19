@@ -3,12 +3,6 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <ui_interface.h>
-<<<<<<< HEAD
-#include <util.h>
-
-CClientUIInterface uiInterface;
-
-=======
 
 #include <boost/signals2/last_value.hpp>
 #include <boost/signals2/signal.hpp>
@@ -61,7 +55,6 @@ void CClientUIInterface::NotifyHeaderTip(bool b, const CBlockIndex* i) { return 
 void CClientUIInterface::BannedListChanged() { return g_ui_signals.BannedListChanged(); }
 
 
->>>>>>> upstream/master
 bool InitError(const std::string& str)
 {
     uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_ERROR);

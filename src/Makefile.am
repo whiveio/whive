@@ -154,12 +154,7 @@ BITCOIN_CORE_H = \
   rpc/client.h \
   rpc/mining.h \
   rpc/protocol.h \
-<<<<<<< HEAD
-  rpc/server.h \
-  rpc/rawtransaction.h \
-=======
   rpc/rawtransaction_util.h \
->>>>>>> upstream/master
   rpc/register.h \
   rpc/request.h \
   rpc/server.h \
@@ -200,12 +195,9 @@ BITCOIN_CORE_H = \
   wallet/db.h \
   wallet/feebumper.h \
   wallet/fees.h \
-<<<<<<< HEAD
-=======
   wallet/ismine.h \
   wallet/load.h \
   wallet/psbtwallet.h \
->>>>>>> upstream/master
   wallet/rpcwallet.h \
   wallet/wallet.h \
   wallet/walletdb.h \
@@ -294,13 +286,9 @@ libbitcoin_wallet_a_SOURCES = \
   wallet/db.cpp \
   wallet/feebumper.cpp \
   wallet/fees.cpp \
-<<<<<<< HEAD
-  wallet/init.cpp \
-=======
   wallet/ismine.cpp \
   wallet/load.cpp \
   wallet/psbtwallet.cpp \
->>>>>>> upstream/master
   wallet/rpcdump.cpp \
   wallet/rpcwallet.cpp \
   wallet/wallet.cpp \
@@ -415,11 +403,7 @@ libbitcoin_common_a_SOURCES = \
   core_write.cpp \
   key.cpp \
   key_io.cpp \
-<<<<<<< HEAD
-  keystore.cpp \
-=======
   merkleblock.cpp \
->>>>>>> upstream/master
   netaddress.cpp \
   netbase.cpp \
   policy/feerate.cpp \
@@ -546,11 +530,7 @@ whiveyes_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 # bitcoinconsensus library #
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h
-<<<<<<< HEAD
-libwhiveyesconsensus_la_SOURCES = $(crypto_libbitcoin_crypto_base_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
-=======
-libbitcoinconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libbitcoin_crypto_base_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
->>>>>>> upstream/master
+libwhiveyesconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libbitcoin_crypto_base_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
   libwhiveyesconsensus_la_SOURCES += compat/glibc_compat.cpp

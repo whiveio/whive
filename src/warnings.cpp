@@ -4,12 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <sync.h>
-<<<<<<< HEAD
-#include <clientversion.h>
-#include <util.h>
-=======
 #include <util/system.h>
->>>>>>> upstream/master
 #include <warnings.h>
 
 static RecursiveMutex cs_warnings;

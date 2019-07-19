@@ -81,18 +81,12 @@ bool static LookupIntern(const char *pszName, std::vector<CNetAddr>& vIP, unsign
     aiHint.ai_protocol = IPPROTO_TCP;
     // We don't care which address family (IPv4 or IPv6) is returned
     aiHint.ai_family = AF_UNSPEC;
-<<<<<<< HEAD
-#ifdef WIN32
-    aiHint.ai_flags = fAllowLookup ? 0 : AI_NUMERICHOST;
-#else
-=======
     // If we allow lookups of hostnames, use the AI_ADDRCONFIG flag to only
     // return addresses whose family we have an address configured for.
     //
     // If we don't allow lookups, then use the AI_NUMERICHOST flag for
     // getaddrinfo to only decode numerical network addresses and suppress
     // hostname lookups.
->>>>>>> upstream/master
     aiHint.ai_flags = fAllowLookup ? AI_ADDRCONFIG : AI_NUMERICHOST;
 #endif
     struct addrinfo *aiRes = nullptr;
@@ -344,9 +338,6 @@ static IntrRecvError InterruptibleRecv(uint8_t* data, size_t len, int timeout, c
                 if (!IsSelectableSocket(hSocket)) {
                     return IntrRecvError::NetworkError;
                 }
-<<<<<<< HEAD
-                struct timeval tval = MillisToTimeval(std::min(endTime - curTime, maxWait));
-=======
                 // Only wait at most maxWait milliseconds at a time, unless
                 // we're approaching the end of the specified total timeout
                 int timeout_ms = std::min(endTime - curTime, maxWait);
@@ -357,7 +348,6 @@ static IntrRecvError InterruptibleRecv(uint8_t* data, size_t len, int timeout, c
                 int nRet = poll(&pollfd, 1, timeout_ms);
 #else
                 struct timeval tval = MillisToTimeval(timeout_ms);
->>>>>>> upstream/master
                 fd_set fdset;
                 FD_ZERO(&fdset);
                 FD_SET(hSocket, &fdset);
@@ -636,8 +626,6 @@ bool ConnectSocketDirectly(const CService &addrConnect, const SOCKET& hSocket, i
         // WSAEINVAL is here because some legacy version of winsock uses it
         if (nErr == WSAEINPROGRESS || nErr == WSAEWOULDBLOCK || nErr == WSAEINVAL)
         {
-<<<<<<< HEAD
-=======
             // Connection didn't actually fail, but is being established
             // asynchronously. Thus, use async I/O api (select/poll)
             // synchronously to check for successful connection with a timeout.
@@ -647,20 +635,16 @@ bool ConnectSocketDirectly(const CService &addrConnect, const SOCKET& hSocket, i
             pollfd.events = POLLIN | POLLOUT;
             int nRet = poll(&pollfd, 1, nTimeout);
 #else
->>>>>>> upstream/master
             struct timeval timeout = MillisToTimeval(nTimeout);
             fd_set fdset;
             FD_ZERO(&fdset);
             FD_SET(hSocket, &fdset);
             int nRet = select(hSocket + 1, nullptr, &fdset, nullptr, &timeout);
-<<<<<<< HEAD
-=======
 #endif
             // Upon successful completion, both select and poll return the total
             // number of file descriptors that have been selected. A value of 0
             // indicates that the call timed out and no file descriptors have
             // been selected.
->>>>>>> upstream/master
             if (nRet == 0)
             {
                 LogPrint(BCLog::NET, "connection to %s timeout\n", addrConnect.ToString());

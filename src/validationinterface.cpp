@@ -9,11 +9,6 @@
 #include <scheduler.h>
 #include <sync.h>
 #include <txmempool.h>
-<<<<<<< HEAD
-#include <util.h>
-#include <validation.h>
-=======
->>>>>>> upstream/master
 
 #include <list>
 #include <atomic>

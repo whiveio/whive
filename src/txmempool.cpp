@@ -12,17 +12,9 @@
 #include <policy/policy.h>
 #include <policy/fees.h>
 #include <reverse_iterator.h>
-<<<<<<< HEAD
-#include <streams.h>
-#include <timedata.h>
-#include <util.h>
-#include <utilmoneystr.h>
-#include <utiltime.h>
-=======
 #include <util/system.h>
 #include <util/moneystr.h>
 #include <util/time.h>
->>>>>>> upstream/master
 
 CTxMemPoolEntry::CTxMemPoolEntry(const CTransactionRef& _tx, const CAmount& _nFee,
                                  int64_t _nTime, unsigned int _entryHeight,

@@ -6,12 +6,8 @@
 #ifndef BITCOIN_OUTPUTTYPE_H
 #define BITCOIN_OUTPUTTYPE_H
 
-<<<<<<< HEAD
-#include <keystore.h>
-=======
 #include <attributes.h>
 #include <script/signingprovider.h>
->>>>>>> upstream/master
 #include <script/standard.h>
 
 #include <string>

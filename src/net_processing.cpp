@@ -24,16 +24,9 @@
 #include <scheduler.h>
 #include <tinyformat.h>
 #include <txmempool.h>
-<<<<<<< HEAD
-#include <ui_interface.h>
-#include <util.h>
-#include <utilmoneystr.h>
-#include <utilstrencodings.h>
-=======
 #include <util/system.h>
 #include <util/strencodings.h>
 #include <util/validation.h>
->>>>>>> upstream/master
 
 #include <memory>
 
@@ -69,8 +62,6 @@ static constexpr int STALE_RELAY_AGE_LIMIT = 30 * 24 * 60 * 60;
 /// Age after which a block is considered historical for purposes of rate
 /// limiting block relay. Set to one week, denominated in seconds.
 static constexpr int HISTORICAL_BLOCK_AGE = 7 * 24 * 60 * 60;
-<<<<<<< HEAD
-=======
 /** Maximum number of in-flight transactions from a peer */
 static constexpr int32_t MAX_PEER_TX_IN_FLIGHT = 100;
 /** Maximum number of announced transactions from a peer */
@@ -88,7 +79,6 @@ static_assert(INBOUND_PEER_TX_DELAY >= MAX_GETDATA_RANDOM_DELAY,
 /** Limit to avoid sending big packets. Not used in processing incoming GETDATA for compatibility */
 static const unsigned int MAX_GETDATA_SZ = 1000;
 
->>>>>>> upstream/master
 
 struct COrphanTx {
     // When modifying, adapt the copy of this definition in tests/DoS_tests.
@@ -299,9 +289,6 @@ struct CNodeState {
     //! Time of last new block announcement
     int64_t m_last_block_announcement;
 
-<<<<<<< HEAD
-    CNodeState(CAddress addrIn, std::string addrNameIn) : address(addrIn), name(addrNameIn) {
-=======
     /*
      * State associated with transaction download.
      *
@@ -375,7 +362,6 @@ struct CNodeState {
         address(addrIn), name(std::move(addrNameIn)), m_is_inbound(is_inbound),
         m_is_manual_connection (is_manual)
     {
->>>>>>> upstream/master
         fCurrentlyConnected = false;
         nMisbehavior = 0;
         fShouldBan = false;
@@ -692,8 +678,6 @@ static void FindNextBlocksToDownload(NodeId nodeid, unsigned int count, std::vec
     }
 }
 
-<<<<<<< HEAD
-=======
 void EraseTxRequest(const uint256& txid) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
 {
     g_already_asked_for.erase(txid);
@@ -756,7 +740,6 @@ void RequestTx(CNodeState* state, const uint256& txid, int64_t nNow) EXCLUSIVE_L
     peer_download_state.m_tx_process_time.emplace(process_time, txid);
 }
 
->>>>>>> upstream/master
 } // namespace
 
 // This function is used for testing the stale tip eviction logic, see
@@ -2161,13 +2144,8 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 pfrom->AddInventoryKnown(inv);
                 if (fBlocksOnly) {
                     LogPrint(BCLog::NET, "transaction (%s) inv sent in violation of protocol peer=%d\n", inv.hash.ToString(), pfrom->GetId());
-<<<<<<< HEAD
-                } else if (!fAlreadyHave && !fImporting && !fReindex && !IsInitialBlockDownload()) {
-                    pfrom->AskFor(inv);
-=======
                 } else if (!fAlreadyHave && !fImporting && !fReindex && !::ChainstateActive().IsInitialBlockDownload()) {
                     RequestTx(State(pfrom->GetId()), inv.hash, nNow);
->>>>>>> upstream/master
                 }
             }
         }
@@ -2583,13 +2561,8 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
 
         if (!LookupBlockIndex(cmpctblock.header.hashPrevBlock)) {
             // Doesn't connect (or is genesis), instead of DoSing in AcceptBlockHeader, request deeper headers
-<<<<<<< HEAD
-            if (!IsInitialBlockDownload())
-                connman->PushMessage(pfrom, msgMaker.Make(NetMsgType::GETHEADERS, chainActive.GetLocator(pindexBestHeader), uint256()));
-=======
             if (!::ChainstateActive().IsInitialBlockDownload())
                 connman->PushMessage(pfrom, msgMaker.Make(NetMsgType::GETHEADERS, ::ChainActive().GetLocator(pindexBestHeader), uint256()));
->>>>>>> upstream/master
             return true;
         }
 
@@ -3121,11 +3094,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         }
     }
 
-<<<<<<< HEAD
-    else if (strCommand == NetMsgType::NOTFOUND) {
-        // We do not care about the NOTFOUND message, but logging an Unknown Command
-        // message would be undesirable as we transmit it ourselves.
-=======
     if (strCommand == NetMsgType::NOTFOUND) {
         // Remove the NOTFOUND transactions from the peer
         LOCK(cs_main);
@@ -3149,7 +3117,6 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
             }
         }
         return true;
->>>>>>> upstream/master
     }
 
     else {
@@ -3951,19 +3918,6 @@ bool PeerLogicValidation::SendMessages(CNode* pto)
         //
         // Message: getdata (non-blocks)
         //
-<<<<<<< HEAD
-        while (!pto->mapAskFor.empty() && (*pto->mapAskFor.begin()).first <= nNow)
-        {
-            const CInv& inv = (*pto->mapAskFor.begin()).second;
-            if (!AlreadyHave(inv))
-            {
-                LogPrint(BCLog::NET, "Requesting %s peer=%d\n", inv.ToString(), pto->GetId());
-                vGetData.push_back(inv);
-                if (vGetData.size() >= 1000)
-                {
-                    connman->PushMessage(pto, msgMaker.Make(NetMsgType::GETDATA, vGetData));
-                    vGetData.clear();
-=======
 
         // For robustness, expire old requests after a long timeout, so that
         // we can resume downloading transactions from a peer even if they
@@ -4012,16 +3966,11 @@ bool PeerLogicValidation::SendMessages(CNode* pto)
                     // requests to outbound peers).
                     int64_t next_process_time = CalculateTxGetDataTime(txid, nNow, !state.fPreferredDownload);
                     tx_process_time.emplace(next_process_time, txid);
->>>>>>> upstream/master
                 }
             } else {
                 //If we're not going to ask, don't expect a response.
                 pto->setAskFor.erase(inv.hash);
             }
-<<<<<<< HEAD
-            pto->mapAskFor.erase(pto->mapAskFor.begin());
-=======
->>>>>>> upstream/master
         }
         if (!vGetData.empty())
             connman->PushMessage(pto, msgMaker.Make(NetMsgType::GETDATA, vGetData));

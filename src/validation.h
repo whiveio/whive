@@ -31,12 +31,7 @@
 #include <utility>
 #include <vector>
 
-<<<<<<< HEAD
-#include <atomic>
-
-=======
 class CChainState;
->>>>>>> upstream/master
 class CBlockIndex;
 class CBlockTreeDB;
 class CChainParams;
@@ -152,17 +147,8 @@ extern CBlockPolicyEstimator feeEstimator;
 extern CTxMemPool mempool;
 extern std::atomic_bool g_is_mempool_loaded;
 typedef std::unordered_map<uint256, CBlockIndex*, BlockHasher> BlockMap;
-<<<<<<< HEAD
-extern BlockMap& mapBlockIndex;
-extern uint64_t nLastBlockTx;
-extern uint64_t nLastBlockWeight;
-extern const std::string strMessageMagic;
-extern CWaitableCriticalSection g_best_block_mutex;
-extern CConditionVariable g_best_block_cv;
-=======
 extern Mutex g_best_block_mutex;
 extern std::condition_variable g_best_block_cv;
->>>>>>> upstream/master
 extern uint256 g_best_block;
 extern std::atomic_bool fImporting;
 extern std::atomic_bool fReindex;
@@ -270,13 +256,7 @@ bool LoadChainTip(const CChainParams& chainparams);
 /** Unload database information */
 void UnloadBlockIndex();
 /** Run an instance of the script checking thread */
-<<<<<<< HEAD
-void ThreadScriptCheck();
-/** Check whether we are doing an initial block download (synchronizing from disk or network) */
-bool IsInitialBlockDownload();
-=======
 void ThreadScriptCheck(int worker_num);
->>>>>>> upstream/master
 /** Retrieve a transaction (from memory pool, or from disk, if possible) */
 bool GetTransaction(const uint256& hash, CTransactionRef& tx, const Consensus::Params& params, uint256& hashBlock, bool fAllowSlow = false, CBlockIndex* blockIndex = nullptr);
 /**
@@ -437,16 +417,7 @@ public:
 /** Replay blocks that aren't fully applied to the database. */
 bool ReplayBlocks(const CChainParams& params, CCoinsView* view);
 
-<<<<<<< HEAD
-inline CBlockIndex* LookupBlockIndex(const uint256& hash)
-{
-    AssertLockHeld(cs_main);
-    BlockMap::const_iterator it = mapBlockIndex.find(hash);
-    return it == mapBlockIndex.end() ? nullptr : it->second;
-}
-=======
 CBlockIndex* LookupBlockIndex(const uint256& hash) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
->>>>>>> upstream/master
 
 /** Find the last common block between the parameter chain and a locator. */
 CBlockIndex* FindForkInGlobalIndex(const CChain& chain, const CBlockLocator& locator);
@@ -687,16 +658,11 @@ bool InvalidateBlock(CValidationState& state, const CChainParams& chainparams, C
 /** Remove invalidity status from a block and its descendants. */
 void ResetBlockFailureFlags(CBlockIndex* pindex) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 
-<<<<<<< HEAD
-/** The currently-connected chain of blocks (protected by cs_main). */
-extern CChain& chainActive;
-=======
 /** @returns the most-work valid chainstate. */
 CChainState& ChainstateActive();
 
 /** @returns the most-work chain. */
 CChain& ChainActive();
->>>>>>> upstream/master
 
 /** @returns the global block index map. */
 BlockMap& BlockIndex();

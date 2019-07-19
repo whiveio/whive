@@ -20,15 +20,9 @@
 #include <primitives/transaction.h>
 #include <script/standard.h>
 #include <timedata.h>
-<<<<<<< HEAD
-#include <util.h>
-#include <utilmoneystr.h>
-#include <validationinterface.h>
-=======
 #include <util/moneystr.h>
 #include <util/system.h>
 #include <util/validation.h>
->>>>>>> upstream/master
 
 #include <algorithm>
 #include <queue>

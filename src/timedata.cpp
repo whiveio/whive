@@ -11,12 +11,7 @@
 #include <netaddress.h>
 #include <sync.h>
 #include <ui_interface.h>
-<<<<<<< HEAD
-#include <util.h>
-#include <utilstrencodings.h>
-=======
 #include <util/system.h>
->>>>>>> upstream/master
 #include <warnings.h>
 
 

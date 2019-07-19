@@ -1,11 +1,6 @@
-<<<<<<< HEAD:src/util.h
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 WhiveYes Core developers
-=======
-// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2019 The Bitcoin Core developers
->>>>>>> upstream/master:src/util/system.h
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -25,25 +20,16 @@
 #include <logging.h>
 #include <sync.h>
 #include <tinyformat.h>
-<<<<<<< HEAD:src/util.h
-#include <utiltime.h>
-#include <utilmemory.h>
-=======
 #include <util/memory.h>
 #include <util/threadnames.h>
 #include <util/time.h>
->>>>>>> upstream/master:src/util/system.h
 
 #include <exception>
 #include <map>
 #include <set>
 #include <stdint.h>
 #include <string>
-<<<<<<< HEAD:src/util.h
-#include <unordered_set>
-=======
 #include <utility>
->>>>>>> upstream/master:src/util/system.h
 #include <vector>
 
 #include <boost/signals2/signal.hpp>

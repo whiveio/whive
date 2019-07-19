@@ -18,10 +18,6 @@ bench_bench_bitcoin_SOURCES = \
   bench/block_assemble.cpp \
   bench/checkblock.cpp \
   bench/checkqueue.cpp \
-<<<<<<< HEAD
-  bench/examples.cpp \
-  bench/rollingbloom.cpp \
-=======
   bench/data.h \
   bench/data.cpp \
   bench/duplicate_inputs.cpp \
@@ -29,17 +25,13 @@ bench_bench_bitcoin_SOURCES = \
   bench/rollingbloom.cpp \
   bench/chacha20.cpp \
   bench/chacha_poly_aead.cpp \
->>>>>>> upstream/master
   bench/crypto_hash.cpp \
   bench/ccoins_caching.cpp \
   bench/merkle_root.cpp \
   bench/mempool_eviction.cpp \
-<<<<<<< HEAD
-=======
   bench/rpc_blockchain.cpp \
   bench/rpc_mempool.cpp \
   bench/util_time.cpp \
->>>>>>> upstream/master
   bench/verify_script.cpp \
   bench/base58.cpp \
   bench/bech32.cpp \

@@ -222,9 +222,6 @@ std::string BCLog::Logger::LogTimestampStr(const std::string &str)
 
 void BCLog::Logger::LogPrintStr(const std::string& str)
 {
-<<<<<<< HEAD
-    std::string strTimestamped = LogTimestampStr(str);
-=======
     std::lock_guard<std::mutex> scoped_lock(m_cs);
     std::string str_prefixed = str;
 
@@ -235,7 +232,6 @@ void BCLog::Logger::LogPrintStr(const std::string& str)
     str_prefixed = LogTimestampStr(str_prefixed);
 
     m_started_new_line = !str.empty() && str[str.size()-1] == '\n';
->>>>>>> upstream/master
 
     if (m_buffering) {
         // buffer if we haven't started logging yet
@@ -249,27 +245,6 @@ void BCLog::Logger::LogPrintStr(const std::string& str)
         fflush(stdout);
     }
     if (m_print_to_file) {
-<<<<<<< HEAD
-        std::lock_guard<std::mutex> scoped_lock(m_file_mutex);
-
-        // buffer if we haven't opened the log yet
-        if (m_fileout == nullptr) {
-            m_msgs_before_open.push_back(strTimestamped);
-        }
-        else
-        {
-            // reopen the log file, if requested
-            if (m_reopen_file) {
-                m_reopen_file = false;
-                m_fileout = fsbridge::freopen(m_file_path, "a", m_fileout);
-                if (!m_fileout) {
-                    return;
-                }
-                setbuf(m_fileout, nullptr); // unbuffered
-            }
-
-            FileWriteStr(strTimestamped, m_fileout);
-=======
         assert(m_fileout != nullptr);
 
         // reopen the log file, if requested
@@ -281,7 +256,6 @@ void BCLog::Logger::LogPrintStr(const std::string& str)
                 fclose(m_fileout);
                 m_fileout = new_fileout;
             }
->>>>>>> upstream/master
         }
         FileWriteStr(str_prefixed, m_fileout);
     }

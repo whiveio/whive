@@ -47,13 +47,9 @@ struct CLockLocation {
 
     std::string ToString() const
     {
-<<<<<<< HEAD
-        return mutexName + "  " + sourceFile + ":" + itostr(sourceLine) + (fTry ? " (TRY)" : "");
-=======
         return strprintf(
             "%s %s:%s%s (in thread %s)",
             mutexName, sourceFile, itostr(sourceLine), (fTry ? " (TRY)" : ""), m_thread_name);
->>>>>>> upstream/master
     }
 
 private:
@@ -106,15 +102,11 @@ static void potential_deadlock_detected(const std::pair<void*, void*>& mismatch,
         }
         LogPrintf(" %s\n", i.second.ToString());
     }
-<<<<<<< HEAD
-    assert(false);
-=======
     if (g_debug_lockorder_abort) {
         tfm::format(std::cerr, "Assertion failed: detected inconsistent lock order at %s:%i, details in debug log.\n", __FILE__, __LINE__);
         abort();
     }
     throw std::logic_error("potential deadlock detected");
->>>>>>> upstream/master
 }
 
 static void push_lock(void* c, const CLockLocation& locklocation)

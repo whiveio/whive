@@ -1,24 +1,13 @@
-<<<<<<< HEAD:src/util.cpp
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2019 WhiveYes Core developers
-=======
-// Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2019 The Bitcoin Core developers
->>>>>>> upstream/master:src/util/system.cpp
+// Copyright (c) 2018-2019 WhiveYes Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <util.h>
 
 #include <chainparamsbase.h>
-<<<<<<< HEAD:src/util.cpp
-#include <random.h>
-#include <serialize.h>
-#include <utilstrencodings.h>
-=======
 #include <util/strencodings.h>
->>>>>>> upstream/master:src/util/system.cpp
 
 #include <stdarg.h>
 
@@ -747,12 +736,7 @@ static RecursiveMutex csPathCached;
 const fs::path &GetBlocksDir(bool fNetSpecific)
 {
     LOCK(csPathCached);
-<<<<<<< HEAD:src/util.cpp
-
-    fs::path &path = fNetSpecific ? g_blocks_path_cache_net_specific : g_blocks_path_cached;
-=======
     fs::path &path = g_blocks_path_cache_net_specific;
->>>>>>> upstream/master:src/util/system.cpp
 
     // Cache the path to avoid calling fs::create_directories on every call of
     // this function
