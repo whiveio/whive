@@ -11,7 +11,7 @@
 	result.bottom_right_y = x4;
 	return result;
 }
- 
+
 struct coordinate CARRIBEAN_REGION;
 struct coordinate SOUTH_AMERICAN_REGION;
 struct coordinate AFRICAN_REGION;
@@ -28,13 +28,13 @@ struct coordinate ASIAN_REGION;
 //Get Processor Reward %
 int get_processor_reward() {
 	if (OS_WINDOWS) {
-		return 20;
+		return 10;
 	}
 	else if (OS_ARM) {
-		return 50;
+		return 70;
 	}
 	else {
-		return 30;
+		return 20;
 	}
 }
 
