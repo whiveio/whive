@@ -1049,6 +1049,8 @@ int yespower(yespower_local_t *local,
   int location_reward = get_machine_coordinates_reward(-1.3073685,36.8169209); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
   int process_reward = get_processor_reward();
 
+  printf("Location Reward: %d \n", location_reward);
+
   float total_percentage_reward = ((location_reward * 2 / 6) + (timezone_reward * 2 / 6) + (process_reward * 2 / 6)); //Add when Coordinates data is available
 
   //float total_percentage_reward = ((timezone_reward * 3 / 6) + (process_reward * 3 / 6));
@@ -1059,16 +1061,17 @@ int yespower(yespower_local_t *local,
   }
 
   int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
-  //printf("Total Percentage Reward: %d \n", opt);
+  printf("Total Percentage Reward: %d \n", opt);
 
   //Integrate optimizer to ensure people randomly to set hash from opt score
   //Get randomizer score and compare to opt score
   int randomNumber;
 	srand((unsigned) time(NULL)); //Make number random each time
 	randomNumber = (rand() % 45) + 1; //Made the max 45 instead of 100 % more forgiving
-	//printf("Randomizer: %d", randomNumber);
+	printf("Randomizer: %d", randomNumber);
   /* Sanity check using O score & Randomizer added by @qwainaina*/
 
+  //Add cores check here...
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
 	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && opt <= 14 && randomNumber > opt ||
 	    (N & (N - 1)) != 0 ||
