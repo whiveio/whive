@@ -1049,7 +1049,9 @@ int yespower(yespower_local_t *local,
   int location_reward = get_machine_coordinates_reward(-1.3073685,36.8169209); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
   int process_reward = get_processor_reward();
 
+  printf("Timezone Reward: %d \n", timezone_reward);
   printf("Location Reward: %d \n", location_reward);
+  printf("Process Reward: %d \n", process_reward);
 
   float total_percentage_reward = ((location_reward * 2 / 6) + (timezone_reward * 2 / 6) + (process_reward * 2 / 6)); //Add when Coordinates data is available
 
@@ -1068,7 +1070,7 @@ int yespower(yespower_local_t *local,
   int randomNumber;
 	srand((unsigned) time(NULL)); //Make number random each time
 	randomNumber = (rand() % 45) + 1; //Made the max 45 instead of 100 % more forgiving
-	printf("Randomizer: %d", randomNumber);
+	printf("Randomizer: %d \n", randomNumber);
   /* Sanity check using O score & Randomizer added by @qwainaina*/
 
   //Add cores check here...
