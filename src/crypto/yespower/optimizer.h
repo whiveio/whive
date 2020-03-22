@@ -22,15 +22,15 @@
 #define OS_ARM 1
 #define OS_WINDOWS 0
 
-
-/* struct coordinate
+struct coordinate
 {
-    int top_left_x;
+  int top_left_x;
 	int top_left_y;
 	int bottom_right_x;
 	int bottom_right_y;
 };
-struct coordinate RegionCoordiantes(int x1, int x2, int x3, int x4); */
+
+struct coordinate RegionCoordiantes(int x1, int x2, int x3, int x4);
 int get_processor_reward();
 int get_timezone();
 int get_time_zone_reward();

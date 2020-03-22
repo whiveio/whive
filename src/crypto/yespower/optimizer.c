@@ -73,7 +73,7 @@ int get_time_zone_reward() {
 }
 
 
-/* //Get coordinates score
+ //Get coordinates score
 int get_machine_coordinates_reward(double latitude, double longitude)
 {
 	if ((CARRIBEAN_REGION.top_left_x <= longitude) && (longitude < CARRIBEAN_REGION.bottom_right_x) && (CARRIBEAN_REGION.bottom_right_y <= latitude) && (latitude < CARRIBEAN_REGION.top_left_y)) {
@@ -96,7 +96,7 @@ int get_machine_coordinates_reward(double latitude, double longitude)
 void define_coordinates()
 {
 	CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
-    SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
-    AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
-    ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
-} */
+  SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
+  AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
+  ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
+}
