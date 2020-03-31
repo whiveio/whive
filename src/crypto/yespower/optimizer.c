@@ -52,21 +52,21 @@ int get_timezone() {
 int get_time_zone_reward() {
 	int timezone = get_timezone();
 	if ((EARLIEST_AFRICAN_TIMEZONE < timezone) && (timezone <= EARLIEST_EUROPEAN_TIMEZONE)) {
-		return 40;
+		return 35;
 	}
 	else
 	{
 		if ((EARLIEST_EUROPEAN_TIMEZONE < timezone) && (timezone <= LATEST_AFRICAN_TIMEZONE)) {
-			return 30;
+			return 35;
 		}
 		else
 		{
 			if ((LATEST_AFRICAN_TIMEZONE < timezone) && (timezone <= EARLIEST_ASIAN_TIMEZONE)) {
-				return 20;
+				return 25;
 			}
 			else
 			{
-				return 10;
+				return 5;
 			}
 		}
 	}
