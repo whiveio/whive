@@ -1044,34 +1044,85 @@ int yespower(yespower_local_t *local,
 	uint8_t sha256[32];
 
   //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
-  //define_coordinates();
-  int timezone_reward = get_time_zone_reward();
-  int location_reward = get_machine_coordinates_reward(-1.3073685,36.8169209); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
-  int process_reward = get_processor_reward();
+  //Cores Code 26/03/2020
 
-  printf("Timezone Reward: %d \n", timezone_reward);
-  printf("Location Reward: %d \n", location_reward);
-  printf("Process Reward: %d \n", process_reward);
+int nprocs = -1;
+int nprocs_max = -1;
 
-  float total_percentage_reward = ((location_reward * 2 / 6) + (timezone_reward * 2 / 6) + (process_reward * 2 / 6)); //Add when Coordinates data is available
+#ifdef _WIN32
+#ifndef _SC_NPROCESSORS_ONLN
+SYSTEM_INFO info;
+GetSystemInfo(&info);
+#define sysconf(a) info.dwNumberOfProcessors
+#define _SC_NPROCESSORS_ONLN
+#endif
+#endif
+#ifdef _SC_NPROCESSORS_ONLN
 
-  //float total_percentage_reward = ((timezone_reward * 3 / 6) + (process_reward * 3 / 6));
+nprocs = sysconf(_SC_NPROCESSORS_ONLN);
+if (nprocs < 1)
 
-  if (location_reward == 0)
-  {
-  total_percentage_reward=total_percentage_reward-5; //Penalize a CPU by 5% if it can't be geo-located
-  }
+{
+  printf(stderr, "Could not determine number of CPUs online:\n%s\n");
 
-  int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
-  printf("Total Percentage Reward: %d \n", opt);
+}
 
-  //Integrate optimizer to ensure people randomly to set hash from opt score
-  //Get randomizer score and compare to opt score
-  int randomNumber;
-	srand((unsigned) time(NULL)); //Make number random each time
-	randomNumber = (rand() % 45) + 1; //Made the max 45 instead of 100 % more forgiving
-	printf("Randomizer: %d \n", randomNumber);
-  /* Sanity check using O score & Randomizer added by @qwainaina*/
+nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
+if (nprocs_max < 1)
+{
+
+  printf(stderr, "Could not determine number of CPUs configured:\n%s\n");
+
+}
+printf("%ld of %ld processors online\n", nprocs, nprocs_max);
+
+#else
+printf(stderr, "Could not determine number of CPUs");
+#endif
+//End of Cores
+
+/*
+   CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
+   SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
+   AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
+   ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
+   */
+
+   //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
+   //define_coordinates();
+   int timezone_reward = get_time_zone_reward();
+   //int location_reward = get_machine_coordinates_reward(-1.4073685,37.8169209); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
+   int process_reward = get_processor_reward();
+   printf("Original Process Reward: %d \n", process_reward);
+
+   /*if (nprocs > 4)
+   {*/
+      process_reward= process_reward * 4 / nprocs; //this penalizes machines using more than 2 cores by the number of cores they are using.
+   //}
+
+   printf("Timezone Reward: %d \n", timezone_reward);
+   //printf("Location Reward: %d \n", location_reward);
+   printf("Process Reward: %d \n", process_reward);
+
+   //float total_percentage_reward = ((location_reward * 2 / 6) + (timezone_reward * 2 / 6) + (process_reward * 2 / 6)); //Add when Coordinates data is available
+
+   float total_percentage_reward = ((timezone_reward * 3 / 6) + (process_reward * 3 / 6));
+   /*
+   if (location_reward == 0)
+   {
+   total_percentage_reward=total_percentage_reward-5; //Penalize a CPU by 5% if it can't be geo-located
+   }
+   */
+   int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
+   printf("Total Percentage Reward: %d \n", opt);
+
+   //Integrate optimizer to ensure people randomly to set hash from opt score
+   //Get randomizer score and compare to opt score
+   int randomNumber;
+   srand((unsigned) time(NULL)); //Make number random each time
+   randomNumber = (rand() % 45) + 1; //Made the max 45 instead of 100 % more forgiving
+   printf("Randomizer: %d \n", randomNumber);
+   /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 
   //Add cores check here...
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||

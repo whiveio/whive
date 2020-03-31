@@ -1,7 +1,14 @@
 /*GitHub Devs: Algorithm designed by @qwainaina, python by @henchhing-limbu, cpp & c by @ajazayeri72*/
-#include <stdio.h>
-#include <time.h>
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
 
 //Define Time Zones
 #define EARLIEST_AFRICAN_TIMEZONE -1
@@ -21,7 +28,9 @@
 //Define Machine Processor
 #define OS_ARM 1
 #define OS_WINDOWS 0
+#define OS_X86 0
 
+/*
 struct coordinate
 {
   int top_left_x;
@@ -30,9 +39,17 @@ struct coordinate
 	int bottom_right_y;
 };
 
-struct coordinate RegionCoordiantes(int x1, int x2, int x3, int x4);
-int get_processor_reward();
-int get_timezone();
-int get_time_zone_reward();
-int get_machine_coordinates_reward(double latitude, double longitude);
-void define_coordinates();
+struct coordinate RegionCoordiantes(int x1, int x2, int x3, int x4) {
+	struct coordinate result;
+	result.top_left_x = x1;
+	result.top_left_y = x2;
+	result.bottom_right_x = x3;
+	result.bottom_right_y = x4;
+	return result;
+}
+
+struct coordinate CARRIBEAN_REGION;
+struct coordinate SOUTH_AMERICAN_REGION;
+struct coordinate AFRICAN_REGION;
+struct coordinate ASIAN_REGION;
+*/

@@ -1,29 +1,16 @@
 /* GitHub Devs: Algorthim designed by @qwainaina, python by @henchhing-limbu, cpp & c by @ajazayeri72*/
 #include <stdio.h>
 #include <time.h>
+
 #include "optimizer.h" //include header for timezone and machine optimization
-
-/* struct coordinate RegionCoordiantes(int x1, int x2, int x3, int x4) {
-	struct coordinate result;
-	result.top_left_x = x1;
-	result.top_left_y = x2;
-	result.bottom_right_x = x3;
-	result.bottom_right_y = x4;
-	return result;
-}
-
-struct coordinate CARRIBEAN_REGION;
-struct coordinate SOUTH_AMERICAN_REGION;
-struct coordinate AFRICAN_REGION;
-struct coordinate ASIAN_REGION;
-*/
 
 #ifdef __arm__
 #define OS_ARM 1
 #elif defined(_WIN32) || defined (WIN32) || defined(_WIN64) || defined(WIN64)
 #define OS_WINDOWS 1
+#elif _X86_
+#define OS_X86 1
 #endif
-
 
 //Get Processor Reward %
 int get_processor_reward() {
@@ -33,8 +20,11 @@ int get_processor_reward() {
 	else if (OS_ARM) {
 		return 70;
 	}
+	else if (OS_X86) {
+		return 15;
+	}
 	else {
-		return 20;
+		return 5;
 	}
 }
 
@@ -52,28 +42,29 @@ int get_timezone() {
 int get_time_zone_reward() {
 	int timezone = get_timezone();
 	if ((EARLIEST_AFRICAN_TIMEZONE < timezone) && (timezone <= EARLIEST_EUROPEAN_TIMEZONE)) {
-		return 35;
+		return 30;
+
 	}
 	else
 	{
 		if ((EARLIEST_EUROPEAN_TIMEZONE < timezone) && (timezone <= LATEST_AFRICAN_TIMEZONE)) {
-			return 35;
+			return 40;
 		}
 		else
 		{
 			if ((LATEST_AFRICAN_TIMEZONE < timezone) && (timezone <= EARLIEST_ASIAN_TIMEZONE)) {
-				return 25;
+				return 20;
 			}
 			else
 			{
-				return 5;
+				return 10;
 			}
 		}
 	}
 }
 
-
- //Get coordinates score
+/*
+//Get timezone score
 int get_machine_coordinates_reward(double latitude, double longitude)
 {
 	if ((CARRIBEAN_REGION.top_left_x <= longitude) && (longitude < CARRIBEAN_REGION.bottom_right_x) && (CARRIBEAN_REGION.bottom_right_y <= latitude) && (latitude < CARRIBEAN_REGION.top_left_y)) {
@@ -92,11 +83,4 @@ int get_machine_coordinates_reward(double latitude, double longitude)
 		return OTHER_REGION_REWARD;
 	}
 }
-
-void define_coordinates()
-{
-	CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
-  SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
-  AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
-  ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
-}
+*/
