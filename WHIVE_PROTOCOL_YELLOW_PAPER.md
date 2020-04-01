@@ -5,7 +5,7 @@
 
 ## Yellow Paper &amp; Road Map
 
-**AUXILIARY CHAIN (AUXCHAIN): MINE - STAKE - BUIDL- EARN**
+***AUXILIARY CHAIN (AUXCHAIN): MINE - STAKE - BUIDL- EARN***
 
 **VERSION 1.0.0**
 
@@ -47,7 +47,6 @@ The Whive protocol contains the following specifications:
 - The protocol shall have its Rewards generated through a hybrid Proof-of-Work and Proof-Of-Stake algorithm.
 - The Reward symbol which is also the name of the wallet is WHIVE.
 - The smallest unit of the Reward will be 0.00000001 WHIVE.
-<<<<<<< HEAD
 - There shall be a maximum supply of 100,000,000 Rewards over a period of ~20 years(by 2040). With ~17,100,000 of the total rewards being claimed by Bitcoiners from a snapshot of Bitcoins UTXO&#39;s.
 - Distribution of the remaining Rewards shall be through a Split Rewards algorithm, where 70% go to CPU/GPU mining nodes and another 30% to staking nodes.
 - The algorithm checks the type of processor and timezone of all nodes attributing a higher weight to nodes with higher daylight threshold and desired CPU optimizations.
@@ -113,7 +112,6 @@ The Whive Community is governed by the Whive Code of Conduct.
 4. **Which problems will the Whive blockchain solve?** The protocol incentivizes Solar Access initially and then also looking at the smart distributed economy(IoT and AI).
 5. **How many WHIVE Rewards will be rewarded per block?** Exactly 200.
 6. **How many WHIVE Rewards will be there in total?** 100,000,000
-<<<<<<< HEAD
 7. **In which way will they be distributed (Timeframe)?** Approximately 20 years.
 8. **What is the average transaction speed we are aiming for?** 20 transactions per second.
 9. **Will there be a mining pool available?** Yes.
@@ -138,8 +136,6 @@ The Whive Community is governed by the Whive Code of Conduct.
 28. **Is Whive competing with Bitcoin?** No, It&#39;s an Auxiliary Chain of Bitcoin, hence complimentary!
 29. **Will the price of Whive go up?** We have no idea or control, its up to discovery on the open and free market. We expect the price to be volatile like all other crypto-currencies. Thus, trade at your own risk!
 30. **Is Whive a Security?** No! There has been no raising or pooling of funds to develop the protocol. The project is open-source code launched, operated and maintained by a community of diverse individuals with no central entity in control of code contribution or the distributed network.
-
-
 
 **6. Disclaimer**
 
