@@ -15,7 +15,7 @@
 
 **This Yellow Paper is a Draft, Subject to Peer Review,  Revisions and Final Publication as a Green Paper**
 
-**1.About**
+***1.About***
 
 Whive, is a blockchain protocol that extends the Bitcoin Blockchain through enabling _Trustless Rewards for Engineering Sustainable Solutions._
 
@@ -39,7 +39,7 @@ The Whive Protocol is being built, tested and deployed by a community of individ
 
 
 
-**2. Current Specifications**
+***2. Current Specifications***
 
 The Whive protocol contains the following specifications:
 
@@ -55,7 +55,7 @@ The Whive protocol contains the following specifications:
 - The protocol shall adopt the latest Bitcoin source code which notably includes Segwit enabled transactions and different wallet schemes.
 - The protocol will support Layer 2 Protocols such as lightning to enable fast and micro-transactions on the Bitcoin network to ensure atomic-swap capabilities.
 
-**3. RoadMap**
+***3. RoadMap***
 
 Research and Development of the The Whive protocol began in 2017 with the following roadmap:
 
@@ -75,7 +75,7 @@ Research and Development of the The Whive protocol began in 2017 with the follow
 - **Q3-2020, Protocol Upgrades:** Protocol features will be updated by Community Contributors with a Version 3 software release which includes a hard fork, Proof-of-Stake, Split Rewards, and Green Paper publication with peer-reviewed mathematical proofs.
 - **Q4-2020, Protocol Up-scaling:**  Launch of a new Roadmap  for code cleanup and re-factoring, SDK Release and Copay Mobile Wallet for Android and IPhones.
 
-**4. Governance**
+***4. Governance***
 
 The Whive protocol is governed as a Distributed Autonomous Organization (DAO). Network participants can make contributions as developers, miners, testers, trainers and users independently. Code audit and contributions shall be made via our main github repository located at[https://github.com/whiveio](https://github.com/whiveio).
 
@@ -104,7 +104,7 @@ The Whive Community (of users) is entitled to responsibly mine, stake, and trade
 
 The Whive Community is governed by the Whive Code of Conduct.
 
-**5.Frequently Asked Questions**
+***5.Frequently Asked Questions***
 
 1. **Whive description?** Whive is a peer to peer blockchain protocol  that is built to allow for only small(CPU) and is resistant to both  medium scale mining(GPU) and  ASIC high scale mining.
 2. **Will Whive be open source?** Whive shall be an open-source platform available for improvement through Whive Improvement Proposals(WIPs).
@@ -137,7 +137,7 @@ The Whive Community is governed by the Whive Code of Conduct.
 29. **Will the price of Whive go up?** We have no idea or control, its up to discovery on the open and free market. We expect the price to be volatile like all other crypto-currencies. Thus, trade at your own risk!
 30. **Is Whive a Security?** No! There has been no raising or pooling of funds to develop the protocol. The project is open-source code launched, operated and maintained by a community of diverse individuals with no central entity in control of code contribution or the distributed network.
 
-**6. Disclaimer**
+***6. Disclaimer***
 
 Please note this disclaimer may be periodically altered and/or updated. This notice was last updated in January, 2020.
 
@@ -159,11 +159,11 @@ Whive contributors and their affiliates shall also not be held liable for any of
 
 The Reward &quot;WHIVE&quot; is not a security or a financial instrument within the meaning of the Markets in Financial Instruments Directive (MiFID II) of the European Parliament (2014/65/ EU) or any under any other written law. The Reward does not grant any financial (income, capital or dividend) or voting rights in _any of the_ contributors entities and/or their affiliates.
 
-**6.2 Website**
+***6.2 Website***
 
 Whive.io and its affiliates have made every attempt to ensure the accuracy and reliability of the information provided on this website.
 
 However, the information is provided &quot;as is&quot; without warranty, promised and/or representations of any kind, express or implied. Whive.io and its affiliates does not accept any responsibility or liability for the accuracy, content, completeness, legality, or reliability of the information contained on this website. We cannot and will not guarantee that this website is free from computer viruses or any other destructive malware. In addition, we cannot and will not accept responsibility for the accuracy of third party advertisements on this website.
 
-**7. APPENDIX**
+***7. APPENDIX***
 Code of Conduct:  [https://github.com/whiveio/whive/blob/master/CODE_OF_CONDUCT.md](https://github.com/whiveio/whive/blob/optimize/CODE_OF_CONDUCT.md)
