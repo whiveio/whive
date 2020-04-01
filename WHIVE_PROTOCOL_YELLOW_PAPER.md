@@ -70,10 +70,10 @@ Research and Development of the The Whive protocol began in 2017 with the follow
 - **Q4-2019, Yespower Time &amp; Machine optimization:** We are adding Machine, Time-Zone and Processor optimization to the Yespower Implementation.
 - **Q1-2020, Public Testnet:**  We will allow the public to test our network before launch.
 - **Q1-2020, Community Launch Mainnet :**  The Whive Network should go live on 02/02/2020 together with the Yellow Paper for community audit and peer review.
-- **Q2-2020, Mining pool & Mining software:** ** ** ** **  We will publish documentation for third-party pools for mining and staking operations.
-- **Q2-2020, Protocol Upgrades:** ** ** **  Protocol features will be updated by Community Contributors with a Version 2 software release which includes increased Optimization of the Yespower algorithm, a Bitcoin UTXOs hard fork, and release of wallet for claiming Whive Rewards by Bitcoiners.
-- **Q2-2020, Exchange Listing:** ** **  Community exchange listing requests can begin after the hard fork.
-- **Q3-2020, Protocol Upgrades:** **  Protocol features will be updated by Community Contributors with a Version 3 software release which includes a hard fork, Proof-of-Stake, Split Rewards, and Green Paper publication with peer-reviewed mathematical proofs.
+- **Q2-2020, Mining pool & Mining software:** We will publish documentation for third-party pools for mining and staking operations.
+- **Q2-2020, Protocol Upgrades:** Protocol features will be updated by Community Contributors with a Version 2 software release which includes increased Optimization of the Yespower algorithm, a Bitcoin UTXOs hard fork, and release of wallet for claiming Whive Rewards by Bitcoiners.
+- **Q2-2020, Exchange Listing:** Community exchange listing requests can begin after the hard fork.
+- **Q3-2020, Protocol Upgrades:** Protocol features will be updated by Community Contributors with a Version 3 software release which includes a hard fork, Proof-of-Stake, Split Rewards, and Green Paper publication with peer-reviewed mathematical proofs.
 - **Q4-2020, Protocol Up-scaling:**  Launch of a new Roadmap  for code cleanup and re-factoring, SDK Release and Copay Mobile Wallet for Android and IPhones.
 
 **4. Governance**
