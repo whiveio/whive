@@ -68,12 +68,13 @@ Research and Development of the The Whive protocol began in 2017 with the follow
 - **Q2-2019, Private Testnet:**  We launched the Private Testnet for internal testing of the protocol.
 - **Q3-2019, DNSSeeder setup /Nodes Setups:  ** We have setup the seeder to allow the Whive Network to be visible on the network.
 - **Q4-2019, Yespower Time &amp; Machine optimization:** We are adding Machine, Time-Zone and Processor optimization to the Yespower Implementation.
-- **Q4-2019, PoS Implementation:**  We are adding staking reward mechanism to reward Hodlers and Noders on the network.
 - **Q1-2020, Public Testnet:**  We will allow the public to test our network before launch.
 - **Q1-2020, Community Launch Mainnet :**  The Whive Network should go live on 02/02/2020 together with the Yellow Paper for community audit and peer review.
-- **Q2-2020, Mining pool &amp; Mining software:** We will publish documentation for third-party pools for mining and staking operations.
-- **Q3-2020, Protocol Upgrades:** Protocol features will be updated by Community Contributors with a  major software release, hard fork, and Green Paper publication with peer-reviewed mathematical proofs.
-- **Q4-2020,**** Exchange Listing:** Community exchange listing requests can begin.
+- **Q2-2020, Mining pool & Mining software:** ** ** ** **  We will publish documentation for third-party pools for mining and staking operations.
+- **Q2-2020, Protocol Upgrades:** ** ** **  Protocol features will be updated by Community Contributors with a Version 2 software release which includes increased Optimization of the Yespower algorithm, a Bitcoin UTXOs hard fork, and release of wallet for claiming Whive Rewards by Bitcoiners.
+- **Q2-2020, Exchange Listing:** ** **  Community exchange listing requests can begin after the hard fork.
+- **Q3-2020, Protocol Upgrades:** **  Protocol features will be updated by Community Contributors with a Version 3 software release which includes a hard fork, Proof-of-Stake, Split Rewards, and Green Paper publication with peer-reviewed mathematical proofs.
+- **Q4-2020, Protocol Up-scaling:**  Launch of a new Roadmap  for code cleanup and re-factoring, SDK Release and Copay Mobile Wallet for Android and IPhones.
 
 **4. Governance**
 
@@ -127,7 +128,7 @@ The Whive Community is governed by the Whive Code of Conduct.
 18. **Will Whive have room for layer 2 addons?** Certainly, the protocol shall enable atomic swaps with lightning and scripting enabled for AI and IoT. Whive protocol should focus on Identifying objects and executing peer to peer contracts not storing information.
 19. **Will Whive do smart contracts?** No, its based on bitcoin which uses SCRIPT programming language not easy to use for developing multi-purpose Smart Contracts. As such, the protocol algorithm is designed specifically  for the distributed energy use case.
 20. **Which programming languages will we be using?** C++ and Python.
-21. **When should we have our first wallet?** Early 2020.
+21. **When should we have our first wallet?** Q2 2020.
 22. **How many core developers do we need for the Whive core wallet?** Around 3 at any given time will be optimal.
 23. **Will there be an ICO?** No!
 24. **Will Whive be able to update at any time when needed?** Through soft-forks, hard-forks have to planned under WIPs.
