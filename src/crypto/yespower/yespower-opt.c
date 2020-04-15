@@ -1120,13 +1120,13 @@ printf(stderr, "Could not determine number of CPUs");
    //Get randomizer score and compare to opt score
    int randomNumber;
    srand((unsigned) time(NULL)); //Make number random each time
-   randomNumber = (rand() % 45) + 1; //Made the max 45 instead of 100 % more forgiving
+   randomNumber = (rand() % 75) + 1; //Made the max 75 instead of 100 % more forgiving
    printf("Randomizer: %d \n", randomNumber);
    /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 
   //Add cores check here...
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
-	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && opt <= 14 && randomNumber > opt ||
+	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && opt <= 8 && randomNumber > opt ||
 	    (N & (N - 1)) != 0 ||
 	    (!pers && perslen)) {
 		errno = EINVAL;
