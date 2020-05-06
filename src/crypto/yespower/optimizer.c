@@ -6,9 +6,9 @@
 
 #ifdef __arm__
 #define OS_ARM 1
-#elif defined(_WIN32) || defined (WIN32) || defined(_WIN64) || defined(WIN64)
+#elif defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
 #define OS_WINDOWS 1
-#elif _X86_
+#elif defined(_X86_) || defined(__X86_64__) || defined(__x86_64__) || defined(__amd64__)
 #define OS_X86 1
 #endif
 
