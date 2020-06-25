@@ -106,17 +106,17 @@ The Whive Community is governed by the Whive Code of Conduct.
 
 ***5.Frequently Asked Questions***
 
-1. **Whive description?** Whive is a peer to peer blockchain protocol  that is built to allow for only small processor mining(CPU) and is resistant to both  medium scale mining(GPU) and ASIC high scale mining.
+1. **Whive description?** Whive is a peer to peer blockchain protocol that is built to allow for only small processor mining(CPU) and is resistant to both medium scale mining(GPU) and ASIC high scale mining.
 2. **Will Whive be open source?** Whive shall be an open-source platform available for improvement through Whive Improvement Proposals(WIPs).
 3. **How much time will research consume?** The experimental phase should be between 6 to 9 months with a private and public test-net rolled out at that time.
-4. **Which problems will the Whive blockchain solve?** The protocol incentivizes Solar Access initially and then also looking at the smart distributed economy(IoT and AI).
-5. **How many WHIVE Rewards will be rewarded per block?** Exactly 200.
+4. **Which problems will the Whive blockchain solve?** The protocol incentivizes building sustainable energy solutions initially and the smart distributed economy(IoT and AI).
+5. **How many WHIVE Rewards will be rewarded per block?** 200
 6. **How many WHIVE Rewards will be there in total?** 100,000,000
 7. **In which way will they be distributed (Timeframe)?** Approximately 20 years.
 8. **What is the average transaction speed we are aiming for?** 20 transactions per second.
 9. **Will there be a mining pool available?** Yes.
-10. **Is there any installations needed? (Browser, Phones, CPU)** pool mining software, mobile and desktop wallets available for Linux, Mac OS, Windows.
-11. **Target Markets?** Whive is targeting high solar reliability markets, which include: South East Asia, Middle East and Africa.
+10. **Is there any installations needed? (Browser, Phones, CPU)** Pool mining software, mobile and desktop wallets available for Linux, Mac OS, Windows.
+11. **Target Markets?** Whive is targeting high solar reliability markets, notably South East Asia and Africa.
 12. **What hashing algorithm are we using?** A customized YesPower 1.0 algorithm.
 13. **Which consensus algorithm are we using?** Proof of Work with priority for CPU nodes.
 14. **How long will it take  to mine one block (Block height)?** About 10 minutes.
@@ -127,15 +127,15 @@ The Whive Community is governed by the Whive Code of Conduct.
 19. **Will Whive do smart contracts?** No, its based on bitcoin which uses SCRIPT programming language not easy to use for developing multi-purpose Smart Contracts. As such, the protocol algorithm is designed specifically  for the distributed energy use case.
 20. **Which programming languages will we be using?** C++ and Python.
 21. **When should we have our first wallet?** Q2 2020.
-22. **How many core developers do we need for the Whive core wallet?** Around 3 at any given time will be optimal.
+22. **How many core developers do we need for the Whive core wallet?** Around 3 developers at any given time will be optimal.
 23. **Will there be an ICO?** No!
 24. **Will Whive be able to update at any time when needed?** Through soft-forks, hard-forks have to planned under WIPs.
 25. **Will Whive transactions be public or private to the peers?** Public for Transparency!
 26. **When will Whive start trading?** Unknown, hopefully by Q3 2020!
 27. **Why or When do I purchase WHIVE Rewards?** It&#39;s up to you.
 28. **Is Whive competing with Bitcoin?** No, It&#39;s an Auxiliary Chain of Bitcoin, hence complimentary!
-29. **Will the price of Whive go up?** We have no idea or control, its up to discovery on the open and free market. We expect the price to be volatile like all other crypto-currencies. Thus, trade at your own risk!
-30. **Is Whive a Security?** No! There has been no raising or pooling of funds to develop the protocol. The project is open-source code launched, operated and maintained by a community of diverse individuals with no central entity in control of code contribution or the distributed network.
+29. **Will the price of Whive go up?** We have no idea or control, its up to price discovery on the open and free market. We expect the price to be volatile like ALL other crypto-currencies. Thus, trade at your own risk!
+30. **Is Whive a Security?** No! There has been no raising or pooling of funds to develop the protocol. The project is open-source code launched, operated and maintained by a community of diverse individuals with no central entity in control of code contribution and the distributed network.
 
 ***6. Disclaimer***
 
