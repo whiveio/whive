@@ -13,16 +13,20 @@ By downloading this software we assume you accept these terms and conditions in 
 The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and any or all Agreements: "User", "You" and "Your" refers to you, the person accessing this Software and accepting the Protocol's terms and conditions. "The Protocol", "Ourselves", "We", "Our" and "Us", refers to the Protocol Contributors. "Party", "Parties", or "Us", refers to both the User and ourselves, or either the User or ourselves. All terms refer to your use of The Protocol. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.
 
 ***License***
+
 Unless otherwise stated, the Whive Protocol is under the open-source MIT License; which is a permissive free software license originating at the Massachusetts Institute of Technology in the late 1980s. As a permissive license, it puts only very limited restriction on reuse and has, therefore, reasonable license compatibility.
 Read more on the MIT License on the url: https://www.opensource.org/licenses/MIT
 
 ***Reservation of Rights***
+
 We reserve the right at any time and in its sole discretion to amend this Terms of Service.
 
 ***Use Liability***
+
 We shall have no responsibility or liability you use of the Protocol software. You agree to indemnify and defend us against all claims arising out of or based upon your own use including criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.
 
 ***Disclaimer***
+
 - The Reward ”WHIVE” is mined on the “Whive blockchain” and voluntarily used by members of the Whive platform and community.
 - Any miner of the WHIVE acknowledges the technological and economic uncertainty of the project presented in the “Whive Project” Yellow Paper.
 - Whive contributors and their affiliates shall not be held legally liable in case of failure, nonperformance or non-implementation of the project, as well the Whive token’s loss of a part and/or the totality of its value. Whive contributors’ only obligation is to develop the Whive software for launch by the community.
