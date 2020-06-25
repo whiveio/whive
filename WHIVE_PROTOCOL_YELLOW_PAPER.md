@@ -106,7 +106,7 @@ The Whive Community is governed by the Whive Code of Conduct.
 
 ***5.Frequently Asked Questions***
 
-1. **Whive description?** Whive is a peer to peer blockchain protocol  that is built to allow for only small(CPU) and is resistant to both  medium scale mining(GPU) and  ASIC high scale mining.
+1. **Whive description?** Whive is a peer to peer blockchain protocol  that is built to allow for only small processor mining(CPU) and is resistant to both  medium scale mining(GPU) and ASIC high scale mining.
 2. **Will Whive be open source?** Whive shall be an open-source platform available for improvement through Whive Improvement Proposals(WIPs).
 3. **How much time will research consume?** The experimental phase should be between 6 to 9 months with a private and public test-net rolled out at that time.
 4. **Which problems will the Whive blockchain solve?** The protocol incentivizes Solar Access initially and then also looking at the smart distributed economy(IoT and AI).
