@@ -47,8 +47,8 @@ The Whive protocol contains the following specifications:
 - The protocol shall have its Rewards generated through a hybrid Proof-of-Work and Proof-Of-Stake algorithm.
 - The Reward symbol which is also the name of the wallet is WHIVE.
 - The smallest unit of the Reward will be 0.00000001 WHIVE.
-- There shall be a maximum supply of 100,000,000 Rewards over a period of ~20 years(by 2040). With ~17,100,000 of the total rewards being claimed by Bitcoiners from a snapshot of Bitcoins UTXO&#39;s.
-- Distribution of the remaining Rewards shall be through a Split Rewards algorithm, where 70% go to CPU/GPU mining nodes and another 30% to staking nodes.
+- There shall be a maximum supply of 100,000,000 Rewards over a period of ~20 years(by 2040). With ~18,550,000 of the total rewards being claimed by Bitcoiners from a snapshot of Bitcoins UTXO&#39;s.
+- Distribution of the remaining Rewards shall be through a Split Rewards algorithm, where 70% go to CPU mining nodes and another 30% to staking nodes.
 - The algorithm checks the type of processor and timezone of all nodes attributing a higher weight to nodes with higher daylight threshold and desired CPU optimizations.
 - The algorithm sets aside a 30% percent stake for validators on the network supporting staking nodes.
 - The protocol shall support between 7 - 20 transactions per second on a 1 - 2 MB blocksize or a Segregated Witness (SegWit) enabled block-weight of 4 MB similar to Bitcoin.
