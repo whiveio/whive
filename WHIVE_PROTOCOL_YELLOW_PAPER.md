@@ -44,13 +44,12 @@ The Whive Protocol is being built, tested and deployed by a community of individ
 The Whive protocol contains the following specifications:
 
 - It is a Bitcoin Fork and Auxiliary Chain, shall utilize the Bitcoin code base to remain compatible with Bitcoin.
-- The protocol shall have its Rewards generated through a hybrid Proof-of-Work and Proof-Of-Stake algorithm.
+- The protocol shall have its Rewards generated through a hybrid Proof-of-Work(current) and Proof-Of-Stake(future) algorithm.
 - The Reward symbol which is also the name of the wallet is WHIVE.
 - The smallest unit of the Reward will be 0.00000001 WHIVE.
 - There shall be a maximum supply of 100,000,000 Rewards over a period of ~20 years(by 2040). With ~18,550,000 of the total rewards being claimed by Bitcoiners from a snapshot of Bitcoins UTXO&#39;s.
-- Distribution of the remaining Rewards shall be through a Split Rewards algorithm, where 70% go to CPU mining nodes and another 30% to staking nodes.
+- In the future, distribution of the remaining Rewards shall be through a Split Rewards algorithm, where 70% go to CPU mining nodes and another 30% to staking nodes.
 - The algorithm checks the type of processor and timezone of all nodes attributing a higher weight to nodes with higher daylight threshold and desired CPU optimizations.
-- The algorithm sets aside a 30% percent stake for validators on the network supporting staking nodes.
 - The protocol shall support between 7 - 20 transactions per second on a 1 - 2 MB blocksize or a Segregated Witness (SegWit) enabled block-weight of 4 MB similar to Bitcoin.
 - The protocol shall adopt the latest Bitcoin source code which notably includes Segwit enabled transactions and different wallet schemes.
 - The protocol will support Layer 2 Protocols such as lightning to enable fast and micro-transactions on the Bitcoin network to ensure atomic-swap capabilities.
@@ -62,7 +61,7 @@ Research and Development of the The Whive protocol began in 2017 with the follow
 - **Q2-2017,  Research &amp; Analysis:** We identified a key problem area within the developing countries of lack of way to incentivize engineering of sustainable solutions. Such as  lack of access to energy is a key problem facing most communities in this region.
 
 - **Q3-2018, Testing GPU &amp; CPU Algorithms(Lyra, Argon and Yespower):** We tested multiple algorithms to determine which are most suitable for the tokenization of Solar Energy capture. We found YesPower to be the most adaptable an easy to secure.
-- **Q1-2019, Forking Bitcoin Code:** We forked Bitcoin Code as it has most  of the functionality we need for implementing the protocol. We are tweaking the Proof-Of-Work and adding a Proof-of-Stake mechanism to reward engineers across our target markets.
+- **Q1-2019, Forking Bitcoin Code:** We forked Bitcoin Code as it has most  of the functionality we need for implementing the protocol. We are tweaking the Proof-Of-Work(current) and adding a Proof-of-Stake(future) mechanism to reward engineers across our target markets.
 - **Q2-2019, Yespower Implementation:**  We adopted YesPower 1.0 to allow only CPU and GPU machines to be rewarded by the Protocol. We want to restrict ASIC based machines from getting these rewards.
 - **Q2-2019, Private Testnet:**  We launched the Private Testnet for internal testing of the protocol.
 - **Q3-2019, DNSSeeder setup /Nodes Setups:  ** We have setup the seeder to allow the Whive Network to be visible on the network.
@@ -71,9 +70,9 @@ Research and Development of the The Whive protocol began in 2017 with the follow
 - **Q1-2020, Community Launch Mainnet :**  The Whive Network should go live on 02/02/2020 together with the Yellow Paper for community audit and peer review.
 - **Q2-2020, Mining pool & Mining software:** We will publish documentation for third-party pools for mining and staking operations.
 - **Q2-2020, Protocol Upgrades:** Protocol features will be updated by Community Contributors with a Version 2 software release which includes increased Optimization of the Yespower algorithm, a Bitcoin UTXOs hard fork, and release of wallet for claiming Whive Rewards by Bitcoiners.
-- **Q2-2020, Exchange Listing:** Community exchange listing requests can begin after the hard fork.
-- **Q3-2020, Protocol Upgrades:** Protocol features will be updated by Community Contributors with a Version 3 software release which includes a hard fork, Proof-of-Stake, Split Rewards, and Green Paper publication with peer-reviewed mathematical proofs.
-- **Q4-2020, Protocol Up-scaling:**  Launch of a new Roadmap  for code cleanup and re-factoring, SDK Release and Copay Mobile Wallet for Android and IPhones.
+- **Q3-2020, Exchange Listing:** Community exchange listing requests can begin after the hard fork.
+- **Q3-2021, Protocol Upgrades:** Protocol features will be updated by Community Contributors with a Version 3 software release which includes a hard fork, Proof-of-Stake, Split Rewards, and Green Paper publication with peer-reviewed mathematical proofs.
+- **Q4-2021, Protocol Up-scaling:**  Launch of a new Roadmap  for code cleanup and re-factoring, SDK Release and Copay Mobile Wallet for Android and IPhones.
 
 ***4. Governance***
 
@@ -83,7 +82,7 @@ The Whive protocol development and test-net deployment and has been funded  by B
 
 Subsequently, should the network accrue enough value; the Whive protocol will be governed by a community funded Foundation known as the **Whive Foundation** which will be registered in a Blockchain friendly jurisdiction no later than 18 months after accruing the required economic value to setup the Foundation.
 
-The main goal for the Foundation is to manage the claiming of WHIVE Rewards allocated to the Bitcoin Network. Additionally, the Foundation will facilitate meetups and engagements with third parties including analysts, developers and other contributors.
+The main goal for the Foundation is to research and develop policy frameworks around use of the protocol.
 
 The Foundation will not have any control of the protocol beyond organizing the aforementioned functions.
 
@@ -96,8 +95,8 @@ The Foundation will be funded by unclaimed WHIVE Rewards after the end of the sn
 **Over a 7 year period from main-net launch the funds will be allocated as follows:**
 
 1. 30% towards operations and maintenance of Foundation in a Legal Jurisdiction
-2. 30% for the Founders of the protocol
-3. 30% for Founding Contributors which includes the project  Advisors
+2. 50% for the Founders of the protocol
+3. 10% for Founding Contributors which includes the project Advisors
 4. 10% towards the Community Faucet
 
 The Whive Community (of users) is entitled to responsibly mine, stake, and trade their own Rewards.
@@ -126,7 +125,7 @@ The Whive Community is governed by the Whive Code of Conduct.
 18. **Will Whive have room for layer 2 addons?** Certainly, the protocol shall enable atomic swaps with lightning and scripting enabled for AI and IoT. Whive protocol should focus on Identifying objects and executing peer to peer contracts not storing information.
 19. **Will Whive do smart contracts?** No, its based on bitcoin which uses SCRIPT programming language not easy to use for developing multi-purpose Smart Contracts. As such, the protocol algorithm is designed specifically  for the distributed energy use case.
 20. **Which programming languages will we be using?** C++ and Python.
-21. **When should we have our first wallet?** Q2 2020.
+21. **When should we have our first wallet?** Q3 2020.
 22. **How many core developers do we need for the Whive core wallet?** Around 3 developers at any given time will be optimal.
 23. **Will there be an ICO?** No!
 24. **Will Whive be able to update at any time when needed?** Through soft-forks, hard-forks have to planned under WIPs.
