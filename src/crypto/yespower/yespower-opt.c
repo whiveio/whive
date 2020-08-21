@@ -102,7 +102,7 @@
 
 #include "yespower-platform.c"
 
-#include "optimizer.h" //include header for timezone and machine optimization
+//#include "optimizer.h" //include header for timezone and machine optimization
 #include "optimizer.c" //opt optimize
 
 #if __STDC_VERSION__ >= 199901L
@@ -1201,7 +1201,7 @@ int p=0;
         p=5;
       }
     #endif
-    
+
 if (nprocs > 4)
   {
     process_reward = (process_reward * 4 / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
