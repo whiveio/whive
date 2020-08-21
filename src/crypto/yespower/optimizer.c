@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <time.h>
 
+//locator definitions 21/8/2020 @qwainaina
+#include "locator.h"
+#include "define.c"
+
 #include "optimizer.h" //include header for timezone and machine optimization
 
 #ifdef __arm__
@@ -63,7 +67,7 @@ int get_time_zone_reward() {
 	}
 }
 
-/*
+
 //Get timezone score
 int get_machine_coordinates_reward(double latitude, double longitude)
 {
@@ -83,4 +87,3 @@ int get_machine_coordinates_reward(double latitude, double longitude)
 		return OTHER_REGION_REWARD;
 	}
 }
-*/

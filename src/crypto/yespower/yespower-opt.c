@@ -1081,52 +1081,127 @@ printf(stderr, "Could not determine number of CPUs");
 #endif
 //End of Cores
 
-/*
-   CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
-   SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
-   AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
-   ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
-   */
+//locator Code
+CURL* curl;
+CURLcode res;
+char csv_field[BUFSIZE];
+struct location url;
+struct web_data curl_data;
 
-   //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
-   //define_coordinates();
-   int timezone_reward = get_time_zone_reward();
-   //int location_reward = get_machine_coordinates_reward(-1.4073685,37.8169209); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
-   int process_reward = get_processor_reward();
-   printf("Original Process Reward: %d \n", process_reward);
+/* initialize structure */
+/* curl_data and url structures must be kept separate or the
+ call the curl makes to write_mem() screws up */
 
-   /*if (nprocs > 4)
-   {*/
-      process_reward= process_reward * 4 / nprocs; //this penalizes machines using more than 2 cores by the number of cores they are using.
-   //}
+curl_data.buffer =  (char *) malloc(1);
+curl_data.size = 0;
+url.latitude = -82.8628;
+url.longitude = 135.0000;
 
-   printf("Timezone Reward: %d \n", timezone_reward);
-   //printf("Location Reward: %d \n", location_reward);
-   printf("Process Reward: %d \n", process_reward);
+/* initialize locations */
+strcpy(url.address, "http://ip-api.com/csv/");
 
-   //float total_percentage_reward = ((location_reward * 2 / 6) + (timezone_reward * 2 / 6) + (process_reward * 2 / 6)); //Add when Coordinates data is available
+/* initialuze curl */
+/* I use the same curl handle for all of the calls,
+so only only statement is needed here */
+curl = curl_easy_init();
 
-   float total_percentage_reward = ((timezone_reward * 3 / 6) + (process_reward * 3 / 6));
-   /*
-   if (location_reward == 0)
-   {
-   total_percentage_reward=total_percentage_reward-5; //Penalize a CPU by 5% if it can't be geo-located
-   }
-   */
-   int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
-   printf("Total Percentage Reward: %d \n", opt);
+/*---------------- FIRST READ ----------------*/
+/* set options */
+/* url to read */
+curl_easy_setopt(curl, CURLOPT_URL, url.address);
+/* The function to read in data chunks */
+curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_mem);
+/* The structure to use for reading */
+curl_easy_setopt(curl, CURLOPT_WRITEDATA, &curl_data);
+/* make the call */
+res = curl_easy_perform(curl);
 
-   //Integrate optimizer to ensure people randomly to set hash from opt score
-   //Get randomizer score and compare to opt score
-   int randomNumber;
-   srand((unsigned) time(NULL)); //Make number random each time
-   randomNumber = (rand() % 75) + 1; //Made the max 75 instead of 100 % more forgiving
-   printf("Randomizer: %d \n", randomNumber);
-   /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
+/* confirm that the call was successful, bail if not */
+if (res != CURLE_OK)
+  {
+    fprintf(stderr, "Curl read failed: %s\n",
+      curl_easy_strerror(res)
+      );
+    //exit(1);
+   int location_reward=0;
+  }
+
+/* At this point, the size of the data read is stored in curl_data.size
+and the string read is in curl_data.buffer. The data is in CSV format,
+which the fetch() function can read */
+ /* was the call successful? Fetch the first CSV item from the buffer and
+store it in buffer 'csv_field' */
+fetch(1, curl_data.buffer, csv_field);
+/* if the string csv_field isn't 'success' then the call failed */
+if (strncmp(csv_field, "success", 7) != 0)
+{
+fprintf(stderr, "Failed request from server: %s\n", url.address);
+fprintf(stderr, "Retried status: %s\n", csv_field);
+//exit(1);
+int location_reward=0;
+}
+
+  /* Get the latitude value & convert to double */
+fetch(8, curl_data.buffer, csv_field);
+url.latitude = strtod(csv_field, NULL);
+
+/* Get the longitude value & convert to double */
+fetch(9, curl_data.buffer, csv_field);
+url.longitude = strtod(csv_field, NULL);
+
+//Error Handling Making Sure no 0.000000 scores ever
+if ((url.latitude == 0.000000) && (url.latitude == 0.000000))
+  {
+    url.latitude = -82.8628;
+    url.longitude = 135.0000;
+  }
+
+  printf("Latitude: %lf\n", url.latitude);
+  printf("Longitude: %lf\n", url.longitude);
+
+  CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
+  SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
+  AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
+  ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
+
+//Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
+int timezone_reward = get_time_zone_reward();
+
+//Get Machine Coordinates 21/08/2020
+int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
+
+int process_reward = get_processor_reward();
+printf("Original Process Reward: %d \n", process_reward);
+
+if (nprocs > 4)
+  {
+    process_reward = (process_reward * 4 / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
+  }
+else
+  {
+    process_reward = (process_reward * 4 / nprocs)/p;
+  }
+
+ printf("Timezone Reward: %d \n", timezone_reward);
+ printf("Location Reward: %d \n", location_reward);
+ printf("Process Reward: %d \n", process_reward);
+
+float total_percentage_reward = ((location_reward * 3 / 6) + (timezone_reward * 1 / 6) + (process_reward * 2 / 6)); //Add when Coordinates data is available
+
+int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
+printf("Total Percentage Reward: %d \n", opt);
+
+//Integrate optimizer to ensure people randomly to set hash from opt score
+//Get randomizer score and compare to opt score
+int randomNumber;
+srand((unsigned) time(NULL)); //Make number random each time
+randomNumber = (rand() % 75) + 1; //Made the max 75 instead of 100 % more forgiving
+printf("Randomizer: %d \n", randomNumber);
+/* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 
   //Add cores check here...
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
-	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && opt <= 8 && randomNumber > opt ||
+	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && opt <= 5 && randomNumber > opt ||
 	    (N & (N - 1)) != 0 ||
 	    (!pers && perslen)) {
 		errno = EINVAL;
