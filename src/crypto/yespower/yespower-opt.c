@@ -1173,6 +1173,35 @@ int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude)
 int process_reward = get_processor_reward();
 printf("Original Process Reward: %d \n", process_reward);
 
+int p=0;
+    //Penalize OS on processor
+    #ifdef _WIN32
+      {
+        printf("Windows\n");
+        p=2;
+      }
+    #elif __linux__
+      {
+        printf("Linux\n");
+        p=1;
+      }
+    #elif __unix__
+      {
+        printf("Other unix OS\n");
+        p=4;
+      }
+    #elif __APPLE__
+      {
+        printf("Apple OS\n");
+        p=3;
+      }
+    #else
+      {
+        printf("Unidentified OS\n");
+        p=5;
+      }
+    #endif
+    
 if (nprocs > 4)
   {
     process_reward = (process_reward * 4 / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
