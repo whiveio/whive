@@ -1,6 +1,6 @@
 # Welcome to the Whive Protocol Terms of Service
 
-Please note this Terms of Service may be periodically altered and/or updated. This notice was last updated on 29th February, 2020.
+Please note this Terms of Service may be periodically altered and/or updated. This notice was last updated on 19th September, 2020.
 
 These terms and conditions outline the rules and regulations for the use of Whive Protocol's Wallet Software.
 
@@ -15,7 +15,7 @@ The following terminology applies to these Terms and Conditions, Privacy Stateme
 ***License***
 
 Unless otherwise stated, the Whive Protocol is under the open-source MIT License; which is a permissive free software license originating at the Massachusetts Institute of Technology in the late 1980s. As a permissive license, it puts only very limited restriction on reuse and has, therefore, reasonable license compatibility.
-Read more on the MIT License on the url: https://www.opensource.org/licenses/MIT
+Read more on the MIT License on the url: https://www.whive.io/mit-license
 
 ***Reservation of Rights***
 
