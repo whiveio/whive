@@ -7,15 +7,15 @@
 
 ***AUXILIARY CHAIN (AUXCHAIN): MINE - STAKE - BUILD- EARN***
 
-**VERSION 1.0.0**
+**VERSION 2**
 
 [**www.whive.io**](http://www.whive.io)
 
 **protocol@whive.io**
 
-**This Yellow Paper is a Draft, Subject to Peer Review,  Revisions and Final Publication as a Green-paper by Q4 2021**
+**This Yellow-paper is a Draft; Subject to peer-review, revisions and publication as a Green-paper by Q4 2021**
 
-* Last updated 19th September, 2020
+Last updated 19th September, 2020
 
 ***1.About***
 
@@ -136,7 +136,7 @@ The Whive Community is governed by the Whive Code of Conduct.
 27. **Why or When do I purchase WHIVE Rewards?** It&#39;s up to you, trading is a personal decision. Trading occurs on 3rd party exchanges. The Whive protocol does not offer any Investment or Exchange services as per the terms of service.
 28. **Is Whive competing with Bitcoin?** No, It&#39;s an Auxiliary Chain of Bitcoin, hence complimentary!
 29. **shall the price of Whive go up?** No one knows, its up to price discovery on the open and free market, which is based on many factors. We expect the price to be volatile like ALL other crypto-currencies. Thus, trade at your own risk!
-30. **Is Whive a Security?** No! There has been no raising or pooling of funds to develop the protocol. The project is open-source code launched, operated and maintained by a community of contributors with no central entity in control of the distributed network. Refer to the Whive protocol&#39;s Terms of Service.
+30. **Is Whive a Security?** No! There has been no raising or pooling of funds to develop the protocol. The project is open-source code launched, operated and maintained by a community of volunteering contributors with no central entity in control of the distributed network. Refer to the Whive protocol&#39;s Terms of Service.
 
 ***6. Disclaimer***
 
