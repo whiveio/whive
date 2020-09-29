@@ -31,17 +31,6 @@
 #define OS_WINDOWS 0
 #define OS_X86 0
 
-//Add NPROCS DEFINITIONS
-#ifdef _WIN32
-#ifndef _SC_NPROCESSORS_ONLN
-SYSTEM_INFO info;
-GetSystemInfo(&info);
-#define sysconf(a) info.dwNumberOfProcessors
-#define _SC_NPROCESSORS_ONLN
-#endif
-#endif
-#ifdef _SC_NPROCESSORS_ONLN
-//
 
 struct coordinate
 {

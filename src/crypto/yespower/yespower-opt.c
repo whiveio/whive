@@ -1046,20 +1046,35 @@ int yespower(yespower_local_t *local,
   //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
   //Cores Code 26/03/2020
 
+
 int nprocs = -1;
 int nprocs_max = -1;
 
-//NPROCS DEFINITION WAS HERE 29/09/2020
+
+//NPROCS DEFINITIONS
+#ifdef _WIN32
+#ifndef _SC_NPROCESSORS_ONLN
+SYSTEM_INFO info;
+GetSystemInfo(&info);
+#define sysconf(a) info.dwNumberOfProcessors
+#define _SC_NPROCESSORS_ONLN
+#endif
+#endif
+#ifdef _SC_NPROCESSORS_ONLN
+//
+
+nprocs = consensus.nprocs;
+nprocs_max = consensus.nprocs_max;
 
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
-if (consensus.nprocs < 1)
+if (nprocs < 1)
 {
   printf(stderr, "Could not determine number of CPUs online:\n%s\n");
 
 }
 
 //nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
-if (consensus.nprocs_max < 1)
+if (nprocs_max < 1)
 {
 
   printf(stderr, "Could not determine number of CPUs configured:\n%s\n");
@@ -1193,13 +1208,13 @@ int p=0;
       }
     #endif
 
-if (consensus.nprocs > 4)
+if (nprocs > 4)
   {
-    process_reward = (process_reward * 4 / (consensus.nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
+    process_reward = (process_reward * 4 / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
   }
 else
   {
-    process_reward = (process_reward * 4 / consensus.nprocs)/p;
+    process_reward = (process_reward * 4 / nprocs)/p;
   }
 
  printf("Timezone Reward: %d \n", timezone_reward);
