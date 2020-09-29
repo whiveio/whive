@@ -106,10 +106,11 @@
 #include "optimizer.c" //opt optimize
 
 //Include Chainparams and Consensus @qwainaina 29/9/2020
+/*
 #include <./chainparams.h>
 #include <./chainparamsbase.h>
 #include <./consensus/consensus.h>
-//
+*/
 
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
