@@ -105,6 +105,11 @@
 //#include "optimizer.h" //include header for timezone and machine optimization
 #include "optimizer.c" //opt optimize
 
+//Include Chainparams and Consensus @qwainaina 29/9/2020
+#include <../../chainparams.h>
+#include <../../consensus/consensus.h>
+//
+
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
 #elif defined(__GNUC__)
