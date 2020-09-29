@@ -107,6 +107,7 @@
 
 //Include Chainparams and Consensus @qwainaina 29/9/2020
 #include <../../chainparams.h>
+#include <../../chainparamsbase.h>
 #include <../../consensus/consensus.h>
 //
 
