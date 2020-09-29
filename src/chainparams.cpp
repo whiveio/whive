@@ -4,6 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+//Adding location optimization parameters here @qwainaina
+
 #include <chainparams.h>
 #include <consensus/merkle.h>
 
@@ -78,10 +80,15 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 1000000;
+       //processor_nprocs_params
+       consensus.nprocs = sysconf(_SC_NPROCESSORS_ONLN);
+       consensus.nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
+       //
+
        // consensus.BIP16Height = 0;
         consensus.BIP34Height = 17;
-        consensus.BIP34Hash = uint256S("0x0"); 
-        consensus.BIP65Height = 1; //000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0 
+        consensus.BIP34Hash = uint256S("0x0");
+        consensus.BIP65Height = 1; //000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 1; //00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
         consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
@@ -108,7 +115,7 @@ public:
         consensus.nMinimumChainWork  = uint256S("0x0");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00"); 
+        consensus.defaultAssumeValid = uint256S("0x00");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -124,7 +131,7 @@ public:
         nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(1580658322, 63992, 0x1f00ffff, 1, 200 * COIN);
-       
+
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00006142c9cae8009a078004c219fdb5d4a9116d8508e348d430c1be24e3d68a"));
         assert(genesis.hashMerkleRoot == uint256S("0xb8044cb70912edd89be0c1149740e02ec0f56aea172f2344db5b5ce4b8834cab"));
@@ -186,9 +193,9 @@ public:
         strNetworkID = "test";
         consensus.nSubsidyHalvingInterval = 1000000;
         //consensus.BIP16Height = 0;
-        consensus.BIP34Height = 17; 
-        consensus.BIP34Hash = uint256S("0x0"); 
-        consensus.BIP65Height = 1; //000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0 
+        consensus.BIP34Height = 17;
+        consensus.BIP34Hash = uint256S("0x0");
+        consensus.BIP65Height = 1; //000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
         consensus.BIP66Height = 1; //00000000000000000379eaa19dce8c9b722d46ae6a57c2f1a988119488b50931
         consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
@@ -225,7 +232,7 @@ public:
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1580661362, 156465, 0x1f00ffff, 1, 200 * COIN);
-        
+
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x0000157d78958880aae69e4b3e131e12c5ccccb9fcca4fb90dc60e0909e2c507"));
         assert(genesis.hashMerkleRoot == uint256S("0xb8044cb70912edd89be0c1149740e02ec0f56aea172f2344db5b5ce4b8834cab"));
