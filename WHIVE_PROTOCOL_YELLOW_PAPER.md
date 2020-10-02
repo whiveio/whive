@@ -1,11 +1,8 @@
-# The Whive Protocol
+# The Whive Protocol Yellowpaper
 
-##
 ## Trustless Rewards for Sustainable Energy Adoption
 
-## Yellow-paper
-
-***AUXILIARY CHAIN (AUXCHAIN): MINE - STAKE - BUILD- EARN***
+***BITCOIN AUXILIARY CHAIN (AUXCHAIN): MINE - STAKE - BUILD - EARN***
 
 **VERSION 2**
 
