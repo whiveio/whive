@@ -15,7 +15,7 @@
 
 **This Yellow-paper is a Draft; Subject to peer-review, revisions and publication as a Green-paper by Q4 2021**
 
-Last updated 19th September, 2020
+Last updated 2nd October, 2020
 
 ***1.About***
 
@@ -64,7 +64,7 @@ Research and Development of the The Whive protocol&#39;s core features began in 
 - **Q1-2019, Forking Bitcoin Code:** The protocol developers forked the Bitcoin Code as it has most  of the functionality needed for implementing the protocol.
 - **Q2-2019, Yespower Implementation:**  The protocol developers implemented Yespower 1.0 to allow only CPU and GPU machines to be rewarded by the protocol. We want to restrict ASIC based machines from getting these rewards.
 - **Q2-2019, Private Testnet:**  The protocol developers launched the private test-net for internal testing of the protocol.
-- **Q3-2019, DNSSeeder setup /Nodes Setups:  ** The protocol developers setup the seeder to allow the Whive Network to be visible on the network.
+- **Q3-2019, DNSSeeder setup /Nodes Setups:** The protocol developers setup the seeder to allow the Whive Network to be visible on the network.
 - **Q4-2019, Yespower Time &amp; Machine optimization:** The protocol developers added Machine, Time-Zone and Processor optimization to the Yespower Implementation.
 - **Q1-2020, Public Testnet:**  The protocol contributors tested the network before launch.
 - **Q1-2020, Community Launches Main-net :**  The Whive Network was launched on 02/02/2020 together with the Yellow Paper for community audit and peer review.
@@ -168,3 +168,4 @@ However, the information is provided &quot;as is&quot; without warranty, promise
 
 ***7. APPENDIX***
 Code of Conduct:  [https://github.com/whiveio/whive/blob/master/CODE_OF_CONDUCT.md](https://github.com/whiveio/whive/blob/optimize/CODE_OF_CONDUCT.md)
+Terms of Service: [https://github.com/whiveio/whive/blob/master/WHIVE_TERMS_OF_SERVICE.md](https://github.com/whiveio/whive/blob/master/WHIVE_TERMS_OF_SERVICE.md)
