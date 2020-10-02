@@ -167,5 +167,7 @@ Whive.io and its affiliates have made every attempt to ensure the accuracy and r
 However, the information is provided &quot;as is&quot; without warranty, promised and/or representations of any kind, express or implied. Whive.io and its affiliates does not accept any responsibility or liability for the accuracy, content, completeness, legality, or reliability of the information contained on this website. We cannot and shall not guarantee that this website is free from computer viruses or any other destructive malware. In addition, we cannot and shall not accept responsibility for the accuracy of third party advertisements on this website.
 
 ***7. APPENDIX***
+
 Code of Conduct:  [https://github.com/whiveio/whive/blob/master/CODE_OF_CONDUCT.md](https://github.com/whiveio/whive/blob/optimize/CODE_OF_CONDUCT.md)
+
 Terms of Service: [https://github.com/whiveio/whive/blob/master/WHIVE_TERMS_OF_SERVICE.md](https://github.com/whiveio/whive/blob/master/WHIVE_TERMS_OF_SERVICE.md)
