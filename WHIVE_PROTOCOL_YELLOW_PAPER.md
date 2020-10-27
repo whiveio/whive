@@ -91,10 +91,10 @@ As such the Whive Foundation shall have a bounty program that shall be used to e
 
 The Foundation will be funded by unclaimed WHIVE Rewards after the end of the snapshot period for the Bitcoin fork described in the Roadmap.
 
-**The funds shall be allocated as follows:**
+**The UNCLAIMED rewards shall be distributed as follows:**
 
-1. 30% towards operations and maintenance of Foundation in a Legal Jurisdiction
-2. 50% for the Founders of the protocol
+1. 50% for the Founders of the protocol
+2. 30% towards operations and maintenance of Foundation in a Legal Jurisdiction
 3. 10% for Founding Contributors
 4. 10% towards the Contributors
 
