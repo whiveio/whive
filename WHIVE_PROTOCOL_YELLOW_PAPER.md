@@ -98,6 +98,8 @@ The Foundation will be funded by unclaimed WHIVE Rewards after the end of the sn
 3. 10% for Founding Contributors
 4. 10% towards the Contributors
 
+The Foundation with its allocation of unclaimed Whive rewards, shall also fund solar-powered innovations that use the Whive protocol to build Green energy solutions globally!
+
 The Whive Community (of users) is entitled to responsibly mine, stake, and trade their own Rewards.
 
 The Whive Community is governed by the Whive Code of Conduct.
