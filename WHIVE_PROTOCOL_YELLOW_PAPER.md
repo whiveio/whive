@@ -12,7 +12,7 @@
 
 **This Yellow-paper is a Draft; Subject to peer-review, revisions and publication as a Green-paper by Q4 2021**
 
-Last updated 2nd October, 2020
+Last updated 17th November, 2020
 
 ***1.About***
 
@@ -169,4 +169,4 @@ However, the information is provided &quot;as is&quot; without warranty, promise
 
 Code of Conduct:  [https://github.com/whiveio/whive/blob/master/CODE_OF_CONDUCT.md](https://github.com/whiveio/whive/blob/optimize/CODE_OF_CONDUCT.md)
 
-Terms of Service: [https://github.com/whiveio/whive/blob/master/WHIVE_TERMS_OF_SERVICE.md](https://github.com/whiveio/whive/blob/master/WHIVE_TERMS_OF_SERVICE.md)
+Terms of Service: [https://github.com/whiveio/whive/blob/master/WHIVE_TERMS_AND_CONDITIONS.md](https://github.com/whiveio/whive/blob/master/WHIVE_TERMS_AND_CONDITIONS.md)
