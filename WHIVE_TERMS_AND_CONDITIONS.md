@@ -1,4 +1,4 @@
-# Welcome to the Whive Protocol Terms of Service
+# Welcome to the Whive Protocol Terms and Conditions
 
 Please note this Terms of Service may be periodically altered and/or updated. This notice was last updated on 19th September, 2020.
 
