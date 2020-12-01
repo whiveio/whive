@@ -108,6 +108,7 @@
 //Include Chainparams and Consensus @qwainaina 29/9/2020
 
 #include <consensus/nproc.h>
+//#include <consensus/consensus.h>
 
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
