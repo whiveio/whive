@@ -107,10 +107,7 @@
 
 //Include Chainparams and Consensus @qwainaina 29/9/2020
 
-#include "chainparams.h"
-//#include <./chainparamsbase.h>
-#include "consensus/consensus.h"
-
+#include <consensus/nproc.h>
 
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
@@ -1070,8 +1067,8 @@ GetSystemInfo(&info);
 #ifdef _SC_NPROCESSORS_ONLN
 //
 
-nprocs = consensus.nprocs;
-nprocs_max = consensus.nprocs_max;
+nprocs = NPROCS;
+nprocs_max = NPROCS_MAX;
 
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
 if (nprocs < 1)

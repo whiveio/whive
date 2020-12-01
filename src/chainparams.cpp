@@ -80,10 +80,6 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 1000000;
-       //processor_nprocs_params
-       consensus.nprocs = sysconf(_SC_NPROCESSORS_ONLN);
-       consensus.nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
-       //
 
        // consensus.BIP16Height = 0;
         consensus.BIP34Height = 17;
