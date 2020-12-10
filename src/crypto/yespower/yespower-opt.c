@@ -107,10 +107,8 @@
 
 //Include Chainparams and Consensus @qwainaina 29/9/2020
 
-#include "chainparams.h"
-//#include <./chainparamsbase.h>
-#include "consensus/consensus.h"
-
+#include <consensus/nproc.h>
+//#include <consensus/consensus.h>
 
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
@@ -1053,120 +1051,121 @@ int yespower(yespower_local_t *local,
   //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
   //Cores Code 26/03/2020
 
-  int nprocs = -1;
-  int nprocs_max = -1;
 
-  //NPROCS DEFINITIONS
-  #ifdef _WIN32
-  #ifndef _SC_NPROCESSORS_ONLN
-  SYSTEM_INFO info;
-  GetSystemInfo(&info);
-  #define sysconf(a) info.dwNumberOfProcessors
-  #define _SC_NPROCESSORS_ONLN
-  #endif
-  #endif
-  #ifdef _SC_NPROCESSORS_ONLN
-  //
+int nprocs = -1;
+int nprocs_max = -1;
 
-  nprocs = consensus.nprocs;
-  nprocs_max = consensus.nprocs_max;
 
-  //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
-  if (nprocs < 1)
-    {
-      printf(stderr, "Could not determine number of CPUs online:\n%s\n");
+//NPROCS DEFINITIONS
+#ifdef _WIN32
+#ifndef _SC_NPROCESSORS_ONLN
+SYSTEM_INFO info;
+GetSystemInfo(&info);
+#define sysconf(a) info.dwNumberOfProcessors
+#define _SC_NPROCESSORS_ONLN
+#endif
+#endif
+#ifdef _SC_NPROCESSORS_ONLN
+//
 
-    }
+nprocs = NPROCS;
+nprocs_max = NPROCS_MAX;
 
-  //nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
-  if (nprocs_max < 1)
-    {
-      printf(stderr, "Could not determine number of CPUs configured:\n%s\n");
-    }
+//nprocs = sysconf(_SC_NPROCESSORS_ONLN);
+if (nprocs < 1)
+{
+  printf(stderr, "Could not determine number of CPUs online:\n%s\n");
 
-  printf("%ld of %ld processors online\n", nprocs, nprocs_max);
+}
 
-  #else
-  printf(stderr, "Could not determine number of CPUs");
-  #endif
-  //End of Cores
+//nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
+if (nprocs_max < 1)
+{
 
-  //locator Code
-  CURL* curl;
-  CURLcode res;
-  char csv_field[BUFSIZE];
-  struct location url;
-  struct web_data curl_data;
+  printf(stderr, "Could not determine number of CPUs configured:\n%s\n");
 
-  /* initialize structure */
-  /* curl_data and url structures must be kept separate or the
-  call the curl makes to write_mem() screws up */
+}
+printf("%ld of %ld processors online\n", nprocs, nprocs_max);
 
-  curl_data.buffer =  (char *) malloc(1);
-  curl_data.size = 0;
-  url.latitude = -82.8628;
-  url.longitude = 135.0000;
+#else
+printf(stderr, "Could not determine number of CPUs");
+#endif
+//End of Cores
 
-  /* initialize locations */
-  strcpy(url.address, "http://ip-api.com/csv/");
+//locator Code
+CURL* curl;
+CURLcode res;
+char csv_field[BUFSIZE];
+struct location url;
+struct web_data curl_data;
 
-  /* initialuze curl */
-  /* I use the same curl handle for all of the calls,
-  so only only statement is needed here */
-  curl = curl_easy_init();
+/* initialize structure */
+/* curl_data and url structures must be kept separate or the
+ call the curl makes to write_mem() screws up */
 
-  /*---------------- FIRST READ ----------------*/
-  /* set options */
-  /* url to read */
-  curl_easy_setopt(curl, CURLOPT_URL, url.address);
-  /* The function to read in data chunks */
-  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_mem);
-  /* The structure to use for reading */
-  curl_easy_setopt(curl, CURLOPT_WRITEDATA, &curl_data);
-  /* make the call */
-  res = curl_easy_perform(curl);
+curl_data.buffer =  (char *) malloc(1);
+curl_data.size = 0;
+url.latitude = -82.8628;
+url.longitude = 135.0000;
 
-  /* confirm that the call was successful, bail if not */
-  if (res != CURLE_OK)
-    {
-      fprintf(stderr, "Curl read failed: %s\n",
+/* initialize locations */
+strcpy(url.address, "http://ip-api.com/csv/");
+
+/* initialuze curl */
+/* I use the same curl handle for all of the calls,
+so only only statement is needed here */
+curl = curl_easy_init();
+
+/*---------------- FIRST READ ----------------*/
+/* set options */
+/* url to read */
+curl_easy_setopt(curl, CURLOPT_URL, url.address);
+/* The function to read in data chunks */
+curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_mem);
+/* The structure to use for reading */
+curl_easy_setopt(curl, CURLOPT_WRITEDATA, &curl_data);
+/* make the call */
+res = curl_easy_perform(curl);
+
+/* confirm that the call was successful, bail if not */
+if (res != CURLE_OK)
+  {
+    fprintf(stderr, "Curl read failed: %s\n",
       curl_easy_strerror(res)
       );
-      //exit(1);
-      int location_reward=0;
-      }
+    //exit(1);
+   int location_reward=0;
+  }
 
-  /* At this point, the size of the data read is stored in curl_data.size
-  and the string read is in curl_data.buffer. The data is in CSV format,
-  which the fetch() function can read */
-  /* was the call successful? Fetch the first CSV item from the buffer and
-  store it in buffer 'csv_field' */
-
-  fetch(1, curl_data.buffer, csv_field);
-  /* if the string csv_field isn't 'success' then the call failed */
-
-  if (strncmp(csv_field, "success", 7) != 0)
-    {
-      fprintf(stderr, "Failed request from server: %s\n", url.address);
-      fprintf(stderr, "Retried status: %s\n", csv_field);
-      //exit(1);
-      int location_reward=0;
-    }
+/* At this point, the size of the data read is stored in curl_data.size
+and the string read is in curl_data.buffer. The data is in CSV format,
+which the fetch() function can read */
+ /* was the call successful? Fetch the first CSV item from the buffer and
+store it in buffer 'csv_field' */
+fetch(1, curl_data.buffer, csv_field);
+/* if the string csv_field isn't 'success' then the call failed */
+if (strncmp(csv_field, "success", 7) != 0)
+{
+fprintf(stderr, "Failed request from server: %s\n", url.address);
+fprintf(stderr, "Retried status: %s\n", csv_field);
+//exit(1);
+int location_reward=0;
+}
 
   /* Get the latitude value & convert to double */
-  fetch(8, curl_data.buffer, csv_field);
-  url.latitude = strtod(csv_field, NULL);
+fetch(8, curl_data.buffer, csv_field);
+url.latitude = strtod(csv_field, NULL);
 
-  /* Get the longitude value & convert to double */
-  fetch(9, curl_data.buffer, csv_field);
-  url.longitude = strtod(csv_field, NULL);
+/* Get the longitude value & convert to double */
+fetch(9, curl_data.buffer, csv_field);
+url.longitude = strtod(csv_field, NULL);
 
-  //Error Handling Making Sure no 0.000000 scores ever
-  if ((url.latitude == 0.000000) && (url.latitude == 0.000000))
-    {
-      url.latitude = -82.8628;
-      url.longitude = 135.0000;
-    }
+//Error Handling Making Sure no 0.000000 scores ever
+if ((url.latitude == 0.000000) && (url.latitude == 0.000000))
+  {
+    url.latitude = -82.8628;
+    url.longitude = 135.0000;
+  }
 
   printf("Latitude: %lf\n", url.latitude);
   printf("Longitude: %lf\n", url.longitude);
@@ -1176,22 +1175,22 @@ int yespower(yespower_local_t *local,
   AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
   ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
 
-  //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
-  int timezone_reward = get_time_zone_reward();
+//Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
+int timezone_reward = get_time_zone_reward();
 
-  //Get Machine Coordinates 21/08/2020
-  int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
+//Get Machine Coordinates 21/08/2020
+int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
 
-  int process_reward = get_processor_reward();
-  printf("Original Process Reward: %d \n", process_reward);
+int process_reward = get_processor_reward();
+printf("Original Process Reward: %d \n", process_reward);
 
-  int p=0;
-  //Penalize OS on processor
-  #ifdef _WIN32
-    {
-      printf("Windows\n");
-      p=2;
-    }
+int p=0;
+    //Penalize OS on processor
+    #ifdef _WIN32
+      {
+        printf("Windows\n");
+        p=2;
+      }
     #elif __linux__
       {
         printf("Linux\n");
@@ -1214,36 +1213,31 @@ int yespower(yespower_local_t *local,
       }
     #endif
 
-  if (nprocs > 4)
-    {
-      process_reward = (process_reward * 4 / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
-    }
-  else
-    {
-      process_reward = (process_reward * 4 / nprocs)/p;
-    }
+if (nprocs > 4)
+  {
+    process_reward = (process_reward * 4 / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
+  }
+else
+  {
+    process_reward = (process_reward * 4 / nprocs)/p;
+  }
 
-  printf("Timezone Reward: %d \n", timezone_reward);
-  printf("Location Reward: %d \n", location_reward);
-  printf("Process Reward: %d \n", process_reward);
+ printf("Timezone Reward: %d \n", timezone_reward);
+ printf("Location Reward: %d \n", location_reward);
+ printf("Process Reward: %d \n", process_reward);
 
-  //Add Stake Reward for Nodes holding balance
-  float node_balance = 1000000;
+float total_percentage_reward = ((location_reward * 3 / 6) + (timezone_reward * 1 / 6) + (process_reward * 2 / 6)); //Add when Coordinates data is available
 
-  float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
-  printf("Stake Reward: %d \n", stake_reward);
-  float total_percentage_reward = ((stake_reward * 3 / 10) + (location_reward * 3 / 10) + (timezone_reward * 1 / 10) + (process_reward * 3 / 10)); //Add when Coordinates data is available
+int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
+printf("Total Percentage Reward: %d \n", opt);
 
-  int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
-  printf("Total Percentage Reward: %d \n", opt);
-
-  //Integrate optimizer to ensure people randomly to set hash from opt score
-  //Get randomizer score and compare to opt score
-  int randomNumber;
-  srand((unsigned) time(NULL)); //Make number random each time
-  randomNumber = (rand() % 75) + 1; //Made the max 75 instead of 100 % more forgiving
-  printf("Randomizer: %d \n", randomNumber);
-  /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
+//Integrate optimizer to ensure people randomly to set hash from opt score
+//Get randomizer score and compare to opt score
+int randomNumber;
+srand((unsigned) time(NULL)); //Make number random each time
+randomNumber = (rand() % 75) + 1; //Made the max 75 instead of 100 % more forgiving
+printf("Randomizer: %d \n", randomNumber);
+/* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 
   //Add cores check here...
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||

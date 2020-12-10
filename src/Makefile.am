@@ -354,6 +354,7 @@ libbitcoin_consensus_a_SOURCES = \
   consensus/merkle.h \
   consensus/params.h \
   consensus/validation.h \
+  consensus/nproc.h \
   dbwrapper.h \
   dbwrapper.cpp \
   hashdb.cpp \
