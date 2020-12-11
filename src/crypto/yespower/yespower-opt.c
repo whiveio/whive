@@ -110,6 +110,9 @@
 #include <consensus/nproc.h>
 //#include <consensus/consensus.h>
 
+//Location counter to reduce api calls
+int location_counter =0;
+
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
 #elif defined(__GNUC__)
@@ -1170,10 +1173,11 @@ if ((url.latitude == 0.000000) && (url.longitude== 0.000000)) //rememberto fix t
   AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
   ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
 
-int location_reward = 0;
+//int location_reward = 0;
+location_counter++;
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
 //This if avoids multiple api calls.
-if ((url.latitude == -82.8628) || (url.latitude == 0.000000))
+if (location_counter==0)
 {
 //Get Machine Coordinates 21/08/2020
 int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
