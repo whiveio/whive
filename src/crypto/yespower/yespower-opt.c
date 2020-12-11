@@ -1243,6 +1243,7 @@ float node_balance = 1000000;
 float stake_reward = 55.55;
 //printf("Stake Reward: %d \n", stake_reward);
 //cout <<"Stake Reward \n"<<stake_reward;
+
 float total_percentage_reward = ((stake_reward * 3 / 10) + (location_reward * 3 / 10) + (timezone_reward * 1 / 10) + (process_reward * 3 / 10)); //Add when Coordinates data is available
 
 int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
