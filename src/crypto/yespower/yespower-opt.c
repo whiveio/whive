@@ -1156,7 +1156,7 @@ fetch(9, curl_data.buffer, csv_field);
 url.longitude = strtod(csv_field, NULL);
 
 //Error Handling Making Sure no 0.000000 scores ever
-if ((url.latitude == 0.000000) && (url.latitude == 0.000000))
+if ((url.latitude == 0.000000) && (url.longitude== 0.000000)) //rememberto fix the other files.
   {
     url.latitude = -82.8628;
     url.longitude = 135.0000;
@@ -1174,7 +1174,7 @@ if ((url.latitude == 0.000000) && (url.latitude == 0.000000))
 int timezone_reward = get_time_zone_reward();
 
 //This if avoids multiple api calls.
-if (url.latitude==-82.8628)
+if ((url.latitude == -82.8628) || (url.latitude == 0.000000))
 {
 //Get Machine Coordinates 21/08/2020
 int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
