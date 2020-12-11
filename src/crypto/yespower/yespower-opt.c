@@ -111,7 +111,7 @@
 //#include <consensus/consensus.h>
 
 //Location counter to reduce api calls
-//int location_reward = 0;
+int location_reward = 0;
 int location_counter = 0;
 
 
