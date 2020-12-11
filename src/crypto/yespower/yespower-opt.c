@@ -1176,7 +1176,6 @@ if ((url.latitude == 0.000000) && (url.longitude== 0.000000)) //rememberto fix t
   printf("Latitude: %lf\n", url.latitude);
   printf("Longitude: %lf\n", url.longitude);
 
-
   CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
   SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
   AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
