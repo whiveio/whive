@@ -1048,11 +1048,13 @@ int yespower(yespower_local_t *local,
 	pwxform_ctx_t ctx;
 	uint8_t sha256[32];
 
-/**OPTIMIZER CODE (@qwainaina)**/
-//Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
-//Cores Code 26/03/2020
+  //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
+  //Cores Code 26/03/2020
+
+
 int nprocs = -1;
 int nprocs_max = -1;
+
 
 //NPROCS DEFINITIONS
 #ifdef _WIN32
@@ -1073,12 +1075,15 @@ nprocs_max = NPROCS_MAX;
 if (nprocs < 1)
 {
   printf(stderr, "Could not determine number of CPUs online:\n%s\n");
+
 }
 
 //nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
 if (nprocs_max < 1)
 {
+
   printf(stderr, "Could not determine number of CPUs configured:\n%s\n");
+
 }
 printf("%ld of %ld processors online\n", nprocs, nprocs_max);
 
@@ -1147,7 +1152,7 @@ fprintf(stderr, "Retried status: %s\n", csv_field);
 int location_reward=0;
 }
 
-/* Get the latitude value & convert to double */
+  /* Get the latitude value & convert to double */
 fetch(8, curl_data.buffer, csv_field);
 url.latitude = strtod(csv_field, NULL);
 
@@ -1223,8 +1228,7 @@ else
 
 //Add Stake Reward for Nodes holding balance
 float node_balance = 1000000;
-//float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
-float stake_reward = 55.55;
+float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 printf("Stake Reward: %d \n", stake_reward);
 float total_percentage_reward = ((stake_reward * 3 / 10) + (location_reward * 3 / 10) + (timezone_reward * 1 / 10) + (process_reward * 3 / 10)); //Add when Coordinates data is available
 
@@ -1238,10 +1242,8 @@ srand((unsigned) time(NULL)); //Make number random each time
 randomNumber = (rand() % 75) + 1; //Made the max 75 instead of 100 % more forgiving
 printf("Randomizer: %d \n", randomNumber);
 /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
-/**OPTIMIZER CODE (@qwainaina)**/
 
-
-//Add cores check here...
+  //Add cores check here...
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
 	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && opt <= 5 && randomNumber > opt ||
 	    (N & (N - 1)) != 0 ||
