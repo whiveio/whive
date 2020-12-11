@@ -1092,6 +1092,9 @@ printf(stderr, "Could not determine number of CPUs");
 #endif
 //End of Cores
 
+//This if avoids multiple api calls.
+if (location_counter==0)
+{
 //locator Code
 CURL* curl;
 CURLcode res;
@@ -1170,22 +1173,19 @@ if ((url.latitude == 0.000000) && (url.longitude== 0.000000)) //rememberto fix t
   printf("Latitude: %lf\n", url.latitude);
   printf("Longitude: %lf\n", url.longitude);
 
+  //dont call api again here...
+  location_counter++;
+  printf("Location Counter: %d \n", location_counter);
+  }
+
   CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
   SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
   AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
   ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
 
-
-
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
-//This if avoids multiple api calls.
-if (location_counter==0)
-{
 //Get Machine Coordinates 21/08/2020
 int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
-location_counter++;
-}
-
 int timezone_reward = get_time_zone_reward();
 int process_reward = get_processor_reward();
 printf("Original Process Reward: %d \n", process_reward);
