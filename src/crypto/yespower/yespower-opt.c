@@ -111,9 +111,8 @@
 //#include <consensus/consensus.h>
 
 //Location counter to reduce api calls
-//int location_reward = 0;
+int location_reward = 0;
 int location_counter = 0;
-
 
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
@@ -1167,7 +1166,7 @@ fetch(9, curl_data.buffer, csv_field);
 url.longitude = strtod(csv_field, NULL);
 
 //Error Handling Making Sure no 0.000000 scores ever
-if ((url.latitude == 0.000000) && (url.longitude== 0.000000)) //rememberto fix the other files.
+if ((url.latitude == 0.000000) && (url.longitude == 0.000000)) //rememberto fix the other files.
   {
     url.latitude = -82.8628;
     url.longitude = 135.0000;
@@ -1183,7 +1182,7 @@ if ((url.latitude == 0.000000) && (url.longitude== 0.000000)) //rememberto fix t
 
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
 //Get Machine Coordinates 21/08/2020
-int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
+location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
 printf("Location Reward 1: %d \n", location_reward);
 //dont call api again here...
 location_counter++;
@@ -1238,7 +1237,7 @@ else
 
 
 
-//printf("Location Reward 2: %d \n", location_reward);
+ printf("Location Reward 2: %d \n", location_reward);
 
 
 
