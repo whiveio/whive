@@ -112,7 +112,7 @@
 
 //Location counter to reduce api calls
 int location_reward = 0;
-int location_counter =0;
+int location_counter = 0;
 
 
 #if __STDC_VERSION__ >= 199901L
