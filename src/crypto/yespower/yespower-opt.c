@@ -111,7 +111,7 @@
 //#include <consensus/consensus.h>
 
 //Location counter to reduce api calls
-int location_reward = 0;
+//int location_reward = 0;
 int location_counter = 0;
 
 
@@ -1092,8 +1092,10 @@ printf(stderr, "Could not determine number of CPUs");
 #endif
 //End of Cores
 
+printf("Location Counter 1: %d \n", location_counter);
+
 //This if avoids multiple api calls.
-if (location_counter==0)
+if (location_counter == 0)
 {
 //locator Code
 CURL* curl;
@@ -1175,7 +1177,7 @@ if ((url.latitude == 0.000000) && (url.longitude== 0.000000)) //rememberto fix t
 
   //dont call api again here...
   location_counter++;
-  printf("Location Counter: %d \n", location_counter);
+  printf("Location Counter 2: %d \n", location_counter);
   }
 
   CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
@@ -1229,7 +1231,6 @@ else
   }
 
  printf("Timezone Reward: %d \n", timezone_reward);
-
  printf("Location Reward: %d \n", location_reward);
  printf("Process Reward: %d \n", process_reward);
 
