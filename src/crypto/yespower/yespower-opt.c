@@ -1222,6 +1222,7 @@ else
   }
 
  printf("Timezone Reward: %d \n", timezone_reward);
+
  printf("Location Reward: %d \n", location_reward);
  printf("Process Reward: %d \n", process_reward);
 
