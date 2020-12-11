@@ -1139,7 +1139,7 @@ if (res != CURLE_OK)
       curl_easy_strerror(res)
       );
     //exit(1);
-   int location_reward=0;
+   //int location_reward=0;
   }
 
 /* At this point, the size of the data read is stored in curl_data.size
@@ -1154,7 +1154,7 @@ if (strncmp(csv_field, "success", 7) != 0)
 fprintf(stderr, "Failed request from server: %s\n", url.address);
 fprintf(stderr, "Retried status: %s\n", csv_field);
 //exit(1);
-int location_reward=0;
+//int location_reward=0;
 }
 
 /* Get the latitude value & convert to double */
