@@ -1228,7 +1228,7 @@ else
 
 //Add Stake Reward for Nodes holding balance
 float node_balance = 1000000;
-float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
+float stake_reward = (node_balance/10000000); //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 printf("Stake Reward: %d \n", stake_reward);
 float total_percentage_reward = ((stake_reward * 3 / 10) + (location_reward * 3 / 10) + (timezone_reward * 1 / 10) + (process_reward * 3 / 10)); //Add when Coordinates data is available
 
