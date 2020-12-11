@@ -1234,7 +1234,8 @@ else
   }
 
  printf("Timezone Reward: %d \n", timezone_reward);
- printf("Location Reward 2: %d \n", location_reward);
+//printf("Location Reward 2: %d \n", location_reward);
+
  printf("Process Reward: %d \n", process_reward);
 
 //Add Stake Reward for Nodes holding balance
