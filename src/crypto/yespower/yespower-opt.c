@@ -1173,8 +1173,12 @@ if ((url.latitude == 0.000000) && (url.latitude == 0.000000))
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
 int timezone_reward = get_time_zone_reward();
 
+//This if avoids multiple api calls.
+if (url.latitude==-82.8628)
+{
 //Get Machine Coordinates 21/08/2020
 int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
+}
 
 int process_reward = get_processor_reward();
 printf("Original Process Reward: %d \n", process_reward);
