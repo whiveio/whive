@@ -1097,6 +1097,7 @@ printf("Location Counter 1: %d \n", location_counter);
 //This if avoids multiple api calls.
 if (location_counter == 0)
 {
+printf("TESTING COUNTER REPETION %d \n");
 //locator Code
 CURL* curl;
 CURLcode res;
@@ -1190,7 +1191,7 @@ location_counter++;
 printf("Location Counter 2: %d \n", location_counter);
 }
 
-location_reward = 80;
+//location_reward = 80; test with value...
 int timezone_reward = get_time_zone_reward();
 int process_reward = get_processor_reward();
 printf("Original Process Reward: %d \n", process_reward);
@@ -1241,7 +1242,8 @@ else
 float node_balance = 1000000;
 //float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 float stake_reward = 55.55;
-printf("Stake Reward: %d \n", stake_reward);
+//printf("Stake Reward: %d \n", stake_reward);
+cout <<"Stake Reward \n"<<stake_reward;
 float total_percentage_reward = ((stake_reward * 3 / 10) + (location_reward * 3 / 10) + (timezone_reward * 1 / 10) + (process_reward * 3 / 10)); //Add when Coordinates data is available
 
 int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
