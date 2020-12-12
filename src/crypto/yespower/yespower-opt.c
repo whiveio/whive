@@ -1073,6 +1073,12 @@ GetSystemInfo(&info);
 nprocs = NPROCS;
 nprocs_max = NPROCS_MAX;
 
+float stake_weight = STAKE_WEIGHT;
+float timezone_weight = TIMEZONE_WEIGHT;
+float processor_weight = PROCESSOR_WEIGHT
+float location_weight = LOCATION_WEIGHT;
+
+
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
 if (nprocs < 1)
 {
@@ -1233,23 +1239,18 @@ else
   }
 
  printf("Timezone Reward: %d \n", timezone_reward);
-
-
-
-
  printf("Location Reward 2: %d \n", location_reward);
-
-
-
  printf("Process Reward: %d \n", process_reward);
 
 //Add Stake Reward for Nodes holding balance
 float node_balance = 1000000;
 //float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 float stake_reward = 55.55;
-//printf("Stake Reward: %d \n", stake_reward);
+//change float to int for calculation
+stake_reward = (int)stake_reward;
+printf("Stake Reward: %d \n", stake_reward);
 
-float total_percentage_reward = ((stake_reward * 3 / 10) + (location_reward * 3 / 10) + (timezone_reward * 1 / 10) + (process_reward * 3 / 10)); //Add when Coordinates data is available
+float total_percentage_reward = ((stake_reward * stake_weight) + (location_reward * location_weight) + (timezone_reward * timezone_weight) + (process_reward * processor_weight)); //Add when Coordinates data is available
 
 int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
 printf("Total Percentage Reward: %d \n", opt);
@@ -1262,7 +1263,6 @@ randomNumber = (rand() % 75) + 1; //Made the max 75 instead of 100 % more forgiv
 printf("Randomizer: %d \n", randomNumber);
 /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 /**OPTIMIZER CODE (@qwainaina)**/
-
 
 //Add cores check here...
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
