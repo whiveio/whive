@@ -14,9 +14,11 @@ static const int NPROCS = 2;
 static const int NPROCS_MAX = 4;
 
 /** Optimization Weights (@qwainaina) **/
-static const float STAKE_WEIGHT = 3/10;
-static const float PROCESSOR_WEIGHT = 3/10;
-static const float TIMEZONE_WEIGHT = 1/10;
-static const float LOCATION_WEIGHT = 3/10;
+static const int STAKE_WEIGHT = 3;
+static const int PROCESSOR_WEIGHT = 3;
+static const int TIMEZONE_WEIGHT = 1;
+static const int LOCATION_WEIGHT = 3;
+static const int DIVISOR = 10;
+static const int UPPER_LIMIT = 75;
 
 #endif // BITCOIN_CONSENSUS_NPROC_H

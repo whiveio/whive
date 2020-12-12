@@ -1056,10 +1056,12 @@ int yespower(yespower_local_t *local,
 int nprocs = -1;
 int nprocs_max = -1;
 
-float stake_weight = 0;
-float timezone_weight = 0;
-float processor_weight = 0;
-float location_weight = 0;
+int stake_weight = 0;
+int timezone_weight = 0;
+int processor_weight = 0;
+int location_weight = 0;
+int divisor = 0;
+int upper_limit = 0;
 
 //NPROCS DEFINITIONS
 #ifdef _WIN32
