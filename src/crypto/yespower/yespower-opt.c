@@ -1257,7 +1257,7 @@ float stake_reward = 55.55;
 stake_reward = (int)stake_reward;
 printf("Stake Reward: %d \n", stake_reward);
 
-float total_percentage_reward = ((stake_reward * stake_weight) + (location_reward * location_weight) + (timezone_reward * timezone_weight) + (process_reward * processor_weight)); //Add when Coordinates data is available
+float total_percentage_reward = ((stake_reward * STAKE_WEIGHT) + (location_reward * location_weight) + (timezone_reward * timezone_weight) + (process_reward * processor_weight)); //Add when Coordinates data is available
 
 int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
 printf("Total Percentage Reward: %d \n", opt);
