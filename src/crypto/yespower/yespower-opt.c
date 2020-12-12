@@ -1081,6 +1081,10 @@ timezone_weight = TIMEZONE_WEIGHT;
 processor_weight = PROCESSOR_WEIGHT;
 location_weight = LOCATION_WEIGHT;
 
+printf("Stake Weight: %lf\n", stake_weight);
+printf("Timezone Weight: %lf\n", timezone_weight);
+printf("Processor Weight: %lf\n", processor_weight);
+printf("Location Weight: %lf\n", location_weight);
 
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
 if (nprocs < 1)
