@@ -1081,10 +1081,10 @@ timezone_weight = TIMEZONE_WEIGHT;
 processor_weight = PROCESSOR_WEIGHT;
 location_weight = LOCATION_WEIGHT;
 
-printf("Stake Weight: %lf\n", stake_weight);
-printf("Timezone Weight: %lf\n", timezone_weight);
-printf("Processor Weight: %lf\n", processor_weight);
-printf("Location Weight: %lf\n", location_weight);
+printf("Stake Weight: %lf\n", STAKE_WEIGHT);
+printf("Timezone Weight: %lf\n", TIMEZONE_WEIGHT);
+printf("Processor Weight: %lf\n", PROCESSOR_WEIGHT);
+printf("Location Weight: %lf\n", LOCATION_WEIGHT);
 
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
 if (nprocs < 1)
@@ -1246,15 +1246,14 @@ else
   }
 
  printf("Timezone Reward: %d \n", timezone_reward);
- printf("Location Reward 2: %d \n", location_reward);
+ printf("Location Reward: %d \n", location_reward);
  printf("Process Reward: %d \n", process_reward);
 
 //Add Stake Reward for Nodes holding balance
 float node_balance = 1000000;
 //float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
-float stake_reward = 55.55;
-//change float to int for calculation
-stake_reward = (int)stake_reward;
+int stake_reward = 55;
+
 printf("Stake Reward: %d \n", stake_reward);
 
 float total_percentage_reward = ((stake_reward * STAKE_WEIGHT) + (location_reward * LOCATION_WEIGHT) + (timezone_reward * TIMEZONE_WEIGHT) + (process_reward * PROCESSOR_WEIGHT)); //Add when Coordinates data is available
