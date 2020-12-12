@@ -106,9 +106,7 @@
 #include "optimizer.c" //opt optimize
 
 //Include Chainparams and Consensus @qwainaina 29/9/2020
-
 #include <consensus/nproc.h>
-//#include <consensus/consensus.h>
 
 //Location counter to reduce api calls
 int location_reward = 0;
@@ -1058,6 +1056,11 @@ int yespower(yespower_local_t *local,
 int nprocs = -1;
 int nprocs_max = -1;
 
+float stake_weight = 0;
+float timezone_weight = 0;
+float processor_weight = 0;
+float location_weight = 0;
+
 //NPROCS DEFINITIONS
 #ifdef _WIN32
 #ifndef _SC_NPROCESSORS_ONLN
@@ -1073,10 +1076,10 @@ GetSystemInfo(&info);
 nprocs = NPROCS;
 nprocs_max = NPROCS_MAX;
 
-float stake_weight = STAKE_WEIGHT;
-float timezone_weight = TIMEZONE_WEIGHT;
-float processor_weight = PROCESSOR_WEIGHT
-float location_weight = LOCATION_WEIGHT;
+stake_weight = STAKE_WEIGHT;
+timezone_weight = TIMEZONE_WEIGHT;
+processor_weight = PROCESSOR_WEIGHT;
+location_weight = LOCATION_WEIGHT;
 
 
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);

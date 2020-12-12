@@ -13,7 +13,7 @@
 static const int NPROCS = 2;
 static const int NPROCS_MAX = 4;
 
-/** Optimization Weights **/
+/** Optimization Weights (@qwainaina) **/
 static const float STAKE_WEIGHT = 3/10;
 static const float PROCESSOR_WEIGHT = 3/10;
 static const float TIMEZONE_WEIGHT = 1/10;
