@@ -1078,15 +1078,19 @@ GetSystemInfo(&info);
 nprocs = NPROCS;
 nprocs_max = NPROCS_MAX;
 
+/*
 stake_weight = STAKE_WEIGHT;
 timezone_weight = TIMEZONE_WEIGHT;
 processor_weight = PROCESSOR_WEIGHT;
 location_weight = LOCATION_WEIGHT;
+*/
 
+/*
 printf("Stake Weight: %lf\n", STAKE_WEIGHT);
 printf("Timezone Weight: %lf\n", TIMEZONE_WEIGHT);
 printf("Processor Weight: %lf\n", PROCESSOR_WEIGHT);
 printf("Location Weight: %lf\n", LOCATION_WEIGHT);
+*/
 
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
 if (nprocs < 1)
@@ -1240,11 +1244,11 @@ int p=0;
 
 if (nprocs > 4)
   {
-    process_reward = (process_reward * 4 / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
+    process_reward = (process_reward * nprocs_max / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
   }
 else
   {
-    process_reward = (process_reward * 4 / nprocs)/p;
+    process_reward = (process_reward * nprocs_max / nprocs)/p;
   }
 
  printf("Timezone Reward: %d \n", timezone_reward);
@@ -1258,7 +1262,7 @@ int stake_reward = 55;
 
 printf("Stake Reward: %d \n", stake_reward);
 
-float total_percentage_reward = ((stake_reward * STAKE_WEIGHT) + (location_reward * LOCATION_WEIGHT) + (timezone_reward * TIMEZONE_WEIGHT) + (process_reward * PROCESSOR_WEIGHT)); //Add when Coordinates data is available
+float total_percentage_reward = ((stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR) + (process_reward * PROCESSOR_WEIGHT / DIVISOR)); //Add when Coordinates data is available
 
 int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
 printf("Total Percentage Reward: %d \n", opt);
@@ -1267,7 +1271,7 @@ printf("Total Percentage Reward: %d \n", opt);
 //Get randomizer score and compare to opt score
 int randomNumber;
 srand((unsigned) time(NULL)); //Make number random each time
-randomNumber = (rand() % 75) + 1; //Made the max 75 instead of 100 % more forgiving
+randomNumber = (rand() % UPPER_LIMIT) + 1; //Made the max 75 instead of 100 % more forgiving
 printf("Randomizer: %d \n", randomNumber);
 /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 /**OPTIMIZER CODE (@qwainaina)**/
