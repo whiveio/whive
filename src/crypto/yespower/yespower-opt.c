@@ -1261,7 +1261,7 @@ float node_balance = 1000000;
 //float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 float stake_reward = Lwanda/node_balance;
 
-printf("Lwanda: %d \n", Lwanda);
+//printf("Lwanda: %d \n", Lwanda);
 printf("Node Reward: %d \n", node_balance);
 printf("Stake Reward: %d \n", stake_reward);
 printf("Timezone Reward: %d \n", timezone_reward);
