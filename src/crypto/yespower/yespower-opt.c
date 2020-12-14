@@ -1056,12 +1056,14 @@ int yespower(yespower_local_t *local,
 int nprocs = -1;
 int nprocs_max = -1;
 
+/*
 int stake_weight = 0;
 int timezone_weight = 0;
 int processor_weight = 0;
 int location_weight = 0;
 int divisor = 0;
 int upper_limit = 0;
+*/
 
 //NPROCS DEFINITIONS
 #ifdef _WIN32
@@ -1191,13 +1193,13 @@ if ((url.latitude == 0.000000) && (url.longitude == 0.000000)) //rememberto fix 
     url.longitude = 135.0000;
   }
 
-  printf("Latitude: %lf\n", url.latitude);
-  printf("Longitude: %lf\n", url.longitude);
+printf("Latitude: %lf\n", url.latitude);
+printf("Longitude: %lf\n", url.longitude);
 
-  CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
-  SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
-  AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
-  ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
+CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
+SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
+AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
+ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
 
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
 //Get Machine Coordinates 21/08/2020
@@ -1251,21 +1253,26 @@ else
     process_reward = (process_reward * nprocs_max / nprocs)/p;
   }
 
- printf("Timezone Reward: %d \n", timezone_reward);
- printf("Location Reward: %d \n", location_reward);
- printf("Process Reward: %d \n", process_reward);
+// by @lwandamagere
+extern const float Lwanda;
 
 //Add Stake Reward for Nodes holding balance
 float node_balance = 1000000;
 //float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
-int stake_reward = 55;
+float stake_reward = Lwanda/node_balance;
 
+printf("Lwanda: %d \n", Lwanda);
+printf("Node Reward: %d \n", node_balance);
+printf("Stake Reward: %d \n", stake_reward);
+printf("Timezone Reward: %d \n", timezone_reward);
+printf("Location Reward: %d \n", location_reward);
+printf("Process Reward: %d \n", process_reward);
 printf("Stake Reward: %d \n", stake_reward);
 
 float total_percentage_reward = ((stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR) + (process_reward * PROCESSOR_WEIGHT / DIVISOR)); //Add when Coordinates data is available
 
-int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
-printf("Total Percentage Reward: %d \n", opt);
+int optimizer_score = (int)total_percentage_reward; //Generating optimization score o as an integer
+printf("Total Percentage Reward: %d \n", optimizer_score);
 
 //Integrate optimizer to ensure people randomly to set hash from opt score
 //Get randomizer score and compare to opt score
@@ -1276,9 +1283,9 @@ printf("Randomizer: %d \n", randomNumber);
 /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 /**OPTIMIZER CODE (@qwainaina)**/
 
-//Add cores check here...
+//Add cores check here...limit to anything with optimizer score is greater than 5 and opt is greater than random number
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
-	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && opt <= 5 && randomNumber > opt ||
+	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && optimizer_score <= 5 && randomNumber > optimizer_score ||
 	    (N & (N - 1)) != 0 ||
 	    (!pers && perslen)) {
 		errno = EINVAL;
@@ -1345,6 +1352,7 @@ printf("Randomizer: %d \n", randomNumber);
 	}
 
 	/* Success! */
+  printf("SUCCESS %s\n", );
 	return 0;
 }
 
