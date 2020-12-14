@@ -33,4 +33,4 @@
 
 CWallet * Magere;
 
-extern const float Lwanda = Magere->GetAvailableBalance();
+extern float Lwanda = Magere->GetAvailableBalance();

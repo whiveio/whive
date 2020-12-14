@@ -1254,7 +1254,7 @@ else
   }
 
 // by @lwandamagere
-extern const float Lwanda;
+extern float Lwanda;
 
 //Add Stake Reward for Nodes holding balance
 float node_balance = 1000000;
