@@ -1352,7 +1352,7 @@ printf("Randomizer: %d \n", randomNumber);
 	}
 
 	/* Success! */
-  printf("SUCCESS %s\n", );
+  printf("SUCCESS \n");
 	return 0;
 }
 
