@@ -1077,7 +1077,7 @@ printf("Location Weight: %lf\n", LOCATION_WEIGHT);
 printf("Timezone Weight: %lf\n", TIMEZONE_WEIGHT);
 printf("Default LAT: %lf\n", DEFAULT_LAT);
 printf("Default LON: %lf\n", DEFAULT_LON);
-printf("Balance Divisor: %lf\n", BALANCE_DIVISOR)
+printf("Balance Divisor: %lf\n", BALANCE_DIVISOR);
 
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
 if (nprocs < 1)
