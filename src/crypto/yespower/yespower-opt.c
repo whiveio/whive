@@ -1094,7 +1094,7 @@ printf("Location Counter 1: %d \n", location_counter);
 //This if avoids multiple api calls.
 if (location_counter == 0)
 {
-printf("TESTING COUNTER REPETIONv\n");
+printf("TESTING COUNTER REPETION \n");
 //locator Code
 CURL* curl;
 CURLcode res;
@@ -1236,11 +1236,11 @@ else
 //Add Stake Reward for Nodes holding balance
 float node_balance = 555555.555555;
 //(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
-int stake_reward = (int)node_balance/BALANCE_DIVISOR * 100;
+int stake_reward = (int) (node_balance / BALANCE_DIVISOR * 100);
 
 //printf("Lwanda: %d \n", Lwanda);
-//printf("Node Reward: %d \n", node_balance);
-//printf("Stake Reward: %d \n", stake_reward);
+
+printf("Node Balance: %lf \n", node_balance);
 
 printf("Process Reward: %d \n", process_reward);
 printf("Stake Reward: %d \n", stake_reward);
