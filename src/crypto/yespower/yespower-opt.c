@@ -1234,18 +1234,18 @@ else
 //extern const double Lwanda;
 
 //Add Stake Reward for Nodes holding balance
-float stake_reward = 5.55;
+float node_balance = 555555.555555;
 //(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
-//float stake_reward = Lwanda/BALANCE_DIVISOR;
+int stake_reward = (int)node_balance/BALANCE_DIVISOR * 100;
 
 //printf("Lwanda: %d \n", Lwanda);
 //printf("Node Reward: %d \n", node_balance);
 //printf("Stake Reward: %d \n", stake_reward);
 
-printf("Process Reward: %lf \n", process_reward);
-printf("Stake Reward: %lf \n", stake_reward);
-printf("Location Reward: %lf \n", location_reward);
-printf("Timezone Reward: %lf \n", timezone_reward);
+printf("Process Reward: %d \n", process_reward);
+printf("Stake Reward: %d \n", stake_reward);
+printf("Location Reward: %d \n", location_reward);
+printf("Timezone Reward: %d \n", timezone_reward);
 
 printf("Processor Weight: %d \n", PROCESSOR_WEIGHT);
 printf("Stake Weight: %d \n", STAKE_WEIGHT);
