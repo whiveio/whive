@@ -1071,14 +1071,6 @@ GetSystemInfo(&info);
 nprocs = NPROCS;
 nprocs_max = NPROCS_MAX;
 
-printf("Processor Weight: %d \n", PROCESSOR_WEIGHT);
-printf("Stake Weight: %d \n", STAKE_WEIGHT);
-printf("Location Weight: %d \n", LOCATION_WEIGHT);
-printf("Timezone Weight: %d \n", TIMEZONE_WEIGHT);
-printf("Default LAT: %lf \n", DEFAULT_LAT);
-printf("Default LON: %lf \n", DEFAULT_LON);
-printf("Balance Divisor: %d \n", BALANCE_DIVISOR);
-
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
 if (nprocs < 1)
 {
@@ -1242,7 +1234,7 @@ else
 //extern const double Lwanda;
 
 //Add Stake Reward for Nodes holding balance
-int stake_reward = 55.55;
+float stake_reward = 5.55;
 //(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 //float stake_reward = Lwanda/BALANCE_DIVISOR;
 
@@ -1254,6 +1246,15 @@ printf("Process Reward: %lf \n", process_reward);
 printf("Stake Reward: %lf \n", stake_reward);
 printf("Location Reward: %lf \n", location_reward);
 printf("Timezone Reward: %lf \n", timezone_reward);
+
+printf("Processor Weight: %d \n", PROCESSOR_WEIGHT);
+printf("Stake Weight: %d \n", STAKE_WEIGHT);
+printf("Location Weight: %d \n", LOCATION_WEIGHT);
+printf("Timezone Weight: %d \n", TIMEZONE_WEIGHT);
+printf("Default LAT: %lf \n", DEFAULT_LAT);
+printf("Default LON: %lf \n", DEFAULT_LON);
+printf("Balance Divisor: %d \n", BALANCE_DIVISOR);
+printf("Upper Limit: %d \n", UPPER_LIMIT);
 
 float total_percentage_reward = ((process_reward * PROCESSOR_WEIGHT / DIVISOR) + (stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR)); //Add when Coordinates data is available
 
