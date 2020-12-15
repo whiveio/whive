@@ -1189,8 +1189,8 @@ url.longitude = strtod(csv_field, NULL);
 //Error Handling Making Sure no 0.000000 scores ever
 if ((url.latitude == 0.000000) && (url.longitude == 0.000000)) //rememberto fix the other files.
   {
-    url.latitude = -82.8628;
-    url.longitude = 135.0000;
+    url.latitude = DEFAULT_LAT;  //-82.8628
+    url.longitude = DEFAULT_LON; //135.0000
   }
 
 printf("Latitude: %lf\n", url.latitude);
@@ -1253,14 +1253,13 @@ else
     process_reward = (process_reward * nprocs_max / nprocs)/p;
   }
 
-// by @lwandamagere
-extern const double Lwanda;
+//by @lwandamagere
+//extern const double Lwanda;
 
 //Add Stake Reward for Nodes holding balance
-float node_balance = 1000000;
 float stake_reward = 55.55;
 //(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
-//float stake_reward = Lwanda/node_balance;
+//float stake_reward = Lwanda/BALANCE_DIVISOR;
 
 //printf("Lwanda: %d \n", Lwanda);
 //printf("Node Reward: %d \n", node_balance);
