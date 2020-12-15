@@ -1056,15 +1056,6 @@ int yespower(yespower_local_t *local,
 int nprocs = -1;
 int nprocs_max = -1;
 
-/*
-int stake_weight = 0;
-int timezone_weight = 0;
-int processor_weight = 0;
-int location_weight = 0;
-int divisor = 0;
-int upper_limit = 0;
-*/
-
 //NPROCS DEFINITIONS
 #ifdef _WIN32
 #ifndef _SC_NPROCESSORS_ONLN
@@ -1080,19 +1071,13 @@ GetSystemInfo(&info);
 nprocs = NPROCS;
 nprocs_max = NPROCS_MAX;
 
-/*
-stake_weight = STAKE_WEIGHT;
-timezone_weight = TIMEZONE_WEIGHT;
-processor_weight = PROCESSOR_WEIGHT;
-location_weight = LOCATION_WEIGHT;
-*/
-
-/*
-printf("Stake Weight: %lf\n", STAKE_WEIGHT);
-printf("Timezone Weight: %lf\n", TIMEZONE_WEIGHT);
 printf("Processor Weight: %lf\n", PROCESSOR_WEIGHT);
+printf("Stake Weight: %lf\n", STAKE_WEIGHT);
 printf("Location Weight: %lf\n", LOCATION_WEIGHT);
-*/
+printf("Timezone Weight: %lf\n", TIMEZONE_WEIGHT);
+printf("Default LAT: %lf\n", DEFAULT_LAT);
+printf("Default LON: %lf\n", DEFAULT_LON);
+printf("Balance Divisor: %lf\n", BALANCE_DIVISOR)
 
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
 if (nprocs < 1)
@@ -1131,8 +1116,8 @@ struct web_data curl_data;
 
 curl_data.buffer =  (char *) malloc(1);
 curl_data.size = 0;
-url.latitude = -82.8628;
-url.longitude = 135.0000;
+url.latitude = DEFAULT_LAT;
+url.longitude = DEFAULT_LON;
 
 /* initialize locations */
 strcpy(url.address, "http://ip-api.com/csv/");
@@ -1257,19 +1242,20 @@ else
 //extern const double Lwanda;
 
 //Add Stake Reward for Nodes holding balance
-float stake_reward = 55.55;
+int stake_reward = 55;
 //(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 //float stake_reward = Lwanda/BALANCE_DIVISOR;
 
 //printf("Lwanda: %d \n", Lwanda);
 //printf("Node Reward: %d \n", node_balance);
 //printf("Stake Reward: %d \n", stake_reward);
-printf("Timezone Reward: %d \n", timezone_reward);
-printf("Location Reward: %d \n", location_reward);
+
 printf("Process Reward: %d \n", process_reward);
 printf("Stake Reward: %d \n", stake_reward);
+printf("Location Reward: %d \n", location_reward);
+printf("Timezone Reward: %d \n", timezone_reward);
 
-float total_percentage_reward = ((stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR) + (process_reward * PROCESSOR_WEIGHT / DIVISOR)); //Add when Coordinates data is available
+float total_percentage_reward = ((process_reward * PROCESSOR_WEIGHT / DIVISOR) + (stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR)); //Add when Coordinates data is available
 
 int optimizer_score = (int)total_percentage_reward; //Generating optimization score o as an integer
 printf("Total Percentage Reward: %d \n", optimizer_score);

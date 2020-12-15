@@ -14,7 +14,6 @@ static const int NPROCS = 2;
 static const int NPROCS_MAX = 4;
 
 /** Optimization Weights (@qwainaina) **/
-
 static const int PROCESSOR_WEIGHT = 7;
 static const int STAKE_WEIGHT = 6;
 static const int LOCATION_WEIGHT = 5;
