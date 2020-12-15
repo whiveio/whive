@@ -1071,13 +1071,13 @@ GetSystemInfo(&info);
 nprocs = NPROCS;
 nprocs_max = NPROCS_MAX;
 
-printf("Processor Weight: %lf\n", PROCESSOR_WEIGHT);
-printf("Stake Weight: %lf\n", STAKE_WEIGHT);
-printf("Location Weight: %lf\n", LOCATION_WEIGHT);
-printf("Timezone Weight: %lf\n", TIMEZONE_WEIGHT);
-printf("Default LAT: %lf\n", DEFAULT_LAT);
-printf("Default LON: %lf\n", DEFAULT_LON);
-printf("Balance Divisor: %lf\n", BALANCE_DIVISOR);
+printf("Processor Weight: %d \n", PROCESSOR_WEIGHT);
+printf("Stake Weight: %d \n", STAKE_WEIGHT);
+printf("Location Weight: %d \n", LOCATION_WEIGHT);
+printf("Timezone Weight: %d \n", TIMEZONE_WEIGHT);
+printf("Default LAT: %lf \n", DEFAULT_LAT);
+printf("Default LON: %lf \n", DEFAULT_LON);
+printf("Balance Divisor: %d \n", BALANCE_DIVISOR);
 
 //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
 if (nprocs < 1)
@@ -1090,7 +1090,7 @@ if (nprocs_max < 1)
 {
   printf(stderr, "Could not determine number of CPUs configured:\n%s\n");
 }
-printf("%ld of %ld processors online\n", nprocs, nprocs_max);
+printf("%ld of %ld processors online \n", nprocs, nprocs_max);
 
 #else
 printf(stderr, "Could not determine number of CPUs");
@@ -1102,7 +1102,7 @@ printf("Location Counter 1: %d \n", location_counter);
 //This if avoids multiple api calls.
 if (location_counter == 0)
 {
-printf("TESTING COUNTER REPETION\n");
+printf("TESTING COUNTER REPETIONv\n");
 //locator Code
 CURL* curl;
 CURLcode res;
@@ -1157,8 +1157,8 @@ fetch(1, curl_data.buffer, csv_field);
 /* if the string csv_field isn't 'success' then the call failed */
 if (strncmp(csv_field, "success", 7) != 0)
 {
-fprintf(stderr, "Failed request from server: %s\n", url.address);
-fprintf(stderr, "Retried status: %s\n", csv_field);
+fprintf(stderr, "Failed request from server: %s \n", url.address);
+fprintf(stderr, "Retried status: %s \n", csv_field);
 //exit(1);
 //int location_reward=0;
 }
@@ -1178,8 +1178,8 @@ if ((url.latitude == 0.000000) && (url.longitude == 0.000000)) //rememberto fix 
     url.longitude = DEFAULT_LON; //135.0000
   }
 
-printf("Latitude: %lf\n", url.latitude);
-printf("Longitude: %lf\n", url.longitude);
+printf("Latitude: %lf \n", url.latitude);
+printf("Longitude: %lf \n", url.longitude);
 
 CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
 SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
@@ -1204,27 +1204,27 @@ int p=0;
     //Penalize OS on processor
     #ifdef _WIN32
       {
-        printf("Windows\n");
+        printf("Windows \n");
         p=2;
       }
     #elif __linux__
       {
-        printf("Linux\n");
+        printf("Linux \n");
         p=1;
       }
     #elif __unix__
       {
-        printf("Other unix OS\n");
+        printf("Other unix OS \n");
         p=4;
       }
     #elif __APPLE__
       {
-        printf("Apple OS\n");
+        printf("Apple OS \n");
         p=3;
       }
     #else
       {
-        printf("Unidentified OS\n");
+        printf("Unidentified OS \n");
         p=5;
       }
     #endif
@@ -1242,7 +1242,7 @@ else
 //extern const double Lwanda;
 
 //Add Stake Reward for Nodes holding balance
-int stake_reward = 55;
+int stake_reward = 55.55;
 //(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 //float stake_reward = Lwanda/BALANCE_DIVISOR;
 
@@ -1250,10 +1250,10 @@ int stake_reward = 55;
 //printf("Node Reward: %d \n", node_balance);
 //printf("Stake Reward: %d \n", stake_reward);
 
-printf("Process Reward: %d \n", process_reward);
-printf("Stake Reward: %d \n", stake_reward);
-printf("Location Reward: %d \n", location_reward);
-printf("Timezone Reward: %d \n", timezone_reward);
+printf("Process Reward: %lf \n", process_reward);
+printf("Stake Reward: %lf \n", stake_reward);
+printf("Location Reward: %lf \n", location_reward);
+printf("Timezone Reward: %lf \n", timezone_reward);
 
 float total_percentage_reward = ((process_reward * PROCESSOR_WEIGHT / DIVISOR) + (stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR)); //Add when Coordinates data is available
 
