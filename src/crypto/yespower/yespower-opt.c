@@ -1274,7 +1274,7 @@ printf("Randomizer: %d \n", randomNumber);
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
 	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 ||
 	    (N & (N - 1)) != 0 ||
-	    (!pers && perslen) && optimizer_score <= 5 && randomNumber > optimizer_score){
+	    (!pers && perslen) || randomNumber > optimizer_score){
 		errno = EINVAL;
     printf("FAILURE HASH DOES NOT MEET REQUIRMENT \n");
   	return -1;
