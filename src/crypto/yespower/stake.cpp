@@ -1,4 +1,4 @@
-/*by @lwandamagere*/
+/*by @lwandamagere
 #include <wallet/wallet.h>
 
 #include <checkpoints.h>
@@ -34,3 +34,14 @@
 CWallet * Magere;
 
 //extern const double Lwanda = Magere->GetAvailableBalance();
+
+*/
+
+#include <interfaces/wallet.cpp>
+
+//Dado
+std::shared_ptr<CWallet> hared_wallet;
+std::shared_ptr<interfaces::WalletImpl> ps(new interfaces::WalletImpl(hared_wallet));
+//extern int Lwanda = ps->getBalance();
+int Lwanda = ps->getBalance();
+printf("Lwanda: %d \n", Lwanda);
