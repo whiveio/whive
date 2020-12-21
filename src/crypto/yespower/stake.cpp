@@ -48,5 +48,4 @@ using namespace std;
   int Lwanda = ps->getBalance();
   //printf("Lwanda: %d \n", Lwanda);
 
-  cout <<"Lwanda: "<<Lwanda;
-  
+ // cout <<"Lwanda: "<<Lwanda;
