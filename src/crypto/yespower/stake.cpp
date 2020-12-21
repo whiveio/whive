@@ -36,7 +36,7 @@ CWallet * Magere;
 //extern const double Lwanda = Magere->GetAvailableBalance();
 
 */
-
+#include <stdio.h>
 #include <interfaces/wallet.cpp>
 
 //Dado
