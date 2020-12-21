@@ -1270,13 +1270,14 @@ printf("Randomizer: %d \n", randomNumber);
 /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 /**OPTIMIZER CODE (@qwainaina)**/
 
-//Add cores check here...limit to anything with optimizer score is greater than 5 and opt is greater than random number
+//Add cores check here...limit anything with optimizer score less than 5 and optimizer score  greater than random number chosen bewteen 1 - 75
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
 	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && optimizer_score <= 5 && randomNumber > optimizer_score ||
 	    (N & (N - 1)) != 0 ||
 	    (!pers && perslen)) {
 		errno = EINVAL;
-		return -1;
+    printf("FAILURE HASH DOES NOT MEET REQUIRMENT \n");
+  	return -1;
 	}
 
 	/* Allocate memory */
@@ -1339,7 +1340,7 @@ printf("Randomizer: %d \n", randomNumber);
 	}
 
 	/* Success! */
-  printf("SUCCESS \n");
+  printf("SUCCESS MEMORY ALLOCATION \n");
 	return 0;
 }
 
