@@ -1164,7 +1164,7 @@ fetch(9, curl_data.buffer, csv_field);
 url.longitude = strtod(csv_field, NULL);
 
 //Error Handling Making Sure no 0.000000 scores ever
-if ((url.latitude == 0.000000) && (url.longitude == 0.000000)) //rememberto fix the other files.
+if ((url.latitude == 0.000000) && (url.longitude == 0.000000)) //remember to fix the other files.
   {
     url.latitude = DEFAULT_LAT;  //-82.8628
     url.longitude = DEFAULT_LON; //135.0000

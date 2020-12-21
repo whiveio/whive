@@ -466,3 +466,10 @@ public:
 std::unique_ptr<Wallet> MakeWallet(const std::shared_ptr<CWallet>& wallet) { return MakeUnique<WalletImpl>(wallet); }
 
 } // namespace interfaces
+
+//Dado
+std::shared_ptr<CWallet> hared_wallet;
+
+std::shared_ptr<interfaces::WalletImpl> ps(new interfaces::WalletImpl(hared_wallet));
+
+extern int Lwanda = ps->getBalance();
