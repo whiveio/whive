@@ -1272,9 +1272,9 @@ printf("Randomizer: %d \n", randomNumber);
 
 //Add cores check here...limit anything with optimizer score less than 5 and optimizer score  greater than random number chosen bewteen 1 - 75
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
-	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && optimizer_score <= 5 && randomNumber > optimizer_score ||
+	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 ||
 	    (N & (N - 1)) != 0 ||
-	    (!pers && perslen)) {
+	    (!pers && perslen) && optimizer_score <= 5 && randomNumber > optimizer_score){
 		errno = EINVAL;
     printf("FAILURE HASH DOES NOT MEET REQUIRMENT \n");
   	return -1;
