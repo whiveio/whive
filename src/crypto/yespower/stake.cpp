@@ -36,12 +36,17 @@ CWallet * Magere;
 //extern const double Lwanda = Magere->GetAvailableBalance();
 
 */
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 #include <interfaces/wallet.cpp>
 
-//Dado
-std::shared_ptr<CWallet> hared_wallet;
-std::shared_ptr<interfaces::WalletImpl> ps(new interfaces::WalletImpl(hared_wallet));
-//extern int Lwanda = ps->getBalance();
-int Lwanda = ps->getBalance();
-printf("Lwanda: %d \n", Lwanda);
+//int main(){}
+  //Dado
+  std::shared_ptr<CWallet> hared_wallet;
+  std::shared_ptr<interfaces::WalletImpl> ps(new interfaces::WalletImpl(hared_wallet));
+  //extern int Lwanda = ps->getBalance();
+  int Lwanda = ps->getBalance();
+  //printf("Lwanda: %d \n", Lwanda);
+
+  cout <<"Lwanda: "<<Lwanda;
+  
