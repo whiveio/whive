@@ -1277,7 +1277,7 @@ printf("Randomizer: %d \n", randomNumber);
 	    (!pers && perslen) || randomNumber > optimizer_score){
 		errno = EINVAL;
     printf("FAILURE HASH DOES NOT MEET REQUIRMENT \n");
-  	return -1;
+  	//return -1;
 	}
 
 	/* Allocate memory */
