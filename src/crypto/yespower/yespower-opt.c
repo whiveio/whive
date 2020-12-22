@@ -105,6 +105,8 @@
 //#include "optimizer.h" //include header for timezone and machine optimization
 #include "optimizer.c" //opt optimize
 
+#include "stake.cpp" //opt optimize
+
 //Include Chainparams and Consensus @qwainaina 29/9/2020
 #include <consensus/nproc.h>
 
@@ -1163,13 +1165,14 @@ url.latitude = strtod(csv_field, NULL);
 fetch(9, curl_data.buffer, csv_field);
 url.longitude = strtod(csv_field, NULL);
 
+/*
 //Error Handling Making Sure no 0.000000 scores ever
 if ((url.latitude == 0.000000) && (url.longitude == 0.000000)) //remember to fix the other files.
   {
     url.latitude = DEFAULT_LAT;  //-82.8628
     url.longitude = DEFAULT_LON; //135.0000
   }
-
+*/
 printf("Latitude: %lf \n", url.latitude);
 printf("Longitude: %lf \n", url.longitude);
 
@@ -1234,7 +1237,7 @@ else
 //extern const double Lwanda;
 
 //Add Stake Reward for Nodes holding balance
-float node_balance = 555555.555555;
+int node_balance = Lwanda;
 //(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 int stake_reward = (int) (node_balance / BALANCE_DIVISOR * 100);
 
