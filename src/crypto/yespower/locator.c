@@ -4,6 +4,8 @@
 #include <consensus/nproc.h>
 #include "extern.h" //for optimizer_score extern
 
+int main()
+{
 /**OPTIMIZER CODE (@qwainaina)**/
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
 //Cores Code 26/03/2020
@@ -232,3 +234,4 @@ optimizer_score = (int)total_percentage_reward; //Generating optimization score 
 //int randomNumber;
 srand((unsigned) time(NULL)); //Make number random each time
 randomNumber = (rand() % UPPER_LIMIT) + 1; //Made the max 75 instead of 100 % more forgiving
+}
