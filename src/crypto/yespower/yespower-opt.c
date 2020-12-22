@@ -102,9 +102,6 @@
 
 #include "yespower-platform.c"
 
-//#include "optimizer.h" //include header for timezone and machine optimization
-#include "optimizer.c" //opt optimize
-
 //#include "stake.cpp" //opt optimize
 
 //Include Chainparams and Consensus @qwainaina 29/9/2020
@@ -1012,6 +1009,9 @@ static void smix(uint8_t *B, size_t r, uint32_t N,
 		smix2(B, r, N, 2, V, XY, ctx);
 #endif
 }
+
+//#include "optimizer.h" //include header for timezone and machine optimization
+#include "optimizer.c" //opt optimize
 
 #if _YESPOWER_OPT_C_PASS_ == 1
 #undef _YESPOWER_OPT_C_PASS_
