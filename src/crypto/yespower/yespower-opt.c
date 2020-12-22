@@ -1052,7 +1052,7 @@ int yespower(yespower_local_t *local,
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
 	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 ||
 	    (N & (N - 1)) != 0 ||
-	    (!pers && perslen) || randomNumber > optimizer_score){
+	    (!pers && perslen) || randomNumber_ex > optimizer_score_ex){
 		errno = EINVAL;
     printf("FAILURE HASH DOES NOT MEET REQUIRMENT \n");
   	//return -1;
