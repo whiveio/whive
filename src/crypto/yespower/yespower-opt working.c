@@ -105,10 +105,14 @@
 //#include "optimizer.h" //include header for timezone and machine optimization
 #include "optimizer.c" //opt optimize
 
-//Include Chainparams and Consensus @qwainaina 29/9/2020
+//#include "stake.cpp" //opt optimize
 
+//Include Chainparams and Consensus @qwainaina 29/9/2020
 #include <consensus/nproc.h>
-//#include <consensus/consensus.h>
+
+//Location counter to reduce api calls
+int location_reward = 0;
+int location_counter = 0;
 
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
@@ -1048,13 +1052,11 @@ int yespower(yespower_local_t *local,
 	pwxform_ctx_t ctx;
 	uint8_t sha256[32];
 
-  //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
-  //Cores Code 26/03/2020
-
-
+/**OPTIMIZER CODE (@qwainaina)**/
+//Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
+//Cores Code 26/03/2020
 int nprocs = -1;
 int nprocs_max = -1;
-
 
 //NPROCS DEFINITIONS
 #ifdef _WIN32
@@ -1075,23 +1077,26 @@ nprocs_max = NPROCS_MAX;
 if (nprocs < 1)
 {
   printf(stderr, "Could not determine number of CPUs online:\n%s\n");
-
 }
 
 //nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
 if (nprocs_max < 1)
 {
-
   printf(stderr, "Could not determine number of CPUs configured:\n%s\n");
-
 }
-printf("%ld of %ld processors online\n", nprocs, nprocs_max);
+printf("%ld of %ld processors online \n", nprocs, nprocs_max);
 
 #else
 printf(stderr, "Could not determine number of CPUs");
 #endif
 //End of Cores
 
+printf("Location Counter 1: %d \n", location_counter);
+
+//This if avoids multiple api calls.
+if (location_counter == 0)
+{
+printf("TESTING COUNTER REPETION \n");
 //locator Code
 CURL* curl;
 CURLcode res;
@@ -1105,8 +1110,8 @@ struct web_data curl_data;
 
 curl_data.buffer =  (char *) malloc(1);
 curl_data.size = 0;
-url.latitude = -82.8628;
-url.longitude = 135.0000;
+url.latitude = DEFAULT_LAT;
+url.longitude = DEFAULT_LON;
 
 /* initialize locations */
 strcpy(url.address, "http://ip-api.com/csv/");
@@ -1134,7 +1139,7 @@ if (res != CURLE_OK)
       curl_easy_strerror(res)
       );
     //exit(1);
-   int location_reward=0;
+   //int location_reward=0;
   }
 
 /* At this point, the size of the data read is stored in curl_data.size
@@ -1146,13 +1151,13 @@ fetch(1, curl_data.buffer, csv_field);
 /* if the string csv_field isn't 'success' then the call failed */
 if (strncmp(csv_field, "success", 7) != 0)
 {
-fprintf(stderr, "Failed request from server: %s\n", url.address);
-fprintf(stderr, "Retried status: %s\n", csv_field);
+fprintf(stderr, "Failed request from server: %s \n", url.address);
+fprintf(stderr, "Retried status: %s \n", csv_field);
 //exit(1);
-int location_reward=0;
+//int location_reward=0;
 }
 
-  /* Get the latitude value & convert to double */
+/* Get the latitude value & convert to double */
 fetch(8, curl_data.buffer, csv_field);
 url.latitude = strtod(csv_field, NULL);
 
@@ -1160,27 +1165,33 @@ url.latitude = strtod(csv_field, NULL);
 fetch(9, curl_data.buffer, csv_field);
 url.longitude = strtod(csv_field, NULL);
 
+/*
 //Error Handling Making Sure no 0.000000 scores ever
-if ((url.latitude == 0.000000) && (url.latitude == 0.000000))
+if ((url.latitude == 0.000000) && (url.longitude == 0.000000)) //remember to fix the other files.
   {
-    url.latitude = -82.8628;
-    url.longitude = 135.0000;
+    url.latitude = DEFAULT_LAT;  //-82.8628
+    url.longitude = DEFAULT_LON; //135.0000
   }
+*/
+printf("Latitude: %lf \n", url.latitude);
+printf("Longitude: %lf \n", url.longitude);
 
-  printf("Latitude: %lf\n", url.latitude);
-  printf("Longitude: %lf\n", url.longitude);
-
-  CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
-  SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
-  AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
-  ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
+CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
+SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
+AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
+ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
 
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
-int timezone_reward = get_time_zone_reward();
-
 //Get Machine Coordinates 21/08/2020
-int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
+location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
+printf("Location Reward 1: %d \n", location_reward);
+//dont call api again here...
+location_counter++;
+printf("Location Counter 2: %d \n", location_counter);
+}
 
+//location_reward = 80; test with value...
+int timezone_reward = get_time_zone_reward();
 int process_reward = get_processor_reward();
 printf("Original Process Reward: %d \n", process_reward);
 
@@ -1188,68 +1199,88 @@ int p=0;
     //Penalize OS on processor
     #ifdef _WIN32
       {
-        printf("Windows\n");
+        printf("Windows \n");
         p=2;
       }
     #elif __linux__
       {
-        printf("Linux\n");
+        printf("Linux \n");
         p=1;
       }
     #elif __unix__
       {
-        printf("Other unix OS\n");
+        printf("Other unix OS \n");
         p=4;
       }
     #elif __APPLE__
       {
-        printf("Apple OS\n");
+        printf("Apple OS \n");
         p=3;
       }
     #else
       {
-        printf("Unidentified OS\n");
+        printf("Unidentified OS \n");
         p=5;
       }
     #endif
 
 if (nprocs > 4)
   {
-    process_reward = (process_reward * 4 / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
+    process_reward = (process_reward * nprocs_max / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
   }
 else
   {
-    process_reward = (process_reward * 4 / nprocs)/p;
+    process_reward = (process_reward * nprocs_max / nprocs)/p;
   }
 
- printf("Timezone Reward: %d \n", timezone_reward);
- printf("Location Reward: %d \n", location_reward);
- printf("Process Reward: %d \n", process_reward);
+//by @lwandamagere
+//extern const double Lwanda;
 
 //Add Stake Reward for Nodes holding balance
-float node_balance = 1000000;
-float stake_reward = (node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
-printf("Stake Reward: %d \n", stake_reward);
-float total_percentage_reward = ((stake_reward * 3 / 10) + (location_reward * 3 / 10) + (timezone_reward * 1 / 10) + (process_reward * 3 / 10)); //Add when Coordinates data is available
+int node_balance = 1555555;
+//(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
+int stake_reward = (int) (node_balance / BALANCE_DIVISOR * 100);
 
-int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
-printf("Total Percentage Reward: %d \n", opt);
+//printf("Lwanda: %d \n", Lwanda);
+
+printf("Node Balance: %d \n", node_balance);
+
+printf("Process Reward: %d \n", process_reward);
+printf("Stake Reward: %d \n", stake_reward);
+printf("Location Reward: %d \n", location_reward);
+printf("Timezone Reward: %d \n", timezone_reward);
+
+printf("Processor Weight: %d \n", PROCESSOR_WEIGHT);
+printf("Stake Weight: %d \n", STAKE_WEIGHT);
+printf("Location Weight: %d \n", LOCATION_WEIGHT);
+printf("Timezone Weight: %d \n", TIMEZONE_WEIGHT);
+printf("Default LAT: %lf \n", DEFAULT_LAT);
+printf("Default LON: %lf \n", DEFAULT_LON);
+printf("Balance Divisor: %d \n", BALANCE_DIVISOR);
+printf("Upper Limit: %d \n", UPPER_LIMIT);
+
+float total_percentage_reward = ((process_reward * PROCESSOR_WEIGHT / DIVISOR) + (stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR)); //Add when Coordinates data is available
+
+int optimizer_score = (int)total_percentage_reward; //Generating optimization score o as an integer
+printf("Total Percentage Reward: %d \n", optimizer_score);
 
 //Integrate optimizer to ensure people randomly to set hash from opt score
 //Get randomizer score and compare to opt score
 int randomNumber;
 srand((unsigned) time(NULL)); //Make number random each time
-randomNumber = (rand() % 75) + 1; //Made the max 75 instead of 100 % more forgiving
+randomNumber = (rand() % UPPER_LIMIT) + 1; //Made the max 75 instead of 100 % more forgiving
 printf("Randomizer: %d \n", randomNumber);
 /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
+/**OPTIMIZER CODE (@qwainaina)**/
 
-  //Add cores check here...
+//Add cores check here...limit anything with optimizer score less than 5 and optimizer score  greater than random number chosen bewteen 1 - 75
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
-	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && opt <= 5 && randomNumber > opt ||
+	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 ||
 	    (N & (N - 1)) != 0 ||
-	    (!pers && perslen)) {
+	    (!pers && perslen) || randomNumber > optimizer_score){
 		errno = EINVAL;
-		return -1;
+    printf("FAILURE HASH DOES NOT MEET REQUIRMENT \n");
+  	//return -1;
 	}
 
 	/* Allocate memory */
@@ -1312,6 +1343,7 @@ printf("Randomizer: %d \n", randomNumber);
 	}
 
 	/* Success! */
+  printf("SUCCESS MEMORY ALLOCATION \n");
 	return 0;
 }
 
