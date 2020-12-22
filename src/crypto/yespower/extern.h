@@ -1,1 +1,3 @@
- static int optimizer_score;
+int optimizer_score;
+
+int randomNumber;

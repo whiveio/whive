@@ -107,6 +107,7 @@
 
 //#include "stake.cpp" //opt optimize
 
+#include "extern.h" //for optimizer_score extern
 
 /*
 //Location counter to reduce api calls
@@ -1056,12 +1057,6 @@ int yespower(yespower_local_t *local,
 //Optimization
 
 printf("Total Percentage Reward: %d \n", optimizer_score);
-
-//Integrate optimizer to ensure people randomly to set hash from opt score
-//Get randomizer score and compare to opt score
-int randomNumber;
-srand((unsigned) time(NULL)); //Make number random each time
-randomNumber = (rand() % UPPER_LIMIT) + 1; //Made the max 75 instead of 100 % more forgiving
 printf("Randomizer: %d \n", randomNumber);
 /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 /**OPTIMIZER CODE (@qwainaina)**/
