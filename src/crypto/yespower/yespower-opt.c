@@ -105,9 +105,7 @@
 //#include "optimizer.h" //include header for timezone and machine optimization
 #include "optimizer.c" //opt optimize
 
-//#include "stake.cpp" //opt optimize
-#include <wallet/rpcwallet.h>
-int Lwanda = getbalance();
+#include "stake.cpp" //opt optimize
 
 //Include Chainparams and Consensus @qwainaina 29/9/2020
 #include <consensus/nproc.h>
