@@ -1,5 +1,8 @@
 #include "locator.h"
 //Include Chainparams and Consensus @qwainaina 29/9/2020
+
+#include "optimizer.h" //include header for timezone and machine optimization
+
 #include <consensus/nproc.h>
 #include "extern.h" //for optimizer_score extern
 
