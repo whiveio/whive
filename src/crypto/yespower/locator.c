@@ -1,4 +1,7 @@
 #include "locator.h"
+
+#include "extern.h" //for optimizer_score extern
+
 #include "define.c"
 
 //#include "optimizer.h" //include header for timezone and machine optimization
@@ -226,4 +229,4 @@ printf("Upper Limit: %d \n", UPPER_LIMIT);
 
 float total_percentage_reward = ((process_reward * PROCESSOR_WEIGHT / DIVISOR) + (stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR)); //Add when Coordinates data is available
 
-extern optimizer_score = (int)total_percentage_reward; //Generating optimization score o as an integer
+optimizer_score = (int)total_percentage_reward; //Generating optimization score o as an integer
