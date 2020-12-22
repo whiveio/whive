@@ -1,11 +1,6 @@
-/* GitHub Devs: Algorthim designed by @qwainaina, python by @henchhing-limbu, cpp & c by @ajazayeri72*/
-#include <stdio.h>
-#include <time.h>
-
 //locator definitions 21/8/2020 @qwainaina
 //#include "locator.h"
 //#include "define.c"
-
 #include "optimizer.h" //include header for timezone and machine optimization
 
 #ifdef __arm__

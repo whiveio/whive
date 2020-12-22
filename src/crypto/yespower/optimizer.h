@@ -6,6 +6,10 @@
 #include <unistd.h>
 #endif
 
+/* GitHub Devs: Algorthim designed by @qwainaina, python by @henchhing-limbu, cpp & c by @ajazayeri72*/
+#include <stdio.h>
+#include <time.h>
+
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
