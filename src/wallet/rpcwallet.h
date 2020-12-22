@@ -35,4 +35,4 @@ UniValue signrawtransactionwithwallet(const JSONRPCRequest& request);
 bool FillPSBT(const CWallet* pwallet, PartiallySignedTransaction& psbtx, int sighash_type = 1 /* SIGHASH_ALL */, bool sign = true, bool bip32derivs = false);
 #endif //BITCOIN_WALLET_RPCWALLET_H
 
-UniValue getbalance(const JSONRPCRequest& request); //added by @qwainaina to get balance from rpcwallet.cpp
+//UniValue getbalance(const JSONRPCRequest& request); //added by @qwainaina to get balance from rpcwallet.cpp
