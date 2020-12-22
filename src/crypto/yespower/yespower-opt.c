@@ -102,14 +102,19 @@
 
 #include "yespower-platform.c"
 
+//#include "optimizer.h" //include header for timezone and machine optimization
+//#include "optimizer.c" //opt optimize
+
 //#include "stake.cpp" //opt optimize
 
 //Include Chainparams and Consensus @qwainaina 29/9/2020
 #include <consensus/nproc.h>
 
+/*
 //Location counter to reduce api calls
 int location_reward = 0;
 int location_counter = 0;
+*/
 
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
@@ -1010,9 +1015,6 @@ static void smix(uint8_t *B, size_t r, uint32_t N,
 #endif
 }
 
-//#include "optimizer.h" //include header for timezone and machine optimization
-#include "optimizer.c" //opt optimize
-
 #if _YESPOWER_OPT_C_PASS_ == 1
 #undef _YESPOWER_OPT_C_PASS_
 #define _YESPOWER_OPT_C_PASS_ 2
@@ -1052,119 +1054,9 @@ int yespower(yespower_local_t *local,
 	pwxform_ctx_t ctx;
 	uint8_t sha256[32];
 
-/**OPTIMIZER CODE (@qwainaina)**/
-//Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
-//Cores Code 26/03/2020
-int nprocs = -1;
-int nprocs_max = -1;
 
-//NPROCS DEFINITIONS
-#ifdef _WIN32
-#ifndef _SC_NPROCESSORS_ONLN
-SYSTEM_INFO info;
-GetSystemInfo(&info);
-#define sysconf(a) info.dwNumberOfProcessors
-#define _SC_NPROCESSORS_ONLN
-#endif
-#endif
-#ifdef _SC_NPROCESSORS_ONLN
-//
+//Optimization
 
-nprocs = NPROCS;
-nprocs_max = NPROCS_MAX;
-
-//nprocs = sysconf(_SC_NPROCESSORS_ONLN);
-if (nprocs < 1)
-{
-  printf(stderr, "Could not determine number of CPUs online:\n%s\n");
-}
-
-//nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
-if (nprocs_max < 1)
-{
-  printf(stderr, "Could not determine number of CPUs configured:\n%s\n");
-}
-printf("%ld of %ld processors online \n", nprocs, nprocs_max);
-
-#else
-printf(stderr, "Could not determine number of CPUs");
-#endif
-//End of Cores
-
-//Location code used to be here...
-
-//location_reward = 80; test with value...
-int timezone_reward = get_time_zone_reward();
-int process_reward = get_processor_reward();
-printf("Original Process Reward: %d \n", process_reward);
-
-int p=0;
-    //Penalize OS on processor
-    #ifdef _WIN32
-      {
-        printf("Windows \n");
-        p=2;
-      }
-    #elif __linux__
-      {
-        printf("Linux \n");
-        p=1;
-      }
-    #elif __unix__
-      {
-        printf("Other unix OS \n");
-        p=4;
-      }
-    #elif __APPLE__
-      {
-        printf("Apple OS \n");
-        p=3;
-      }
-    #else
-      {
-        printf("Unidentified OS \n");
-        p=5;
-      }
-    #endif
-
-if (nprocs > 4)
-  {
-    process_reward = (process_reward * nprocs_max / (nprocs * 2))/p; //this penalizes machines using more than 4 cores by twice the number of cores they are using.
-  }
-else
-  {
-    process_reward = (process_reward * nprocs_max / nprocs)/p;
-  }
-
-//by @lwandamagere
-//extern const double Lwanda;
-
-//Add Stake Reward for Nodes holding balance
-int node_balance = 1555555;
-//(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
-int stake_reward = (int) (node_balance / BALANCE_DIVISOR * 100);
-
-//printf("Lwanda: %d \n", Lwanda);
-
-printf("Node Balance: %lf \n", node_balance);
-
-printf("Process Reward: %d \n", process_reward);
-printf("Stake Reward: %d \n", stake_reward);
-printf("Location Reward: %d \n", location_reward);
-printf("Timezone Reward: %d \n", timezone_reward);
-
-printf("Processor Weight: %d \n", PROCESSOR_WEIGHT);
-printf("Stake Weight: %d \n", STAKE_WEIGHT);
-printf("Location Weight: %d \n", LOCATION_WEIGHT);
-printf("Timezone Weight: %d \n", TIMEZONE_WEIGHT);
-printf("Default LAT: %lf \n", DEFAULT_LAT);
-printf("Default LON: %lf \n", DEFAULT_LON);
-printf("Balance Divisor: %d \n", BALANCE_DIVISOR);
-printf("Upper Limit: %d \n", UPPER_LIMIT);
-
-float total_percentage_reward = ((process_reward * PROCESSOR_WEIGHT / DIVISOR) + (stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR)); //Add when Coordinates data is available
-
-int optimizer_score = (int)total_percentage_reward; //Generating optimization score o as an integer
 printf("Total Percentage Reward: %d \n", optimizer_score);
 
 //Integrate optimizer to ensure people randomly to set hash from opt score
