@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
+#include <errno.h>
+#include <time.h>
+
 #include "./curl/curl.h"
 #include "./curl/easy.h"
 
