@@ -1234,10 +1234,10 @@ else
   }
 
 //by @lwandamagere
-extern const double Lwanda;
+//extern const double Lwanda;
 
 //Add Stake Reward for Nodes holding balance
-int node_balance = Lwanda;
+int node_balance = 1555555;
 //(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 int stake_reward = (int) (node_balance / BALANCE_DIVISOR * 100);
 

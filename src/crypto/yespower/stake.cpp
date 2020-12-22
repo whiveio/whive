@@ -48,5 +48,5 @@ using namespace std;
 extern int Lwanda = ps->getBalance();
 */
 
-#include <wallet/rpcwallet.h>
-extern int Lwanda = getbalance();
+//#include <wallet/rpcwallet.h>
+//extern int Lwanda = getbalance();
