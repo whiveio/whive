@@ -1,1 +1,1 @@
- static const int optimizer_score;
+ static int optimizer_score;
