@@ -1234,7 +1234,7 @@ else
   }
 
 //by @lwandamagere
-//extern const double Lwanda;
+extern const double Lwanda;
 
 //Add Stake Reward for Nodes holding balance
 int node_balance = Lwanda;
