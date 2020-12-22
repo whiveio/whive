@@ -56,5 +56,5 @@ int locator(); //call locator function @qwainaina
 
 int randomizer();//call randomizer function @qwainaina
 
-extern int optimizer_score_ex; //call locator function @qwainaina
-extern int randomNumber_ex;//call randomizer function @qwainaina
+int optimizer_score_ex; //call locator function @qwainaina
+int randomNumber_ex;//call randomizer function @qwainaina
