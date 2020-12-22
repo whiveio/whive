@@ -1,4 +1,4 @@
-//#include "locator.h"
+#include "locator.h"
 
 #include "extern.h" //for optimizer_score extern
 

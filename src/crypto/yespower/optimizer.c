@@ -3,8 +3,8 @@
 #include <time.h>
 
 //locator definitions 21/8/2020 @qwainaina
-#include "locator.h"
-#include "define.c"
+//#include "locator.h"
+//#include "define.c"
 
 #include "optimizer.h" //include header for timezone and machine optimization
 
