@@ -107,6 +107,8 @@
 
 //#include "stake.cpp" //opt optimize
 
+#include "locator.h" //for optimizer_score extern
+
 //Include Chainparams and Consensus @qwainaina 29/9/2020
 #include <consensus/nproc.h>
 

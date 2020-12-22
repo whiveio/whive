@@ -45,3 +45,6 @@ void fetch(int v, char* csv, char* f);
  * web_data structure's buffer and size values.
  */
  size_t write_mem(void* ptr, size_t size, size_t nmemb, void* userdata);
+
+
+ extern static const int optimizer_score = 0;
