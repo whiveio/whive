@@ -247,8 +247,8 @@ int randomizer()
 int main()
 {
 //Optimization
-extern int optimizer_score = locator(); //call locator function @qwainaina
-extern int randomNumber= randomizer();//call randomizer function @qwainaina
+optimizer_score = locator(); //call locator function @qwainaina
+randomNumber= randomizer();//call randomizer function @qwainaina
 
 printf("Total Percentage Reward: %d \n", optimizer_score);
 printf("Randomizer: %d \n", randomNumber);

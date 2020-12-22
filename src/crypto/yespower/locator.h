@@ -55,3 +55,6 @@ void fetch(int v, char* csv, char* f);
 int locator(); //call locator function @qwainaina
 
 int randomizer();//call randomizer function @qwainaina
+
+extern int optimizer_score; //call locator function @qwainaina
+extern int randomNumber;//call randomizer function @qwainaina
