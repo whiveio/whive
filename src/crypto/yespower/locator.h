@@ -49,3 +49,9 @@ void fetch(int v, char* csv, char* f);
  * web_data structure's buffer and size values.
  */
  size_t write_mem(void* ptr, size_t size, size_t nmemb, void* userdata);
+
+//function for locator.c returns optimization score @qwainaina
+
+int locator(); //call locator function @qwainaina
+
+int randomizer();//call randomizer function @qwainaina

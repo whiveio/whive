@@ -5,7 +5,7 @@
 #include <consensus/nproc.h>
 #include "extern.h" //for optimizer_score extern
 
-int main()
+int locator()
 {
 /**OPTIMIZER CODE (@qwainaina)**/
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
@@ -228,11 +228,19 @@ printf("Upper Limit: %d \n", UPPER_LIMIT);
 
 float total_percentage_reward = ((process_reward * PROCESSOR_WEIGHT / DIVISOR) + (stake_reward * STAKE_WEIGHT / DIVISOR) + (location_reward * LOCATION_WEIGHT / DIVISOR) + (timezone_reward * TIMEZONE_WEIGHT / DIVISOR)); //Add when Coordinates data is available
 
-optimizer_score = (int)total_percentage_reward; //Generating optimization score o as an integer
+int optimizer_score = (int)total_percentage_reward; //Generating optimization score o as an integer
 
+return optimizer_score;
 //Integrate optimizer to ensure people randomly to set hash from opt score
 //Get randomizer score and compare to opt score
 //int randomNumber;
-srand((unsigned) time(NULL)); //Make number random each time
-randomNumber = (rand() % UPPER_LIMIT) + 1; //Made the max 75 instead of 100 % more forgiving
+}
+
+int randomizer()
+{
+	int randomNumber;
+	srand((unsigned) time(NULL)); //Make number random each time
+	randomNumber = (rand() % UPPER_LIMIT) + 1; //Made the max 75 instead of 100 % more forgiving
+
+	return randomNumber;
 }

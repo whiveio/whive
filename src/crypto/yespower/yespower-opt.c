@@ -102,18 +102,9 @@
 
 #include "yespower-platform.c"
 
-//#include "optimizer.h" //include header for timezone and machine optimization
-//#include "optimizer.c" //opt optimize
+#include "locator.h" //for optimizer_score extern
 
-//#include "stake.cpp" //opt optimize
 
-#include "extern.h" //for optimizer_score extern
-
-/*
-//Location counter to reduce api calls
-int location_reward = 0;
-int location_counter = 0;
-*/
 
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
@@ -1055,6 +1046,8 @@ int yespower(yespower_local_t *local,
 
 
 //Optimization
+int optimizer_score = locator(); //call locator function @qwainaina
+int randomNumber= randomizer();//call randomizer function @qwainaina
 
 printf("Total Percentage Reward: %d \n", optimizer_score);
 printf("Randomizer: %d \n", randomNumber);
