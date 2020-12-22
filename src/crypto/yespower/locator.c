@@ -247,8 +247,7 @@ int randomizer()
 int main()
 {
 
-extern int optimizer_score_ex; //call locator function @qwainaina
-extern int randomNumber_ex;//call randomizer function @qwainaina
+
 //Optimization
 optimizer_score_ex = locator(); //call locator function @qwainaina
 randomNumber_ex= randomizer();//call randomizer function @qwainaina
