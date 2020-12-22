@@ -102,7 +102,7 @@
 
 #include "yespower-platform.c"
 
-#include "locator.h" 
+#include "locator.h"
 
 
 
@@ -1045,12 +1045,6 @@ int yespower(yespower_local_t *local,
 	uint8_t sha256[32];
 
 
-//Optimization
-int optimizer_score = locator(); //call locator function @qwainaina
-int randomNumber= randomizer();//call randomizer function @qwainaina
-
-printf("Total Percentage Reward: %d \n", optimizer_score);
-printf("Randomizer: %d \n", randomNumber);
 /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 /**OPTIMIZER CODE (@qwainaina)**/
 
