@@ -1,12 +1,13 @@
 #include "locator.h"
-
 #include "extern.h" //for optimizer_score extern
 
-#include "define.c"
+//Include Chainparams and Consensus @qwainaina 29/9/2020
+#include <consensus/nproc.h>
 
 //#include "optimizer.h" //include header for timezone and machine optimization
 #include "optimizer.c" //opt optimize
 
+#include "define.c"
 
 /**OPTIMIZER CODE (@qwainaina)**/
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
