@@ -102,7 +102,7 @@
 
 #include "yespower-platform.c"
 
-#include "locator.h" //for optimizer_score extern
+#include "locator.h" 
 
 
 

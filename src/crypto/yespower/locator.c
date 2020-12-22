@@ -1,5 +1,5 @@
 #include "locator.h"
-//#include "optimizer.h"
+#include "optimizer.c"
 //Include Chainparams and Consensus @qwainaina 29/9/2020
 
 #include <consensus/nproc.h>
