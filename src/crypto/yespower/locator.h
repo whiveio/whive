@@ -47,4 +47,4 @@ void fetch(int v, char* csv, char* f);
  size_t write_mem(void* ptr, size_t size, size_t nmemb, void* userdata);
 
 
- extern static const int optimizer_score = 0;
+ static const int optimizer_score;
