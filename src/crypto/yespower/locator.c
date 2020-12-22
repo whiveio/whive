@@ -146,7 +146,7 @@ ASIAN_REGION = RegionCoordiantes(50, 30, 90, -30);
 
 //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
 //Get Machine Coordinates 21/08/2020
-location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
+int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
 printf("Location Reward 1: %d \n", location_reward);
 //dont call api again here...
 
