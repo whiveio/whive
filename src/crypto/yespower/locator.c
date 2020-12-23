@@ -244,6 +244,11 @@ int randomizer()
 	return randomNumber;
 }
 
+
+// HOW DO WE EXECUTE THE locator and Randomizer functions here and transfer the outputs to yespower-opt.c
+
+
+
 /*
 int main()
 {

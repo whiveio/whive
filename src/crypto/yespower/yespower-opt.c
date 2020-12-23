@@ -1050,6 +1050,7 @@ int yespower(yespower_local_t *local,
 //extern optimizer_score_ex; //call locator function @qwainaina
 //extern randomNumber_ex;//call randomizer function @qwainaina
 
+//THIS CODE IS LOOPED 3 TIMES WASTING API LOCATION CALLS BECAUSE LOCATOR AND RANDOMIZER FUNCTIONS ARE BEING CALLED HERE 
 optimizer_score_ex = locator(); //call locator function @qwainaina
 randomNumber_ex= randomizer();//call randomizer function @qwainaina
 
