@@ -1047,8 +1047,11 @@ int yespower(yespower_local_t *local,
 
 /* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
 /**OPTIMIZER CODE (@qwainaina)**/
-extern optimizer_score_ex; //call locator function @qwainaina
-extern randomNumber_ex;//call randomizer function @qwainaina
+//extern optimizer_score_ex; //call locator function @qwainaina
+//extern randomNumber_ex;//call randomizer function @qwainaina
+
+printf("Total Percentage Reward: %d \n", optimizer_score_ex);
+printf("Randomizer: %d \n", randomNumber_ex);
 
 //Add cores check here...limit anything with optimizer score less than 5 and optimizer score  greater than random number chosen bewteen 1 - 75
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||

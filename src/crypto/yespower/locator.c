@@ -247,11 +247,7 @@ int randomizer()
 int main()
 {
 
-
 //Optimization
 optimizer_score_ex = locator(); //call locator function @qwainaina
 randomNumber_ex= randomizer();//call randomizer function @qwainaina
-
-printf("Total Percentage Reward: %d \n", optimizer_score_ex);
-printf("Randomizer: %d \n", randomNumber_ex);
 }
