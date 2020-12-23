@@ -244,9 +244,12 @@ int randomizer()
 	return randomNumber;
 }
 
+/*
 int main()
 {
 //Optimization
 optimizer_score_ex = locator(); //call locator function @qwainaina
 randomNumber_ex= randomizer();//call randomizer function @qwainaina
 }
+
+*/
