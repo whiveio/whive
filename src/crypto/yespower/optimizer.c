@@ -10,6 +10,30 @@
 #define OS_X86 1
 #endif
 
+
+struct coordinate
+{
+  int top_left_x;
+	int top_left_y;
+	int bottom_right_x;
+	int bottom_right_y;
+};
+
+struct coordinate RegionCoordiantes(int x1, int x2, int x3, int x4) {
+	struct coordinate result;
+	result.top_left_x = x1;
+	result.top_left_y = x2;
+	result.bottom_right_x = x3;
+	result.bottom_right_y = x4;
+	return result;
+}
+
+struct coordinate CARRIBEAN_REGION;
+struct coordinate SOUTH_AMERICAN_REGION;
+struct coordinate AFRICAN_REGION;
+struct coordinate ASIAN_REGION;
+
+
 //Get Processor Reward %
 int get_processor_reward() {
 	if (OS_WINDOWS) {
