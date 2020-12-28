@@ -28,7 +28,7 @@
  */
 #include "yespower.h"
 #include "sysendian.h"
-#include "locator.h"
+#include "optimizer.h"
 
 static const yespower_params_t v1 = {YESPOWER_0_5, 4096, 16, "Client Key", 10};
 
