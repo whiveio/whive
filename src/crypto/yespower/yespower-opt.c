@@ -1044,14 +1044,6 @@ int yespower(yespower_local_t *local,
 	pwxform_ctx_t ctx;
 	uint8_t sha256[32];
 
-
-/* Sanity check using O score & Randomizer added by @qwainaina*/  /* Sanity check using O score & Randomizer added by @qwainaina*/
-/**OPTIMIZER CODE (@qwainaina)**/
-//extern optimizer_score_ex; //call locator function @qwainaina
-//extern randomNumber_ex;//call randomizer function @qwainaina
-
-//THIS CODE IS LOOPED 3 TIMES WASTING API LOCATION CALLS BECAUSE LOCATOR AND RANDOMIZER FUNCTIONS ARE BEING CALLED HERE 
-//optimizer_score_ex = locator(); //call locator function @qwainaina
 randomNumber_ex= randomizer();//call randomizer function @qwainaina
 
 printf("Total Percentage Reward: %d \n", optimizer_score);
