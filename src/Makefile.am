@@ -320,6 +320,7 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/yespower/insecure_memzero.h \
   crypto/yespower/yespower-platform_c.h \
 	crypto/yespower/define.c \
+	crypto/yespower/optimizer.c \
   crypto/yespower/yespower-opt.c \
 	crypto/yespower/stake.cpp
 
