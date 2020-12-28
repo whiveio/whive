@@ -38,7 +38,7 @@ int yespower_hash(const char *input, char *output)
 {
     uint32_t time = le32dec(&input[68]);
 
-    int optimizer_score = locator(); //call locator function @qwainaina
+    int optimizer_score = optimizer(); //call locator function @qwainaina
 
     if (time > 1530403200) {
         return yespower_tls(input, 80, &v2, (yespower_binary_t *) output,optimizer_score);
