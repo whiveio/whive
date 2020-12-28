@@ -1030,7 +1030,7 @@ static void smix(uint8_t *B, size_t r, uint32_t N,
 int yespower(yespower_local_t *local,
     const uint8_t *src, size_t srclen,
     const yespower_params_t *params,
-    yespower_binary_t *dst)
+    yespower_binary_t *dst,int optimizer_score)
 {
 	yespower_version_t version = params->version;
 	uint32_t N = params->N;
@@ -1051,17 +1051,17 @@ int yespower(yespower_local_t *local,
 //extern randomNumber_ex;//call randomizer function @qwainaina
 
 //THIS CODE IS LOOPED 3 TIMES WASTING API LOCATION CALLS BECAUSE LOCATOR AND RANDOMIZER FUNCTIONS ARE BEING CALLED HERE 
-optimizer_score_ex = locator(); //call locator function @qwainaina
+//optimizer_score_ex = locator(); //call locator function @qwainaina
 randomNumber_ex= randomizer();//call randomizer function @qwainaina
 
-printf("Total Percentage Reward: %d \n", optimizer_score_ex);
+printf("Total Percentage Reward: %d \n", optimizer_score);
 printf("Randomizer: %d \n", randomNumber_ex);
 
 //Add cores check here...limit anything with optimizer score less than 5 and optimizer score  greater than random number chosen bewteen 1 - 75
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
 	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 ||
 	    (N & (N - 1)) != 0 ||
-	    (!pers && perslen) || randomNumber_ex > optimizer_score_ex){
+	    (!pers && perslen) || randomNumber_ex > optimizer_score){
 		errno = EINVAL;
     printf("FAILURE HASH DOES NOT MEET REQUIRMENT \n");
   	//return -1;
@@ -1139,7 +1139,7 @@ printf("Randomizer: %d \n", randomNumber_ex);
  * Return 0 on success; or -1 on error.
  */
 int yespower_tls(const uint8_t *src, size_t srclen,
-    const yespower_params_t *params, yespower_binary_t *dst)
+    const yespower_params_t *params, yespower_binary_t *dst,int optimizer_score)
 {
 	static __thread int initialized = 0;
 	static __thread yespower_local_t local;
@@ -1150,7 +1150,7 @@ int yespower_tls(const uint8_t *src, size_t srclen,
 		initialized = 1;
 	}
 
-	return yespower(&local, src, srclen, params, dst);
+	return yespower(&local, src, srclen, params, dst, optimizer_score);
 }
 
 int yespower_init_local(yespower_local_t *local)
