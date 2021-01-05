@@ -4,7 +4,7 @@
 
 ***BITCOIN AUXILIARY CHAIN (AUXCHAIN): MINE - STAKE - BUILD - EARN***
 
-**VERSION 2**
+**VERSION 2.17**
 
 [**www.whive.io**](http://www.whive.io)
 
@@ -41,14 +41,13 @@ The Whive Protocol is being built, tested and deployed by a community of individ
 The Whive protocol contains the following specifications:
 
 - It is a Bitcoin Fork and Auxiliary Chain, shall utilize the Bitcoin code base to remain compatible with Bitcoin.
-- The protocol shall have its Rewards generated through a hybrid Proof-of-Work(current) and Proof-Of-Stake(future) algorithm.
+- The protocol shall have its Rewards generated through an optimized Proof-of-Work(PoW) consensus algorithm.
 - The Reward symbol which is also the name of the wallet is WHIVE.
 - The smallest unit of the Reward shall be 0.00000001 WHIVE.
-- There shall be a maximum supply of 100,000,000 Rewards over a period of ~20 years(by 2040). This includes, 17,500,000 Whive tokens which shall be claimed for a Bitcoin fork from the version 2 release of the protocol.
-- In the future, distribution of the remaining Rewards shall be through a Split Rewards algorithm, where 50% go to CPU mining nodes and another 50% to staking nodes.
-- The algorithm checks the processor, location and timezone of all nodes attributing a higher weight to nodes with higher daylight threshold and desired CPU optimizations.
+- There shall be a maximum supply of 100,000,000 Rewards over a period of ~20 years(by 2040). This includes, 18,500,000+ Whive tokens which shall be claimed after the Bitcoin fork from the version 2 release of the protocol.
+- The algorithm checks the processor, location, timezone and balance of all nodes attributing a higher weight to nodes with higher balances, daylight threshold and desired CPU optimizations.
 - The protocol shall support between 7 - 20 transactions per second on a 1 - 2 MB block-size or a Segregated Witness (SegWit) enabled block-weight of 4 MB similar to Bitcoin.
-- The protocol shall over time keep up to-date with the latest Bitcoin source code updates after release of the final core features in version 3 of the protocol.
+- The protocol shall over time keep up-to date with the latest Bitcoin source code updates after release of the final core features in version 3 of the protocol.
 - The protocol shall support Layer 2 Protocols such as Lightning to enable fast and micro-transactions on the Bitcoin network to ensure atomic-swap capabilities.
 
 ***3. RoadMap***
@@ -65,17 +64,17 @@ Research and Development of the The Whive protocol&#39;s core features began in 
 - **Q4-2019, Yespower Time &amp; Machine optimization:** The protocol developers added Machine, Time-Zone and Processor optimization to the Yespower Implementation.
 - **Q1-2020, Public Testnet:**  The protocol contributors tested the network before launch.
 - **Q1-2020, Community Launches Main-net :**  The Whive Network was launched on 02/02/2020 together with the Yellow Paper for community audit and peer review.
-- **Q2-2020, Mining Pool & Software:** The protocol developers published documentation for third-party pools for mining and staking operations.
-- **Q4-2020, Protocol Upgrades:** Protocol features shall be updated by Community Contributors with a Version 2 software release which includes increased Optimization of the Yespower algorithm, a Bitcoin UTXOs hard fork, and release of wallet for claiming Whive Rewards during the Bitcoin fork.
+- **Q2-2020, Mining Pool & Software:** The protocol developers published documentation for third-party pools for mining operations.
+- **Q4-2020, Protocol Upgrades:** Protocol features shall be updated by Community Contributors with a Version 2 software release which includes increased Optimization of the Yespower algorithm, a Bitcoin UTXOs hard fork, and release of wallet for claiming Whive Rewards during the Bitcoin fork. The protocol Roadmap ends for its core features.
 - **Q4-2020, Exchange Listings:** Community exchange listing requests can begin after the hard fork.
-- **Q3-2021, Protocol Upgrades:** Protocol features shall be updated by Community Contributors with a Version 3 software release which includes a hard fork, Proof-of-Stake, Split Rewards, and the Green-paper publication with peer-reviewed mathematical proofs by the protocol researchers.
-- **Q4-2021, Protocol Up-scaling:**  The protocol Roadmap ends for its core features and the protocol contributors voluntarily & continuously update the protocol to maintain compatibility as an Auxiliary chain(AuxChain) of the Bitcoin protocol.
+- **Q3-2021, Protocol Upgrades:** The Green-paper shall be published with peer-reviewed mathematical proofs by the protocol researchers.
+- **Q4-2021, Protocol Up-scaling:** The protocol contributors voluntarily & continuously update the protocol to maintain compatibility as an Auxiliary chain(AuxChain) of the Bitcoin protocol.
 
 ***4. Governance***
 
 The Whive protocol is voluntarily governed by its community of contributors. Network participants can make contributions as developers, miners, testers, trainers and users independently. Code audit and contributions shall be made via our main github repository located at[https://github.com/whiveio](https://github.com/whiveio).
 
-The Whive protocol development and test-net deployment was initially facilitated by BitHub Africa a community of blockchain enthusiasts based in Africa. The number of the Whive protocol contributors has continued to grow to include volunteers from around the World.
+The Whive protocol development and test-net deployment was initially facilitated by the BitHub Africa community of blockchain enthusiasts based in Africa. The number of the Whive protocol contributors has continued to grow to include volunteers from around the World.
 
 Subsequently, should the network accrue enough value; the Whive protocol shall be governed by a community funded Foundation known as the **Whive Foundation** which shall be registered in a Blockchain friendly jurisdiction no later than 18 months after accruing the required economic value to setup the Foundation.
 
@@ -93,14 +92,14 @@ The Foundation will be funded by unclaimed WHIVE Rewards after the end of the sn
 
 **The UNCLAIMED rewards shall be distributed as follows:**
 
-1. 50% for the Founders of the protocol
+1. 50% for the Founders/Developers of the protocol
 2. 30% towards operations and maintenance of Foundation in a Legal Jurisdiction
 3. 10% for Founding Contributors
 4. 10% towards the Contributors
 
 The Foundation with its allocation of unclaimed Whive rewards, shall also fund solar-powered innovations that use the Whive protocol to build Green energy solutions globally!
 
-The Whive Community (of users) is entitled to responsibly mine, stake, and trade their own Rewards.
+The Whive Community (of users) is entitled to responsibly mine, and trade their own Rewards.
 
 The Whive Community is governed by the Whive Code of Conduct.
 
@@ -125,16 +124,16 @@ The Whive Community is governed by the Whive Code of Conduct.
 17. **What design do we want Whive address to have**? The public blockchain addresses shall start with &quot;W&quot; and multi-signature or segwit addresses shall start with &quot;w&quot;.
 18. **shall Whive have room for layer 2 addons?** Certainly, the protocol shall enable atomic swaps with lightning and scripting enabled for AI and IoT. Whive protocol should focus on Identifying objects and executing peer to peer contracts not storing information.
 19. **shall Whive do smart contracts?** No, its based on bitcoin which uses SCRIPT programming language not easy to use for developing multi-purpose Smart Contracts. As such, the protocol algorithm is designed specifically  for the distributed energy use case.
-20. **Which programming languages shall we be using?** C++ and Python.
+20. **Which programming languages shall we be using?** Python, C & C++.
 21. **When should we have our first wallet?** Q3 2020.
 22. **How many core developers do we need for the Whive core wallet?** Around 3 developers at any given time shall be optimal.
 23. **shall there be an ICO?** No!
 24. **shall Whive be able to update at any time when needed?** Through soft-forks, hard-forks have to planned under WIPs.
 25. **shall Whive transactions be public or private to the peers?** Public for Transparency!
 26. **When shall Whive start trading?** The date is unknown & is up to exchanges which shall make the decision to list WHIVE!
-27. **Why or When do I purchase WHIVE Rewards?** It&#39;s up to you, trading is a personal decision. Trading occurs on 3rd party exchanges. The Whive protocol does not offer any Investment or Exchange services as per the terms of service.
+27. **Why or When do I purchase WHIVE Rewards?** It&#39;s up to you, trading is a personal decision. Trading occurs on 3rd party exchanges. The Whive protocol does not offer any Investment or Exchange services as per the terms & conditions agreement.
 28. **Is Whive competing with Bitcoin?** No, It&#39;s an Auxiliary Chain of Bitcoin, hence complimentary!
-29. **shall the price of Whive go up?** No one knows, its up to price discovery on the open and free market, which is based on many factors. We expect the price to be volatile like ALL other crypto-currencies. Thus, trade at your own risk!
+29. **shall the price of Whive go up?** No one knows, its up to price discovery on the open & free markets, which is based on many factors. We expect the price to be volatile like ALL other crypto-currencies. Thus, trade at your own risk!
 30. **Is Whive a Security?** No! There has been no raising or pooling of funds to develop the protocol. The project is open-source code launched, operated and maintained by a community of volunteering contributors with no central entity in control of the distributed network. Refer to the Whive protocol&#39;s Terms of Service.
 
 ***6. Disclaimer***
