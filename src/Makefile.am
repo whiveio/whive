@@ -321,8 +321,10 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/yespower/sysendian.h \
   crypto/yespower/insecure_memzero.h \
   crypto/yespower/yespower-platform_c.h \
-  crypto/yespower/yespower-opt.c \
-	crypto/yespower/stake.cpp
+	consensus/optimizer.h \
+	consensus/optimizer.c \
+	crypto/yespower/yespower-opt.c
+
 
 if USE_ASM
 crypto_libbitcoin_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
