@@ -42,7 +42,7 @@ int yespower_hash(const char *input, char *output)
     uint32_t time = le32dec(&input[68]);
 
     if(checklocation) {
-       optimizer_score = optimizer(); 
+       optimizer_score = optimizer(); //calls optimizer c
        checklocation = 0;
     }
 
@@ -51,5 +51,5 @@ int yespower_hash(const char *input, char *output)
     } else {
         return yespower_tls(input, 80, &v1, (yespower_binary_t *) output,optimizer_score);
     }
-  
+
 }

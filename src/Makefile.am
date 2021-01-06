@@ -320,7 +320,6 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/yespower/sysendian.h \
   crypto/yespower/insecure_memzero.h \
   crypto/yespower/yespower-platform_c.h \
-	crypto/yespower/optimizer.c \
   crypto/yespower/yespower-opt.c \
 	crypto/yespower/stake.cpp
 
@@ -384,7 +383,8 @@ libbitcoin_consensus_a_SOURCES = \
   uint256.h \
   utilstrencodings.cpp \
   utilstrencodings.h \
-  version.h
+  version.h \
+	optimizer.c
 
 # common: shared between whived, and whive-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)

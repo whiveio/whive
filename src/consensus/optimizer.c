@@ -1,5 +1,5 @@
 //locator definitions 21/8/2020 @qwainaina
-#include <consensus/nproc.h>
+#include "nproc.h"
 #include "optimizer.h" //include header for timezone and machine optimization
 
 #ifdef __arm__
@@ -478,9 +478,11 @@ else
 
 //by @lwandamagere
 //extern const double Lwanda;
+extern double LwandaX;
 
+printf("This is my LwandaX %ld", LwandaX);
 //Add Stake Reward for Nodes holding balance
-int node_balance = 1555555;
+int node_balance = LwandaX;
 //(node_balance/10000000)* 100; //10 Million is chosen as no nodes that are likely to reach number for a long time. Chnage to a %
 int stake_reward = (int) (node_balance / BALANCE_DIVISOR * 100);
 
