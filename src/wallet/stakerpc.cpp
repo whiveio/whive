@@ -36,7 +36,7 @@
 
 static void ReleaseWallet(CWallet* wallet);
 
-const fs::path& path = "/Desktop/whive-active";
+const fs::path& path = "$HOME/.whive"; // Needs to be review this....
 int nMinDepth;
 
 
