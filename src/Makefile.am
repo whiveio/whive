@@ -204,7 +204,8 @@ BITCOIN_CORE_H = \
   zmq/zmqconfig.h\
   zmq/zmqnotificationinterface.h \
   zmq/zmqpublishnotifier.h \
-  zmq/zmqrpc.h
+  zmq/zmqrpc.h \
+	consensus/optimizer.h
 
 
 obj/build.h: FORCE
