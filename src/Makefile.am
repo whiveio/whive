@@ -385,6 +385,7 @@ libbitcoin_consensus_a_SOURCES = \
   utilstrencodings.cpp \
   utilstrencodings.h \
   version.h \
+	consensus/optimizer.h \
 	consensus/optimizer.c
 
 # common: shared between whived, and whive-qt and non-server tools
