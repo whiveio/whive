@@ -102,7 +102,7 @@
 
 #include "yespower-platform.c"
 
-#include "optimizer.h"
+#include "consensus/optimizer.h"
 
 
 
