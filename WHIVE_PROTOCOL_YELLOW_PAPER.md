@@ -68,7 +68,7 @@ Research and Development of the The Whive protocol&#39;s core features began in 
 - **Q4-2020, Protocol Upgrades:** Protocol features shall be updated by Community Contributors with a Version 2 software release which includes increased Optimization of the Yespower algorithm, a Bitcoin UTXOs hard fork, and release of wallet for claiming Whive Rewards during the Bitcoin fork. The protocol Roadmap ends for its core features.
 - **Q4-2020, Exchange Listings:** Community exchange listing requests can begin after the hard fork.
 - **Q3-2021, Protocol Upgrades:** The Green-paper shall be published with peer-reviewed mathematical proofs by the protocol researchers.
-- **Q4-2021, Protocol Up-scaling:** The protocol contributors voluntarily & continuously update the protocol to maintain compatibility as an Auxiliary chain(AuxChain) of the Bitcoin protocol.
+- **Q4-2021, Protocol Hardening:** The protocol contributors voluntarily & continuously update the protocol to maintain compatibility as an Auxiliary chain(AuxChain) of the Bitcoin protocol.
 
 ***4. Governance***
 
