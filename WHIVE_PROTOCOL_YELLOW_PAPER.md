@@ -64,11 +64,9 @@ Research and Development of the The Whive protocol&#39;s core features began in 
 - **Q4-2019, Yespower Time &amp; Machine optimization:** The protocol developers added Machine, Time-Zone and Processor optimization to the Yespower Implementation.
 - **Q1-2020, Public Testnet:**  The protocol contributors tested the network before launch.
 - **Q1-2020, Community Launches Main-net :**  The Whive Network was launched on 02/02/2020 together with the Yellow Paper for community audit and peer review.
-- **Q2-2020, Mining Pool & Software:** The protocol developers published documentation for third-party pools for mining operations.
-- **Q4-2020, Protocol Upgrades:** Protocol features shall be updated by Community Contributors with a Version 2 software release which includes increased Optimization of the Yespower algorithm, a Bitcoin UTXOs hard fork, and release of wallet for claiming Whive Rewards during the Bitcoin fork. The protocol Roadmap ends for its core features.
-- **Q4-2020, Exchange Listings:** Community exchange listing requests can begin after the hard fork.
-- **Q3-2021, Protocol Upgrades:** The Green-paper shall be published with peer-reviewed mathematical proofs by the protocol researchers.
-- **Q4-2021, Protocol Hardening:** The protocol contributors voluntarily & continuously update the protocol to maintain compatibility as an Auxiliary chain(AuxChain) of the Bitcoin protocol.
+- **Q4-2020, Protocol Upgrades:**  Protocol features shall be updated by Community Contributors with a Version 2 software release which includes increased Optimization of the Yespower algorithm, a Bitcoin UTXOs hard fork, and release of wallet for claiming Whive Rewards during the Bitcoin fork.
+- **Q1-2021, Protocol V2 Release:**  Protocol features shall be released by community contributors with a Version 2 software release which includes a hard fork, Proof-of-Hodl, Optimized Rewards, and the Green-paper publication with peer-reviewed mathematical proofs by the protocol researchers.
+- **Q3-2021, Protocol Complete:**  The protocol Roadmap ends for its core features and the protocol contributors voluntarily & continuously update the protocol to maintain security and compatibility as an Auxiliary chain(AuxChain) of the Bitcoin protocol.
 
 ***4. Governance***
 
