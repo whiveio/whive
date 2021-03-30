@@ -45,7 +45,7 @@ The Whive protocol contains the following specifications:
 - The Reward symbol which is also the name of the wallet is WHIVE.
 - The smallest unit of the Reward shall be 0.00000001 WHIVE.
 - There shall be a maximum supply of 100,000,000 Rewards over a period of ~20 years(by 2040). This includes, 18,500,000+ Whive tokens which shall be claimed after the Bitcoin fork from the version 2 release of the protocol.
-- The algorithm checks the processor, location, timezone and balance of all nodes attributing a higher weight to nodes with higher balances, daylight threshold and desired CPU optimizations.
+- The algorithm checks the processor, location, timezone and balance of all nodes attributing a higher optimization weight to nodes with higher balances, daylight threshold and desired CPU optimizations.
 - The protocol shall support between 7 - 20 transactions per second on a 1 - 2 MB block-size or a Segregated Witness (SegWit) enabled block-weight of 4 MB similar to Bitcoin.
 - The protocol shall over time keep up-to date with the latest Bitcoin source code updates after release of the final core features in version 3 of the protocol.
 - The protocol shall support Layer 2 Protocols such as Lightning to enable fast and micro-transactions on the Bitcoin network to ensure atomic-swap capabilities.
@@ -132,7 +132,7 @@ The Whive Community is governed by the Whive Code of Conduct.
 27. **Why or When do I purchase WHIVE Rewards?** It&#39;s up to you, trading is a personal decision. Trading occurs on 3rd party exchanges. The Whive protocol does not offer any Investment or Exchange services as per the terms & conditions agreement.
 28. **Is Whive competing with Bitcoin?** No, It&#39;s an Auxiliary Chain of Bitcoin, hence complimentary!
 29. **shall the price of Whive go up?** No one knows, its up to price discovery on the open & free markets, which is based on many factors. We expect the price to be volatile like ALL other crypto-currencies. Thus, trade at your own risk!
-30. **Is Whive a Security?** No! There has been no raising or pooling of funds to develop the protocol. The project is open-source code launched, operated and maintained by a community of volunteering contributors with no central entity in control of the distributed network. Refer to the Whive protocol&#39;s Terms of Service.
+30. **Is Whive a Security?** No! There has been no raising or pooling of funds to develop the protocol. The project is open-source code launched with a complete Roadmap, operated and maintained by a community of volunteering contributors with no central entity in control of the distributed network.
 
 ***6. Disclaimer***
 
