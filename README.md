@@ -27,7 +27,7 @@ To Build & Run
 
 ```bash
 ./autogen.sh
-./configure
+./configure LIBS=-lcurl
 make
 make install # optional
 ```
