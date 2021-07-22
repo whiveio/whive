@@ -102,8 +102,9 @@
 
 #include "yespower-platform.c"
 
-#include "optimizer.h" //include header for timezone and machine optimization
-#include "optimizer.c" //opt optimize
+#include "optimizer.h"
+
+
 
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
@@ -1029,7 +1030,7 @@ static void smix(uint8_t *B, size_t r, uint32_t N,
 int yespower(yespower_local_t *local,
     const uint8_t *src, size_t srclen,
     const yespower_params_t *params,
-    yespower_binary_t *dst)
+    yespower_binary_t *dst,int optimizer_score)
 {
 	yespower_version_t version = params->version;
 	uint32_t N = params->N;
@@ -1043,32 +1044,16 @@ int yespower(yespower_local_t *local,
 	pwxform_ctx_t ctx;
 	uint8_t sha256[32];
 
-  //Integrate optimizer to ensure people randomly to set hash from o score; Contributions by whive devs in optimizer.h
-  //define_coordinates();
-  int timezone_reward = get_time_zone_reward();
-  int location_reward = 0; //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
-  int process_reward = get_processor_reward();
+randomNumber_ex= randomizer();//call randomizer function @qwainaina
 
-  //Float total_percentage_reward = ((location_reward * 3 / 6) + (timezone_reward * 1 / 6) + (process_reward * 2 / 6)); //Add when Coordinates data is available
-  float total_percentage_reward = ((timezone_reward * 3 / 6) + (process_reward * 3 / 6));
 
-  int opt = (int)total_percentage_reward; //Generating optimization score o as an integer
-  //printf("Total Percentage Reward: %d \n", opt);
-
-  //Integrate optimizer to ensure people randomly to set hash from opt score
-  //Get randomizer score and compare to opt score
-  int randomNumber;
-	srand((unsigned) time(NULL)); //Make number random each time
-	randomNumber = (rand() % 45) + 1; //Made the max 45 instead of 100 % more forgiving
-	//printf("Randomizer: %d", randomNumber);
-  /* Sanity check using O score & Randomizer added by @qwainaina*/
-
+//Add cores check here...limit anything with optimizer score less than 5 and optimizer score  greater than random number chosen bewteen 1 - 75
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
-	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 && opt <= 14 && randomNumber > opt ||
+	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 ||
 	    (N & (N - 1)) != 0 ||
-	    (!pers && perslen)) {
+	    (!pers && perslen) || randomNumber_ex > optimizer_score){
 		errno = EINVAL;
-		return -1;
+  	//return -1;
 	}
 
 	/* Allocate memory */
@@ -1142,7 +1127,7 @@ int yespower(yespower_local_t *local,
  * Return 0 on success; or -1 on error.
  */
 int yespower_tls(const uint8_t *src, size_t srclen,
-    const yespower_params_t *params, yespower_binary_t *dst)
+    const yespower_params_t *params, yespower_binary_t *dst,int optimizer_score)
 {
 	static __thread int initialized = 0;
 	static __thread yespower_local_t local;
@@ -1153,7 +1138,7 @@ int yespower_tls(const uint8_t *src, size_t srclen,
 		initialized = 1;
 	}
 
-	return yespower(&local, src, srclen, params, dst);
+	return yespower(&local, src, srclen, params, dst, optimizer_score);
 }
 
 int yespower_init_local(yespower_local_t *local)
