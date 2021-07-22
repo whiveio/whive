@@ -1,6 +1,6 @@
 # Support for Output Descriptors in Whive Core
 
-Since Whive Core v2.0.0, there is support for Output Descriptors in the
+Since Whive Core v2.17.0, there is support for Output Descriptors in the
 `scantxoutset` RPC call. This is a simple language which can be used to
 describe collections of output scripts.
 
