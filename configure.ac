@@ -671,6 +671,8 @@ else
   AC_SEARCH_LIBS([clock_gettime],[rt])
 fi
 
+AC_SEARCH_LIBS([curl_easy_init], [curl])
+
 if test "x$enable_gprof" = xyes; then
     dnl -pg is incompatible with -pie. Since hardening and profiling together doesn't make sense,
     dnl we simply make them mutually exclusive here. Additionally, hardened toolchains may force

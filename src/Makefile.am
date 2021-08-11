@@ -461,6 +461,14 @@ if TARGET_WINDOWS
 whived_SOURCES += bitcoind-res.rc
 endif
 
+
+if TARGET_WINDOWS
+LIBBITCOIN_CURL=/usr/include/curl/libcurl.dll.a
+else
+LIBBITCOIN_CURL=/usr/include/curl/libcurl.a
+endif
+
+
 whived_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
@@ -473,6 +481,7 @@ whived_LDADD = \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
+  $(LIBBITCOIN_CURL) \
   $(LIBSECP256K1)
 
 whived_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
@@ -515,6 +524,7 @@ whive_tx_LDADD = \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
+  $(LIBBITCOIN_CURL) \
   $(LIBSECP256K1)
 
 whive_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
