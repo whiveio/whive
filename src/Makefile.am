@@ -464,8 +464,6 @@ endif
 
 if TARGET_WINDOWS
 LIBBITCOIN_CURL=/usr/include/curl/libcurl.dll.a
-else
-LIBBITCOIN_CURL=/usr/include/curl/libcurl.a
 endif
 
 
