@@ -74,7 +74,7 @@ Windows | `%APPDATA%\Whive\` | `C:\Users\username\AppData\Roaming\Whive\whive.co
 Linux | `$HOME/.whive/` | `/home/username/.whive/whive.conf`
 macOS | `$HOME/Library/Application Support/Whive/` | `/Users/username/Library/Application Support/Whive/whive.conf`
 
-You can find an example whive.conf file in [share/examples/whive.conf](../share/examples/whive.conf).
+You can find an example whive.conf file in [share/examples/whive.conf](/share/examples/whive.conf).
 
 License
 -------
