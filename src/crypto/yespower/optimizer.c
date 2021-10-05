@@ -426,26 +426,141 @@ int optimizer()
       {
         //printf("Windows \n");
         p=2;
+        byte * testdado = (byte *) malloc(p);
+        for (int d =0; d < p; d++)
+            testdado[d] = 0;
+
+        SHA256_Init(&shactx);
+        SHA256_Update(&shactx, testdado, p);
+        SHA256_Final(r1, &shactx);
+        
+        char Kezia[66];
+        sprintf(Kezia, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                        "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                        "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                        "%02x%02x%02x%02x%02x\n", 
+                        r1[0],r1[1],r1[2],r1[3],r1[4], 
+                        r1[5],r1[6],r1[7],r1[8],r1[9], 
+                        r1[10],r1[11],r1[12],r1[13],r1[14],r1[15], 
+                        r1[16],r1[17],r1[18],r1[19],r1[20],r1[21],
+                        r1[22],r1[23],r1[24],r1[25],r1[26],r1[27],
+                        r1[28],r1[29],r1[30],r1[31]); 
+      
+        if (strncmp(Kezia, r2, 64) == 0)
+			p = 2;
       }
     #elif __linux__
       {
         //printf("Linux \n");
         p=1;
+		byte * testdado = (byte *) malloc(p);
+        for (int d =0; d < p; d++)
+            testdado[d] = 0;
+
+        SHA256_Init(&shactx);
+        SHA256_Update(&shactx, testdado, p);
+        SHA256_Final(d1, &shactx);
+
+		char Gwiji[66];
+        sprintf(Gwiji, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                        "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                        "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                        "%02x%02x%02x%02x%02x\n", 
+                        d1[0],d1[1],d1[2],d1[3],d1[4], 
+                        d1[5],d1[6],d1[7],d1[8],d1[9],d1[10],
+                        d1[11],d1[12],d1[13],d1[14],d1[15], 
+                        d1[16],d1[17],d1[18],d1[19],d1[20],
+                        d1[21],d1[22],d1[23],d1[24],d1[25],
+                        d1[26],d1[27],d1[28],d1[29],d1[30],
+                        d1[31]);
+
+		 if (strncmp(Gwiji, d2, 64) == 0) 
+		  	p = 1;
       }
     #elif __unix__
       {
         //printf("Other unix OS \n");
         p=4;
+		 byte * testdado = (byte *) malloc(p);
+        for (int d =0; d < p; d++)
+            testdado[d] = 0;
+
+        SHA256_Init(&shactx);
+        SHA256_Update(&shactx, testdado, p);
+        SHA256_Final(t1, &shactx);
+
+		char Olewainaina[66];
+        sprintf(Olewainaina, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                             "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                             "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                             "%02x%02x%02x%02x%02x\n", 
+                              t1[0],t1[1],t1[2],t1[3],t1[4], 
+                              t1[5],t1[6],t1[7],t1[8],t1[9], 
+                              t1[10],t1[11],t1[12],t1[13],
+                              t1[14],t1[15],t1[16],t1[17],
+                              t1[18],t1[19],t1[20],t1[21],
+                              t1[22],t1[23],t1[24],t1[25],
+                              t1[26],t1[27],t1[28],t1[29],
+                              t1[30],t1[31]); 
+      
+        if (strncmp(Olewainaina, t2, 64) == 0)
+			p = 4;
       }
     #elif __APPLE__
       {
         //printf("Apple OS \n");
         p=3;
+		byte * testdado = (byte *) malloc(p);
+        for (int d =0; d < p; d++)
+            testdado[d] = 0;
+
+        SHA256_Init(&shactx);
+        SHA256_Update(&shactx, testdado, p);
+        SHA256_Final(z1, &shactx);
+        
+        char Niko[66];
+        sprintf(Niko, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                      "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                      "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                      "%02x%02x%02x%02x%02x\n", 
+                        z1[0],z1[1],z1[2],z1[3],z1[4], 
+                        z1[5],z1[6],z1[7],z1[8],z1[9], 
+                        z1[10],z1[11],z1[12],z1[13],
+                        z1[14],z1[15],z1[16],z1[17],
+                        z1[18],z1[19],z1[20],z1[21],
+                        z1[22],z1[23],z1[24],z1[25],
+                        z1[26],z1[27],z1[28],z1[29],
+                        z1[30],z1[31]); 
+      
+       if (strncmp(Niko, t2, 64) == 0)
+	   		p = 3;
       }
     #else
       {
         //printf("Unidentified OS \n");
         p=5;
+		byte * testdado = (byte *) malloc(p);
+        for (int d =0; d < p; d++)
+            testdado[d] = 0;
+
+        SHA256_Init(&shactx);
+        SHA256_Update(&shactx, testdado, p);
+        SHA256_Final(q1, &shactx);
+        
+        char Professor[66];
+        sprintf(Professor, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                           "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
+                           "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x\n", 
+                            q1[0],q1[1],q1[2],q1[3],q1[4], 
+                            q1[5],q1[6],q1[7],q1[8],q1[9], 
+                            q1[10],q1[11],q1[12],q1[13],
+                            q1[14],q1[15],q1[16],q1[17],q1[18]
+                            ,q1[19],q1[20],q1[21],q1[22],q1[23],
+                            q1[24],q1[25],q1[26],q1[27],q1[28],
+                            q1[29],q1[30],q1[31]); 
+      
+        if (strncmp(Professor, t2, 64) == 0)
+			p = 5;
       }
     #endif
 
