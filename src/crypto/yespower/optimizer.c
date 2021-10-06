@@ -2,13 +2,13 @@
 #include "optimizer.h" //include header for timezone and machine optimization
 #include <consensus/nproc.h>
 
-#ifdef __arm__
+/*#ifdef __arm__
 #define OS_ARM 1
 #elif defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
 #define OS_WINDOWS 1
 #elif defined(_X86_) || defined(__X86_64__) || defined(__x86_64__) || defined(__amd64__)
 #define OS_X86 1
-#endif
+#endif*/
 
 struct coordinate
 {
@@ -32,7 +32,6 @@ struct coordinate SOUTH_AMERICAN_REGION;
 struct coordinate AFRICAN_REGION;
 struct coordinate ASIAN_REGION;
 
-
 //Get Processor Reward % /////////////////////////////////////////////////////////////////////////////////
 int get_processor_reward() 
 {   
@@ -42,25 +41,26 @@ int get_processor_reward()
         for (int d =0; d < Kumi; d++)
             testdado[d] = 0;
 
+        byte sss1[66];
         SHA256_Init(&shactx);
         SHA256_Update(&shactx, testdado,Kumi);
-        SHA256_Final(s1, &shactx);
-        
+        SHA256_Final(sss1, &shactx);
+
         char Jakom[66];
         sprintf(Jakom, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x\n", 
-                        s1[0],s1[1],s1[2],s1[3],s1[4], 
-                        s1[5],s1[6],s1[7],s1[8],s1[9], 
-                        s1[10],s1[11],s1[12],s1[13],
-                        s1[14],s1[15],s1[16],s1[17],
-                        s1[18],s1[19],s1[20],s1[21],
-                        s1[22],s1[23],s1[24],s1[25],
-                        s1[26],s1[27],s1[28],s1[29],
-                        s1[30],s1[31]); 
+                        sss1[0],sss1[1],sss1[2],sss1[3],sss1[4], 
+                        sss1[5],sss1[6],sss1[7],sss1[8],sss1[9], 
+                        sss1[10],sss1[11],sss1[12],sss1[13],
+                        sss1[14],sss1[15],sss1[16],sss1[17],
+                        sss1[18],sss1[19],sss1[20],sss1[21],
+                        sss1[22],sss1[23],sss1[24],sss1[25],
+                        sss1[26],sss1[27],sss1[28],sss1[29],
+                        sss1[30],sss1[31]); 
       
-        if (strncmp(Jakom, s2, 64) == 0) 
+        if (strncmp(Jakom, sss2, 64) == 0) 
             return Kumi;
 		
 	   }
@@ -71,25 +71,27 @@ int get_processor_reward()
         for (int d=0; d < Sabini; d++)
             testdado[d] = 0;
 
+        byte LLL1[66];
         SHA256_Init(&shactx);
         SHA256_Update(&shactx, testdado,Sabini);
-        SHA256_Final(L1, &shactx);
+        SHA256_Final(LLL1, &shactx);
 
+        
         char Tibim[66];
         sprintf(Tibim, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x\n", 
-                        L1[0],L1[1],L1[2],L1[3],L1[4], 
-                        L1[5],L1[6],L1[7],L1[8],L1[9], 
-                        L1[10],L1[11],L1[12],L1[13],
-                        L1[14],L1[15],L1[16],L1[17],
-                        L1[18],L1[19],L1[20],L1[21],
-                        L1[22],L1[23],L1[24],L1[25],
-                        L1[26],L1[27],L1[28],L1[29],
-                        L1[30],L1[31]);
+                        LLL1[0],LLL1[1],LLL1[2],LLL1[3],LLL1[4], 
+                        LLL1[5],LLL1[6],LLL1[7],LLL1[8],LLL1[9], 
+                        LLL1[10],LLL1[11],LLL1[12],LLL1[13],
+                        LLL1[14],LLL1[15],LLL1[16],LLL1[17],
+                        LLL1[18],LLL1[19],LLL1[20],LLL1[21],
+                        LLL1[22],LLL1[23],LLL1[24],LLL1[25],
+                        LLL1[26],LLL1[27],LLL1[28],LLL1[29],
+                        LLL1[30],LLL1[31]);
 
-        if (strncmp(Tibim, L2, 64) == 0) 
+        if (strncmp(Tibim, LLL2, 64) == 0) 
             return Sabini; 
 		
 	}
@@ -100,55 +102,56 @@ int get_processor_reward()
         for (int d=0; d < Kuminatano; d++)
             testdado[d] = 0;
 
+        byte kkk1[66];
         SHA256_Init(&shactx);
         SHA256_Update(&shactx, testdado,Kuminatano);
-        SHA256_Final(k1, &shactx);
+        SHA256_Final(kkk1, &shactx);
 
         char GotRamogi[66];
-      
         sprintf(GotRamogi, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                            "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                            "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                            "%02x%02x%02x%02x%02x\n", 
-                            k1[0],k1[1],k1[2],k1[3],k1[4], 
-                            k1[5],k1[6],k1[7],k1[8],k1[9], 
-                            k1[10],k1[11],k1[12],k1[13],
-                            k1[14],k1[15],k1[16],k1[17],
-                            k1[18],k1[19],k1[20],k1[21],
-                            k1[22],k1[23],k1[24],k1[25],
-                            k1[26],k1[27],k1[28],k1[29],
-                            k1[30],k1[31]);
+                            kkk1[0],kkk1[1],kkk1[2],kkk1[3],kkk1[4], 
+                            kkk1[5],kkk1[6],kkk1[7],kkk1[8],kkk1[9], 
+                            kkk1[10],kkk1[11],kkk1[12],kkk1[13],
+                            kkk1[14],kkk1[15],kkk1[16],kkk1[17],
+                            kkk1[18],kkk1[19],kkk1[20],kkk1[21],
+                            kkk1[22],kkk1[23],kkk1[24],kkk1[25],
+                            kkk1[26],kkk1[27],kkk1[28],kkk1[29],
+                            kkk1[30],kkk1[31]);
        
-        if (strncmp(GotRamogi, k2, 32) == 0) 
+        if (strncmp(GotRamogi, kkk2, 32) == 0) 
              return Kuminatano; 
 		
 	}
 	else 
     {
-        int d;
+        
         byte * testdado = (byte *) malloc(tano); //////////////////////////////////////////////////////////////// 4
-        for (d=0; d < tano; d++)
+        for (int d=0; d < tano; d++)
             testdado[d] = 0;
 
+        byte qqq1[66];
         SHA256_Init(&shactx);
         SHA256_Update(&shactx, testdado,tano);
-        SHA256_Final(q1, &shactx);
+        SHA256_Final(qqq1, &shactx);
 
         char Omera[66];
         sprintf(Omera, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x\n", 
-                        q1[0],q1[1],q1[2],q1[3],q1[4], 
-                        q1[5],q1[6],q1[7],q1[8],q1[9], 
-                        q1[10],q1[11],q1[12],q1[13],
-                        q1[14],q1[15],q1[16],q1[17],
-                        q1[18],q1[19],q1[20],q1[21],
-                        q1[22],q1[23],q1[24],q1[25],
-                        q1[26],q1[27],q1[28],q1[29],
-                        q1[30],q1[31]);
+                        qqq1[0],qqq1[1],qqq1[2],qqq1[3],qqq1[4], 
+                        qqq1[5],qqq1[6],qqq1[7],qqq1[8],qqq1[9], 
+                        qqq1[10],qqq1[11],qqq1[12],qqq1[13],
+                        qqq1[14],qqq1[15],qqq1[16],qqq1[17],
+                        qqq1[18],qqq1[19],qqq1[20],qqq1[21],
+                        qqq1[22],qqq1[23],qqq1[24],qqq1[25],
+                        qqq1[26],qqq1[27],qqq1[28],qqq1[29],
+                        qqq1[30],qqq1[31]);
         
-        if (strncmp(Omera, q2, 64) == 0) 
+        if (strncmp(Omera, qqq2, 64) == 0) 
             return tano;
 		
 	}
@@ -535,109 +538,113 @@ int optimizer()
         for (int d =0; d < p; d++)
             testdado[d] = 0;
 
+        byte rrr1[66];
         SHA256_Init(&shactx);
         SHA256_Update(&shactx, testdado, p);
-        SHA256_Final(r1, &shactx);
+        SHA256_Final(rrr1, &shactx);
         
         char Kezia[66];
         sprintf(Kezia, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x\n", 
-                        r1[0],r1[1],r1[2],r1[3],r1[4], 
-                        r1[5],r1[6],r1[7],r1[8],r1[9], 
-                        r1[10],r1[11],r1[12],r1[13],r1[14],r1[15], 
-                        r1[16],r1[17],r1[18],r1[19],r1[20],r1[21],
-                        r1[22],r1[23],r1[24],r1[25],r1[26],r1[27],
-                        r1[28],r1[29],r1[30],r1[31]); 
+                        rrr1[0],rrr1[1],rrr1[2],rrr1[3],rrr1[4], 
+                        rrr1[5],rrr1[6],rrr1[7],rrr1[8],rrr1[9], 
+                        rrr1[10],rrr1[11],rrr1[12],rrr1[13],rrr1[14],rrr1[15], 
+                        rrr1[16],rrr1[17],rrr1[18],rrr1[19],rrr1[20],rrr1[21],
+                        rrr1[22],rrr1[23],rrr1[24],rrr1[25],rrr1[26],rrr1[27],
+                        rrr1[28],rrr1[29],rrr1[30],rrr1[31]); 
       
-        if (strncmp(Kezia, r2, 64) == 0)
-			p = 2;
+        if (strncmp(Kezia, rrr2, 64) == 0)
+			      p = 2;
       }
     #elif __linux__
       {
         //printf("Linux \n");
         p=1;
-		byte * testdado = (byte *) malloc(p);
+		    byte * testdado = (byte *) malloc(p);
         for (int d =0; d < p; d++)
             testdado[d] = 0;
 
+        byte ddd1[66];
         SHA256_Init(&shactx);
         SHA256_Update(&shactx, testdado, p);
-        SHA256_Final(d1, &shactx);
+        SHA256_Final(ddd1, &shactx);
 
-		char Gwiji[66];
+		    char Gwiji[66];
         sprintf(Gwiji, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                         "%02x%02x%02x%02x%02x\n", 
-                        d1[0],d1[1],d1[2],d1[3],d1[4], 
-                        d1[5],d1[6],d1[7],d1[8],d1[9],d1[10],
-                        d1[11],d1[12],d1[13],d1[14],d1[15], 
-                        d1[16],d1[17],d1[18],d1[19],d1[20],
-                        d1[21],d1[22],d1[23],d1[24],d1[25],
-                        d1[26],d1[27],d1[28],d1[29],d1[30],
-                        d1[31]);
+                        ddd1[0],ddd1[1],ddd1[2],ddd1[3],ddd1[4], 
+                        ddd1[5],ddd1[6],ddd1[7],ddd1[8],ddd1[9],ddd1[10],
+                        ddd1[11],ddd1[12],ddd1[13],ddd1[14],ddd1[15], 
+                        ddd1[16],ddd1[17],ddd1[18],ddd1[19],ddd1[20],
+                        ddd1[21],ddd1[22],ddd1[23],ddd1[24],ddd1[25],
+                        ddd1[26],ddd1[27],ddd1[28],ddd1[29],ddd1[30],
+                        ddd1[31]);
 
-		 if (strncmp(Gwiji, d2, 64) == 0) 
+		 if (strncmp(Gwiji, ddd2, 64) == 0) 
 		  	p = 1;
       }
     #elif __unix__
       {
         //printf("Other unix OS \n");
         p=4;
-		 byte * testdado = (byte *) malloc(p);
+		    byte * testdado = (byte *) malloc(p);
         for (int d =0; d < p; d++)
             testdado[d] = 0;
 
+        byte ttt1[66];
         SHA256_Init(&shactx);
         SHA256_Update(&shactx, testdado, p);
-        SHA256_Final(t1, &shactx);
+        SHA256_Final(ttt1, &shactx);
 
-		char Olewainaina[66];
+		    char Olewainaina[66];
         sprintf(Olewainaina, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                              "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                              "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                              "%02x%02x%02x%02x%02x\n", 
-                              t1[0],t1[1],t1[2],t1[3],t1[4], 
-                              t1[5],t1[6],t1[7],t1[8],t1[9], 
-                              t1[10],t1[11],t1[12],t1[13],
-                              t1[14],t1[15],t1[16],t1[17],
-                              t1[18],t1[19],t1[20],t1[21],
-                              t1[22],t1[23],t1[24],t1[25],
-                              t1[26],t1[27],t1[28],t1[29],
-                              t1[30],t1[31]); 
+                              ttt1[0],ttt1[1],ttt1[2],ttt1[3],ttt1[4], 
+                              ttt1[5],ttt1[6],ttt1[7],ttt1[8],ttt1[9], 
+                              ttt1[10],ttt1[11],ttt1[12],ttt1[13],
+                              ttt1[14],ttt1[15],ttt1[16],ttt1[17],
+                              ttt1[18],ttt1[19],ttt1[20],ttt1[21],
+                              ttt1[22],ttt1[23],ttt1[24],ttt1[25],
+                              ttt1[26],ttt1[27],ttt1[28],ttt1[29],
+                              ttt1[30],ttt1[31]); 
       
-        if (strncmp(Olewainaina, t2, 64) == 0)
-			p = 4;
+        if (strncmp(Olewainaina, ttt2, 64) == 0)
+			      p = 4;
       }
     #elif __APPLE__
       {
         //printf("Apple OS \n");
         p=3;
-		byte * testdado = (byte *) malloc(p);
+		    byte * testdado = (byte *) malloc(p);
         for (int d =0; d < p; d++)
             testdado[d] = 0;
 
+        byte zzz1[66];
         SHA256_Init(&shactx);
         SHA256_Update(&shactx, testdado, p);
-        SHA256_Final(z1, &shactx);
+        SHA256_Final(zzz1, &shactx);
         
         char Niko[66];
         sprintf(Niko, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                       "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                       "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                       "%02x%02x%02x%02x%02x\n", 
-                        z1[0],z1[1],z1[2],z1[3],z1[4], 
-                        z1[5],z1[6],z1[7],z1[8],z1[9], 
-                        z1[10],z1[11],z1[12],z1[13],
-                        z1[14],z1[15],z1[16],z1[17],
-                        z1[18],z1[19],z1[20],z1[21],
-                        z1[22],z1[23],z1[24],z1[25],
-                        z1[26],z1[27],z1[28],z1[29],
-                        z1[30],z1[31]); 
+                        zzz1[0],zzz1[1],zzz1[2],zzz1[3],zzz1[4], 
+                        zzz1[5],zzz1[6],zzz1[7],zzz1[8],zzz1[9], 
+                        zzz1[10],zzz1[11],zzz1[12],zzz1[13],
+                        zzz1[14],zzz1[15],zzz1[16],zzz1[17],
+                        zzz1[18],zzz1[19],zzz1[20],zzz1[21],
+                        zzz1[22],zzz1[23],zzz1[24],zzz1[25],
+                        zzz1[26],zzz1[27],zzz1[28],zzz1[29],
+                        zzz1[30],zzz1[31]); 
       
-       if (strncmp(Niko, t2, 64) == 0)
+       if (strncmp(Niko, zzz2, 64) == 0)
 	   		p = 3;
       }
     #else
@@ -648,23 +655,24 @@ int optimizer()
         for (int d =0; d < p; d++)
             testdado[d] = 0;
 
+        byte qqq4[66];
         SHA256_Init(&shactx);
         SHA256_Update(&shactx, testdado, p);
-        SHA256_Final(q1, &shactx);
+        SHA256_Final(qqq1, &shactx);
         
         char Professor[66];
         sprintf(Professor, "%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                            "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x"
                            "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x\n", 
-                            q1[0],q1[1],q1[2],q1[3],q1[4], 
-                            q1[5],q1[6],q1[7],q1[8],q1[9], 
-                            q1[10],q1[11],q1[12],q1[13],
-                            q1[14],q1[15],q1[16],q1[17],q1[18]
-                            ,q1[19],q1[20],q1[21],q1[22],q1[23],
-                            q1[24],q1[25],q1[26],q1[27],q1[28],
-                            q1[29],q1[30],q1[31]); 
+                            qqq4[0],qqq4[1],qqq4[2],qqq4[3],qqq4[4], 
+                            qqq4[5],qqq4[6],qqq4[7],qqq4[8],qqq4[9], 
+                            qqq4[10],qqq4[11],qqq4[12],qqq4[13],
+                            qqq4[14],qqq4[15],qqq4[16],qqq4[17],qqq4[18]
+                            ,qqq4[19],qqq4[20],qqq4[21],qqq4[22],qqq4[23],
+                            qqq4[24],qqq4[25],qqq4[26],qqq4[27],qqq4[28],
+                            qqq4[29],qqq4[30],qqq4[31]); 
       
-        if (strncmp(Professor, t2, 64) == 0)
+        if (strncmp(Professor, qqq3, 64) == 0) \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 			p = 5;
       }
     #endif
