@@ -319,7 +319,6 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/yespower/sysendian.h \
   crypto/yespower/insecure_memzero.h \
   crypto/yespower/yespower-platform_c.h \
-  consensus/consensus.h \
   crypto/yespower/optimizer.c \
   crypto/yespower/yespower-opt.c
 
