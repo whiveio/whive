@@ -46,8 +46,8 @@ The following are developer notes on how to build Whive Core on your native plat
 - [NetBSD Build Notes](doc/build-netbsd.md)
 - [Gitian Building Guide](doc/gitian-building.md)
 
-# `whive.conf` Configuration File
-
+ `whive.conf` Configuration File
+ ---------------------
 The configuration file is used by `whived`, `whive-qt` and `whive-cli`.
 
 All command-line options (except for `-?`, `-help`, `-version` and `-conf`) may be specified in a configuration file, and all configuration file options (except for `includeconf`) may also be specified on the command line. Command-line options override values set in the configuration file and configuration file options override values set in the GUI.
