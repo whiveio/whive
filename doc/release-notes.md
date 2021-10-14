@@ -1,4 +1,4 @@
-Bitcoin Core version 0.17.1 is now available from:
+Whive Core version 0.17.1 is now available from:
 
   <https://bitcoincore.org/bin/bitcoin-core-0.17.1/>
 

@@ -4,7 +4,7 @@ libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
 Name: Whive Core consensus library
-Description: Library for the Bitcoin consensus protocol.
+Description: Library for the Whive consensus protocol.
 Version: 2.17.0
 Libs: -L${libdir} -lbitcoinconsensus
 Cflags: -I${includedir}
