@@ -524,12 +524,12 @@ static UniValue sendtoaddress(const JSONRPCRequest& request)
             "                             This is not part of the transaction, just kept in your wallet.\n"
             "4. \"comment_to\"         (string, optional) A comment to store the name of the person or organization \n"
             "                             to which you're sending the transaction. This is not part of the \n"
-            "                             transaction, just kept in your wallet.\n"
-            "5. subtractfeefromamount  (boolean, optional, default=false) The fee will be deducted from the amount being sent.\n"
-            "                             The recipient will receive less bitcoins than you enter in the amount field.\n"
-            "6. replaceable            (boolean, optional) Allow this transaction to be replaced by a transaction with higher fees via BIP 125\n"
-            "7. conf_target            (numeric, optional) Confirmation target (in blocks)\n"
-            "8. \"estimate_mode\"      (string, optional, default=UNSET) The fee estimate mode, must be one of:\n"
+            "                             transaction, just kept in your wallet."},
+                    {"subtractfeefromamount", RPCArg::Type::BOOL, /* default */ "false", "The fee will be deducted from the amount being sent.\n"
+            "                             The recipient will receive less bitcoins than you enter in the amount field."},
+                    {"replaceable", RPCArg::Type::BOOL, /* default */ "wallet default", "Allow this transaction to be replaced by a transaction with higher fees via BIP 125"},
+                    {"conf_target", RPCArg::Type::NUM, /* default */ "wallet default", "Confirmation target (in blocks)"},
+                    {"estimate_mode", RPCArg::Type::STR, /* default */ "UNSET", "The fee estimate mode, must be one of:\n"
             "       \"UNSET\"\n"
             "       \"ECONOMICAL\"\n"
             "       \"CONSERVATIVE\"\n"
@@ -1139,14 +1139,14 @@ static UniValue sendmany(const JSONRPCRequest& request)
             "5. subtractfeefrom         (array, optional) A json array with addresses.\n"
             "                           The fee will be equally deducted from the amount of each selected address.\n"
             "                           Those recipients will receive less bitcoins than you enter in their corresponding amount field.\n"
-            "                           If no addresses are specified here, the sender pays the fee.\n"
-            "    [\n"
-            "      \"address\"          (string) Subtract fee from this address\n"
-            "      ,...\n"
-            "    ]\n"
-            "6. replaceable            (boolean, optional) Allow this transaction to be replaced by a transaction with higher fees via BIP 125\n"
-            "7. conf_target            (numeric, optional) Confirmation target (in blocks)\n"
-            "8. \"estimate_mode\"      (string, optional, default=UNSET) The fee estimate mode, must be one of:\n"
+            "                           If no addresses are specified here, the sender pays the fee.",
+                        {
+                            {"address", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "Subtract fee from this address"},
+                        },
+                    },
+                    {"replaceable", RPCArg::Type::BOOL, /* default */ "wallet default", "Allow this transaction to be replaced by a transaction with higher fees via BIP 125"},
+                    {"conf_target", RPCArg::Type::NUM, /* default */ "wallet default", "Confirmation target (in blocks)"},
+                    {"estimate_mode", RPCArg::Type::STR, /* default */ "UNSET", "The fee estimate mode, must be one of:\n"
             "       \"UNSET\"\n"
             "       \"ECONOMICAL\"\n"
             "       \"CONSERVATIVE\"\n"
@@ -1378,8 +1378,8 @@ static UniValue addmultisigaddress(const JSONRPCRequest& request)
     }
 
     // Construct using pay-to-script-hash:
-    CScript inner = CreateMultisigRedeemscript(required, pubkeys);
-    CTxDestination dest = AddAndGetDestinationForScript(*pwallet, inner, output_type);
+    CScript inner;
+    CTxDestination dest = AddAndGetMultisigDestination(required, pubkeys, output_type, *pwallet, inner);
     pwallet->SetAddressBook(dest, label, "send");
 
     UniValue result(UniValue::VOBJ);
@@ -3589,48 +3589,55 @@ static UniValue fundrawtransaction(const JSONRPCRequest& request)
         return NullUniValue;
     }
 
-    if (request.fHelp || request.params.size() < 1 || request.params.size() > 3)
-        throw std::runtime_error(
-                            "fundrawtransaction \"hexstring\" ( options iswitness )\n"
-                            "\nAdd inputs to a transaction until it has enough in value to meet its out value.\n"
-                            "This will not modify existing inputs, and will add at most one change output to the outputs.\n"
-                            "No existing outputs will be modified unless \"subtractFeeFromOutputs\" is specified.\n"
-                            "Note that inputs which were signed may need to be resigned after completion since in/outputs have been added.\n"
-                            "The inputs added will not be signed, use signrawtransaction for that.\n"
-                            "Note that all existing inputs must have their previous output transaction be in the wallet.\n"
-                            "Note that all inputs selected must be of standard form and P2SH scripts must be\n"
-                            "in the wallet using importaddress or addmultisigaddress (to calculate fees).\n"
-                            "You can see whether this is the case by checking the \"solvable\" field in the listunspent output.\n"
-                            "Only pay-to-pubkey, multisig, and P2SH versions thereof are currently supported for watch-only\n"
-                            "\nArguments:\n"
-                            "1. \"hexstring\"           (string, required) The hex string of the raw transaction\n"
-                            "2. options                 (object, optional)\n"
-                            "   {\n"
-                            "     \"changeAddress\"          (string, optional, default pool address) The bitcoin address to receive the change\n"
-                            "     \"changePosition\"         (numeric, optional, default random) The index of the change output\n"
-                            "     \"change_type\"            (string, optional) The output type to use. Only valid if changeAddress is not specified. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\". Default is set by -changetype.\n"
-                            "     \"includeWatching\"        (boolean, optional, default false) Also select inputs which are watch only\n"
-                            "     \"lockUnspents\"           (boolean, optional, default false) Lock selected unspent outputs\n"
-                            "     \"feeRate\"                (numeric, optional, default not set: makes wallet determine the fee) Set a specific fee rate in " + CURRENCY_UNIT + "/kB\n"
-                            "     \"subtractFeeFromOutputs\" (array, optional) A json array of integers.\n"
+    const RPCHelpMan help{"fundrawtransaction",
+                "\nAdd inputs to a transaction until it has enough in value to meet its out value.\n"
+                "This will not modify existing inputs, and will add at most one change output to the outputs.\n"
+                "No existing outputs will be modified unless \"subtractFeeFromOutputs\" is specified.\n"
+                "Note that inputs which were signed may need to be resigned after completion since in/outputs have been added.\n"
+                "The inputs added will not be signed, use signrawtransactionwithkey\n"
+                " or signrawtransactionwithwallet for that.\n"
+                "Note that all existing inputs must have their previous output transaction be in the wallet.\n"
+                "Note that all inputs selected must be of standard form and P2SH scripts must be\n"
+                "in the wallet using importaddress or addmultisigaddress (to calculate fees).\n"
+                "You can see whether this is the case by checking the \"solvable\" field in the listunspent output.\n"
+                "Only pay-to-pubkey, multisig, and P2SH versions thereof are currently supported for watch-only\n",
+                {
+                    {"hexstring", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The hex string of the raw transaction"},
+                    {"options", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED_NAMED_ARG, "for backward compatibility: passing in a true instead of an object will result in {\"includeWatching\":true}",
+                        {
+                            {"changeAddress", RPCArg::Type::STR, /* default */ "pool address", "The bitcoin address to receive the change"},
+                            {"changePosition", RPCArg::Type::NUM, /* default */ "random", "The index of the change output"},
+                            {"change_type", RPCArg::Type::STR, /* default */ "set by -changetype", "The output type to use. Only valid if changeAddress is not specified. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\"."},
+                            {"includeWatching", RPCArg::Type::BOOL, /* default */ "false", "Also select inputs which are watch only"},
+                            {"lockUnspents", RPCArg::Type::BOOL, /* default */ "false", "Lock selected unspent outputs"},
+                            {"feeRate", RPCArg::Type::AMOUNT, /* default */ "not set: makes wallet determine the fee", "Set a specific fee rate in " + CURRENCY_UNIT + "/kB"},
+                            {"subtractFeeFromOutputs", RPCArg::Type::ARR, /* default */ "empty array", "A json array of integers.\n"
                             "                              The fee will be equally deducted from the amount of each specified output.\n"
                             "                              The outputs are specified by their zero-based index, before any change output is added.\n"
                             "                              Those recipients will receive less bitcoins than you enter in their corresponding amount field.\n"
-                            "                              If no outputs are specified here, the sender pays the fee.\n"
-                            "                                  [vout_index,...]\n"
-                            "     \"replaceable\"            (boolean, optional) Marks this transaction as BIP125 replaceable.\n"
-                            "                              Allows this transaction to be replaced by a transaction with higher fees\n"
-                            "     \"conf_target\"            (numeric, optional) Confirmation target (in blocks)\n"
-                            "     \"estimate_mode\"          (string, optional, default=UNSET) The fee estimate mode, must be one of:\n"
+                            "                              If no outputs are specified here, the sender pays the fee.",
+                                {
+                                    {"vout_index", RPCArg::Type::NUM, RPCArg::Optional::OMITTED, "The zero-based output index, before a change output is added."},
+                                },
+                            },
+                            {"replaceable", RPCArg::Type::BOOL, /* default */ "wallet default", "Marks this transaction as BIP125 replaceable.\n"
+                            "                              Allows this transaction to be replaced by a transaction with higher fees"},
+                            {"conf_target", RPCArg::Type::NUM, /* default */ "wallet default", "Confirmation target (in blocks)"},
+                            {"estimate_mode", RPCArg::Type::STR, /* default */ "UNSET", "The fee estimate mode, must be one of:\n"
                             "         \"UNSET\"\n"
                             "         \"ECONOMICAL\"\n"
-                            "         \"CONSERVATIVE\"\n"
-                            "   }\n"
-                            "                         for backward compatibility: passing in a true instead of an object will result in {\"includeWatching\":true}\n"
-                            "3. iswitness               (boolean, optional) Whether the transaction hex is a serialized witness transaction \n"
-                            "                              If iswitness is not present, heuristic tests will be used in decoding\n"
-
-                            "\nResult:\n"
+                            "         \"CONSERVATIVE\""},
+                        },
+                        "options"},
+                    {"iswitness", RPCArg::Type::BOOL, /* default */ "depends on heuristic tests", "Whether the transaction hex is a serialized witness transaction.\n"
+                        "If iswitness is not present, heuristic tests will be used in decoding.\n"
+                        "If true, only witness deserialization will be tried.\n"
+                        "If false, only non-witness deserialization will be tried.\n"
+                        "This boolean should reflect whether the transaction has inputs\n"
+                        "(e.g. fully valid, or on-chain transactions), if known by the caller."
+                    },
+                },
+                RPCResult{
                             "{\n"
                             "  \"hex\":       \"value\", (string)  The resulting raw transaction (hex-encoded string)\n"
                             "  \"fee\":       n,         (numeric) Fee in " + CURRENCY_UNIT + " the resulting transaction pays\n"
@@ -3645,7 +3652,12 @@ static UniValue fundrawtransaction(const JSONRPCRequest& request)
                             + HelpExampleCli("signrawtransaction", "\"fundedtransactionhex\"") +
                             "\nSend the transaction\n"
                             + HelpExampleCli("sendrawtransaction", "\"signedtransactionhex\"")
-                            );
+                                },
+    };
+
+    if (request.fHelp || !help.IsValidNumArgs(request.params.size())) {
+        throw std::runtime_error(help.ToString());
+    }
 
     RPCTypeCheck(request.params, {UniValue::VSTR, UniValueType(), UniValue::VBOOL});
 
@@ -3753,24 +3765,24 @@ static UniValue bumpfee(const JSONRPCRequest& request)
 
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2) {
         throw std::runtime_error(
-            "bumpfee \"txid\" ( options ) \n"
-            "\nBumps the fee of an opt-in-RBF transaction T, replacing it with a new transaction B.\n"
-            "An opt-in RBF transaction with the given txid must be in the wallet.\n"
-            "The command will pay the additional fee by decreasing (or perhaps removing) its change output.\n"
-            "If the change output is not big enough to cover the increased fee, the command will currently fail\n"
-            "instead of adding new inputs to compensate. (A future implementation could improve this.)\n"
-            "The command will fail if the wallet or mempool contains a transaction that spends one of T's outputs.\n"
-            "By default, the new fee will be calculated automatically using estimatesmartfee.\n"
-            "The user can specify a confirmation target for estimatesmartfee.\n"
-            "Alternatively, the user can specify totalFee, or use RPC settxfee to set a higher fee rate.\n"
-            "At a minimum, the new fee rate must be high enough to pay an additional new relay fee (incrementalfee\n"
-            "returned by getnetworkinfo) to enter the node's mempool.\n"
-            "\nArguments:\n"
-            "1. txid                  (string, required) The txid to be bumped\n"
-            "2. options               (object, optional)\n"
-            "   {\n"
-            "     \"confTarget\"        (numeric, optional) Confirmation target (in blocks)\n"
-            "     \"totalFee\"          (numeric, optional) Total fee (NOT feerate) to pay, in satoshis.\n"
+            RPCHelpMan{"bumpfee",
+                "\nBumps the fee of an opt-in-RBF transaction T, replacing it with a new transaction B.\n"
+                "An opt-in RBF transaction with the given txid must be in the wallet.\n"
+                "The command will pay the additional fee by decreasing (or perhaps removing) its change output.\n"
+                "If the change output is not big enough to cover the increased fee, the command will currently fail\n"
+                "instead of adding new inputs to compensate. (A future implementation could improve this.)\n"
+                "The command will fail if the wallet or mempool contains a transaction that spends one of T's outputs.\n"
+                "By default, the new fee will be calculated automatically using estimatesmartfee.\n"
+                "The user can specify a confirmation target for estimatesmartfee.\n"
+                "Alternatively, the user can specify totalFee, or use RPC settxfee to set a higher fee rate.\n"
+                "At a minimum, the new fee rate must be high enough to pay an additional new relay fee (incrementalfee\n"
+                "returned by getnetworkinfo) to enter the node's mempool.\n",
+                {
+                    {"txid", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "The txid to be bumped"},
+                    {"options", RPCArg::Type::OBJ, RPCArg::Optional::OMITTED_NAMED_ARG, "",
+                        {
+                            {"confTarget", RPCArg::Type::NUM, /* default */ "wallet default", "Confirmation target (in blocks)"},
+                            {"totalFee", RPCArg::Type::NUM, /* default */ "fallback to 'confTarget'", "Total fee (NOT feerate) to pay, in satoshis.\n"
             "                         In rare cases, the actual fee paid might be slightly higher than the specified\n"
             "                         totalFee if the tx change output has to be removed because it is too close to\n"
             "                         the dust threshold.\n"
@@ -4706,12 +4718,15 @@ UniValue walletcreatefundedpsbt(const JSONRPCRequest& request)
                             "                              The fee will be equally deducted from the amount of each specified output.\n"
                             "                              The outputs are specified by their zero-based index, before any change output is added.\n"
                             "                              Those recipients will receive less bitcoins than you enter in their corresponding amount field.\n"
-                            "                              If no outputs are specified here, the sender pays the fee.\n"
-                            "                                  [vout_index,...]\n"
-                            "     \"replaceable\"            (boolean, optional) Marks this transaction as BIP125 replaceable.\n"
-                            "                              Allows this transaction to be replaced by a transaction with higher fees\n"
-                            "     \"conf_target\"            (numeric, optional) Confirmation target (in blocks)\n"
-                            "     \"estimate_mode\"          (string, optional, default=UNSET) The fee estimate mode, must be one of:\n"
+                            "                              If no outputs are specified here, the sender pays the fee.",
+                                {
+                                    {"vout_index", RPCArg::Type::NUM, RPCArg::Optional::OMITTED, "The zero-based output index, before a change output is added."},
+                                },
+                            },
+                            {"replaceable", RPCArg::Type::BOOL, /* default */ "wallet default", "Marks this transaction as BIP125 replaceable.\n"
+                            "                              Allows this transaction to be replaced by a transaction with higher fees"},
+                            {"conf_target", RPCArg::Type::NUM, /* default */ "Fallback to wallet's confirmation target", "Confirmation target (in blocks)"},
+                            {"estimate_mode", RPCArg::Type::STR, /* default */ "UNSET", "The fee estimate mode, must be one of:\n"
                             "         \"UNSET\"\n"
                             "         \"ECONOMICAL\"\n"
                             "         \"CONSERVATIVE\"\n"
@@ -4739,7 +4754,13 @@ UniValue walletcreatefundedpsbt(const JSONRPCRequest& request)
 
     CAmount fee;
     int change_position;
-    CMutableTransaction rawTx = ConstructTransaction(request.params[0], request.params[1], request.params[2], request.params[3]["replaceable"]);
+    bool rbf = pwallet->m_signal_rbf;
+    const UniValue &replaceable_arg = request.params[3]["replaceable"];
+    if (!replaceable_arg.isNull()) {
+        RPCTypeCheckArgument(replaceable_arg, UniValue::VBOOL);
+        rbf = replaceable_arg.isTrue();
+    }
+    CMutableTransaction rawTx = ConstructTransaction(request.params[0], request.params[1], request.params[2], rbf);
     FundTransaction(pwallet, rawTx, fee, change_position, request.params[3]);
 
     // Make a blank psbt

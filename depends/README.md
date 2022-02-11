@@ -43,7 +43,17 @@ For Win32/Win64 cross compilation:
 
 For linux (including i386, ARM) cross compilation:
 
-    sudo apt-get install curl g++-aarch64-linux-gnu g++-4.8-aarch64-linux-gnu gcc-4.8-aarch64-linux-gnu binutils-aarch64-linux-gnu g++-arm-linux-gnueabihf g++-4.8-arm-linux-gnueabihf gcc-4.8-arm-linux-gnueabihf binutils-arm-linux-gnueabihf g++-4.8-multilib gcc-4.8-multilib binutils-gold bsdmainutils
+Common linux dependencies:
+
+    sudo apt-get install make automake cmake curl g++-multilib libtool binutils-gold bsdmainutils pkg-config python3 patch
+
+For linux ARM cross compilation:
+
+    sudo apt-get install g++-arm-linux-gnueabihf binutils-arm-linux-gnueabihf
+
+For linux AARCH64 cross compilation:
+
+    sudo apt-get install g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
 
 For linux RISC-V 64-bit cross compilation (there are no packages for 32-bit):
 

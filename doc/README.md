@@ -47,7 +47,13 @@ Development
 ---------------------
 The Whive repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
-- [Travis CI](travis-ci.md)
+- [Developer Notes](developer-notes.md)
+- [Productivity Notes](productivity.md)
+- [Release Notes](release-notes.md)
+- [Release Process](release-process.md)
+- [Source Code Documentation (External Link)](https://dev.visucore.com/bitcoin/doxygen/)
+- [Translation Process](translation_process.md)
+- [Translation Strings Policy](translation_strings_policy.md)
 - [JSON-RPC Interface](JSON-RPC-interface.md)
 - [Unauthenticated REST Interface](REST-interface.md)
 - [Dnsseed Policy](dnsseed-policy.md)

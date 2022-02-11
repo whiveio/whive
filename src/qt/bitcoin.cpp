@@ -282,9 +282,12 @@ void BitcoinCore::shutdown()
     }
 }
 
-BitcoinApplication::BitcoinApplication(interfaces::Node& node, int &argc, char **argv):
-    QApplication(argc, argv),
-    coreThread(0),
+static int qt_argc = 1;
+static const char* qt_argv = "bitcoin-qt";
+
+BitcoinApplication::BitcoinApplication(interfaces::Node& node):
+    QApplication(qt_argc, const_cast<char **>(&qt_argv)),
+    coreThread(nullptr),
     m_node(node),
     optionsModel(0),
     clientModel(0),
@@ -564,20 +567,23 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(bitcoin);
     Q_INIT_RESOURCE(bitcoin_locale);
 
-    BitcoinApplication app(*node, argc, argv);
-#if QT_VERSION > 0x050100
     // Generate high-dpi pixmaps
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 #endif
 #if QT_VERSION >= 0x050600
-    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 #ifdef Q_OS_MAC
     QApplication::setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
+    BitcoinApplication app(*node);
+
     // Register meta types used for QMetaObject::invokeMethod
     qRegisterMetaType< bool* >();
+#ifdef ENABLE_WALLET
+    qRegisterMetaType<WalletModel*>();
+#endif
     //   Need to pass name here as CAmount is a typedef (see http://qt-project.org/doc/qt-5/qmetatype.html#qRegisterMetaType)
     //   IMPORTANT if it is no longer a typedef use the normal variant above
     qRegisterMetaType< CAmount >("CAmount");
@@ -592,7 +598,7 @@ int main(int argc, char *argv[])
     SetupUIArgs();
     std::string error;
     if (!node->parseParameters(argc, argv, error)) {
-        QMessageBox::critical(0, QObject::tr(PACKAGE_NAME),
+        QMessageBox::critical(nullptr, PACKAGE_NAME,
             QObject::tr("Error parsing command line arguments: %1.").arg(QString::fromStdString(error)));
         return EXIT_FAILURE;
     }
@@ -630,12 +636,12 @@ int main(int argc, char *argv[])
     /// - Do not call GetDataDir(true) before this step finishes
     if (!fs::is_directory(GetDataDir(false)))
     {
-        QMessageBox::critical(0, QObject::tr(PACKAGE_NAME),
-                              QObject::tr("Error: Specified data directory \"%1\" does not exist.").arg(QString::fromStdString(gArgs.GetArg("-datadir", ""))));
+        QMessageBox::critical(nullptr, PACKAGE_NAME,
+            QObject::tr("Error: Specified data directory \"%1\" does not exist.").arg(QString::fromStdString(gArgs.GetArg("-datadir", ""))));
         return EXIT_FAILURE;
     }
     if (!node->readConfigFiles(error)) {
-        QMessageBox::critical(0, QObject::tr(PACKAGE_NAME),
+        QMessageBox::critical(nullptr, PACKAGE_NAME,
             QObject::tr("Error: Cannot parse configuration file: %1.").arg(QString::fromStdString(error)));
         return EXIT_FAILURE;
     }
@@ -650,7 +656,7 @@ int main(int argc, char *argv[])
     try {
         node->selectParams(gArgs.GetChainName());
     } catch(std::exception &e) {
-        QMessageBox::critical(0, QObject::tr(PACKAGE_NAME), QObject::tr("Error: %1").arg(e.what()));
+        QMessageBox::critical(nullptr, PACKAGE_NAME, QObject::tr("Error: %1").arg(e.what()));
         return EXIT_FAILURE;
     }
 #ifdef ENABLE_WALLET
@@ -710,7 +716,7 @@ int main(int argc, char *argv[])
         if (node->baseInitialize()) {
             app.requestInitialize();
 #if defined(Q_OS_WIN)
-            WinShutdownMonitor::registerShutdownBlockReason(QObject::tr("%1 didn't yet exit safely...").arg(QObject::tr(PACKAGE_NAME)), (HWND)app.getMainWinId());
+            WinShutdownMonitor::registerShutdownBlockReason(QObject::tr("%1 didn't yet exit safely...").arg(PACKAGE_NAME), (HWND)app.getMainWinId());
 #endif
             app.exec();
             app.requestShutdown();

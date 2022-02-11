@@ -7,11 +7,7 @@ bin_PROGRAMS += qt/whive-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
 # bitcoin qt core #
-QT_TS = \
-  qt/locale/whive_de.ts \
-  qt/locale/whive_en.ts \
-  qt/locale/whive_uk.ts \
-  qt/locale/whive_ru.ts
+include Makefile.qt_locale.include
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -340,7 +336,7 @@ SECONDARY: $(QT_QM)
 
 $(srcdir)/qt/bitcoinstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_consensus_a_SOURCES) $(libbitcoin_util_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
-	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" COPYRIGHT_HOLDERS_SUBSTITUTION="$(COPYRIGHT_HOLDERS_SUBSTITUTION)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
 translate: $(srcdir)/qt/bitcoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/bitcoin.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"

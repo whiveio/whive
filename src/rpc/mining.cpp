@@ -359,9 +359,9 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
             "  \"bits\" : \"xxxxxxxx\",              (string) compressed target of next block\n"
             "  \"height\" : n                      (numeric) The height of the next block\n"
             "}\n"
-
-            "\nExamples:\n"
-            + HelpExampleCli("getblocktemplate", "{\"rules\": [\"segwit\"]}")
+                },
+                RPCExamples{
+                    HelpExampleCli("getblocktemplate", "'{\"rules\": [\"segwit\"]}'")
             + HelpExampleRpc("getblocktemplate", "{\"rules\": [\"segwit\"]}")
          );
 

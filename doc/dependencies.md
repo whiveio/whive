@@ -21,7 +21,7 @@ These are the dependencies currently used by Whive Core. You can find instructio
 | OpenSSL | [1.0.1k](https://www.openssl.org/source) |  | Yes |  |  |
 | PCRE |  |  |  |  | [Yes](https://github.com/whiveio/whive/blob/master/depends/packages/qt.mk#L66) |
 | protobuf | [2.6.1](https://github.com/google/protobuf/releases) |  | No |  |  |
-| Python (tests) |  | [3.4](https://www.python.org/downloads) |  |  |  |
+| Python (tests) |  | [3.5](https://www.python.org/downloads) |  |  |  |
 | qrencode | [3.4.4](https://fukuchi.org/works/qrencode) |  | No |  |  |
 | Qt | [5.9.7](https://download.qt.io/official_releases/qt/) | [5.2] | No |  |  |
 | XCB |  |  |  |  | [Yes](https://github.com/whiveio/whive/blob/master/depends/packages/qt.mk#L87) (Linux only) |

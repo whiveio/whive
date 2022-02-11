@@ -264,7 +264,14 @@ static IntrRecvError InterruptibleRecv(uint8_t* data, size_t len, int timeout, c
                 if (!IsSelectableSocket(hSocket)) {
                     return IntrRecvError::NetworkError;
                 }
-                struct timeval tval = MillisToTimeval(std::min(endTime - curTime, maxWait));
+                int timeout_ms = std::min(endTime - curTime, maxWait);
+#ifdef USE_POLL
+                struct pollfd pollfd = {};
+                pollfd.fd = hSocket;
+                pollfd.events = POLLIN;
+                int nRet = poll(&pollfd, 1, timeout_ms);
+#else
+                struct timeval tval = MillisToTimeval(timeout_ms);
                 fd_set fdset;
                 FD_ZERO(&fdset);
                 FD_SET(hSocket, &fdset);

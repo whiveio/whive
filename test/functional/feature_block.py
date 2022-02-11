@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+s#!/usr/bin/env python3
 # Copyright (c) 2015-2018 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -7,8 +7,14 @@ import copy
 import struct
 import time
 
-from test_framework.blocktools import create_block, create_coinbase, create_tx_with_script, get_legacy_sigopcount_block
-from test_framework.key import CECKey
+from test_framework.blocktools import (
+    create_block,
+    create_coinbase,
+    create_tx_with_script,
+    get_legacy_sigopcount_block,
+    MAX_BLOCK_SIGOPS,
+)
+from test_framework.key import ECKey
 from test_framework.messages import (
     CBlock,
     COIN,
@@ -84,9 +90,9 @@ class FullBlockTest(BitcoinTestFramework):
         self.bootstrap_p2p()  # Add one p2p connection to the node
 
         self.block_heights = {}
-        self.coinbase_key = CECKey()
-        self.coinbase_key.set_secretbytes(b"horsebattery")
-        self.coinbase_pubkey = self.coinbase_key.get_pubkey()
+        self.coinbase_key = ECKey()
+        self.coinbase_key.generate()
+        self.coinbase_pubkey = self.coinbase_key.get_pubkey().get_bytes()
         self.tip = None
         self.blocks = {}
         self.genesis_hash = int(self.nodes[0].getbestblockhash(), 16)
@@ -119,7 +125,34 @@ class FullBlockTest(BitcoinTestFramework):
         b2 = self.next_block(2, spend=out[1])
         self.save_spendable_output()
 
-        self.sync_blocks([b1, b2])
+        self.sync_blocks([b1, b2], timeout=4)
+
+        # Select a txn with an output eligible for spending. This won't actually be spent,
+        # since we're testing submission of a series of blocks with invalid txns.
+        attempt_spend_tx = out[2]
+
+        # Submit blocks for rejection, each of which contains a single transaction
+        # (aside from coinbase) which should be considered invalid.
+        for TxTemplate in invalid_txs.iter_all_templates():
+            template = TxTemplate(spend_tx=attempt_spend_tx)
+
+            if template.valid_in_block:
+                continue
+
+            self.log.info("Reject block with invalid tx: %s", TxTemplate.__name__)
+            blockname = "for_invalid.%s" % TxTemplate.__name__
+            badblock = self.next_block(blockname)
+            badtx = template.get_tx()
+            if TxTemplate != invalid_txs.InputMissing:
+                self.sign_tx(badtx, attempt_spend_tx)
+            badtx.rehash()
+            badblock = self.update_block(blockname, [badtx])
+            self.sync_blocks(
+                [badblock], success=False,
+                reject_reason=(template.block_reject_reason or template.reject_reason),
+                reconnect=True, timeout=2)
+
+            self.move_tip(2)
 
         # Fork like this:
         #
@@ -480,7 +513,7 @@ class FullBlockTest(BitcoinTestFramework):
             tx.vin.append(CTxIn(COutPoint(b39.vtx[i].sha256, 0), b''))
             # Note: must pass the redeem_script (not p2sh_script) to the signature hash function
             (sighash, err) = SignatureHash(redeem_script, tx, 1, SIGHASH_ALL)
-            sig = self.coinbase_key.sign(sighash) + bytes(bytearray([SIGHASH_ALL]))
+            sig = self.coinbase_key.sign_ecdsa(sighash) + bytes(bytearray([SIGHASH_ALL]))
             scriptSig = CScript([sig, redeem_script])
 
             tx.vin[1].scriptSig = scriptSig
@@ -1224,7 +1257,7 @@ class FullBlockTest(BitcoinTestFramework):
             tx.vin[0].scriptSig = CScript()
             return
         (sighash, err) = SignatureHash(spend_tx.vout[0].scriptPubKey, tx, 0, SIGHASH_ALL)
-        tx.vin[0].scriptSig = CScript([self.coinbase_key.sign(sighash) + bytes(bytearray([SIGHASH_ALL]))])
+        tx.vin[0].scriptSig = CScript([self.coinbase_key.sign_ecdsa(sighash) + bytes(bytearray([SIGHASH_ALL]))])
 
     def create_and_sign_transaction(self, spend_tx, value, script=CScript([OP_TRUE])):
         tx = self.create_tx(spend_tx, 0, value, script)
