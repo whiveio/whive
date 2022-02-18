@@ -13,6 +13,7 @@
 #include <cstddef>
 #include <iterator>
 #include <type_traits>
+#include <utility>
 
 #include <compat.h>
 
@@ -392,6 +393,21 @@ public:
         memmove(ptr + count, ptr, (size() - p) * sizeof(T));
         _size += count;
         fill(ptr, first, last);
+    }
+
+    inline void resize_uninitialized(size_type new_size) {
+        // resize_uninitialized changes the size of the prevector but does not initialize it.
+        // If size < new_size, the added elements must be initialized explicitly.
+        if (capacity() < new_size) {
+            change_capacity(new_size);
+            _size += new_size - size();
+            return;
+        }
+        if (new_size < size()) {
+            erase(item_ptr(new_size), end());
+        } else {
+            _size += new_size - size();
+        }
     }
 
     iterator erase(iterator pos) {

@@ -10,7 +10,8 @@
 #include <crypto/common.h>
 #include <uint256.h>
 
-#include <stdint.h>
+#include <chrono> // For std::chrono::microseconds
+#include <cstdint>
 #include <limits>
 
 /* Seed OpenSSL PRNG with additional entropy data */
@@ -19,10 +20,11 @@ void RandAddSeed();
 /**
  * Functions to gather random data via the OpenSSL PRNG
  */
-void GetRandBytes(unsigned char* buf, int num);
-uint64_t GetRand(uint64_t nMax);
-int GetRandInt(int nMax);
-uint256 GetRandHash();
+void GetRandBytes(unsigned char* buf, int num) noexcept;
+uint64_t GetRand(uint64_t nMax) noexcept;
+std::chrono::microseconds GetRandMicros(std::chrono::microseconds duration_max) noexcept;
+int GetRandInt(int nMax) noexcept;
+uint256 GetRandHash() noexcept;
 
 /**
  * Add a little bit of randomness to the output of GetStrongRangBytes.

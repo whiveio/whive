@@ -34,6 +34,10 @@
         <translation>Oppgi adresse, eller stikkord, for å søke</translation>
     </message>
     <message>
+        <source>Enter address or label to search</source>
+        <translation>Unesite adresu ili oznaku za pretragu</translation>
+    </message>
+    <message>
         <source>Export the data in the current tab to a file</source>
         <translation>Eksporter data i den valgte fliken til en fil</translation>
     </message>
@@ -70,8 +74,8 @@
         <translation>Dette er dine Bitcoin adresser for å sende  å sende betalinger. Husk å sjekke beløp og mottager adresser før du sender mynter.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Dette er dine Bitcoin adresse for å motta betalinger. Det er anbefalt å bruke en ny mottager adresse for hver transaksjon.</translation>
+        <source>These are your Whive addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Ovo su vaše Whive adrese za primanje isplete. Upotrebite dugme 'Kreiraj novu adresu prijema' na kartici za prijem da biste kreirali nove adrese.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -91,7 +95,7 @@
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>Komma separert fil (*.csv)</translation>
+        <translation>Zarezom odvojena datoteka (*.csv)</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
@@ -140,8 +144,8 @@
         <translation>Vis passord</translation>
     </message>
     <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Oppgi passordsetningen for lommeboken. &lt;br/&gt;Vennligst bruk en passordsetninge med &lt;b&gt;ti, eller flere tilfeldige tegn &lt;/b&gt;, eller &lt;b&gt;åtte, eller flere ord&lt;/b&gt;.</translation>
+        <source>Show passphrase</source>
+        <translation>Prikaži lozinku</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
@@ -168,10 +172,6 @@
         <translation>Endre passordsetningen</translation>
     </message>
     <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>Oppgi den gamle og den nye passordsetningen for lommeboken.</translation>
-    </message>
-    <message>
         <source>Confirm wallet encryption</source>
         <translation>Bekreft kryptering av lommeboken</translation>
     </message>
@@ -188,8 +188,20 @@
         <translation>Lommeboken er kryptert</translation>
     </message>
     <message>
-        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>Lommeboken din er nå kryptert. Husk at kryptering ikke er tilstrekkelig for å beskytte dine bitcoin i lommeboken fra å bli stjålet av skadelig programvare som har infisert maskinen din.</translation>
+        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Unesite novu pristupnu frazu u novčanik. &lt;br/&gt;Molimo, koristite pristupnu frazu koja ima &lt;b&gt; deset ili više nasumičnih znakova&lt;/b&gt;, ili &lt;b&gt;osam ili više reči&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Enter the old passphrase and new passphrase for the wallet.</source>
+        <translation>Unesite u novčanik staru pristupnu frazu i novu pristupnu frazu.</translation>
+    </message>
+    <message>
+        <source>Your wallet is about to be encrypted. </source>
+        <translation>Novčanik će vam biti šifriran.</translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. </source>
+        <translation>Vaš novčanik je sada šifrovan.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -251,7 +263,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Oversikt</translation>
+        <translation>&amp;Pregled</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
@@ -307,7 +319,7 @@
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Endre passordsetning</translation>
+        <translation>&amp;Izmeni pristupnu frazu...</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
@@ -316,6 +328,10 @@
     <message>
         <source>Wallet:</source>
         <translation>Lommebok:</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Novčanik:</translation>
     </message>
     <message>
         <source>Click to disable network activity.</source>
@@ -364,10 +380,6 @@
     <message>
         <source>&amp;Verify message...</source>
         <translation>&amp;Verifiser meldingen...</translation>
-    </message>
-    <message>
-        <source>Bitcoin</source>
-        <translation>Bitcoin</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -510,6 +522,10 @@
         <translation>Hovedvindu</translation>
     </message>
     <message>
+        <source>Open Wallet</source>
+        <translation>Otvori novčanik</translation>
+    </message>
+    <message>
         <source>%1 client</source>
         <translation>%1-klient</translation>
     </message>
@@ -582,6 +598,16 @@
     </message>
     </context>
 <context>
+    <name>CreateWalletActivity</name>
+    </context>
+<context>
+    <name>CreateWalletDialog</name>
+    <message>
+        <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
+        <translation>Onemogućite privatne ključeve za ovaj novčanik. Novčanici sa isključenim privatnim ključevima neće imati privatne ključeve i ne mogu imati HD seme ili uvezene privatne ključeve. Ovo je idealno za novčanike samo za gledanje.</translation>
+    </message>
+    </context>
+<context>
     <name>EditAddressDialog</name>
     </context>
 <context>
@@ -608,6 +634,9 @@
     <name>OpenURIDialog</name>
     </context>
 <context>
+    <name>OpenWalletActivity</name>
+    </context>
+<context>
     <name>OptionsDialog</name>
     <message>
         <source>&amp;Window</source>
@@ -631,9 +660,6 @@
     <name>QObject</name>
     </context>
 <context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
     <name>QRImageWidget</name>
     </context>
 <context>
@@ -649,6 +675,10 @@
         <translation>Adresse</translation>
     </message>
     <message>
+        <source>Amount</source>
+        <translation>Kolicina</translation>
+    </message>
+    <message>
         <source>Label</source>
         <translation>Beskrivelse</translation>
     </message>
@@ -656,9 +686,13 @@
         <source>Wallet</source>
         <translation>Lommebok</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>RecentRequestsTableModel</name>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
     <message>
         <source>Label</source>
         <translation>Beskrivelse</translation>
@@ -688,19 +722,36 @@
     <name>SignVerifyMessageDialog</name>
     </context>
 <context>
-    <name>SplashScreen</name>
-    </context>
-<context>
     <name>TrafficGraphWidget</name>
     </context>
 <context>
     <name>TransactionDesc</name>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>nepoznato</translation>
+    </message>
+    <message>
+        <source>Transaction fee</source>
+        <translation>Taksa transakcije</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Kolicina</translation>
+    </message>
     </context>
 <context>
     <name>TransactionDescDialog</name>
     </context>
 <context>
     <name>TransactionTableModel</name>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
     <message>
         <source>Label</source>
         <translation>Beskrivelse</translation>
@@ -714,7 +765,11 @@
     <name>TransactionView</name>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>Komma separert fil (*.csv)</translation>
+        <translation>Zarezom odvojena datoteka (*.csv)</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>Label</source>
@@ -745,26 +800,34 @@
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;Eksport</translation>
+        <translation>&amp;Izvoz</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Eksporter data i den valgte fliken til en fil</translation>
+        <translation>Izvoz podataka iz trenutne kartice u datoteku</translation>
     </message>
     </context>
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>Information</source>
-        <translation>Informasjon</translation>
+        <source>Insufficient funds</source>
+        <translation>Nedovoljno sredstava</translation>
     </message>
     <message>
-        <source>Warning</source>
-        <translation>Advarsel</translation>
+        <source>Loading block index...</source>
+        <translation>Ucitavanje indeksa bloka...</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Feilmelding</translation>
+        <source>Loading wallet...</source>
+        <translation>Ucitavanje novcanika...</translation>
+    </message>
+    <message>
+        <source>Rescanning...</source>
+        <translation>Ponovno skeniranje...</translation>
+    </message>
+    <message>
+        <source>Done loading</source>
+        <translation>Zavrseno ucitavanje</translation>
     </message>
 </context>
 </TS>

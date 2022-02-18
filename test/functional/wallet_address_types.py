@@ -58,11 +58,12 @@ from test_framework.util import (
     assert_equal,
     assert_greater_than,
     assert_raises_rpc_error,
-    connect_nodes_bi,
-    sync_blocks,
-    sync_mempools,
+    connect_nodes,
 )
-
+from test_framework.segwit_addr import (
+    encode,
+    decode,
+)
 
 class AddressTypeTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -85,7 +86,7 @@ class AddressTypeTest(BitcoinTestFramework):
         # Fully mesh-connect nodes for faster mempool sync
         for i, j in itertools.product(range(self.num_nodes), repeat=2):
             if i > j:
-                connect_nodes_bi(self.nodes, i, j)
+                connect_nodes(self.nodes[i], j)
         self.sync_all()
 
     def get_balances(self, confirmed=True):
@@ -94,6 +95,13 @@ class AddressTypeTest(BitcoinTestFramework):
             return [self.nodes[i].getbalance() for i in range(4)]
         else:
             return [self.nodes[i].getunconfirmedbalance() for i in range(4)]
+
+    # Quick test of python bech32 implementation
+    def test_python_bech32(self, addr):
+        hrp = addr[:4]
+        assert_equal(hrp, "bcrt")
+        (witver, witprog) = decode(hrp, addr)
+        assert_equal(encode(hrp, witver, witprog), addr)
 
     def test_address(self, node, address, multisig, typ):
         """Run sanity checks on an address."""
@@ -116,7 +124,8 @@ class AddressTypeTest(BitcoinTestFramework):
             assert(info['iswitness'])
             assert_equal(info['witness_version'], 0)
             assert_equal(len(info['witness_program']), 40)
-            assert('pubkey' in info)
+            assert 'pubkey' in info
+            self.test_python_bech32(info["address"])
         elif typ == 'legacy':
             # P2SH-multisig
             assert(info['isscript'])
@@ -141,10 +150,63 @@ class AddressTypeTest(BitcoinTestFramework):
             assert(info['iswitness'])
             assert_equal(info['witness_version'], 0)
             assert_equal(len(info['witness_program']), 64)
-            assert('pubkeys' in info)
+            assert 'pubkeys' in info
+            self.test_python_bech32(info["address"])
         else:
             # Unknown type
-            assert(False)
+            assert False
+
+    def test_desc(self, node, address, multisig, typ, utxo):
+        """Run sanity checks on a descriptor reported by getaddressinfo."""
+        info = self.nodes[node].getaddressinfo(address)
+        assert 'desc' in info
+        assert_equal(info['desc'], utxo['desc'])
+        assert self.nodes[node].validateaddress(address)['isvalid']
+
+        # Use a ridiculously roundabout way to find the key origin info through
+        # the PSBT logic. However, this does test consistency between the PSBT reported
+        # fingerprints/paths and the descriptor logic.
+        psbt = self.nodes[node].createpsbt([{'txid':utxo['txid'], 'vout':utxo['vout']}],[{address:0.00010000}])
+        psbt = self.nodes[node].walletprocesspsbt(psbt, False, "ALL", True)
+        decode = self.nodes[node].decodepsbt(psbt['psbt'])
+        key_descs = {}
+        for deriv in decode['inputs'][0]['bip32_derivs']:
+            assert_equal(len(deriv['master_fingerprint']), 8)
+            assert_equal(deriv['path'][0], 'm')
+            key_descs[deriv['pubkey']] = '[' + deriv['master_fingerprint'] + deriv['path'][1:] + ']' + deriv['pubkey']
+
+        # Verify the descriptor checksum against the Python implementation
+        assert descsum_check(info['desc'])
+        # Verify that stripping the checksum and recreating it using Python roundtrips
+        assert info['desc'] == descsum_create(info['desc'][:-9])
+        # Verify that stripping the checksum and feeding it to getdescriptorinfo roundtrips
+        assert info['desc'] == self.nodes[0].getdescriptorinfo(info['desc'][:-9])['descriptor']
+        assert_equal(info['desc'][-8:], self.nodes[0].getdescriptorinfo(info['desc'][:-9])['checksum'])
+        # Verify that keeping the checksum and feeding it to getdescriptorinfo roundtrips
+        assert info['desc'] == self.nodes[0].getdescriptorinfo(info['desc'])['descriptor']
+        assert_equal(info['desc'][-8:], self.nodes[0].getdescriptorinfo(info['desc'])['checksum'])
+
+        if not multisig and typ == 'legacy':
+            # P2PKH
+            assert_equal(info['desc'], descsum_create("pkh(%s)" % key_descs[info['pubkey']]))
+        elif not multisig and typ == 'p2sh-segwit':
+            # P2SH-P2WPKH
+            assert_equal(info['desc'], descsum_create("sh(wpkh(%s))" % key_descs[info['pubkey']]))
+        elif not multisig and typ == 'bech32':
+            # P2WPKH
+            assert_equal(info['desc'], descsum_create("wpkh(%s)" % key_descs[info['pubkey']]))
+        elif typ == 'legacy':
+            # P2SH-multisig
+            assert_equal(info['desc'], descsum_create("sh(multi(2,%s,%s))" % (key_descs[info['pubkeys'][0]], key_descs[info['pubkeys'][1]])))
+        elif typ == 'p2sh-segwit':
+            # P2SH-P2WSH-multisig
+            assert_equal(info['desc'], descsum_create("sh(wsh(multi(2,%s,%s)))" % (key_descs[info['embedded']['pubkeys'][0]], key_descs[info['embedded']['pubkeys'][1]])))
+        elif typ == 'bech32':
+            # P2WSH-multisig
+            assert_equal(info['desc'], descsum_create("wsh(multi(2,%s,%s))" % (key_descs[info['pubkeys'][0]], key_descs[info['pubkeys'][1]])))
+        else:
+            # Unknown type
+            assert False
 
     def test_change_output_type(self, node_sender, destinations, expected_type):
         txid = self.nodes[node_sender].sendmany(fromaccount="", amounts=dict.fromkeys(destinations, 0.001))

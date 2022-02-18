@@ -15,7 +15,12 @@ from decimal import Decimal
 from test_framework.blocktools import create_coinbase
 from test_framework.messages import CBlock
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import assert_equal, assert_raises_rpc_error
+from test_framework.util import (
+    assert_equal,
+    assert_raises_rpc_error,
+    connect_nodes,
+)
+from test_framework.script import CScriptNum
 
 def b2x(b):
     return b2a_hex(b).decode('ascii')
@@ -31,8 +36,17 @@ class MiningTest(BitcoinTestFramework):
         self.num_nodes = 2
         self.setup_clean_chain = False
 
-    def skip_test_if_missing_module(self):
-        self.skip_if_no_wallet()
+    def mine_chain(self):
+        self.log.info('Create some old blocks')
+        for t in range(TIME_GENESIS_BLOCK, TIME_GENESIS_BLOCK + 200 * 600, 600):
+            self.nodes[0].setmocktime(t)
+            self.nodes[0].generate(1)
+        mining_info = self.nodes[0].getmininginfo()
+        assert_equal(mining_info['blocks'], 200)
+        assert_equal(mining_info['currentblocktx'], 0)
+        assert_equal(mining_info['currentblockweight'], 4000)
+        self.restart_node(0)
+        connect_nodes(self.nodes[0], 1)
 
     def run_test(self):
         node = self.nodes[0]

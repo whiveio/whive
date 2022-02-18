@@ -10,7 +10,13 @@ from test_framework.blocktools import create_block, create_coinbase, add_witness
 from test_framework.messages import COIN, COutPoint, CTransaction, CTxIn, CTxOut, FromHex, ToHex
 from test_framework.script import CScript
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import assert_equal, assert_greater_than, assert_raises_rpc_error, bytes_to_hex_str, get_bip9_status, satoshi_round, sync_blocks
+from test_framework.util import (
+    assert_equal,
+    assert_greater_than,
+    assert_raises_rpc_error,
+    satoshi_round,
+    softfork_active,
+)
 
 SEQUENCE_LOCKTIME_DISABLE_FLAG = (1<<31)
 SEQUENCE_LOCKTIME_TYPE_FLAG = (1<<22) # this means use time (0 means height)
@@ -23,7 +29,10 @@ NOT_FINAL_ERROR = "non-BIP68-final (code 64)"
 class BIP68Test(BitcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
-        self.extra_args = [[], ["-acceptnonstdtxn=0"]]
+        self.extra_args = [
+            ["-acceptnonstdtxn=1"],
+            ["-acceptnonstdtxn=0"],
+        ]
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -43,7 +52,7 @@ class BIP68Test(BitcoinTestFramework):
         self.log.info("Running test sequence-lock-unconfirmed-inputs")
         self.test_sequence_lock_unconfirmed_inputs()
 
-        self.log.info("Running test BIP68 not consensus before versionbits activation")
+        self.log.info("Running test BIP68 not consensus before activation")
         self.test_bip68_not_consensus()
 
         self.log.info("Activating BIP68 (and 112/113)")
@@ -327,12 +336,12 @@ class BIP68Test(BitcoinTestFramework):
         self.nodes[0].invalidateblock(self.nodes[0].getblockhash(cur_height+1))
         self.nodes[0].generate(10)
 
-    # Make sure that BIP68 isn't being used to validate blocks, prior to
-    # versionbits activation.  If more blocks are mined prior to this test
+    # Make sure that BIP68 isn't being used to validate blocks prior to
+    # activation height.  If more blocks are mined prior to this test
     # being run, then it's possible the test has activated the soft fork, and
     # this test should be moved to run earlier, or deleted.
     def test_bip68_not_consensus(self):
-        assert(get_bip9_status(self.nodes[0], 'csv')['status'] != 'active')
+        assert not softfork_active(self.nodes[0], 'csv')
         txid = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), 2)
 
         tx1 = FromHex(CTransaction(), self.nodes[0].getrawtransaction(txid))
@@ -372,7 +381,7 @@ class BIP68Test(BitcoinTestFramework):
         add_witness_commitment(block)
         block.solve()
 
-        self.nodes[0].submitblock(bytes_to_hex_str(block.serialize(True)))
+        self.nodes[0].submitblock(block.serialize().hex())
         assert_equal(self.nodes[0].getbestblockhash(), block.hash)
 
     def activateCSV(self):
@@ -382,10 +391,10 @@ class BIP68Test(BitcoinTestFramework):
         height = self.nodes[0].getblockcount()
         assert_greater_than(min_activation_height - height, 2)
         self.nodes[0].generate(min_activation_height - height - 2)
-        assert_equal(get_bip9_status(self.nodes[0], 'csv')['status'], "locked_in")
+        assert not softfork_active(self.nodes[0], 'csv')
         self.nodes[0].generate(1)
-        assert_equal(get_bip9_status(self.nodes[0], 'csv')['status'], "active")
-        sync_blocks(self.nodes)
+        assert softfork_active(self.nodes[0], 'csv')
+        self.sync_blocks()
 
     # Use self.nodes[1] to test that version 2 transactions are standard.
     def test_version2_relay(self):

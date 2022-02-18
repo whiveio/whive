@@ -62,8 +62,6 @@ ALLOWED_LIBRARIES = {
 'ld-linux-x86-64.so.2', # 64-bit dynamic linker
 'ld-linux.so.2', # 32-bit dynamic linker
 # bitcoin-qt only
-'libX11-xcb.so.1', # part of X11
-'libX11.so.6', # part of X11
 'libxcb.so.1', # part of X11
 'libfontconfig.so.1', # font support
 'libfreetype.so.6', # font parsing
@@ -130,7 +128,7 @@ def read_libraries(filename):
     for line in stdout.splitlines():
         tokens = line.split()
         if len(tokens)>2 and tokens[1] == '(NEEDED)':
-            match = re.match('^Shared library: \[(.*)\]$', ' '.join(tokens[2:]))
+            match = re.match(r'^Shared library: \[(.*)\]$', ' '.join(tokens[2:]))
             if match:
                 libraries.append(match.group(1))
             else:
@@ -159,5 +157,3 @@ if __name__ == '__main__':
                 retval = 1
 
     sys.exit(retval)
-
-

@@ -5,13 +5,15 @@
 // Unit tests for denial-of-service detection/prevention code
 
 #include <chainparams.h>
-#include <keystore.h>
 #include <net.h>
 #include <net_processing.h>
-#include <pow.h>
 #include <script/sign.h>
+#include <script/signingprovider.h>
+#include <script/standard.h>
 #include <serialize.h>
-#include <util.h>
+#include <util/memory.h>
+#include <util/system.h>
+#include <util/time.h>
 #include <validation.h>
 
 #include <test/test_bitcoin.h>
@@ -125,18 +127,18 @@ static void AddRandomOutboundPeer(std::vector<CNode *> &vNodes, PeerLogicValidat
 BOOST_AUTO_TEST_CASE(stale_tip_peer_management)
 {
     const Consensus::Params& consensusParams = Params().GetConsensus();
-    constexpr int nMaxOutbound = 8;
+    constexpr int max_outbound_full_relay = 8;
     CConnman::Options options;
     options.nMaxConnections = 125;
-    options.nMaxOutbound = nMaxOutbound;
+    options.m_max_outbound_full_relay = max_outbound_full_relay;
     options.nMaxFeeler = 1;
 
     connman->Init(options);
     std::vector<CNode *> vNodes;
 
     // Mock some outbound peers
-    for (int i=0; i<nMaxOutbound; ++i) {
-        AddRandomOutboundPeer(vNodes, *peerLogic);
+    for (int i=0; i<max_outbound_full_relay; ++i) {
+        AddRandomOutboundPeer(vNodes, *peerLogic, connman.get());
     }
 
     peerLogic->CheckForStaleTipAndEvictPeers(consensusParams);
@@ -164,7 +166,7 @@ BOOST_AUTO_TEST_CASE(stale_tip_peer_management)
     AddRandomOutboundPeer(vNodes, *peerLogic);
 
     peerLogic->CheckForStaleTipAndEvictPeers(consensusParams);
-    for (int i=0; i<nMaxOutbound; ++i) {
+    for (int i=0; i<max_outbound_full_relay; ++i) {
         BOOST_CHECK(vNodes[i]->fDisconnect == false);
     }
     // Last added node should get marked for eviction
@@ -177,10 +179,10 @@ BOOST_AUTO_TEST_CASE(stale_tip_peer_management)
     UpdateLastBlockAnnounceTime(vNodes.back()->GetId(), GetTime());
 
     peerLogic->CheckForStaleTipAndEvictPeers(consensusParams);
-    for (int i=0; i<nMaxOutbound-1; ++i) {
+    for (int i=0; i<max_outbound_full_relay-1; ++i) {
         BOOST_CHECK(vNodes[i]->fDisconnect == false);
     }
-    BOOST_CHECK(vNodes[nMaxOutbound-1]->fDisconnect == true);
+    BOOST_CHECK(vNodes[max_outbound_full_relay-1]->fDisconnect == true);
     BOOST_CHECK(vNodes.back()->fDisconnect == false);
 
     bool dummy;
@@ -335,8 +337,8 @@ BOOST_AUTO_TEST_CASE(DoS_mapOrphans)
 {
     CKey key;
     key.MakeNewKey(true);
-    CBasicKeyStore keystore;
-    keystore.AddKey(key);
+    FillableSigningProvider keystore;
+    BOOST_CHECK(keystore.AddKey(key));
 
     // 50 orphan transactions:
     for (int i = 0; i < 50; i++)

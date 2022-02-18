@@ -8,15 +8,25 @@
 #include <consensus/consensus.h>
 #include <consensus/validation.h>
 #include <crypto/sha256.h>
-#include <validation.h>
+#include <init.h>
 #include <miner.h>
-#include <net_processing.h>
+#include <net.h>
+#include <noui.h>
 #include <pow.h>
-#include <ui_interface.h>
-#include <streams.h>
-#include <rpc/server.h>
 #include <rpc/register.h>
+#include <rpc/server.h>
 #include <script/sigcache.h>
+#include <streams.h>
+#include <txdb.h>
+#include <util/memory.h>
+#include <util/strencodings.h>
+#include <util/time.h>
+#include <util/translation.h>
+#include <util/validation.h>
+#include <validation.h>
+#include <validationinterface.h>
+
+#include <functional>
 
 void CConnmanTest::AddNode(CNode& node)
 {
@@ -48,6 +58,13 @@ std::ostream& operator<<(std::ostream& os, const uint256& num)
 BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
     : m_path_root(fs::temp_directory_path() / "test_bitcoin" / strprintf("%lu_%i", (unsigned long)GetTime(), (int)(InsecureRandRange(1 << 30))))
 {
+    fs::create_directories(m_path_root);
+    gArgs.ForceSetArg("-datadir", m_path_root.string());
+    ClearDatadirCache();
+    SelectParams(chainName);
+    gArgs.ForceSetArg("-printtoconsole", "0");
+    InitLogging();
+    LogInstance().StartLogging();
     SHA256AutoDetect();
     RandomInit();
     ECC_Start();
@@ -56,79 +73,77 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
     InitSignatureCache();
     InitScriptExecutionCache();
     fCheckBlockIndex = true;
-    SelectParams(chainName);
-    noui_connect();
+    static bool noui_connected = false;
+    if (!noui_connected) {
+        noui_connect();
+        noui_connected = true;
+    }
 }
 
 BasicTestingSetup::~BasicTestingSetup()
 {
+    LogInstance().DisconnectTestLogger();
     fs::remove_all(m_path_root);
     ECC_Stop();
 }
 
-fs::path BasicTestingSetup::SetDataDir(const std::string& name)
-{
-    fs::path ret = m_path_root / name;
-    fs::create_directories(ret);
-    gArgs.ForceSetArg("-datadir", ret.string());
-    return ret;
-}
-
 TestingSetup::TestingSetup(const std::string& chainName) : BasicTestingSetup(chainName)
 {
-    SetDataDir("tempdir");
     const CChainParams& chainparams = Params();
-        // Ideally we'd move all the RPC tests to the functional testing framework
-        // instead of unit tests, but for now we need these here.
-
-        RegisterAllCoreRPCCommands(tableRPC);
-        ClearDatadirCache();
+    // Ideally we'd move all the RPC tests to the functional testing framework
+    // instead of unit tests, but for now we need these here.
+    RegisterAllCoreRPCCommands(tableRPC);
 
         // We have to run a scheduler thread to prevent ActivateBestChain
         // from blocking due to queue overrun.
         threadGroup.create_thread(boost::bind(&CScheduler::serviceQueue, &scheduler));
         GetMainSignals().RegisterBackgroundSignalScheduler(scheduler);
 
-        mempool.setSanityCheck(1.0);
-        pblocktree.reset(new CBlockTreeDB(1 << 20, true));
-        pcoinsdbview.reset(new CCoinsViewDB(1 << 23, true));
-        pcoinsTip.reset(new CCoinsViewCache(pcoinsdbview.get()));
-        if (!LoadGenesisBlock(chainparams)) {
-            throw std::runtime_error("LoadGenesisBlock failed.");
-        }
-        {
-            CValidationState state;
-            if (!ActivateBestChain(state, chainparams)) {
-                throw std::runtime_error(strprintf("ActivateBestChain failed. (%s)", FormatStateMessage(state)));
-            }
-        }
-        nScriptCheckThreads = 3;
-        for (int i=0; i < nScriptCheckThreads-1; i++)
-            threadGroup.create_thread(&ThreadScriptCheck);
-        g_connman = std::unique_ptr<CConnman>(new CConnman(0x1337, 0x1337)); // Deterministic randomness for tests.
-        connman = g_connman.get();
-        peerLogic.reset(new PeerLogicValidation(connman, scheduler, /*enable_bip61=*/true));
+    mempool.setSanityCheck(1.0);
+    pblocktree.reset(new CBlockTreeDB(1 << 20, true));
+    g_chainstate = MakeUnique<CChainState>();
+    ::ChainstateActive().InitCoinsDB(
+        /* cache_size_bytes */ 1 << 23, /* in_memory */ true, /* should_wipe */ false);
+    assert(!::ChainstateActive().CanFlushToDisk());
+    ::ChainstateActive().InitCoinsCache();
+    assert(::ChainstateActive().CanFlushToDisk());
+    if (!LoadGenesisBlock(chainparams)) {
+        throw std::runtime_error("LoadGenesisBlock failed.");
+    }
+
+    CValidationState state;
+    if (!ActivateBestChain(state, chainparams)) {
+        throw std::runtime_error(strprintf("ActivateBestChain failed. (%s)", FormatStateMessage(state)));
+    }
+
+    nScriptCheckThreads = 3;
+    for (int i = 0; i < nScriptCheckThreads - 1; i++)
+        threadGroup.create_thread([i]() { return ThreadScriptCheck(i); });
+
+    g_banman = MakeUnique<BanMan>(GetDataDir() / "banlist.dat", nullptr, DEFAULT_MISBEHAVING_BANTIME);
+    g_connman = MakeUnique<CConnman>(0x1337, 0x1337); // Deterministic randomness for tests.
 }
 
 TestingSetup::~TestingSetup()
 {
-        threadGroup.interrupt_all();
-        threadGroup.join_all();
-        GetMainSignals().FlushBackgroundCallbacks();
-        GetMainSignals().UnregisterBackgroundSignalScheduler();
-        g_connman.reset();
-        peerLogic.reset();
-        UnloadBlockIndex();
-        pcoinsTip.reset();
-        pcoinsdbview.reset();
-        pblocktree.reset();
+    threadGroup.interrupt_all();
+    threadGroup.join_all();
+    GetMainSignals().FlushBackgroundCallbacks();
+    GetMainSignals().UnregisterBackgroundSignalScheduler();
+    g_connman.reset();
+    g_banman.reset();
+    UnloadBlockIndex();
+    g_chainstate.reset();
+    pblocktree.reset();
 }
 
 TestChain100Setup::TestChain100Setup() : TestingSetup(CBaseChainParams::REGTEST)
 {
     // CreateAndProcessBlock() does not support building SegWit blocks, so don't activate in these tests.
     // TODO: fix the code to support SegWit blocks.
-    UpdateVersionBitsParameters(Consensus::DEPLOYMENT_SEGWIT, 0, Consensus::BIP9Deployment::NO_TIMEOUT);
+    gArgs.ForceSetArg("-segwitheight", "432");
+    SelectParams(CBaseChainParams::REGTEST);
+
     // Generate a 100-block chain:
     coinbaseKey.MakeNewKey(true);
     CScript scriptPubKey = CScript() <<  ToByteVector(coinbaseKey.GetPubKey()) << OP_CHECKSIG;

@@ -14,7 +14,6 @@
 class CBlock;
 class CBlockIndex;
 struct CBlockLocator;
-class CBlockIndex;
 class CConnman;
 class CReserveScript;
 class CValidationInterface;

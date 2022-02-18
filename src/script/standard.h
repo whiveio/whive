@@ -73,6 +73,27 @@ public:
     friend bool operator<(const CNoDestination &a, const CNoDestination &b) { return true; }
 };
 
+struct PKHash : public uint160
+{
+    PKHash() : uint160() {}
+    explicit PKHash(const uint160& hash) : uint160(hash) {}
+    explicit PKHash(const CPubKey& pubkey);
+    using uint160::uint160;
+};
+
+struct WitnessV0KeyHash;
+struct ScriptHash : public uint160
+{
+    ScriptHash() : uint160() {}
+    // These don't do what you'd expect.
+    // Use ScriptHash(GetScriptForDestination(...)) instead.
+    explicit ScriptHash(const WitnessV0KeyHash& hash) = delete;
+    explicit ScriptHash(const PKHash& hash) = delete;
+    explicit ScriptHash(const uint160& hash) : uint160(hash) {}
+    explicit ScriptHash(const CScript& script);
+    using uint160::uint160;
+};
+
 struct WitnessV0ScriptHash : public uint256
 {
     WitnessV0ScriptHash() : uint256() {}

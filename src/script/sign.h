@@ -10,6 +10,7 @@
 #include <hash.h>
 #include <pubkey.h>
 #include <script/interpreter.h>
+#include <script/keyorigin.h>
 #include <streams.h>
 
 class CKey;
@@ -17,44 +18,9 @@ class CKeyID;
 class CScript;
 class CScriptID;
 class CTransaction;
+class SigningProvider;
 
 struct CMutableTransaction;
-
-/** An interface to be implemented by keystores that support signing. */
-class SigningProvider
-{
-public:
-    virtual ~SigningProvider() {}
-    virtual bool GetCScript(const CScriptID &scriptid, CScript& script) const { return false; }
-    virtual bool GetPubKey(const CKeyID &address, CPubKey& pubkey) const { return false; }
-    virtual bool GetKey(const CKeyID &address, CKey& key) const { return false; }
-};
-
-extern const SigningProvider& DUMMY_SIGNING_PROVIDER;
-
-class PublicOnlySigningProvider : public SigningProvider
-{
-private:
-    const SigningProvider* m_provider;
-
-public:
-    PublicOnlySigningProvider(const SigningProvider* provider) : m_provider(provider) {}
-    bool GetCScript(const CScriptID &scriptid, CScript& script) const;
-    bool GetPubKey(const CKeyID &address, CPubKey& pubkey) const;
-};
-
-struct FlatSigningProvider final : public SigningProvider
-{
-    std::map<CScriptID, CScript> scripts;
-    std::map<CKeyID, CPubKey> pubkeys;
-    std::map<CKeyID, CKey> keys;
-
-    bool GetCScript(const CScriptID& scriptid, CScript& script) const override;
-    bool GetPubKey(const CKeyID& keyid, CPubKey& pubkey) const override;
-    bool GetKey(const CKeyID& keyid, CKey& key) const override;
-};
-
-FlatSigningProvider Merge(const FlatSigningProvider& a, const FlatSigningProvider& b);
 
 /** Interface for signature creators. */
 class BaseSignatureCreator {
@@ -729,5 +695,8 @@ void UpdateInput(CTxIn& input, const SignatureData& data);
  * provider is used to look up public keys and redeemscripts by hash.
  * Solvability is unrelated to whether we consider this output to be ours. */
 bool IsSolvable(const SigningProvider& provider, const CScript& script);
+
+/** Check whether a scriptPubKey is known to be segwit. */
+bool IsSegWitOutput(const SigningProvider& provider, const CScript& script);
 
 #endif // BITCOIN_SCRIPT_SIGN_H

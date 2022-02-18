@@ -42,14 +42,9 @@ void WalletFrame::setClientModel(ClientModel *_clientModel)
 
 bool WalletFrame::addWallet(WalletModel *walletModel)
 {
-    if (!gui || !clientModel || !walletModel) {
-        return false;
-    }
+    if (!gui || !clientModel || !walletModel) return false;
 
-    const QString name = walletModel->getWalletName();
-    if (mapWalletViews.count(name) > 0) {
-        return false;
-    }
+    if (mapWalletViews.count(walletModel) > 0) return false;
 
     WalletView *walletView = new WalletView(platformStyle, this);
     walletView->setBitcoinGUI(gui);
@@ -70,7 +65,7 @@ bool WalletFrame::addWallet(WalletModel *walletModel)
     // Ensure a walletView is able to show the main window
     connect(walletView, SIGNAL(showNormalIfMinimized()), gui, SLOT(showNormalIfMinimized()));
 
-    connect(walletView, SIGNAL(outOfSyncWarningClicked()), this, SLOT(outOfSyncWarningClicked()));
+    connect(walletView, &WalletView::outOfSyncWarningClicked, this, &WalletFrame::outOfSyncWarningClicked);
 
     return true;
 }

@@ -3,8 +3,6 @@
 #include <test/test_bitcoin.h>
 
 #include <interfaces/node.h>
-#include <qt/addressbookpage.h>
-#include <qt/addresstablemodel.h>
 #include <qt/editaddressdialog.h>
 #include <qt/callback.h>
 #include <qt/optionsmodel.h>
@@ -13,7 +11,6 @@
 #include <qt/walletmodel.h>
 
 #include <key.h>
-#include <pubkey.h>
 #include <key_io.h>
 #include <wallet/wallet.h>
 
@@ -147,7 +144,7 @@ void AddressBookTests::addressBookTests()
         // and fails to handle returned nulls
         // (https://bugreports.qt.io/browse/QTBUG-49686).
         QWARN("Skipping AddressBookTests on mac build with 'minimal' platform set due to Qt bugs. To run AppTests, invoke "
-              "with 'test_bitcoin-qt -platform cocoa' on mac, or else use a linux or windows build.");
+              "with 'QT_QPA_PLATFORM=cocoa test_bitcoin-qt' on mac, or else use a linux or windows build.");
         return;
     }
 #endif

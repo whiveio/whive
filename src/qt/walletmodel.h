@@ -233,8 +233,6 @@ private:
     EncryptionStatus cachedEncryptionStatus;
     int cachedNumBlocks;
 
-    QTimer *pollTimer;
-
     void subscribeToCoreSignals();
     void unsubscribeFromCoreSignals();
     void checkBalanceChanged(const interfaces::WalletBalances& new_balances);
@@ -267,6 +265,9 @@ Q_SIGNALS:
     void unload();
 
 public Q_SLOTS:
+    /* Starts a timer to periodically update the balance */
+    void startPollBalance();
+
     /* Wallet status might have changed */
     void updateStatus();
     /* New transaction, or transaction changed status */

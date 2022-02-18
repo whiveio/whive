@@ -13,7 +13,6 @@ EXPECTED_CIRCULAR_DEPENDENCIES=(
     "checkpoints -> validation -> checkpoints"
     "index/txindex -> validation -> index/txindex"
     "policy/fees -> txmempool -> policy/fees"
-    "policy/policy -> validation -> policy/policy"
     "qt/addresstablemodel -> qt/walletmodel -> qt/addresstablemodel"
     "qt/bantablemodel -> qt/clientmodel -> qt/bantablemodel"
     "qt/bitcoingui -> qt/utilitydialog -> qt/bitcoingui"
@@ -27,20 +26,14 @@ EXPECTED_CIRCULAR_DEPENDENCIES=(
     "qt/walletmodel -> qt/walletmodeltransaction -> qt/walletmodel"
     "rpc/rawtransaction -> wallet/rpcwallet -> rpc/rawtransaction"
     "txmempool -> validation -> txmempool"
-    "validation -> validationinterface -> validation"
     "wallet/coincontrol -> wallet/wallet -> wallet/coincontrol"
     "wallet/fees -> wallet/wallet -> wallet/fees"
     "wallet/rpcwallet -> wallet/wallet -> wallet/rpcwallet"
     "wallet/wallet -> wallet/walletdb -> wallet/wallet"
-    "policy/fees -> policy/policy -> validation -> policy/fees"
-    "policy/rbf -> txmempool -> validation -> policy/rbf"
-    "qt/addressbookpage -> qt/bitcoingui -> qt/walletview -> qt/addressbookpage"
+    "policy/fees -> txmempool -> validation -> policy/fees"
     "qt/guiutil -> qt/walletmodel -> qt/optionsmodel -> qt/guiutil"
     "txmempool -> validation -> validationinterface -> txmempool"
-    "qt/addressbookpage -> qt/bitcoingui -> qt/walletview -> qt/receivecoinsdialog -> qt/addressbookpage"
-    "qt/addressbookpage -> qt/bitcoingui -> qt/walletview -> qt/signverifymessagedialog -> qt/addressbookpage"
-    "qt/guiutil -> qt/walletmodel -> qt/optionsmodel -> qt/intro -> qt/guiutil"
-    "qt/addressbookpage -> qt/bitcoingui -> qt/walletview -> qt/sendcoinsdialog -> qt/sendcoinsentry -> qt/addressbookpage"
+    "wallet/ismine -> wallet/wallet -> wallet/ismine"
 )
 
 EXIT_CODE=0
@@ -49,7 +42,7 @@ CIRCULAR_DEPENDENCIES=()
 
 IFS=$'\n'
 for CIRC in $(cd src && ../contrib/devtools/circular-dependencies.py {*,*/*,*/*/*}.{h,cpp} | sed -e 's/^Circular dependency: //'); do
-    CIRCULAR_DEPENDENCIES+=($CIRC)
+    CIRCULAR_DEPENDENCIES+=( "$CIRC" )
     IS_EXPECTED_CIRC=0
     for EXPECTED_CIRC in "${EXPECTED_CIRCULAR_DEPENDENCIES[@]}"; do
         if [[ "${CIRC}" == "${EXPECTED_CIRC}" ]]; then

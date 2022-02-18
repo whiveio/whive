@@ -5,9 +5,8 @@
 #include <chain.h>
 #include <chainparams.h>
 #include <pow.h>
-#include <random.h>
-#include <util.h>
-#include <test/test_bitcoin.h>
+#include <util/system.h>
+#include <test/setup_common.h>
 
 #include <boost/test/unit_test.hpp>
 
@@ -76,6 +75,60 @@ BOOST_AUTO_TEST_CASE(get_next_work)
     CBlockHeader blockHeader;
     blockHeader.nTime = 1408732505; // Block #123457
     BOOST_CHECK_EQUAL(GetNextWorkRequired(&blockIndexLast, &blockHeader, params), 0x1b2fed0e); // Block #123457 has 0x1b1441de
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_negative_target)
+{
+    const auto consensus = CreateChainParams(CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits;
+    nBits = UintToArith256(consensus.powLimit).GetCompact(true);
+    hash.SetHex("0x1");
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_overflow_target)
+{
+    const auto consensus = CreateChainParams(CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits = ~0x00800000;
+    hash.SetHex("0x1");
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_too_easy_target)
+{
+    const auto consensus = CreateChainParams(CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits;
+    arith_uint256 nBits_arith = UintToArith256(consensus.powLimit);
+    nBits_arith *= 2;
+    nBits = nBits_arith.GetCompact();
+    hash.SetHex("0x1");
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_biger_hash_than_target)
+{
+    const auto consensus = CreateChainParams(CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits;
+    arith_uint256 hash_arith = UintToArith256(consensus.powLimit);
+    nBits = hash_arith.GetCompact();
+    hash_arith *= 2; // hash > nBits
+    hash = ArithToUint256(hash_arith);
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_zero_target)
+{
+    const auto consensus = CreateChainParams(CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits;
+    arith_uint256 hash_arith{0};
+    nBits = hash_arith.GetCompact();
+    hash = ArithToUint256(hash_arith);
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
 }
 
 BOOST_AUTO_TEST_CASE(GetBlockProofEquivalentTime_test)

@@ -72,8 +72,13 @@
         <translation>Dies sind Ihre whive-Adressen zum Tätigen von Überweisungen. Bitte prüfen Sie den Betrag und die Adresse des Empfängers, bevor Sie WHIVE überweisen.</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>These are your Whive addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>Dies sind Ihre whive-Adressen zum Empfangen von Zahlungen. Es wird empfohlen, für jede Transaktion eine neue Empfangsadresse zu verwenden.</translation>
+=======
+        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Dies sind Ihre Bitcoin-Adressen zum Empfangen von Zahlungen. Benutze den 'Neue Empfangsadresse erstellen' Button im Empfangen-Tab, um eine neue Addresse zu erstellen.</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -138,12 +143,17 @@
         <translation>Neue Passphrase bestätigen</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Show password</source>
         <translation>Zeige das Passwort</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>Geben Sie die neue Passphrase für die Wallet ein.&lt;br&gt;Bitte benutzen Sie eine Passphrase bestehend aus &lt;b&gt;zehn oder mehr zufälligen Zeichen&lt;/b&gt; oder &lt;b&gt;acht oder mehr Wörtern&lt;/b&gt;.</translation>
+=======
+        <source>Show passphrase</source>
+        <translation>Zeige Passphrase</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Encrypt wallet</source>
@@ -170,10 +180,13 @@
         <translation>Passphrase ändern</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Enter the old passphrase and new passphrase to the wallet.</source>
         <translation>Geben Sie die alte und die neue Wallet-Passphrase ein.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>Confirm wallet encryption</source>
         <translation>Wallet-Verschlüsselung bestätigen</translation>
     </message>
@@ -190,8 +203,33 @@
         <translation>Wallet verschlüsselt</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation>Ihre Wallet ist jetzt verschlüsselt. Denken Sie daran, dass auch eine Verschlüsselung ihre Bitcoins nicht vollkommen vor Diebstahl schützen kann, sollte ihr PC mit Malware infiziert sein. </translation>
+=======
+        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Geben Sie die neue Passphrase für die Wallet ein.&lt;br/&gt;Bitte benutzen Sie eine Passphrase bestehend aus &lt;b&gt;zehn oder mehr zufälligen Zeichen&lt;/b&gt; oder &lt;b&gt;acht oder mehr Wörtern&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Enter the old passphrase and new passphrase for the wallet.</source>
+        <translation>Geben Sie die alte und die neue Wallet-Passphrase ein.</translation>
+    </message>
+    <message>
+        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Beachten Sie, dass das Verschlüsseln Ihrer Wallet nicht komplett vor Diebstahl Ihrer Bitcoins durch Malware schützt, die Ihren Computer infiziert hat.</translation>
+    </message>
+    <message>
+        <source>Wallet to be encrypted</source>
+        <translation>Wallet zu verschlüsseln</translation>
+    </message>
+    <message>
+        <source>Your wallet is about to be encrypted. </source>
+        <translation>Wallet wird verschlüsselt.</translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. </source>
+        <translation>Deine Wallet ist jetzt verschlüsselt.</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -256,10 +294,6 @@
         <translation>&amp;Übersicht</translation>
     </message>
     <message>
-        <source>Node</source>
-        <translation>Knoten</translation>
-    </message>
-    <message>
         <source>Show general overview of wallet</source>
         <translation>Wallet-Übersicht anzeigen</translation>
     </message>
@@ -316,18 +350,21 @@
         <translation>Passphrase &amp;ändern...</translation>
     </message>
     <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>&amp;Zahlungsadressen...</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>&amp;Empfangsadressen...</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>&amp;URI öffnen...</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
+=======
+        <source>Create Wallet...</source>
+        <translation>Wallet erstellen...</translation>
+    </message>
+    <message>
+        <source>Create a new wallet</source>
+        <translation>Neue Wallet erstellen</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>Wallet:</source>
         <translation>Wallet:</translation>
     </message>
@@ -380,6 +417,7 @@
         <translation>Nachricht &amp;verifizieren...</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Whive</source>
         <translation>Whive</translation>
     </message>
@@ -388,6 +426,8 @@
         <translation>Wallet</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>&amp;Send</source>
         <translation>&amp;Überweisen</translation>
     </message>
@@ -534,12 +574,17 @@
         <translation>Standard Wallet</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
         <translation>Öffne Wallet&lt;b&gt;%1&lt;/b&gt; ...</translation>
     </message>
     <message>
         <source>Open Wallet Failed</source>
         <translation>Wallet öffnen fehlgeschlagen</translation>
+=======
+        <source>No wallets available</source>
+        <translation>Keine Wallets verfügbar</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>&amp;Window</source>
@@ -554,10 +599,13 @@
         <translation>Vergrößern</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Restore</source>
         <translation>Wiederherstellen</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>Main Window</source>
         <translation>Hauptfenster</translation>
     </message>
@@ -572,6 +620,14 @@
     <message>
         <source>Catching up...</source>
         <translation>Hole auf...</translation>
+    </message>
+    <message>
+        <source>Error: %1</source>
+        <translation>Fehler: %1</translation>
+    </message>
+    <message>
+        <source>Warning: %1</source>
+        <translation>Warnung: %1</translation>
     </message>
     <message>
         <source>Date: %1
@@ -624,6 +680,10 @@
     <message>
         <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
         <translation>HD Schlüssel Generierung ist &lt;b&gt;deaktiviert&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
+        <translation>Privater Schlüssel &lt;b&gt;deaktiviert&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -790,6 +850,60 @@
     </message>
 </context>
 <context>
+    <name>CreateWalletActivity</name>
+    <message>
+        <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
+        <translation>Erstelle Wallet&lt;b&gt;%1&lt;/b&gt; ...</translation>
+    </message>
+    <message>
+        <source>Create wallet failed</source>
+        <translation>Fehler beim Wallet erstellen aufgetreten</translation>
+    </message>
+    <message>
+        <source>Create wallet warning</source>
+        <translation>Warnung beim Wallet erstellen aufgetreten</translation>
+    </message>
+</context>
+<context>
+    <name>CreateWalletDialog</name>
+    <message>
+        <source>Create Wallet</source>
+        <translation>Wallet erstellen</translation>
+    </message>
+    <message>
+        <source>Wallet Name</source>
+        <translation>Wallet Name</translation>
+    </message>
+    <message>
+        <source>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</source>
+        <translation>Verschlüssele das Wallet. Das Wallet wird mit einer Passphrase deiner Wahl verschlüsselt.</translation>
+    </message>
+    <message>
+        <source>Encrypt Wallet</source>
+        <translation>Wallet verschlüsseln</translation>
+    </message>
+    <message>
+        <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
+        <translation>Deaktiviert private Schlüssel für dieses Wallet. Wallets mit deaktivierten privaten Schlüsseln werden keine privaten Schlüssel haben und können keinen HD Seed oder private Schlüssel importieren. Das ist ideal für Wallets, die nur beobachten.</translation>
+    </message>
+    <message>
+        <source>Disable Private Keys</source>
+        <translation>Private Keys deaktivieren</translation>
+    </message>
+    <message>
+        <source>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</source>
+        <translation>Erzeugt ein leeres Wallet. Leere Wallets haben zu Anfang keine privaten Schlüssel oder Scripte. Private Schlüssel oder Adressen können importiert werden, ebenso können jetzt oder später HD-Seeds gesetzt werden.</translation>
+    </message>
+    <message>
+        <source>Make Blank Wallet</source>
+        <translation>Eine leere Wallet erstellen</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>Erstellen</translation>
+    </message>
+</context>
+<context>
     <name>EditAddressDialog</name>
     <message>
         <source>Edit Address</source>
@@ -903,6 +1017,13 @@
     <message>
         <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
         <translation>Wenn Sie auf OK klicken, beginnt %1 mit dem Herunterladen und Verarbeiten der gesamten %4-Blockchain (%2GB), beginnend mit den frühesten Transaktionen in %3 beim ersten Start von %4.</translation>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
+=======
+    </message>
+    <message>
+        <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
+        <translation>Um diese Einstellung wiederherzustellen, muss die gesamte Blockchain neu heruntergeladen werden. Es ist schneller, die gesamte Chain zuerst herunterzuladen und später zu bearbeiten. Deaktiviert einige erweiterte Funktionen.</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
@@ -923,6 +1044,10 @@
     <message>
         <source>Whive</source>
         <translation type="unfinished">Whive</translation>
+    </message>
+    <message>
+        <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
+        <translation>Verwerfe Blöcke nachdem sie verifiziert worden sind, ausser die %1 GB (prune)</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -961,6 +1086,10 @@
             <numerusform>(von %n GB benötigt)</numerusform>
             <numerusform>(von %n GB benötigt)</numerusform>
         </translation>
+    </message>
+    <message numerus="yes">
+        <source>(%n GB needed for full chain)</source>
+        <translation><numerusform>(%n GB benötigt für komplette Blockchain)</numerusform><numerusform>(%n GB benötigt für komplette Blockchain)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1010,8 +1139,13 @@
         <translation>Ausblenden</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Unknown. Syncing Headers (%1)...</source>
         <translation>Unbekannt. Synchronisiere Header (%1)...</translation>
+=======
+        <source>Unknown. Syncing Headers (%1, %2%)...</source>
+        <translation>Unbekannt. Synchronisiere Headers (%1, %2%)...</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
 </context>
 <context>
@@ -1038,6 +1172,25 @@
     </message>
 </context>
 <context>
+    <name>OpenWalletActivity</name>
+    <message>
+        <source>Open wallet failed</source>
+        <translation>Wallet öffnen fehlgeschlagen</translation>
+    </message>
+    <message>
+        <source>Open wallet warning</source>
+        <translation>Wallet öffnen Warnung</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>Standard Wallet</translation>
+    </message>
+    <message>
+        <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
+        <translation>Öffne Wallet&lt;b&gt;%1&lt;/b&gt; ...</translation>
+    </message>
+</context>
+<context>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
@@ -1058,10 +1211,6 @@
     <message>
         <source>Size of &amp;database cache</source>
         <translation>Größe des &amp;Datenbankcaches</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation>MB</translation>
     </message>
     <message>
         <source>Number of script &amp;verification threads</source>
@@ -1096,8 +1245,8 @@
         <translation>Externe URLs (z.B. ein Block-Explorer), die im Kontextmenü des Transaktionsverlaufs eingefügt werden. In der URL wird %s durch den Transaktionshash ersetzt. Bei Angabe mehrerer URLs müssen diese durch &quot;|&quot; voneinander getrennt werden.</translation>
     </message>
     <message>
-        <source>Active command-line options that override above options:</source>
-        <translation>Aktive Kommandozeilenoptionen, die obige Konfiguration überschreiben:</translation>
+        <source>Open the %1 configuration file from the working directory.</source>
+        <translation>Öffnen Sie die %1 Konfigurationsdatei aus dem Arbeitsverzeichnis.</translation>
     </message>
     <message>
         <source>Open Configuration File</source>
@@ -1130,6 +1279,13 @@
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
         <translation>Wenn diese Einstellung rückgängig gemacht wird, muss die komplette Blockchain erneut heruntergeladen werden.</translation>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
+=======
+    </message>
+    <message>
+        <source>MiB</source>
+        <translation>MiB</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
@@ -1208,7 +1364,11 @@
         <translation>Tor</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor hidden services.</source>
+=======
+        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <translation>Über einen separaten SOCKS5 Proxy für Tor Hidden Services mit dem Bitcoin-Netzwerk verbinden.</translation>
     </message>
     <message>
@@ -1254,6 +1414,10 @@
     <message>
         <source>&amp;Third party transaction URLs</source>
         <translation>&amp;Externe Transaktions-URLs</translation>
+    </message>
+    <message>
+        <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
+        <translation>Einstellungen in diesem Dialog werden von der Kommandozeile oder in der Konfigurationsdatei überschrieben:</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1402,8 +1566,24 @@
         <translation type="unfinished">&apos;whive://&apos; ist kein gültiger URL. Bitte &apos;whive:&apos; nutzen.</translation>
     </message>
     <message>
+        <source>You are using a BIP70 URL which will be unsupported in the future.</source>
+        <translation>Sie verwenden eine BIP70 URL, die in Zukunft nicht mehr untersützt wird.</translation>
+    </message>
+    <message>
         <source>Payment request fetch URL is invalid: %1</source>
         <translation>Abruf-URL der Zahlungsanforderung ist ungültig: %1</translation>
+    </message>
+    <message>
+        <source>Cannot process payment request because BIP70 support was not compiled in.</source>
+        <translation>Zahlungsanfrage kann nicht verarbeitet werden, da die Unterstützung für BIP70 nicht mitkompiliert wurde.</translation>
+    </message>
+    <message>
+        <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
+        <translation>Aufgrund der weit verbreiteten Sicherheitsmängel in BIP70 wird dringend empfohlen, dass alle Anweisungen des Händlers zum Wechseln von Wallets ignoriert werden.</translation>
+    </message>
+    <message>
+        <source>If you are receiving this error you should request the merchant provide a BIP21 compatible URI.</source>
+        <translation>Wenn du diese Fehlermeldung erhälst, solltest du Kontakt mit dem Händler aufnehmen und eine mit BIP21 kompatible URL zur Verwendung nachfragen.</translation>
     </message>
     <message>
         <source>Invalid payment address %1</source>
@@ -1525,7 +1705,11 @@
     </message>
     <message>
         <source>%1 m</source>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <translation>%1 M</translation>
+=======
+        <translation>%1 min</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>%1 s</source>
@@ -1606,6 +1790,7 @@
         <translation>%1 GB</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>%1 didn&apos;t yet exit safely...</source>
         <translation>%1 wurde noch nicht sicher beendet...</translation>
     </message>
@@ -1623,6 +1808,10 @@
     <message>
         <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
         <translation>Fehler: Angegebenes Datenverzeichnis &quot;%1&quot; existiert nicht.</translation>
+=======
+        <source>Error: Specified data directory "%1" does not exist.</source>
+        <translation>Fehler: Angegebenes Datenverzeichnis "%1" existiert nicht.</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
@@ -1631,6 +1820,14 @@
     <message>
         <source>Error: %1</source>
         <translation>Fehler: %1</translation>
+    </message>
+    <message>
+        <source>%1 didn't yet exit safely...</source>
+        <translation>%1 wurde noch nicht sicher beendet...</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>unbekannt</translation>
     </message>
 </context>
 <context>
@@ -1642,6 +1839,18 @@
     <message>
         <source>&amp;Copy Image</source>
         <translation>Grafik &amp;kopieren</translation>
+    </message>
+    <message>
+        <source>Resulting URI too long, try to reduce the text for label / message.</source>
+        <translation>Resultierende URI ist zu lang, bitte den Text für Bezeichnung/Nachricht kürzen.</translation>
+    </message>
+    <message>
+        <source>Error encoding URI into QR Code.</source>
+        <translation>Beim Enkodieren der URI in den QR-Code ist ein Fehler aufgetreten.</translation>
+    </message>
+    <message>
+        <source>QR code support not available.</source>
+        <translation>QR Code Funktionalität nicht vorhanden</translation>
     </message>
     <message>
         <source>Save QR Code</source>
@@ -1681,6 +1890,18 @@
     <message>
         <source>Datadir</source>
         <translation>Datenverzeichnis</translation>
+    </message>
+    <message>
+        <source>To specify a non-default location of the data directory use the '%1' option.</source>
+        <translation>Verwenden Sie die Option '%1' um einen anderen, nicht standardmäßigen Speicherort für das Datenverzeichnis festzulegen.</translation>
+    </message>
+    <message>
+        <source>Blocksdir</source>
+        <translation>Blockverzeichnis</translation>
+    </message>
+    <message>
+        <source>To specify a non-default location of the blocks directory use the '%1' option.</source>
+        <translation>Verwenden Sie die Option '%1' um einen anderen, nicht standardmäßigen Speicherort für das Blöckeverzeichnis festzulegen.</translation>
     </message>
     <message>
         <source>Startup time</source>
@@ -1752,7 +1973,11 @@
     </message>
     <message>
         <source>Whitelisted</source>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <translation>Zugelassen</translation>
+=======
+        <translation>Auf Weißliste</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Direction</source>
@@ -1893,10 +2118,13 @@
     <message>
         <source>&amp;Unban</source>
         <translation>&amp;Entsperren</translation>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
     </message>
     <message>
         <source>default wallet</source>
         <translation>Standard Wallet</translation>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Welcome to the %1 RPC console.</source>
@@ -1948,7 +2176,7 @@
     </message>
     <message>
         <source>Outbound</source>
-        <translation>ausgehend</translation>
+        <translation>Ausgehend</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -1992,6 +2220,13 @@
     <message>
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
         <translation>Ein optional angeforderter Betrag. Lassen Sie dieses Feld leer oder setzen Sie es auf 0, um keinen spezifischen Betrag anzufordern.</translation>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
+=======
+    </message>
+    <message>
+        <source>&amp;Create new receiving address</source>
+        <translation>Neue Empfangsadresse erstellen</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Clear all fields of the form.</source>
@@ -2012,10 +2247,6 @@
     <message>
         <source>Requested payments history</source>
         <translation>Verlauf der angeforderten Zahlungen</translation>
-    </message>
-    <message>
-        <source>&amp;Request payment</source>
-        <translation>&amp;Zahlung anfordern</translation>
     </message>
     <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
@@ -2099,14 +2330,6 @@
     <message>
         <source>Wallet</source>
         <translation>Wallet</translation>
-    </message>
-    <message>
-        <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>Resultierende URI ist zu lang, bitte den Text für Bezeichnung/Nachricht kürzen.</translation>
-    </message>
-    <message>
-        <source>Error encoding URI into QR Code.</source>
-        <translation>Beim Enkodieren der URI in den QR-Code ist ein Fehler aufgetreten.</translation>
     </message>
 </context>
 <context>
@@ -2231,6 +2454,7 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Ausblenden</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for whive transactions than the network can process.</source>
         <translation type="unfinished">Nur die minimale Gebühr zu bezahlen ist so lange in Ordnung, wie weniger Transaktionsvolumen als Platz in den Blöcken vorhanden ist. Aber Vorsicht, diese Option kann dazu führen, dass Transaktionen nicht bestätigt werden, wenn mehr Bedarf an whive-Transaktionen besteht als das Netzwerk verarbeiten kann.</translation>
     </message>
@@ -2239,6 +2463,8 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>(den Hinweistext lesen)</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>Recommended:</source>
         <translation>Empfehlungen:</translation>
     </message>
@@ -2265,6 +2491,14 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     <message>
         <source>Dust:</source>
         <translation>&quot;Dust&quot;:</translation>
+    </message>
+    <message>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <translation>Nur die minimale Gebühr zu bezahlen ist so lange in Ordnung, wie weniger Transaktionsvolumen als Platz in den Blöcken vorhanden ist. Aber Vorsicht, diese Option kann dazu führen, dass Transaktionen nicht bestätigt werden, wenn mehr Bedarf an Bitcoin-Transaktionen besteht als das Netzwerk verarbeiten kann.</translation>
+    </message>
+    <message>
+        <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
+        <translation>Eine niedrige Gebühr kann dazu führen das eine Transaktion niemals bestätigt wird (Lesen sie die Anmerkung).</translation>
     </message>
     <message>
         <source>Confirmation time target:</source>
@@ -2327,6 +2561,14 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>%1 (%2 Blöcke)</translation>
     </message>
     <message>
+        <source> from wallet '%1'</source>
+        <translation>von der Wallet '%1'</translation>
+    </message>
+    <message>
+        <source>%1 to '%2'</source>
+        <translation>%1 an '%2'</translation>
+    </message>
+    <message>
         <source>%1 to %2</source>
         <translation>%1 an %2</translation>
     </message>
@@ -2341,14 +2583,17 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     <message>
         <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
         <translation>Sie können die Gebühr später erhöhen (zeigt Replace-By-Fee, BIP-125).</translation>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
     </message>
     <message>
         <source>from wallet %1</source>
         <translation>aus Wallet %1</translation>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Please, review your transaction.</source>
-        <translation>Bitte überprüfen sie ihre Transaktion. </translation>
+        <translation>Bitte überprüfen sie ihre Transaktion.</translation>
     </message>
     <message>
         <source>Transaction fee</source>
@@ -2361,6 +2606,10 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     <message>
         <source>Total Amount</source>
         <translation>Gesamtbetrag</translation>
+    </message>
+    <message>
+        <source>To review recipient list click "Show Details..."</source>
+        <translation>Um die Empfängerliste anzuzeigen, klicke auf "Details anzeigen..."</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -2401,10 +2650,6 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     <message>
         <source>Payment request expired.</source>
         <translation>Zahlungsanforderung abgelaufen.</translation>
-    </message>
-    <message>
-        <source>Pay only the required fee of %1</source>
-        <translation>Nur die notwendige Gebühr in Höhe von %1 zahlen</translation>
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
@@ -2679,6 +2924,7 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     </message>
 </context>
 <context>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
     <name>SplashScreen</name>
     <message>
         <source>[testnet]</source>
@@ -2686,6 +2932,8 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     </message>
 </context>
 <context>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     <name>TrafficGraphWidget</name>
     <message>
         <source>KB/s</source>
@@ -2831,6 +3079,10 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     <message>
         <source>Output index</source>
         <translation>Ausgabeindex</translation>
+    </message>
+    <message>
+        <source> (Certificate was not verified)</source>
+        <translation>(Zertifikat wurde nicht verifiziert)</translation>
     </message>
     <message>
         <source>Merchant</source>
@@ -3153,6 +3405,21 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     </message>
 </context>
 <context>
+    <name>WalletController</name>
+    <message>
+        <source>Close wallet</source>
+        <translation>Wallet schließen</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to close the wallet &lt;i&gt;%1&lt;/i&gt;?</source>
+        <translation>Sind Sie sich sicher, dass Sie die Wallet &lt;i&gt;%1&lt;/i&gt; schließen möchten?</translation>
+    </message>
+    <message>
+        <source>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</source>
+        <translation>Wenn Sie die Wallet zu lange schließen, kann es dazu kommen, dass Sie die gesamte Chain neu synchronisieren müssen, wenn Pruning aktiviert ist.</translation>
+    </message>
+</context>
+<context>
     <name>WalletFrame</name>
     <message>
         <source>No wallet has been loaded.</source>
@@ -3276,10 +3543,13 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Kann HTTP Server nicht starten. Siehe debug log für Details.</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Whive Core</source>
         <translation type="unfinished">Whive Core</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>The %s developers</source>
         <translation>Die %s-Entwickler</translation>
     </message>
@@ -3301,7 +3571,11 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Lesen von %s fehlgeschlagen! Alle Schlüssel wurden korrekt gelesen, Transaktionsdaten bzw. Adressbucheinträge fehlen aber möglicherweise oder sind inkorrekt.</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Please check that your computer&apos;s date and time are correct! If your clock is wrong, %s will not work properly.</source>
+=======
+        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <translation>Bitte korrigieren Sie die Datums- und Uhrzeiteinstellungen Ihres Computers, da %s ansonsten nicht ordnungsgemäß funktionieren wird.</translation>
     </message>
     <message>
@@ -3322,7 +3596,11 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     </message>
     <message>
         <source>Unable to replay blocks. You will need to rebuild the database using -reindex-chainstate.</source>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <translation>Fehler beim Verarbeiten von Blöcken. Sie müssen die Datenbank mit Hilfe des Arguments '-reindex-chainstate' neu aufbauen. </translation>
+=======
+        <translation>Fehler beim Verarbeiten von Blöcken. Sie müssen die Datenbank mit Hilfe des Arguments '-reindex-chainstate' neu aufbauen.</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
@@ -3357,6 +3635,10 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Position des Wechselgelds außerhalb des Bereichs</translation>
     </message>
     <message>
+        <source>Config setting for %s only applied on %s network when in [%s] section.</source>
+        <translation>Konfigurationseinstellungen für %s sind nur auf %s network gültig, wenn in Sektion [%s]</translation>
+    </message>
+    <message>
         <source>Copyright (C) %i-%i</source>
         <translation>Copyright (C) %i-%i</translation>
     </message>
@@ -3369,10 +3651,13 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Möchten Sie die Blockdatenbank jetzt neu aufbauen?</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Error creating %s: You can&apos;t create non-HD wallets with this version.</source>
         <translation>Fehler beim Laden von %s: Sie können HD nicht aktivieren da sie derzeit eine nicht HD Wallet besitzen.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>Error initializing block database</source>
         <translation>Fehler beim Initialisieren der Blockdatenbank</translation>
     </message>
@@ -3406,10 +3691,6 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Fehler beim Öffnen der Blockdatenbank</translation>
     </message>
     <message>
-        <source>Error: Disk space is low!</source>
-        <translation>Fehler: Zu wenig freier Speicherplatz auf dem Datenträger!</translation>
-    </message>
-    <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
         <translation>Fehler: Es konnte kein Port abgehört werden. Wenn dies so gewünscht wird -listen=0 verwenden.</translation>
     </message>
@@ -3430,8 +3711,17 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Initialisierungsplausibilitätsprüfung fehlgeschlagen. %s wird beendet.</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Invalid amount for -%s=&lt;amount&gt;: &apos;%s&apos;</source>
         <translation>Ungültiger Betrag für -%s=&lt;amount&gt;: &apos;%s&apos;</translation>
+=======
+        <source>Invalid P2P permission: '%s'</source>
+        <translation>Ungültige P2P Genehmigung: '%s'</translation>
+    </message>
+    <message>
+        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
+        <translation>Ungültiger Betrag für -%s=&lt;amount&gt;: '%s'</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Invalid amount for -discardfee=&lt;amount&gt;: &apos;%s&apos;</source>
@@ -3446,12 +3736,24 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Angegebener Blöcke-Ordner &quot;%s&quot; existiert nicht.</translation>
     </message>
     <message>
+        <source>Unknown address type '%s'</source>
+        <translation>Unbekannter Adresstyp '%s'</translation>
+    </message>
+    <message>
+        <source>Unknown change type '%s'</source>
+        <translation>Unbekannter Änderungstyp '%s'</translation>
+    </message>
+    <message>
         <source>Upgrading txindex database</source>
         <translation>Erneuern der txindex Datenbank</translation>
     </message>
     <message>
         <source>Loading P2P addresses...</source>
         <translation>Lade P2P-Adressen...</translation>
+    </message>
+    <message>
+        <source>Error: Disk space is too low!</source>
+        <translation>Fehler: Zu wenig freier Speicherplatz auf dem Datenträger!</translation>
     </message>
     <message>
         <source>Loading banlist...</source>
@@ -3494,16 +3796,8 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Schlüssel können nicht generiert werden</translation>
     </message>
     <message>
-        <source>Unsupported argument -benchmark ignored, use -debug=bench.</source>
-        <translation>Nicht unterstütztes Argument -benchmark wurde ignoriert, bitte -debug=bench verwenden.</translation>
-    </message>
-    <message>
-        <source>Unsupported argument -debugnet ignored, use -debug=net.</source>
-        <translation>Nicht unterstütztes Argument -debugnet wurde ignoriert, bitte -debug=net verwenden.</translation>
-    </message>
-    <message>
-        <source>Unsupported argument -tor found, use -onion.</source>
-        <translation>Nicht unterstütztes Argument -tor gefunden, bitte -onion verwenden.</translation>
+        <source>Unsupported logging category %s=%s.</source>
+        <translation>Nicht unterstützte Protokollkategorie %s=%s.</translation>
     </message>
     <message>
         <source>Upgrading UTXO database</source>
@@ -3536,10 +3830,13 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     <message>
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
         <translation>Sie müssen die Datenbank mit Hilfe von -reindex neu aufbauen, um zum ungekürzten Modus zurückzukehren. Dies erfordert, dass die gesamte Blockchain erneut heruntergeladen wird.</translation>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
     </message>
     <message>
         <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation>Fehler beim Laden von %s: Sie können die hierarchisch deterministische Schlüsselgeneration (HD) für eine bereits existierende HD-Wallet nicht deaktivieren</translation>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>
@@ -3550,8 +3847,8 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Fehler bei der Aktualisierung einer Chainstate-Datenbank</translation>
     </message>
     <message>
-        <source>Information</source>
-        <translation>Hinweis</translation>
+        <source>Error: Disk space is low for %s</source>
+        <translation>Fehler: Zu wenig Speicherplatz auf der Festplatte %s</translation>
     </message>
     <message>
         <source>Invalid -onion address or hostname: &apos;%s&apos;</source>
@@ -3574,8 +3871,16 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Angabe eines Ports benötigt für -whitebind: &apos;%s&apos;</translation>
     </message>
     <message>
+        <source>Prune mode is incompatible with -blockfilterindex.</source>
+        <translation>Kürzungsmodus ist nicht mit -blockfilterindex kompatibel.</translation>
+    </message>
+    <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
         <translation>Reduziere -maxconnections von %d zu %d, aufgrund von Systemlimitierungen.</translation>
+    </message>
+    <message>
+        <source>Section [%s] is not recognized.</source>
+        <translation>Sektion [%s] ist nicht delegiert.</translation>
     </message>
     <message>
         <source>Signing transaction failed</source>
@@ -3612,10 +3917,6 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Transaktionsbetrag zu niedrig</translation>
     </message>
     <message>
-        <source>Transaction too large for fee policy</source>
-        <translation>Transaktion ist für die Gebührenrichtlinie zu groß</translation>
-    </message>
-    <message>
         <source>Transaction too large</source>
         <translation>Transaktion zu groß</translation>
     </message>
@@ -3624,14 +3925,26 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Kann auf diesem Computer nicht an %s binden (bind meldete Fehler %s)</translation>
     </message>
     <message>
+        <source>Unable to create the PID file '%s': %s</source>
+        <translation>Erstellung der PID-Datei '%s': %s ist nicht möglich</translation>
+    </message>
+    <message>
         <source>Unable to generate initial keys</source>
         <translation>Initialschlüssel können nicht generiert werden</translation>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
+=======
+    </message>
+    <message>
+        <source>Unknown -blockfilterindex value %s.</source>
+        <translation>Unbekannter -blockfilterindex Wert %s.</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Verifying wallet(s)...</source>
         <translation>Verifiziere Wallet(s)...</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Wallet %s resides outside wallet directory %s</source>
         <translation>Wallet %s liegt außerhalb des Wallet-Verzeichnisses %s</translation>
     </message>
@@ -3640,6 +3953,8 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Warnung</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>Warning: unknown new rules activated (versionbit %i)</source>
         <translation>Warnung: Unbekannte neue Regeln aktiviert (Versionsbit %i)</translation>
     </message>
@@ -3652,10 +3967,13 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>-maxtxfee ist auf einen sehr hohen Wert festgelegt! Gebühren dieser Höhe könnten für eine einzelne Transaktion bezahlt werden.</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation>Fehler beim Herunterladen von %s: Sie können keine hierarchisch deterministische Schlüsselgeneration (HD) auf eine bereits existierende nicht-HD Wallet (Wallet) aktivieren.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>This is the transaction fee you may pay when fee estimates are not available.</source>
         <translation>Das ist die Transaktionsgebühr, welche Sie zahlen müssten, wenn die Gebührenschätzungen nicht verfügbar sind.</translation>
     </message>
@@ -3668,6 +3986,7 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Gesamtlänge des Netzwerkversionstrings (%i) erreicht die maximale Länge (%i). Reduzieren Sie die Nummer oder die Größe von uacomments.</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Unsupported argument -socks found. Setting SOCKS version isn&apos;t possible anymore, only SOCKS5 proxies are supported.</source>
         <translation>Nicht unterstützter Parameter -socks gefunden. Das Festlegen der SOCKS-Version ist nicht mehr möglich, nur noch SOCKS5-Proxies werden unterstützt.</translation>
     </message>
@@ -3678,6 +3997,10 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     <message>
         <source>Warning: Unknown block versions being mined! It&apos;s possible unknown rules are in effect</source>
         <translation>Warnung: Unbekannte Blockversion wird durch Mining erzeugt! Es ist möglich, dass unbekannte Regeln in Kraft sind.</translation>
+=======
+        <source>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
+        <translation>Warnung: wallet.dat beschädigt, Datenrettung erfolgreich! Original %s wurde als wallet %s in %s gespeichert. Falls Ihr Kontostand oder Transaktionen nicht korrekt sind, sollten Sie von einer Datensicherung wiederherstellen.</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>%s is set very high!</source>
@@ -3686,10 +4009,13 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     <message>
         <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
         <translation>Fehler beim Laden der Wallet %s. -wallet Dateiname doppelt angegeben.</translation>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
     </message>
     <message>
         <source>Keypool ran out, please call keypoolrefill first</source>
         <translation>Der Keypool ist erschöpft. Bitte rufen Sie zunächst keypoolrefill auf.</translation>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Starting network threads...</source>
@@ -3728,10 +4054,13 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
         <translation>Unzureichendes Guthaben</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation>Es kann keinen privater Schlüssel für eine Wechselgeldaddresse generiert werden. Private Schlüssel sind für diese Wallet deaktiviert.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
         <translation>Ein Wallet das kein geteiltes HD-Wallet ist, kann kein Upgrade erfahren, wenn nicht auch der Schlüsselpool vor der Teilung ein Upgrade erfahren hat. Bitte benutzen Sie upgradewallet=169900 oder -upgradewallet ohne Angabe einer Version.</translation>
     </message>
@@ -3745,7 +4074,11 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     </message>
     <message>
         <source>Cannot write to data directory '%s'; check permissions.</source>
+<<<<<<< HEAD:src/qt/locale/whive_de.ts
         <translation>Es konnte nicht in das Datenverzeichnis '%s' geschrieben werden; Überprüfen Sie die Berechtigungen. </translation>
+=======
+        <translation>Es konnte nicht in das Datenverzeichnis '%s' geschrieben werden; Überprüfen Sie die Berechtigungen.</translation>
+>>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
         <source>Loading block index...</source>
@@ -3766,10 +4099,6 @@ Hinweis: Eine Gebühr von &quot;100 crany pro kB&quot; bei einer Größe der Tra
     <message>
         <source>Done loading</source>
         <translation>Laden abgeschlossen</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Fehler</translation>
     </message>
 </context>
 </TS>

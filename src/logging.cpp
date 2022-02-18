@@ -30,26 +30,48 @@ static int FileWriteStr(const std::string &str, FILE *fp)
     return fwrite(str.data(), 1, str.size(), fp);
 }
 
-bool BCLog::Logger::OpenDebugLog()
+bool BCLog::Logger::StartLogging()
 {
-    std::lock_guard<std::mutex> scoped_lock(m_file_mutex);
+    std::lock_guard<std::mutex> scoped_lock(m_cs);
 
+    assert(m_buffering);
     assert(m_fileout == nullptr);
-    assert(!m_file_path.empty());
 
-    m_fileout = fsbridge::fopen(m_file_path, "a");
-    if (!m_fileout) {
-        return false;
+    if (m_print_to_file) {
+        assert(!m_file_path.empty());
+        m_fileout = fsbridge::fopen(m_file_path, "a");
+        if (!m_fileout) {
+            return false;
+        }
+
+        setbuf(m_fileout, nullptr); // unbuffered
+
+        // Add newlines to the logfile to distinguish this execution from the
+        // last one.
+        FileWriteStr("\n\n\n\n\n", m_fileout);
     }
 
-    setbuf(m_fileout, nullptr); // unbuffered
     // dump buffered messages from before we opened the log
+    m_buffering = false;
     while (!m_msgs_before_open.empty()) {
-        FileWriteStr(m_msgs_before_open.front(), m_fileout);
+        const std::string& s = m_msgs_before_open.front();
+
+        if (m_print_to_file) FileWriteStr(s, m_fileout);
+        if (m_print_to_console) fwrite(s.data(), 1, s.size(), stdout);
+
         m_msgs_before_open.pop_front();
     }
+    if (m_print_to_console) fflush(stdout);
 
     return true;
+}
+
+void BCLog::Logger::DisconnectTestLogger()
+{
+    std::lock_guard<std::mutex> scoped_lock(m_cs);
+    m_buffering = true;
+    if (m_fileout != nullptr) fclose(m_fileout);
+    m_fileout = nullptr;
 }
 
 void BCLog::Logger::EnableCategory(BCLog::LogFlags flag)
@@ -220,10 +242,24 @@ namespace BCLog {
     }
 }
 
-void BCLog::Logger::LogPrintStr(const std::string &str)
+void BCLog::Logger::LogPrintStr(const std::string& str)
 {
-    std::string strEscaped = LogEscapeMessage(str);
-    std::string strTimestamped = LogTimestampStr(strEscaped);
+    std::lock_guard<std::mutex> scoped_lock(m_cs);
+    std::string str_prefixed = LogEscapeMessage(str);
+
+    if (m_log_threadnames && m_started_new_line) {
+        str_prefixed.insert(0, "[" + util::ThreadGetInternalName() + "] ");
+    }
+
+    str_prefixed = LogTimestampStr(str_prefixed);
+
+    m_started_new_line = !str.empty() && str[str.size()-1] == '\n';
+
+    if (m_buffering) {
+        // buffer if we haven't started logging yet
+        m_msgs_before_open.push_back(str_prefixed);
+        return;
+    }
 
     if (m_print_to_console) {
         // print to console
@@ -231,26 +267,19 @@ void BCLog::Logger::LogPrintStr(const std::string &str)
         fflush(stdout);
     }
     if (m_print_to_file) {
-        std::lock_guard<std::mutex> scoped_lock(m_file_mutex);
+        assert(m_fileout != nullptr);
 
-        // buffer if we haven't opened the log yet
-        if (m_fileout == nullptr) {
-            m_msgs_before_open.push_back(strTimestamped);
-        }
-        else
-        {
-            // reopen the log file, if requested
-            if (m_reopen_file) {
-                m_reopen_file = false;
-                m_fileout = fsbridge::freopen(m_file_path, "a", m_fileout);
-                if (!m_fileout) {
-                    return;
-                }
-                setbuf(m_fileout, nullptr); // unbuffered
+        // reopen the log file, if requested
+        if (m_reopen_file) {
+            m_reopen_file = false;
+            FILE* new_fileout = fsbridge::fopen(m_file_path, "a");
+            if (new_fileout) {
+                setbuf(new_fileout, nullptr); // unbuffered
+                fclose(m_fileout);
+                m_fileout = new_fileout;
             }
-
-            FileWriteStr(strTimestamped, m_fileout);
         }
+        FileWriteStr(str_prefixed, m_fileout);
     }
 }
 

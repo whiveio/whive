@@ -166,6 +166,17 @@ bool CNetAddr::IsRFC4843() const
     return (GetByte(15) == 0x20 && GetByte(14) == 0x01 && GetByte(13) == 0x00 && (GetByte(12) & 0xF0) == 0x10);
 }
 
+bool CNetAddr::IsRFC7343() const
+{
+    return (GetByte(15) == 0x20 && GetByte(14) == 0x01 && GetByte(13) == 0x00 && (GetByte(12) & 0xF0) == 0x20);
+}
+
+/**
+ * @returns Whether or not this is a dummy address that maps an onion address
+ *          into IPv6.
+ *
+ * @see CNetAddr::SetSpecial(const std::string &)
+ */
 bool CNetAddr::IsTor() const
 {
     return (memcmp(ip, pchOnionCat, sizeof(pchOnionCat)) == 0);
@@ -185,6 +196,16 @@ bool CNetAddr::IsLocal() const
    return false;
 }
 
+/**
+ * @returns Whether or not this network address is a valid address that @a could
+ *          be used to refer to an actual host.
+ *
+ * @note A valid address may or may not be publicly routable on the global
+ *       internet. As in, the set of valid addresses is a superset of the set of
+ *       publicly routable addresses.
+ *
+ * @see CNetAddr::IsRoutable()
+ */
 bool CNetAddr::IsValid() const
 {
     // Cleanup 3-byte shifted addresses caused by garbage in size field
@@ -224,9 +245,18 @@ bool CNetAddr::IsValid() const
     return true;
 }
 
+/**
+ * @returns Whether or not this network address is publicly routable on the
+ *          global internet.
+ *
+ * @note A routable address is always valid. As in, the set of routable addresses
+ *       is a subset of the set of valid addresses.
+ *
+ * @see CNetAddr::IsValid()
+ */
 bool CNetAddr::IsRoutable() const
 {
-    return IsValid() && !(IsRFC1918() || IsRFC2544() || IsRFC3927() || IsRFC4862() || IsRFC6598() || IsRFC5737() || (IsRFC4193() && !IsTor()) || IsRFC4843() || IsLocal() || IsInternal());
+    return IsValid() && !(IsRFC1918() || IsRFC2544() || IsRFC3927() || IsRFC4862() || IsRFC6598() || IsRFC5737() || (IsRFC4193() && !IsTor()) || IsRFC4843() || IsRFC7343() || IsLocal() || IsInternal());
 }
 
 bool CNetAddr::IsInternal() const

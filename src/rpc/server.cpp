@@ -7,12 +7,11 @@
 
 #include <fs.h>
 #include <key_io.h>
-#include <random.h>
+#include <rpc/util.h>
 #include <shutdown.h>
 #include <sync.h>
-#include <ui_interface.h>
-#include <util.h>
-#include <utilstrencodings.h>
+#include <util/strencodings.h>
+#include <util/system.h>
 
 #include <boost/bind.hpp>
 #include <boost/signals2/signal.hpp>
@@ -231,33 +230,79 @@ UniValue stop(const JSONRPCRequest& jsonRequest)
     // Accept the deprecated and ignored 'detach' boolean argument
     if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
         throw std::runtime_error(
-            "stop\n"
-            "\nStop Whive server.");
+            RPCHelpMan{"stop",
+                "\nRequest a graceful shutdown of " PACKAGE_NAME ".",
+                {},
+                RPCResults{},
+                RPCExamples{""},
+            }.ToString());
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "Whive server stopping";
+    if (jsonRequest.params[0].isNum()) {
+        MilliSleep(jsonRequest.params[0].get_int());
+    }
+    return PACKAGE_NAME " stopping";
 }
 
 static UniValue uptime(const JSONRPCRequest& jsonRequest)
 {
-    if (jsonRequest.fHelp || jsonRequest.params.size() > 1)
-        throw std::runtime_error(
-                "uptime\n"
-                        "\nReturns the total uptime of the server.\n"
-                        "\nResult:\n"
+            RPCHelpMan{"uptime",
+                "\nReturns the total uptime of the server.\n",
+                            {},
+                            RPCResult{
                         "ttt        (numeric) The number of seconds that the server has been running\n"
                         "\nExamples:\n"
                 + HelpExampleCli("uptime", "")
                 + HelpExampleRpc("uptime", "")
-        );
+                },
+            }.Check(jsonRequest);
 
     return GetTime() - GetStartupTime();
 }
 
-/**
- * Call Table
- */
+static UniValue getrpcinfo(const JSONRPCRequest& request)
+{
+            RPCHelpMan{"getrpcinfo",
+                "\nReturns details of the RPC server.\n",
+                {},
+                RPCResult{
+            "{\n"
+            " \"active_commands\" (array) All active commands\n"
+            "  [\n"
+            "   {               (object) Information about an active command\n"
+            "    \"method\"       (string)  The name of the RPC command \n"
+            "    \"duration\"     (numeric)  The running time in microseconds\n"
+            "   },...\n"
+            "  ],\n"
+            " \"logpath\": \"xxx\" (string) The complete file path to the debug log\n"
+            "}\n"
+                },
+                RPCExamples{
+                    HelpExampleCli("getrpcinfo", "")
+                + HelpExampleRpc("getrpcinfo", "")},
+            }.Check(request);
+
+    LOCK(g_rpc_server_info.mutex);
+    UniValue active_commands(UniValue::VARR);
+    for (const RPCCommandExecutionInfo& info : g_rpc_server_info.active_commands) {
+        UniValue entry(UniValue::VOBJ);
+        entry.pushKV("method", info.method);
+        entry.pushKV("duration", GetTimeMicros() - info.start);
+        active_commands.push_back(entry);
+    }
+
+    UniValue result(UniValue::VOBJ);
+    result.pushKV("active_commands", active_commands);
+
+    const std::string path = LogInstance().m_file_path.string();
+    UniValue log_path(UniValue::VSTR, path);
+    result.pushKV("logpath", log_path);
+
+    return result;
+}
+
+// clang-format off
 static const CRPCCommand vRPCCommands[] =
 { //  category              name                      actor (function)         argNames
   //  --------------------- ------------------------  -----------------------  ----------
@@ -347,39 +392,6 @@ bool RPCIsInWarmup(std::string *outStatus)
     if (outStatus)
         *outStatus = rpcWarmupStatus;
     return fRPCInWarmup;
-}
-
-void JSONRPCRequest::parse(const UniValue& valRequest)
-{
-    // Parse request
-    if (!valRequest.isObject())
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Invalid Request object");
-    const UniValue& request = valRequest.get_obj();
-
-    // Parse id now so errors from here on will have the id
-    id = find_value(request, "id");
-
-    // Parse method
-    UniValue valMethod = find_value(request, "method");
-    if (valMethod.isNull())
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Missing method");
-    if (!valMethod.isStr())
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Method must be a string");
-    strMethod = valMethod.get_str();
-    if (fLogIPs)
-        LogPrint(BCLog::RPC, "ThreadRPCServer method=%s user=%s peeraddr=%s\n", SanitizeString(strMethod),
-            this->authUser, this->peerAddr);
-    else
-        LogPrint(BCLog::RPC, "ThreadRPCServer method=%s user=%s\n", SanitizeString(strMethod), this->authUser);
-
-    // Parse params
-    UniValue valParams = find_value(request, "params");
-    if (valParams.isArray() || valParams.isObject())
-        params = valParams;
-    else if (valParams.isNull())
-        params = UniValue(UniValue::VARR);
-    else
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Params must be an array or object");
 }
 
 bool IsDeprecatedRPCEnabled(const std::string& method)

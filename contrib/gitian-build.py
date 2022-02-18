@@ -7,7 +7,7 @@ import sys
 
 def setup():
     global args, workdir
-    programs = ['ruby', 'git', 'apt-cacher-ng', 'make', 'wget']
+    programs = ['ruby', 'git', 'make', 'wget', 'curl']
     if args.kvm:
         programs += ['python-vm-builder', 'qemu-kvm', 'qemu-utils']
     elif args.docker:

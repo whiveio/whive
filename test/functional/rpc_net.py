@@ -12,10 +12,30 @@ from test_framework.util import (
     assert_equal,
     assert_greater_than_or_equal,
     assert_raises_rpc_error,
-    connect_nodes_bi,
+    connect_nodes,
     p2p_port,
     wait_until,
 )
+from test_framework.mininode import P2PInterface
+import test_framework.messages
+from test_framework.messages import (
+    CAddress,
+    msg_addr,
+    NODE_NETWORK,
+    NODE_WITNESS,
+)
+
+def assert_net_servicesnames(servicesflag, servicenames):
+    """Utility that checks if all flags are correctly decoded in
+    `getpeerinfo` and `getnetworkinfo`.
+
+    :param servicesflag: The services as an integer.
+    :param servicenames: The list of decoded services names, as strings.
+    """
+    servicesflag_generated = 0
+    for servicename in servicenames:
+        servicesflag_generated |= getattr(test_framework.messages, 'NODE_' + servicename)
+    assert servicesflag_generated == servicesflag
 
 class NetTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -23,14 +43,18 @@ class NetTest(BitcoinTestFramework):
         self.num_nodes = 2
 
     def run_test(self):
+        self.log.info('Connect nodes both way')
+        connect_nodes(self.nodes[0], 1)
+        connect_nodes(self.nodes[1], 0)
+
         self._test_connection_count()
         self._test_getnettotals()
-        self._test_getnetworkinginfo()
+        self._test_getnetworkinfo()
         self._test_getaddednodeinfo()
         self._test_getpeerinfo()
 
     def _test_connection_count(self):
-        # connect_nodes_bi connects each node to the other
+        # connect_nodes connects each node to the other
         assert_equal(self.nodes[0].getconnectioncount(), 2)
 
     def _test_getnettotals(self):
@@ -63,7 +87,7 @@ class NetTest(BitcoinTestFramework):
             assert_greater_than_or_equal(after['bytesrecv_per_msg']['pong'], before['bytesrecv_per_msg']['pong'] + 32)
             assert_greater_than_or_equal(after['bytessent_per_msg']['ping'], before['bytessent_per_msg']['ping'] + 32)
 
-    def _test_getnetworkinginfo(self):
+    def _test_getnetworkinfo(self):
         assert_equal(self.nodes[0].getnetworkinfo()['networkactive'], True)
         assert_equal(self.nodes[0].getnetworkinfo()['connections'], 2)
 
@@ -72,10 +96,18 @@ class NetTest(BitcoinTestFramework):
         # Wait a bit for all sockets to close
         wait_until(lambda: self.nodes[0].getnetworkinfo()['connections'] == 0, timeout=3)
 
-        self.nodes[0].setnetworkactive(True)
-        connect_nodes_bi(self.nodes, 0, 1)
+        self.nodes[0].setnetworkactive(state=True)
+        self.log.info('Connect nodes both way')
+        connect_nodes(self.nodes[0], 1)
+        connect_nodes(self.nodes[1], 0)
+
         assert_equal(self.nodes[0].getnetworkinfo()['networkactive'], True)
         assert_equal(self.nodes[0].getnetworkinfo()['connections'], 2)
+
+        # check the `servicesnames` field
+        network_info = [node.getnetworkinfo() for node in self.nodes]
+        for info in network_info:
+            assert_net_servicesnames(int(info["localservices"], 0x10), info["localservicesnames"])
 
     def _test_getaddednodeinfo(self):
         assert_equal(self.nodes[0].getaddednodeinfo(), [])
@@ -95,6 +127,46 @@ class NetTest(BitcoinTestFramework):
         # the address bound to on one side will be the source address for the other node
         assert_equal(peer_info[0][0]['addrbind'], peer_info[1][0]['addr'])
         assert_equal(peer_info[1][0]['addrbind'], peer_info[0][0]['addr'])
+        assert_equal(peer_info[0][0]['minfeefilter'], Decimal("0.00000500"))
+        assert_equal(peer_info[1][0]['minfeefilter'], Decimal("0.00001000"))
+        # check the `servicesnames` field
+        for info in peer_info:
+            assert_net_servicesnames(int(info[0]["services"], 0x10), info[0]["servicesnames"])
+
+    def _test_getnodeaddresses(self):
+        self.nodes[0].add_p2p_connection(P2PInterface())
+
+        # send some addresses to the node via the p2p message addr
+        msg = msg_addr()
+        imported_addrs = []
+        for i in range(256):
+            a = "123.123.123.{}".format(i)
+            imported_addrs.append(a)
+            addr = CAddress()
+            addr.time = 100000000
+            addr.nServices = NODE_NETWORK | NODE_WITNESS
+            addr.ip = a
+            addr.port = 8333
+            msg.addrs.append(addr)
+        self.nodes[0].p2p.send_and_ping(msg)
+
+        # obtain addresses via rpc call and check they were ones sent in before
+        REQUEST_COUNT = 10
+        node_addresses = self.nodes[0].getnodeaddresses(REQUEST_COUNT)
+        assert_equal(len(node_addresses), REQUEST_COUNT)
+        for a in node_addresses:
+            assert_greater_than(a["time"], 1527811200) # 1st June 2018
+            assert_equal(a["services"], NODE_NETWORK | NODE_WITNESS)
+            assert a["address"] in imported_addrs
+            assert_equal(a["port"], 8333)
+
+        assert_raises_rpc_error(-8, "Address count out of range", self.nodes[0].getnodeaddresses, -1)
+
+        # addrman's size cannot be known reliably after insertion, as hash collisions may occur
+        # so only test that requesting a large number of addresses returns less than that
+        LARGE_REQUEST_COUNT = 10000
+        node_addresses = self.nodes[0].getnodeaddresses(LARGE_REQUEST_COUNT)
+        assert_greater_than(LARGE_REQUEST_COUNT, len(node_addresses))
 
 if __name__ == '__main__':
     NetTest().main()

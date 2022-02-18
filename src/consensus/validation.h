@@ -22,6 +22,80 @@ static const unsigned char REJECT_NONSTANDARD = 0x40;
 static const unsigned char REJECT_INSUFFICIENTFEE = 0x42;
 static const unsigned char REJECT_CHECKPOINT = 0x43;
 
+/** A "reason" why something was invalid, suitable for determining whether the
+  * provider of the object should be banned/ignored/disconnected/etc.
+  * These are much more granular than the rejection codes, which may be more
+  * useful for some other use-cases.
+  */
+enum class ValidationInvalidReason {
+    // txn and blocks:
+    NONE,                    //!< not actually invalid
+    CONSENSUS,               //!< invalid by consensus rules (excluding any below reasons)
+    /**
+     * Invalid by a change to consensus rules more recent than SegWit.
+     * Currently unused as there are no such consensus rule changes, and any download
+     * sources realistically need to support SegWit in order to provide useful data,
+     * so differentiating between always-invalid and invalid-by-pre-SegWit-soft-fork
+     * is uninteresting.
+     */
+    RECENT_CONSENSUS_CHANGE,
+    // Only blocks (or headers):
+    CACHED_INVALID,          //!< this object was cached as being invalid, but we don't know why
+    BLOCK_INVALID_HEADER,    //!< invalid proof of work or time too old
+    BLOCK_MUTATED,           //!< the block's data didn't match the data committed to by the PoW
+    BLOCK_MISSING_PREV,      //!< We don't have the previous block the checked one is built on
+    BLOCK_INVALID_PREV,      //!< A block this one builds on is invalid
+    BLOCK_TIME_FUTURE,          //!< block timestamp was > 2 hours in the future (or our clock is bad)
+    BLOCK_CHECKPOINT,        //!< the block failed to meet one of our checkpoints
+    // Only loose txn:
+    TX_INPUTS_NOT_STANDARD,   //!< inputs (covered by txid) failed policy rules
+    TX_NOT_STANDARD,          //!< otherwise didn't meet our local policy rules
+    TX_MISSING_INPUTS,        //!< a transaction was missing some of its inputs
+    TX_PREMATURE_SPEND,       //!< transaction spends a coinbase too early, or violates locktime/sequence locks
+    /**
+     * Transaction might be missing a witness, have a witness prior to SegWit
+     * activation, or witness may have been malleated (which includes
+     * non-standard witnesses).
+     */
+    TX_WITNESS_MUTATED,
+    /**
+     * Tx already in mempool or conflicts with a tx in the chain
+     * (if it conflicts with another tx in mempool, we use MEMPOOL_POLICY as it failed to reach the RBF threshold)
+     * TODO: Currently this is only used if the transaction already exists in the mempool or on chain,
+     * TODO: ATMP's fMissingInputs and a valid CValidationState being used to indicate missing inputs
+     */
+    TX_CONFLICT,
+    TX_MEMPOOL_POLICY,        //!< violated mempool's fee/size/descendant/RBF/etc limits
+};
+
+inline bool IsTransactionReason(ValidationInvalidReason r)
+{
+    return r == ValidationInvalidReason::NONE ||
+           r == ValidationInvalidReason::CONSENSUS ||
+           r == ValidationInvalidReason::RECENT_CONSENSUS_CHANGE ||
+           r == ValidationInvalidReason::TX_INPUTS_NOT_STANDARD ||
+           r == ValidationInvalidReason::TX_NOT_STANDARD ||
+           r == ValidationInvalidReason::TX_PREMATURE_SPEND ||
+           r == ValidationInvalidReason::TX_MISSING_INPUTS ||
+           r == ValidationInvalidReason::TX_WITNESS_MUTATED ||
+           r == ValidationInvalidReason::TX_CONFLICT ||
+           r == ValidationInvalidReason::TX_MEMPOOL_POLICY;
+}
+
+inline bool IsBlockReason(ValidationInvalidReason r)
+{
+    return r == ValidationInvalidReason::NONE ||
+           r == ValidationInvalidReason::CONSENSUS ||
+           r == ValidationInvalidReason::RECENT_CONSENSUS_CHANGE ||
+           r == ValidationInvalidReason::CACHED_INVALID ||
+           r == ValidationInvalidReason::BLOCK_INVALID_HEADER ||
+           r == ValidationInvalidReason::BLOCK_MUTATED ||
+           r == ValidationInvalidReason::BLOCK_MISSING_PREV ||
+           r == ValidationInvalidReason::BLOCK_INVALID_PREV ||
+           r == ValidationInvalidReason::BLOCK_TIME_FUTURE ||
+           r == ValidationInvalidReason::BLOCK_CHECKPOINT;
+}
+
 /** Capture information about block/transaction validation */
 class CValidationState {
 private:

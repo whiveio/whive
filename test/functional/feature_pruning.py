@@ -12,8 +12,6 @@ This test takes 30 mins or more (up to 2 hours)
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal, assert_raises_rpc_error, connect_nodes, mine_large_block, sync_blocks, wait_until
 
-import os
-
 # Rescans start at the earliest block up to 2 hours before a key timestamp, so
 # the manual prune RPC avoids pruning blocks in the same window to be
 # compatible with pruning based on key creation time.
@@ -42,6 +40,7 @@ class PruneTest(BitcoinTestFramework):
             ["-maxreceivebuffer=20000"],
             ["-prune=550"],
         ]
+        self.rpc_timeout = 120
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -167,15 +166,8 @@ class PruneTest(BitcoinTestFramework):
 
         self.log.info("Mine 220 more blocks so we have requisite history (some blocks will be big and cause pruning of previous chain)")
 
-        # Get node0's wallet transactions back in its mempool, to avoid the
-        # mined blocks from being too small.
-        self.nodes[0].resendwallettransactions()
-
-        for i in range(22):
-            # This can be slow, so do this in multiple RPC calls to avoid
-            # RPC timeouts.
-            self.nodes[0].generate(10) #node 0 has many large tx's in its mempool from the disconnects
-        sync_blocks(self.nodes[0:3], timeout=300)
+        mine_large_blocks(self.nodes[0], 220)
+        self.sync_blocks(self.nodes[0:3], timeout=120)
 
         usage = calc_usage(self.prunedir)
         self.log.info("Usage should be below target: %d" % usage)
@@ -292,8 +284,7 @@ class PruneTest(BitcoinTestFramework):
 
         # height=1000 should not prune anything more, because tip-288 is in blk00002.dat.
         prune(1000)
-        if not has_block(2):
-            raise AssertionError("blk00002.dat is still there, should be pruned by now")
+        assert has_block(2), "blk00002.dat is still there, should be pruned by now"
 
         # advance the tip so blk00002.dat and blk00003.dat can be pruned (the last 288 blocks should now be in blk00004.dat)
         node.generate(288)

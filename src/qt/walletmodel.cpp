@@ -42,17 +42,20 @@ WalletModel::WalletModel(std::unique_ptr<interfaces::Wallet> wallet, interfaces:
     transactionTableModel = new TransactionTableModel(platformStyle, this);
     recentRequestsTableModel = new RecentRequestsTableModel(this);
 
-    // This timer will be fired repeatedly to update the balance
-    pollTimer = new QTimer(this);
-    connect(pollTimer, SIGNAL(timeout()), this, SLOT(pollBalanceChanged()));
-    pollTimer->start(MODEL_UPDATE_DELAY);
-
     subscribeToCoreSignals();
 }
 
 WalletModel::~WalletModel()
 {
     unsubscribeFromCoreSignals();
+}
+
+void WalletModel::startPollBalance()
+{
+    // This timer will be fired repeatedly to update the balance
+    QTimer* timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &WalletModel::pollBalanceChanged);
+    timer->start(MODEL_UPDATE_DELAY);
 }
 
 void WalletModel::updateStatus()
@@ -72,21 +75,18 @@ void WalletModel::pollBalanceChanged()
     // rescan.
     interfaces::WalletBalances new_balances;
     int numBlocks = -1;
-    if (!m_wallet->tryGetBalances(new_balances, numBlocks)) {
+    if (!m_wallet->tryGetBalances(new_balances, numBlocks, fForceCheckBalanceChanged, cachedNumBlocks)) {
         return;
     }
 
-    if(fForceCheckBalanceChanged || m_node.getNumBlocks() != cachedNumBlocks)
-    {
-        fForceCheckBalanceChanged = false;
+    fForceCheckBalanceChanged = false;
 
-        // Balance and number of transactions might have changed
-        cachedNumBlocks = m_node.getNumBlocks();
+    // Balance and number of transactions might have changed
+    cachedNumBlocks = numBlocks;
 
-        checkBalanceChanged(new_balances);
-        if(transactionTableModel)
-            transactionTableModel->updateConfirmations();
-    }
+    checkBalanceChanged(new_balances);
+    if(transactionTableModel)
+        transactionTableModel->updateConfirmations();
 }
 
 void WalletModel::checkBalanceChanged(const interfaces::WalletBalances& new_balances)
@@ -217,11 +217,12 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             return TransactionCreationFailed;
         }
 
-        // reject absurdly high fee. (This can never happen because the
-        // wallet caps the fee at maxTxFee. This merely serves as a
-        // belt-and-suspenders check)
-        if (nFeeRequired > m_node.getMaxTxFee())
+        // Reject absurdly high fee. (This can never happen because the
+        // wallet never creates transactions with fee greater than
+        // m_default_max_tx_fee. This merely a belt-and-suspenders check).
+        if (nFeeRequired > m_wallet->getDefaultMaxTxFee()) {
             return AbsurdFee;
+        }
     }
 
     return SendCoinsReturn(OK);
@@ -253,11 +254,11 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
 
         auto& newTx = transaction.getWtx();
         std::string rejectReason;
-        if (!newTx->commit({} /* mapValue */, std::move(vOrderForm), {} /* fromAccount */, rejectReason))
+        if (!wallet().commitTransaction(newTx, {} /* mapValue */, std::move(vOrderForm), rejectReason))
             return SendCoinsReturn(TransactionCommitFailed, QString::fromStdString(rejectReason));
 
         CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-        ssTx << newTx->get();
+        ssTx << *newTx;
         transaction_array.append(&(ssTx[0]), ssTx.size());
     }
 

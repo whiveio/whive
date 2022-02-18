@@ -9,6 +9,7 @@
 #include <amount.h>     // For CAmount
 #include <net.h>        // For CConnman::NumConnections
 #include <netaddress.h> // For Network
+#include <support/allocators/secure.h> // For SecureString
 
 #include <functional>
 #include <memory>
@@ -26,6 +27,7 @@ class RPCTimerInterface;
 class UniValue;
 class proxyType;
 struct CNodeStateStats;
+enum class WalletCreationStatus;
 
 namespace interfaces {
 class Handler;
@@ -37,8 +39,14 @@ class Node
 public:
     virtual ~Node() {}
 
+    //! Send init error.
+    virtual void initError(const std::string& message) = 0;
+
     //! Set command line arguments.
     virtual bool parseParameters(int argc, const char* const argv[], std::string& error) = 0;
+
+    //! Set a command line argument
+    virtual void forceSetArg(const std::string& arg, const std::string& value) = 0;
 
     //! Set a command line argument if it doesn't already have a value
     virtual bool softSetArg(const std::string& arg, const std::string& value) = 0;
@@ -137,6 +145,9 @@ public:
     //! Is initial block download.
     virtual bool isInitialBlockDownload() = 0;
 
+    //! Is -addresstype set.
+    virtual bool isAddressTypeSet() = 0;
+
     //! Get reindex.
     virtual bool getReindex() = 0;
 
@@ -175,6 +186,14 @@ public:
 
     //! Return interfaces for accessing wallets (if any).
     virtual std::vector<std::unique_ptr<Wallet>> getWallets() = 0;
+
+    //! Attempts to load a wallet from file or directory.
+    //! The loaded wallet is also notified to handlers previously registered
+    //! with handleLoadWallet.
+    virtual std::unique_ptr<Wallet> loadWallet(const std::string& name, std::string& error, std::string& warning) = 0;
+
+    //! Create a wallet from file
+    virtual WalletCreationStatus createWallet(const SecureString& passphrase, uint64_t wallet_creation_flags, const std::string& name, std::string& error, std::string& warning, std::unique_ptr<Wallet>& result) = 0;
 
     //! Register handler for init messages.
     using InitMessageFn = std::function<void(const std::string& message)>;

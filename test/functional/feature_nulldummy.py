@@ -42,7 +42,7 @@ class NULLDUMMYTest(BitcoinTestFramework):
         self.setup_clean_chain = True
         # This script tests NULLDUMMY activation, which is part of the 'segwit' deployment, so we go through
         # normal segwit activation here (and don't use the default always-on behaviour).
-        self.extra_args = [['-whitelist=127.0.0.1', '-vbparams=segwit:0:999999999999', '-addresstype=legacy', "-deprecatedrpc=addwitnessaddress"]]
+        self.extra_args = [['-whitelist=127.0.0.1', '-segwitheight=432', '-addresstype=legacy']]
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -110,7 +110,7 @@ class NULLDUMMYTest(BitcoinTestFramework):
         witness and add_witness_commitment(block)
         block.rehash()
         block.solve()
-        node.submitblock(bytes_to_hex_str(block.serialize(True)))
+        node.submitblock(block.serialize().hex())
         if (accept):
             assert_equal(node.getbestblockhash(), block.hash)
             self.tip = block.sha256

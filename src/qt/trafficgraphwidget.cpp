@@ -7,6 +7,7 @@
 #include <qt/clientmodel.h>
 
 #include <QPainter>
+#include <QPainterPath>
 #include <QColor>
 #include <QTimer>
 
@@ -104,6 +105,7 @@ void TrafficGraphWidget::paintEvent(QPaintEvent *)
         }
     }
 
+    painter.setRenderHint(QPainter::Antialiasing);
     if(!vSamplesIn.empty()) {
         QPainterPath p;
         paintPath(p, vSamplesIn);

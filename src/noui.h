@@ -7,4 +7,10 @@
 
 extern void noui_connect();
 
+/** Suppress all bitcoind signal handlers. Used to suppress output during test runs that produce expected errors */
+void noui_suppress();
+
+/** Reconnects the regular Non-GUI handlers after having used noui_suppress */
+void noui_reconnect();
+
 #endif // BITCOIN_NOUI_H

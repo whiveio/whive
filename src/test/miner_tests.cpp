@@ -7,16 +7,15 @@
 #include <consensus/consensus.h>
 #include <consensus/merkle.h>
 #include <consensus/tx_verify.h>
-#include <consensus/validation.h>
-#include <validation.h>
 #include <miner.h>
 #include <policy/policy.h>
-#include <pubkey.h>
 #include <script/standard.h>
 #include <txmempool.h>
 #include <uint256.h>
-#include <util.h>
-#include <utilstrencodings.h>
+#include <util/strencodings.h>
+#include <util/system.h>
+#include <util/time.h>
+#include <validation.h>
 
 #include <test/test_bitcoin.h>
 
@@ -159,7 +158,7 @@ static void TestPackageSelection(const CChainParams& chainparams, const CScript&
     // Test that packages above the min relay fee do get included, even if one
     // of the transactions is below the min relay fee
     // Remove the low fee transaction and replace with a higher fee transaction
-    mempool.removeRecursive(tx);
+    mempool.removeRecursive(CTransaction(tx), MemPoolRemovalReason::REPLACED);
     tx.vout[0].nValue -= 2; // Now we should be just over the min relay fee
     hashLowFeeTx = tx.GetHash();
     mempool.addUnchecked(hashLowFeeTx, entry.Fee(feeToUse+2).FromTx(tx));
@@ -373,7 +372,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         CBlockIndex* prev = chainActive.Tip();
         CBlockIndex* next = new CBlockIndex();
         next->phashBlock = new uint256(InsecureRand256());
-        pcoinsTip->SetBestBlock(next->GetBlockHash());
+        ::ChainstateActive().CoinsTip().SetBestBlock(next->GetBlockHash());
         next->pprev = prev;
         next->nHeight = prev->nHeight + 1;
         next->BuildSkip();
@@ -385,7 +384,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         CBlockIndex* prev = chainActive.Tip();
         CBlockIndex* next = new CBlockIndex();
         next->phashBlock = new uint256(InsecureRand256());
-        pcoinsTip->SetBestBlock(next->GetBlockHash());
+        ::ChainstateActive().CoinsTip().SetBestBlock(next->GetBlockHash());
         next->pprev = prev;
         next->nHeight = prev->nHeight + 1;
         next->BuildSkip();
@@ -412,10 +411,10 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     mempool.clear();
 
     // Delete the dummy blocks again.
-    while (chainActive.Tip()->nHeight > nHeight) {
-        CBlockIndex* del = chainActive.Tip();
-        chainActive.SetTip(del->pprev);
-        pcoinsTip->SetBestBlock(del->pprev->GetBlockHash());
+    while (::ChainActive().Tip()->nHeight > nHeight) {
+        CBlockIndex* del = ::ChainActive().Tip();
+        ::ChainActive().SetTip(del->pprev);
+        ::ChainstateActive().CoinsTip().SetBestBlock(del->pprev->GetBlockHash());
         delete del->phashBlock;
         delete del;
     }

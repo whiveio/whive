@@ -14,8 +14,6 @@
 
 #include <test/test_bitcoin.h>
 
-#include <vector>
-
 #include <boost/test/unit_test.hpp>
 
 static std::map<void*, short> tags;

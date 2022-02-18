@@ -1,9 +1,9 @@
-﻿<TS language="uk" version="2.1">
+<TS language="uk" version="2.1">
 <context>
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Клікніть правою кнопкою для редагування адреси або мітки</translation>
+        <translation>Клікніть правою кнопкою миші для редагування адреси чи мітки</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -23,11 +23,11 @@
     </message>
     <message>
         <source>C&amp;lose</source>
-        <translation>З&amp;акрити</translation>
+        <translation>&amp;Закрити</translation>
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>Вилучити вибрані адреси з переліку</translation>
+        <translation>Вилучити вибрану адресу з переліку</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -39,7 +39,7 @@
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;Експорт...</translation>
+        <translation>&amp;Експорт</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -51,145 +51,157 @@
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Оберіть адресу для отримання монет</translation>
+        <translation>Выберите адрес для получения перевода</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
-        <translation>О&amp;брати</translation>
+        <translation>&amp;Выбрать</translation>
     </message>
     <message>
         <source>Sending addresses</source>
-        <translation>Адреса відправлення</translation>
+        <translation>Адреса отправки</translation>
     </message>
     <message>
         <source>Receiving addresses</source>
-        <translation>Адреса отримання</translation>
+        <translation>Адреса получения</translation>
     </message>
     <message>
-        <source>These are your Whive addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Це ваші адреси для надсилання платежів. Завжди перевіряйте суму та адресу одержувача перед відправленням монет.</translation>
+        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Это ваши адреса Bitcoin для отправки платежей. Всегда проверяйте количество и адрес получателя перед отправкой перевода.</translation>
     </message>
     <message>
-        <source>These are your Whive addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Це ваші адреси для отримання платежів. Для кожної транзакції рекомендується використовувати нову адресу одержувача.</translation>
+        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Це ваші біткойн-адреси для отримання платежів. Використовуйте кнопку "Створити нову адресу прийому" на вкладці отримання, для створення нових адрес.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
-        <translation>&amp;Копіювати адресу гаманця</translation>
+        <translation>Копировать &amp;адрес</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
-        <translation>Копіювати&amp;Створити мітку</translation>
+        <translation>Копировать &amp;метку</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Редагувати</translation>
+        <translation>&amp;Правка</translation>
     </message>
     <message>
         <source>Export Address List</source>
-        <translation>Експортувати список адрес</translation>
+        <translation>Экспортировать список адресов</translation>
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>Файли (*.csv) з розділителями "кома"</translation>
+        <translation>Текст, разделённый запятыми (*.csv)</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>Експортування було невдалим</translation>
+        <translation>Экспорт не удался</translation>
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Виникла помилка при спробі збереження списку адрес %1. Будь-ласка, спробуйте пізніше. </translation>
+        <translation>Произошла ошибка сохранения списка адресов в %1. Пожалуйста, повторите попытку.</translation>
     </message>
 </context>
 <context>
     <name>AddressTableModel</name>
     <message>
         <source>Label</source>
-        <translation>Мітка</translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Адреса</translation>
+        <translation>Адрес</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(немає мітки)</translation>
+        <translation>(нет метки)</translation>
     </message>
 </context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-        <translation>Діалог введення паролю</translation>
+        <translation>Пароль</translation>
     </message>
     <message>
         <source>Enter passphrase</source>
-        <translation>Введіть пароль</translation>
+        <translation>Введите пароль</translation>
     </message>
     <message>
         <source>New passphrase</source>
-        <translation>Новий пароль</translation>
+        <translation>Новый пароль</translation>
     </message>
     <message>
         <source>Repeat new passphrase</source>
-        <translation>Повторіть пароль</translation>
+        <translation>Повторите новый пароль</translation>
     </message>
     <message>
-        <source>Show password</source>
-        <translation>Показати пароль</translation>
-    </message>
-    <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Введіть нову кодову фразу для гаманця.&lt;br/&gt;Будь ласка, використовуйте кодові фрази що містять &lt;b&gt; щонайменше десять випадкових символів &lt;/b&gt; або &lt;b&gt; щонайменше вісім слів &lt;/b&gt;.</translation>
+        <source>Show passphrase</source>
+        <translation>Показати парольну фразу</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
-        <translation>Зашифрувати гаманець</translation>
+        <translation>Зашифровать электронный кошелёк</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Ця операція потребує пароль для розблокування гаманця.</translation>
+        <translation>Для выполнения операции требуется пароль от вашего кошелька.</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
-        <translation>Розблокувати гаманець</translation>
+        <translation>Разблокировать бумажник</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Ця операція потребує пароль від гаманця для його розблокування.</translation>
+        <translation>Данная операция требует введения пароля для расшифровки вашего бумажника.</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
-        <translation>Дешифрувати гаманець</translation>
+        <translation>Расшифровать бумажник</translation>
     </message>
     <message>
         <source>Change passphrase</source>
-        <translation>Змінити пароль</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>Введіть старий пароль та новий пароль до гаманця.</translation>
+        <translation>Изменить пароль</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
-        <translation>Підтвердіть шифрування гаманця</translation>
+        <translation>Подтвердить шифрование кошелька</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR WHIVES&lt;/b&gt;!</source>
-        <translation>УВАГА: Якщо ви зашифруєте гаманець і забудете пароль, ви &lt;b&gt;ВТРАТИТЕ ВСІ СВОЇ МОНЕТИ&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <translation>Предупреждение: если вы зашифруете бумажник и потеряете пароль, вы &lt;b&gt;ПОТЕРЯЕТЕ ВСЕ ВАШИ БИТКОИНЫ&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>Ви дійсно хочете зашифрувати свій гаманець?</translation>
+        <translation>Вы уверены, что хотите зашифровать ваш кошелёк?</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
-        <translation>Гаманець зашифровано</translation>
+        <translation>Кошелёк зашифрован</translation>
     </message>
     <message>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your whives from being stolen by malware infecting your computer.</source>
-        <translation>%1 буде закрито зараз, щоб завершити процес шифрування. Пам'ятайте, що шифрування гаманця не може повністю захистити ваші монети від крадіжки шкідливими програмами, у випадку якщо ваш комп'ютер буде інфіковано.</translation>
+        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Введіть нову парольну фразу для гаманця.&lt;br/&gt; Будь ласка, використовуйте парольну фразу з &lt;b&gt;десяти або більше випадкових символів&lt;/b&gt;, або &lt;b&gt; вісім або більше слів&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Enter the old passphrase and new passphrase for the wallet.</source>
+        <translation>Введіть стару та нову парольну фразу для гаманця.</translation>
+    </message>
+    <message>
+        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Пам’ятайте, що шифрування гаманця не може повністю захистити ваші біткоіни від кражі, у випадку якщо ваш комп’ютер буде інфіковано шкідливими програмами.</translation>
+    </message>
+    <message>
+        <source>Wallet to be encrypted</source>
+        <translation>Гаманець який потрібно зашифрувати</translation>
+    </message>
+    <message>
+        <source>Your wallet is about to be encrypted. </source>
+        <translation>Ваш гаманець буде зашифровано.</translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. </source>
+        <translation>Ваш гаманець зашифровано.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -197,65 +209,61 @@
     </message>
     <message>
         <source>Wallet encryption failed</source>
-        <translation>Не вдалося зашифрувати гаманець</translation>
+        <translation>Не удалось зашифровать бумажник</translation>
     </message>
     <message>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>Виникла помилка під час шифрування гаманця. Ваш гаманець не було зашифровано.</translation>
+        <translation>Сбой шифрования кошелька из-за внутренней ошибки. Ваш кошелёк не был зашифрован.</translation>
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
-        <translation>Введені паролі не співпадають.</translation>
+        <translation>Введённые пароли не совпадают.</translation>
     </message>
     <message>
         <source>Wallet unlock failed</source>
-        <translation>Не вдалося розблокувати гаманець</translation>
+        <translation>Разблокировка бумажника не удалась</translation>
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>Введений пароль не є дійсним.</translation>
+        <translation>Введений пароль є невірним.</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
-        <translation>Не вдалося розшифрувати гаманець</translation>
+        <translation>Расшифровка кошелька не удалась</translation>
     </message>
     <message>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>Пароль було успішно змінено.</translation>
+        <translation>Пароль бумажника успешно изменён.</translation>
     </message>
     <message>
         <source>Warning: The Caps Lock key is on!</source>
-        <translation>Увага: Ввімкнено Caps Lock!</translation>
+        <translation>Внимание: Caps Lock включен!</translation>
     </message>
 </context>
 <context>
     <name>BanTableModel</name>
     <message>
         <source>IP/Netmask</source>
-        <translation>IP/Маска підмережі</translation>
+        <translation>IP/Маска подсети</translation>
     </message>
     <message>
         <source>Banned Until</source>
-        <translation>Заблоковано До</translation>
+        <translation>Заблокировано до</translation>
     </message>
 </context>
 <context>
     <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
-        <translation>&amp;Підписати повідомлення...</translation>
+        <translation>Подписать &amp;сообщение...</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
-        <translation>Синхронізація з мережею...</translation>
+        <translation>Синхронизация с сетью...</translation>
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Огляд</translation>
-    </message>
-    <message>
-        <source>Node</source>
-        <translation>Вузол</translation>
+        <translation>&amp;Обзор</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
@@ -263,23 +271,23 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Транзакції</translation>
+        <translation>&amp;Транзакции</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
-        <translation>Переглянути історію транзакцій</translation>
+        <translation>Просмотр истории транзакций</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>&amp;Вихід</translation>
+        <translation>В&amp;ыход</translation>
     </message>
     <message>
         <source>Quit application</source>
-        <translation>Вийти з додатку</translation>
+        <translation>Закрыть приложение</translation>
     </message>
     <message>
         <source>&amp;About %1</source>
-        <translation>&amp;Про %1</translation>
+        <translation>&amp;Около %1</translation>
     </message>
     <message>
         <source>Show information about %1</source>
@@ -287,55 +295,51 @@
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation>&amp;Про Qt</translation>
+        <translation>O &amp;Qt</translation>
     </message>
     <message>
         <source>Show information about Qt</source>
-        <translation>Показати інформацію про Qt</translation>
+        <translation>Показать информацию о Qt</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation>&amp;Параметри...</translation>
+        <translation>&amp;Параметры</translation>
     </message>
     <message>
         <source>Modify configuration options for %1</source>
-        <translation>Редагувати параметри для %1</translation>
+        <translation>Изменить параметры конфигурации для %1</translation>
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Шифрування гаманця...</translation>
+        <translation>&amp;Зашифровать кошелёк...</translation>
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
-        <translation>&amp;Резервне копіювання гаманця...</translation>
+        <translation>&amp;Сделать резервную копию бумажника...</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Змінити пароль...</translation>
-    </message>
-    <message>
-        <source>&amp;Sending addresses...</source>
-        <translation>Адреси для &amp;відправлення...</translation>
-    </message>
-    <message>
-        <source>&amp;Receiving addresses...</source>
-        <translation>Адреси для &amp;отримання...</translation>
+        <translation>Змінити парол&amp;ь...</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
         <translation>Відкрити &amp;URI</translation>
     </message>
     <message>
-        <source>Wallet:</source>
-        <translation>Гаманець:</translation>
+        <source>Create Wallet...</source>
+        <translation>Створити Гаманець...</translation>
     </message>
     <message>
-        <source>default wallet</source>
-        <translation>типовий гаманець</translation>
+        <source>Create a new wallet</source>
+        <translation>Створити новий гаманець</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Кошелёк</translation>
     </message>
     <message>
         <source>Click to disable network activity.</source>
-        <translation>Натисніть, щоб вимкнути мережеву активність.</translation>
+        <translation>Натисніть, щоб вимкнути активність мережі.</translation>
     </message>
     <message>
         <source>Network activity disabled.</source>
@@ -351,14 +355,14 @@
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
-        <translation>Переіндексація блоків на диску ...</translation>
+        <translation>Переиндексация блоков на диске...</translation>
     </message>
     <message>
         <source>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</source>
         <translation>Проксі &lt;b&gt;увімкнено&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Whive address</source>
+        <source>Send coins to a Bitcoin address</source>
         <translation>Відправити монети на вказану адресу</translation>
     </message>
     <message>
@@ -371,23 +375,15 @@
     </message>
     <message>
         <source>&amp;Debug window</source>
-        <translation>&amp;Вікно відладки</translation>
+        <translation>&amp;Окно отладки</translation>
     </message>
     <message>
         <source>Open debugging and diagnostic console</source>
-        <translation>Відкрити консоль відладки та діагностики</translation>
+        <translation>Відкрити консоль зневадження і діагностики</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
-        <translation>&amp;Перевірити повідомлення...</translation>
-    </message>
-    <message>
-        <source>Whive</source>
-        <translation>Whive</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Гаманець</translation>
+        <translation>П&amp;еревірити повідомлення...</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -399,7 +395,7 @@
     </message>
     <message>
         <source>&amp;Show / Hide</source>
-        <translation>&amp;Показати / Приховати</translation>
+        <translation>Показа&amp;ти / Приховати</translation>
     </message>
     <message>
         <source>Show or hide the main Window</source>
@@ -410,12 +406,12 @@
         <translation>Зашифрувати закриті ключі, що знаходяться у вашому гаманці</translation>
     </message>
     <message>
-        <source>Sign messages with your Whive addresses to prove you own them</source>
-        <translation>Підтвердіть, що Ви є власником повідомлення підписавши його Вашою Whive-адресою </translation>
+        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <translation>Підтвердіть, що Ви є власником повідомлення підписавши його Вашою Bitcoin-адресою</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Whive addresses</source>
-        <translation>Перевірте повідомлення для впевненості, що воно підписано вказаною Whive-адресою</translation>
+        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <translation>Перевірте повідомлення для впевненості, що воно підписано вказаною Bitcoin-адресою</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -434,8 +430,8 @@
         <translation>Панель вкладок</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and whive: URIs)</source>
-        <translation>Створити запит платежу (генерує QR-код та whive: URI)</translation>
+        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <translation>Створити запит платежу (генерує QR-код та bitcoin: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -446,16 +442,16 @@
         <translation>Показати список адрес і міток, що були використані для отримання</translation>
     </message>
     <message>
-        <source>Open a whive: URI or payment request</source>
-        <translation>Відкрити whive: URI чи запит платежу</translation>
+        <source>Open a bitcoin: URI or payment request</source>
+        <translation>Відкрити bitcoin: URI чи запит платежу</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
-        <translation>&amp;Параметри командного рядка</translation>
+        <translation>П&amp;араметри командного рядка</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Whive network</source>
-        <translation><numerusform>%n активне з'єднання з мережею Whive</numerusform><numerusform>%n активні з'єднання з мережею Whive</numerusform><numerusform>%n активних з'єднань з мережею Whive</numerusform><numerusform>%n активних з'єднань з мережею Whive</numerusform></translation>
+        <source>%n active connection(s) to Bitcoin network</source>
+        <translation><numerusform>%n активне з'єднання з мережею Bitcoin</numerusform><numerusform>%n активні з'єднання з мережею Bitcoin</numerusform><numerusform>%n активних з'єднань з мережею Bitcoin</numerusform><numerusform>%n активних з'єднань з мережею Bitcoin</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -479,11 +475,11 @@
     </message>
     <message>
         <source>Transactions after this will not yet be visible.</source>
-        <translation>Пізніші транзакції не буде видно.</translation>
+        <translation>Пізніші транзакції не буде видно.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Помилка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -498,8 +494,56 @@
         <translation>Синхронізовано</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Whive command-line options</source>
+        <source>&amp;Sending addresses</source>
+        <translation>&amp;Адреси для відправлення</translation>
+    </message>
+    <message>
+        <source>&amp;Receiving addresses</source>
+        <translation>&amp;Адреси для отримання</translation>
+    </message>
+    <message>
+        <source>Open Wallet</source>
+        <translation>Відкрити гаманець</translation>
+    </message>
+    <message>
+        <source>Open a wallet</source>
+        <translation>Відкрийте гаманець</translation>
+    </message>
+    <message>
+        <source>Close Wallet...</source>
+        <translation>закрити Гаманець ...</translation>
+    </message>
+    <message>
+        <source>Close wallet</source>
+        <translation>закрити Гаманець</translation>
+    </message>
+    <message>
+        <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Показати довідку %1 для отримання переліку можливих параметрів командного рядка.</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>гаманець за змовчуванням</translation>
+    </message>
+    <message>
+        <source>No wallets available</source>
+        <translation>Гаманців немає</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Окно</translation>
+    </message>
+    <message>
+        <source>Minimize</source>
+        <translation>Сворачивать</translation>
+    </message>
+    <message>
+        <source>Zoom</source>
+        <translation>Збільшення</translation>
+    </message>
+    <message>
+        <source>Main Window</source>
+        <translation>Головне Вікно</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -514,28 +558,48 @@
         <translation>Синхронізується...</translation>
     </message>
     <message>
-        <source>Date: %1</source>
-        <translation>Дата: %1</translation>
+        <source>Error: %1</source>
+        <translation>Помилка: %1</translation>
     </message>
     <message>
-        <source>Amount: %1</source>
-        <translation>Кількість: %1</translation>
+        <source>Warning: %1</source>
+        <translation>Попередження: %1</translation>
     </message>
     <message>
-        <source>Wallet: %1</source>
-        <translation>Гаманець: %1</translation>
+        <source>Date: %1
+</source>
+        <translation>Дата: %1
+</translation>
     </message>
     <message>
-        <source>Type: %1</source>
-        <translation>Тип: %1</translation>
+        <source>Amount: %1
+</source>
+        <translation>Кількість: %1
+</translation>
     </message>
     <message>
-        <source>Label: %1</source>
-        <translation>Мітка: %1</translation>
+        <source>Wallet: %1
+</source>
+        <translation>Гаманець: %1
+</translation>
     </message>
     <message>
-        <source>Address: %1</source>
-        <translation>Адреса: %1</translation>
+        <source>Type: %1
+</source>
+        <translation>Тип: %1
+</translation>
+    </message>
+    <message>
+        <source>Label: %1
+</source>
+        <translation>Мітка: %1
+</translation>
+    </message>
+    <message>
+        <source>Address: %1
+</source>
+        <translation>Адреса: %1
+</translation>
     </message>
     <message>
         <source>Sent transaction</source>
@@ -554,6 +618,10 @@
         <translation>Генерація HD ключа&lt;b&gt;вимкнена&lt;/b&gt;</translation>
     </message>
     <message>
+        <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
+        <translation>Закритого ключа &lt;b&gt;вимкнено&lt;/b&gt;</translation>
+    </message>
+    <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>&lt;b&gt;Зашифрований&lt;/b&gt; гаманець &lt;b&gt;розблоковано&lt;/b&gt;</translation>
     </message>
@@ -562,7 +630,7 @@
         <translation>&lt;b&gt;Зашифрований&lt;/b&gt; гаманець &lt;b&gt;заблоковано&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Whive can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
         <translation>Сталася фатальна помилка. Гаманець буде закрито.</translation>
     </message>
 </context>
@@ -618,11 +686,11 @@
     </message>
     <message>
         <source>Received with label</source>
-        <translation>Отримано за позначкою</translation>
+        <translation>Отримано з позначкою</translation>
     </message>
     <message>
         <source>Received with address</source>
-        <translation>Отримано за адресою</translation>
+        <translation>Отримано з адресою</translation>
     </message>
     <message>
         <source>Date</source>
@@ -650,7 +718,7 @@
     </message>
     <message>
         <source>Copy transaction ID</source>
-        <translation>Копіювати ID транзакції </translation>
+        <translation>Копіювати ID транзакції</translation>
     </message>
     <message>
         <source>Lock unspent</source>
@@ -697,12 +765,16 @@
         <translation>ні</translation>
     </message>
     <message>
+        <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
+        <translation>Ця позначка стане червоною, якщо будь-який отримувач отримає суму, меншу за поточний поріг пилу.</translation>
+    </message>
+    <message>
         <source>Can vary +/- %1 satoshi(s) per input.</source>
         <translation>Може відрізнятися на +/- %1 сатоші за введені</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>немає мітки</translation>
+        <translation>(нет метки)</translation>
     </message>
     <message>
         <source>change from %1 (%2)</source>
@@ -711,6 +783,60 @@
     <message>
         <source>(change)</source>
         <translation>(решта)</translation>
+    </message>
+</context>
+<context>
+    <name>CreateWalletActivity</name>
+    <message>
+        <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
+        <translation>Створення Гаманця &lt;b&gt;%1&lt;/b&gt;...</translation>
+    </message>
+    <message>
+        <source>Create wallet failed</source>
+        <translation>Помилка створення гаманця</translation>
+    </message>
+    <message>
+        <source>Create wallet warning</source>
+        <translation>Попередження створення гаманця</translation>
+    </message>
+</context>
+<context>
+    <name>CreateWalletDialog</name>
+    <message>
+        <source>Create Wallet</source>
+        <translation>Створити Гаманець</translation>
+    </message>
+    <message>
+        <source>Wallet Name</source>
+        <translation>Назва Гаманця</translation>
+    </message>
+    <message>
+        <source>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</source>
+        <translation>Зашифруйте гаманець. Гаманець буде зашифрований за допомогою пароля на ваш вибір.</translation>
+    </message>
+    <message>
+        <source>Encrypt Wallet</source>
+        <translation>Шифрувати Гаманець</translation>
+    </message>
+    <message>
+        <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
+        <translation>Вимкнути приватні ключі для цього гаманця. Гаманці з вимкнутими приватними ключами не матимуть приватних ключів і не можуть мати набір HD або імпортовані приватні ключі. Це ідеально підходить лише для тільки-огляд гаманців.</translation>
+    </message>
+    <message>
+        <source>Disable Private Keys</source>
+        <translation>Вимкнути приватні ключі</translation>
+    </message>
+    <message>
+        <source>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</source>
+        <translation>Зробіть порожній гаманець. Порожні гаманці спочатку не мають приватних ключів або сценаріїв. Пізніше можна імпортувати приватні ключі та адреси або встановити HD-файл.</translation>
+    </message>
+    <message>
+        <source>Make Blank Wallet</source>
+        <translation>Створити пустий гаманець</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>Створити</translation>
     </message>
 </context>
 <context>
@@ -748,8 +874,8 @@
         <translation>Редагувати адресу для відправлення</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Whive address.</source>
-        <translation>Введена адреса "%1" не є дійсною.</translation>
+        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <translation>Введена адреса "%1" не є адресою в мережі Bitcoin.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -814,7 +940,7 @@
     <name>Intro</name>
     <message>
         <source>Welcome</source>
-        <translation>Ласкаво просимо</translation>
+        <translation>Добро пожаловать</translation>
     </message>
     <message>
         <source>Welcome to %1.</source>
@@ -829,6 +955,14 @@
         <translation>Після натискання кнопки «OK» %1 почне завантажувати та обробляти повний ланцюжок блоків %4 (%2 Гб), починаючи з найбільш ранніх транзакцій у %3, коли було запущено %4.</translation>
     </message>
     <message>
+        <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
+        <translation>Повернення цього параметра вимагає повторне завантаження всього ланцюга блоків. Швидше спочатку завантажити повний ланцюжок і обрізати його пізніше. Вимикає деякі розширені функції.</translation>
+    </message>
+    <message>
+        <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
+        <translation>Ця початкова синхронізація є дуже вимогливою, і може виявити проблеми з апаратним забезпеченням комп'ютера, які раніше не були непоміченими. Кожен раз, коли ви запускаєте %1, він буде продовжувати завантаження там, де він зупинився.</translation>
+    </message>
+    <message>
         <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
         <translation>Якщо ви вирішили обмежити збереження ланцюжка блоків (відсікання), історичні дані повинні бути завантажені та оброблені, але потім можуть бути видалені, щоб зберегти потрібний простір диска.</translation>
     </message>
@@ -841,8 +975,8 @@
         <translation>Використовувати свій каталог даних:</translation>
     </message>
     <message>
-        <source>Whive</source>
-        <translation>Whive</translation>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -853,8 +987,8 @@
         <translation>Близько %1 Гб даних буде збережено в цьому каталозі.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Whive block chain.</source>
-        <translation>%1 буде завантажувати та зберігати копію ланцюжка блоків.</translation>
+        <source>%1 will download and store a copy of the Bitcoin block chain.</source>
+        <translation>%1 буде завантажувати та зберігати копію ланцюжка блоків біткінів.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -866,7 +1000,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation>Помилка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
@@ -876,6 +1010,10 @@
         <source>(of %n GB needed)</source>
         <translation><numerusform>(в той час, як необхідно %n ГБ)</numerusform><numerusform>(в той час, як необхідно %n ГБ)</numerusform><numerusform>(в той час, як необхідно %n ГБ)</numerusform><numerusform>(в той час, як необхідно %n ГБ)</numerusform></translation>
     </message>
+    <message numerus="yes">
+        <source>(%n GB needed for full chain)</source>
+        <translation><numerusform>(%n GB потрібно для усього ланцюга)</numerusform><numerusform>(%n GB потрібно для усього ланцюга)</numerusform><numerusform>(%n GB потрібно для усього ланцюга)</numerusform><numerusform>(%n GB потрібно для усього ланцюга)</numerusform></translation>
+    </message>
 </context>
 <context>
     <name>ModalOverlay</name>
@@ -884,12 +1022,12 @@
         <translation>Форма</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</source>
-        <translation>Нещодавні транзакції ще не відображаються, тому баланс вашого гаманця може бути неточним. Ця інформація буде вірною після того, як ваш гаманець завершить синхронізацію з мережею, врахровуйте показники нижче.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <translation>Нещодавні транзакції ще не відображаються, тому баланс вашого гаманця може бути неточним. Ця інформація буде вірною після того, як ваш гаманець завершить синхронізацію з мережею біткойн, врахровуйте показники нижче.</translation>
     </message>
     <message>
-        <source>Attempting to spend whives that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Спроба видправити монети, які ще не відображаються, не буде прийнята мережею.</translation>
+        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>Спроба відправити біткоїни, які ще не відображаються, не буде прийнята мережею.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -924,8 +1062,8 @@
         <translation>Приховати</translation>
     </message>
     <message>
-        <source>Unknown. Syncing Headers (%1)...</source>
-        <translation>Невідомо. Синхронізація заголовків (%1%)...</translation>
+        <source>Unknown. Syncing Headers (%1, %2%)...</source>
+        <translation>Невідомо. Синхронізація заголовків (%1, %2%) ...</translation>
     </message>
 </context>
 <context>
@@ -952,6 +1090,25 @@
     </message>
 </context>
 <context>
+    <name>OpenWalletActivity</name>
+    <message>
+        <source>Open wallet failed</source>
+        <translation>Помилка відкриття гаманця</translation>
+    </message>
+    <message>
+        <source>Open wallet warning</source>
+        <translation>Попередження відкриття гаманця</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>гаманець за змовчуванням</translation>
+    </message>
+    <message>
+        <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
+        <translation>Відкриття гаманця &lt;b&gt;%1&lt;/b&gt;...</translation>
+    </message>
+</context>
+<context>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
@@ -962,12 +1119,16 @@
         <translation>&amp;Головні</translation>
     </message>
     <message>
-        <source>Size of &amp;database cache</source>
-        <translation>Розмір &amp;кешу бази даних</translation>
+        <source>Automatically start %1 after logging in to the system.</source>
+        <translation>Автоматично запускати %1 при вході до системи.</translation>
     </message>
     <message>
-        <source>MB</source>
-        <translation>МБ</translation>
+        <source>&amp;Start %1 on system login</source>
+        <translation>&amp;Запускати %1 при вході в систему</translation>
+    </message>
+    <message>
+        <source>Size of &amp;database cache</source>
+        <translation>Розмір &amp;кешу бази даних</translation>
     </message>
     <message>
         <source>Number of script &amp;verification threads</source>
@@ -987,11 +1148,11 @@
     </message>
     <message>
         <source>Hide the icon from the system tray.</source>
-        <translation>Приховати значок із системного трею.</translation>
+        <translation>Приховати значок із системного лотка.</translation>
     </message>
     <message>
         <source>&amp;Hide tray icon</source>
-        <translation>&amp;Приховати піктограму з трею</translation>
+        <translation>&amp;Приховати піктограму з лотка</translation>
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
@@ -999,11 +1160,7 @@
     </message>
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
-        <translation>Сторонні URL (наприклад, block explorer), що з'являться на вкладці транзакцій у вигляді пункту контекстного меню. %s в URL буде замінено на хеш транзакції. Для відокремлення URL-ів використовуйте вертикальну риску |.</translation>
-    </message>
-    <message>
-        <source>Active command-line options that override above options:</source>
-        <translation>Активовані параметри командного рядка, що перекривають вищевказані параметри:</translation>
+        <translation>Сторонні URL (наприклад, block explorer), що з'являться на вкладці транзакцій у вигляді пункту контекстного меню. %s в URL буде замінено на хеш транзакції. Для відокремлення URLів використовуйте вертикальну риску |.</translation>
     </message>
     <message>
         <source>Open the %1 configuration file from the working directory.</source>
@@ -1019,7 +1176,7 @@
     </message>
     <message>
         <source>&amp;Reset Options</source>
-        <translation>&amp;Скинути параметри</translation>
+        <translation>С&amp;кинути параметри</translation>
     </message>
     <message>
         <source>&amp;Network</source>
@@ -1040,6 +1197,10 @@
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
         <translation>Повернення цієї опції вимагає перезавантаження вього ланцюжка блоків.</translation>
+    </message>
+    <message>
+        <source>MiB</source>
+        <translation>MiB</translation>
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
@@ -1066,8 +1227,8 @@
         <translation>&amp;Витрачати непідтверджену решту</translation>
     </message>
     <message>
-        <source>Automatically open the Whive client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматично відкривати порт для клієнту Whive на роутері. Працює лише якщо ваш роутер підтримує UPnP і ця функція увімкнена.</translation>
+        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматично відкривати порт для клієнту біткоін на роутері. Працює лише якщо ваш роутер підтримує UPnP і ця функція увімкнена.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1075,15 +1236,15 @@
     </message>
     <message>
         <source>Accept connections from outside.</source>
-        <translation>Приймати з'єднання ззовні.</translation>
+        <translation>Принимать входящие соединения.</translation>
     </message>
     <message>
         <source>Allow incomin&amp;g connections</source>
-        <translation>Дозволити вхідні з'єднання</translation>
+        <translation>Разрешить входящие подключения</translation>
     </message>
     <message>
-        <source>Connect to the Whive network through a SOCKS5 proxy.</source>
-        <translation>Підключення до мережі Whive через SOCKS5 проксі.</translation>
+        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <translation>Підключення до мережі Bitcoin через SOCKS5 проксі.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1103,7 +1264,7 @@
     </message>
     <message>
         <source>Used for reaching peers via:</source>
-        <translation>Приєднуватися до пірів через:</translation>
+        <translation>Приєднуватися до учасників через:</translation>
     </message>
     <message>
         <source>IPv4</source>
@@ -1118,8 +1279,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Підключатися до мережі Whive через окремий SOCKS5 проксі для прихованих сервісів Tor.</translation>
+        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Підключатися до мережі Bitcoin через окремий SOCKS5 проксі для прихованих сервісів Tor.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1131,11 +1292,11 @@
     </message>
     <message>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>&amp;Мінімізувати у трей</translation>
+        <translation>Мінімізувати &amp;у трей</translation>
     </message>
     <message>
         <source>M&amp;inimize on close</source>
-        <translation>&amp;Згортати замість закриття</translation>
+        <translation>Згортати замість закритт&amp;я</translation>
     </message>
     <message>
         <source>&amp;Display</source>
@@ -1143,7 +1304,7 @@
     </message>
     <message>
         <source>User Interface &amp;language:</source>
-        <translation>Мова інтерфейсу &amp;користувача:</translation>
+        <translation>Мов&amp;а інтерфейсу користувача:</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting %1.</source>
@@ -1151,7 +1312,7 @@
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp;Вимірювати монети в:</translation>
+        <translation>В&amp;имірювати монети в:</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
@@ -1164,6 +1325,10 @@
     <message>
         <source>&amp;Third party transaction URLs</source>
         <translation>&amp;URL-адреси транзакцій сторонніх розробників</translation>
+    </message>
+    <message>
+        <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
+        <translation>Параметри, задані в цьому діалоговому вікні, буде перевизначено командним рядком або в конфігураційному файлі:</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1183,11 +1348,11 @@
     </message>
     <message>
         <source>Confirm options reset</source>
-        <translation>Підтвердіть скидання параметрів</translation>
+        <translation>Підтвердження скидання параметрів</translation>
     </message>
     <message>
         <source>Client restart required to activate changes.</source>
-        <translation>Для застосування змін необхіден перезапуск клієнта.</translation>
+        <translation>Для застосування змін необхідно перезапустити клієнта.</translation>
     </message>
     <message>
         <source>Client will be shut down. Do you want to proceed?</source>
@@ -1199,15 +1364,15 @@
     </message>
     <message>
         <source>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</source>
-        <translation>Файл конфігурації використовується для вказування додаткових параметрів користувача, що перекривають налаштування графічного інтерфейсу користувача. Крім того, будь-які параметри командного рядка замінять цей конфігураційний файл.</translation>
+        <translation>Файл конфігурації використовується для вказування додаткових параметрів користувача, що перекривають настройки графічного інтерфейсу користувача. Крім того, будь-які параметри командного рядка замінять цей конфігураційний файл.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Помилка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <source>The configuration file could not be opened.</source>
-        <translation>Файл конфігурції неможливо відкрити</translation>
+        <translation>Файл конфігурції не можливо відкрити</translation>
     </message>
     <message>
         <source>This change would require a client restart.</source>
@@ -1225,8 +1390,8 @@
         <translation>Форма</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
-        <translation>Показана інформація вже може бути застарілою. Ваш гаманець буде автоматично синхронізовано з мережею Whive після встановлення підключення, але цей процес ще не завершено.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Показана інформація вже може бути застарілою. Ваш гаманець буде автоматично синхронізовано з мережею Bitcoin після встановлення підключення, але цей процес ще не завершено.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1300,28 +1465,44 @@
         <translation>Помилка запиту платежу</translation>
     </message>
     <message>
-        <source>Cannot start whive: click-to-pay handler</source>
-        <translation>Не вдається запустити whive: обробник click-to-pay</translation>
+        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <translation>Не вдається запустити біткойн: обробник клацни-плати</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>Обробка URI</translation>
     </message>
     <message>
-        <source>'whive://' is not a valid URI. Use 'whive:' instead.</source>
-        <translation>'whive://' не вірний URI. Використовуйте 'whive:'.</translation>
+        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
+        <translation>'bitcoin://' не вірний URI. Використовуйте 'bitcoin:'.</translation>
+    </message>
+    <message>
+        <source>You are using a BIP70 URL which will be unsupported in the future.</source>
+        <translation>Ви використовуєте BIP70 посилання, яке в майбутньому не буде підтримуватись.</translation>
     </message>
     <message>
         <source>Payment request fetch URL is invalid: %1</source>
         <translation>URL запиту платежу є некоректним: %1</translation>
     </message>
     <message>
+        <source>Cannot process payment request because BIP70 support was not compiled in.</source>
+        <translation>Неможливо обробити платіжний запит, оскільки вимкнено підтримку BIP70.</translation>
+    </message>
+    <message>
+        <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
+        <translation>Через поширені недоліки безпеки в BIP70 настійно рекомендується ігнорувати будь-які інструкції продавця щодо переключення гаманців.</translation>
+    </message>
+    <message>
+        <source>If you are receiving this error you should request the merchant provide a BIP21 compatible URI.</source>
+        <translation>Якщо ви отримали цю помилку, ви повинні попросити продавця надати URI, сумісний з BIP21.</translation>
+    </message>
+    <message>
         <source>Invalid payment address %1</source>
         <translation>Помилка в адресі платежу %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Whive address or malformed URI parameters.</source>
-        <translation>Неможливо обробити URI! Причиною цього може бути некоректна адреса або неправильні параметри URI.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <translation>Неможливо обробити URI! Причиною цього може бути некоректна Біткойн-адреса або неправильні параметри URI.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1349,7 +1530,9 @@
     </message>
     <message>
         <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Неперевірені запити на оплату до індивідуальних платіжних скриптів не підтримуються.</translation>
+        <translation>
+70/5000
+Неперевірені запити на оплату до індивідуальних платіжних скриптів не підтримуються.</translation>
     </message>
     <message>
         <source>Invalid payment request.</source>
@@ -1422,8 +1605,8 @@
         <translation>Кількість</translation>
     </message>
     <message>
-        <source>Enter a Whive address (e.g. %1)</source>
-        <translation>Введіть адресу Whive (наприклад %1)</translation>
+        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <translation>Введіть адресу Bitcoin (наприклад %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1498,21 +1681,6 @@
         <translation>%1 ГБ</translation>
     </message>
     <message>
-        <source>%1 didn't yet exit safely...</source>
-        <translation>%1 безпечний вихід ще не виконано...</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>невідомо</translation>
-    </message>
-</context>
-<context>
-    <name>QObject::QObject</name>
-    <message>
-        <source>Error parsing command line arguments: %1.</source>
-        <translation>Помилка розбору параметрів команди: %1</translation>
-    </message>
-    <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
         <translation>Помилка: Вказаного каталогу даних «%1» не існує.</translation>
     </message>
@@ -1524,6 +1692,14 @@
         <source>Error: %1</source>
         <translation>Помилка: %1</translation>
     </message>
+    <message>
+        <source>%1 didn't yet exit safely...</source>
+        <translation>%1 безпечний вихід ще не виконано...</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>невідомо</translation>
+    </message>
 </context>
 <context>
     <name>QRImageWidget</name>
@@ -1534,6 +1710,18 @@
     <message>
         <source>&amp;Copy Image</source>
         <translation>&amp;Копіювати зображення</translation>
+    </message>
+    <message>
+        <source>Resulting URI too long, try to reduce the text for label / message.</source>
+        <translation>Кінцевий URI занадто довгий, спробуйте зменшити текст для мітки / повідомлення.</translation>
+    </message>
+    <message>
+        <source>Error encoding URI into QR Code.</source>
+        <translation>Помилка кодування URI в QR-код.</translation>
+    </message>
+    <message>
+        <source>QR code support not available.</source>
+        <translation>Підтримка QR-коду недоступна.</translation>
     </message>
     <message>
         <source>Save QR Code</source>
@@ -1560,7 +1748,7 @@
     </message>
     <message>
         <source>Debug window</source>
-        <translation>Вікно відладки</translation>
+        <translation>Вікно зневадження</translation>
     </message>
     <message>
         <source>General</source>
@@ -1573,6 +1761,18 @@
     <message>
         <source>Datadir</source>
         <translation>Каталог даних</translation>
+    </message>
+    <message>
+        <source>To specify a non-default location of the data directory use the '%1' option.</source>
+        <translation>Для зазначення нестандартного шляху до каталогу даних, скористайтесь опцією '%1'.</translation>
+    </message>
+    <message>
+        <source>Blocksdir</source>
+        <translation>Каталог блоків</translation>
+    </message>
+    <message>
+        <source>To specify a non-default location of the blocks directory use the '%1' option.</source>
+        <translation>Для зазначення нестандартного шляху до каталогу блоків, скористайтесь опцією '%1'.</translation>
     </message>
     <message>
         <source>Startup time</source>
@@ -1752,7 +1952,7 @@
     </message>
     <message>
         <source>Debug log file</source>
-        <translation>Файл звіту</translation>
+        <translation>Файл звіту зневадження</translation>
     </message>
     <message>
         <source>Clear console</source>
@@ -1787,10 +1987,6 @@
         <translation>&amp;Розблокувати</translation>
     </message>
     <message>
-        <source>default wallet</source>
-        <translation>гаманець за змовчуванням</translation>
-    </message>
-    <message>
         <source>Welcome to the %1 RPC console.</source>
         <translation>Ласкаво просимо до консолі RPC %1.</translation>
     </message>
@@ -1808,7 +2004,7 @@
     </message>
     <message>
         <source>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</source>
-        <translation>ПОПЕРЕДЖЕННЯ. Шахраї активно пропонували вводити тут команди і отримували доступ до вмісту гаманця користувачів. Не використовуйте цю консоль без повного розуміння наслідків виконання команд.</translation>
+        <translation>ПОПЕРЕДЖЕННЯ. Шахраї активно вказували вводити тут команди і отримували доступ до вмісту гаманця користувачів. Не використовуйте цю консоль без повного розуміння наслідків виконання команд.</translation>
     </message>
     <message>
         <source>Network activity disabled</source>
@@ -1870,8 +2066,8 @@
         <translation>&amp;Повідомлення:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
-        <translation>Необов'язкове повідомлення на додаток до запиту платежу, котре буде показане під час відкриття запиту. Примітка: Це повідомлення не буде відправлено з платежем через мережу Whive.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <translation>Необов'язкове повідомлення на додаток до запиту платежу, котре буде показане під час відкриття запиту. Примітка: Це повідомлення не буде відправлено з платежем через мережу Bitcoin.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -1886,16 +2082,20 @@
         <translation>Необов'язкове поле для суми запиту. Залиште це поле пустим або впишіть нуль, щоб не надсилати у запиті конкретної суми.</translation>
     </message>
     <message>
+        <source>&amp;Create new receiving address</source>
+        <translation>&amp;Створити нову адресу</translation>
+    </message>
+    <message>
         <source>Clear all fields of the form.</source>
         <translation>Очистити всі поля в формі</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Очистити</translation>
+        <translation>Очистить</translation>
     </message>
     <message>
         <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
-        <translation>Чиста сегвіт адреса (segwit, Bech32 знижує комісію та пропонує кращий захист від помилок, але старі гаманці її не підтримують. Якщо позначка знята, буде створено адресу, сумісну зі старими гаманцями.</translation>
+        <translation>Чиста сегвіт адреса (segwit, Bech32, BIP-173) знижує комісію та пропонує кращий захист від помилок, але старі гаманці її не підтримують. Якщо позначка знята, буде створено адресу, сумісну зі старими гаманцями.</translation>
     </message>
     <message>
         <source>Generate native segwit (Bech32) address</source>
@@ -1906,12 +2106,8 @@
         <translation>Історія запитів платежу</translation>
     </message>
     <message>
-        <source>&amp;Request payment</source>
-        <translation>&amp;Надіслати запит платежу</translation>
-    </message>
-    <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
-        <translation>Показати обраний запит (робить те ж саме, що й подвійний клік по запису)</translation>
+        <translation>Показати вибраний запит (робить те ж саме, що й подвійний клік по запису)</translation>
     </message>
     <message>
         <source>Show</source>
@@ -1974,7 +2170,7 @@
     </message>
     <message>
         <source>Address</source>
-        <translation>Адреса</translation>
+        <translation>Адрес</translation>
     </message>
     <message>
         <source>Amount</source>
@@ -1982,7 +2178,7 @@
     </message>
     <message>
         <source>Label</source>
-        <translation>Мітка</translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <source>Message</source>
@@ -1990,15 +2186,7 @@
     </message>
     <message>
         <source>Wallet</source>
-        <translation>Гаманець</translation>
-    </message>
-    <message>
-        <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>Кінцевий URI занадто довгий, спробуйте зменшити текст для мітки / повідомлення.</translation>
-    </message>
-    <message>
-        <source>Error encoding URI into QR Code.</source>
-        <translation>Помилка кодування URI в QR-код.</translation>
+        <translation>Кошелёк</translation>
     </message>
 </context>
 <context>
@@ -2009,7 +2197,7 @@
     </message>
     <message>
         <source>Label</source>
-        <translation>Мітка</translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <source>Message</source>
@@ -2017,7 +2205,7 @@
     </message>
     <message>
         <source>(no label)</source>
-        <translation>немає мітки</translation>
+        <translation>(нет метки)</translation>
     </message>
     <message>
         <source>(no message)</source>
@@ -2088,7 +2276,7 @@
     </message>
     <message>
         <source>Transaction Fee:</source>
-        <translation>Комісія за транзакцію:</translation>
+        <translation>Комісія за передачу:</translation>
     </message>
     <message>
         <source>Choose...</source>
@@ -2112,7 +2300,7 @@
 Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
         <translation>Вкажіть комісію за кБ (1,000 байт) віртуального розміру транзакції.
 
-Примітка: Так як комісія нараховується за байт, комісія "100 сатоші за кБ" для транзакції розміром 500 байт (пів 1 кБ) буде приблизно 50 сатоші. </translation>
+Примітка: Так як комісія нараховується за байт, комісія "100 сатоші за кБ" для транзакції розміром 500 байт (пів 1 кБ) буде приблизно 50 сатоші.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2121,14 +2309,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Hide</source>
         <translation>Приховати</translation>
-    </message>
-    <message>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for whive transactions than the network can process.</source>
-        <translation>Оплата тільки мінімальної комісії є прийнятною, допоки обсяг транзакцій є меншим ніж місце в блоках. Але майте на увазі, що це може анулювати транзакцію, якщо попит на транзакції стане більшим, ніж мережа зможе обробити.</translation>
-    </message>
-    <message>
-        <source>(read the tooltip)</source>
-        <translation>(читати підказки)</translation>
     </message>
     <message>
         <source>Recommended:</source>
@@ -2148,7 +2328,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Add &amp;Recipient</source>
-        <translation>Додати &amp; одержувача</translation>
+        <translation>Дод&amp;ати одержувача</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
@@ -2157,6 +2337,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Dust:</source>
         <translation>Пил:</translation>
+    </message>
+    <message>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <translation>Якщо обсяг транзакцій менше, ніж простір у блоках, майнери, а також вузли ретрансляції можуть стягувати мінімальну плату. Сплата лише цієї мінімальної суми може призвести до ніколи не підтверджуваної транзакції, коли буде більше попиту на біткойн-транзакції, ніж мережа може обробити.</translation>
+    </message>
+    <message>
+        <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
+        <translation>Занадто низька плата може призвести до ніколи не підтверджуваної транзакції (див. підказку)</translation>
     </message>
     <message>
         <source>Confirmation time target:</source>
@@ -2168,7 +2356,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
-        <translation>З опцією Заміна-Через-Комісію ви можете збільшити комісію за транзакцію після її надсилання. Інакше може бути рекомендоване збільшення розміру комісії для компенсації підвищеного ризику затримки транзакції.</translation>
+        <translation>З опцією Заміна-Через-Комісію (BIP-125) ви можете збільшити комісію за транзакцію після її надсилання. Інакше може бути рекомендоване збільшення розміру комісії для компенсації підвищеного ризику затримки транзакції.</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -2219,6 +2407,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>%1 (%2 блоків)</translation>
     </message>
     <message>
+        <source> from wallet '%1'</source>
+        <translation>з гаманця '%1'</translation>
+    </message>
+    <message>
+        <source>%1 to '%2'</source>
+        <translation>%1 до '%2'</translation>
+    </message>
+    <message>
         <source>%1 to %2</source>
         <translation>%1 до %2</translation>
     </message>
@@ -2232,11 +2428,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
-        <translation>Ви можете збільшити комісію пізніше (сигналізує Заміна-Через-Комісію).</translation>
-    </message>
-    <message>
-        <source>from wallet %1</source>
-        <translation>з гаманця %1</translation>
+        <translation>Ви можете збільшити комісію пізніше (сигналізує Заміна-Через-Комісію, BIP-125).</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -2244,15 +2436,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Transaction fee</source>
-        <translation>Комісія за транзакцію</translation>
+        <translation>Комиссия</translation>
     </message>
     <message>
         <source>Not signalling Replace-By-Fee, BIP-125.</source>
-        <translation>Не сигналізує Заміна-Через-Комісію.</translation>
+        <translation>Не сигналізує Заміна-Через-Комісію, BIP-125.</translation>
     </message>
     <message>
         <source>Total Amount</source>
         <translation>Всього</translation>
+    </message>
+    <message>
+        <source>To review recipient list click "Show Details..."</source>
+        <translation>Щоб переглянути список одержувачів, натисніть "Показати деталі ..."</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
@@ -2260,7 +2456,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The recipient address is not valid. Please recheck.</source>
-        <translation>Неприпустима адреса отримувача. Будь ласка, перевірте її.</translation>
+        <translation>Неприпустима адреса отримувача. Будь ласка, перевірте.</translation>
     </message>
     <message>
         <source>The amount to pay must be larger than 0.</source>
@@ -2294,17 +2490,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Payment request expired.</source>
         <translation>Запит платежу прострочено.</translation>
     </message>
-    <message>
-        <source>Pay only the required fee of %1</source>
-        <translation>Сплатіть лише обов'язкову комісію у розмірі %1</translation>
-    </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Очікуваний початок підтвердження через %n блок(ів).</numerusform><numerusform>Очікуваний початок підтвердження протягом %n блоків(ів).</numerusform><numerusform>Очікуваний початок підтвердження протягом %n блоків.</numerusform><numerusform>Очікуваний початок підтвердження протягом %n блоків.</numerusform></translation>
+        <translation><numerusform>Очікуваний початок підтвердження через %n блок.</numerusform><numerusform>Очікуваний початок підтвердження протягом %n блоків.</numerusform><numerusform>Очікуваний початок підтвердження протягом %n блоків.</numerusform><numerusform>Очікуваний початок підтвердження протягом %n блоків.</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Whive address</source>
-        <translation>Увага: Неприпустима адреса.</translation>
+        <source>Warning: Invalid Bitcoin address</source>
+        <translation>Увага: Неприпустима Біткойн-адреса.</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2320,7 +2512,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>(no label)</source>
-        <translation>немає мітки</translation>
+        <translation>(нет метки)</translation>
     </message>
 </context>
 <context>
@@ -2346,8 +2538,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Це звичайний платіж.</translation>
     </message>
     <message>
-        <source>The Whive address to send the payment to</source>
-        <translation>Адреса Whive для відправлення платежу</translation>
+        <source>The Bitcoin address to send the payment to</source>
+        <translation>Адреса Bitcoin для відправлення платежу</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2366,8 +2558,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Видалити цей запис</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less whives than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>Комісію буде знято зі вказаної суми. До отримувача надійде менше монет, ніж було вказано в полі кількості. Якщо ж отримувачів декілька - комісію буде розподілено між ними.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>Комісію буде знято зі вказаної суми. До отримувача надійде менше біткоінів, ніж було вказано в полі кількості. Якщо ж отримувачів декілька - комісію буде розподілено між ними.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2383,19 +2575,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>This is an unauthenticated payment request.</source>
-        <translation>Цей запит платежу не є аутентифікованим.</translation>
+        <translation>Цей запит платежу не є автентифікованим.</translation>
     </message>
     <message>
         <source>This is an authenticated payment request.</source>
-        <translation>Цей запит платежу є аутентифікованим.</translation>
+        <translation>Цей запит платежу є автентифікованим.</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to the list of used addresses</source>
         <translation>Введіть мітку для цієї адреси для додавання її в список використаних адрес</translation>
     </message>
     <message>
-        <source>A message that was attached to the whive: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
-        <translation>Повідомлення, що було додане до whive:URI та буде збережено разом з транзакцією для довідки. Примітка: Це повідомлення не буде відправлено в мережу Whive.</translation>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <translation>Повідомлення, що було додане до bitcoin:URI та буде збережено разом з транзакцією для довідки. Примітка: Це повідомлення не буде відправлено в мережу Bitcoin.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2407,7 +2599,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation>Введіть мітку для цієї адреси для додавання її до адресної книги</translation>
+        <translation>Введіть мітку для цієї адреси для додавання її в адресну книгу</translation>
     </message>
 </context>
 <context>
@@ -2439,16 +2631,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>&amp;Підписати повідомлення</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive whives sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Ви можете підписувати повідомлення/угоди своїми адресами, щоб довести можливість отримання монет, що будуть надіслані на них. Остерігайтеся підписувати будь-що нечітке чи неочікуване, томущо за допомогою фішинг-атаки вас можуть спробувати ввести в оману для отримання вашого підпису під чужими словами. Підписуйте лише чіткі твердження, з якими ви повністю згодні.</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Ви можете підписувати повідомлення/угоди своїми адресами, щоб довести можливість отримання біткоінів, що будуть надіслані на них. Остерігайтеся підписувати будь-що нечітке чи неочікуване, так як за допомогою фішинг-атаки вас можуть спробувати ввести в оману для отримання вашого підпису під чужими словами. Підписуйте лише чіткі твердження, з якими ви повністю згодні.</translation>
     </message>
     <message>
-        <source>The Whive address to sign the message with</source>
-        <translation>Адреса Whive для підпису цього повідомлення</translation>
+        <source>The Bitcoin address to sign the message with</source>
+        <translation>Адреса Bitcoin для підпису цього повідомлення</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
-        <translation>Обрати ранiше використовувану адресу</translation>
+        <translation>Обрати ранiш використовувану адресу</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2456,7 +2648,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Paste address from clipboard</source>
-        <translation>Вставити адресу з буферу обміну</translation>
+        <translation>Вставити адресу</translation>
     </message>
     <message>
         <source>Alt+P</source>
@@ -2475,7 +2667,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Копіювати поточну сигнатуру до системного буферу обміну</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Whive address</source>
+        <source>Sign the message to prove you own this Bitcoin address</source>
         <translation>Підпишіть повідомлення щоб довести, що ви є власником цієї адреси</translation>
     </message>
     <message>
@@ -2484,7 +2676,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Reset all sign message fields</source>
-        <translation>Очистити всі поля підпису повідомлення</translation>
+        <translation>Скинути всі поля підпису повідомлення</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -2492,19 +2684,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>&amp;Verify Message</source>
-        <translation>&amp;Перевірити повідомлення</translation>
+        <translation>П&amp;еревірити повідомлення</translation>
     </message>
     <message>
         <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
         <translation>Введіть нижче адресу отримувача, повідомлення (впевніться, що ви точно скопіювали символи завершення рядка, табуляцію, пробіли тощо) та підпис для перевірки повідомлення. Впевніться, що в підпис не було додано зайвих символів: це допоможе уникнути атак типу «людина посередині». Зауважте, що це лише засвідчує можливість отримання транзакцій підписувачем, але не в стані підтвердити джерело жодної транзакції!</translation>
     </message>
     <message>
-        <source>The Whive address the message was signed with</source>
-        <translation>Адреса Whive, якою було підписано це повідомлення</translation>
+        <source>The Bitcoin address the message was signed with</source>
+        <translation>Адреса Bitcoin, якою було підписано це повідомлення</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Whive address</source>
-        <translation>Перевірте повідомлення для впевненості, що воно підписано вказаною Whive-адресою</translation>
+        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <translation>Перевірте повідомлення для впевненості, що воно підписано вказаною Bitcoin-адресою</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2516,7 +2708,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Click "Sign Message" to generate signature</source>
-        <translation>Натисніть кнопку «Підписати повідомлення», для генерації підпису</translation>
+        <translation>Натисніть кнопку «Підписати повідомлення», для отримання підпису</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
@@ -2536,7 +2728,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
-        <translation>Приватний ключ для введеної адреси недоступний. </translation>
+        <translation>Приватний ключ для введеної адреси недоступний.</translation>
     </message>
     <message>
         <source>Message signing failed.</source>
@@ -2565,13 +2757,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Message verified.</source>
         <translation>Повідомлення перевірено.</translation>
-    </message>
-</context>
-<context>
-    <name>SplashScreen</name>
-    <message>
-        <source>[testnet]</source>
-        <translation>[тестова мережа]</translation>
     </message>
 </context>
 <context>
@@ -2653,7 +2838,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>watch-only</source>
-        <translation>тільки перегляд</translation>
+        <translation>тільки спостереження</translation>
     </message>
     <message>
         <source>label</source>
@@ -2716,6 +2901,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Вихідний індекс</translation>
     </message>
     <message>
+        <source> (Certificate was not verified)</source>
+        <translation>(Сертифікат не підтверджено)</translation>
+    </message>
+    <message>
         <source>Merchant</source>
         <translation>Продавець</translation>
     </message>
@@ -2725,7 +2914,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Debug information</source>
-        <translation>Інформація відладки</translation>
+        <translation>Налагоджувальна інформація</translation>
     </message>
     <message>
         <source>Transaction</source>
@@ -2771,7 +2960,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Label</source>
-        <translation>Мітка</translation>
+        <translation>Метка</translation>
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
@@ -2807,7 +2996,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Generated but not accepted</source>
-        <translation>Згенеровано але не підтверджено</translation>
+        <translation>Згенеровано (не підтверджено)</translation>
     </message>
     <message>
         <source>Received with</source>
@@ -2831,7 +3020,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>watch-only</source>
-        <translation>тільки перегляд</translation>
+        <translation>тільки спостереження</translation>
     </message>
     <message>
         <source>(n/a)</source>
@@ -2839,11 +3028,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>(no label)</source>
-        <translation>немає мітки</translation>
+        <translation>(нет метки)</translation>
     </message>
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation>Статус транзакції. Наведіть вказівник на це поле, щоб побачити кількість підтверджень.</translation>
+        <translation>Статус транзакції. Наведіть вказівник на це поле, щоб показати кількість підтверджень.</translation>
     </message>
     <message>
         <source>Date and time that the transaction was received.</source>
@@ -2930,7 +3119,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Increase transaction fee</source>
-        <translation>Збільшіть плату за транзакцію</translation>
+        <translation>Збільшить плату за транзакцію</translation>
     </message>
     <message>
         <source>Copy address</source>
@@ -2970,7 +3159,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>Файли (*.csv) з розділителем "кома"</translation>
+        <translation>Текст, разделённый запятыми (*.csv)</translation>
     </message>
     <message>
         <source>Confirmed</source>
@@ -2978,7 +3167,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Watch-only</source>
-        <translation>Тільки перегляд:</translation>
+        <translation>Тільки спостереження:</translation>
     </message>
     <message>
         <source>Date</source>
@@ -2990,11 +3179,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Label</source>
-        <translation>Мітка</translation>
+        <translation>Метка</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Адреса</translation>
+        <translation>Адрес</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3002,7 +3191,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>Експортування було невдалим</translation>
+        <translation>Экспорт не удался</translation>
     </message>
     <message>
         <source>There was an error trying to save the transaction history to %1.</source>
@@ -3033,6 +3222,21 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
 </context>
 <context>
+    <name>WalletController</name>
+    <message>
+        <source>Close wallet</source>
+        <translation>закрити Гаманець</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to close the wallet &lt;i&gt;%1&lt;/i&gt;?</source>
+        <translation>Ви впевнені, що хочете закрити гаманець &lt;i&gt;%1&lt;/i&gt;?</translation>
+    </message>
+    <message>
+        <source>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</source>
+        <translation>Якщо занадто довго закривати гаманець, це може призвести до необхідності повторної синхронізації всієї ланцюга, якщо ввімкнено обрізку.</translation>
+    </message>
+</context>
+<context>
     <name>WalletFrame</name>
     <message>
         <source>No wallet has been loaded.</source>
@@ -3047,7 +3251,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Fee bump error</source>
-        <translation>Помилка збільшення комісії</translation>
+        <translation>Помилка штурхання комісії</translation>
     </message>
     <message>
         <source>Increasing transaction fee failed</source>
@@ -3071,26 +3275,30 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Confirm fee bump</source>
-        <translation>Підтвердити збільшення комісії</translation>
+        <translation>Підтвердити штурхання комісії</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>
-        <translation>Неможливо підписати транзакцію.</translation>
+        <translation>Не можливо підписати транзакцію.</translation>
     </message>
     <message>
         <source>Could not commit transaction</source>
         <translation>Не вдалось виконати транзакцію</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>гаманець за змовчуванням</translation>
     </message>
 </context>
 <context>
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;Експорт</translation>
+        <translation>&amp;Экспорт</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Експортувати дані з поточної вкладки в файл</translation>
+        <translation>Экспортировать данные текущей вкладки в файл</translation>
     </message>
     <message>
         <source>Backup Wallet</source>
@@ -3149,15 +3357,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Unable to start HTTP server. See debug log for details.</source>
-        <translation>Неможливо запустити HTTP-сервер. Детальніший опис наведено в журналі відладки.</translation>
-    </message>
-    <message>
-        <source>Whive Core</source>
-        <translation>Whive Core</translation>
+        <translation>Неможливо запустити HTTP-сервер. Детальніший опис наведено в журналі зневадження.</translation>
     </message>
     <message>
         <source>The %s developers</source>
         <translation>Розробники %s</translation>
+    </message>
+    <message>
+        <source>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</source>
+        <translation>Неможливо створити ключ зміни адреси. У внутрішній пулі клавіш немає клавіш і жоден ключ не може генерувати.</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
@@ -3181,7 +3389,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
-        <translation>Схоже, що база даних блоків містить блок з майбутнього. Це може статися через некоректно встановлену дати та/або час. Перебудовуйте базу даних блоків лише тоді, коли ви переконані, що встановлено правильну дату і час</translation>
+        <translation>Схоже, що база даних блоків містить блок з майбутнього. Це може статися із-за некоректно встановленої дати та/або часу. Перебудовуйте базу даних блоків лише тоді, коли ви переконані, що встановлено правильну дату і час</translation>
     </message>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
@@ -3197,11 +3405,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
-        <translation>Неможливо повернути базу даних в стан до форку. Вам потрібно буде перезавантажити ланцюжок блоків</translation>
+        <translation>Неможливо повернути базу даних в стан до розвилки. Вам потрібно буде перезавантажити ланцюжок блоків</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
-        <translation>Увага: Мережа, здається, не повністю погоджується! Деякі майнери напевно зазнають проблем.</translation>
+        <translation>Увага: Мережа, здається, не повністю погоджується! Деякі добувачі напевно зазнають проблем.</translation>
     </message>
     <message>
         <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
@@ -3221,11 +3429,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Cannot resolve -%s address: '%s'</source>
-        <translation>Не можу перевірити -%s адресу: '%s'</translation>
+        <translation>Не можу вирішити -%s адресу: '%s'</translation>
     </message>
     <message>
         <source>Change index out of range</source>
         <translation>Індекс решти за межами діапазону</translation>
+    </message>
+    <message>
+        <source>Config setting for %s only applied on %s network when in [%s] section.</source>
+        <translation>Налаштування конфігурації %s застосовується лише для мережі %s у розділі [%s].</translation>
     </message>
     <message>
         <source>Copyright (C) %i-%i</source>
@@ -3233,19 +3445,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Corrupted block database detected</source>
-        <translation>Виявлено пошкоджений бази даних блоків</translation>
+        <translation>Виявлено пошкоджений блок бази даних</translation>
     </message>
     <message>
         <source>Do you want to rebuild the block database now?</source>
         <translation>Ви хочете перебудувати базу даних блоків зараз?</translation>
     </message>
     <message>
-        <source>Error creating %s: You can't create non-HD wallets with this version.</source>
-        <translation>Помилка створення %s: Ви не можете створювати не-HD гаманці з цією версією.</translation>
-    </message>
-    <message>
         <source>Error initializing block database</source>
-        <translation>Помилка ініціалізації бази даних блоків</translation>
+        <translation>Ошибка инициализации БД блоков</translation>
     </message>
     <message>
         <source>Error initializing wallet database environment %s!</source>
@@ -3257,7 +3465,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Error loading %s: Private keys can only be disabled during creation</source>
-        <translation>Помилка завантаження %s: Персональні ключі можуть бути тільки вимкнені при створенні</translation>
+        <translation>Помилка завантаження %s: Власні ключі можуть бути тільки вимкнені при створенні</translation>
     </message>
     <message>
         <source>Error loading %s: Wallet corrupted</source>
@@ -3273,11 +3481,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Error opening block database</source>
-        <translation>Помилка відкриття бази даних блоків</translation>
-    </message>
-    <message>
-        <source>Error: Disk space is low!</source>
-        <translation>Помилка: Мало вільного місця на диску!</translation>
+        <translation>Помилка відкриття блоку бази даних</translation>
     </message>
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
@@ -3289,7 +3493,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Importing...</source>
-        <translation>Імпортую...</translation>
+        <translation>Імпорт...</translation>
     </message>
     <message>
         <source>Incorrect or no genesis block found. Wrong datadir for network?</source>
@@ -3298,6 +3502,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Initialization sanity check failed. %s is shutting down.</source>
         <translation>Невдала перевірка правильності ініціалізації. %s закривається.</translation>
+    </message>
+    <message>
+        <source>Invalid P2P permission: '%s'</source>
+        <translation>Помилка P2P доступу: '%s'</translation>
     </message>
     <message>
         <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
@@ -3312,6 +3520,18 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Невірна сума для зарезервованої комісії -fallbackfee=&lt;amount&gt;: '%s'</translation>
     </message>
     <message>
+        <source>Specified blocks directory "%s" does not exist.</source>
+        <translation>Зазначений каталог блоків "%s" не існує.</translation>
+    </message>
+    <message>
+        <source>Unknown address type '%s'</source>
+        <translation>Невідомий тип адреси '%s'</translation>
+    </message>
+    <message>
+        <source>Unknown change type '%s'</source>
+        <translation>Невідомий тип решти '%s'</translation>
+    </message>
+    <message>
         <source>Upgrading txindex database</source>
         <translation>Оновлення txindex бази</translation>
     </message>
@@ -3320,8 +3540,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Завантаження P2P адрес...</translation>
     </message>
     <message>
+        <source>Error: Disk space is too low!</source>
+        <translation>Помилка: замало дискового простору!</translation>
+    </message>
+    <message>
         <source>Loading banlist...</source>
-        <translation>Завантаження списку заблокованих...</translation>
+        <translation>Завантаження бан-списку...</translation>
     </message>
     <message>
         <source>Not enough file descriptors available.</source>
@@ -3329,7 +3553,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Prune cannot be configured with a negative value.</source>
-        <translation>Розмір скороченого ланцюжка блоків не може бути від'ємним. </translation>
+        <translation>Розмір скороченого ланцюжка блоків не може бути від'ємним.</translation>
     </message>
     <message>
         <source>Prune mode is incompatible with -txindex.</source>
@@ -3345,7 +3569,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The source code is available from %s.</source>
-        <translation>Початковий код доступний з %s.</translation>
+        <translation>Вихідний код доступний з %s.</translation>
     </message>
     <message>
         <source>Transaction fee and change calculation failed</source>
@@ -3358,18 +3582,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Unable to generate keys</source>
         <translation>Не вдається створити ключі</translation>
-    </message>
-    <message>
-        <source>Unsupported argument -benchmark ignored, use -debug=bench.</source>
-        <translation>Параметр -benchmark не підтримується та буде проігноровано; використовуйте -debug=bench.</translation>
-    </message>
-    <message>
-        <source>Unsupported argument -debugnet ignored, use -debug=net.</source>
-        <translation>Параметр -debugnet не підтримується та буде проігноровано; використовуйте -debug=net.</translation>
-    </message>
-    <message>
-        <source>Unsupported argument -tor found, use -onion.</source>
-        <translation>Параметр -tor не підтримується; використовуйте -onion.</translation>
     </message>
     <message>
         <source>Unsupported logging category %s=%s.</source>
@@ -3401,15 +3613,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
-        <translation>Залишок від суми транзакції зі сплатою комісії занадто малий </translation>
+        <translation>Залишок від суми транзакції зі сплатою комісії занадто малий</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
         <translation>Вам необхідно перебудувати базу даних з використанням -reindex для завантаження повного ланцюжка блоків.</translation>
-    </message>
-    <message>
-        <source>Error loading %s: You can't disable HD on an already existing HD wallet</source>
-        <translation>Помилка завантаження %s: Ви не можете відключити режим HD в існуючому HD-гаманці</translation>
     </message>
     <message>
         <source>Error reading from database, shutting down.</source>
@@ -3417,11 +3625,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Error upgrading chainstate database</source>
-        <translation>Помилка оновлення бази даних стану ланцюжка блоків</translation>
+        <translation>Помилка оновлення бази даних стану ланцюжка</translation>
     </message>
     <message>
-        <source>Information</source>
-        <translation>Інформація</translation>
+        <source>Error: Disk space is low for %s</source>
+        <translation>Помилка: для %s бракує місця на диску</translation>
     </message>
     <message>
         <source>Invalid -onion address or hostname: '%s'</source>
@@ -3444,16 +3652,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Необхідно вказати порт для -whitebind: «%s»</translation>
     </message>
     <message>
+        <source>Prune mode is incompatible with -blockfilterindex.</source>
+        <translation>Використання скороченого ланцюжка блоків несумісне з параметром -blockfilterindex.</translation>
+    </message>
+    <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
-        <translation>Зменшення значення -maxconnections з %d до %d через обмеження системи.</translation>
+        <translation>Зменшення значення -maxconnections з %d до %d із-за обмежень системи.</translation>
+    </message>
+    <message>
+        <source>Section [%s] is not recognized.</source>
+        <translation>Розділ [%s] не розпізнано.</translation>
     </message>
     <message>
         <source>Signing transaction failed</source>
-        <translation>Ви не змогли підписати цю транзакцію</translation>
+        <translation>Підписання транзакції не вдалося</translation>
     </message>
     <message>
         <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Вказаного каталогу гаманця -walletdir "%s" не існує</translation>
+        <translation>Вказаний каталог гаманця -walletdir "%s" не існує</translation>
     </message>
     <message>
         <source>Specified -walletdir "%s" is a relative path</source>
@@ -3461,11 +3677,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Вказаний шлях -walletdir "%s" не є каталогом</translation>
+        <translation>Вказаний шлях -walletdir "%s" не є каталогом</translation>
+    </message>
+    <message>
+        <source>The specified config file %s does not exist
+</source>
+        <translation>Зазначений файл конфігурації %s не існує</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
-        <translation>Неможливо сплатити комісію через малу суму транзакції</translation>
+        <translation>Неможливо сплатити комісію із-за малої суми транзакції</translation>
     </message>
     <message>
         <source>This is experimental software.</source>
@@ -3476,10 +3697,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Сума транзакції занадто мала</translation>
     </message>
     <message>
-        <source>Transaction too large for fee policy</source>
-        <translation>Транзакція занадто велика для правил комісії</translation>
-    </message>
-    <message>
         <source>Transaction too large</source>
         <translation>Транзакція занадто велика</translation>
     </message>
@@ -3488,20 +3705,20 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Неможливо прив'язатися до %s на цьому комп'ютері (bind повернув помилку: %s)</translation>
     </message>
     <message>
+        <source>Unable to create the PID file '%s': %s</source>
+        <translation>Неможливо створити PID файл '%s' :%s</translation>
+    </message>
+    <message>
         <source>Unable to generate initial keys</source>
         <translation>Не вдається створити початкові ключі</translation>
     </message>
     <message>
+        <source>Unknown -blockfilterindex value %s.</source>
+        <translation>Невідоме значення -blockfilterindex %s.</translation>
+    </message>
+    <message>
         <source>Verifying wallet(s)...</source>
-        <translation>Перевірка гаманця(ців)... </translation>
-    </message>
-    <message>
-        <source>Wallet %s resides outside wallet directory %s</source>
-        <translation>Гаманець %s знаходиться поза каталогом гаманця %s</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>Попередження</translation>
+        <translation>Перевірка гаманця(ців)...</translation>
     </message>
     <message>
         <source>Warning: unknown new rules activated (versionbit %i)</source>
@@ -3516,10 +3733,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Встановлено дуже велике значення -maxtxfee! Такі великі комісії можуть бути сплачені окремою транзакцією.</translation>
     </message>
     <message>
-        <source>Error loading %s: You can't enable HD on an already existing non-HD wallet</source>
-        <translation>Помилка завантаження %s: Ви не можете ввімкнути режим HD в існуючому не-HD гаманці</translation>
-    </message>
-    <message>
         <source>This is the transaction fee you may pay when fee estimates are not available.</source>
         <translation>Це комісія за транзакцію, яку ви можете сплатити, коли кошторисна вартість недоступна.</translation>
     </message>
@@ -3530,18 +3743,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>
         <translation>Загальна довжина рядку мережевої версії (%i) перевищує максимально допустиму (%i). Зменшіть число чи розмір коментарів клієнта користувача.</translation>
-    </message>
-    <message>
-        <source>Unsupported argument -socks found. Setting SOCKS version isn't possible anymore, only SOCKS5 proxies are supported.</source>
-        <translation>Параметр -socks не підтримується. Можливість вказувати версію SOCKS було видалено, так як підтримується лише SOCKS5.</translation>
-    </message>
-    <message>
-        <source>Unsupported argument -whitelistalwaysrelay ignored, use -whitelistrelay and/or -whitelistforcerelay.</source>
-        <translation>Непідтримуваний аргумент -whitelistalwaysrelay ігнорується, використовуйте -whitelistrelay та/або -whitelistforcerelay.</translation>
-    </message>
-    <message>
-        <source>Warning: Unknown block versions being mined! It's possible unknown rules are in effect</source>
-        <translation>Попередження: видобуваються невідомі версії блоків! Можливо активовано невідомі правила</translation>
     </message>
     <message>
         <source>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
@@ -3556,16 +3757,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Помилка завантаження гаманця %s. Значення параметра -wallet дублюється.</translation>
     </message>
     <message>
-        <source>Keypool ran out, please call keypoolrefill first</source>
-        <translation>Пул ключів скінчився, потрібно викликати keypoolrefill</translation>
-    </message>
-    <message>
         <source>Starting network threads...</source>
         <translation>Запуск мережевих потоків...</translation>
     </message>
     <message>
         <source>The wallet will avoid paying less than the minimum relay fee.</source>
-        <translation>Гаманець не перекаже кошти якщо комісія менше мінімальної плати за транзакцію.</translation>
+        <translation>Кошелёк будет избегать оплат меньших, нежели минимальная комиссия передачи.</translation>
     </message>
     <message>
         <source>This is the minimum transaction fee you pay on every transaction.</source>
@@ -3573,11 +3770,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>Це комісія за тразакцію, яку ви сплатите, якщо будете надсилати транзакцію.</translation>
+        <translation>Це транзакційна комісія, яку ви сплатите, якщо будете надсилати транзакцію.</translation>
     </message>
     <message>
         <source>Transaction amounts must not be negative</source>
-        <translation>Сума транзакції занадто мала (зменьшіть комісію, якщо можливо)</translation>
+        <translation>Сумма транзакции не должна быть отрицательной</translation>
     </message>
     <message>
         <source>Transaction has too long of a mempool chain</source>
@@ -3593,51 +3790,43 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Insufficient funds</source>
-        <translation>Недостатньо коштів</translation>
-    </message>
-    <message>
-        <source>Can't generate a change-address key. Private keys are disabled for this wallet.</source>
-        <translation>Неможливо створити ключ зміни адреси. Приватні ключі вимкнено для цього гаманця.</translation>
+        <translation>Недостаточно средств</translation>
     </message>
     <message>
         <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
-        <translation>Неможливо оновити не-HD гаманець без оновлення підтримки пулу ключів. Будь-ласка використовуйте -upgradewallet=169900 чи -upgradewallet без вказівки версії. </translation>
+        <translation>Неможливо оновити не-HD гаманець без оновлення підтримки пулу ключів. Будь-ласка використовуйте -upgradewallet=169900 чи -upgradewallet без вказівки версії. </translation>
     </message>
     <message>
         <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
-        <translation>Оцінка комісії не вдалася. Fallbackfee вимкнено. Зачекайте кілька блоків або ввімкніть -fallbackfee. </translation>
+        <translation>Оцінка комісії не вдалася. Fallbackfee вимкнено. Зачекайте кілька блоків або ввімкніть -fallbackfee.</translation>
     </message>
     <message>
         <source>Warning: Private keys detected in wallet {%s} with disabled private keys</source>
-        <translation>Попередження: Приватні ключі виявлено в гаманці {%s} з вимкненими приватними ключами</translation>
+        <translation>Попередження: Власні ключі виявлено в гаманці {%s} з забороненими власними ключами</translation>
     </message>
     <message>
         <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Неможливо записати до каталог даних '%s'; перевірте дозволи.</translation>
+        <translation>Неможливо записати до каталог даних '%s'; перевірте дозвіл.</translation>
     </message>
     <message>
         <source>Loading block index...</source>
-        <translation>Завантаження індексу блоків...</translation>
+        <translation>Загрузка индекса блоков...</translation>
     </message>
     <message>
         <source>Loading wallet...</source>
-        <translation>Завантаження гаманця...</translation>
+        <translation>Загрузка электронного кошелька...</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet</source>
-        <translation>Не вдається понизити версію гаманця</translation>
+        <translation>Не удаётся понизить версию электронного кошелька</translation>
     </message>
     <message>
         <source>Rescanning...</source>
-        <translation>Сканування...</translation>
+        <translation>Сканирование...</translation>
     </message>
     <message>
         <source>Done loading</source>
-        <translation>Завантаження завершене</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Помилка</translation>
+        <translation>Загрузка завершена</translation>
     </message>
 </context>
 </TS>

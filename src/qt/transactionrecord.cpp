@@ -4,11 +4,10 @@
 
 #include <qt/transactionrecord.h>
 
-#include <consensus/consensus.h>
+#include <chain.h>
 #include <interfaces/wallet.h>
 #include <key_io.h>
-#include <timedata.h>
-#include <validation.h>
+#include <wallet/ismine.h>
 
 #include <stdint.h>
 

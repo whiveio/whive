@@ -37,8 +37,8 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSslCertificate>
+#include <QSslConfiguration>
 #include <QSslError>
-#include <QSslSocket>
 #include <QStringList>
 #include <QTextDocument>
 #include <QUrlQuery>
@@ -91,7 +91,340 @@ static QString ipcServerName()
 // the main GUI window is up and ready to ask the user
 // to send payment.
 
-static QList<QString> savedPaymentRequests;
+static QSet<QString> savedPaymentRequests;
+
+//
+// Sending to the server is done synchronously, at startup.
+// If the server isn't already running, startup continues,
+// and the items in savedPaymentRequest will be handled
+// when uiReady() is called.
+//
+// Warning: ipcSendCommandLine() is called early in init,
+// so don't use "Q_EMIT message()", but "QMessageBox::"!
+//
+void PaymentServer::ipcParseCommandLine(interfaces::Node& node, int argc, char* argv[])
+{
+    for (int i = 1; i < argc; i++)
+    {
+        QString arg(argv[i]);
+        if (arg.startsWith("-"))
+            continue;
+
+        // If the bitcoin: URI contains a payment request, we are not able to detect the
+        // network as that would require fetching and parsing the payment request.
+        // That means clicking such an URI which contains a testnet payment request
+        // will start a mainnet instance and throw a "wrong network" error.
+        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // bitcoin: URI
+        {
+            if (savedPaymentRequests.contains(arg)) continue;
+            savedPaymentRequests.insert(arg);
+
+            SendCoinsRecipient r;
+            if (GUIUtil::parseBitcoinURI(arg, &r) && !r.address.isEmpty())
+            {
+                auto tempChainParams = CreateChainParams(CBaseChainParams::MAIN);
+
+                if (IsValidDestinationString(r.address.toStdString(), *tempChainParams)) {
+                    node.selectParams(CBaseChainParams::MAIN);
+                } else {
+                    tempChainParams = CreateChainParams(CBaseChainParams::TESTNET);
+                    if (IsValidDestinationString(r.address.toStdString(), *tempChainParams)) {
+                        node.selectParams(CBaseChainParams::TESTNET);
+                    }
+                }
+            }
+        }
+#ifdef ENABLE_BIP70
+        else if (QFile::exists(arg)) // Filename
+        {
+            if (savedPaymentRequests.contains(arg)) continue;
+            savedPaymentRequests.insert(arg);
+
+            PaymentRequestPlus request;
+            if (readPaymentRequestFromFile(arg, request))
+            {
+                if (request.getDetails().network() == "main")
+                {
+                    node.selectParams(CBaseChainParams::MAIN);
+                }
+                else if (request.getDetails().network() == "test")
+                {
+                    node.selectParams(CBaseChainParams::TESTNET);
+                }
+            }
+        }
+        else
+        {
+            // Printing to debug.log is about the best we can do here, the
+            // GUI hasn't started yet so we can't pop up a message box.
+            qWarning() << "PaymentServer::ipcSendCommandLine: Payment request file does not exist: " << arg;
+        }
+#endif
+    }
+}
+
+//
+// Sending to the server is done synchronously, at startup.
+// If the server isn't already running, startup continues,
+// and the items in savedPaymentRequest will be handled
+// when uiReady() is called.
+//
+bool PaymentServer::ipcSendCommandLine()
+{
+    bool fResult = false;
+    for (const QString& r : savedPaymentRequests)
+    {
+        QLocalSocket* socket = new QLocalSocket();
+        socket->connectToServer(ipcServerName(), QIODevice::WriteOnly);
+        if (!socket->waitForConnected(BITCOIN_IPC_CONNECT_TIMEOUT))
+        {
+            delete socket;
+            socket = nullptr;
+            return false;
+        }
+
+        QByteArray block;
+        QDataStream out(&block, QIODevice::WriteOnly);
+        out.setVersion(QDataStream::Qt_4_0);
+        out << r;
+        out.device()->seek(0);
+
+        socket->write(block);
+        socket->flush();
+        socket->waitForBytesWritten(BITCOIN_IPC_CONNECT_TIMEOUT);
+        socket->disconnectFromServer();
+
+        delete socket;
+        socket = nullptr;
+        fResult = true;
+    }
+
+    return fResult;
+}
+
+PaymentServer::PaymentServer(QObject* parent, bool startLocalServer) :
+    QObject(parent),
+    saveURIs(true),
+    uriServer(nullptr),
+    optionsModel(nullptr)
+#ifdef ENABLE_BIP70
+    ,netManager(nullptr)
+#endif
+{
+#ifdef ENABLE_BIP70
+    // Verify that the version of the library that we linked against is
+    // compatible with the version of the headers we compiled against.
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
+#endif
+
+    // Install global event filter to catch QFileOpenEvents
+    // on Mac: sent when you click bitcoin: links
+    // other OSes: helpful when dealing with payment request files
+    if (parent)
+        parent->installEventFilter(this);
+
+    QString name = ipcServerName();
+
+    // Clean up old socket leftover from a crash:
+    QLocalServer::removeServer(name);
+
+    if (startLocalServer)
+    {
+        uriServer = new QLocalServer(this);
+
+        if (!uriServer->listen(name)) {
+            // constructor is called early in init, so don't use "Q_EMIT message()" here
+            QMessageBox::critical(nullptr, tr("Payment request error"),
+                tr("Cannot start bitcoin: click-to-pay handler"));
+        }
+        else {
+            connect(uriServer, &QLocalServer::newConnection, this, &PaymentServer::handleURIConnection);
+#ifdef ENABLE_BIP70
+            connect(this, &PaymentServer::receivedPaymentACK, this, &PaymentServer::handlePaymentACK);
+#endif
+        }
+    }
+}
+
+PaymentServer::~PaymentServer()
+{
+#ifdef ENABLE_BIP70
+    google::protobuf::ShutdownProtobufLibrary();
+#endif
+}
+
+//
+// OSX-specific way of handling bitcoin: URIs and PaymentRequest mime types.
+// Also used by paymentservertests.cpp and when opening a payment request file
+// via "Open URI..." menu entry.
+//
+bool PaymentServer::eventFilter(QObject *object, QEvent *event)
+{
+    if (event->type() == QEvent::FileOpen) {
+        QFileOpenEvent *fileEvent = static_cast<QFileOpenEvent*>(event);
+        if (!fileEvent->file().isEmpty())
+            handleURIOrFile(fileEvent->file());
+        else if (!fileEvent->url().isEmpty())
+            handleURIOrFile(fileEvent->url().toString());
+
+        return true;
+    }
+
+    return QObject::eventFilter(object, event);
+}
+
+void PaymentServer::uiReady()
+{
+#ifdef ENABLE_BIP70
+    initNetManager();
+#endif
+
+    saveURIs = false;
+    for (const QString& s : savedPaymentRequests)
+    {
+        handleURIOrFile(s);
+    }
+    savedPaymentRequests.clear();
+}
+
+void PaymentServer::handleURIOrFile(const QString& s)
+{
+    if (saveURIs)
+    {
+        savedPaymentRequests.insert(s);
+        return;
+    }
+
+    if (s.startsWith("bitcoin://", Qt::CaseInsensitive))
+    {
+        Q_EMIT message(tr("URI handling"), tr("'bitcoin://' is not a valid URI. Use 'bitcoin:' instead."),
+            CClientUIInterface::MSG_ERROR);
+    }
+    else if (s.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) // bitcoin: URI
+    {
+        QUrlQuery uri((QUrl(s)));
+#ifdef ENABLE_BIP70
+        if (uri.hasQueryItem("r")) // payment request URI
+        {
+            Q_EMIT message(tr("URI handling"),
+                tr("You are using a BIP70 URL which will be unsupported in the future."),
+                CClientUIInterface::ICON_WARNING);
+            QByteArray temp;
+            temp.append(uri.queryItemValue("r"));
+            QString decoded = QUrl::fromPercentEncoding(temp);
+            QUrl fetchUrl(decoded, QUrl::StrictMode);
+
+            if (fetchUrl.isValid())
+            {
+                qDebug() << "PaymentServer::handleURIOrFile: fetchRequest(" << fetchUrl << ")";
+                fetchRequest(fetchUrl);
+            }
+            else
+            {
+                qWarning() << "PaymentServer::handleURIOrFile: Invalid URL: " << fetchUrl;
+                Q_EMIT message(tr("URI handling"),
+                    tr("Payment request fetch URL is invalid: %1").arg(fetchUrl.toString()),
+                    CClientUIInterface::ICON_WARNING);
+            }
+            return;
+        }
+        else
+#endif
+        // normal URI
+        {
+            SendCoinsRecipient recipient;
+            if (GUIUtil::parseBitcoinURI(s, &recipient))
+            {
+                if (!IsValidDestinationString(recipient.address.toStdString())) {
+#ifndef ENABLE_BIP70
+                    if (uri.hasQueryItem("r")) {  // payment request
+                        Q_EMIT message(tr("URI handling"),
+                            tr("Cannot process payment request because BIP70 support was not compiled in.")+
+                            tr("Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.")+
+                            tr("If you are receiving this error you should request the merchant provide a BIP21 compatible URI."),
+                            CClientUIInterface::ICON_WARNING);
+                    }
+#endif
+                    Q_EMIT message(tr("URI handling"), tr("Invalid payment address %1").arg(recipient.address),
+                        CClientUIInterface::MSG_ERROR);
+                }
+                else
+                    Q_EMIT receivedPaymentRequest(recipient);
+            }
+            else
+                Q_EMIT message(tr("URI handling"),
+                    tr("URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters."),
+                    CClientUIInterface::ICON_WARNING);
+
+            return;
+        }
+    }
+
+    if (QFile::exists(s)) // payment request file
+    {
+#ifdef ENABLE_BIP70
+        PaymentRequestPlus request;
+        SendCoinsRecipient recipient;
+        if (!readPaymentRequestFromFile(s, request))
+        {
+            Q_EMIT message(tr("Payment request file handling"),
+                tr("Payment request file cannot be read! This can be caused by an invalid payment request file."),
+                CClientUIInterface::ICON_WARNING);
+        }
+        else if (processPaymentRequest(request, recipient))
+            Q_EMIT receivedPaymentRequest(recipient);
+
+        return;
+#else
+        Q_EMIT message(tr("Payment request file handling"),
+            tr("Cannot process payment request because BIP70 support was not compiled in.")+
+            tr("Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.")+
+            tr("If you are receiving this error you should request the merchant provide a BIP21 compatible URI."),
+            CClientUIInterface::ICON_WARNING);
+#endif
+    }
+}
+
+void PaymentServer::handleURIConnection()
+{
+    QLocalSocket *clientConnection = uriServer->nextPendingConnection();
+
+    while (clientConnection->bytesAvailable() < (int)sizeof(quint32))
+        clientConnection->waitForReadyRead();
+
+    connect(clientConnection, &QLocalSocket::disconnected, clientConnection, &QLocalSocket::deleteLater);
+
+    QDataStream in(clientConnection);
+    in.setVersion(QDataStream::Qt_4_0);
+    if (clientConnection->bytesAvailable() < (int)sizeof(quint16)) {
+        return;
+    }
+    QString msg;
+    in >> msg;
+
+    handleURIOrFile(msg);
+}
+
+void PaymentServer::setOptionsModel(OptionsModel *_optionsModel)
+{
+    this->optionsModel = _optionsModel;
+}
+
+#ifdef ENABLE_BIP70
+struct X509StoreDeleter {
+      void operator()(X509_STORE* b) {
+          X509_STORE_free(b);
+      }
+};
+
+struct X509Deleter {
+      void operator()(X509* b) { X509_free(b); }
+};
+
+namespace // Anon namespace
+{
+    std::unique_ptr<X509_STORE, X509StoreDeleter> certStore;
+}
 
 static void ReportInvalidCertificate(const QSslCertificate& cert)
 {
@@ -130,9 +463,9 @@ void PaymentServer::LoadRootCAs(X509_STORE* _store)
 
         certList = QSslCertificate::fromPath(certFile);
         // Use those certificates when fetching payment requests, too:
-        QSslSocket::setDefaultCaCertificates(certList);
+        QSslConfiguration::defaultConfiguration().setCaCertificates(certList);
     } else
-        certList = QSslSocket::systemCaCertificates();
+        certList = QSslConfiguration::systemCaCertificates();
 
     int nRootCerts = 0;
     const QDateTime currentTime = QDateTime::currentDateTime();
@@ -169,7 +502,7 @@ void PaymentServer::LoadRootCAs(X509_STORE* _store)
             continue;
         }
     }
-    qWarning() << "PaymentServer::LoadRootCAs: Loaded " << nRootCerts << " root certificates";
+    qInfo() << "PaymentServer::LoadRootCAs: Loaded " << nRootCerts << " root certificates";
 
     // Project for another day:
     // Fetch certificate revocation lists, and add them to certStore.
@@ -626,16 +959,14 @@ void PaymentServer::fetchPaymentACK(WalletModel* walletModel, const SendCoinsRec
     payment.add_transactions(transaction.data(), transaction.size());
 
     // Create a new refund address, or re-use:
-    CPubKey newKey;
-    if (walletModel->wallet().getKeyFromPool(false /* internal */, newKey)) {
+    CTxDestination dest;
+    const OutputType change_type = walletModel->wallet().getDefaultChangeType() != OutputType::CHANGE_AUTO ? walletModel->wallet().getDefaultChangeType() : walletModel->wallet().getDefaultAddressType();
+    if (walletModel->wallet().getNewDestination(change_type, "", dest)) {
         // BIP70 requests encode the scriptPubKey directly, so we are not restricted to address
         // types supported by the receiver. As a result, we choose the address format we also
         // use for change. Despite an actual payment and not change, this is a close match:
         // it's the output type we use subject to privacy issues, but not restricted by what
         // other software supports.
-        const OutputType change_type = walletModel->wallet().getDefaultChangeType() != OutputType::CHANGE_AUTO ? walletModel->wallet().getDefaultChangeType() : walletModel->wallet().getDefaultAddressType();
-        walletModel->wallet().learnRelatedScripts(newKey, change_type);
-        CTxDestination dest = GetDestinationForKey(newKey, change_type);
         std::string label = tr("Refund from %1").arg(recipient.authenticatedMerchant).toStdString();
         walletModel->wallet().setAddressBook(dest, label, "refund");
 

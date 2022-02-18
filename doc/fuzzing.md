@@ -23,7 +23,7 @@ Instrumentation
 To build Whive Core using AFL instrumentation (this assumes that the
 `AFLPATH` was set as above):
 ```
-./configure --disable-ccache --disable-shared --enable-tests CC=${AFLPATH}/afl-gcc CXX=${AFLPATH}/afl-g++
+./configure --disable-ccache --disable-shared --enable-tests --enable-fuzz CC=${AFLPATH}/afl-gcc CXX=${AFLPATH}/afl-g++
 export AFL_HARDEN=1
 cd src/
 make test/test_bitcoin_fuzzy
@@ -70,3 +70,24 @@ $AFLPATH/afl-fuzz -i ${AFLIN} -o ${AFLOUT} -m52 -- test/test_bitcoin_fuzzy
 
 You may have to change a few kernel parameters to test optimally - `afl-fuzz`
 will print an error and suggestion if so.
+
+## libFuzzer
+
+A recent version of `clang`, the address sanitizer and libFuzzer is needed (all
+found in the `compiler-rt` runtime libraries package).
+
+To build all fuzz targets with libFuzzer, run
+
+```
+./configure --disable-ccache --enable-fuzz --with-sanitizers=fuzzer,address CC=clang CXX=clang++
+make
+```
+
+The fuzzer needs some inputs to work on, but the inputs or seeds can be used
+interchangeably between libFuzzer and AFL.
+
+See https://llvm.org/docs/LibFuzzer.html#running on how to run the libFuzzer
+instrumented executable.
+
+Alternatively run the script in `./test/fuzz/test_runner.py` and provide it
+with the `${DIR_FUZZ_IN}` created earlier.

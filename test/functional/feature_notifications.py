@@ -6,7 +6,11 @@
 import os
 
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import assert_equal, wait_until, connect_nodes_bi
+from test_framework.util import (
+    assert_equal,
+    wait_until,
+    connect_nodes,
+)
 
 class NotificationsTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -52,10 +56,10 @@ class NotificationsTest(BitcoinTestFramework):
             assert_equal(sorted(txids_rpc), sorted(l.strip() for l in f.read().splitlines()))
         os.remove(self.tx_filename)
 
-        self.log.info("test -walletnotify after rescan")
-        # restart node to rescan to force wallet notifications
-        self.restart_node(1)
-        connect_nodes_bi(self.nodes, 0, 1)
+            self.log.info("test -walletnotify after rescan")
+            # restart node to rescan to force wallet notifications
+            self.start_node(1)
+            connect_nodes(self.nodes[0], 1)
 
         wait_until(lambda: os.path.isfile(self.tx_filename) and os.stat(self.tx_filename).st_size >= (block_count * 65), timeout=10)
 

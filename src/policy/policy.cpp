@@ -11,9 +11,6 @@
 #include <consensus/validation.h>
 #include <validation.h>
 #include <coins.h>
-#include <tinyformat.h>
-#include <util.h>
-#include <utilstrencodings.h>
 
 
 CAmount GetDustThreshold(const CTxOut& txout, const CFeeRate& dustRelayFeeIn)
@@ -156,6 +153,8 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason)
  * script can be anything; an attacker could use a very
  * expensive-to-check-upon-redemption script like:
  *   DUP CHECKSIG DROP ... repeated 100 times... OP_1
+ *
+ * Note that only the non-witness portion of the transaction is checked here.
  */
 bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs)
 {
@@ -167,10 +166,12 @@ bool AreInputsStandard(const CTransaction& tx, const CCoinsViewCache& mapInputs)
         const CTxOut& prev = mapInputs.AccessCoin(tx.vin[i].prevout).out;
 
         std::vector<std::vector<unsigned char> > vSolutions;
-        txnouttype whichType;
-        // get the scriptPubKey corresponding to this input:
-        const CScript& prevScript = prev.scriptPubKey;
-        if (!Solver(prevScript, whichType, vSolutions))
+        txnouttype whichType = Solver(prev.scriptPubKey, vSolutions);
+        if (whichType == TX_NONSTANDARD || whichType == TX_WITNESS_UNKNOWN) {
+            // WITNESS_UNKNOWN failures are typically also caught with a policy
+            // flag in the script interpreter, but it can be helpful to catch
+            // this type of NONSTANDARD transaction earlier in transaction
+            // validation.
             return false;
 
         if (whichType == TX_SCRIPTHASH)

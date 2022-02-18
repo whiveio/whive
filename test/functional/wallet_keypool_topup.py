@@ -16,8 +16,7 @@ import shutil
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
-    connect_nodes_bi,
-    sync_blocks,
+    connect_nodes,
 )
 
 
@@ -39,7 +38,9 @@ class KeypoolRestoreTest(BitcoinTestFramework):
         self.stop_node(1)
         shutil.copyfile(wallet_path, wallet_backup_path)
         self.start_node(1, self.extra_args[1])
-        connect_nodes_bi(self.nodes, 0, 1)
+        connect_nodes(self.nodes[0], 1)
+        connect_nodes(self.nodes[0], 2)
+        connect_nodes(self.nodes[0], 3)
 
         self.log.info("Generate keys for wallet")
         for _ in range(90):
@@ -61,11 +62,26 @@ class KeypoolRestoreTest(BitcoinTestFramework):
         connect_nodes_bi(self.nodes, 0, 1)
         self.sync_all()
 
-        self.log.info("Verify keypool is restored and balance is correct")
-        assert_equal(self.nodes[1].getbalance(), 15)
-        assert_equal(self.nodes[1].listtransactions()[0]['category'], "receive")
-        # Check that we have marked all keys up to the used keypool key as used
-        assert_equal(self.nodes[1].getaddressinfo(self.nodes[1].getnewaddress())['hdkeypath'], "m/0'/0'/110'")
+
+            self.log.info("Send funds to wallet")
+            self.nodes[0].sendtoaddress(addr_oldpool, 10)
+            self.nodes[0].generate(1)
+            self.nodes[0].sendtoaddress(addr_extpool, 5)
+            self.nodes[0].generate(1)
+            self.sync_blocks()
+
+            self.log.info("Restart node with wallet backup")
+            self.stop_node(idx)
+            shutil.copyfile(wallet_backup_path, wallet_path)
+            self.start_node(idx, self.extra_args[idx])
+            connect_nodes(self.nodes[0], idx)
+            self.sync_all()
+
+            self.log.info("Verify keypool is restored and balance is correct")
+            assert_equal(self.nodes[idx].getbalance(), 15)
+            assert_equal(self.nodes[idx].listtransactions()[0]['category'], "receive")
+            # Check that we have marked all keys up to the used keypool key as used
+            assert_equal(self.nodes[idx].getaddressinfo(self.nodes[idx].getnewaddress())['hdkeypath'], "m/0'/0'/110'")
 
 
 if __name__ == '__main__':

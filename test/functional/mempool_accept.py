@@ -36,8 +36,6 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
         self.num_nodes = 1
         self.extra_args = [[
             '-txindex',
-            '-reindex',  # Need reindex for txindex
-            '-acceptnonstdtxn=0',  # Try to mimic main-net
         ]] * self.num_nodes
 
     def skip_test_if_missing_module(self):
@@ -166,7 +164,8 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
         # Reference tx should be valid on itself
         self.check_mempool_result(
             result_expected=[{'txid': tx.rehash(), 'allowed': True}],
-            rawtxs=[bytes_to_hex_str(tx.serialize())],
+            rawtxs=[tx.serialize().hex()],
+            maxfeerate=0,
         )
 
         self.log.info('A transaction with no outputs')
@@ -195,6 +194,7 @@ class MempoolAcceptanceTest(BitcoinTestFramework):
             rawtxs=[bytes_to_hex_str(tx.serialize())],
         )
 
+        # The following two validations prevent overflow of the output amounts (see CVE-2010-5139).
         self.log.info('A transaction with too large output value')
         tx.deserialize(BytesIO(hex_str_to_bytes(raw_tx_reference)))
         tx.vout[0].nValue = 21000000 * COIN + 1

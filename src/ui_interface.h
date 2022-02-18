@@ -13,9 +13,6 @@
 #include <boost/signals2/last_value.hpp>
 #include <boost/signals2/signal.hpp>
 
-class CWallet;
-class CBlockIndex;
-
 /** General change type (added, updated, removed). */
 enum ChangeType
 {
@@ -63,6 +60,9 @@ public:
         /** Force blocking, modal message box dialog (not just OS notification) */
         MODAL               = 0x10000000U,
 
+        /** Do not prepend error/warning prefix */
+        MSG_NOPREFIX        = 0x20000000U,
+
         /** Do not print contents of message to debug log */
         SECURE              = 0x40000000U,
 
@@ -91,9 +91,6 @@ public:
      * Status bar alerts changed.
      */
     boost::signals2::signal<void ()> NotifyAlertChanged;
-
-    /** A wallet has been loaded. */
-    boost::signals2::signal<void (std::shared_ptr<CWallet> wallet)> LoadWallet;
 
     /**
      * Show progress e.g. for verifychain.

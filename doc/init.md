@@ -53,17 +53,17 @@ Paths
 
 All three configurations assume several paths that might need to be adjusted.
 
-Binary:              `/usr/bin/whived`  
-Configuration file:  `/etc/whive/whive.conf`  
-Data directory:      `/var/lib/whived`  
-PID file:            `/var/run/whive/whived.pid` (OpenRC and Upstart) or `/var/lib/whived/whived.pid` (systemd)  
-Lock file:           `/var/lock/subsys/whived` (CentOS)  
+Binary:              `/usr/bin/whived`
+Configuration file:  `/etc/whive/whive.conf`
+Data directory:      `/var/lib/whived`
+PID file:            `/var/run/whived/whived.pid` (OpenRC and Upstart) or `/run/whived/whived.pid` (systemd)
+Lock file:           `/var/lock/subsys/whived` (CentOS)
 
-The configuration file, PID directory (if applicable) and data directory
-should all be owned by the whive user and group.  It is advised for security
-reasons to make the configuration file and data directory only readable by the
-whive user and group.  Access to whive-cli and other whived rpc clients
-can then be controlled by group membership.
+The PID directory (if applicable) and data directory should both be owned by the
+whive user and group. It is advised for security reasons to make the
+configuration file and data directory only readable by the whive user and
+group. Access to whive-cli and other whived rpc clients can then be
+controlled by group membership.
 
 ### macOS
 
