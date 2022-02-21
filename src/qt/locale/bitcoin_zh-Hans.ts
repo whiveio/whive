@@ -63,6 +63,7 @@
         <source>Enter address or label to search</source>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <translation>پتہ یا لیبل تلاشی کے لئے درج کریں</translation>
 =======
         <translation>输入地址或者标签进行搜索</translation>
@@ -82,6 +83,11 @@
     </message>
     <message>
 >>>>>>> upstream/0.20
+=======
+        <translation>输入地址或者标签进行搜索</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Export the data in the current tab to a file</source>
         <translation>导出当前数据到文件</translation>
     </message>
@@ -118,6 +124,7 @@
         <translation>这是你的比特币发币地址。发送前请确认发送数量和接收地址</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
 <<<<<<< HEAD
         <translation>这是你的比特币接收地址。建议每次交易都使用新地址</translation>
@@ -128,6 +135,12 @@
 =======
         <translation>Estas son sus direcciones de Bitcoin para recibir pagos. Se recomienda utilizar una nueva dirección de recepción para cada transacción.</translation>
 >>>>>>> upstream/0.19
+=======
+        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+Signing is only possible with addresses of the type 'legacy'.</source>
+        <translation>这是你的比特币接收地址。点击接收选项卡中“创建新的接收地址”按钮来创建新的地址。
+签名只能使用“传统”类型的地址。</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -211,6 +224,7 @@
     <message>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
         <source>Show password</source>
         <translation>保存密码</translation>
@@ -227,6 +241,10 @@
 >>>>>>> upstream/0.20
         <source>Passphrase Dialog</source>
         <translation>密码输入框</translation>
+=======
+        <source>Passphrase Dialog</source>
+        <translation>密码对话框</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Enter passphrase</source>
@@ -246,6 +264,7 @@
     </message>
     <message>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <source>Show password</source>
         <translation>Mostrar contraseña</translation>
     </message>
@@ -257,10 +276,13 @@
     <message>
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <source>Encrypt wallet</source>
         <translation>加密钱包</translation>
     </message>
     <message>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <source>Show passphrase</source>
@@ -286,6 +308,8 @@
         <source>Confirm wallet encryption</source>
         <translation>پرس کی خفیہ کاری کی تصدیق کریں</translation>
 =======
+=======
+>>>>>>> upstream/0.21
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
         <translation>此操作需要您的钱包密码用来解锁钱包。</translation>
     </message>
@@ -296,7 +320,10 @@
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
         <translation>此操作需要您的钱包密码用来解密钱包。</translation>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
     </context>
 <context>
@@ -537,6 +564,9 @@
     <name>OverviewPage</name>
     </context>
 <context>
+    <name>PSBTOperationsDialog</name>
+    </context>
+<context>
     <name>PaymentServer</name>
     </context>
 <context>
@@ -556,6 +586,7 @@
     </context>
 <context>
     <name>ReceiveRequestDialog</name>
+<<<<<<< HEAD
     <message>
         <source>Address</source>
 <<<<<<< HEAD
@@ -576,6 +607,8 @@
         <source>Label</source>
         <translation>标签</translation>
     </message>
+=======
+>>>>>>> upstream/0.21
     </context>
 <context>
     <name>RecentRequestsTableModel</name>

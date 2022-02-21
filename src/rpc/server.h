@@ -8,11 +8,12 @@
 
 #include <amount.h>
 #include <rpc/request.h>
+#include <rpc/util.h>
 
+#include <functional>
 #include <map>
 #include <stdint.h>
 #include <string>
-#include <functional>
 
 #include <univalue.h>
 
@@ -28,6 +29,9 @@ namespace RPCServer
 
 /** Query whether RPC is running */
 bool IsRPCRunning();
+
+/** Throw JSONRPCError if RPC is not running */
+void RpcInterruptionPoint();
 
 /**
  * Set the RPC warmup status.  When this is done, all RPC calls will error out
@@ -102,10 +106,44 @@ void RPCUnsetTimerInterface(RPCTimerInterface *iface);
 void RPCRunLater(const std::string& name, std::function<void(void)> func, int64_t nSeconds);
 
 typedef UniValue(*rpcfn_type)(const JSONRPCRequest& jsonRequest);
+typedef RPCHelpMan (*RpcMethodFnType)();
 
 class CRPCCommand
 {
 public:
+    //! RPC method handler reading request and assigning result. Should return
+    //! true if request is fully handled, false if it should be passed on to
+    //! subsequent handlers.
+    using Actor = std::function<bool(const JSONRPCRequest& request, UniValue& result, bool last_handler)>;
+
+    //! Constructor taking Actor callback supporting multiple handlers.
+    CRPCCommand(std::string category, std::string name, Actor actor, std::vector<std::string> args, intptr_t unique_id)
+        : category(std::move(category)), name(std::move(name)), actor(std::move(actor)), argNames(std::move(args)),
+          unique_id(unique_id)
+    {
+    }
+
+    //! Simplified constructor taking plain RpcMethodFnType function pointer.
+    CRPCCommand(std::string category, std::string name_in, RpcMethodFnType fn, std::vector<std::string> args_in)
+        : CRPCCommand(
+              category,
+              fn().m_name,
+              [fn](const JSONRPCRequest& request, UniValue& result, bool) { result = fn().HandleRequest(request); return true; },
+              fn().GetArgNames(),
+              intptr_t(fn))
+    {
+        CHECK_NONFATAL(fn().m_name == name_in);
+        CHECK_NONFATAL(fn().GetArgNames() == args_in);
+    }
+
+    //! Simplified constructor taking plain rpcfn_type function pointer.
+    CRPCCommand(const char* category, const char* name, rpcfn_type fn, std::initializer_list<const char*> args)
+        : CRPCCommand(category, name,
+                      [fn](const JSONRPCRequest& request, UniValue& result, bool) { result = fn(request); return true; },
+                      {args.begin(), args.end()}, intptr_t(fn))
+    {
+    }
+
     std::string category;
     std::string name;
     rpcfn_type actor;
@@ -113,7 +151,7 @@ public:
 };
 
 /**
- * Bitcoin RPC command dispatcher.
+ * RPC command dispatcher.
  */
 class CRPCTable
 {
@@ -142,7 +180,7 @@ public:
     /**
      * Appends a CRPCCommand to the dispatch table.
      *
-     * Returns false if RPC server is already running (dump concurrency protection).
+     * Precondition: RPC server is not running
      *
      * Commands cannot be overwritten (returns false).
      *
@@ -153,7 +191,8 @@ public:
      * between calls based on method name, and aliased commands can also
      * register different names, types, and numbers of parameters.
      */
-    bool appendCommand(const std::string& name, const CRPCCommand* pcmd);
+    void appendCommand(const std::string& name, const CRPCCommand* pcmd);
+    bool removeCommand(const std::string& name, const CRPCCommand* pcmd);
 };
 
 bool IsDeprecatedRPCEnabled(const std::string& method);

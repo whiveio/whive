@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2018 The Bitcoin Core developers
+# Copyright (c) 2015-2020 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test BIP66 (DER SIG).
@@ -9,7 +9,7 @@ Test that the DERSIG soft-fork activates at (regtest) height 1251.
 
 from test_framework.blocktools import create_coinbase, create_block, create_transaction
 from test_framework.messages import msg_block
-from test_framework.mininode import P2PInterface
+from test_framework.p2p import P2PInterface
 from test_framework.script import CScript
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
@@ -59,7 +59,7 @@ class BIP66Test(BitcoinTestFramework):
         )
 
     def run_test(self):
-        self.nodes[0].add_p2p_connection(P2PInterface())
+        peer = self.nodes[0].add_p2p_connection(P2PInterface())
 
         self.test_dersig_info(is_active=False)
 
@@ -84,7 +84,7 @@ class BIP66Test(BitcoinTestFramework):
         block.solve()
 
         self.test_dersig_info(is_active=False)  # Not active as of current tip and next block does not need to obey rules
-        self.nodes[0].p2p.send_and_ping(msg_block(block))
+        peer.send_and_ping(msg_block(block))
         self.test_dersig_info(is_active=True)  # Not active as of current tip, but next block must obey rules
         assert_equal(self.nodes[0].getbestblockhash(), block.hash)
 
@@ -98,12 +98,10 @@ class BIP66Test(BitcoinTestFramework):
         self.nodes[0].p2p.send_and_ping(msg_block(block))
         assert_equal(int(self.nodes[0].getbestblockhash(), 16), tip)
 
-        wait_until(lambda: "reject" in self.nodes[0].p2p.last_message.keys(), lock=mininode_lock)
-        with mininode_lock:
-            assert_equal(self.nodes[0].p2p.last_message["reject"].code, REJECT_OBSOLETE)
-            assert_equal(self.nodes[0].p2p.last_message["reject"].reason, b'bad-version(0x00000002)')
-            assert_equal(self.nodes[0].p2p.last_message["reject"].data, block.sha256)
-            del self.nodes[0].p2p.last_message["reject"]
+        with self.nodes[0].assert_debug_log(expected_msgs=['{}, bad-version(0x00000002)'.format(block.hash)]):
+            peer.send_and_ping(msg_block(block))
+            assert_equal(int(self.nodes[0].getbestblockhash(), 16), tip)
+            peer.sync_with_ping()
 
         self.log.info("Test that transactions with non-DER signatures cannot appear in a block")
         block.nVersion = 3
@@ -127,9 +125,9 @@ class BIP66Test(BitcoinTestFramework):
         block.solve()
 
         with self.nodes[0].assert_debug_log(expected_msgs=['CheckInputScripts on {} failed with non-mandatory-script-verify-flag (Non-canonical DER signature)'.format(block.vtx[-1].hash)]):
-            self.nodes[0].p2p.send_and_ping(msg_block(block))
+            peer.send_and_ping(msg_block(block))
             assert_equal(int(self.nodes[0].getbestblockhash(), 16), tip)
-            self.nodes[0].p2p.sync_with_ping()
+            peer.sync_with_ping()
 
         self.log.info("Test that a version 3 block with a DERSIG-compliant transaction is accepted")
         block.vtx[1] = create_transaction(self.nodes[0], self.coinbase_txids[1], self.nodeaddress, amount=1.0)
@@ -138,7 +136,7 @@ class BIP66Test(BitcoinTestFramework):
         block.solve()
 
         self.test_dersig_info(is_active=True)  # Not active as of current tip, but next block must obey rules
-        self.nodes[0].p2p.send_and_ping(msg_block(block))
+        peer.send_and_ping(msg_block(block))
         self.test_dersig_info(is_active=True)  # Active as of current tip
         assert_equal(int(self.nodes[0].getbestblockhash(), 16), block.sha256)
 

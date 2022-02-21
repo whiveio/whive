@@ -8,8 +8,6 @@
 
 #include <tinyformat.h>
 
-const std::string CURRENCY_UNIT = "WHIVE";
-
 CFeeRate::CFeeRate(const CAmount& nFeePaid, size_t nBytes_)
 {
     assert(nBytes_ <= uint64_t(std::numeric_limits<int64_t>::max()));
@@ -40,7 +38,10 @@ CAmount CFeeRate::GetFee(size_t nBytes_) const
     return nFee;
 }
 
-std::string CFeeRate::ToString() const
+std::string CFeeRate::ToString(const FeeEstimateMode& fee_estimate_mode) const
 {
-    return strprintf("%d.%08d %s/kB", nSatoshisPerK / COIN, nSatoshisPerK % COIN, CURRENCY_UNIT);
+    switch (fee_estimate_mode) {
+    case FeeEstimateMode::SAT_VB: return strprintf("%d.%03d %s/vB", nSatoshisPerK / 1000, nSatoshisPerK % 1000, CURRENCY_ATOM);
+    default:                      return strprintf("%d.%08d %s/kvB", nSatoshisPerK / COIN, nSatoshisPerK % COIN, CURRENCY_UNIT);
+    }
 }

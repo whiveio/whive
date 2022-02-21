@@ -7,6 +7,7 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_bn.ts
         <translation>ঠিকানা কিংবা লেভেল সম্পাদনার জন্য রাইট-ক্লিক করুন</translation>
     </message>
@@ -26,6 +27,8 @@
         <source>C&amp;lose</source>
         <translation>কপি/প্রতিলিপি</translation>
 ========
+=======
+>>>>>>> upstream/0.21
         <translation>Manzil yoki yorliqni tahrirlash uchun oʻng tugmani bosing</translation>
     </message>
     <message>
@@ -123,6 +126,9 @@
     <name>OverviewPage</name>
     </context>
 <context>
+    <name>PSBTOperationsDialog</name>
+    </context>
+<context>
     <name>PaymentServer</name>
     </context>
 <context>
@@ -142,6 +148,7 @@
     </context>
 <context>
     <name>ReceiveRequestDialog</name>
+<<<<<<< HEAD
     <message>
         <source>Address</source>
 <<<<<<<< HEAD:src/qt/locale/bitcoin_bn.ts
@@ -154,6 +161,8 @@
         <translation>Yorliq</translation>
 >>>>>>>> upstream/0.20:src/qt/locale/bitcoin_uz@Latn.ts
     </message>
+=======
+>>>>>>> upstream/0.21
     </context>
 <context>
     <name>RecentRequestsTableModel</name>

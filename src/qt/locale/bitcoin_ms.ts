@@ -51,8 +51,15 @@
         <translation>Ini adalah alamat Bitcoin anda untuk pembayaran. Periksa jumlah dan alamat penerima sebelum membuat penghantaran koin sentiasa.</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
         <translation>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</translation>
+=======
+        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+Signing is only possible with addresses of the type 'legacy'.</source>
+        <translation>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+Signing is only possible with addresses of the type 'legacy'.</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -205,6 +212,10 @@
         <translation>Show passphrase</translation>
     </message>
     <message>
+        <source>Show passphrase</source>
+        <translation>Show passphrase</translation>
+    </message>
+    <message>
         <source>Encrypt wallet</source>
         <translation>Menyulitkan wallet</translation>
     </message>
@@ -298,6 +309,30 @@
     <message>
         <source>Your wallet is now encrypted. </source>
         <translation>Το πορτοφόλι σου έχει κρυπτογραφηθεί τώρα</translation>
+    </message>
+    <message>
+        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Enter the old passphrase and new passphrase for the wallet.</source>
+        <translation>Enter the old passphrase and new passphrase for the wallet.</translation>
+    </message>
+    <message>
+        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</translation>
+    </message>
+    <message>
+        <source>Wallet to be encrypted</source>
+        <translation>Wallet to be encrypted</translation>
+    </message>
+    <message>
+        <source>Your wallet is about to be encrypted. </source>
+        <translation>Your wallet is about to be encrypted. </translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. </source>
+        <translation>Your wallet is now encrypted. </translation>
     </message>
     <message>
         <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -612,6 +647,25 @@
         <translation>Terkini</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>&amp;Load PSBT from file...</source>
+        <translation>&amp;Load PSBT from file...</translation>
+    </message>
+    <message>
+        <source>Load Partially Signed Bitcoin Transaction</source>
+        <translation>Load Partially Signed Bitcoin Transaction</translation>
+    </message>
+    <message>
+        <source>Load PSBT from clipboard...</source>
+        <translation>Load PSBT from clipboard...</translation>
+    </message>
+    <message>
+        <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
+        <translation>Load Partially Signed Bitcoin Transaction from clipboard</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Node window</source>
         <translation>Node window</translation>
     </message>
@@ -648,10 +702,32 @@
         <translation>Tutup Wallet</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Close All Wallets...</source>
+        <translation>Close All Wallets...</translation>
+    </message>
+    <message>
+        <source>Close all wallets</source>
+        <translation>Close all wallets</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Show the %1 help message to get a list with possible Bitcoin command-line options</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>&amp;Mask values</source>
+        <translation>&amp;Mask values</translation>
+    </message>
+    <message>
+        <source>Mask the values in the Overview tab</source>
+        <translation>Mask the values in the Overview tab</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>default wallet</source>
         <translation>dompet lalai
 </translation>
@@ -761,8 +837,17 @@
         <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
         <translation>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</translation>
+=======
+        <source>Original message:</source>
+        <translation>Original message:</translation>
+    </message>
+    <message>
+        <source>A fatal error occurred. %1 can no longer continue safely and will quit.</source>
+        <translation>A fatal error occurred. %1 can no longer continue safely and will quit.</translation>
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
@@ -938,6 +1023,13 @@
         <translation>Create Wallet</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Wallet</source>
+        <translation>dompet</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Wallet Name</source>
         <translation>Wallet Name</translation>
     </message>
@@ -950,6 +1042,13 @@
         <translation>Encrypt Wallet</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Advanced Options</source>
+        <translation>Advanced Options</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
         <translation>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</translation>
     </message>
@@ -966,6 +1065,7 @@
         <translation>Make Blank Wallet</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Create</source>
         <translation>Create</translation>
     </message>
@@ -1938,11 +2038,26 @@
     <message>
         <source>Make Blank Wallet</source>
         <translation>Make Blank Wallet</translation>
+=======
+        <source>Use descriptors for scriptPubKey management</source>
+        <translation>Use descriptors for scriptPubKey management</translation>
+    </message>
+    <message>
+        <source>Descriptor Wallet</source>
+        <translation>Descriptor Wallet</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Create</source>
         <translation>Create</translation>
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
+=======
+    </message>
+    <message>
+        <source>Compiled without sqlite support (required for descriptor wallets)</source>
+        <translation>Compiled without sqlite support (required for descriptor wallets)</translation>
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
@@ -1977,11 +2092,24 @@
         <translation>The address associated with this address list entry. This can only be modified for sending addresses.</translation>
     </message>
     <message>
+        <source>&amp;Label</source>
+        <translation>&amp;Label</translation>
+    </message>
+    <message>
+        <source>The label associated with this address list entry</source>
+        <translation>The label associated with this address list entry</translation>
+    </message>
+    <message>
+        <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
+        <translation>The address associated with this address list entry. This can only be modified for sending addresses.</translation>
+    </message>
+    <message>
         <source>&amp;Address</source>
         <translation>&amp;Διεύθυνση</translation>
     </message>
     <message>
         <source>New sending address</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Νέα Διεύθυνση Αποστολής</translation>
     </message>
@@ -2031,6 +2159,8 @@
         <source>New sending address</source>
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>New sending address</translation>
     </message>
     <message>
@@ -2063,13 +2193,17 @@
     </message>
 </context>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>FreespaceChecker</name>
     <message>
         <source>A new data directory will be created.</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Θα δημιουργηθεί ένας νέος φάκελος δεδομένων.</translation>
@@ -2092,6 +2226,8 @@
 =======
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>A new data directory will be created.</translation>
     </message>
     <message>
@@ -2110,18 +2246,24 @@
         <source>Cannot create data directory here.</source>
         <translation>Cannot create data directory here.</translation>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
     <name>HelpMessageDialog</name>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_ms.ts
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
     <message>
         <source>version</source>
         <translation>version</translation>
@@ -2135,7 +2277,10 @@
         <translation>Command-line options</translation>
     </message>
 </context>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>Intro</name>
 ========
@@ -2237,10 +2382,47 @@
         <translation>Use a custom data directory:</translation>
     </message>
     <message>
+        <source>Welcome</source>
+        <translation>Welcome</translation>
+    </message>
+    <message>
+        <source>Welcome to %1.</source>
+        <translation>Welcome to %1.</translation>
+    </message>
+    <message>
+        <source>As this is the first time the program is launched, you can choose where %1 will store its data.</source>
+        <translation>As this is the first time the program is launched, you can choose where %1 will store its data.</translation>
+    </message>
+    <message>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <translation>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</translation>
+    </message>
+    <message>
+        <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
+        <translation>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</translation>
+    </message>
+    <message>
+        <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
+        <translation>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</translation>
+    </message>
+    <message>
+        <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
+        <translation>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</translation>
+    </message>
+    <message>
+        <source>Use the default data directory</source>
+        <translation>Use the default data directory</translation>
+    </message>
+    <message>
+        <source>Use a custom data directory:</source>
+        <translation>Use a custom data directory:</translation>
+    </message>
+    <message>
         <source>Bitcoin</source>
         <translation>Bitcoin</translation>
     </message>
     <message>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
         <translation>Τουλάχιστον %1 GB δεδομένων θα αποθηκευτούν σε αυτόν τον κατάλογο και θα αυξηθεί με την πάροδο του χρόνου.</translation>
@@ -2336,6 +2518,8 @@
 >>>>>>> upstream/0.19
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
         <translation>Discard blocks after verification, except most recent %1 GB (prune)</translation>
     </message>
@@ -2376,11 +2560,15 @@
         <translation><numerusform>(%n GB needed for full chain)</numerusform></translation>
     </message>
 </context>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Φόρμα</translation>
@@ -2431,6 +2619,8 @@
 =======
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>Form</translation>
     </message>
     <message>
@@ -2475,10 +2665,13 @@
     </message>
     <message>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <source>Unknown. Syncing Headers (%1, %2%)...</source>
         <translation>Unknown. Syncing Headers (%1, %2%)...</translation>
 >>>>>>> upstream/0.19
 =======
+=======
+>>>>>>> upstream/0.21
         <source>Esc</source>
         <translation>Esc</translation>
     </message>
@@ -2489,12 +2682,16 @@
     <message>
         <source>Unknown. Syncing Headers (%1, %2%)...</source>
         <translation>Unknown. Syncing Headers (%1, %2%)...</translation>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
     <name>OpenURIDialog</name>
     <message>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <source>Open URI</source>
@@ -2507,11 +2704,16 @@
         <source>Open bitcoin URI</source>
         <translation>Open bitcoin URI</translation>
 >>>>>>> upstream/0.20
+=======
+        <source>Open bitcoin URI</source>
+        <translation>Open bitcoin URI</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>URI:</source>
         <translation>URI:</translation>
     </message>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <message>
         <source>Select payment request file</source>
@@ -2526,10 +2728,14 @@
 =======
 </context>
 >>>>>>> upstream/0.20
+=======
+</context>
+>>>>>>> upstream/0.21
 <context>
     <name>OpenWalletActivity</name>
     <message>
         <source>Open wallet failed</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Άνοιγμα πορτοφολιού απέτυχε</translation>
@@ -2538,12 +2744,17 @@
         <source>Open wallet warning</source>
         <translation>Άνοιγμα πορτοφολιού προειδοποίηση</translation>
 =======
+=======
+>>>>>>> upstream/0.21
         <translation>Open wallet failed</translation>
     </message>
     <message>
         <source>Open wallet warning</source>
         <translation>Open wallet warning</translation>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>default wallet</source>
@@ -2923,6 +3134,7 @@
     <message>
         <source>Options</source>
         <translation>Options</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>&amp;Main</source>
@@ -3353,6 +3565,266 @@
         <translation>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</translation>
     </message>
     <message>
+=======
+    </message>
+    <message>
+        <source>&amp;Main</source>
+        <translation>&amp;Main</translation>
+    </message>
+    <message>
+        <source>Automatically start %1 after logging in to the system.</source>
+        <translation>Automatically start %1 after logging in to the system.</translation>
+    </message>
+    <message>
+        <source>&amp;Start %1 on system login</source>
+        <translation>&amp;Start %1 on system login</translation>
+    </message>
+    <message>
+        <source>Size of &amp;database cache</source>
+        <translation>Size of &amp;database cache</translation>
+    </message>
+    <message>
+        <source>Number of script &amp;verification threads</source>
+        <translation>Number of script &amp;verification threads</translation>
+    </message>
+    <message>
+        <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
+        <translation>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</translation>
+    </message>
+    <message>
+        <source>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
+        <translation>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</translation>
+    </message>
+    <message>
+        <source>Hide the icon from the system tray.</source>
+        <translation>Hide the icon from the system tray.</translation>
+    </message>
+    <message>
+        <source>&amp;Hide tray icon</source>
+        <translation>&amp;Hide tray icon</translation>
+    </message>
+    <message>
+        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
+        <translation>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</translation>
+    </message>
+    <message>
+        <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
+        <translation>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</translation>
+    </message>
+    <message>
+        <source>Open the %1 configuration file from the working directory.</source>
+        <translation>Open the %1 configuration file from the working directory.</translation>
+    </message>
+    <message>
+        <source>Open Configuration File</source>
+        <translation>Open Configuration File</translation>
+    </message>
+    <message>
+        <source>Reset all client options to default.</source>
+        <translation>Reset all client options to default.</translation>
+    </message>
+    <message>
+        <source>&amp;Reset Options</source>
+        <translation>&amp;Reset Options</translation>
+    </message>
+    <message>
+        <source>&amp;Network</source>
+        <translation>&amp;Network</translation>
+    </message>
+    <message>
+        <source>Disables some advanced features but all blocks will still be fully validated. Reverting this setting requires re-downloading the entire blockchain. Actual disk usage may be somewhat higher.</source>
+        <translation>Disables some advanced features but all blocks will still be fully validated. Reverting this setting requires re-downloading the entire blockchain. Actual disk usage may be somewhat higher.</translation>
+    </message>
+    <message>
+        <source>Prune &amp;block storage to</source>
+        <translation>Prune &amp;block storage to</translation>
+    </message>
+    <message>
+        <source>GB</source>
+        <translation>GB</translation>
+    </message>
+    <message>
+        <source>Reverting this setting requires re-downloading the entire blockchain.</source>
+        <translation>Reverting this setting requires re-downloading the entire blockchain.</translation>
+    </message>
+    <message>
+        <source>MiB</source>
+        <translation>MiB</translation>
+    </message>
+    <message>
+        <source>(0 = auto, &lt;0 = leave that many cores free)</source>
+        <translation>(0 = auto, &lt;0 = leave that many cores free)</translation>
+    </message>
+    <message>
+        <source>W&amp;allet</source>
+        <translation>W&amp;allet</translation>
+    </message>
+    <message>
+        <source>Expert</source>
+        <translation>Expert</translation>
+    </message>
+    <message>
+        <source>Enable coin &amp;control features</source>
+        <translation>Enable coin &amp;control features</translation>
+    </message>
+    <message>
+        <source>If you disable the spending of unconfirmed change, the change from a transaction cannot be used until that transaction has at least one confirmation. This also affects how your balance is computed.</source>
+        <translation>If you disable the spending of unconfirmed change, the change from a transaction cannot be used until that transaction has at least one confirmation. This also affects how your balance is computed.</translation>
+    </message>
+    <message>
+        <source>&amp;Spend unconfirmed change</source>
+        <translation>&amp;Spend unconfirmed change</translation>
+    </message>
+    <message>
+        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+    </message>
+    <message>
+        <source>Map port using &amp;UPnP</source>
+        <translation>Map port using &amp;UPnP</translation>
+    </message>
+    <message>
+        <source>Accept connections from outside.</source>
+        <translation>Accept connections from outside.</translation>
+    </message>
+    <message>
+        <source>Allow incomin&amp;g connections</source>
+        <translation>Allow incomin&amp;g connections</translation>
+    </message>
+    <message>
+        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <translation>Connect to the Bitcoin network through a SOCKS5 proxy.</translation>
+    </message>
+    <message>
+        <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
+        <translation>&amp;Connect through SOCKS5 proxy (default proxy):</translation>
+    </message>
+    <message>
+        <source>Proxy &amp;IP:</source>
+        <translation>Proxy &amp;IP:</translation>
+    </message>
+    <message>
+        <source>&amp;Port:</source>
+        <translation>&amp;Port:</translation>
+    </message>
+    <message>
+        <source>Port of the proxy (e.g. 9050)</source>
+        <translation>Port of the proxy (e.g. 9050)</translation>
+    </message>
+    <message>
+        <source>Used for reaching peers via:</source>
+        <translation>Used for reaching peers via:</translation>
+    </message>
+    <message>
+        <source>IPv4</source>
+        <translation>IPv4</translation>
+    </message>
+    <message>
+        <source>IPv6</source>
+        <translation>IPv6</translation>
+    </message>
+    <message>
+        <source>Tor</source>
+        <translation>Tor</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Window</translation>
+    </message>
+    <message>
+        <source>Show only a tray icon after minimizing the window.</source>
+        <translation>Show only a tray icon after minimizing the window.</translation>
+    </message>
+    <message>
+        <source>&amp;Minimize to the tray instead of the taskbar</source>
+        <translation>&amp;Minimize to the tray instead of the taskbar</translation>
+    </message>
+    <message>
+        <source>M&amp;inimize on close</source>
+        <translation>M&amp;inimize on close</translation>
+    </message>
+    <message>
+        <source>&amp;Display</source>
+        <translation>&amp;Display</translation>
+    </message>
+    <message>
+        <source>User Interface &amp;language:</source>
+        <translation>User Interface &amp;language:</translation>
+    </message>
+    <message>
+        <source>The user interface language can be set here. This setting will take effect after restarting %1.</source>
+        <translation>The user interface language can be set here. This setting will take effect after restarting %1.</translation>
+    </message>
+    <message>
+        <source>&amp;Unit to show amounts in:</source>
+        <translation>&amp;Unit to show amounts in:</translation>
+    </message>
+    <message>
+        <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
+        <translation>Choose the default subdivision unit to show in the interface and when sending coins.</translation>
+    </message>
+    <message>
+        <source>Whether to show coin control features or not.</source>
+        <translation>Whether to show coin control features or not.</translation>
+    </message>
+    <message>
+        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <translation>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</translation>
+    </message>
+    <message>
+        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
+        <translation>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</translation>
+    </message>
+    <message>
+        <source>&amp;Third party transaction URLs</source>
+        <translation>&amp;Third party transaction URLs</translation>
+    </message>
+    <message>
+        <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
+        <translation>Options set in this dialog are overridden by the command line or in the configuration file:</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Cancel</translation>
+    </message>
+    <message>
+        <source>default</source>
+        <translation>default</translation>
+    </message>
+    <message>
+        <source>none</source>
+        <translation>none</translation>
+    </message>
+    <message>
+        <source>Confirm options reset</source>
+        <translation>Confirm options reset</translation>
+    </message>
+    <message>
+        <source>Client restart required to activate changes.</source>
+        <translation>Client restart required to activate changes.</translation>
+    </message>
+    <message>
+        <source>Client will be shut down. Do you want to proceed?</source>
+        <translation>Client will be shut down. Do you want to proceed?</translation>
+    </message>
+    <message>
+        <source>Configuration options</source>
+        <translation>Configuration options</translation>
+    </message>
+    <message>
+        <source>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</source>
+        <translation>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Ralat</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>The configuration file could not be opened.</source>
         <translation>The configuration file could not be opened.</translation>
     </message>
@@ -3365,11 +3837,15 @@
         <translation>The supplied proxy address is invalid.</translation>
     </message>
 </context>
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Φόρμα</translation>
@@ -3444,6 +3920,8 @@
 =======
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>Form</translation>
     </message>
     <message>
@@ -3514,15 +3992,146 @@
         <source>Current total balance in watch-only addresses</source>
         <translation>Current total balance in watch-only addresses</translation>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
 =======
 >>>>>>> upstream/0.20
+=======
+    </message>
+    <message>
+        <source>Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings-&gt;Mask values.</source>
+        <translation>Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings-&gt;Mask values.</translation>
+    </message>
+</context>
+<context>
+    <name>PSBTOperationsDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation>Dialog</translation>
+    </message>
+    <message>
+        <source>Sign Tx</source>
+        <translation>Sign Tx</translation>
+    </message>
+    <message>
+        <source>Broadcast Tx</source>
+        <translation>Broadcast Tx</translation>
+    </message>
+    <message>
+        <source>Copy to Clipboard</source>
+        <translation>Copy to Clipboard</translation>
+    </message>
+    <message>
+        <source>Save...</source>
+        <translation>Save...</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Close</translation>
+    </message>
+    <message>
+        <source>Failed to load transaction: %1</source>
+        <translation>Failed to load transaction: %1</translation>
+    </message>
+    <message>
+        <source>Failed to sign transaction: %1</source>
+        <translation>Failed to sign transaction: %1</translation>
+    </message>
+    <message>
+        <source>Could not sign any more inputs.</source>
+        <translation>Could not sign any more inputs.</translation>
+    </message>
+    <message>
+        <source>Signed %1 inputs, but more signatures are still required.</source>
+        <translation>Signed %1 inputs, but more signatures are still required.</translation>
+    </message>
+    <message>
+        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
+        <translation>Signed transaction successfully. Transaction is ready to broadcast.</translation>
+    </message>
+    <message>
+        <source>Unknown error processing transaction.</source>
+        <translation>Unknown error processing transaction.</translation>
+    </message>
+    <message>
+        <source>Transaction broadcast successfully! Transaction ID: %1</source>
+        <translation>Transaction broadcast successfully! Transaction ID: %1</translation>
+    </message>
+    <message>
+        <source>Transaction broadcast failed: %1</source>
+        <translation>Transaction broadcast failed: %1</translation>
+    </message>
+    <message>
+        <source>PSBT copied to clipboard.</source>
+        <translation>PSBT copied to clipboard.</translation>
+    </message>
+    <message>
+        <source>Save Transaction Data</source>
+        <translation>Save Transaction Data</translation>
+    </message>
+    <message>
+        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
+        <translation>Partially Signed Transaction (Binary) (*.psbt)</translation>
+    </message>
+    <message>
+        <source>PSBT saved to disk.</source>
+        <translation>PSBT saved to disk.</translation>
+    </message>
+    <message>
+        <source> * Sends %1 to %2</source>
+        <translation> * Sends %1 to %2</translation>
+    </message>
+    <message>
+        <source>Unable to calculate transaction fee or total transaction amount.</source>
+        <translation>Unable to calculate transaction fee or total transaction amount.</translation>
+    </message>
+    <message>
+        <source>Pays transaction fee: </source>
+        <translation>Pays transaction fee: </translation>
+    </message>
+    <message>
+        <source>Total Amount</source>
+        <translation>Total Amount</translation>
+    </message>
+    <message>
+        <source>or</source>
+        <translation>or</translation>
+    </message>
+    <message>
+        <source>Transaction has %1 unsigned inputs.</source>
+        <translation>Transaction has %1 unsigned inputs.</translation>
+    </message>
+    <message>
+        <source>Transaction is missing some information about inputs.</source>
+        <translation>Transaction is missing some information about inputs.</translation>
+    </message>
+    <message>
+        <source>Transaction still needs signature(s).</source>
+        <translation>Transaction still needs signature(s).</translation>
+    </message>
+    <message>
+        <source>(But this wallet cannot sign transactions.)</source>
+        <translation>(But this wallet cannot sign transactions.)</translation>
+    </message>
+    <message>
+        <source>(But this wallet does not have the right keys.)</source>
+        <translation>(But this wallet does not have the right keys.)</translation>
+    </message>
+    <message>
+        <source>Transaction is fully signed and ready for broadcast.</source>
+        <translation>Transaction is fully signed and ready for broadcast.</translation>
+    </message>
+    <message>
+        <source>Transaction status is unknown.</source>
+        <translation>Transaction status is unknown.</translation>
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
     <name>PaymentServer</name>
     <message>
         <source>Payment request error</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Σφάλμα αίτησης πληρωμής</translation>
@@ -3587,6 +4196,8 @@
 =======
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>Payment request error</translation>
     </message>
     <message>
@@ -3603,12 +4214,18 @@
     </message>
     <message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> upstream/0.21
         <source>Cannot process payment request because BIP70 is not supported.</source>
         <translation>Cannot process payment request because BIP70 is not supported.</translation>
     </message>
     <message>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
         <translation>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</translation>
     </message>
@@ -3629,6 +4246,7 @@
         <translation>Payment request file handling</translation>
     </message>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <message>
         <source>Payment request expired.</source>
         <translation>Payment request expired.</translation>
@@ -3638,10 +4256,14 @@
 =======
 </context>
 >>>>>>> upstream/0.20
+=======
+</context>
+>>>>>>> upstream/0.21
 <context>
     <name>PeerTableModel</name>
     <message>
         <source>User Agent</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Agent χρήστη</translation>
@@ -3656,6 +4278,8 @@
 =======
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>User Agent</translation>
     </message>
     <message>
@@ -3666,9 +4290,12 @@
         <source>NodeId</source>
         <translation>NodeId</translation>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Ping</source>
@@ -3676,6 +4303,7 @@
     </message>
     <message>
         <source>Sent</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Αποστολή</translation>
@@ -3686,15 +4314,20 @@
 =======
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>Sent</translation>
     </message>
     <message>
         <source>Received</source>
         <translation>Received</translation>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
@@ -3719,7 +4352,10 @@
     <message>
         <source>Enter a Bitcoin address (e.g. %1)</source>
         <translation>Enter a Bitcoin address (e.g. %1)</translation>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>%1 d</source>
@@ -3741,6 +4377,7 @@
         <source>None</source>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <translation>Κανένα</translation>
     </message>
     <message>
@@ -3749,20 +4386,26 @@
 =======
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>None</translation>
     </message>
     <message>
         <source>N/A</source>
         <translation>N/A</translation>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>%1 ms</source>
         <translation>%1 ms</translation>
     </message>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <message>
         <source>%1 and %2</source>
@@ -3772,6 +4415,8 @@
         <translation>%1 and %2</translation>
 >>>>>>> upstream/0.19
 =======
+=======
+>>>>>>> upstream/0.21
     <message numerus="yes">
         <source>%n second(s)</source>
         <translation><numerusform>%n seconds</numerusform></translation>
@@ -3799,7 +4444,10 @@
     <message numerus="yes">
         <source>%n year(s)</source>
         <translation><numerusform>%n years</numerusform></translation>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>%1 B</source>
@@ -3819,6 +4467,7 @@
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Σφάλμα: Ο καθορισμένος κατάλογος δεδομένων "%1" δεν υπάρχει.</translation>
@@ -3841,6 +4490,8 @@
 =======
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>Error: Specified data directory "%1" does not exist.</translation>
     </message>
     <message>
@@ -3852,6 +4503,13 @@
         <translation>Error: %1</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Error initializing settings: %1</source>
+        <translation>Error initializing settings: %1</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>%1 didn't yet exit safely...</source>
         <translation>%1 didn't yet exit safely...</translation>
     </message>
@@ -3859,15 +4517,19 @@
         <source>unknown</source>
         <translation>unknown</translation>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>&amp;Αποθήκευση εικόνας...</translation>
@@ -3898,6 +4560,8 @@
 =======
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <translation>&amp;Save Image...</translation>
     </message>
     <message>
@@ -3924,18 +4588,24 @@
         <source>PNG Image (*.png)</source>
         <translation>PNG Image (*.png)</translation>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
     <name>RPCConsole</name>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_ms.ts
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
     <message>
         <source>N/A</source>
         <translation>N/A</translation>
@@ -3993,10 +4663,13 @@
         <translation>Block chain</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Current number of blocks</source>
         <translation>Current number of blocks</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Memory Pool</source>
         <translation>Memory Pool</translation>
     </message>
@@ -4041,10 +4714,13 @@
         <translation>Select a peer to view detailed information.</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Whitelisted</source>
         <translation>Whitelisted</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Direction</source>
         <translation>Direction</translation>
     </message>
@@ -4081,6 +4757,13 @@
         <translation>Node window</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Current block height</source>
+        <translation>Current block height</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</translation>
     </message>
@@ -4093,12 +4776,21 @@
         <translation>Increase font size</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Services</source>
         <translation>Services</translation>
     </message>
     <message>
         <source>Ban Score</source>
         <translation>Ban Score</translation>
+=======
+        <source>Permissions</source>
+        <translation>Permissions</translation>
+    </message>
+    <message>
+        <source>Services</source>
+        <translation>Services</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Connection Time</source>
@@ -4249,6 +4941,7 @@
         <translation>Outbound</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
@@ -4257,11 +4950,16 @@
         <translation>No</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Unknown</source>
         <translation>Unknown</translation>
     </message>
 </context>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
@@ -4356,14 +5054,50 @@
         <source>Copy amount</source>
         <translation>Copy amount</translation>
     </message>
+<<<<<<< HEAD
+=======
+    <message>
+        <source>Could not unlock wallet.</source>
+        <translation>Could not unlock wallet.</translation>
+    </message>
+    <message>
+        <source>Could not generate new %1 address</source>
+        <translation>Could not generate new %1 address</translation>
+    </message>
+>>>>>>> upstream/0.21
 </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <source>QR Code</source>
         <translation>QR Code</translation>
+=======
+        <source>Request payment to ...</source>
+        <translation>Request payment to ...</translation>
+    </message>
+    <message>
+        <source>Address:</source>
+        <translation>Address:</translation>
+    </message>
+    <message>
+        <source>Amount:</source>
+        <translation>Amount:</translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation>Label:</translation>
+    </message>
+    <message>
+        <source>Message:</source>
+        <translation>Message:</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>dompet</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Copy &amp;URI</source>
@@ -4376,6 +5110,7 @@
     <message>
         <source>&amp;Save Image...</source>
         <translation>&amp;Save Image...</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>Request payment to %1</source>
@@ -4393,12 +5128,15 @@
 >>>>>>> upstream/0.20
         <source>Address</source>
         <translation>Alamat</translation>
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
-        <source>Amount</source>
-        <translation>Amount</translation>
+        <source>Request payment to %1</source>
+        <translation>Request payment to %1</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Label</source>
         <translation>Label</translation>
 ========
@@ -5276,11 +6014,16 @@
         <source>Wallet</source>
         <translation>Πορτοφόλι</translation>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_el.ts
+=======
+        <source>Payment information</source>
+        <translation>Payment information</translation>
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_ms.ts
         <source>Label</source>
@@ -5288,6 +6031,8 @@
     </message>
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
         <source>Date</source>
         <translation>Date</translation>
     </message>
@@ -5316,7 +6061,10 @@
         <translation>Requested</translation>
     </message>
 </context>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>SendCoinsDialog</name>
     </context>
@@ -5335,6 +6083,146 @@
         <source>Message</source>
         <translation>Μήνυμα</translation>
 =======
+        <source>Send Coins</source>
+        <translation>Send Coins</translation>
+    </message>
+    <message>
+        <source>Coin Control Features</source>
+        <translation>Coin Control Features</translation>
+    </message>
+    <message>
+        <source>Inputs...</source>
+        <translation>Inputs...</translation>
+    </message>
+    <message>
+        <source>automatically selected</source>
+        <translation>automatically selected</translation>
+    </message>
+    <message>
+        <source>Insufficient funds!</source>
+        <translation>Insufficient funds!</translation>
+    </message>
+    <message>
+        <source>Quantity:</source>
+        <translation>Quantity:</translation>
+    </message>
+    <message>
+        <source>Bytes:</source>
+        <translation>Bytes:</translation>
+    </message>
+    <message>
+        <source>Amount:</source>
+        <translation>Amount:</translation>
+    </message>
+    <message>
+        <source>Fee:</source>
+        <translation>Fee:</translation>
+    </message>
+    <message>
+        <source>After Fee:</source>
+        <translation>After Fee:</translation>
+    </message>
+    <message>
+        <source>Change:</source>
+        <translation>Change:</translation>
+    </message>
+    <message>
+        <source>If this is activated, but the change address is empty or invalid, change will be sent to a newly generated address.</source>
+        <translation>If this is activated, but the change address is empty or invalid, change will be sent to a newly generated address.</translation>
+    </message>
+    <message>
+        <source>Custom change address</source>
+        <translation>Custom change address</translation>
+    </message>
+    <message>
+        <source>Transaction Fee:</source>
+        <translation>Transaction Fee:</translation>
+    </message>
+    <message>
+        <source>Choose...</source>
+        <translation>Choose...</translation>
+    </message>
+    <message>
+        <source>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</source>
+        <translation>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</translation>
+    </message>
+    <message>
+        <source>Warning: Fee estimation is currently not possible.</source>
+        <translation>Warning: Fee estimation is currently not possible.</translation>
+    </message>
+    <message>
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+        <translation>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</translation>
+    </message>
+    <message>
+        <source>per kilobyte</source>
+        <translation>per kilobyte</translation>
+    </message>
+    <message>
+        <source>Hide</source>
+        <translation>Hide</translation>
+    </message>
+    <message>
+        <source>Recommended:</source>
+        <translation>Recommended:</translation>
+    </message>
+    <message>
+        <source>Custom:</source>
+        <translation>Custom:</translation>
+    </message>
+    <message>
+        <source>(Smart fee not initialized yet. This usually takes a few blocks...)</source>
+        <translation>(Smart fee not initialized yet. This usually takes a few blocks...)</translation>
+    </message>
+    <message>
+        <source>Send to multiple recipients at once</source>
+        <translation>Send to multiple recipients at once</translation>
+    </message>
+    <message>
+        <source>Add &amp;Recipient</source>
+        <translation>Add &amp;Recipient</translation>
+    </message>
+    <message>
+        <source>Clear all fields of the form.</source>
+        <translation>Clear all fields of the form.</translation>
+    </message>
+    <message>
+        <source>Dust:</source>
+        <translation>Dust:</translation>
+    </message>
+    <message>
+        <source>Hide transaction fee settings</source>
+        <translation>Hide transaction fee settings</translation>
+    </message>
+    <message>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <translation>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</translation>
+    </message>
+    <message>
+        <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
+        <translation>A too low fee might result in a never confirming transaction (read the tooltip)</translation>
+    </message>
+    <message>
+        <source>Confirmation time target:</source>
+        <translation>Confirmation time target:</translation>
+    </message>
+    <message>
+        <source>Enable Replace-By-Fee</source>
+        <translation>Enable Replace-By-Fee</translation>
+    </message>
+    <message>
+        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
+        <translation>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</translation>
+    </message>
+    <message>
+        <source>Clear &amp;All</source>
+        <translation>Clear &amp;All</translation>
+    </message>
+    <message>
         <source>Send Coins</source>
         <translation>Send Coins</translation>
     </message>
@@ -5598,6 +6486,190 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>PSBT copied</source>
         <translation>PSBT copied</translation>
+    </message>
+    <message>
+        <source>Watch-only balance:</source>
+        <translation>Watch-only balance:</translation>
+    </message>
+    <message>
+        <source>The recipient address is not valid. Please recheck.</source>
+        <translation>The recipient address is not valid. Please recheck.</translation>
+    </message>
+    <message>
+        <source>The amount to pay must be larger than 0.</source>
+        <translation>The amount to pay must be larger than 0.</translation>
+    </message>
+    <message>
+        <source>The amount exceeds your balance.</source>
+        <translation>The amount exceeds your balance.</translation>
+    </message>
+    <message>
+        <source>The total exceeds your balance when the %1 transaction fee is included.</source>
+        <translation>The total exceeds your balance when the %1 transaction fee is included.</translation>
+    </message>
+    <message>
+        <source>Duplicate address found: addresses should only be used once each.</source>
+        <translation>Duplicate address found: addresses should only be used once each.</translation>
+    </message>
+    <message>
+        <source>Transaction creation failed!</source>
+        <translation>Transaction creation failed!</translation>
+    </message>
+    <message>
+        <source>A fee higher than %1 is considered an absurdly high fee.</source>
+        <translation>A fee higher than %1 is considered an absurdly high fee.</translation>
+    </message>
+    <message>
+        <source>Payment request expired.</source>
+        <translation>Payment request expired.</translation>
+    </message>
+    <message numerus="yes">
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation><numerusform>Estimated to begin confirmation within %n blocks.</numerusform></translation>
+    </message>
+    <message>
+        <source>Warning: Invalid Bitcoin address</source>
+        <translation>Warning: Invalid Bitcoin address</translation>
+    </message>
+    <message>
+        <source>Warning: Unknown change address</source>
+        <translation>Warning: Unknown change address</translation>
+    </message>
+    <message>
+        <source>Confirm custom change address</source>
+        <translation>Confirm custom change address</translation>
+    </message>
+    <message>
+        <source>The address you selected for change is not part of this wallet. Any or all funds in your wallet may be sent to this address. Are you sure?</source>
+        <translation>The address you selected for change is not part of this wallet. Any or all funds in your wallet may be sent to this address. Are you sure?</translation>
+    </message>
+    <message>
+        <source>Confirm the send action</source>
+        <translation>Confirm the send action</translation>
+    </message>
+    <message>
+        <source>S&amp;end</source>
+        <translation>S&amp;end</translation>
+    </message>
+    <message>
+        <source>Copy quantity</source>
+        <translation>Copy quantity</translation>
+    </message>
+    <message>
+        <source>Copy amount</source>
+        <translation>Copy amount</translation>
+    </message>
+    <message>
+        <source>Copy fee</source>
+        <translation>Copy fee</translation>
+    </message>
+    <message>
+        <source>Copy after fee</source>
+        <translation>Copy after fee</translation>
+    </message>
+    <message>
+        <source>Copy bytes</source>
+        <translation>Copy bytes</translation>
+    </message>
+    <message>
+        <source>Copy dust</source>
+        <translation>Copy dust</translation>
+    </message>
+    <message>
+        <source>Copy change</source>
+        <translation>Copy change</translation>
+    </message>
+    <message>
+        <source>%1 (%2 blocks)</source>
+        <translation>%1 (%2 blocks)</translation>
+    </message>
+    <message>
+        <source>Cr&amp;eate Unsigned</source>
+        <translation>Cr&amp;eate Unsigned</translation>
+    </message>
+    <message>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <translation>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</translation>
+    </message>
+    <message>
+        <source> from wallet '%1'</source>
+        <translation> from wallet '%1'</translation>
+    </message>
+    <message>
+        <source>%1 to '%2'</source>
+        <translation>%1 to '%2'</translation>
+    </message>
+    <message>
+        <source>%1 to %2</source>
+        <translation>%1 to %2</translation>
+    </message>
+    <message>
+        <source>Do you want to draft this transaction?</source>
+        <translation>Do you want to draft this transaction?</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to send?</source>
+        <translation>Are you sure you want to send?</translation>
+    </message>
+    <message>
+        <source>Create Unsigned</source>
+        <translation>Create Unsigned</translation>
+    </message>
+    <message>
+        <source>Save Transaction Data</source>
+        <translation>Save Transaction Data</translation>
+    </message>
+    <message>
+        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
+        <translation>Partially Signed Transaction (Binary) (*.psbt)</translation>
+    </message>
+    <message>
+        <source>PSBT saved</source>
+        <translation>PSBT saved</translation>
+    </message>
+    <message>
+        <source>or</source>
+        <translation>or</translation>
+    </message>
+    <message>
+        <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
+        <translation>You can increase the fee later (signals Replace-By-Fee, BIP-125).</translation>
+    </message>
+    <message>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <translation>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</translation>
+    </message>
+    <message>
+        <source>Please, review your transaction.</source>
+        <translation>Please, review your transaction.</translation>
+    </message>
+    <message>
+        <source>Transaction fee</source>
+        <translation>Transaction fee</translation>
+    </message>
+    <message>
+        <source>Not signalling Replace-By-Fee, BIP-125.</source>
+        <translation>Not signalling Replace-By-Fee, BIP-125.</translation>
+    </message>
+    <message>
+        <source>Total Amount</source>
+        <translation>Total Amount</translation>
+    </message>
+    <message>
+        <source>To review recipient list click "Show Details..."</source>
+        <translation>To review recipient list click "Show Details..."</translation>
+    </message>
+    <message>
+        <source>Confirm send coins</source>
+        <translation>Confirm send coins</translation>
+    </message>
+    <message>
+        <source>Confirm transaction proposal</source>
+        <translation>Confirm transaction proposal</translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation>Send</translation>
     </message>
     <message>
         <source>Watch-only balance:</source>
@@ -6487,6 +7559,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Type</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Label</source>
         <translation>Label</translation>
 >>>>>>> upstream/0.20
@@ -7555,14 +8628,87 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
 <<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_ms.ts
+=======
+>>>>>>> upstream/0.21
         <source>Label</source>
         <translation>Label</translation>
+    </message>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation><numerusform>Open for %n more blocks</numerusform></translation>
+    </message>
+    <message>
+        <source>Open until %1</source>
+        <translation>Open until %1</translation>
+    </message>
+    <message>
+        <source>Unconfirmed</source>
+        <translation>Unconfirmed</translation>
+    </message>
+    <message>
+        <source>Abandoned</source>
+        <translation>Abandoned</translation>
+    </message>
+    <message>
+        <source>Confirming (%1 of %2 recommended confirmations)</source>
+        <translation>Confirming (%1 of %2 recommended confirmations)</translation>
+    </message>
+    <message>
+        <source>Confirmed (%1 confirmations)</source>
+        <translation>Confirmed (%1 confirmations)</translation>
+    </message>
+    <message>
+        <source>Conflicted</source>
+        <translation>Conflicted</translation>
+    </message>
+    <message>
+        <source>Immature (%1 confirmations, will be available after %2)</source>
+        <translation>Immature (%1 confirmations, will be available after %2)</translation>
+    </message>
+    <message>
+        <source>Generated but not accepted</source>
+        <translation>Generated but not accepted</translation>
+    </message>
+    <message>
+        <source>Received with</source>
+        <translation>Received with</translation>
+    </message>
+    <message>
+        <source>Received from</source>
+        <translation>Received from</translation>
+    </message>
+    <message>
+        <source>Sent to</source>
+        <translation>Sent to</translation>
+    </message>
+    <message>
+        <source>Payment to yourself</source>
+        <translation>Payment to yourself</translation>
+    </message>
+    <message>
+        <source>Mined</source>
+        <translation>Mined</translation>
+    </message>
+    <message>
+        <source>watch-only</source>
+        <translation>watch-only</translation>
+    </message>
+    <message>
+        <source>(n/a)</source>
+        <translation>(n/a)</translation>
     </message>
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
         <translation>Transaction status. Hover over this field to show number of confirmations.</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Transaction status. Hover over this field to show number of confirmations.</source>
+        <translation>Transaction status. Hover over this field to show number of confirmations.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Date and time that the transaction was received.</source>
         <translation>Date and time that the transaction was received.</translation>
     </message>
@@ -7587,7 +8733,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>TransactionView</name>
     <message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> upstream/0.21
         <source>All</source>
         <translation>All</translation>
     </message>
@@ -7708,7 +8857,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Type</translation>
     </message>
     <message>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
         <source>Label</source>
         <translation>Label</translation>
     </message>
@@ -7719,6 +8871,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>ID</source>
         <translation>ID</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>Exporting Failed</source>
@@ -8202,6 +9355,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 =======
 >>>>>>> upstream/0.20
     <message>
+=======
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation>Mengeksport Gagal</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>There was an error trying to save the transaction history to %1.</source>
         <translation>There was an error trying to save the transaction history to %1.</translation>
     </message>
@@ -8223,13 +9384,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
 </context>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
 =======
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>UnitDisplayStatusBarControl</name>
     <message>
         <source>Unit to show amounts in. Click to select another unit.</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Μονάδα μέτρησης προβολής ποσών. Κάντε κλικ για επιλογή άλλης μονάδας.</translation>
@@ -8239,6 +9404,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 =======
         <translation>Unit to show amounts in. Click to select another unit.</translation>
 >>>>>>> upstream/0.20
+=======
+        <translation>Unit to show amounts in. Click to select another unit.</translation>
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
@@ -8251,6 +9419,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Are you sure you wish to close the wallet &lt;i&gt;%1&lt;/i&gt;?</source>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <translation>Είσαι σίγουρος/η ότι επιθυμείς να κλείσεις το πορτοφόλι &lt;i&gt;%1&lt;/i&gt;;</translation>
     </message>
     <message>
@@ -8262,12 +9431,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>WalletController</name>
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
         <translation>Are you sure you wish to close the wallet &lt;i&gt;%1&lt;/i&gt;?</translation>
     </message>
     <message>
         <source>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</source>
         <translation>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</translation>
     </message>
+<<<<<<< HEAD
 </context>
 >>>>>>> upstream/0.20
 <context>
@@ -8294,12 +9466,37 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 =======
         <translation>No wallet has been loaded.</translation>
 >>>>>>> upstream/0.20
+=======
+    <message>
+        <source>Close all wallets</source>
+        <translation>Close all wallets</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to close all wallets?</source>
+        <translation>Are you sure you wish to close all wallets?</translation>
+    </message>
+</context>
+<context>
+    <name>WalletFrame</name>
+    <message>
+        <source>No wallet has been loaded.
+Go to File &gt; Open Wallet to load a wallet.
+- OR -</source>
+        <translation>No wallet has been loaded.
+Go to File &gt; Open Wallet to load a wallet.
+- OR -</translation>
+    </message>
+    <message>
+        <source>Create a new wallet</source>
+        <translation>Create a new wallet</translation>
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Αποστολή νομισμάτων</translation>
@@ -8340,6 +9537,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Could not commit transaction</source>
         <translation>Δεν ήταν δυνατή η ανάληψη συναλλαγής</translation>
 =======
+=======
+>>>>>>> upstream/0.21
         <translation>Send Coins</translation>
     </message>
     <message>
@@ -8389,7 +9588,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Could not commit transaction</source>
         <translation>Could not commit transaction</translation>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>default wallet</source>
@@ -8509,7 +9711,59 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Could not commit transaction</source>
         <translation>Could not commit transaction</translation>
     </message>
-    </context>
+    <message>
+        <source>Error</source>
+        <translation>Ralat</translation>
+    </message>
+    <message>
+        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
+        <translation>Unable to decode PSBT from clipboard (invalid base64)</translation>
+    </message>
+    <message>
+        <source>Load Transaction Data</source>
+        <translation>Load Transaction Data</translation>
+    </message>
+    <message>
+        <source>Partially Signed Transaction (*.psbt)</source>
+        <translation>Partially Signed Transaction (*.psbt)</translation>
+    </message>
+    <message>
+        <source>PSBT file must be smaller than 100 MiB</source>
+        <translation>PSBT file must be smaller than 100 MiB</translation>
+    </message>
+    <message>
+        <source>Unable to decode PSBT</source>
+        <translation>Unable to decode PSBT</translation>
+    </message>
+    <message>
+        <source>Backup Wallet</source>
+        <translation>Backup Wallet</translation>
+    </message>
+    <message>
+        <source>Wallet Data (*.dat)</source>
+        <translation>Wallet Data (*.dat)</translation>
+    </message>
+    <message>
+        <source>Backup Failed</source>
+        <translation>Backup Failed</translation>
+    </message>
+    <message>
+        <source>There was an error trying to save the wallet data to %1.</source>
+        <translation>There was an error trying to save the wallet data to %1.</translation>
+    </message>
+    <message>
+        <source>Backup Successful</source>
+        <translation>Backup Successful</translation>
+    </message>
+    <message>
+        <source>The wallet data was successfully saved to %1.</source>
+        <translation>The wallet data was successfully saved to %1.</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+</context>
 <context>
     <name>WalletView</name>
     <message>
@@ -8547,6 +9801,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <translation>Διανέμεται υπό την άδεια χρήσης του λογισμικού MIT, δείτε το συνοδευτικό αρχείο %s ή %s</translation>
     </message>
     <message>
@@ -8581,6 +9836,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
         <translation>Δεν είναι δυνατή η λήψη κλειδώματος στον κατάλογο δεδομένων %s. Το %s πιθανώς ήδη εκτελείται.</translation>
 =======
+=======
+>>>>>>> upstream/0.21
         <translation>Distributed under the MIT software license, see the accompanying file %s or %s</translation>
     </message>
     <message>
@@ -8592,10 +9849,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Prune: last wallet synchronisation goes beyond pruned data. You need to -reindex (download the whole blockchain again in case of pruned node)</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Error: A fatal internal error occurred, see debug.log for details</source>
         <translation>Error: A fatal internal error occurred, see debug.log for details</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Pruning blockstore...</source>
         <translation>Pruning blockstore...</translation>
     </message>
@@ -8608,6 +9868,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>The %s developers</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</source>
         <translation>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</translation>
     </message>
@@ -8615,6 +9876,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
         <translation>Cannot obtain a lock on data directory %s. %s is probably already running.</translation>
 >>>>>>> upstream/0.19
+=======
+        <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
+        <translation>Cannot obtain a lock on data directory %s. %s is probably already running.</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Cannot provide specific connections and have addrman find outgoing connections at the same.</source>
@@ -8622,6 +9887,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     </message>
     <message>
         <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Σφάλμα κατά την ανάγνωση %s! Όλα τα κλειδιά διαβάζονται σωστά, αλλά τα δεδομένα των συναλλαγών ή οι καταχωρίσεις του βιβλίου διευθύνσεων ενδέχεται να λείπουν ή να είναι εσφαλμένα.</translation>
     </message>
@@ -8921,6 +10187,15 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</translation>
     </message>
     <message>
+=======
+        <translation>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</translation>
+    </message>
+    <message>
+        <source>More than one onion bind address is provided. Using %s for the automatically created Tor onion service.</source>
+        <translation>More than one onion bind address is provided. Using %s for the automatically created Tor onion service.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
         <translation>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</translation>
     </message>
@@ -8929,6 +10204,21 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Please contribute if you find %s useful. Visit %s for further information about the software.</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>SQLiteDatabase: Failed to prepare the statement to fetch sqlite wallet schema version: %s</source>
+        <translation>SQLiteDatabase: Failed to prepare the statement to fetch sqlite wallet schema version: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to prepare the statement to fetch the application id: %s</source>
+        <translation>SQLiteDatabase: Failed to prepare the statement to fetch the application id: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Unknown sqlite wallet schema version %d. Only version %d is supported</source>
+        <translation>SQLiteDatabase: Unknown sqlite wallet schema version %d. Only version %d is supported</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
         <translation>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</translation>
     </message>
@@ -8957,6 +10247,7 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>%d of last 100 blocks have unexpected version</source>
         <translation>%d of last 100 blocks have unexpected version</translation>
     </message>
@@ -9420,6 +10711,8 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>%s corrupt, salvage failed</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>-maxmempool must be at least %d MB</source>
         <translation>-maxmempool must be at least %d MB</translation>
     </message>
@@ -9496,6 +10789,17 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Failed to rescan the wallet during initialization</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Failed to verify database</source>
+        <translation>Failed to verify database</translation>
+    </message>
+    <message>
+        <source>Ignoring duplicate -wallet %s.</source>
+        <translation>Ignoring duplicate -wallet %s.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Importing...</source>
         <translation>Importing...</translation>
     </message>
@@ -9524,6 +10828,33 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>SQLiteDatabase: Failed to execute statement to verify database: %s</source>
+        <translation>SQLiteDatabase: Failed to execute statement to verify database: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to fetch sqlite wallet schema version: %s</source>
+        <translation>SQLiteDatabase: Failed to fetch sqlite wallet schema version: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to fetch the application id: %s</source>
+        <translation>SQLiteDatabase: Failed to fetch the application id: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to prepare statement to verify database: %s</source>
+        <translation>SQLiteDatabase: Failed to prepare statement to verify database: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to read database verification error: %s</source>
+        <translation>SQLiteDatabase: Failed to read database verification error: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Unexpected application id. Expected %u, got %u</source>
+        <translation>SQLiteDatabase: Unexpected application id. Expected %u, got %u</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Specified blocks directory "%s" does not exist.</source>
         <translation>Specified blocks directory "%s" does not exist.</translation>
     </message>
@@ -9544,10 +10875,13 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Loading P2P addresses...</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Error: Disk space is too low!</source>
         <translation>Error: Disk space is too low!</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Loading banlist...</source>
         <translation>Loading banlist...</translation>
     </message>
@@ -9612,6 +10946,17 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Error: Listening for incoming connections failed (listen returned error %s)</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
+        <translation>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</translation>
+    </message>
+    <message>
+        <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use version 169900 or no version specified.</source>
+        <translation>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use version 169900 or no version specified.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
         <translation>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</translation>
     </message>
@@ -9620,10 +10965,40 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>The transaction amount is too small to send after the fee has been deducted</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>This error could occur if this wallet was not shutdown cleanly and was last loaded using a build with a newer version of Berkeley DB. If so, please use the software that last loaded this wallet</source>
+        <translation>This error could occur if this wallet was not shutdown cleanly and was last loaded using a build with a newer version of Berkeley DB. If so, please use the software that last loaded this wallet</translation>
+    </message>
+    <message>
+        <source>This is the maximum transaction fee you pay (in addition to the normal fee) to prioritize partial spend avoidance over regular coin selection.</source>
+        <translation>This is the maximum transaction fee you pay (in addition to the normal fee) to prioritize partial spend avoidance over regular coin selection.</translation>
+    </message>
+    <message>
+        <source>Transaction needs a change address, but we can't generate it. Please call keypoolrefill first.</source>
+        <translation>Transaction needs a change address, but we can't generate it. Please call keypoolrefill first.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
         <translation>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>A fatal internal error occurred, see debug.log for details</source>
+        <translation>A fatal internal error occurred, see debug.log for details</translation>
+    </message>
+    <message>
+        <source>Cannot set -peerblockfilters without -blockfilterindex.</source>
+        <translation>Cannot set -peerblockfilters without -blockfilterindex.</translation>
+    </message>
+    <message>
+        <source>Disk space is too low!</source>
+        <translation>Disk space is too low!</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Error reading from database, shutting down.</source>
         <translation>Error reading from database, shutting down.</translation>
     </message>
@@ -9636,6 +11011,17 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Error: Disk space is low for %s</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Error: Keypool ran out, please call keypoolrefill first</source>
+        <translation>Error: Keypool ran out, please call keypoolrefill first</translation>
+    </message>
+    <message>
+        <source>Fee rate (%s) is lower than the minimum fee rate setting (%s)</source>
+        <translation>Fee rate (%s) is lower than the minimum fee rate setting (%s)</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Invalid -onion address or hostname: '%s'</source>
         <translation>Invalid -onion address or hostname: '%s'</translation>
     </message>
@@ -9656,6 +11042,13 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Need to specify a port with -whitebind: '%s'</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>No proxy server specified. Use -proxy=&lt;ip&gt; or -proxy=&lt;ip:port&gt;.</source>
+        <translation>No proxy server specified. Use -proxy=&lt;ip&gt; or -proxy=&lt;ip:port&gt;.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Prune mode is incompatible with -blockfilterindex.</source>
         <translation>Prune mode is incompatible with -blockfilterindex.</translation>
     </message>
@@ -9730,10 +11123,13 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Warning: unknown new rules activated (versionbit %i)</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Zapping all transactions from wallet...</source>
         <translation>Zapping all transactions from wallet...</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
         <translation>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</translation>
     </message>
@@ -9746,18 +11142,24 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
         <translation>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>%s is set very high!</source>
         <translation>%s is set very high!</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
         <translation>Error loading wallet %s. Duplicate -wallet filename specified.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Starting network threads...</source>
         <translation>Starting network threads...</translation>
     </message>
@@ -9794,10 +11196,13 @@ The transaction amount is too small to send after the fee has been deducted</tra
         <translation>Insufficient funds</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
         <translation>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
         <translation>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</translation>
     </message>
@@ -9824,6 +11229,14 @@ The transaction amount is too small to send after the fee has been deducted</tra
     <message>
         <source>Rescanning...</source>
         <translation>Ανίχνευση...</translation>
+    </message>
+    <message>
+        <source>Cannot downgrade wallet</source>
+        <translation>Cannot downgrade wallet</translation>
+    </message>
+    <message>
+        <source>Rescanning...</source>
+        <translation>Rescanning...</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet</source>

@@ -58,10 +58,6 @@
         <translation>C&amp;hoose</translation>
     </message>
     <message>
-        <source>C&amp;hoose</source>
-        <translation>&amp;चुनें</translation>
-    </message>
-    <message>
         <source>Sending addresses</source>
         <translation>Sending addresses</translation>
     </message>
@@ -74,12 +70,10 @@
         <translation>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>भुगतान प्राप्त करने के लिए ये आपके बिटकॉइन एड्रेस हैं। नया एड्रेस बनाने के लिए रिसीव टैब में 'नया एड्रेस बनाएं' बटन का प्रयोग करें</translation>
+        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+Signing is only possible with addresses of the type 'legacy'.</source>
+        <translation>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+Signing is only possible with addresses of the type 'legacy'.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -129,6 +123,7 @@
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>सुरक्षा संवाद </translation>
@@ -184,14 +179,142 @@
     <message>
         <source>Confirm wallet encryption</source>
         <translation>वॉलेट की गोपनीयता की पुष्टि करें </translation>
+=======
+        <translation>Passphrase Dialog</translation>
     </message>
-    </context>
+    <message>
+        <source>Enter passphrase</source>
+        <translation>Enter passphrase</translation>
+    </message>
+    <message>
+        <source>New passphrase</source>
+        <translation>New passphrase</translation>
+    </message>
+    <message>
+        <source>Repeat new passphrase</source>
+        <translation>Repeat new passphrase</translation>
+    </message>
+    <message>
+        <source>Show passphrase</source>
+        <translation>Show passphrase</translation>
+    </message>
+    <message>
+        <source>Encrypt wallet</source>
+        <translation>Encrypt wallet</translation>
+    </message>
+    <message>
+        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
+        <translation>This operation needs your wallet passphrase to unlock the wallet.</translation>
+    </message>
+    <message>
+        <source>Unlock wallet</source>
+        <translation>Unlock wallet</translation>
+    </message>
+    <message>
+        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
+        <translation>This operation needs your wallet passphrase to decrypt the wallet.</translation>
+    </message>
+    <message>
+        <source>Decrypt wallet</source>
+        <translation>Decrypt wallet</translation>
+    </message>
+    <message>
+        <source>Change passphrase</source>
+        <translation>Change passphrase</translation>
+    </message>
+    <message>
+        <source>Confirm wallet encryption</source>
+        <translation>Confirm wallet encryption</translation>
+    </message>
+    <message>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <translation>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to encrypt your wallet?</source>
+        <translation>Are you sure you wish to encrypt your wallet?</translation>
+    </message>
+    <message>
+        <source>Wallet encrypted</source>
+        <translation>Wallet encrypted</translation>
+    </message>
+    <message>
+        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Enter the old passphrase and new passphrase for the wallet.</source>
+        <translation>Enter the old passphrase and new passphrase for the wallet.</translation>
+    </message>
+    <message>
+        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</translation>
+    </message>
+    <message>
+        <source>Wallet to be encrypted</source>
+        <translation>Wallet to be encrypted</translation>
+    </message>
+    <message>
+        <source>Your wallet is about to be encrypted. </source>
+        <translation>Your wallet is about to be encrypted. </translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. </source>
+        <translation>Your wallet is now encrypted. </translation>
+    </message>
+    <message>
+        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
+        <translation>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</translation>
+    </message>
+    <message>
+        <source>Wallet encryption failed</source>
+        <translation>Wallet encryption failed</translation>
+    </message>
+    <message>
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</translation>
+    </message>
+    <message>
+        <source>The supplied passphrases do not match.</source>
+        <translation>The supplied passphrases do not match.</translation>
+    </message>
+    <message>
+        <source>Wallet unlock failed</source>
+        <translation>Wallet unlock failed</translation>
+    </message>
+    <message>
+        <source>The passphrase entered for the wallet decryption was incorrect.</source>
+        <translation>The passphrase entered for the wallet decryption was incorrect.</translation>
+    </message>
+    <message>
+        <source>Wallet decryption failed</source>
+        <translation>Wallet decryption failed</translation>
+>>>>>>> upstream/0.21
+    </message>
+    <message>
+        <source>Wallet passphrase was successfully changed.</source>
+        <translation>Wallet passphrase was successfully changed.</translation>
+    </message>
+    <message>
+        <source>Warning: The Caps Lock key is on!</source>
+        <translation>Warning: The Caps Lock key is on!</translation>
+    </message>
+</context>
 <context>
     <name>BanTableModel</name>
-    </context>
+    <message>
+        <source>IP/Netmask</source>
+        <translation>IP/Netmask</translation>
+    </message>
+    <message>
+        <source>Banned Until</source>
+        <translation>Banned Until</translation>
+    </message>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
+<<<<<<< HEAD
         <source>Wallet:</source>
         <translation>तिजोरी </translation>
 =======
@@ -437,6 +560,10 @@
 =======
         <translation>Sign &amp;message...</translation>
 >>>>>>> upstream/0.20
+=======
+        <source>Sign &amp;message...</source>
+        <translation>Sign &amp;message...</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -481,6 +608,7 @@
     <message>
         <source>Show information about Qt</source>
         <translation>Show information about Qt</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>&amp;About %1</source>
@@ -497,6 +625,8 @@
     <message>
         <source>Show information about Qt</source>
         <translation>क्यूटी "Qt" के बारे में जानकारी दिखाएँ</translation>
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>&amp;Options...</source>
@@ -509,10 +639,13 @@
     <message>
         <source>&amp;Encrypt Wallet...</source>
         <translation>&amp;Encrypt Wallet...</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
         <translation>और वॉलेट को गोपित "एन्क्रिप्ट" करें</translation>
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
@@ -533,6 +666,7 @@
     <message>
         <source>Create a new wallet</source>
         <translation>Create a new wallet</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
@@ -542,6 +676,44 @@
         <source>Wallet:</source>
 <<<<<<< HEAD
         <translation>तिजोरी</translation>
+=======
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Wallet:</translation>
+    </message>
+    <message>
+        <source>Click to disable network activity.</source>
+        <translation>Click to disable network activity.</translation>
+    </message>
+    <message>
+        <source>Network activity disabled.</source>
+        <translation>Network activity disabled.</translation>
+    </message>
+    <message>
+        <source>Click to enable network activity again.</source>
+        <translation>Click to enable network activity again.</translation>
+    </message>
+    <message>
+        <source>Syncing Headers (%1%)...</source>
+        <translation>Syncing Headers (%1%)...</translation>
+    </message>
+    <message>
+        <source>Reindexing blocks on disk...</source>
+        <translation>Reindexing blocks on disk...</translation>
+    </message>
+    <message>
+        <source>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</source>
+        <translation>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</translation>
+    </message>
+    <message>
+        <source>Send coins to a Bitcoin address</source>
+        <translation>Send coins to a Bitcoin address</translation>
+    </message>
+    <message>
+        <source>Backup wallet to another location</source>
+        <translation>Backup wallet to another location</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
@@ -585,6 +757,7 @@
     <message>
         <source>Change the passphrase used for wallet encryption</source>
         <translation>Change the passphrase used for wallet encryption</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>&amp;Verify message...</source>
@@ -620,8 +793,689 @@
     </message>
     <message>
 <<<<<<<< HEAD:src/qt/locale/bitcoin_hi_IN.ts
+=======
+    </message>
+    <message>
+        <source>&amp;Verify message...</source>
+        <translation>&amp;Verify message...</translation>
+    </message>
+    <message>
+        <source>&amp;Send</source>
+        <translation>&amp;Send</translation>
+    </message>
+    <message>
+        <source>&amp;Receive</source>
+        <translation>&amp;Receive</translation>
+    </message>
+    <message>
+        <source>&amp;Show / Hide</source>
+        <translation>&amp;Show / Hide</translation>
+    </message>
+    <message>
+        <source>Show or hide the main Window</source>
+        <translation>Show or hide the main Window</translation>
+    </message>
+    <message>
+        <source>Encrypt the private keys that belong to your wallet</source>
+        <translation>Encrypt the private keys that belong to your wallet</translation>
+    </message>
+    <message>
+        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
+        <translation>Sign messages with your Bitcoin addresses to prove you own them</translation>
+    </message>
+    <message>
+        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
+        <translation>Verify messages to ensure they were signed with specified Bitcoin addresses</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>&amp;File</translation>
+    </message>
+    <message>
+        <source>&amp;Settings</source>
+        <translation>&amp;Settings</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Help</translation>
+    </message>
+    <message>
+        <source>Tabs toolbar</source>
+        <translation>Tabs toolbar</translation>
+    </message>
+    <message>
+        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <translation>Request payments (generates QR codes and bitcoin: URIs)</translation>
+    </message>
+    <message>
+        <source>Show the list of used sending addresses and labels</source>
+        <translation>Show the list of used sending addresses and labels</translation>
+    </message>
+    <message>
+        <source>Show the list of used receiving addresses and labels</source>
+        <translation>Show the list of used receiving addresses and labels</translation>
+    </message>
+    <message>
+        <source>&amp;Command-line options</source>
+        <translation>&amp;Command-line options</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n active connection(s) to Bitcoin network</source>
+        <translation><numerusform>%n active connection to Bitcoin network</numerusform><numerusform>%n active connections to Bitcoin network</numerusform></translation>
+    </message>
+    <message>
+        <source>Indexing blocks on disk...</source>
+        <translation>Indexing blocks on disk...</translation>
+    </message>
+    <message>
+        <source>Processing blocks on disk...</source>
+        <translation>Processing blocks on disk...</translation>
+    </message>
+    <message numerus="yes">
+        <source>Processed %n block(s) of transaction history.</source>
+        <translation><numerusform>Processed %n block of transaction history.</numerusform><numerusform>Processed %n blocks of transaction history.</numerusform></translation>
+    </message>
+    <message>
+        <source>%1 behind</source>
+        <translation>%1 behind</translation>
+    </message>
+    <message>
+        <source>Last received block was generated %1 ago.</source>
+        <translation>Last received block was generated %1 ago.</translation>
+    </message>
+    <message>
+        <source>Transactions after this will not yet be visible.</source>
+        <translation>Transactions after this will not yet be visible.</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Error</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>Warning</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation>Information</translation>
+    </message>
+    <message>
+        <source>Up to date</source>
+        <translation>Up to date</translation>
+    </message>
+    <message>
+        <source>&amp;Load PSBT from file...</source>
+        <translation>&amp;Load PSBT from file...</translation>
+    </message>
+    <message>
+        <source>Load Partially Signed Bitcoin Transaction</source>
+        <translation>Load Partially Signed Bitcoin Transaction</translation>
+    </message>
+    <message>
+        <source>Load PSBT from clipboard...</source>
+        <translation>Load PSBT from clipboard...</translation>
+    </message>
+    <message>
+        <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
+        <translation>Load Partially Signed Bitcoin Transaction from clipboard</translation>
+    </message>
+    <message>
+        <source>Node window</source>
+        <translation>Node window</translation>
+    </message>
+    <message>
+        <source>Open node debugging and diagnostic console</source>
+        <translation>Open node debugging and diagnostic console</translation>
+    </message>
+    <message>
+        <source>&amp;Sending addresses</source>
+        <translation>&amp;Sending addresses</translation>
+    </message>
+    <message>
+        <source>&amp;Receiving addresses</source>
+        <translation>&amp;Receiving addresses</translation>
+    </message>
+    <message>
+        <source>Open a bitcoin: URI</source>
+        <translation>Open a bitcoin: URI</translation>
+    </message>
+    <message>
+        <source>Open Wallet</source>
+        <translation>Open Wallet</translation>
+    </message>
+    <message>
+        <source>Open a wallet</source>
+        <translation>Open a wallet</translation>
+    </message>
+    <message>
+        <source>Close Wallet...</source>
+        <translation>Close Wallet...</translation>
+    </message>
+    <message>
+        <source>Close wallet</source>
+        <translation>Close wallet</translation>
+    </message>
+    <message>
+        <source>Close All Wallets...</source>
+        <translation>Close All Wallets...</translation>
+    </message>
+    <message>
+        <source>Close all wallets</source>
+        <translation>Close all wallets</translation>
+    </message>
+    <message>
+        <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
+        <translation>Show the %1 help message to get a list with possible Bitcoin command-line options</translation>
+    </message>
+    <message>
+        <source>&amp;Mask values</source>
+        <translation>&amp;Mask values</translation>
+    </message>
+    <message>
+        <source>Mask the values in the Overview tab</source>
+        <translation>Mask the values in the Overview tab</translation>
+    </message>
+    <message>
+        <source>default wallet</source>
+        <translation>default wallet</translation>
+    </message>
+    <message>
+        <source>No wallets available</source>
+        <translation>No wallets available</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation>&amp;Window</translation>
+    </message>
+    <message>
+        <source>Minimize</source>
+        <translation>Minimize</translation>
+    </message>
+    <message>
+        <source>Zoom</source>
+        <translation>Zoom</translation>
+    </message>
+    <message>
+        <source>Main Window</source>
+        <translation>Main Window</translation>
+    </message>
+    <message>
+        <source>%1 client</source>
+        <translation>%1 client</translation>
+    </message>
+    <message>
+        <source>Connecting to peers...</source>
+        <translation>Connecting to peers...</translation>
+    </message>
+    <message>
+        <source>Catching up...</source>
+        <translation>Catching up...</translation>
+    </message>
+    <message>
+        <source>Error: %1</source>
+        <translation>Error: %1</translation>
+    </message>
+    <message>
+        <source>Warning: %1</source>
+        <translation>Warning: %1</translation>
+    </message>
+    <message>
+        <source>Date: %1
+</source>
+        <translation>Date: %1
+</translation>
+    </message>
+    <message>
+        <source>Amount: %1
+</source>
+        <translation>Amount: %1
+</translation>
+    </message>
+    <message>
+        <source>Wallet: %1
+</source>
+        <translation>Wallet: %1
+</translation>
+    </message>
+    <message>
+        <source>Type: %1
+</source>
+        <translation>Type: %1
+</translation>
+    </message>
+    <message>
+        <source>Label: %1
+</source>
+        <translation>Label: %1
+</translation>
+    </message>
+    <message>
+        <source>Address: %1
+</source>
+        <translation>Address: %1
+</translation>
+    </message>
+    <message>
+        <source>Sent transaction</source>
+        <translation>Sent transaction</translation>
+    </message>
+    <message>
+        <source>Incoming transaction</source>
+        <translation>Incoming transaction</translation>
+    </message>
+    <message>
+        <source>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</source>
+        <translation>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
+        <translation>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
+        <translation>Private key &lt;b&gt;disabled&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
+        <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
+        <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Original message:</source>
+        <translation>Original message:</translation>
+    </message>
+    <message>
+        <source>A fatal error occurred. %1 can no longer continue safely and will quit.</source>
+        <translation>A fatal error occurred. %1 can no longer continue safely and will quit.</translation>
+    </message>
+</context>
+<context>
+    <name>CoinControlDialog</name>
+    <message>
+        <source>Coin Selection</source>
+        <translation>Coin Selection</translation>
+    </message>
+    <message>
+        <source>Quantity:</source>
+        <translation>Quantity:</translation>
+    </message>
+    <message>
+        <source>Bytes:</source>
+        <translation>Bytes:</translation>
+    </message>
+    <message>
+        <source>Amount:</source>
+        <translation>Amount:</translation>
+    </message>
+    <message>
+        <source>Fee:</source>
+        <translation>Fee:</translation>
+    </message>
+    <message>
+        <source>Dust:</source>
+        <translation>Dust:</translation>
+    </message>
+    <message>
+        <source>After Fee:</source>
+        <translation>After Fee:</translation>
+    </message>
+    <message>
+        <source>Change:</source>
+        <translation>Change:</translation>
+    </message>
+    <message>
+        <source>(un)select all</source>
+        <translation>(un)select all</translation>
+    </message>
+    <message>
+        <source>Tree mode</source>
+        <translation>Tree mode</translation>
+    </message>
+    <message>
+        <source>List mode</source>
+        <translation>List mode</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>Amount</translation>
+    </message>
+    <message>
+        <source>Received with label</source>
+        <translation>Received with label</translation>
+    </message>
+    <message>
+        <source>Received with address</source>
+        <translation>Received with address</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>Date</translation>
+    </message>
+    <message>
+        <source>Confirmations</source>
+        <translation>Confirmations</translation>
+    </message>
+    <message>
+        <source>Confirmed</source>
+        <translation>Confirmed</translation>
+    </message>
+    <message>
+        <source>Copy address</source>
+        <translation>Copy address</translation>
+    </message>
+    <message>
+        <source>Copy label</source>
+        <translation>Copy label</translation>
+    </message>
+    <message>
+        <source>Copy amount</source>
+        <translation>Copy amount</translation>
+    </message>
+    <message>
+        <source>Copy transaction ID</source>
+        <translation>Copy transaction ID</translation>
+    </message>
+    <message>
+        <source>Lock unspent</source>
+        <translation>Lock unspent</translation>
+    </message>
+    <message>
+        <source>Unlock unspent</source>
+        <translation>Unlock unspent</translation>
+    </message>
+    <message>
+        <source>Copy quantity</source>
+        <translation>Copy quantity</translation>
+    </message>
+    <message>
+        <source>Copy fee</source>
+        <translation>Copy fee</translation>
+    </message>
+    <message>
+        <source>Copy after fee</source>
+        <translation>Copy after fee</translation>
+    </message>
+    <message>
+        <source>Copy bytes</source>
+        <translation>Copy bytes</translation>
+    </message>
+    <message>
+        <source>Copy dust</source>
+        <translation>Copy dust</translation>
+    </message>
+    <message>
+        <source>Copy change</source>
+        <translation>Copy change</translation>
+    </message>
+    <message>
+        <source>(%1 locked)</source>
+        <translation>(%1 locked)</translation>
+    </message>
+    <message>
+        <source>yes</source>
+        <translation>yes</translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation>no</translation>
+    </message>
+    <message>
+        <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
+        <translation>This label turns red if any recipient receives an amount smaller than the current dust threshold.</translation>
+    </message>
+    <message>
+        <source>Can vary +/- %1 satoshi(s) per input.</source>
+        <translation>Can vary +/- %1 satoshi(s) per input.</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(no label)</translation>
+    </message>
+    <message>
+        <source>change from %1 (%2)</source>
+        <translation>change from %1 (%2)</translation>
+    </message>
+    <message>
+        <source>(change)</source>
+        <translation>(change)</translation>
+    </message>
+</context>
+<context>
+    <name>CreateWalletActivity</name>
+    <message>
+        <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
+        <translation>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</translation>
+    </message>
+    <message>
+        <source>Create wallet failed</source>
+        <translation>Create wallet failed</translation>
+    </message>
+    <message>
+        <source>Create wallet warning</source>
+        <translation>Create wallet warning</translation>
+    </message>
+</context>
+<context>
+    <name>CreateWalletDialog</name>
+    <message>
+        <source>Create Wallet</source>
+        <translation>Create Wallet</translation>
+    </message>
+    <message>
+        <source>Wallet</source>
+        <translation>Wallet</translation>
+    </message>
+    <message>
+        <source>Wallet Name</source>
+        <translation>Wallet Name</translation>
+    </message>
+    <message>
+        <source>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</source>
+        <translation>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</translation>
+    </message>
+    <message>
+        <source>Encrypt Wallet</source>
+        <translation>Encrypt Wallet</translation>
+    </message>
+    <message>
+        <source>Advanced Options</source>
+        <translation>Advanced Options</translation>
+    </message>
+    <message>
+        <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
+        <translation>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</translation>
+    </message>
+    <message>
+        <source>Disable Private Keys</source>
+        <translation>Disable Private Keys</translation>
+    </message>
+    <message>
+        <source>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</source>
+        <translation>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</translation>
+    </message>
+    <message>
+        <source>Make Blank Wallet</source>
+        <translation>Make Blank Wallet</translation>
+    </message>
+    <message>
+        <source>Use descriptors for scriptPubKey management</source>
+        <translation>Use descriptors for scriptPubKey management</translation>
+    </message>
+    <message>
+        <source>Descriptor Wallet</source>
+        <translation>Descriptor Wallet</translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation>Create</translation>
+    </message>
+    <message>
+        <source>Compiled without sqlite support (required for descriptor wallets)</source>
+        <translation>Compiled without sqlite support (required for descriptor wallets)</translation>
+    </message>
+</context>
+<context>
+    <name>EditAddressDialog</name>
+    <message>
+        <source>Edit Address</source>
+        <translation>Edit Address</translation>
+    </message>
+    <message>
+        <source>&amp;Label</source>
+        <translation>&amp;Label</translation>
+    </message>
+    <message>
+        <source>The label associated with this address list entry</source>
+        <translation>The label associated with this address list entry</translation>
+    </message>
+    <message>
+        <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
+        <translation>The address associated with this address list entry. This can only be modified for sending addresses.</translation>
+    </message>
+    <message>
+        <source>&amp;Address</source>
+        <translation>&amp;Address</translation>
+    </message>
+    <message>
+        <source>New sending address</source>
+        <translation>New sending address</translation>
+    </message>
+    <message>
+        <source>Edit receiving address</source>
+        <translation>Edit receiving address</translation>
+    </message>
+    <message>
+        <source>Edit sending address</source>
+        <translation>Edit sending address</translation>
+    </message>
+    <message>
+        <source>The entered address "%1" is not a valid Bitcoin address.</source>
+        <translation>The entered address "%1" is not a valid Bitcoin address.</translation>
+    </message>
+    <message>
+        <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
+        <translation>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</translation>
+    </message>
+    <message>
+        <source>The entered address "%1" is already in the address book with label "%2".</source>
+        <translation>The entered address "%1" is already in the address book with label "%2".</translation>
+    </message>
+    <message>
+        <source>Could not unlock wallet.</source>
+        <translation>Could not unlock wallet.</translation>
+    </message>
+    <message>
+        <source>New key generation failed.</source>
+        <translation>New key generation failed.</translation>
+    </message>
+</context>
+<context>
+    <name>FreespaceChecker</name>
+    <message>
+        <source>A new data directory will be created.</source>
+        <translation>A new data directory will be created.</translation>
+    </message>
+    <message>
+        <source>name</source>
+        <translation>name</translation>
+    </message>
+    <message>
+        <source>Directory already exists. Add %1 if you intend to create a new directory here.</source>
+        <translation>Directory already exists. Add %1 if you intend to create a new directory here.</translation>
+    </message>
+    <message>
+        <source>Path already exists, and is not a directory.</source>
+        <translation>Path already exists, and is not a directory.</translation>
+    </message>
+    <message>
+        <source>Cannot create data directory here.</source>
+        <translation>Cannot create data directory here.</translation>
+    </message>
+</context>
+<context>
+    <name>HelpMessageDialog</name>
+    <message>
+        <source>version</source>
+        <translation>version</translation>
+    </message>
+    <message>
+        <source>About %1</source>
+        <translation>About %1</translation>
+    </message>
+    <message>
+        <source>Command-line options</source>
+        <translation>Command-line options</translation>
+    </message>
+</context>
+<context>
+    <name>Intro</name>
+    <message>
+        <source>Welcome</source>
+        <translation>Welcome</translation>
+    </message>
+    <message>
+        <source>Welcome to %1.</source>
+        <translation>Welcome to %1.</translation>
+    </message>
+    <message>
+        <source>As this is the first time the program is launched, you can choose where %1 will store its data.</source>
+        <translation>As this is the first time the program is launched, you can choose where %1 will store its data.</translation>
+    </message>
+    <message>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <translation>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</translation>
+    </message>
+    <message>
+        <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
+        <translation>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</translation>
+    </message>
+    <message>
+        <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
+        <translation>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</translation>
+    </message>
+    <message>
+        <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
+        <translation>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</translation>
+    </message>
+    <message>
+        <source>Use the default data directory</source>
+        <translation>Use the default data directory</translation>
+    </message>
+    <message>
+        <source>Use a custom data directory:</source>
+        <translation>Use a custom data directory:</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Bitcoin</source>
-        <translation>बीटकोइन</translation>
+        <translation>Bitcoin</translation>
+    </message>
+    <message>
+        <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
+        <translation>Discard blocks after verification, except most recent %1 GB (prune)</translation>
+    </message>
+    <message>
+        <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
+        <translation>At least %1 GB of data will be stored in this directory, and it will grow over time.</translation>
+    </message>
+    <message>
+        <source>Approximately %1 GB of data will be stored in this directory.</source>
+        <translation>Approximately %1 GB of data will be stored in this directory.</translation>
+    </message>
+    <message>
+        <source>%1 will download and store a copy of the Bitcoin block chain.</source>
+        <translation>%1 will download and store a copy of the Bitcoin block chain.</translation>
+    </message>
+    <message>
+        <source>The wallet will also be stored in this directory.</source>
+        <translation>The wallet will also be stored in this directory.</translation>
+    </message>
+    <message>
+        <source>Error: Specified data directory "%1" cannot be created.</source>
+        <translation>Error: Specified data directory "%1" cannot be created.</translation>
     </message>
     <message>
 ========
@@ -688,6 +1542,7 @@
     <message>
         <source>Error</source>
         <translation>Error</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>Warning</source>
@@ -878,8 +1733,22 @@
 <<<<<<< HEAD
         <source>(no label)</source>
         <translation>अचिन्हित </translation>
+=======
+>>>>>>> upstream/0.21
     </message>
-    </context>
+    <message numerus="yes">
+        <source>%n GB of free space available</source>
+        <translation><numerusform>%n GB of free space available</numerusform><numerusform>%n GB of free space available</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>(of %n GB needed)</source>
+        <translation><numerusform>(of %n GB needed)</numerusform><numerusform>(of %n GB needed)</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>(%n GB needed for full chain)</source>
+        <translation><numerusform>(%n GB needed for full chain)</numerusform><numerusform>(%n GB needed for full chain)</numerusform></translation>
+    </message>
+</context>
 <context>
     <name>EditAddressDialog</name>
 =======
@@ -1293,9 +2162,12 @@
         <translation>Form</translation>
     </message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</translation>
@@ -1349,7 +2221,10 @@
         <translation>Unknown. Syncing Headers (%1, %2%)...</translation>
     </message>
 </context>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>OpenURIDialog</name>
     <message>
@@ -1361,10 +2236,13 @@
         <translation>URI:</translation>
     </message>
 </context>
+<<<<<<< HEAD
 <context>
 <<<<<<< HEAD
     <name>OptionsDialog</name>
     </context>
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>OverviewPage</name>
 =======
@@ -1421,10 +2299,13 @@
         <translation>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
         <translation>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Hide the icon from the system tray.</source>
         <translation>Hide the icon from the system tray.</translation>
     </message>
@@ -1557,10 +2438,13 @@
         <translation>Tor</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>&amp;Window</source>
         <translation>&amp;Window</translation>
     </message>
@@ -1601,6 +2485,17 @@
         <translation>Whether to show coin control features or not.</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <translation>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</translation>
+    </message>
+    <message>
+        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
+        <translation>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>&amp;Third party transaction URLs</source>
         <translation>&amp;Third party transaction URLs</translation>
     </message>
@@ -1668,9 +2563,12 @@
         <translation>Form</translation>
     </message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
         <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</translation>
@@ -1739,6 +2637,7 @@
         <source>Current total balance in watch-only addresses</source>
         <translation>Current total balance in watch-only addresses</translation>
     </message>
+<<<<<<< HEAD
 </context>
 >>>>>>> upstream/0.20
 <context>
@@ -1815,6 +2714,344 @@
     <name>QObject</name>
 <<<<<<< HEAD
     </context>
+=======
+    <message>
+        <source>Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings-&gt;Mask values.</source>
+        <translation>Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings-&gt;Mask values.</translation>
+    </message>
+</context>
+<context>
+    <name>PSBTOperationsDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation>Dialog</translation>
+    </message>
+    <message>
+        <source>Sign Tx</source>
+        <translation>Sign Tx</translation>
+    </message>
+    <message>
+        <source>Broadcast Tx</source>
+        <translation>Broadcast Tx</translation>
+    </message>
+    <message>
+        <source>Copy to Clipboard</source>
+        <translation>Copy to Clipboard</translation>
+    </message>
+    <message>
+        <source>Save...</source>
+        <translation>Save...</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Close</translation>
+    </message>
+    <message>
+        <source>Failed to load transaction: %1</source>
+        <translation>Failed to load transaction: %1</translation>
+    </message>
+    <message>
+        <source>Failed to sign transaction: %1</source>
+        <translation>Failed to sign transaction: %1</translation>
+    </message>
+    <message>
+        <source>Could not sign any more inputs.</source>
+        <translation>Could not sign any more inputs.</translation>
+    </message>
+    <message>
+        <source>Signed %1 inputs, but more signatures are still required.</source>
+        <translation>Signed %1 inputs, but more signatures are still required.</translation>
+    </message>
+    <message>
+        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
+        <translation>Signed transaction successfully. Transaction is ready to broadcast.</translation>
+    </message>
+    <message>
+        <source>Unknown error processing transaction.</source>
+        <translation>Unknown error processing transaction.</translation>
+    </message>
+    <message>
+        <source>Transaction broadcast successfully! Transaction ID: %1</source>
+        <translation>Transaction broadcast successfully! Transaction ID: %1</translation>
+    </message>
+    <message>
+        <source>Transaction broadcast failed: %1</source>
+        <translation>Transaction broadcast failed: %1</translation>
+    </message>
+    <message>
+        <source>PSBT copied to clipboard.</source>
+        <translation>PSBT copied to clipboard.</translation>
+    </message>
+    <message>
+        <source>Save Transaction Data</source>
+        <translation>Save Transaction Data</translation>
+    </message>
+    <message>
+        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
+        <translation>Partially Signed Transaction (Binary) (*.psbt)</translation>
+    </message>
+    <message>
+        <source>PSBT saved to disk.</source>
+        <translation>PSBT saved to disk.</translation>
+    </message>
+    <message>
+        <source> * Sends %1 to %2</source>
+        <translation> * Sends %1 to %2</translation>
+    </message>
+    <message>
+        <source>Unable to calculate transaction fee or total transaction amount.</source>
+        <translation>Unable to calculate transaction fee or total transaction amount.</translation>
+    </message>
+    <message>
+        <source>Pays transaction fee: </source>
+        <translation>Pays transaction fee: </translation>
+    </message>
+    <message>
+        <source>Total Amount</source>
+        <translation>Total Amount</translation>
+    </message>
+    <message>
+        <source>or</source>
+        <translation>or</translation>
+    </message>
+    <message>
+        <source>Transaction has %1 unsigned inputs.</source>
+        <translation>Transaction has %1 unsigned inputs.</translation>
+    </message>
+    <message>
+        <source>Transaction is missing some information about inputs.</source>
+        <translation>Transaction is missing some information about inputs.</translation>
+    </message>
+    <message>
+        <source>Transaction still needs signature(s).</source>
+        <translation>Transaction still needs signature(s).</translation>
+    </message>
+    <message>
+        <source>(But this wallet cannot sign transactions.)</source>
+        <translation>(But this wallet cannot sign transactions.)</translation>
+    </message>
+    <message>
+        <source>(But this wallet does not have the right keys.)</source>
+        <translation>(But this wallet does not have the right keys.)</translation>
+    </message>
+    <message>
+        <source>Transaction is fully signed and ready for broadcast.</source>
+        <translation>Transaction is fully signed and ready for broadcast.</translation>
+    </message>
+    <message>
+        <source>Transaction status is unknown.</source>
+        <translation>Transaction status is unknown.</translation>
+    </message>
+</context>
+<context>
+    <name>PaymentServer</name>
+    <message>
+        <source>Payment request error</source>
+        <translation>Payment request error</translation>
+    </message>
+    <message>
+        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <translation>Cannot start bitcoin: click-to-pay handler</translation>
+    </message>
+    <message>
+        <source>URI handling</source>
+        <translation>URI handling</translation>
+    </message>
+    <message>
+        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
+        <translation>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</translation>
+    </message>
+    <message>
+        <source>Cannot process payment request because BIP70 is not supported.</source>
+        <translation>Cannot process payment request because BIP70 is not supported.</translation>
+    </message>
+    <message>
+        <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
+        <translation>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</translation>
+    </message>
+    <message>
+        <source>If you are receiving this error you should request the merchant provide a BIP21 compatible URI.</source>
+        <translation>If you are receiving this error you should request the merchant provide a BIP21 compatible URI.</translation>
+    </message>
+    <message>
+        <source>Invalid payment address %1</source>
+        <translation>Invalid payment address %1</translation>
+    </message>
+    <message>
+        <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
+        <translation>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</translation>
+    </message>
+    <message>
+        <source>Payment request file handling</source>
+        <translation>Payment request file handling</translation>
+    </message>
+</context>
+<context>
+    <name>PeerTableModel</name>
+    <message>
+        <source>User Agent</source>
+        <translation>User Agent</translation>
+    </message>
+    <message>
+        <source>Node/Service</source>
+        <translation>Node/Service</translation>
+    </message>
+    <message>
+        <source>NodeId</source>
+        <translation>NodeId</translation>
+    </message>
+    <message>
+        <source>Ping</source>
+        <translation>Ping</translation>
+    </message>
+    <message>
+        <source>Sent</source>
+        <translation>Sent</translation>
+    </message>
+    <message>
+        <source>Received</source>
+        <translation>Received</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>Amount</source>
+        <translation>Amount</translation>
+    </message>
+    <message>
+        <source>Enter a Bitcoin address (e.g. %1)</source>
+        <translation>Enter a Bitcoin address (e.g. %1)</translation>
+    </message>
+    <message>
+        <source>%1 d</source>
+        <translation>%1 d</translation>
+    </message>
+    <message>
+        <source>%1 h</source>
+        <translation>%1 h</translation>
+    </message>
+    <message>
+        <source>%1 m</source>
+        <translation>%1 m</translation>
+    </message>
+    <message>
+        <source>%1 s</source>
+        <translation>%1 s</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>None</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>N/A</translation>
+    </message>
+    <message>
+        <source>%1 ms</source>
+        <translation>%1 ms</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation><numerusform>%n second</numerusform><numerusform>%n seconds</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation><numerusform>%n minute</numerusform><numerusform>%n minutes</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation><numerusform>%n hour</numerusform><numerusform>%n hours</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation><numerusform>%n day</numerusform><numerusform>%n days</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation><numerusform>%n week</numerusform><numerusform>%n weeks</numerusform></translation>
+    </message>
+    <message>
+        <source>%1 and %2</source>
+        <translation>%1 and %2</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n year(s)</source>
+        <translation><numerusform>%n year</numerusform><numerusform>%n years</numerusform></translation>
+    </message>
+    <message>
+        <source>%1 B</source>
+        <translation>%1 B</translation>
+    </message>
+    <message>
+        <source>%1 KB</source>
+        <translation>%1 KB</translation>
+    </message>
+    <message>
+        <source>%1 MB</source>
+        <translation>%1 MB</translation>
+    </message>
+    <message>
+        <source>%1 GB</source>
+        <translation>%1 GB</translation>
+    </message>
+    <message>
+        <source>Error: Specified data directory "%1" does not exist.</source>
+        <translation>Error: Specified data directory "%1" does not exist.</translation>
+    </message>
+    <message>
+        <source>Error: Cannot parse configuration file: %1.</source>
+        <translation>Error: Cannot parse configuration file: %1.</translation>
+    </message>
+    <message>
+        <source>Error: %1</source>
+        <translation>Error: %1</translation>
+    </message>
+    <message>
+        <source>Error initializing settings: %1</source>
+        <translation>Error initializing settings: %1</translation>
+    </message>
+    <message>
+        <source>%1 didn't yet exit safely...</source>
+        <translation>%1 didn't yet exit safely...</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>unknown</translation>
+    </message>
+</context>
+<context>
+    <name>QRImageWidget</name>
+    <message>
+        <source>&amp;Save Image...</source>
+        <translation>&amp;Save Image...</translation>
+    </message>
+    <message>
+        <source>&amp;Copy Image</source>
+        <translation>&amp;Copy Image</translation>
+    </message>
+    <message>
+        <source>Resulting URI too long, try to reduce the text for label / message.</source>
+        <translation>Resulting URI too long, try to reduce the text for label / message.</translation>
+    </message>
+    <message>
+        <source>Error encoding URI into QR Code.</source>
+        <translation>Error encoding URI into QR Code.</translation>
+    </message>
+    <message>
+        <source>QR code support not available.</source>
+        <translation>QR code support not available.</translation>
+    </message>
+    <message>
+        <source>Save QR Code</source>
+        <translation>Save QR Code</translation>
+    </message>
+    <message>
+        <source>PNG Image (*.png)</source>
+        <translation>PNG Image (*.png)</translation>
+    </message>
+</context>
+>>>>>>> upstream/0.21
 <context>
     <name>QObject::QObject</name>
     </context>
@@ -1852,6 +3089,7 @@
         <translation>N/A</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>%1 ms</source>
         <translation>%1 ms</translation>
     </message>
@@ -1964,6 +3202,8 @@
         <translation>N/A</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Client version</source>
         <translation>Client version</translation>
     </message>
@@ -2016,10 +3256,13 @@
         <translation>Block chain</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Current number of blocks</source>
         <translation>Current number of blocks</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Memory Pool</source>
         <translation>Memory Pool</translation>
     </message>
@@ -2064,10 +3307,13 @@
         <translation>Select a peer to view detailed information.</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Whitelisted</source>
         <translation>Whitelisted</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Direction</source>
         <translation>Direction</translation>
     </message>
@@ -2104,6 +3350,13 @@
         <translation>Node window</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Current block height</source>
+        <translation>Current block height</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</translation>
     </message>
@@ -2116,12 +3369,21 @@
         <translation>Increase font size</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Services</source>
         <translation>Services</translation>
     </message>
     <message>
         <source>Ban Score</source>
         <translation>Ban Score</translation>
+=======
+        <source>Permissions</source>
+        <translation>Permissions</translation>
+    </message>
+    <message>
+        <source>Services</source>
+        <translation>Services</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Connection Time</source>
@@ -2272,6 +3534,7 @@
         <translation>Outbound</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
@@ -2280,6 +3543,8 @@
         <translation>No</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Unknown</source>
         <translation>Unknown</translation>
     </message>
@@ -2294,6 +3559,7 @@
         <source>&amp;Label:</source>
         <translation>&amp;Label:</translation>
     </message>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> upstream/0.19
     </context>
@@ -2459,6 +3725,146 @@
     <message>
         <source>Wallet</source>
         <translation>Wallet</translation>
+=======
+    <message>
+        <source>&amp;Message:</source>
+        <translation>&amp;Message:</translation>
+    </message>
+    <message>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <translation>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</translation>
+    </message>
+    <message>
+        <source>An optional label to associate with the new receiving address.</source>
+        <translation>An optional label to associate with the new receiving address.</translation>
+    </message>
+    <message>
+        <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
+        <translation>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
+        <translation>An optional amount to request. Leave this empty or zero to not request a specific amount.</translation>
+    </message>
+    <message>
+        <source>An optional label to associate with the new receiving address (used by you to identify an invoice).  It is also attached to the payment request.</source>
+        <translation>An optional label to associate with the new receiving address (used by you to identify an invoice).  It is also attached to the payment request.</translation>
+    </message>
+    <message>
+        <source>An optional message that is attached to the payment request and may be displayed to the sender.</source>
+        <translation>An optional message that is attached to the payment request and may be displayed to the sender.</translation>
+    </message>
+    <message>
+        <source>&amp;Create new receiving address</source>
+        <translation>&amp;Create new receiving address</translation>
+    </message>
+    <message>
+        <source>Clear all fields of the form.</source>
+        <translation>Clear all fields of the form.</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Clear</translation>
+    </message>
+    <message>
+        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
+        <translation>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</translation>
+    </message>
+    <message>
+        <source>Generate native segwit (Bech32) address</source>
+        <translation>Generate native segwit (Bech32) address</translation>
+    </message>
+    <message>
+        <source>Requested payments history</source>
+        <translation>Requested payments history</translation>
+    </message>
+    <message>
+        <source>Show the selected request (does the same as double clicking an entry)</source>
+        <translation>Show the selected request (does the same as double clicking an entry)</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation>Show</translation>
+    </message>
+    <message>
+        <source>Remove the selected entries from the list</source>
+        <translation>Remove the selected entries from the list</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Remove</translation>
+    </message>
+    <message>
+        <source>Copy URI</source>
+        <translation>Copy URI</translation>
+    </message>
+    <message>
+        <source>Copy label</source>
+        <translation>Copy label</translation>
+    </message>
+    <message>
+        <source>Copy message</source>
+        <translation>Copy message</translation>
+    </message>
+    <message>
+        <source>Copy amount</source>
+        <translation>Copy amount</translation>
+    </message>
+    <message>
+        <source>Could not unlock wallet.</source>
+        <translation>Could not unlock wallet.</translation>
+    </message>
+    <message>
+        <source>Could not generate new %1 address</source>
+        <translation>Could not generate new %1 address</translation>
+    </message>
+</context>
+<context>
+    <name>ReceiveRequestDialog</name>
+    <message>
+        <source>Request payment to ...</source>
+        <translation>Request payment to ...</translation>
+    </message>
+    <message>
+        <source>Address:</source>
+        <translation>Address:</translation>
+    </message>
+    <message>
+        <source>Amount:</source>
+        <translation>Amount:</translation>
+    </message>
+    <message>
+        <source>Label:</source>
+        <translation>Label:</translation>
+    </message>
+    <message>
+        <source>Message:</source>
+        <translation>Message:</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Wallet:</translation>
+    </message>
+    <message>
+        <source>Copy &amp;URI</source>
+        <translation>Copy &amp;URI</translation>
+    </message>
+    <message>
+        <source>Copy &amp;Address</source>
+        <translation>Copy &amp;Address</translation>
+    </message>
+    <message>
+        <source>&amp;Save Image...</source>
+        <translation>&amp;Save Image...</translation>
+    </message>
+    <message>
+        <source>Request payment to %1</source>
+        <translation>Request payment to %1</translation>
+    </message>
+    <message>
+        <source>Payment information</source>
+        <translation>Payment information</translation>
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
@@ -2478,11 +3884,15 @@
     <message>
         <source>(no label)</source>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <translation>(कोई परचा नहीं )</translation>
 >>>>>>> upstream/0.19
 =======
         <translation>(no label)</translation>
 >>>>>>> upstream/0.20
+=======
+        <translation>(no label)</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>(no message)</source>
@@ -2530,10 +3940,13 @@
     <message>
         <source>Bytes:</source>
         <translation>Bytes:</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>Quantity:</source>
         <translation>मात्रा :</translation>
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Amount:</source>
@@ -2720,8 +4133,25 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Are you sure you want to send?</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</translation>
+=======
+        <source>Create Unsigned</source>
+        <translation>Create Unsigned</translation>
+    </message>
+    <message>
+        <source>Save Transaction Data</source>
+        <translation>Save Transaction Data</translation>
+    </message>
+    <message>
+        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
+        <translation>Partially Signed Transaction (Binary) (*.psbt)</translation>
+    </message>
+    <message>
+        <source>PSBT saved</source>
+        <translation>PSBT saved</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>or</source>
@@ -2732,6 +4162,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>You can increase the fee later (signals Replace-By-Fee, BIP-125).</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <translation>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Please, review your transaction.</source>
         <translation>Please, review your transaction.</translation>
     </message>
@@ -2760,18 +4197,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Confirm transaction proposal</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Copy PSBT to clipboard</source>
         <translation>Copy PSBT to clipboard</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Send</source>
         <translation>Send</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>PSBT copied</source>
         <translation>PSBT copied</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Watch-only balance:</source>
         <translation>Watch-only balance:</translation>
     </message>
@@ -2830,11 +4273,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>(no label)</source>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <translation>(कोई परचा नहीं )</translation>
 >>>>>>> upstream/0.19
 =======
         <translation>(no label)</translation>
 >>>>>>> upstream/0.20
+=======
+        <translation>(no label)</translation>
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
@@ -2918,8 +4365,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Pay To:</translation>
     </message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
     </context>
+=======
+    <message>
+        <source>Memo:</source>
+        <translation>Memo:</translation>
+    </message>
+</context>
+>>>>>>> upstream/0.21
 <context>
     <name>SendConfirmationDialog</name>
     </context>
@@ -2969,6 +4424,26 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Choose previously used address</translation>
     </message>
     <message>
+        <source>Signatures - Sign / Verify a Message</source>
+        <translation>Signatures - Sign / Verify a Message</translation>
+    </message>
+    <message>
+        <source>&amp;Sign Message</source>
+        <translation>&amp;Sign Message</translation>
+    </message>
+    <message>
+        <source>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</translation>
+    </message>
+    <message>
+        <source>The Bitcoin address to sign the message with</source>
+        <translation>The Bitcoin address to sign the message with</translation>
+    </message>
+    <message>
+        <source>Choose previously used address</source>
+        <translation>Choose previously used address</translation>
+    </message>
+    <message>
         <source>Alt+A</source>
         <translation>Alt+A</translation>
     </message>
@@ -2989,9 +4464,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Signature</translation>
     </message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
     <message>
         <source>Copy the current signature to the system clipboard</source>
         <translation>Copy the current signature to the system clipboard</translation>
@@ -3101,7 +4579,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Message verified.</translation>
     </message>
 </context>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>TrafficGraphWidget</name>
     <message>
@@ -3113,11 +4594,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>TransactionDesc</name>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     </context>
 <context>
     <name>TransactionDescDialog</name>
 =======
 =======
+=======
+>>>>>>> upstream/0.21
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
         <translation><numerusform>Open for %n more block</numerusform><numerusform>Open for %n more blocks</numerusform></translation>
@@ -3158,7 +4642,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Status</source>
         <translation>Status</translation>
     </message>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
     <message>
         <source>Date</source>
         <translation>Date</translation>
@@ -3174,6 +4661,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>From</source>
         <translation>From</translation>
+<<<<<<< HEAD
     </message>
     <message>
         <source>Source</source>
@@ -3182,6 +4670,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Generated</source>
         <translation>उत्पन्न</translation>
+=======
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>unknown</source>
@@ -3301,6 +4791,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>This pane shows a detailed description of the transaction</source>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <translation>ये खिड़की आपको लेन-देन का विस्तृत विवरण देगी !</translation>
     </message>
 >>>>>>> upstream/0.19
@@ -3308,11 +4799,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 =======
         <translation>This pane shows a detailed description of the transaction</translation>
     </message>
+=======
+        <translation>This pane shows a detailed description of the transaction</translation>
+    </message>
+>>>>>>> upstream/0.21
     <message>
         <source>Details for %1</source>
         <translation>Details for %1</translation>
     </message>
 </context>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
 <context>
     <name>TransactionTableModel</name>
@@ -3325,6 +4821,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>(no label)</source>
         <translation>अचिन्हित </translation>
 =======
+=======
+<context>
+    <name>TransactionTableModel</name>
+    <message>
         <source>Date</source>
         <translation>Date</translation>
     </message>
@@ -3335,6 +4835,227 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Label</source>
         <translation>Label</translation>
+    </message>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation><numerusform>Open for %n more block</numerusform><numerusform>Open for %n more blocks</numerusform></translation>
+    </message>
+    <message>
+        <source>Open until %1</source>
+        <translation>Open until %1</translation>
+    </message>
+    <message>
+        <source>Unconfirmed</source>
+        <translation>Unconfirmed</translation>
+    </message>
+    <message>
+        <source>Abandoned</source>
+        <translation>Abandoned</translation>
+    </message>
+    <message>
+        <source>Confirming (%1 of %2 recommended confirmations)</source>
+        <translation>Confirming (%1 of %2 recommended confirmations)</translation>
+    </message>
+    <message>
+        <source>Confirmed (%1 confirmations)</source>
+        <translation>Confirmed (%1 confirmations)</translation>
+    </message>
+    <message>
+        <source>Conflicted</source>
+        <translation>Conflicted</translation>
+    </message>
+    <message>
+        <source>Immature (%1 confirmations, will be available after %2)</source>
+        <translation>Immature (%1 confirmations, will be available after %2)</translation>
+    </message>
+    <message>
+        <source>Generated but not accepted</source>
+        <translation>Generated but not accepted</translation>
+    </message>
+    <message>
+        <source>Received with</source>
+        <translation>Received with</translation>
+    </message>
+    <message>
+        <source>Received from</source>
+        <translation>Received from</translation>
+    </message>
+    <message>
+        <source>Sent to</source>
+        <translation>Sent to</translation>
+    </message>
+    <message>
+        <source>Payment to yourself</source>
+        <translation>Payment to yourself</translation>
+    </message>
+    <message>
+        <source>Mined</source>
+        <translation>Mined</translation>
+    </message>
+    <message>
+        <source>watch-only</source>
+        <translation>watch-only</translation>
+    </message>
+    <message>
+        <source>(n/a)</source>
+        <translation>(n/a)</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(no label)</translation>
+    </message>
+    <message>
+        <source>Transaction status. Hover over this field to show number of confirmations.</source>
+        <translation>Transaction status. Hover over this field to show number of confirmations.</translation>
+    </message>
+    <message>
+        <source>Date and time that the transaction was received.</source>
+        <translation>Date and time that the transaction was received.</translation>
+    </message>
+    <message>
+        <source>Type of transaction.</source>
+        <translation>Type of transaction.</translation>
+    </message>
+    <message>
+        <source>Whether or not a watch-only address is involved in this transaction.</source>
+        <translation>Whether or not a watch-only address is involved in this transaction.</translation>
+    </message>
+    <message>
+        <source>User-defined intent/purpose of the transaction.</source>
+        <translation>User-defined intent/purpose of the transaction.</translation>
+    </message>
+    <message>
+        <source>Amount removed from or added to balance.</source>
+        <translation>Amount removed from or added to balance.</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionView</name>
+    <message>
+        <source>All</source>
+        <translation>All</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <translation>Today</translation>
+    </message>
+    <message>
+        <source>This week</source>
+        <translation>This week</translation>
+    </message>
+    <message>
+        <source>This month</source>
+        <translation>This month</translation>
+    </message>
+    <message>
+        <source>Last month</source>
+        <translation>Last month</translation>
+    </message>
+    <message>
+        <source>This year</source>
+        <translation>This year</translation>
+    </message>
+    <message>
+        <source>Range...</source>
+        <translation>Range...</translation>
+    </message>
+    <message>
+        <source>Received with</source>
+        <translation>Received with</translation>
+    </message>
+    <message>
+        <source>Sent to</source>
+        <translation>Sent to</translation>
+    </message>
+    <message>
+        <source>To yourself</source>
+        <translation>To yourself</translation>
+    </message>
+    <message>
+        <source>Mined</source>
+        <translation>Mined</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <translation>Other</translation>
+    </message>
+    <message>
+        <source>Enter address, transaction id, or label to search</source>
+        <translation>Enter address, transaction id, or label to search</translation>
+    </message>
+    <message>
+        <source>Min amount</source>
+        <translation>Min amount</translation>
+    </message>
+    <message>
+        <source>Abandon transaction</source>
+        <translation>Abandon transaction</translation>
+    </message>
+    <message>
+        <source>Increase transaction fee</source>
+        <translation>Increase transaction fee</translation>
+    </message>
+    <message>
+        <source>Copy address</source>
+        <translation>Copy address</translation>
+    </message>
+    <message>
+        <source>Copy label</source>
+        <translation>Copy label</translation>
+    </message>
+    <message>
+        <source>Copy amount</source>
+        <translation>Copy amount</translation>
+    </message>
+    <message>
+        <source>Copy transaction ID</source>
+        <translation>Copy transaction ID</translation>
+    </message>
+    <message>
+        <source>Copy raw transaction</source>
+        <translation>Copy raw transaction</translation>
+    </message>
+    <message>
+        <source>Copy full transaction details</source>
+        <translation>Copy full transaction details</translation>
+    </message>
+    <message>
+        <source>Edit label</source>
+        <translation>Edit label</translation>
+    </message>
+    <message>
+        <source>Show transaction details</source>
+        <translation>Show transaction details</translation>
+    </message>
+    <message>
+        <source>Export Transaction History</source>
+        <translation>Export Transaction History</translation>
+    </message>
+    <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Comma separated file (*.csv)</translation>
+    </message>
+    <message>
+        <source>Confirmed</source>
+        <translation>Confirmed</translation>
+    </message>
+    <message>
+        <source>Watch-only</source>
+        <translation>Watch-only</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
+        <source>Date</source>
+        <translation>Date</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>Label</translation>
+<<<<<<< HEAD
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
@@ -3597,6 +5318,22 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 >>>>>>> upstream/0.20
     </message>
     <message>
+=======
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Address</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation>Exporting Failed</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>There was an error trying to save the transaction history to %1.</source>
         <translation>There was an error trying to save the transaction history to %1.</translation>
     </message>
@@ -3628,6 +5365,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <name>WalletController</name>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<<< HEAD:src/qt/locale/bitcoin_hi_IN.ts
 ========
@@ -3639,6 +5377,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 >>>>>>> upstream/0.19
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
     <message>
         <source>Close wallet</source>
         <translation>Close wallet</translation>
@@ -3651,6 +5391,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</source>
         <translation>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</translation>
     </message>
+<<<<<<< HEAD
 </context>
 >>>>>>> upstream/0.20
 <context>
@@ -3658,6 +5399,30 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>No wallet has been loaded.</source>
         <translation>No wallet has been loaded.</translation>
+=======
+    <message>
+        <source>Close all wallets</source>
+        <translation>Close all wallets</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to close all wallets?</source>
+        <translation>Are you sure you wish to close all wallets?</translation>
+    </message>
+</context>
+<context>
+    <name>WalletFrame</name>
+    <message>
+        <source>No wallet has been loaded.
+Go to File &gt; Open Wallet to load a wallet.
+- OR -</source>
+        <translation>No wallet has been loaded.
+Go to File &gt; Open Wallet to load a wallet.
+- OR -</translation>
+    </message>
+    <message>
+        <source>Create a new wallet</source>
+        <translation>Create a new wallet</translation>
+>>>>>>> upstream/0.21
     </message>
 </context>
 <context>
@@ -3669,9 +5434,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Send Coins</translation>
     </message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
     </context>
 =======
+=======
+>>>>>>> upstream/0.21
     <message>
         <source>Fee bump error</source>
         <translation>Fee bump error</translation>
@@ -3725,11 +5493,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>default wallet</translation>
     </message>
 </context>
+<<<<<<< HEAD
 >>>>>>> upstream/0.20
+=======
+>>>>>>> upstream/0.21
 <context>
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <translation>और भेजना </translation>
@@ -3751,6 +5523,37 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>Export the data in the current tab to a file</source>
         <translation>Export the data in the current tab to a file</translation>
 >>>>>>> upstream/0.20
+=======
+        <translation>&amp;Export</translation>
+    </message>
+    <message>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Export the data in the current tab to a file</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Error</translation>
+    </message>
+    <message>
+        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
+        <translation>Unable to decode PSBT from clipboard (invalid base64)</translation>
+    </message>
+    <message>
+        <source>Load Transaction Data</source>
+        <translation>Load Transaction Data</translation>
+    </message>
+    <message>
+        <source>Partially Signed Transaction (*.psbt)</source>
+        <translation>Partially Signed Transaction (*.psbt)</translation>
+    </message>
+    <message>
+        <source>PSBT file must be smaller than 100 MiB</source>
+        <translation>PSBT file must be smaller than 100 MiB</translation>
+    </message>
+    <message>
+        <source>Unable to decode PSBT</source>
+        <translation>Unable to decode PSBT</translation>
+>>>>>>> upstream/0.21
     </message>
     <message>
         <source>Backup Wallet</source>
@@ -4059,6 +5862,302 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>User Agent comment (%s) contains unsafe characters.</translation>
     </message>
     <message>
+        <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
+        <translation>Distributed under the MIT software license, see the accompanying file %s or %s</translation>
+    </message>
+    <message>
+        <source>Prune configured below the minimum of %d MiB.  Please use a higher number.</source>
+        <translation>Prune configured below the minimum of %d MiB.  Please use a higher number.</translation>
+    </message>
+    <message>
+        <source>Prune: last wallet synchronisation goes beyond pruned data. You need to -reindex (download the whole blockchain again in case of pruned node)</source>
+        <translation>Prune: last wallet synchronisation goes beyond pruned data. You need to -reindex (download the whole blockchain again in case of pruned node)</translation>
+    </message>
+    <message>
+        <source>Pruning blockstore...</source>
+        <translation>Pruning blockstore...</translation>
+    </message>
+    <message>
+        <source>Unable to start HTTP server. See debug log for details.</source>
+        <translation>Unable to start HTTP server. See debug log for details.</translation>
+    </message>
+    <message>
+        <source>The %s developers</source>
+        <translation>The %s developers</translation>
+    </message>
+    <message>
+        <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
+        <translation>Cannot obtain a lock on data directory %s. %s is probably already running.</translation>
+    </message>
+    <message>
+        <source>Cannot provide specific connections and have addrman find outgoing connections at the same.</source>
+        <translation>Cannot provide specific connections and have addrman find outgoing connections at the same.</translation>
+    </message>
+    <message>
+        <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
+        <translation>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</translation>
+    </message>
+    <message>
+        <source>More than one onion bind address is provided. Using %s for the automatically created Tor onion service.</source>
+        <translation>More than one onion bind address is provided. Using %s for the automatically created Tor onion service.</translation>
+    </message>
+    <message>
+        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
+        <translation>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</translation>
+    </message>
+    <message>
+        <source>Please contribute if you find %s useful. Visit %s for further information about the software.</source>
+        <translation>Please contribute if you find %s useful. Visit %s for further information about the software.</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to prepare the statement to fetch sqlite wallet schema version: %s</source>
+        <translation>SQLiteDatabase: Failed to prepare the statement to fetch sqlite wallet schema version: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to prepare the statement to fetch the application id: %s</source>
+        <translation>SQLiteDatabase: Failed to prepare the statement to fetch the application id: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Unknown sqlite wallet schema version %d. Only version %d is supported</source>
+        <translation>SQLiteDatabase: Unknown sqlite wallet schema version %d. Only version %d is supported</translation>
+    </message>
+    <message>
+        <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
+        <translation>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</translation>
+    </message>
+    <message>
+        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
+        <translation>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</translation>
+    </message>
+    <message>
+        <source>This is the transaction fee you may discard if change is smaller than dust at this level</source>
+        <translation>This is the transaction fee you may discard if change is smaller than dust at this level</translation>
+    </message>
+    <message>
+        <source>Unable to replay blocks. You will need to rebuild the database using -reindex-chainstate.</source>
+        <translation>Unable to replay blocks. You will need to rebuild the database using -reindex-chainstate.</translation>
+    </message>
+    <message>
+        <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
+        <translation>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</translation>
+    </message>
+    <message>
+        <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
+        <translation>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</translation>
+    </message>
+    <message>
+        <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
+        <translation>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</translation>
+    </message>
+    <message>
+        <source>-maxmempool must be at least %d MB</source>
+        <translation>-maxmempool must be at least %d MB</translation>
+    </message>
+    <message>
+        <source>Cannot resolve -%s address: '%s'</source>
+        <translation>Cannot resolve -%s address: '%s'</translation>
+    </message>
+    <message>
+        <source>Change index out of range</source>
+        <translation>Change index out of range</translation>
+    </message>
+    <message>
+        <source>Config setting for %s only applied on %s network when in [%s] section.</source>
+        <translation>Config setting for %s only applied on %s network when in [%s] section.</translation>
+    </message>
+    <message>
+        <source>Copyright (C) %i-%i</source>
+        <translation>Copyright (C) %i-%i</translation>
+    </message>
+    <message>
+        <source>Corrupted block database detected</source>
+        <translation>Corrupted block database detected</translation>
+    </message>
+    <message>
+        <source>Could not find asmap file %s</source>
+        <translation>Could not find asmap file %s</translation>
+    </message>
+    <message>
+        <source>Could not parse asmap file %s</source>
+        <translation>Could not parse asmap file %s</translation>
+    </message>
+    <message>
+        <source>Do you want to rebuild the block database now?</source>
+        <translation>Do you want to rebuild the block database now?</translation>
+    </message>
+    <message>
+        <source>Error initializing block database</source>
+        <translation>Error initializing block database</translation>
+    </message>
+    <message>
+        <source>Error initializing wallet database environment %s!</source>
+        <translation>Error initializing wallet database environment %s!</translation>
+    </message>
+    <message>
+        <source>Error loading %s</source>
+        <translation>Error loading %s</translation>
+    </message>
+    <message>
+        <source>Error loading %s: Private keys can only be disabled during creation</source>
+        <translation>Error loading %s: Private keys can only be disabled during creation</translation>
+    </message>
+    <message>
+        <source>Error loading %s: Wallet corrupted</source>
+        <translation>Error loading %s: Wallet corrupted</translation>
+    </message>
+    <message>
+        <source>Error loading %s: Wallet requires newer version of %s</source>
+        <translation>Error loading %s: Wallet requires newer version of %s</translation>
+    </message>
+    <message>
+        <source>Error loading block database</source>
+        <translation>Error loading block database</translation>
+    </message>
+    <message>
+        <source>Error opening block database</source>
+        <translation>Error opening block database</translation>
+    </message>
+    <message>
+        <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
+        <translation>Failed to listen on any port. Use -listen=0 if you want this.</translation>
+    </message>
+    <message>
+        <source>Failed to rescan the wallet during initialization</source>
+        <translation>Failed to rescan the wallet during initialization</translation>
+    </message>
+    <message>
+        <source>Failed to verify database</source>
+        <translation>Failed to verify database</translation>
+    </message>
+    <message>
+        <source>Ignoring duplicate -wallet %s.</source>
+        <translation>Ignoring duplicate -wallet %s.</translation>
+    </message>
+    <message>
+        <source>Importing...</source>
+        <translation>Importing...</translation>
+    </message>
+    <message>
+        <source>Incorrect or no genesis block found. Wrong datadir for network?</source>
+        <translation>Incorrect or no genesis block found. Wrong datadir for network?</translation>
+    </message>
+    <message>
+        <source>Initialization sanity check failed. %s is shutting down.</source>
+        <translation>Initialization sanity check failed. %s is shutting down.</translation>
+    </message>
+    <message>
+        <source>Invalid P2P permission: '%s'</source>
+        <translation>Invalid P2P permission: '%s'</translation>
+    </message>
+    <message>
+        <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
+        <translation>Invalid amount for -%s=&lt;amount&gt;: '%s'</translation>
+    </message>
+    <message>
+        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
+        <translation>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</translation>
+    </message>
+    <message>
+        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
+        <translation>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to execute statement to verify database: %s</source>
+        <translation>SQLiteDatabase: Failed to execute statement to verify database: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to fetch sqlite wallet schema version: %s</source>
+        <translation>SQLiteDatabase: Failed to fetch sqlite wallet schema version: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to fetch the application id: %s</source>
+        <translation>SQLiteDatabase: Failed to fetch the application id: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to prepare statement to verify database: %s</source>
+        <translation>SQLiteDatabase: Failed to prepare statement to verify database: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Failed to read database verification error: %s</source>
+        <translation>SQLiteDatabase: Failed to read database verification error: %s</translation>
+    </message>
+    <message>
+        <source>SQLiteDatabase: Unexpected application id. Expected %u, got %u</source>
+        <translation>SQLiteDatabase: Unexpected application id. Expected %u, got %u</translation>
+    </message>
+    <message>
+        <source>Specified blocks directory "%s" does not exist.</source>
+        <translation>Specified blocks directory "%s" does not exist.</translation>
+    </message>
+    <message>
+        <source>Unknown address type '%s'</source>
+        <translation>Unknown address type '%s'</translation>
+    </message>
+    <message>
+        <source>Unknown change type '%s'</source>
+        <translation>Unknown change type '%s'</translation>
+    </message>
+    <message>
+        <source>Upgrading txindex database</source>
+        <translation>Upgrading txindex database</translation>
+    </message>
+    <message>
+        <source>Loading P2P addresses...</source>
+        <translation>Loading P2P addresses...</translation>
+    </message>
+    <message>
+        <source>Loading banlist...</source>
+        <translation>Loading banlist...</translation>
+    </message>
+    <message>
+        <source>Not enough file descriptors available.</source>
+        <translation>Not enough file descriptors available.</translation>
+    </message>
+    <message>
+        <source>Prune cannot be configured with a negative value.</source>
+        <translation>Prune cannot be configured with a negative value.</translation>
+    </message>
+    <message>
+        <source>Prune mode is incompatible with -txindex.</source>
+        <translation>Prune mode is incompatible with -txindex.</translation>
+    </message>
+    <message>
+        <source>Replaying blocks...</source>
+        <translation>Replaying blocks...</translation>
+    </message>
+    <message>
+        <source>Rewinding blocks...</source>
+        <translation>Rewinding blocks...</translation>
+    </message>
+    <message>
+        <source>The source code is available from %s.</source>
+        <translation>The source code is available from %s.</translation>
+    </message>
+    <message>
+        <source>Transaction fee and change calculation failed</source>
+        <translation>Transaction fee and change calculation failed</translation>
+    </message>
+    <message>
+        <source>Unable to bind to %s on this computer. %s is probably already running.</source>
+        <translation>Unable to bind to %s on this computer. %s is probably already running.</translation>
+    </message>
+    <message>
+        <source>Unable to generate keys</source>
+        <translation>Unable to generate keys</translation>
+    </message>
+    <message>
+        <source>Unsupported logging category %s=%s.</source>
+        <translation>Unsupported logging category %s=%s.</translation>
+    </message>
+    <message>
+        <source>Upgrading UTXO database</source>
+        <translation>Upgrading UTXO database</translation>
+    </message>
+    <message>
+        <source>User Agent comment (%s) contains unsafe characters.</source>
+        <translation>User Agent comment (%s) contains unsafe characters.</translation>
+    </message>
+    <message>
         <source>Verifying blocks...</source>
         <translation>Verifying blocks...</translation>
     </message>
@@ -4071,6 +6170,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Error: Listening for incoming connections failed (listen returned error %s)</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
+        <translation>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</translation>
+    </message>
+    <message>
+        <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use version 169900 or no version specified.</source>
+        <translation>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use version 169900 or no version specified.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
         <translation>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</translation>
     </message>
@@ -4079,10 +6189,40 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>The transaction amount is too small to send after the fee has been deducted</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>This error could occur if this wallet was not shutdown cleanly and was last loaded using a build with a newer version of Berkeley DB. If so, please use the software that last loaded this wallet</source>
+        <translation>This error could occur if this wallet was not shutdown cleanly and was last loaded using a build with a newer version of Berkeley DB. If so, please use the software that last loaded this wallet</translation>
+    </message>
+    <message>
+        <source>This is the maximum transaction fee you pay (in addition to the normal fee) to prioritize partial spend avoidance over regular coin selection.</source>
+        <translation>This is the maximum transaction fee you pay (in addition to the normal fee) to prioritize partial spend avoidance over regular coin selection.</translation>
+    </message>
+    <message>
+        <source>Transaction needs a change address, but we can't generate it. Please call keypoolrefill first.</source>
+        <translation>Transaction needs a change address, but we can't generate it. Please call keypoolrefill first.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
         <translation>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>A fatal internal error occurred, see debug.log for details</source>
+        <translation>A fatal internal error occurred, see debug.log for details</translation>
+    </message>
+    <message>
+        <source>Cannot set -peerblockfilters without -blockfilterindex.</source>
+        <translation>Cannot set -peerblockfilters without -blockfilterindex.</translation>
+    </message>
+    <message>
+        <source>Disk space is too low!</source>
+        <translation>Disk space is too low!</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Error reading from database, shutting down.</source>
         <translation>Error reading from database, shutting down.</translation>
     </message>
@@ -4095,6 +6235,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Error: Disk space is low for %s</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Error: Keypool ran out, please call keypoolrefill first</source>
+        <translation>Error: Keypool ran out, please call keypoolrefill first</translation>
+    </message>
+    <message>
+        <source>Fee rate (%s) is lower than the minimum fee rate setting (%s)</source>
+        <translation>Fee rate (%s) is lower than the minimum fee rate setting (%s)</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Invalid -onion address or hostname: '%s'</source>
         <translation>Invalid -onion address or hostname: '%s'</translation>
     </message>
@@ -4115,6 +6266,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Need to specify a port with -whitebind: '%s'</translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>No proxy server specified. Use -proxy=&lt;ip&gt; or -proxy=&lt;ip:port&gt;.</source>
+        <translation>No proxy server specified. Use -proxy=&lt;ip&gt; or -proxy=&lt;ip:port&gt;.</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.21
         <source>Prune mode is incompatible with -blockfilterindex.</source>
         <translation>Prune mode is incompatible with -blockfilterindex.</translation>
     </message>
@@ -4189,10 +6347,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Warning: unknown new rules activated (versionbit %i)</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Zapping all transactions from wallet...</source>
         <translation>Zapping all transactions from wallet...</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
         <translation>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</translation>
     </message>
@@ -4205,18 +6366,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
         <translation>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>%s is set very high!</source>
         <translation>%s is set very high!</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
         <translation>Error loading wallet %s. Duplicate -wallet filename specified.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Starting network threads...</source>
         <translation>Starting network threads...</translation>
     </message>
@@ -4253,10 +6420,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Insufficient funds</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
         <translation>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/0.21
         <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
         <translation>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</translation>
     </message>

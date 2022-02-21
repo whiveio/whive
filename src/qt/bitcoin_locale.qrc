@@ -31,7 +31,7 @@
         <file alias="fil">locale/bitcoin_fil.qm</file>
         <file alias="fr">locale/bitcoin_fr.qm</file>
         <file alias="ga">locale/bitcoin_ga.qm</file>
-        <file alias="gd">locale/bitcoin_gd.qm</file>
+        <file alias="gl">locale/bitcoin_gl.qm</file>
         <file alias="gl_ES">locale/bitcoin_gl_ES.qm</file>
         <file alias="gu">locale/bitcoin_gu.qm</file>
         <file alias="he">locale/bitcoin_he.qm</file>

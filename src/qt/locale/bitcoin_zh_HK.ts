@@ -193,7 +193,7 @@
     </message>
     <message>
         <source>Wallet to be encrypted</source>
-        <translation>將被加密的錢包</translation>
+        <translation>需要加密的錢包</translation>
     </message>
     <message>
         <source>Your wallet is about to be encrypted. </source>
@@ -327,7 +327,7 @@
     </message>
     <message>
         <source>Create Wallet...</source>
-        <translation>新增錢包...</translation>
+        <translation>建立錢包...</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
@@ -458,6 +458,10 @@
     </context>
 <context>
     <name>CreateWalletDialog</name>
+    <message>
+        <source>Wallet</source>
+        <translation>錢包</translation>
+    </message>
     </context>
 <context>
     <name>EditAddressDialog</name>
@@ -501,6 +505,9 @@
     </context>
 <context>
     <name>OverviewPage</name>
+    </context>
+<context>
+    <name>PSBTOperationsDialog</name>
     </context>
 <context>
     <name>PaymentServer</name>
@@ -627,18 +634,10 @@
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
-        <source>Address</source>
-        <translation>地址</translation>
+        <source>Wallet:</source>
+        <translation>錢包:</translation>
     </message>
-    <message>
-        <source>Label</source>
-        <translation>標記</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>錢包</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -725,7 +724,11 @@
     </context>
 <context>
     <name>WalletFrame</name>
-    </context>
+    <message>
+        <source>Create a new wallet</source>
+        <translation>新增一個錢包</translation>
+    </message>
+</context>
 <context>
     <name>WalletModel</name>
     <message>
@@ -742,6 +745,10 @@
     <message>
         <source>Export the data in the current tab to a file</source>
         <translation>把目前分頁的資料匯出至檔案</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>錯誤</translation>
     </message>
     </context>
 <context>

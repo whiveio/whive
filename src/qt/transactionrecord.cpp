@@ -46,7 +46,6 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const interface
             if(mine)
             {
                 TransactionRecord sub(hash, nTime);
-                CTxDestination address;
                 sub.idx = i; // vout index
                 sub.credit = txout.nValue;
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
@@ -161,7 +160,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const interface
     return parts;
 }
 
-void TransactionRecord::updateStatus(const interfaces::WalletTxStatus& wtx, int numBlocks, int64_t adjustedTime)
+void TransactionRecord::updateStatus(const interfaces::WalletTxStatus& wtx, const uint256& block_hash, int numBlocks, int64_t block_time)
 {
     // Determine transaction status
 
@@ -173,7 +172,7 @@ void TransactionRecord::updateStatus(const interfaces::WalletTxStatus& wtx, int 
         idx);
     status.countsForBalance = wtx.is_trusted && !(wtx.blocks_to_maturity > 0);
     status.depth = wtx.depth_in_main_chain;
-    status.cur_num_blocks = numBlocks;
+    status.m_cur_block_hash = block_hash;
 
     if (!wtx.is_final)
     {
@@ -233,9 +232,10 @@ void TransactionRecord::updateStatus(const interfaces::WalletTxStatus& wtx, int 
     status.needsUpdate = false;
 }
 
-bool TransactionRecord::statusUpdateNeeded(int numBlocks) const
+bool TransactionRecord::statusUpdateNeeded(const uint256& block_hash) const
 {
-    return status.cur_num_blocks != numBlocks || status.needsUpdate;
+    assert(!block_hash.IsNull());
+    return status.m_cur_block_hash != block_hash || status.needsUpdate;
 }
 
 QString TransactionRecord::getTxHash() const

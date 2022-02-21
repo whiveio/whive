@@ -126,10 +126,19 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     /* setup/change UI elements when proxy IPs are invalid/valid */
     ui->proxyIp->setCheckValidator(new ProxyAddressValidator(parent));
     ui->proxyIpTor->setCheckValidator(new ProxyAddressValidator(parent));
-    connect(ui->proxyIp, SIGNAL(validationDidChange(QValidatedLineEdit *)), this, SLOT(updateProxyValidationState()));
-    connect(ui->proxyIpTor, SIGNAL(validationDidChange(QValidatedLineEdit *)), this, SLOT(updateProxyValidationState()));
-    connect(ui->proxyPort, SIGNAL(textChanged(const QString&)), this, SLOT(updateProxyValidationState()));
-    connect(ui->proxyPortTor, SIGNAL(textChanged(const QString&)), this, SLOT(updateProxyValidationState()));
+    connect(ui->proxyIp, &QValidatedLineEdit::validationDidChange, this, &OptionsDialog::updateProxyValidationState);
+    connect(ui->proxyIpTor, &QValidatedLineEdit::validationDidChange, this, &OptionsDialog::updateProxyValidationState);
+    connect(ui->proxyPort, &QLineEdit::textChanged, this, &OptionsDialog::updateProxyValidationState);
+    connect(ui->proxyPortTor, &QLineEdit::textChanged, this, &OptionsDialog::updateProxyValidationState);
+
+    if (!QSystemTrayIcon::isSystemTrayAvailable()) {
+        ui->hideTrayIcon->setChecked(true);
+        ui->hideTrayIcon->setEnabled(false);
+        ui->minimizeToTray->setChecked(false);
+        ui->minimizeToTray->setEnabled(false);
+    }
+
+    GUIUtil::handleCloseWindowShortcut(this);
 }
 
 OptionsDialog::~OptionsDialog()

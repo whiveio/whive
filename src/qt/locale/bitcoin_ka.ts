@@ -334,6 +334,14 @@
         <translation>შექმენით ახალი საფულე</translation>
     </message>
     <message>
+        <source>Create Wallet...</source>
+        <translation>შექმენით საფულე</translation>
+    </message>
+    <message>
+        <source>Create a new wallet</source>
+        <translation>შექმენით ახალი საფულე</translation>
+    </message>
+    <message>
         <source>Wallet:</source>
         <translation>საფულე:</translation>
     </message>
@@ -495,15 +503,23 @@
     </message>
     <message>
         <source>Close Wallet...</source>
-        <translation>დახურე საფულე</translation>
+        <translation>საფულის ფახურვა</translation>
     </message>
     <message>
         <source>default wallet</source>
         <translation>ნაგულისხმევი საფულე</translation>
     </message>
     <message>
+        <source>No wallets available</source>
+        <translation>არ არის ჩატვირთული საფულე.</translation>
+    </message>
+    <message>
         <source>&amp;Window</source>
         <translation>&amp;ფანჯარა</translation>
+    </message>
+    <message>
+        <source>Main Window</source>
+        <translation>ძირითადი ფანჯარა</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -569,11 +585,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>საფულე &lt;b&gt;დაშიფრულია&lt;/b&gt; და ამჟამად &lt;b&gt;დაბლოკილია&lt;/b&gt;</translation>
     </message>
-    <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
-        <translation>ფატალური შეცდომა. Bitcoin ვერ უზრუნველყოფს უსაფრთხო გაგრძელებას, ამიტომ იხურება.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -619,6 +631,10 @@
     <message>
         <source>Amount</source>
         <translation>თანხა</translation>
+    </message>
+    <message>
+        <source>Received with address</source>
+        <translation>მიღებულია მისამართისამებრ</translation>
     </message>
     <message>
         <source>Date</source>
@@ -706,6 +722,10 @@
     </context>
 <context>
     <name>CreateWalletDialog</name>
+    <message>
+        <source>Wallet</source>
+        <translation>საფულე</translation>
+    </message>
     </context>
 <context>
     <name>EditAddressDialog</name>
@@ -1055,6 +1075,13 @@
     </message>
     </context>
 <context>
+    <name>PSBTOperationsDialog</name>
+    <message>
+        <source>or</source>
+        <translation>ან</translation>
+    </message>
+    </context>
+<context>
     <name>PaymentServer</name>
     <message>
         <source>Payment request error</source>
@@ -1193,8 +1220,8 @@
         <translation>ბლოკთა ჯაჭვი</translation>
     </message>
     <message>
-        <source>Current number of blocks</source>
-        <translation>ბლოკების მიმდინარე რაოდენობა</translation>
+        <source>Node window</source>
+        <translation>კვანძის ფანჯარა</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -1307,12 +1334,24 @@
         <source>Copy amount</source>
         <translation>რაოდენობის კოპირება</translation>
     </message>
-</context>
+    <message>
+        <source>Could not unlock wallet.</source>
+        <translation>საფულის განბლოკვა ვერ მოხერხდა.</translation>
+    </message>
+    </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
-        <source>QR Code</source>
-        <translation>QR-კოდი</translation>
+        <source>Amount:</source>
+        <translation>თანხა:</translation>
+    </message>
+    <message>
+        <source>Message:</source>
+        <translation>მესიჯი:</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>საფულე:</translation>
     </message>
     <message>
         <source>Copy &amp;URI</source>
@@ -1333,30 +1372,6 @@
     <message>
         <source>Payment information</source>
         <translation>ინფორმაცია გადახდის შესახებ</translation>
-    </message>
-    <message>
-        <source>URI</source>
-        <translation>URI</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>მისამართი</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>თანხა</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>ნიშნული</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>მესიჯი</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>საფულე</translation>
     </message>
 </context>
 <context>
@@ -2094,8 +2109,8 @@
 <context>
     <name>WalletFrame</name>
     <message>
-        <source>No wallet has been loaded.</source>
-        <translation>არ არის ჩატვირთული საფულე.</translation>
+        <source>Create a new wallet</source>
+        <translation>შექმენით ახალი საფულე</translation>
     </message>
 </context>
 <context>
@@ -2118,6 +2133,10 @@
     <message>
         <source>Export the data in the current tab to a file</source>
         <translation>ამ ბარათიდან მონაცემების ექსპორტი ფაილში</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <source>Backup Wallet</source>
@@ -2209,10 +2228,6 @@
     <message>
         <source>Transaction too large</source>
         <translation>ტრანსაქცია ძალიან დიდია</translation>
-    </message>
-    <message>
-        <source>Zapping all transactions from wallet...</source>
-        <translation>ტრანსაქციების ჩახსნა საფულიდან...</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>

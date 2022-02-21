@@ -60,6 +60,7 @@ public:
     int GetVersion() const { return nVersion; }
     int GetType() const { return nType; }
     size_t size() const { return stream->size(); }
+    void ignore(size_t size) { return stream->ignore(size); }
 };
 
 template<typename S>
@@ -665,21 +666,9 @@ public:
         return true;
     }
 
-    bool Seek(uint64_t nPos) {
-        long nLongPos = nPos;
-        if (nPos != (uint64_t)nLongPos)
-            return false;
-        if (fseek(src, nLongPos, SEEK_SET))
-            return false;
-        nLongPos = ftell(src);
-        nSrcPos = nLongPos;
-        nReadPos = nLongPos;
-        return true;
-    }
-
-    // prevent reading beyond a certain position
-    // no argument removes the limit
-    bool SetLimit(uint64_t nPos = (uint64_t)(-1)) {
+    //! prevent reading beyond a certain position
+    //! no argument removes the limit
+    bool SetLimit(uint64_t nPos = std::numeric_limits<uint64_t>::max()) {
         if (nPos < nReadPos)
             return false;
         nReadLimit = nPos;

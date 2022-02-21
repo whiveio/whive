@@ -181,7 +181,7 @@
     </message>
     <message>
         <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>‭Ipasok ang bagong passphrase para sa wallet.&lt;br/&gt;Mangyaring gumamit ng isang passphrase na&lt;b&gt; sampu o higit pang mga random na characte‭r&lt;/b&gt;, o &lt;b&gt;walo o higit pang mga salita&lt;/b&gt;.</translation>
+        <translation>Ipasok ang bagong passphrase para sa wallet. &lt;br/&gt;Mangyaring gumamit ng isang passphrase na may &lt;b&gt;sampu o higit pang mga random na characte‭r&lt;/b&gt;, o &lt;b&gt;walo o higit pang mga salita&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Enter the old passphrase and new passphrase for the wallet.</source>
@@ -626,10 +626,10 @@
         <translation>Walet ay na-encrypt at kasalukuyang naka-lock.</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
-        <translation>May nangyaring malubhang kamalian. Hindi na kayang magpatuloy ng ligtas ang Bitcoin at ito ay hihinto na.</translation>
+        <source>Original message:</source>
+        <translation>Orihinal na mensahe:</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -785,7 +785,7 @@
     <name>CreateWalletActivity</name>
     <message>
         <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>Gumagawa ng Pitaka %1</translation>
+        <translation>Lumilikha ng Wallet 1 %1 1...</translation>
     </message>
     <message>
         <source>Create wallet failed</source>
@@ -801,6 +801,10 @@
     <message>
         <source>Create Wallet</source>
         <translation>Gumawa ng Pitaka</translation>
+    </message>
+    <message>
+        <source>Wallet</source>
+        <translation>Walet</translation>
     </message>
     <message>
         <source>Wallet Name</source>
@@ -834,7 +838,7 @@
         <source>Create</source>
         <translation>Gumawa</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -1135,10 +1139,6 @@
         <translation>Pinapakita kung ang ibinibigay na default SOCKS5 proxy ay ginagamit upang maabot ang mga peers sa pamamagitan nitong uri ng network.</translation>
     </message>
     <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
-        <translation>Gumamit ng hiwalay na SOCKS&amp;5 proxy upang maabot ang mga peers sa pamamagitan ng mga tagong serbisyo ng Tor:</translation>
-    </message>
-    <message>
         <source>Hide the icon from the system tray.</source>
         <translation>Itago ang icon mula sa trey ng sistema.</translation>
     </message>
@@ -1269,10 +1269,6 @@
     <message>
         <source>Tor</source>
         <translation>Tor</translation>
-    </message>
-    <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Kumunekta sa Bitcoin network sa pamamagitan ng hiwalay na SOCKS5 proxy para sa mga tagong serbisyo ng Tor.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1449,7 +1445,74 @@
         <source>Current total balance in watch-only addresses</source>
         <translation>Kasalukuyang kabuuan ng balanse sa mga watch-only address</translation>
     </message>
+    <message>
+        <source>Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings-&gt;Mask values.</source>
+        <translation>Na-activate ang mode ng privacy para sa tab na Pangkalahatang-ideya.  Upang ma-unkkan ang mga halaga, alisan ng check ang Mga Setting-&gt; Mga halaga ng mask.</translation>
+    </message>
 </context>
+<context>
+    <name>PSBTOperationsDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation>Dialog</translation>
+    </message>
+    <message>
+        <source>Sign Tx</source>
+        <translation>I-sign ang Tx</translation>
+    </message>
+    <message>
+        <source>Broadcast Tx</source>
+        <translation>I-broadcast ang Tx</translation>
+    </message>
+    <message>
+        <source>Copy to Clipboard</source>
+        <translation>Kopyahin sa clipboard</translation>
+    </message>
+    <message>
+        <source>Save...</source>
+        <translation>I-save ...</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Isara</translation>
+    </message>
+    <message>
+        <source>Failed to load transaction: %1</source>
+        <translation>Nabigong i-load ang transaksyon: %1</translation>
+    </message>
+    <message>
+        <source>Failed to sign transaction: %1</source>
+        <translation>Nabigong pumirma sa transaksyon: %1</translation>
+    </message>
+    <message>
+        <source>Could not sign any more inputs.</source>
+        <translation>Hindi makapag-sign ng anumang karagdagang mga input.</translation>
+    </message>
+    <message>
+        <source>Signed %1 inputs, but more signatures are still required.</source>
+        <translation>Naka-sign %1 na mga input, ngunit kailangan pa ng maraming mga lagda.</translation>
+    </message>
+    <message>
+        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
+        <translation>Matagumpay na nag-sign transaksyon.  Handa nang i-broadcast ang transaksyon.</translation>
+    </message>
+    <message>
+        <source>Unknown error processing transaction.</source>
+        <translation>Hindi kilalang error sa pagproseso ng transaksyon.</translation>
+    </message>
+    <message>
+        <source>Transaction broadcast successfully! Transaction ID: %1</source>
+        <translation>%1</translation>
+    </message>
+    <message>
+        <source>Total Amount</source>
+        <translation>Kabuuang Halaga</translation>
+    </message>
+    <message>
+        <source>or</source>
+        <translation>o</translation>
+    </message>
+    </context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -1713,10 +1776,6 @@
         <translation>Block chain</translation>
     </message>
     <message>
-        <source>Current number of blocks</source>
-        <translation>Kasalukuyang dami ng blocks</translation>
-    </message>
-    <message>
         <source>Memory Pool</source>
         <translation>Memory Pool</translation>
     </message>
@@ -1761,10 +1820,6 @@
         <translation>Pumili ng peer upang tingnan ang detalyadong impormasyon.</translation>
     </message>
     <message>
-        <source>Whitelisted</source>
-        <translation>Whitelisted</translation>
-    </message>
-    <message>
         <source>Direction</source>
         <translation>Direksyon</translation>
     </message>
@@ -1790,7 +1845,8 @@
     </message>
     <message>
         <source>Mapped AS</source>
-        <translation>Mapa sa AS</translation>
+        <translation>Mapa sa AS
+</translation>
     </message>
     <message>
         <source>User Agent</source>
@@ -1815,10 +1871,6 @@
     <message>
         <source>Services</source>
         <translation>Mga serbisyo</translation>
-    </message>
-    <message>
-        <source>Ban Score</source>
-        <translation>Ban Score</translation>
     </message>
     <message>
         <source>Connection Time</source>
@@ -1969,14 +2021,6 @@
         <translation>Papalabas</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation>Oo</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation>Hindi</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Hindi alam</translation>
     </message>
@@ -2075,12 +2119,24 @@
         <source>Copy amount</source>
         <translation>Kopyahin ang halaga</translation>
     </message>
-</context>
+    <message>
+        <source>Could not unlock wallet.</source>
+        <translation>Hindi magawang ma-unlock ang walet.</translation>
+    </message>
+    </context>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
-        <source>QR Code</source>
-        <translation>QR Code</translation>
+        <source>Amount:</source>
+        <translation>Halaga:</translation>
+    </message>
+    <message>
+        <source>Message:</source>
+        <translation>Mensahe:</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Walet:</translation>
     </message>
     <message>
         <source>Copy &amp;URI</source>
@@ -2101,30 +2157,6 @@
     <message>
         <source>Payment information</source>
         <translation>Impormasyon sa pagbabayad</translation>
-    </message>
-    <message>
-        <source>URI</source>
-        <translation>URI</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>Address</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Halaga</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>Label</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Mensahe</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Walet</translation>
     </message>
 </context>
 <context>
@@ -2397,16 +2429,8 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Kumpirmahin ang panukala sa transaksyon</translation>
     </message>
     <message>
-        <source>Copy PSBT to clipboard</source>
-        <translation>Kopyahin ang PSBT sa clipboard</translation>
-    </message>
-    <message>
         <source>Send</source>
         <translation>Ipadala</translation>
-    </message>
-    <message>
-        <source>PSBT copied</source>
-        <translation>Kinopya ang PSBT</translation>
     </message>
     <message>
         <source>Watch-only balance:</source>
@@ -3190,12 +3214,12 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <source>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</source>
         <translation>Ang pagsasara ng walet nang masyadong matagal ay maaaring magresulta sa pangangailangan ng pag-resync sa buong chain kung pinagana ang pruning.</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>WalletFrame</name>
     <message>
-        <source>No wallet has been loaded.</source>
-        <translation>Walang walet ang na-load.</translation>
+        <source>Create a new wallet</source>
+        <translation>Gumawa ng Bagong Pitaka</translation>
     </message>
 </context>
 <context>
@@ -3268,6 +3292,10 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Angkatin ang datos sa kasalukuyang tab sa talaksan</translation>
     </message>
     <message>
+        <source>Error</source>
+        <translation>Kamalian</translation>
+    </message>
+    <message>
         <source>Backup Wallet</source>
         <translation>Backup na walet</translation>
     </message>
@@ -3311,10 +3339,6 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Prune: ang huling pag-synchronize ng walet ay lampas sa pruned data. Kailangan mong mag-reindex (i-download muli ang buong blockchain sa kaso ng pruned node)</translation>
     </message>
     <message>
-        <source>Error: A fatal internal error occurred, see debug.log for details</source>
-        <translation>Kamalian: May naganap na isang nakamamatay na panloob na error, tingnan ang debug.log para sa detalye</translation>
-    </message>
-    <message>
         <source>Pruning blockstore...</source>
         <translation>Pruning blockstore...</translation>
     </message>
@@ -3325,10 +3349,6 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
     <message>
         <source>The %s developers</source>
         <translation>Ang mga %s developers</translation>
-    </message>
-    <message>
-        <source>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</source>
-        <translation>Hindi makagawa ng change-address key. Walang mga key sa panloob na keypool at hindi makagawa ng anumang mga key.</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
@@ -3377,14 +3397,6 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
     <message>
         <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
         <translation>Babala: Mukhang hindi kami ganap na sumasang-ayon sa aming mga peers! Maaaring kailanganin mong mag-upgrade, o ang ibang mga node ay maaaring kailanganing mag-upgrade.</translation>
-    </message>
-    <message>
-        <source>%d of last 100 blocks have unexpected version</source>
-        <translation>%d ng huling 100 na mga block ay may hindi inaasahang bersyon</translation>
-    </message>
-    <message>
-        <source>%s corrupt, salvage failed</source>
-        <translation>%s tiwali, nabigo ang pag-salvage</translation>
     </message>
     <message>
         <source>-maxmempool must be at least %d MB</source>
@@ -3697,10 +3709,6 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Babala: na-activate ang mga hindi kilalang bagong patakaran (versionbit %i)</translation>
     </message>
     <message>
-        <source>Zapping all transactions from wallet...</source>
-        <translation>Z-in-a-zap ang lahat ng mga transaksyon mula sa walet...</translation>
-    </message>
-    <message>
         <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
         <translation>-maxtxfee ay nakatakda nang napakataas! Ang mga bayad na ganito kalaki ay maaaring bayaran sa isang solong transaksyon.</translation>
     </message>
@@ -3713,16 +3721,8 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
         <translation>Ang kabuuang haba ng string ng bersyon ng network (%i) ay lumampas sa maximum na haba (%i). Bawasan ang bilang o laki ng mga uacomment.</translation>
     </message>
     <message>
-        <source>Warning: Wallet file corrupt, data salvaged! Original %s saved as %s in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Babala: Ang file ng walet ay tiwali, ang data ay nailigtas! Nai-save ang original na %s bilang %s sa %s; kung ang iyong balanse o mga transaksyon ay hindi tama dapat mong ibalik mula sa backup.</translation>
-    </message>
-    <message>
         <source>%s is set very high!</source>
         <translation>Ang %s ay nakatakda ng napakataas!</translation>
-    </message>
-    <message>
-        <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
-        <translation>Kamalian sa paglo-load ng walet %s. Duplicate -wallet filename na tinukoy.</translation>
     </message>
     <message>
         <source>Starting network threads...</source>
@@ -3759,10 +3759,6 @@ Tandaan: Dahil ang bayad  ay kinakalkula sa bawat-byte na batayan, ang bayad ng 
     <message>
         <source>Insufficient funds</source>
         <translation>Hindi sapat na pondo</translation>
-    </message>
-    <message>
-        <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
-        <translation>Hindi ma-upgrade ang non HD split wallet kung hindi mag-u-upgrade upang suportahan ang pre split keypool. Mangyaring gamitin ang -upgradewallet=169900 o -upgradewallet na walang tinukoy na bersyon.</translation>
     </message>
     <message>
         <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>

@@ -28,9 +28,13 @@ namespace interfaces
 
 QT_BEGIN_NAMESPACE
 class QAbstractItemView;
+class QAction;
 class QDateTime;
 class QFont;
 class QLineEdit;
+class QMenu;
+class QPoint;
+class QProgressDialog;
 class QUrl;
 class QWidget;
 QT_END_NAMESPACE
@@ -67,14 +71,21 @@ namespace GUIUtil
        @param[in] role    Data role to extract from the model
        @see  TransactionView::copyLabel, TransactionView::copyAmount, TransactionView::copyAddress
      */
-    void copyEntryData(QAbstractItemView *view, int column, int role=Qt::EditRole);
+    void copyEntryData(const QAbstractItemView *view, int column, int role=Qt::EditRole);
 
     /** Return a field of the currently selected entry as a QString. Does nothing if nothing
         is selected.
        @param[in] column  Data column to extract from the model
        @see  TransactionView::copyLabel, TransactionView::copyAmount, TransactionView::copyAddress
      */
-    QList<QModelIndex> getEntryData(QAbstractItemView *view, int column);
+    QList<QModelIndex> getEntryData(const QAbstractItemView *view, int column);
+
+    /** Returns true if the specified field of the currently selected view entry is not empty.
+       @param[in] column  Data column to extract from the model
+       @param[in] role    Data role to extract from the model
+       @see  TransactionView::contextualMenu
+     */
+    bool hasEntryData(const QAbstractItemView *view, int column, int role);
 
     void setClipboard(const QString& str);
 
@@ -115,6 +126,12 @@ namespace GUIUtil
     // Determine whether a widget is hidden behind other windows
     bool isObscured(QWidget *w);
 
+    // Activate, show and raise the widget
+    void bringToFront(QWidget* w);
+
+    // Set shortcut to close window
+    void handleCloseWindowShortcut(QWidget* w);
+
     // Open debug.log
     void openDebugLogfile();
 
@@ -133,10 +150,25 @@ namespace GUIUtil
         explicit ToolTipToRichTextFilter(int size_threshold, QObject *parent = 0);
 
     protected:
-        bool eventFilter(QObject *obj, QEvent *evt);
+        bool eventFilter(QObject *obj, QEvent *evt) override;
 
     private:
         int size_threshold;
+    };
+
+    /**
+     * Qt event filter that intercepts QEvent::FocusOut events for QLabel objects, and
+     * resets their `textInteractionFlags' property to get rid of the visible cursor.
+     *
+     * This is a temporary fix of QTBUG-59514.
+     */
+    class LabelOutOfFocusEventFilter : public QObject
+    {
+        Q_OBJECT
+
+    public:
+        explicit LabelOutOfFocusEventFilter(QObject* parent);
+        bool eventFilter(QObject* watched, QEvent* event) override;
     };
 
     /**
@@ -215,7 +247,7 @@ namespace GUIUtil
          */
         void clicked(const QPoint& point);
     protected:
-        void mouseReleaseEvent(QMouseEvent *event);
+        void mouseReleaseEvent(QMouseEvent *event) override;
     };
 
     class ClickableProgressBar : public QProgressBar
@@ -228,7 +260,7 @@ namespace GUIUtil
          */
         void clicked(const QPoint& point);
     protected:
-        void mouseReleaseEvent(QMouseEvent *event);
+        void mouseReleaseEvent(QMouseEvent *event) override;
     };
 
     typedef ClickableProgressBar ProgressBar;
@@ -243,7 +275,7 @@ namespace GUIUtil
         void keyEscapePressed();
 
     private:
-        bool eventFilter(QObject *object, QEvent *event);
+        bool eventFilter(QObject *object, QEvent *event) override;
     };
 
     // Fix known bugs in QProgressDialog class.
@@ -261,6 +293,11 @@ namespace GUIUtil
      * Writes to debug.log short info about the used Qt and the host system.
      */
     void LogQtInfo();
+
+    /**
+     * Call QMenu::popup() only on supported QT_QPA_PLATFORM.
+     */
+    void PopupMenu(QMenu* menu, const QPoint& point, QAction* at_action = nullptr);
 } // namespace GUIUtil
 
 #endif // BITCOIN_QT_GUIUTIL_H

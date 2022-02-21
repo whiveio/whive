@@ -12,9 +12,8 @@ import re
 
 from test_framework.blocktools import create_block, create_coinbase
 from test_framework.messages import msg_block
-from test_framework.mininode import P2PInterface, mininode_lock
+from test_framework.p2p import P2PInterface
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import wait_until
 
 VB_PERIOD = 144           # versionbits period length for regtest
 VB_THRESHOLD = 108        # versionbits activation threshold for regtest
@@ -66,15 +65,15 @@ class VersionBitsWarningTest(BitcoinTestFramework):
 
     def run_test(self):
         node = self.nodes[0]
-        node.add_p2p_connection(P2PInterface())
+        peer = node.add_p2p_connection(P2PInterface())
 
         # Mine one period worth of blocks
         node.generate(VB_PERIOD)
 
         self.log.info("Check that there is no warning if previous VB_BLOCKS have <VB_THRESHOLD blocks with unknown versionbits version.")
         # Build one period of blocks with < VB_THRESHOLD blocks signaling some unknown bit
-        self.send_blocks_with_version(node.p2p, VB_THRESHOLD - 1, VB_UNKNOWN_VERSION)
-        node.generate(VB_PERIOD - VB_THRESHOLD + 1)
+        self.send_blocks_with_version(peer, VB_THRESHOLD - 1, VB_UNKNOWN_VERSION)
+        node.generatetoaddress(VB_PERIOD - VB_THRESHOLD + 1, node_deterministic_address)
 
         # Check that we're not getting any versionbit-related errors in get*info()
         assert(not VB_PATTERN.match(node.getmininginfo()["warnings"]))
@@ -82,12 +81,8 @@ class VersionBitsWarningTest(BitcoinTestFramework):
 
         self.log.info("Check that there is a warning if >50 blocks in the last 100 were an unknown version")
         # Build one period of blocks with VB_THRESHOLD blocks signaling some unknown bit
-        self.send_blocks_with_version(node.p2p, VB_THRESHOLD, VB_UNKNOWN_VERSION)
-        node.generate(VB_PERIOD - VB_THRESHOLD)
-
-        # Check that get*info() shows the 51/100 unknown block version error.
-        assert(WARN_UNKNOWN_RULES_MINED in node.getmininginfo()["warnings"])
-        assert(WARN_UNKNOWN_RULES_MINED in node.getnetworkinfo()["warnings"])
+        self.send_blocks_with_version(peer, VB_THRESHOLD, VB_UNKNOWN_VERSION)
+        node.generatetoaddress(VB_PERIOD - VB_THRESHOLD, node_deterministic_address)
 
         self.log.info("Check that there is a warning if previous VB_BLOCKS have >=VB_THRESHOLD blocks with unknown versionbits version.")
         # Mine a period worth of expected blocks so the generic block-version warning
@@ -98,15 +93,15 @@ class VersionBitsWarningTest(BitcoinTestFramework):
         self.restart_node(0)
 
         # Generating one block guarantees that we'll get out of IBD
-        node.generate(1)
-        wait_until(lambda: not node.getblockchaininfo()['initialblockdownload'], timeout=10, lock=mininode_lock)
+        node.generatetoaddress(1, node_deterministic_address)
+        self.wait_until(lambda: not node.getblockchaininfo()['initialblockdownload'])
         # Generating one more block will be enough to generate an error.
         node.generate(1)
         # Check that get*info() shows the versionbits unknown rules warning
         assert(WARN_UNKNOWN_RULES_ACTIVE in node.getmininginfo()["warnings"])
         assert(WARN_UNKNOWN_RULES_ACTIVE in node.getnetworkinfo()["warnings"])
         # Check that the alert file shows the versionbits unknown rules warning
-        wait_until(lambda: self.versionbits_in_alert_file(), timeout=60)
+        self.wait_until(lambda: self.versionbits_in_alert_file())
 
 if __name__ == '__main__':
     VersionBitsWarningTest().main()

@@ -20,37 +20,16 @@
 
 #include <vector>
 
-static std::shared_ptr<CBlock> PrepareBlock(const CScript& coinbase_scriptPubKey)
+static void AssembleBlock(benchmark::Bench& bench)
 {
-    auto block = std::make_shared<CBlock>(
-        BlockAssembler{Params()}
-            .CreateNewBlock(coinbase_scriptPubKey, /* fMineWitnessTx */ true)
-            ->block);
+    TestingSetup test_setup{
+        CBaseChainParams::REGTEST,
+        /* extra_args */ {
+            "-nodebuglogfile",
+            "-nodebug",
+        },
+    };
 
-    block->nTime = ::chainActive.Tip()->GetMedianTimePast() + 1;
-    block->hashMerkleRoot = BlockMerkleRoot(*block);
-
-    return block;
-}
-
-
-static CTxIn MineBlock(const CScript& coinbase_scriptPubKey)
-{
-    auto block = PrepareBlock(coinbase_scriptPubKey);
-
-    while (!CheckProofOfWork(block->GetHash(), block->nBits, Params().GetConsensus())) {
-        assert(++block->nNonce);
-    }
-
-    bool processed{ProcessNewBlock(Params(), block, true, nullptr)};
-    assert(processed);
-
-    return CTxIn{block->vtx[0]->GetHash(), 0};
-}
-
-
-static void AssembleBlock(benchmark::State& state)
-{
     const std::vector<unsigned char> op_true{OP_TRUE};
     CScriptWitness witness;
     witness.stack.push_back(op_true);
@@ -89,7 +68,7 @@ static void AssembleBlock(benchmark::State& state)
     std::array<CTransactionRef, NUM_BLOCKS - COINBASE_MATURITY + 1> txs;
     for (size_t b{0}; b < NUM_BLOCKS; ++b) {
         CMutableTransaction tx;
-        tx.vin.push_back(MineBlock(g_testing_setup->m_node, SCRIPT_PUB));
+        tx.vin.push_back(MineBlock(test_setup.m_node, SCRIPT_PUB));
         tx.vin.back().scriptWitness = witness;
         tx.vout.emplace_back(1337, SCRIPT_PUB);
         if (NUM_BLOCKS - b >= COINBASE_MATURITY)
@@ -100,19 +79,14 @@ static void AssembleBlock(benchmark::State& state)
 
         for (const auto& txr : txs) {
             TxValidationState state;
-            bool ret{::AcceptToMemoryPool(::mempool, state, txr, nullptr /* plTxnReplaced */, false /* bypass_limits */, /* nAbsurdFee */ 0)};
+            bool ret{::AcceptToMemoryPool(*test_setup.m_node.mempool, state, txr, nullptr /* plTxnReplaced */, false /* bypass_limits */)};
             assert(ret);
         }
     }
 
-    while (state.KeepRunning()) {
-        PrepareBlock(g_testing_setup->m_node, SCRIPT_PUB);
-    }
-
-    thread_group.interrupt_all();
-    thread_group.join_all();
-    GetMainSignals().FlushBackgroundCallbacks();
-    GetMainSignals().UnregisterBackgroundSignalScheduler();
+    bench.run([&] {
+        PrepareBlock(test_setup.m_node, SCRIPT_PUB);
+    });
 }
 
-BENCHMARK(AssembleBlock, 700);
+BENCHMARK(AssembleBlock);

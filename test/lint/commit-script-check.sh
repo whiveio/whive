@@ -36,8 +36,8 @@ for commit in $(git rev-list --reverse $1); do
         fi
         git reset --quiet --hard HEAD
      else
-        if git rev-list "--format=%b" -n1 $i | grep -q '^-\(BEGIN\|END\)[ a-zA-Z]*-$'; then
-            echo "Error: script block marker but no scripted-diff in title"
+        if git rev-list "--format=%b" -n1 $commit | grep -q '^-\(BEGIN\|END\)[ a-zA-Z]*-$'; then
+            echo "Error: script block marker but no scripted-diff in title of commit $commit"
             echo "Failed"
             RET=1
         fi

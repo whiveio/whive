@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2018 The Bitcoin Core developers
+// Copyright (c) 2015-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,13 +16,14 @@
 #include <node/context.h>
 #include <pubkey.h>
 #include <random.h>
-#include <scheduler.h>
+#include <stdexcept>
 #include <txmempool.h>
+#include <util/check.h>
 #include <util/string.h>
 
 #include <type_traits>
 
-#include <boost/thread.hpp>
+#include <boost/thread/thread.hpp>
 
 <<<<<<<< HEAD:src/test/test_bitcoin.h
 extern uint256 insecure_rand_seed;
@@ -46,13 +47,6 @@ std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value, std::os
     insecure_rand_ctx = FastRandomContext(insecure_rand_seed);
 }
 
-<<<<<<<< HEAD:src/test/test_bitcoin.h
-static inline uint32_t InsecureRand32() { return insecure_rand_ctx.rand32(); }
-static inline uint256 InsecureRand256() { return insecure_rand_ctx.rand256(); }
-static inline uint64_t InsecureRandBits(int bits) { return insecure_rand_ctx.randbits(bits); }
-static inline uint64_t InsecureRandRange(uint64_t range) { return insecure_rand_ctx.randrange(range); }
-static inline bool InsecureRandBool() { return insecure_rand_ctx.randbool(); }
-========
 /**
  * This global and the helpers that use it are not thread-safe.
  *
@@ -91,16 +85,17 @@ static inline uint64_t InsecureRandRange(uint64_t range) { return g_insecure_ran
 static inline bool InsecureRandBool() { return g_insecure_rand_ctx.randbool(); }
 
 static constexpr CAmount CENT{1000000};
->>>>>>>> upstream/0.20:src/test/util/setup_common.h
 
 /** Basic testing setup.
  * This just configures logging, data dir and chain parameters.
  */
 struct BasicTestingSetup {
     ECCVerifyHandle globalVerifyHandle;
+    NodeContext m_node;
 
-    explicit BasicTestingSetup(const std::string& chainName = CBaseChainParams::MAIN);
+    explicit BasicTestingSetup(const std::string& chainName = CBaseChainParams::MAIN, const std::vector<const char*>& extra_args = {});
     ~BasicTestingSetup();
+
 private:
     const fs::path m_path_root;
 };
@@ -108,27 +103,10 @@ private:
 /** Testing setup that configures a complete environment.
  * Included are coins database, script check threads setup.
  */
-<<<<<<<< HEAD:src/test/test_bitcoin.h
-class CConnman;
-class CNode;
-struct CConnmanTest {
-    static void AddNode(CNode& node);
-    static void ClearNodes();
-};
-
-class PeerLogicValidation;
-struct TestingSetup: public BasicTestingSetup {
-    boost::thread_group threadGroup;
-    CConnman* connman;
-    CScheduler scheduler;
-    std::unique_ptr<PeerLogicValidation> peerLogic;
-========
 struct TestingSetup : public BasicTestingSetup {
-    NodeContext m_node;
     boost::thread_group threadGroup;
->>>>>>>> upstream/0.20:src/test/util/setup_common.h
 
-    explicit TestingSetup(const std::string& chainName = CBaseChainParams::MAIN);
+    explicit TestingSetup(const std::string& chainName = CBaseChainParams::MAIN, const std::vector<const char*>& extra_args = {});
     ~TestingSetup();
 };
 
@@ -142,15 +120,16 @@ class CBlock;
 struct CMutableTransaction;
 class CScript;
 
-//
-// Testing fixture that pre-creates a
-// 100-block REGTEST-mode block chain
-//
+/**
+ * Testing fixture that pre-creates a 100-block REGTEST-mode block chain
+ */
 struct TestChain100Setup : public RegTestingSetup {
     TestChain100Setup();
 
-    // Create a new block with just given transactions, coinbase paying to
-    // scriptPubKey, and try to add it to the current chain.
+    /**
+     * Create a new block with just given transactions, coinbase paying to
+     * scriptPubKey, and try to add it to the current chain.
+     */
     CBlock CreateAndProcessBlock(const std::vector<CMutableTransaction>& txns,
                                  const CScript& scriptPubKey);
 
@@ -191,5 +170,23 @@ CBlock getBlock13b8a();
 
 // define an implicit conversion here so that uint256 may be used directly in BOOST_CHECK_*
 std::ostream& operator<<(std::ostream& os, const uint256& num);
+
+/**
+ * BOOST_CHECK_EXCEPTION predicates to check the specific validation error.
+ * Use as
+ * BOOST_CHECK_EXCEPTION(code that throws, exception type, HasReason("foo"));
+ */
+class HasReason
+{
+public:
+    explicit HasReason(const std::string& reason) : m_reason(reason) {}
+    bool operator()(const std::exception& e) const
+    {
+        return std::string(e.what()).find(m_reason) != std::string::npos;
+    };
+
+private:
+    const std::string m_reason;
+};
 
 #endif

@@ -42,6 +42,10 @@
         <translation>Unesite adresu ili oznaku za pretragu</translation>
     </message>
     <message>
+        <source>Enter address or label to search</source>
+        <translation>Unesite adresu ili oznaku za pretragu</translation>
+    </message>
+    <message>
         <source>Export the data in the current tab to a file</source>
         <translation>Eksporter data i den valgte fliken til en fil</translation>
     </message>
@@ -160,6 +164,10 @@
         <translation>Prikaži lozinku</translation>
     </message>
     <message>
+        <source>Show passphrase</source>
+        <translation>Prikaži lozinku</translation>
+    </message>
+    <message>
         <source>Encrypt wallet</source>
         <translation>Krypter lommeboken</translation>
     </message>
@@ -206,6 +214,22 @@
     <message>
         <source>Enter the old passphrase and new passphrase for the wallet.</source>
         <translation>Unesite u novčanik staru pristupnu frazu i novu pristupnu frazu.</translation>
+    </message>
+    <message>
+        <source>Your wallet is about to be encrypted. </source>
+        <translation>Novčanik će vam biti šifriran.</translation>
+    </message>
+    <message>
+        <source>Your wallet is now encrypted. </source>
+        <translation>Vaš novčanik je sada šifrovan.</translation>
+    </message>
+    <message>
+        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Unesite lozinku u novčanik. &lt;br/&gt;Molimo, koristite lozinku koja ima &lt;b&gt; deset ili više nasumičnih znakova&lt;/b&gt;, ili &lt;b&gt;osam ili više reči&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Enter the old passphrase and new passphrase for the wallet.</source>
+        <translation>Unesite u novčanik staru lozinku i novu lozinku.</translation>
     </message>
     <message>
         <source>Your wallet is about to be encrypted. </source>
@@ -356,6 +380,10 @@
     <message>
         <source>Wallet:</source>
         <translation>Lommebok:</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation>Novčanik:</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -554,6 +582,10 @@
         <translation>Otvori novčanik</translation>
     </message>
     <message>
+        <source>Open Wallet</source>
+        <translation>Otvori novčanik</translation>
+    </message>
+    <message>
         <source>%1 client</source>
         <translation>%1-klient</translation>
     </message>
@@ -631,6 +663,10 @@
 <context>
     <name>CreateWalletDialog</name>
     <message>
+        <source>Wallet</source>
+        <translation>Novčanik</translation>
+    </message>
+    <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
         <translation>Onemogućite privatne ključeve za ovaj novčanik. Novčanici sa isključenim privatnim ključevima neće imati privatne ključeve i ne mogu imati HD seme ili uvezene privatne ključeve. Ovo je idealno za novčanike samo za gledanje.</translation>
     </message>
@@ -679,6 +715,9 @@
     <name>OverviewPage</name>
     </context>
 <context>
+    <name>PSBTOperationsDialog</name>
+    </context>
+<context>
     <name>PaymentServer</name>
     </context>
 <context>
@@ -699,26 +738,14 @@
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
-        <source>Address</source>
-        <translation>Adresse</translation>
+        <source>Amount:</source>
+        <translation>Iznos:</translation>
     </message>
     <message>
-        <source>Amount</source>
-        <translation>Kolicina</translation>
+        <source>Wallet:</source>
+        <translation>Novčanik:</translation>
     </message>
-    <message>
-        <source>Label</source>
-        <translation>Beskrivelse</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation>Poruka</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Lommebok</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -982,6 +1009,10 @@
     <message>
         <source>Export the data in the current tab to a file</source>
         <translation>Izvoz podataka iz trenutne kartice u datoteku</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Greska</translation>
     </message>
     </context>
 <context>

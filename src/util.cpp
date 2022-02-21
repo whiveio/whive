@@ -5,6 +5,12 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <util.h>
+#include <sync.h>
+#include <util/system.h>
+
+#ifdef HAVE_BOOST_PROCESS
+#include <boost/process.hpp>
+#endif // HAVE_BOOST_PROCESS
 
 #include <chainparamsbase.h>
 #include <util/strencodings.h>
@@ -18,7 +24,7 @@
 #endif
 
 #ifndef WIN32
-// for posix_fallocate
+// for posix_fallocate, in configure.ac we check if it is present after this
 #ifdef __linux__
 
 #ifdef _POSIX_C_SOURCE
@@ -45,17 +51,6 @@
 #pragma warning(disable:4717)
 #endif
 
-#ifdef _WIN32_WINNT
-#undef _WIN32_WINNT
-#endif
-#define _WIN32_WINNT 0x0501
-
-#ifdef _WIN32_IE
-#undef _WIN32_IE
-#endif
-#define _WIN32_IE 0x0501
-
-#define WIN32_LEAN_AND_MEAN 1
 #ifndef NOMINMAX
 #define NOMINMAX
 #endif
@@ -80,73 +75,23 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "whive.conf";
-const char * const BITCOIN_PID_FILENAME = "whived.pid";
+const char * const BITCOIN_CONF_FILENAME = "bitcoin.conf";
+const char * const BITCOIN_SETTINGS_FILENAME = "settings.json";
 
 ArgsManager gArgs;
 
-CTranslationInterface translationInterface;
-
-/** Init OpenSSL library multithreading support */
-static std::unique_ptr<CCriticalSection[]> ppmutexOpenSSL;
-void locking_callback(int mode, int i, const char* file, int line) NO_THREAD_SAFETY_ANALYSIS
-{
-    if (mode & CRYPTO_LOCK) {
-        ENTER_CRITICAL_SECTION(ppmutexOpenSSL[i]);
-    } else {
-        LEAVE_CRITICAL_SECTION(ppmutexOpenSSL[i]);
-    }
-}
-
-// Singleton for wrapping OpenSSL setup/teardown.
-class CInit
-{
-public:
-    CInit()
-    {
-        // Init OpenSSL library multithreading support
-        ppmutexOpenSSL.reset(new CCriticalSection[CRYPTO_num_locks()]);
-        CRYPTO_set_locking_callback(locking_callback);
-
-        // OpenSSL can optionally load a config file which lists optional loadable modules and engines.
-        // We don't use them so we don't require the config. However some of our libs may call functions
-        // which attempt to load the config file, possibly resulting in an exit() or crash if it is missing
-        // or corrupt. Explicitly tell OpenSSL not to try to load the file. The result for our libs will be
-        // that the config appears to have been loaded and there are no modules/engines available.
-        OPENSSL_no_config();
-
-#ifdef WIN32
-        // Seed OpenSSL PRNG with current contents of the screen
-        RAND_screen();
-#endif
-
-        // Seed OpenSSL PRNG with performance counter
-        RandAddSeed();
-    }
-    ~CInit()
-    {
-        // Securely erase the memory used by the PRNG
-        RAND_cleanup();
-        // Shutdown OpenSSL library multithreading support
-        CRYPTO_set_locking_callback(nullptr);
-        // Clear the set of locks now to maintain symmetry with the constructor.
-        ppmutexOpenSSL.reset();
-    }
-}
-instance_of_cinit;
-
+/** Mutex to protect dir_locks. */
+static Mutex cs_dir_locks;
 /** A map that contains all the currently held directory locks. After
  * successful locking, these will be held here until the global destructor
  * cleans them up and thus automatically unlocks them, or ReleaseDirectoryLocks
  * is called.
  */
-static std::map<std::string, std::unique_ptr<boost::interprocess::file_lock>> dir_locks;
-/** Mutex to protect dir_locks. */
-static std::mutex cs_dir_locks;
+static std::map<std::string, std::unique_ptr<fsbridge::FileLock>> dir_locks GUARDED_BY(cs_dir_locks);
 
 bool LockDirectory(const fs::path& directory, const std::string lockfile_name, bool probe_only)
 {
-    std::lock_guard<std::mutex> ulock(cs_dir_locks);
+    LOCK(cs_dir_locks);
     fs::path pathLockFile = directory / lockfile_name;
 
     // If a lock for this directory already exists in the map, don't try to re-lock it
@@ -173,9 +118,15 @@ bool LockDirectory(const fs::path& directory, const std::string lockfile_name, b
     return true;
 }
 
+void UnlockDirectory(const fs::path& directory, const std::string& lockfile_name)
+{
+    LOCK(cs_dir_locks);
+    dir_locks.erase((directory / lockfile_name).string());
+}
+
 void ReleaseDirectoryLocks()
 {
-    std::lock_guard<std::mutex> ulock(cs_dir_locks);
+    LOCK(cs_dir_locks);
     dir_locks.clear();
 }
 
@@ -190,6 +141,20 @@ bool DirIsWritable(const fs::path& directory)
     remove(tmpFile);
 
     return true;
+}
+
+bool CheckDiskSpace(const fs::path& dir, uint64_t additional_bytes)
+{
+    constexpr uint64_t min_disk_space = 52428800; // 50 MiB
+
+    uint64_t free_bytes_available = fs::space(dir).available;
+    return free_bytes_available >= min_disk_space + additional_bytes;
+}
+
+std::streampos GetFileSize(const char* path, std::streamsize max) {
+    std::ifstream file(path, std::ios::binary);
+    file.ignore(max);
+    return file.gcount();
 }
 
 /**
@@ -277,10 +242,11 @@ static bool CheckValid(const std::string& key, const util::SettingsValue& val, u
     return true;
 }
 
-ArgsManager::ArgsManager()
-{
-    // nothing to do
-}
+// Define default constructor and destructor that are not inline, so code instantiating this class doesn't need to
+// #include class definitions for all members.
+// For example, m_settings has an internal dependency on univalue.
+ArgsManager::ArgsManager() {}
+ArgsManager::~ArgsManager() {}
 
 void ArgsManager::WarnForSectionOnlyArgs()
 {
@@ -295,6 +261,23 @@ void ArgsManager::WarnForSectionOnlyArgs()
             unsuitables.insert(arg);
         }
     }
+    return unsuitables;
+}
+
+const std::list<SectionInfo> ArgsManager::GetUnrecognizedSections() const
+{
+    // Section names to be recognized in the config file.
+    static const std::set<std::string> available_sections{
+        CBaseChainParams::REGTEST,
+        CBaseChainParams::SIGNET,
+        CBaseChainParams::TESTNET,
+        CBaseChainParams::MAIN
+    };
+
+    LOCK(cs_args);
+    std::list<SectionInfo> unrecognized = m_config_sections;
+    unrecognized.remove_if([](const SectionInfo& appeared){ return available_sections.find(appeared.m_name) != available_sections.end(); });
+    return unrecognized;
 }
 
 void ArgsManager::SelectConfigNetwork(const std::string& network)
@@ -357,15 +340,16 @@ bool ArgsManager::ParseParameters(int argc, const char* const argv[], std::strin
         m_settings.command_line_options[key].push_back(value);
     }
 
-    // we do not allow -includeconf from command line
-    bool success = true;
+    // we do not allow -includeconf from command line, only -noincludeconf
     if (auto* includes = util::FindKey(m_settings.command_line_options, "includeconf")) {
-        for (const auto& include : util::SettingsSpan(*includes)) {
-            error += "-includeconf cannot be used from commandline; -includeconf=" + include.get_str() + "\n";
-            success = false;
+        const util::SettingsSpan values{*includes};
+        // Range may be empty if -noincludeconf was passed
+        if (!values.empty()) {
+            error = "-includeconf cannot be used from commandline; -includeconf=" + values.begin()->write();
+            return false; // pick first value as example
         }
     }
-    return success;
+    return true;
 }
 
 Optional<unsigned int> ArgsManager::GetArgFlags(const std::string& name) const
@@ -392,6 +376,92 @@ std::vector<std::string> ArgsManager::GetArgs(const std::string& strArg) const
 bool ArgsManager::IsArgSet(const std::string& strArg) const
 {
     return !GetSetting(strArg).isNull();
+}
+
+bool ArgsManager::InitSettings(std::string& error)
+{
+    if (!GetSettingsPath()) {
+        return true; // Do nothing if settings file disabled.
+    }
+
+    std::vector<std::string> errors;
+    if (!ReadSettingsFile(&errors)) {
+        error = strprintf("Failed loading settings file:\n- %s\n", Join(errors, "\n- "));
+        return false;
+    }
+    if (!WriteSettingsFile(&errors)) {
+        error = strprintf("Failed saving settings file:\n- %s\n", Join(errors, "\n- "));
+        return false;
+    }
+    return true;
+}
+
+bool ArgsManager::GetSettingsPath(fs::path* filepath, bool temp) const
+{
+    if (IsArgNegated("-settings")) {
+        return false;
+    }
+    if (filepath) {
+        std::string settings = GetArg("-settings", BITCOIN_SETTINGS_FILENAME);
+        *filepath = fs::absolute(temp ? settings + ".tmp" : settings, GetDataDir(/* net_specific= */ true));
+    }
+    return true;
+}
+
+static void SaveErrors(const std::vector<std::string> errors, std::vector<std::string>* error_out)
+{
+    for (const auto& error : errors) {
+        if (error_out) {
+            error_out->emplace_back(error);
+        } else {
+            LogPrintf("%s\n", error);
+        }
+    }
+}
+
+bool ArgsManager::ReadSettingsFile(std::vector<std::string>* errors)
+{
+    fs::path path;
+    if (!GetSettingsPath(&path, /* temp= */ false)) {
+        return true; // Do nothing if settings file disabled.
+    }
+
+    LOCK(cs_args);
+    m_settings.rw_settings.clear();
+    std::vector<std::string> read_errors;
+    if (!util::ReadSettings(path, m_settings.rw_settings, read_errors)) {
+        SaveErrors(read_errors, errors);
+        return false;
+    }
+    for (const auto& setting : m_settings.rw_settings) {
+        std::string section;
+        std::string key = setting.first;
+        (void)InterpretOption(section, key, /* value */ {}); // Split setting key into section and argname
+        if (!GetArgFlags('-' + key)) {
+            LogPrintf("Ignoring unknown rw_settings value %s\n", setting.first);
+        }
+    }
+    return true;
+}
+
+bool ArgsManager::WriteSettingsFile(std::vector<std::string>* errors) const
+{
+    fs::path path, path_tmp;
+    if (!GetSettingsPath(&path, /* temp= */ false) || !GetSettingsPath(&path_tmp, /* temp= */ true)) {
+        throw std::logic_error("Attempt to write settings file when dynamic settings are disabled.");
+    }
+
+    LOCK(cs_args);
+    std::vector<std::string> write_errors;
+    if (!util::WriteSettings(path_tmp, m_settings.rw_settings, write_errors)) {
+        SaveErrors(write_errors, errors);
+        return false;
+    }
+    if (!RenameOver(path_tmp, path)) {
+        SaveErrors({strprintf("Failed renaming settings file %s to %s\n", path_tmp.string(), path.string())}, errors);
+        return false;
+    }
+    return true;
 }
 
 bool ArgsManager::IsArgNegated(const std::string& strArg) const
@@ -466,7 +536,7 @@ void ArgsManager::AddHiddenArgs(const std::vector<std::string>& names)
 
 std::string ArgsManager::GetHelpMessage() const
 {
-    const bool show_debug = gArgs.GetBoolArg("-help-debug", false);
+    const bool show_debug = GetBoolArg("-help-debug", false);
 
     std::string usage = "";
     for (const auto& arg_map : m_available_args) {
@@ -847,7 +917,7 @@ bool ArgsManager::ReadConfigFiles(std::string& error, bool ignore_invalid_keys)
     // If datadir is changed in .conf file:
     ClearDatadirCache();
     if (!CheckDataDirOption()) {
-        error = strprintf("specified data directory \"%s\" does not exist.", gArgs.GetArg("-datadir", ""));
+        error = strprintf("specified data directory \"%s\" does not exist.", GetArg("-datadir", ""));
         return false;
     }
     return true;
@@ -864,16 +934,21 @@ std::string ArgsManager::GetChainName() const
     };
 
     const bool fRegTest = get_net("-regtest");
+    const bool fSigNet  = get_net("-signet");
     const bool fTestNet = get_net("-testnet");
     const bool is_chain_arg_set = IsArgSet("-chain");
 
-    if ((int)is_chain_arg_set + (int)fRegTest + (int)fTestNet > 1) {
-        throw std::runtime_error("Invalid combination of -regtest, -testnet and -chain. Can use at most one.");
+    if ((int)is_chain_arg_set + (int)fRegTest + (int)fSigNet + (int)fTestNet > 1) {
+        throw std::runtime_error("Invalid combination of -regtest, -signet, -testnet and -chain. Can use at most one.");
     }
     if (fRegTest)
         return CBaseChainParams::REGTEST;
+    if (fSigNet) {
+        return CBaseChainParams::SIGNET;
+    }
     if (fTestNet)
         return CBaseChainParams::TESTNET;
+
     return GetArg("-chain", CBaseChainParams::MAIN);
 }
 
@@ -917,6 +992,9 @@ void ArgsManager::LogArgs() const
     LOCK(cs_args);
     for (const auto& section : m_settings.ro_config) {
         logArgsPrefix("Config file arg:", section.first, section.second);
+    }
+    for (const auto& setting : m_settings.rw_settings) {
+        LogPrintf("Setting file arg: %s = %s\n", setting.first, setting.second.write());
     }
     logArgsPrefix("Command-line arg:", "", m_settings.command_line_options);
 }
@@ -964,7 +1042,7 @@ bool FileCommit(FILE *file)
         return false;
     }
 #else
-    #if defined(__linux__) || defined(__NetBSD__)
+    #if HAVE_FDATASYNC
     if (fdatasync(fileno(file)) != 0 && errno != EINVAL) { // Ignore EINVAL for filesystems that don't support sync
         LogPrintf("%s: fdatasync failed: %d\n", __func__, errno);
         return false;
@@ -1045,7 +1123,7 @@ void AllocateFileRange(FILE *file, unsigned int offset, unsigned int length) {
     }
     ftruncate(fileno(file), static_cast<off_t>(offset) + length);
 #else
-    #if defined(__linux__)
+    #if defined(HAVE_POSIX_FALLOCATE)
     // Version using posix_fallocate
     off_t nEndPos = (off_t)offset + length;
     if (0 == posix_fallocate(fileno(file), 0, nEndPos)) return;
@@ -1100,21 +1178,42 @@ void runCommand(const std::string& strCommand)
 }
 #endif
 
-void RenameThread(const char* name)
+#ifdef HAVE_BOOST_PROCESS
+UniValue RunCommandParseJSON(const std::string& str_command, const std::string& str_std_in)
 {
-#if defined(PR_SET_NAME)
-    // Only the first 15 characters are used (16 - NUL terminator)
-    ::prctl(PR_SET_NAME, name, 0, 0, 0);
-#elif (defined(__FreeBSD__) || defined(__OpenBSD__) || defined(__DragonFly__))
-    pthread_set_name_np(pthread_self(), name);
+    namespace bp = boost::process;
 
-#elif defined(MAC_OSX)
-    pthread_setname_np(name);
-#else
-    // Prevent warnings for unused parameters...
-    (void)name;
-#endif
+    UniValue result_json;
+    bp::opstream stdin_stream;
+    bp::ipstream stdout_stream;
+    bp::ipstream stderr_stream;
+
+    if (str_command.empty()) return UniValue::VNULL;
+
+    bp::child c(
+        str_command,
+        bp::std_out > stdout_stream,
+        bp::std_err > stderr_stream,
+        bp::std_in < stdin_stream
+    );
+    if (!str_std_in.empty()) {
+        stdin_stream << str_std_in << std::endl;
+    }
+    stdin_stream.pipe().close();
+
+    std::string result;
+    std::string error;
+    std::getline(stdout_stream, result);
+    std::getline(stderr_stream, error);
+
+    c.wait();
+    const int n_error = c.exit_code();
+    if (n_error) throw std::runtime_error(strprintf("RunCommandParseJSON error: process(%s) returned %d: %s\n", str_command, n_error, error));
+    if (!result_json.read(result)) throw std::runtime_error("Unable to parse JSON: " + result);
+
+    return result_json;
 }
+#endif // HAVE_BOOST_PROCESS
 
 void SetupEnvironment()
 {
