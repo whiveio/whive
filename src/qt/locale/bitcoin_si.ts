@@ -219,6 +219,7 @@
     <name>BitcoinGUI</name>
     <message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_si.ts
 ========
         <source>E&amp;xit</source>
@@ -273,13 +274,20 @@
 =======
         <source>Synchronizing with network...</source>
         <translation>ජාලය සමග සමමුහුර්ත ව‌ෙමින්...</translation>
+=======
+        <source>Synchronizing with network...</source>
+        <translation>ජාලය සමග සමමුහුර්ත වෙමින්...</translation>
+>>>>>>> upstream/0.20
     </message>
     <message>
         <source>Browse transaction history</source>
         <translation>ගනුදෙනු ඉතිහාසය පිරික්සන්න</translation>
     </message>
     <message>
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
+=======
+>>>>>>> upstream/0.20
         <source>Warning</source>
         <translation>අවවාදය</translation>
     </message>
@@ -378,7 +386,7 @@
         <source>URI:</source>
         <translation>URI:</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OpenWalletActivity</name>
     </context>
@@ -537,9 +545,6 @@
     <name>SendCoinsEntry</name>
     </context>
 <context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
     <name>ShutdownWindow</name>
     </context>
 <context>
@@ -589,12 +594,18 @@
     <name>TransactionView</name>
     <message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> upstream/0.20
         <source>Comma separated file (*.csv)</source>
         <translation>කොමා වලින් වෙන් කරන ලද ගොනුව (* .csv)</translation>
     </message>
     <message>
+<<<<<<< HEAD
 >>>>>>> upstream/0.19
+=======
+>>>>>>> upstream/0.20
         <source>Date</source>
         <translation>දිනය</translation>
     </message>

@@ -62,6 +62,7 @@
     <message>
         <source>Enter address or label to search</source>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <translation>پتہ یا لیبل تلاشی کے لئے درج کریں</translation>
 =======
         <translation>输入地址或者标签进行搜索</translation>
@@ -76,6 +77,11 @@
 >>>>>>> upstream/0.19
     </message>
     <message>
+=======
+        <translation>输入地址或者标签进行搜索</translation>
+    </message>
+    <message>
+>>>>>>> upstream/0.20
         <source>Export the data in the current tab to a file</source>
         <translation>导出当前数据到文件</translation>
     </message>
@@ -204,6 +210,7 @@
     <name>AskPassphraseDialog</name>
     <message>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
         <source>Show password</source>
         <translation>保存密码</translation>
@@ -216,6 +223,8 @@
         <translation>پاس فریز داخل کریں</translation>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_ur.ts
 =======
+=======
+>>>>>>> upstream/0.20
         <source>Passphrase Dialog</source>
         <translation>密码输入框</translation>
     </message>
@@ -236,6 +245,7 @@
         <translation>显示密码</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Show password</source>
         <translation>Mostrar contraseña</translation>
     </message>
@@ -245,10 +255,13 @@
 >>>>>>> upstream/0.19
     </message>
     <message>
+=======
+>>>>>>> upstream/0.20
         <source>Encrypt wallet</source>
         <translation>加密钱包</translation>
     </message>
     <message>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <source>Show passphrase</source>
         <translation>پاسفریز دکھائیں</translation>
@@ -272,6 +285,18 @@
     <message>
         <source>Confirm wallet encryption</source>
         <translation>پرس کی خفیہ کاری کی تصدیق کریں</translation>
+=======
+        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
+        <translation>此操作需要您的钱包密码用来解锁钱包。</translation>
+    </message>
+    <message>
+        <source>Unlock wallet</source>
+        <translation>解锁钱包</translation>
+    </message>
+    <message>
+        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
+        <translation>此操作需要您的钱包密码用来解密钱包。</translation>
+>>>>>>> upstream/0.20
     </message>
     </context>
 <context>
@@ -604,9 +629,6 @@
 </context>
 <context>
     <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
     </context>
 <context>
     <name>ShutdownWindow</name>

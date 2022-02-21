@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Bitcoin Core developers
+// Copyright (c) 2011-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -52,5 +52,8 @@ static const int MAX_URI_LENGTH = 255;
 #define QAPP_ORG_DOMAIN "whive.io"
 #define QAPP_APP_NAME_DEFAULT "Whive-Qt"
 #define QAPP_APP_NAME_TESTNET "Whive-Qt-testnet"
+
+// Default prune target displayed in GUI.
+static constexpr int DEFAULT_PRUNE_TARGET_GB{2};
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

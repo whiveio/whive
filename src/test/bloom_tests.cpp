@@ -16,6 +16,9 @@
 #include <util.h>
 #include <utilstrencodings.h>
 #include <test/test_bitcoin.h>
+#include <util/system.h>
+#include <util/strencodings.h>
+#include <test/util/setup_common.h>
 
 #include <vector>
 
@@ -461,6 +464,9 @@ static std::vector<unsigned char> RandomData()
 
 BOOST_AUTO_TEST_CASE(rolling_bloom)
 {
+    SeedInsecureRand(SeedRand::ZEROS);
+    g_mock_deterministic_tests = true;
+
     // last-100-entry, 1% false positive:
     CRollingBloomFilter rb1(100, 0.01);
 

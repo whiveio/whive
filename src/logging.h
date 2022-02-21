@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -38,7 +38,7 @@ namespace BCLog {
         HTTP        = (1 <<  3),
         BENCH       = (1 <<  4),
         ZMQ         = (1 <<  5),
-        DB          = (1 <<  6),
+        WALLETDB    = (1 <<  6),
         RPC         = (1 <<  7),
         ESTIMATEFEE = (1 <<  8),
         ADDRMAN     = (1 <<  9),
@@ -53,6 +53,7 @@ namespace BCLog {
         COINDB      = (1 << 18),
         QT          = (1 << 19),
         LEVELDB     = (1 << 20),
+        VALIDATION  = (1 << 21),
         ALL         = ~(uint32_t)0,
     };
 
@@ -76,6 +77,9 @@ namespace BCLog {
 
         std::string LogTimestampStr(const std::string& str);
 
+        /** Slots that connect to the print signal */
+        std::list<std::function<void(const std::string&)>> m_print_callbacks /* GUARDED_BY(m_cs) */ {};
+
     public:
         bool m_print_to_console = false;
         bool m_print_to_file = false;
@@ -93,7 +97,22 @@ namespace BCLog {
         bool Enabled() const
         {
             std::lock_guard<std::mutex> scoped_lock(m_cs);
-            return m_buffering || m_print_to_console || m_print_to_file;
+            return m_buffering || m_print_to_console || m_print_to_file || !m_print_callbacks.empty();
+        }
+
+        /** Connect a slot to the print signal and return the connection */
+        std::list<std::function<void(const std::string&)>>::iterator PushBackCallback(std::function<void(const std::string&)> fun)
+        {
+            std::lock_guard<std::mutex> scoped_lock(m_cs);
+            m_print_callbacks.push_back(std::move(fun));
+            return --m_print_callbacks.end();
+        }
+
+        /** Delete a connection */
+        void DeleteCallback(std::list<std::function<void(const std::string&)>>::iterator it)
+        {
+            std::lock_guard<std::mutex> scoped_lock(m_cs);
+            m_print_callbacks.erase(it);
         }
 
         /** Start logging (and flush all buffered messages) */
@@ -165,11 +184,13 @@ template<typename T, typename... Args> static inline void MarkUsed(const T& t, c
     } \
 } while(0)
 
-#define LogPrint(category, ...) do { \
-    if (LogAcceptCategory((category))) { \
-        LogPrintf(__VA_ARGS__); \
-    } \
-} while(0)
-#endif
+// Use a macro instead of a function for conditional logging to prevent
+// evaluating arguments when logging for the category is not enabled.
+#define LogPrint(category, ...)              \
+    do {                                     \
+        if (LogAcceptCategory((category))) { \
+            LogPrintf(__VA_ARGS__);          \
+        }                                    \
+    } while (0)
 
 #endif // BITCOIN_LOGGING_H

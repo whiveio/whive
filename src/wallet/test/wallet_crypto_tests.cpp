@@ -4,6 +4,8 @@
 
 #include <test/test_bitcoin.h>
 #include <utilstrencodings.h>
+#include <test/util/setup_common.h>
+#include <util/strencodings.h>
 #include <wallet/crypter.h>
 
 #include <vector>

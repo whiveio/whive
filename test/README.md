@@ -86,7 +86,7 @@ By default, up to 4 tests will be run in parallel by test_runner. To specify
 how many jobs to run, append `--jobs=n`
 
 The individual tests and the test_runner harness have many command-line
-options. Run `test_runner.py -h` to see them all.
+options. Run `test/functional/test_runner.py -h` to see them all.
 
 #### Troubleshooting and debugging test failures
 
@@ -99,7 +99,7 @@ killed all its whived nodes), then there may be a port conflict which will
 cause the test to fail. It is recommended that you run the tests on a system
 where no other whived processes are running.
 
-On linux, the test_framework will warn if there is another
+On linux, the test framework will warn if there is another
 whived process running when the tests are started.
 
 If there are zombie whived processes after test failure, you can kill them
@@ -128,7 +128,7 @@ tests will fail. If this happens, remove the cache directory (and make
 sure whived processes are stopped as above):
 
 ```bash
-rm -rf cache
+rm -rf test/cache
 killall whived
 ```
 
@@ -143,9 +143,18 @@ levels using the logger included in the test_framework, e.g.
   `test_framework.log` and no logs are output to the console.
 - when run directly, *all* logs are written to `test_framework.log` and INFO
   level and above are output to the console.
-- when run on Travis, no logs are output to the console. However, if a test
-  fails, the `test_framework.log` and whived `debug.log`s will all be dumped
+- when run by [our CI (Continuous Integration)](/ci/README.md), no logs are output to the console. However, if a test
+  fails, the `test_framework.log` and bitcoind `debug.log`s will all be dumped
   to the console to help troubleshooting.
+
+These log files can be located under the test data directory (which is always
+printed in the first line of test output):
+  - `<test data directory>/test_framework.log`
+  - `<test data directory>/node<node number>/regtest/debug.log`.
+
+The node number identifies the relevant test node, starting from `node0`, which
+corresponds to its position in the nodes list of the specific test,
+e.g. `self.nodes[0]`.
 
 To change the level of logs output to the console, use the `-l` command line
 argument.
@@ -155,7 +164,7 @@ aggregate log by running the `combine_logs.py` script. The output can be plain
 text, colorized text or html. For example:
 
 ```
-combine_logs.py -c <test data directory> | less -r
+test/functional/combine_logs.py -c <test data directory> | less -r
 ```
 
 will pipe the colorized logs from the test into less.
@@ -217,6 +226,33 @@ Note: gdb attach step may require `sudo`
 
 Util tests can be run locally by running `test/util/bitcoin-util-test.py`.
 Use the `-v` option for verbose output.
+
+### Lint tests
+
+#### Dependencies
+
+| Lint test | Dependency | Version [used by CI](../ci/lint/04_install.sh) | Installation
+|-----------|:----------:|:-------------------------------------------:|--------------
+| [`lint-python.sh`](lint/lint-python.sh) | [flake8](https://gitlab.com/pycqa/flake8) | [3.7.8](https://github.com/bitcoin/bitcoin/pull/15257) | `pip3 install flake8==3.7.8`
+| [`lint-shell.sh`](lint/lint-shell.sh) | [ShellCheck](https://github.com/koalaman/shellcheck) | [0.6.0](https://github.com/bitcoin/bitcoin/pull/15166) | [details...](https://github.com/koalaman/shellcheck#installing)
+| [`lint-shell.sh`](lint/lint-shell.sh) | [yq](https://github.com/kislyuk/yq) | default | `pip3 install yq`
+| [`lint-spelling.sh`](lint/lint-spelling.sh) | [codespell](https://github.com/codespell-project/codespell) | [1.15.0](https://github.com/bitcoin/bitcoin/pull/16186) | `pip3 install codespell==1.15.0`
+
+Please be aware that on Linux distributions all dependencies are usually available as packages, but could be outdated.
+
+#### Running the tests
+
+Individual tests can be run by directly calling the test script, e.g.:
+
+```
+test/lint/lint-filenames.sh
+```
+
+You can run all the shell-based lint tests by running:
+
+```
+test/lint/lint-all.sh
+```
 
 # Writing functional tests
 

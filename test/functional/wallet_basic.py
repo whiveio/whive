@@ -15,6 +15,7 @@ from test_framework.util import (
     connect_nodes,
     wait_until,
 )
+from test_framework.wallet_util import test_address
 
 class WalletTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -23,6 +24,7 @@ class WalletTest(BitcoinTestFramework):
             "-acceptnonstdtxn=1",
         ]] * self.num_nodes
         self.setup_clean_chain = True
+        self.supports_cli = False
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -318,6 +320,31 @@ class WalletTest(BitcoinTestFramework):
         # This will raise an exception since generate does not accept a string
         assert_raises_rpc_error(-1, "not an integer", self.nodes[0].generate, "2")
 
+        # This will raise an exception for the invalid private key format
+        assert_raises_rpc_error(-5, "Invalid private key encoding", self.nodes[0].importprivkey, "invalid")
+
+        # This will raise an exception for importing an address with the PS2H flag
+        temp_address = self.nodes[1].getnewaddress("", "p2sh-segwit")
+        assert_raises_rpc_error(-5, "Cannot use the p2sh flag with an address - use a script instead", self.nodes[0].importaddress, temp_address, "label", False, True)
+
+        # This will raise an exception for attempting to dump the private key of an address you do not own
+        assert_raises_rpc_error(-3, "Address does not refer to a key", self.nodes[0].dumpprivkey, temp_address)
+
+        # This will raise an exception for attempting to get the private key of an invalid Bitcoin address
+        assert_raises_rpc_error(-5, "Invalid Bitcoin address", self.nodes[0].dumpprivkey, "invalid")
+
+        # This will raise an exception for attempting to set a label for an invalid Bitcoin address
+        assert_raises_rpc_error(-5, "Invalid Bitcoin address", self.nodes[0].setlabel, "invalid address", "label")
+
+        # This will raise an exception for importing an invalid address
+        assert_raises_rpc_error(-5, "Invalid Bitcoin address or script", self.nodes[0].importaddress, "invalid")
+
+        # This will raise an exception for attempting to import a pubkey that isn't in hex
+        assert_raises_rpc_error(-5, "Pubkey must be a hex string", self.nodes[0].importpubkey, "not hex")
+
+        # This will raise an exception for importing an invalid pubkey
+        assert_raises_rpc_error(-5, "Pubkey is not a valid public key", self.nodes[0].importpubkey, "5361746f736869204e616b616d6f746f")
+
         # Import address and private key to check correct behavior of spendable unspents
         # 1. Send some coins to generate new UTXO
         address_to_import = self.nodes[2].getnewaddress()
@@ -370,8 +397,8 @@ class WalletTest(BitcoinTestFramework):
             for label in [u'рыба', u'𝅘𝅥𝅯']:
                 addr = self.nodes[0].getnewaddress()
                 self.nodes[0].setlabel(addr, label)
-                assert_equal(self.nodes[0].getaddressinfo(addr)['label'], label)
-                assert(label in self.nodes[0].listlabels())
+                test_address(self.nodes[0], addr, labels=[label])
+                assert label in self.nodes[0].listlabels()
         self.nodes[0].rpc.ensure_ascii = True  # restore to default
 
         # maintenance tests

@@ -9,6 +9,10 @@
 #include <util.h>
 #include <utilstrencodings.h>
 #include <test/test_bitcoin.h>
+#include <util/system.h>
+#include <util/strencodings.h>
+#include <util/string.h>
+#include <test/util/setup_common.h>
 
 #include <string>
 #include <vector>
@@ -176,7 +180,7 @@ BOOST_AUTO_TEST_CASE(key_signature_tests)
     bool found_small = false;
     for (int i = 0; i < 256; ++i) {
         sig.clear();
-        std::string msg = "A message to be signed" + std::to_string(i);
+        std::string msg = "A message to be signed" + ToString(i);
         msg_hash = Hash(msg.begin(), msg.end());
         key.Sign(msg_hash, sig);
         found = sig[3] == 0x20;

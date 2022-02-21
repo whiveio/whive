@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2018 The Bitcoin Core developers
+// Copyright (c) 2016-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,6 +27,10 @@
 #endif
 
 #include <algorithm>
+#ifdef ARENA_DEBUG
+#include <iomanip>
+#include <iostream>
+#endif
 
 LockedPoolManager* LockedPoolManager::_instance = nullptr;
 std::once_flag LockedPoolManager::init_flag;
@@ -141,7 +145,7 @@ Arena::Stats Arena::stats() const
 }
 
 #ifdef ARENA_DEBUG
-static void printchunk(char* base, size_t sz, bool used) {
+static void printchunk(void* base, size_t sz, bool used) {
     std::cout <<
         "0x" << std::hex << std::setw(16) << std::setfill('0') << base <<
         " 0x" << std::hex << std::setw(16) << std::setfill('0') << sz <<
@@ -153,7 +157,7 @@ void Arena::walk() const
         printchunk(chunk.first, chunk.second, true);
     std::cout << std::endl;
     for (const auto& chunk: chunks_free)
-        printchunk(chunk.first, chunk.second, false);
+        printchunk(chunk.first, chunk.second->first, false);
     std::cout << std::endl;
 }
 #endif
@@ -250,6 +254,9 @@ void *PosixLockedPageAllocator::AllocateLocked(size_t len, bool *lockingSuccess)
     addr = mmap(nullptr, len, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
     if (addr) {
         *lockingSuccess = mlock(addr, len) == 0;
+#ifdef MADV_DONTDUMP
+        madvise(addr, len, MADV_DONTDUMP);
+#endif
     }
     return addr;
 }

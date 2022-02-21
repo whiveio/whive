@@ -7,6 +7,7 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
         <translation>右击编辑地址或标签</translation>
     </message>
@@ -23,14 +24,17 @@
         <translation>复制选定的地址到系统剪切板</translation>
 ========
         <translation>پتہ یا لیبل کی تصیح کیلیئے داہنا کلک</translation>
+=======
+        <translation>پتہ یا لیبل میں ترمیم کرنے کیلئے دائیں کلک کریں</translation>
+>>>>>>> upstream/0.20
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>نیا پتہ تخلیق کریں</translation>
+        <translation>نیا پتہ تخلیق کریں </translation>
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>&amp;نیا</translation>
+        <translation>&amp;نیا </translation>
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
@@ -48,6 +52,10 @@
     <message>
         <source>Delete the currently selected address from the list</source>
         <translation>从列表删除选定的地址</translation>
+    </message>
+    <message>
+        <source>Enter address or label to search</source>
+        <translation>پتہ یا لیبل تلاشی کے لئے درج کریں</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -96,6 +104,10 @@
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>یہ آپ کے ادائیگی بھیجنے کے لئے بٹ کوائن ایڈریس ہیں.سکے بھیجنے سے پہلے ہمیشہ رقم اور وصول کنندہ پتہ چیک کریں۔</translation>
+    </message>
+    <message>
+        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>یہ آپ کے ادائیگی بھیجنے کے لئے بٹ کوئن ایڈریس ہیں۔ سکے بھیجنے سے پہلے ہمیشہ رقم اور وصول کنندہ پتہ چیک کریں۔</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -150,18 +162,26 @@
     <message>
         <source>(no label)</source>
         <translation>(کوئی لیبل نہیں)</translation>
+<<<<<<< HEAD
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_ur.ts
+=======
+>>>>>>> upstream/0.20
     </message>
 </context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
         <source>Show password</source>
         <translation>保存密码</translation>
 ========
         <source>Passphrase Dialog</source>
         <translation>پاسفریج ڈائیلاگ</translation>
+=======
+        <source>Passphrase Dialog</source>
+        <translation>پاسفریز ڈائیلاگ</translation>
+>>>>>>> upstream/0.20
     </message>
     <message>
         <source>Enter passphrase</source>
@@ -196,6 +216,30 @@
         <source>Confirm wallet encryption</source>
         <translation>پرس کی خفیہ کاری کی تصدیق کریں</translation>
     </message>
+    <message>
+        <source>Show passphrase</source>
+        <translation>پاسفریز دکھائیں</translation>
+    </message>
+    <message>
+        <source>Encrypt wallet</source>
+        <translation>بٹوے کو خفیہ کریں</translation>
+    </message>
+    <message>
+        <source>Unlock wallet</source>
+        <translation>بٹوا کھولیں</translation>
+    </message>
+    <message>
+        <source>Decrypt wallet</source>
+        <translation>ڈکرپٹ والیٹ</translation>
+    </message>
+    <message>
+        <source>Change passphrase</source>
+        <translation>پاسفریز تبدیل کریں</translation>
+    </message>
+    <message>
+        <source>Confirm wallet encryption</source>
+        <translation>پرس کی خفیہ کاری کی تصدیق کریں </translation>
+    </message>
     </context>
 <context>
     <name>BanTableModel</name>
@@ -204,6 +248,14 @@
     <name>BitcoinGUI</name>
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
 ========
+    <message>
+        <source>&amp;About %1</source>
+        <translation>&amp;معلومات%1</translation>
+    </message>
+    <message>
+        <source>Show information about %1</source>
+        <translation>%1 کے بارے میں معلومات دکھایں</translation>
+    </message>
     <message>
         <source>&amp;About %1</source>
         <translation>&amp;معلومات%1</translation>
@@ -223,6 +275,10 @@
     <message>
         <source>(no label)</source>
         <translation>(无标签)</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(کوئی لیبل نہیں)</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -328,6 +384,10 @@
         <source>(no label)</source>
         <translation>(کوئی لیبل نہیں)</translation>
     </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(کوئی لیبل نہیں)</translation>
+    </message>
     </context>
 <context>
     <name>SendCoinsDialog</name>
@@ -342,20 +402,20 @@
         <translation>رقم:</translation>
     </message>
     <message>
-        <source>Balance:</source>
-        <translation>بیلنس:</translation>
+        <source>(no label)</source>
+        <translation>(کوئی لیبل نہیں)</translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>(no label)</source>
         <translation>(کوئی لیبل نہیں)</translation>
     </message>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_ur.ts
+=======
+>>>>>>> upstream/0.20
 </context>
 <context>
     <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
     </context>
 <context>
     <name>ShutdownWindow</name>
@@ -393,6 +453,10 @@
     <message>
         <source>(no label)</source>
         <translation>(无标签)</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation>(کوئی لیبل نہیں)</translation>
     </message>
     <message>
         <source>(no label)</source>

@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2012-2018 The Bitcoin Core developers
+// Copyright (c) 2012-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,11 +7,14 @@
 #define BITCOIN_UI_INTERFACE_H
 
 #include <memory>
-#include <stdint.h>
 #include <string>
 
-#include <boost/signals2/last_value.hpp>
-#include <boost/signals2/signal.hpp>
+class CBlockIndex;
+namespace boost {
+namespace signals2 {
+class connection;
+}
+} // namespace boost
 
 /** General change type (added, updated, removed). */
 enum ChangeType
@@ -90,7 +93,7 @@ public:
     /**
      * Status bar alerts changed.
      */
-    boost::signals2::signal<void ()> NotifyAlertChanged;
+    ADD_SIGNALS_DECL_WRAPPER(NotifyAlertChanged, void, );
 
     /**
      * Show progress e.g. for verifychain.

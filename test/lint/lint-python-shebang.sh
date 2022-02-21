@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# Shebang must use python3 (not python or python2)
+# Copyright (c) 2018 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+# Assert expected shebang lines
 
 export LC_ALL=C
 EXIT_CODE=0

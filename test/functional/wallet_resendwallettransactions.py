@@ -5,7 +5,21 @@
 """Test resendwallettransactions RPC."""
 
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.util import assert_equal, assert_raises_rpc_error
+from test_framework.util import assert_equal, wait_until
+
+
+class P2PStoreTxInvs(P2PInterface):
+    def __init__(self):
+        super().__init__()
+        self.tx_invs_received = defaultdict(int)
+
+    def on_inv(self, message):
+        # Store how many times invs have been received for each tx.
+        for i in message.inv:
+            if i.type == 1:
+                # save txid
+                self.tx_invs_received[i.hash] += 1
+
 
 class ResendWalletTransactionsTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -51,6 +65,7 @@ class ResendWalletTransactionsTest(BitcoinTestFramework):
         node.submitblock(ToHex(block))
 
         # Transaction should not be rebroadcast
+        node.syncwithvalidationinterfacequeue()
         node.p2ps[1].sync_with_ping()
         assert_equal(node.p2ps[1].tx_invs_received[txid], 0)
 
@@ -59,6 +74,7 @@ class ResendWalletTransactionsTest(BitcoinTestFramework):
         rebroadcast_time = int(time.time()) + 41 * 60
         node.setmocktime(rebroadcast_time)
         wait_until(lambda: node.p2ps[1].tx_invs_received[txid] >= 1, lock=mininode_lock)
+
 
 if __name__ == '__main__':
     ResendWalletTransactionsTest().main()

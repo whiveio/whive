@@ -18,6 +18,8 @@
 #include <random.h>
 #include <utilstrencodings.h>
 #include <test/test_bitcoin.h>
+#include <util/strencodings.h>
+#include <test/util/setup_common.h>
 
 #include <vector>
 
@@ -205,14 +207,42 @@ static void TestChaCha20(const std::string &hexkey, uint64_t nonce, uint64_t see
     BOOST_CHECK(out == outres);
 }
 
-static std::string LongTestString(void) {
+static void TestPoly1305(const std::string &hexmessage, const std::string &hexkey, const std::string& hextag)
+{
+    std::vector<unsigned char> key = ParseHex(hexkey);
+    std::vector<unsigned char> m = ParseHex(hexmessage);
+    std::vector<unsigned char> tag = ParseHex(hextag);
+    std::vector<unsigned char> tagres;
+    tagres.resize(POLY1305_TAGLEN);
+    poly1305_auth(tagres.data(), m.data(), m.size(), key.data());
+    BOOST_CHECK(tag == tagres);
+}
+
+static void TestHKDF_SHA256_32(const std::string &ikm_hex, const std::string &salt_hex, const std::string &info_hex, const std::string &okm_check_hex) {
+    std::vector<unsigned char> initial_key_material = ParseHex(ikm_hex);
+    std::vector<unsigned char> salt = ParseHex(salt_hex);
+    std::vector<unsigned char> info = ParseHex(info_hex);
+
+
+    // our implementation only supports strings for the "info" and "salt", stringify them
+    std::string salt_stringified(reinterpret_cast<char*>(salt.data()), salt.size());
+    std::string info_stringified(reinterpret_cast<char*>(info.data()), info.size());
+
+    CHKDF_HMAC_SHA256_L32 hkdf32(initial_key_material.data(), initial_key_material.size(), salt_stringified);
+    unsigned char out[32];
+    hkdf32.Expand32(info_stringified, out);
+    BOOST_CHECK(HexStr(out, out + 32) == okm_check_hex);
+}
+
+static std::string LongTestString()
+{
     std::string ret;
-    for (int i=0; i<200000; i++) {
-        ret += (unsigned char)(i);
-        ret += (unsigned char)(i >> 4);
-        ret += (unsigned char)(i >> 8);
-        ret += (unsigned char)(i >> 12);
-        ret += (unsigned char)(i >> 16);
+    for (int i = 0; i < 200000; i++) {
+        ret += (char)(i);
+        ret += (char)(i >> 4);
+        ret += (char)(i >> 8);
+        ret += (char)(i >> 12);
+        ret += (char)(i >> 16);
     }
     return ret;
 }

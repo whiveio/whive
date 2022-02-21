@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2018 The Bitcoin Core developers
+// Copyright (c) 2017-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -149,8 +149,7 @@ bool BaseIndex::WriteBestBlock(const CBlockIndex* block_index)
     return true;
 }
 
-void BaseIndex::BlockConnected(const std::shared_ptr<const CBlock>& block, const CBlockIndex* pindex,
-                               const std::vector<CTransactionRef>& txn_conflicted)
+void BaseIndex::BlockConnected(const std::shared_ptr<const CBlock>& block, const CBlockIndex* pindex)
 {
     if (!m_synced) {
         return;
@@ -225,7 +224,7 @@ void BaseIndex::ChainStateFlushed(const CBlockLocator& locator)
     }
 }
 
-bool BaseIndex::BlockUntilSyncedToCurrentChain()
+bool BaseIndex::BlockUntilSyncedToCurrentChain() const
 {
     AssertLockNotHeld(cs_main);
 

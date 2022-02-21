@@ -7,6 +7,7 @@
 #include <net.h>
 
 #include <test/test_bitcoin.h>
+#include <test/util/setup_common.h>
 
 #include <boost/signals2/signal.hpp>
 #include <boost/test/unit_test.hpp>

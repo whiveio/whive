@@ -1,9 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2019 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <utilstrencodings.h>
+#include <util/strencodings.h>
+#include <util/string.h>
 
 #include <tinyformat.h>
 
@@ -137,7 +139,7 @@ std::string EncodeBase64(const unsigned char* pch, size_t len)
 
 std::string EncodeBase64(const std::string& str)
 {
-    return EncodeBase64((const unsigned char*)str.c_str(), str.size());
+    return EncodeBase64((const unsigned char*)str.data(), str.size());
 }
 
 std::vector<unsigned char> DecodeBase64(const char* p, bool* pfInvalid)
@@ -189,7 +191,13 @@ std::vector<unsigned char> DecodeBase64(const char* p, bool* pfInvalid)
 
 std::string DecodeBase64(const std::string& str)
 {
-    std::vector<unsigned char> vchRet = DecodeBase64(str.c_str());
+    if (!ValidAsCString(str)) {
+        if (pf_invalid) {
+            *pf_invalid = true;
+        }
+        return {};
+    }
+    std::vector<unsigned char> vchRet = DecodeBase64(str.c_str(), pf_invalid);
     return std::string((const char*)vchRet.data(), vchRet.size());
 }
 
@@ -206,7 +214,7 @@ std::string EncodeBase32(const unsigned char* pch, size_t len)
 
 std::string EncodeBase32(const std::string& str)
 {
-    return EncodeBase32((const unsigned char*)str.c_str(), str.size());
+    return EncodeBase32((const unsigned char*)str.data(), str.size());
 }
 
 std::vector<unsigned char> DecodeBase32(const char* p, bool* pfInvalid)
@@ -258,7 +266,13 @@ std::vector<unsigned char> DecodeBase32(const char* p, bool* pfInvalid)
 
 std::string DecodeBase32(const std::string& str)
 {
-    std::vector<unsigned char> vchRet = DecodeBase32(str.c_str());
+    if (!ValidAsCString(str)) {
+        if (pf_invalid) {
+            *pf_invalid = true;
+        }
+        return {};
+    }
+    std::vector<unsigned char> vchRet = DecodeBase32(str.c_str(), pf_invalid);
     return std::string((const char*)vchRet.data(), vchRet.size());
 }
 
@@ -268,7 +282,7 @@ static bool ParsePrechecks(const std::string& str)
         return false;
     if (str.size() >= 1 && (isspace(str[0]) || isspace(str[str.size()-1]))) // No padding allowed
         return false;
-    if (str.size() != strlen(str.c_str())) // No embedded NUL characters allowed
+    if (!ValidAsCString(str)) // No embedded NUL characters allowed
         return false;
     return true;
 }
@@ -391,16 +405,6 @@ std::string FormatParagraph(const std::string& in, size_t width, size_t indent)
         }
     }
     return out.str();
-}
-
-std::string i64tostr(int64_t n)
-{
-    return strprintf("%d", n);
-}
-
-std::string itostr(int n)
-{
-    return strprintf("%d", n);
 }
 
 int64_t atoi64(const char* psz)

@@ -5,6 +5,7 @@
 #include <amount.h>
 #include <policy/feerate.h>
 #include <test/test_bitcoin.h>
+#include <test/util/setup_common.h>
 
 #include <boost/test/unit_test.hpp>
 

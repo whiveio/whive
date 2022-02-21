@@ -1,34 +1,43 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_NET_PROCESSING_H
 #define BITCOIN_NET_PROCESSING_H
 
-#include <net.h>
-#include <validationinterface.h>
 #include <consensus/params.h>
+#include <net.h>
+#include <sync.h>
+#include <validationinterface.h>
+
+class CTxMemPool;
+
+extern RecursiveMutex cs_main;
+extern RecursiveMutex g_cs_orphans;
 
 /** Default for -maxorphantx, maximum number of orphan transactions kept in memory */
 static const unsigned int DEFAULT_MAX_ORPHAN_TRANSACTIONS = 100;
 /** Default number of orphan+recently-replaced txn to keep around for block reconstruction */
 static const unsigned int DEFAULT_BLOCK_RECONSTRUCTION_EXTRA_TXN = 100;
-/** Default for BIP61 (sending reject messages) */
-static constexpr bool DEFAULT_ENABLE_BIP61{false};
 static const bool DEFAULT_PEERBLOOMFILTERS = false;
 
 class PeerLogicValidation final : public CValidationInterface, public NetEventsInterface {
 private:
     CConnman* const connman;
+    BanMan* const m_banman;
+    CTxMemPool& m_mempool;
+
+    bool MaybeDiscourageAndDisconnect(CNode* pnode) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 
 public:
-    explicit PeerLogicValidation(CConnman* connman, CScheduler &scheduler, bool enable_bip61);
+    PeerLogicValidation(CConnman* connman, BanMan* banman, CScheduler& scheduler, CTxMemPool& pool);
 
     /**
      * Overridden from CValidationInterface.
      */
-    void BlockConnected(const std::shared_ptr<const CBlock>& pblock, const CBlockIndex* pindexConnected, const std::vector<CTransactionRef>& vtxConflicted) override;
+    void BlockConnected(const std::shared_ptr<const CBlock>& pblock, const CBlockIndex* pindexConnected) override;
+    void BlockDisconnected(const std::shared_ptr<const CBlock> &block, const CBlockIndex* pindex) override;
     /**
      * Overridden from CValidationInterface.
      */
@@ -36,7 +45,7 @@ public:
     /**
      * Overridden from CValidationInterface.
      */
-    void BlockChecked(const CBlock& block, const CValidationState& state) override;
+    void BlockChecked(const CBlock& block, const BlockValidationState& state) override;
     /**
      * Overridden from CValidationInterface.
      */
@@ -69,10 +78,7 @@ public:
     void EvictExtraOutboundPeers(int64_t time_in_seconds);
 
 private:
-    int64_t m_stale_tip_check_time; //! Next time to check for stale tip
-
-    /** Enable BIP61 (sending reject messages) */
-    const bool m_enable_bip61;
+    int64_t m_stale_tip_check_time; //!< Next time to check for stale tip
 };
 
 struct CNodeStateStats {

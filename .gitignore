@@ -7,8 +7,9 @@ src/bitcoind
 src/bitcoin-cli
 src/bitcoin-tx
 src/bitcoin-wallet
+src/test/fuzz
+!src/test/fuzz/*.*
 src/test/test_bitcoin
-src/test/test_bitcoin_fuzzy
 src/qt/test/test_bitcoin-qt
 src/qt/whive-qt
 src/whive-cli
@@ -33,6 +34,7 @@ build-aux/m4/ltversion.m4
 build-aux/missing
 build-aux/compile
 build-aux/test-driver
+config.cache
 config.log
 config.status
 configure
@@ -93,7 +95,7 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-bitcoin-qt
+src/qt/whive-qt
 Whive-Qt.app
 background.tiff*
 
@@ -110,6 +112,9 @@ qrc_*.cpp
 # Mac specific
 .DS_Store
 build
+
+# Previous releases
+releases
 
 #lcov
 *.gcno

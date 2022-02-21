@@ -1,6 +1,6 @@
-// Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2018-2020 Whive Core developers
+// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2018-2022 Whive Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_POLICY_FEES_H
@@ -293,10 +293,12 @@ public:
     unsigned int HighestTargetTracked(FeeEstimateHorizon horizon) const;
 
 private:
-    unsigned int nBestSeenHeight;
-    unsigned int firstRecordedHeight;
-    unsigned int historicalFirst;
-    unsigned int historicalBest;
+    mutable RecursiveMutex m_cs_fee_estimator;
+
+    unsigned int nBestSeenHeight GUARDED_BY(m_cs_fee_estimator);
+    unsigned int firstRecordedHeight GUARDED_BY(m_cs_fee_estimator);
+    unsigned int historicalFirst GUARDED_BY(m_cs_fee_estimator);
+    unsigned int historicalBest GUARDED_BY(m_cs_fee_estimator);
 
     struct TxStatsInfo
     {

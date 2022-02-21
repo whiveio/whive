@@ -14,6 +14,7 @@
 #include <sync.h>
 #include <util.h>
 #include <version.h>
+#include <util/system.h>
 
 #include <atomic>
 #include <map>
@@ -138,7 +139,7 @@ public:
 
     /** Back up the entire database to a file.
      */
-    bool Backup(const std::string& strDest);
+    bool Backup(const std::string& strDest) const;
 
     /** Make sure all changes are flushed to disk.
      */
@@ -160,7 +161,7 @@ private:
      * Only to be used at a low level, application should ideally not care
      * about this.
      */
-    bool IsDummy() { return env == nullptr; }
+    bool IsDummy() const { return env == nullptr; }
 };
 
 
@@ -192,7 +193,7 @@ public:
     /* verifies the database environment */
     static bool VerifyEnvironment(const fs::path& file_path, std::string& errorStr);
     /* verifies the database file */
-    static bool VerifyDatabaseFile(const fs::path& file_path, std::string& warningStr, std::string& errorStr, BerkeleyEnvironment::recoverFunc_type recoverFunc);
+    static bool VerifyDatabaseFile(const fs::path& file_path, std::vector<std::string>& warnings, std::string& errorStr, BerkeleyEnvironment::recoverFunc_type recoverFunc);
 
 public:
     template <typename K, typename T>

@@ -3,7 +3,7 @@
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Høyreklikk for å redigere adresse, eller beskrivelse</translation>
+        <translation>Høyreklikk for å redigere adressen eller beskrivelsen</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -338,10 +338,6 @@
         <translation>Lommebok:</translation>
     </message>
     <message>
-        <source>Wallet:</source>
-        <translation>Lommebok:</translation>
-    </message>
-    <message>
         <source>Click to disable network activity.</source>
         <translation>Klikk for å slå av nettverksaktivitet.</translation>
     </message>
@@ -376,14 +372,6 @@
     <message>
         <source>Change the passphrase used for wallet encryption</source>
         <translation>Endre passordsetningen for kryptering av lommeboken</translation>
-    </message>
-    <message>
-        <source>&amp;Debug window</source>
-        <translation>&amp;Feilsøkingsvindu</translation>
-    </message>
-    <message>
-        <source>Open debugging and diagnostic console</source>
-        <translation>Åpne konsoll for feilsøking og diagnostisering</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
@@ -446,10 +434,6 @@
         <translation>Vis lista over brukte mottakeradresser og merkelapper</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI or payment request</source>
-        <translation>Åpne en bitcoin: URI eller betalingsforespørsel</translation>
-    </message>
-    <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Kommandolinjealternativer</translation>
     </message>
@@ -498,12 +482,24 @@
         <translation>Oppdatert</translation>
     </message>
     <message>
+        <source>Node window</source>
+        <translation>Nodevindu</translation>
+    </message>
+    <message>
+        <source>Open node debugging and diagnostic console</source>
+        <translation>Åpne nodens konsoll for feilsøk og diagnostikk</translation>
+    </message>
+    <message>
         <source>&amp;Sending addresses</source>
         <translation>&amp;Avsender adresser</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses</source>
         <translation>&amp;Mottaker adresser</translation>
+    </message>
+    <message>
+        <source>Open a bitcoin: URI</source>
+        <translation>Åpne en bitcoin: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -970,10 +966,6 @@
         <translation>versjon</translation>
     </message>
     <message>
-        <source>(%1-bit)</source>
-        <translation>(%1-bit)</translation>
-    </message>
-    <message>
         <source>About %1</source>
         <translation>Om %1</translation>
     </message>
@@ -1108,6 +1100,14 @@
         <translation>Skjul</translation>
     </message>
     <message>
+        <source>Esc</source>
+        <translation>Esc</translation>
+    </message>
+    <message>
+        <source>%1 is currently syncing.  It will download headers and blocks from peers and validate them until reaching the tip of the block chain.</source>
+        <translation>%1 synkroniseres for øyeblikket. Den vil laste ned overskrifter og blokker fra jevnaldrende og validere dem til de når spissen av blokkjeden.</translation>
+    </message>
+    <message>
         <source>Unknown. Syncing Headers (%1, %2%)...</source>
         <translation>Ukjent.Synkroniser overskrifter (%1,%2%)...</translation>
     </message>
@@ -1115,24 +1115,12 @@
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open URI</source>
-        <translation>Åpne URI</translation>
-    </message>
-    <message>
-        <source>Open payment request from URI or file</source>
-        <translation>Åpne betalingsetterspørring fra URI eller fil</translation>
+        <source>Open bitcoin URI</source>
+        <translation>Åpne bitcoin URI</translation>
     </message>
     <message>
         <source>URI:</source>
         <translation>URI:</translation>
-    </message>
-    <message>
-        <source>Select payment request file</source>
-        <translation>Velg fil for betalingsetterspørring</translation>
-    </message>
-    <message>
-        <source>Select payment request file to open</source>
-        <translation>Velg betalingsforespørselsfil å åpne</translation>
     </message>
 </context>
 <context>
@@ -1523,12 +1511,16 @@
         <translation>'bitcoin: //' er ikke en gyldig URI. Bruk 'bitcoin:' i stedet.</translation>
     </message>
     <message>
-        <source>You are using a BIP70 URL which will be unsupported in the future.</source>
-        <translation>Du bruker en BIP70 URL som ikke støttes i fremtiden.</translation>
+        <source>Cannot process payment request because BIP70 is not supported.</source>
+        <translation>Kan ikke behandle betalingsforespørsel fordi BIP70 ikke støttes.</translation>
     </message>
     <message>
-        <source>Payment request fetch URL is invalid: %1</source>
-        <translation>Nettadressen for betalingsforespørselshenting er ugyldig: %1</translation>
+        <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
+        <translation>På grunn av utbredte sikkerhetsfeil i BIP70 anbefales det på det sterkeste at alle selgerinstruksjoner for å bytte lommebok ignoreres.</translation>
+    </message>
+    <message>
+        <source>If you are receiving this error you should request the merchant provide a BIP21 compatible URI.</source>
+        <translation>Hvis du mottar denne feilen, bør du be selgeren gi en BIP21-kompatibel URI.</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 support was not compiled in.</source>
@@ -1553,66 +1545,6 @@
     <message>
         <source>Payment request file handling</source>
         <translation>Håndtering av betalingsforespørselsfil</translation>
-    </message>
-    <message>
-        <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
-        <translation>Betalingsforespørselsfila kan ikke leses! Dette kan ha sitt opphav i at den er ugyldig.</translation>
-    </message>
-    <message>
-        <source>Payment request rejected</source>
-        <translation>Betalingsforespørsel avslått</translation>
-    </message>
-    <message>
-        <source>Payment request network doesn't match client network.</source>
-        <translation>Betalingsforespørselsnettverket samsvarer ikke med klientnettverket.</translation>
-    </message>
-    <message>
-        <source>Payment request expired.</source>
-        <translation>Tidsavbrudd for betalingsforespørsel</translation>
-    </message>
-    <message>
-        <source>Payment request is not initialized.</source>
-        <translation>Betalingsforespørselen er ikke igangsatt.</translation>
-    </message>
-    <message>
-        <source>Unverified payment requests to custom payment scripts are unsupported.</source>
-        <translation>Uverifiserte betalingsforespørsler til egentilpassede betalingsskript støttes ikke.</translation>
-    </message>
-    <message>
-        <source>Invalid payment request.</source>
-        <translation>Ugyldig betalingsforespørsel.</translation>
-    </message>
-    <message>
-        <source>Requested payment amount of %1 is too small (considered dust).</source>
-        <translation>Forespurt betalingsbeløp på %1 er for lite (betraktet som støv).</translation>
-    </message>
-    <message>
-        <source>Refund from %1</source>
-        <translation>Tilbakebetaling fra %1</translation>
-    </message>
-    <message>
-        <source>Payment request %1 is too large (%2 bytes, allowed %3 bytes).</source>
-        <translation>Betalingsforespørsel %1 er for stor (%2 byte, %3 byte tillatt).</translation>
-    </message>
-    <message>
-        <source>Error communicating with %1: %2</source>
-        <translation>Feil under kommunikasjon med %1: %2</translation>
-    </message>
-    <message>
-        <source>Payment request cannot be parsed!</source>
-        <translation>Betalingsforespørselen kan ikke tolkes!</translation>
-    </message>
-    <message>
-        <source>Bad response from server %1</source>
-        <translation>Feilaktig svar fra tjeneren %1</translation>
-    </message>
-    <message>
-        <source>Network request error</source>
-        <translation>Nettverksforespørselsfeil</translation>
-    </message>
-    <message>
-        <source>Payment acknowledged</source>
-        <translation>Betaling anerkjent</translation>
     </message>
 </context>
 <context>
@@ -1787,10 +1719,6 @@
         <translation>&amp;Informasjon</translation>
     </message>
     <message>
-        <source>Debug window</source>
-        <translation>Feilsøkingsvindu</translation>
-    </message>
-    <message>
         <source>General</source>
         <translation>Generelt</translation>
     </message>
@@ -1899,8 +1827,20 @@
         <translation>Synkroniserte Blokker</translation>
     </message>
     <message>
+        <source>The mapped Autonomous System used for diversifying peer selection.</source>
+        <translation>Det kartlagte autonome systemet som brukes til å diversifisere valg av fagfeller.</translation>
+    </message>
+    <message>
+        <source>Mapped AS</source>
+        <translation>Kartlagt AS</translation>
+    </message>
+    <message>
         <source>User Agent</source>
         <translation>Brukeragent</translation>
+    </message>
+    <message>
+        <source>Node window</source>
+        <translation>Nodevindu</translation>
     </message>
     <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
@@ -2114,6 +2054,14 @@
         <translation>Et valgfritt beløp å etterspørre. La stå tomt eller null for ikke å etterspørre et spesifikt beløp.</translation>
     </message>
     <message>
+        <source>An optional label to associate with the new receiving address (used by you to identify an invoice).  It is also attached to the payment request.</source>
+        <translation>En valgfri etikett for å knytte til den nye mottaksadressen (brukt av deg for å identifisere en faktura). Det er også knyttet til betalingsforespørselen.</translation>
+    </message>
+    <message>
+        <source>An optional message that is attached to the payment request and may be displayed to the sender.</source>
+        <translation>En valgfri melding som er knyttet til betalingsforespørselen og kan vises til avsenderen.</translation>
+    </message>
+    <message>
         <source>&amp;Create new receiving address</source>
         <translation>&amp;Lag ny mottakeradresse</translation>
     </message>
@@ -2323,8 +2271,12 @@
         <translation>Advarsel: Gebyroverslag er ikke tilgjengelig for tiden.</translation>
     </message>
     <message>
-        <source>collapse fee-settings</source>
-        <translation>Legg ned gebyrinnstillinger</translation>
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+
+Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
+        <translation>Spesifiser en tilpasset avgift per kB (1000 byte) av transaksjonens virtuelle størrelse.
+
+Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis per kB" for en transaksjonsstørrelse på 500 byte (halvparten av 1 kB) til slutt gi et gebyr på bare 50 satoshis.</translation>
     </message>
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
@@ -2370,6 +2322,10 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     <message>
         <source>Dust:</source>
         <translation>Støv:</translation>
+    </message>
+    <message>
+        <source>Hide transaction fee settings</source>
+        <translation>Skjul innstillinger for transaksjonsgebyr</translation>
     </message>
     <message>
         <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
@@ -2440,8 +2396,16 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
         <translation>%1 (%2 blokker)</translation>
     </message>
     <message>
+        <source>Cr&amp;eate Unsigned</source>
+        <translation>Cr &amp; eate Usignert</translation>
+    </message>
+    <message>
         <source>%1 to %2</source>
         <translation>%1 til %2</translation>
+    </message>
+    <message>
+        <source>Do you want to draft this transaction?</source>
+        <translation>Vil du utarbeide denne transaksjonen?</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
@@ -2480,6 +2444,26 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
         <translation>Bekreft forsendelse av mynter</translation>
     </message>
     <message>
+        <source>Confirm transaction proposal</source>
+        <translation>Bekreft transaksjonsforslaget</translation>
+    </message>
+    <message>
+        <source>Copy PSBT to clipboard</source>
+        <translation>Kopier PSBT til utklippstavlen</translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation>Send</translation>
+    </message>
+    <message>
+        <source>PSBT copied</source>
+        <translation>PSBT kopiert</translation>
+    </message>
+    <message>
+        <source>Watch-only balance:</source>
+        <translation>Kun-observer balanse:</translation>
+    </message>
+    <message>
         <source>The recipient address is not valid. Please recheck.</source>
         <translation>Mottakeradressen er ikke gyldig. Sjekk den igjen.</translation>
     </message>
@@ -2502,10 +2486,6 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     <message>
         <source>Transaction creation failed!</source>
         <translation>Opprettelse av transaksjon mislyktes!</translation>
-    </message>
-    <message>
-        <source>The transaction was rejected with the following reason: %1</source>
-        <translation>Transaksjonen ble avslått av følgende grunn: %1</translation>
     </message>
     <message>
         <source>A fee higher than %1 is considered an absurdly high fee.</source>
@@ -2559,10 +2539,6 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
         <translation>Velg tidligere brukt adresse</translation>
     </message>
     <message>
-        <source>This is a normal payment.</source>
-        <translation>Dette er en normal betaling.</translation>
-    </message>
-    <message>
         <source>The Bitcoin address to send the payment to</source>
         <translation>Bitcoin-adressen betalingen skal sendes til</translation>
     </message>
@@ -2581,6 +2557,10 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     <message>
         <source>Remove this entry</source>
         <translation>Fjern denne oppføringen</translation>
+    </message>
+    <message>
+        <source>The amount to send in the selected unit</source>
+        <translation>beløpet som skal sendes inn den valgte enheten.</translation>
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
@@ -2621,17 +2601,6 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     <message>
         <source>Memo:</source>
         <translation>Memo:</translation>
-    </message>
-    <message>
-        <source>Enter a label for this address to add it to your address book</source>
-        <translation>Skriv inn en merkelapp for denne adressen for å legge den til i din adressebok</translation>
-    </message>
-</context>
-<context>
-    <name>SendConfirmationDialog</name>
-    <message>
-        <source>Yes</source>
-        <translation>Ja</translation>
     </message>
 </context>
 <context>
@@ -2720,6 +2689,14 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
         <translation>Bitcoin-adressen meldingen ble signert med</translation>
     </message>
     <message>
+        <source>The signed message to verify</source>
+        <translation>Den signerte meldingen for å bekfrefte</translation>
+    </message>
+    <message>
+        <source>The signature given when the message was signed</source>
+        <translation>signaturen som ble gitt da meldingen ble signert</translation>
+    </message>
+    <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
         <translation>Verifiser meldingen for å være sikker på at den ble signert av den angitte Bitcoin-adressen</translation>
     </message>
@@ -2750,6 +2727,10 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     <message>
         <source>Wallet unlock was cancelled.</source>
         <translation>Opplåsning av lommebok ble avbrutt.</translation>
+    </message>
+    <message>
+        <source>No error</source>
+        <translation>Ingen feil</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
@@ -2927,7 +2908,7 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     </message>
     <message>
         <source> (Certificate was not verified)</source>
-        <translation>sertifikatet ble ikke bekreftet</translation>
+        <translation>(sertifikatet ble ikke bekreftet)</translation>
     </message>
     <message>
         <source>Merchant</source>
@@ -3283,6 +3264,10 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
         <translation>Ønsker du å øke gebyret?</translation>
     </message>
     <message>
+        <source>Do you want to draft a transaction with fee increase?</source>
+        <translation>Vil du utarbeide en transaksjon med gebyrøkning?</translation>
+    </message>
+    <message>
         <source>Current fee:</source>
         <translation>Nåværede gebyr:</translation>
     </message>
@@ -3297,6 +3282,14 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     <message>
         <source>Confirm fee bump</source>
         <translation>Bekreft gebyrøkning</translation>
+    </message>
+    <message>
+        <source>Can't draft transaction.</source>
+        <translation>Kan ikke utarbeide transaksjon.</translation>
+    </message>
+    <message>
+        <source>PSBT copied</source>
+        <translation>PSBT kopiert</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>
@@ -3365,10 +3358,6 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
         <translation>Beskjæring: siste lommeboksynkronisering går utenfor beskjærte data. Du må bruke -reindex (laster ned hele blokkjeden igjen for beskjærte noder)</translation>
     </message>
     <message>
-        <source>Rescans are not possible in pruned mode. You will need to use -reindex which will download the whole blockchain again.</source>
-        <translation>Omsøk er ikke mulig i beskjært modus. Du vil måtte bruke -reindex som vil laste nede hele blokkjeden på nytt.</translation>
-    </message>
-    <message>
         <source>Error: A fatal internal error occurred, see debug.log for details</source>
         <translation>Feil: En fatal intern feil oppstod, se debug.log for detaljer</translation>
     </message>
@@ -3386,7 +3375,7 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     </message>
     <message>
         <source>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</source>
-        <translation>Kan ikke generere en endringsadresse-nøkkel. Ingen taster i den interne tasten og kan ikke generere noen nøkler.</translation>
+        <translation>Kan ikke generere en ledelse-nøkkel. Ingen taster i den interne tasten og kan ikke generere noen nøkler.</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
@@ -3465,6 +3454,14 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
         <translation>Oppdaget korrupt blokkdatabase</translation>
     </message>
     <message>
+        <source>Could not find asmap file %s</source>
+        <translation>Kunne ikke finne asmap filen %s</translation>
+    </message>
+    <message>
+        <source>Could not parse asmap file %s</source>
+        <translation>Kunne ikke analysere asmap filen %s</translation>
+    </message>
+    <message>
         <source>Do you want to rebuild the block database now?</source>
         <translation>Ønsker du å gjenopprette blokkdatabasen nå?</translation>
     </message>
@@ -3538,7 +3535,7 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     </message>
     <message>
         <source>Error: Disk space is too low!</source>
-        <translation>Feil: Diskplass er for liten!</translation>
+        <translation>Feil: For lite diskplass!</translation>
     </message>
     <message>
         <source>Loading banlist...</source>
@@ -3721,10 +3718,6 @@ Merk: Siden avgiften er beregnet per byte-basis, vil et gebyr på "100 satoshis 
     <message>
         <source>This is the transaction fee you may pay when fee estimates are not available.</source>
         <translation>Dette er transaksjonsgebyret du kan betale når gebyranslag ikke er tilgjengelige.</translation>
-    </message>
-    <message>
-        <source>This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.</source>
-        <translation>Dette produktet inneholder programmet utviklet av OpenSSL-prosjektet for bruk i OpenSSL-verktøyssettet %s og kryptografisk programvare skrevet av Eric Young og UPnP-programvare skrevet av Thomas Bernard.</translation>
     </message>
     <message>
         <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>

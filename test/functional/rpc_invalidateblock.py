@@ -5,7 +5,7 @@
 """Test the invalidateblock RPC."""
 
 from test_framework.test_framework import BitcoinTestFramework
-from test_framework.address import ADDRESS_BCRT1_UNSPENDABLE
+from test_framework.address import ADDRESS_BCRT1_UNSPENDABLE_DESCRIPTOR
 from test_framework.util import (
     assert_equal,
     connect_nodes,
@@ -64,12 +64,34 @@ class InvalidateTest(BitcoinTestFramework):
         self.log.info("..and then mine a block")
         self.nodes[2].generate(1)
         self.log.info("Verify all nodes are at the right height")
-        time.sleep(5)
-        assert_equal(self.nodes[2].getblockcount(), 3)
-        assert_equal(self.nodes[0].getblockcount(), 4)
-        node1height = self.nodes[1].getblockcount()
-        if node1height < 4:
-            raise AssertionError("Node 1 reorged to a lower height: %d"%node1height)
+        wait_until(lambda: self.nodes[2].getblockcount() == 3, timeout=5)
+        wait_until(lambda: self.nodes[0].getblockcount() == 4, timeout=5)
+        wait_until(lambda: self.nodes[1].getblockcount() == 4, timeout=5)
+
+        self.log.info("Verify that we reconsider all ancestors as well")
+        blocks = self.nodes[1].generatetodescriptor(10, ADDRESS_BCRT1_UNSPENDABLE_DESCRIPTOR)
+        assert_equal(self.nodes[1].getbestblockhash(), blocks[-1])
+        # Invalidate the two blocks at the tip
+        self.nodes[1].invalidateblock(blocks[-1])
+        self.nodes[1].invalidateblock(blocks[-2])
+        assert_equal(self.nodes[1].getbestblockhash(), blocks[-3])
+        # Reconsider only the previous tip
+        self.nodes[1].reconsiderblock(blocks[-1])
+        # Should be back at the tip by now
+        assert_equal(self.nodes[1].getbestblockhash(), blocks[-1])
+
+        self.log.info("Verify that we reconsider all descendants")
+        blocks = self.nodes[1].generatetodescriptor(10, ADDRESS_BCRT1_UNSPENDABLE_DESCRIPTOR)
+        assert_equal(self.nodes[1].getbestblockhash(), blocks[-1])
+        # Invalidate the two blocks at the tip
+        self.nodes[1].invalidateblock(blocks[-2])
+        self.nodes[1].invalidateblock(blocks[-4])
+        assert_equal(self.nodes[1].getbestblockhash(), blocks[-5])
+        # Reconsider only the previous tip
+        self.nodes[1].reconsiderblock(blocks[-4])
+        # Should be back at the tip by now
+        assert_equal(self.nodes[1].getbestblockhash(), blocks[-1])
+
 
 if __name__ == '__main__':
     InvalidateTest().main()

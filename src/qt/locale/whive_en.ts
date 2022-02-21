@@ -90,11 +90,7 @@
     </message>
     <message>
         <location line="+5"/>
-<<<<<<< HEAD:src/qt/locale/whive_en.ts
-        <source>These are your Whive addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-=======
-        <source>These are your Bitcoin addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
->>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+        <source>These are your Whive addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -230,10 +226,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-<<<<<<< HEAD:src/qt/locale/whive_en.ts
-        <location line="-56"/>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-=======
         <location line="-145"/>
         <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation type="unfinished"></translation>
@@ -246,7 +238,6 @@
     <message>
         <location line="+53"/>
         <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
->>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -270,36 +261,21 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-<<<<<<< HEAD:src/qt/locale/whive_en.ts
-        <location line="+9"/>
-        <location line="+7"/>
-        <location line="+42"/>
-=======
         <location line="+8"/>
         <location line="+8"/>
         <location line="+43"/>
->>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
         <location line="+6"/>
         <source>Wallet encryption failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-<<<<<<< HEAD:src/qt/locale/whive_en.ts
-        <location line="-54"/>
-=======
         <location line="-56"/>
->>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-<<<<<<< HEAD:src/qt/locale/whive_en.ts
-        <location line="+7"/>
-        <location line="+48"/>
-=======
         <location line="+8"/>
         <location line="+49"/>
->>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
         <source>The supplied passphrases do not match.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -335,7 +311,7 @@
 <context>
     <name>BanTableModel</name>
     <message>
-        <location filename="../bantablemodel.cpp" line="+88"/>
+        <location filename="../bantablemodel.cpp" line="+86"/>
         <source>IP/Netmask</source>
         <translation type="unfinished"></translation>
     </message>
@@ -348,29 +324,33 @@
 <context>
     <name>WhiveGUI</name>
     <message>
-<<<<<<< HEAD:src/qt/locale/whive_en.ts
-        <location filename="../bitcoingui.cpp" line="+307"/>
-=======
         <location filename="../bitcoingui.cpp" line="+316"/>
->>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
         <source>Sign &amp;message...</source>
         <translation>Sign &amp;message...</translation>
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+638"/>
 =======
         <location line="+625"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+630"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Synchronizing with network...</source>
         <translation>Synchronizing with network...</translation>
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-716"/>
 =======
         <location line="-703"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-708"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>&amp;Overview</source>
         <translation>&amp;Overview</translation>
     </message>
@@ -478,17 +458,25 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+190"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+191"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Wallet:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+334"/>
 =======
         <location line="+335"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+339"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Click to disable network activity.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -523,10 +511,14 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-1034"/>
 =======
         <location line="-1023"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-1028"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Send coins to a Bitcoin address</source>
         <translation>Send coins to a Bitcoin address</translation>
     </message>
@@ -541,17 +533,7 @@
         <translation>Change the passphrase used for wallet encryption</translation>
     </message>
     <message>
-        <location line="+6"/>
-        <source>&amp;Debug window</source>
-        <translation>&amp;Debug window</translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Open debugging and diagnostic console</source>
-        <translation>Open debugging and diagnostic console</translation>
-    </message>
-    <message>
-        <location line="-4"/>
+        <location line="+3"/>
         <source>&amp;Verify message...</source>
         <translation>&amp;Verify message...</translation>
     </message>
@@ -601,10 +583,14 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+118"/>
 =======
         <location line="+111"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+111"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>&amp;File</source>
         <translation>&amp;File</translation>
     </message>
@@ -619,10 +605,14 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+9"/>
 =======
         <location line="+58"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+59"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>&amp;Help</source>
         <translation>&amp;Help</translation>
     </message>
@@ -633,10 +623,14 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-271"/>
 =======
         <location line="-257"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-258"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -651,6 +645,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+3"/>
         <source>Open a whive: URI or payment request</source>
         <translation type="unfinished"></translation>
@@ -661,15 +656,22 @@
 =======
         <location line="+14"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+17"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>&amp;Command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+540"/>
 =======
         <location line="+523"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+528"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>%n active connection(s) to Bitcoin network</source>
         <translation>
             <numerusform>%n active connection to Whive network</numerusform>
@@ -731,10 +733,24 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-657"/>
 =======
         <location line="-644"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-655"/>
+        <source>Node window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Open node debugging and diagnostic console</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>&amp;Sending addresses</source>
         <translation type="unfinished"></translation>
     </message>
@@ -744,7 +760,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+4"/>
+        <source>Open a bitcoin: URI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>Open Wallet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -765,10 +786,14 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+4"/>
 =======
         <location line="+8"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+8"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -826,10 +851,14 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+232"/>
 =======
         <location line="+233"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+238"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>%1 client</source>
         <translation type="unfinished"></translation>
     </message>
@@ -921,10 +950,14 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../bitcoin.cpp" line="+529"/>
         <source>A fatal error occurred. Whive can no longer continue safely and will quit.</source>
 =======
         <location filename="../bitcoin.cpp" line="+386"/>
+=======
+        <location filename="../bitcoin.cpp" line="+384"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>A fatal error occurred. Bitcoin can no longer continue safely and will quit.</source>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
@@ -1083,7 +1116,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+315"/>
+=======
+        <location line="+308"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>(%1 locked)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1108,7 +1145,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+38"/>
         <location line="+54"/>
         <source>(no label)</source>
         <translation type="unfinished"></translation>
@@ -1127,7 +1164,11 @@
 <context>
     <name>CreateWalletActivity</name>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../walletcontroller.cpp" line="+207"/>
+=======
+        <location filename="../walletcontroller.cpp" line="+217"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1261,7 +1302,11 @@
 <context>
     <name>FreespaceChecker</name>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../intro.cpp" line="+77"/>
+=======
+        <location filename="../intro.cpp" line="+71"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>A new data directory will be created.</source>
         <translation>A new data directory will be created.</translation>
     </message>
@@ -1290,21 +1335,19 @@
     <name>HelpMessageDialog</name>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../utilitydialog.cpp" line="+41"/>
 =======
         <location filename="../utilitydialog.cpp" line="+39"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location filename="../utilitydialog.cpp" line="+35"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>version</source>
         <translation type="unfinished">version</translation>
     </message>
     <message>
-        <location line="+5"/>
-        <location line="+2"/>
-        <source>(%1-bit)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+5"/>
+        <location line="+4"/>
         <source>About %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1362,28 +1405,39 @@
         <translation>Use a custom data directory:</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../intro.cpp" line="+20"/>
         <source>Whive</source>
         <translation type="unfinished">Whive</translation>
+=======
+        <location filename="../intro.cpp" line="+32"/>
+        <source>Bitcoin</source>
+        <translation type="unfinished">Bitcoin</translation>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+8"/>
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+212"/>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+3"/>
         <source>Approximately %1 GB of data will be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+8"/>
         <source>%1 will download and store a copy of the Whive block chain.</source>
+=======
+        <location line="+4"/>
+        <source>%1 will download and store a copy of the Bitcoin block chain.</source>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1393,10 +1447,14 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+73"/>
 =======
         <location line="+79"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-137"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Error: Specified data directory &quot;%1&quot; cannot be created.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1406,7 +1464,7 @@
         <translation>Error</translation>
     </message>
     <message numerus="yes">
-        <location line="+9"/>
+        <location line="+21"/>
         <source>%n GB of free space available</source>
         <translation>
             <numerusform>%n GB of free space available</numerusform>
@@ -1414,7 +1472,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+3"/>
+        <location line="+2"/>
         <source>(of %n GB needed)</source>
         <translation>
             <numerusform>(of %n GB needed)</numerusform>
@@ -1422,7 +1480,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location line="+4"/>
+        <location line="+3"/>
         <source>(%n GB needed for full chain)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1455,7 +1513,7 @@
     <message>
         <location line="+7"/>
         <location line="+26"/>
-        <location filename="../modaloverlay.cpp" line="+141"/>
+        <location filename="../modaloverlay.cpp" line="+145"/>
         <source>Unknown...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1491,7 +1549,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../modaloverlay.cpp" line="+6"/>
+        <location line="+3"/>
+        <source>Esc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../modaloverlay.cpp" line="-111"/>
+        <source>%1 is currently syncing.  It will download headers and blocks from peers and validate them until reaching the tip of the block chain.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+117"/>
         <source>Unknown. Syncing Headers (%1, %2%)...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1500,27 +1568,12 @@
     <name>OpenURIDialog</name>
     <message>
         <location filename="../forms/openuridialog.ui" line="+14"/>
-        <source>Open URI</source>
+        <source>Open bitcoin URI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
-        <source>Open payment request from URI or file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+9"/>
+        <location line="+8"/>
         <source>URI:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+10"/>
-        <source>Select payment request file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../openuridialog.cpp" line="+45"/>
-        <source>Select payment request file to open</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1624,12 +1677,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+31"/>
         <source>Active command-line options that override above options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+45"/>
+=======
+        <location line="+79"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Open the %1 configuration file from the working directory.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1649,7 +1706,7 @@
         <translation>&amp;Reset Options</translation>
     </message>
     <message>
-        <location line="-529"/>
+        <location line="-532"/>
         <source>&amp;Network</source>
         <translation>&amp;Network</translation>
     </message>
@@ -1832,7 +1889,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+182"/>
+=======
+        <location line="+44"/>
+        <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+141"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -1848,10 +1914,14 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+56"/>
 =======
         <location line="+67"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+65"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>none</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2004,6 +2074,7 @@
     <name>PaymentServer</name>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../paymentserver.cpp" line="+317"/>
         <location line="+215"/>
 =======
@@ -2014,10 +2085,14 @@
         <location line="+108"/>
         <location line="+14"/>
         <location line="+18"/>
+=======
+        <location filename="../paymentserver.cpp" line="+174"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Payment request error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-398"/>
         <source>Cannot start whive: click-to-pay handler</source>
@@ -2029,31 +2104,45 @@
         <location line="+13"/>
 =======
         <location line="-531"/>
+=======
+        <location line="+1"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Cannot start bitcoin: click-to-pay handler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+62"/>
         <location line="+9"/>
         <location line="+16"/>
         <location line="+16"/>
         <location line="+7"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+50"/>
+        <location line="+13"/>
+        <location line="+6"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <location line="+7"/>
         <source>URI handling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-41"/>
         <source>&apos;whive://&apos; is not a valid URI. Use &apos;whive:&apos; instead.</source>
 =======
         <location line="-55"/>
+=======
+        <location line="-26"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+22"/>
         <source>Payment request fetch URL is invalid: %1</source>
         <translation type="unfinished"></translation>
@@ -2070,18 +2159,32 @@
     <message>
         <location line="-37"/>
         <location line="+38"/>
+=======
+        <location line="+14"/>
+        <location line="+23"/>
+        <source>Cannot process payment request because BIP70 is not supported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-22"/>
+        <location line="+23"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Due to widespread security flaws in BIP70 it&apos;s strongly recommended that any merchant instructions to switch wallets be ignored.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-37"/>
-        <location line="+38"/>
+        <location line="-22"/>
+        <location line="+23"/>
         <source>If you are receiving this error you should request the merchant provide a BIP21 compatible URI.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-34"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-20"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Invalid payment address %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2092,14 +2195,18 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+13"/>
 =======
         <location line="+14"/>
+=======
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <location line="+9"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
         <source>Payment request file handling</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
     <message>
         <location line="-8"/>
         <source>Payment request file cannot be read! This can be caused by an invalid payment request file.</source>
@@ -2185,11 +2292,13 @@
         <source>Payment acknowledged</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
 </context>
 <context>
     <name>PeerTableModel</name>
     <message>
-        <location filename="../peertablemodel.cpp" line="+110"/>
+        <location filename="../peertablemodel.cpp" line="+107"/>
         <source>User Agent</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2227,6 +2336,7 @@
         <translation type="unfinished">Amount</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../guiutil.cpp" line="+108"/>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
         <source>Enter a Whive address (e.g. %1)</source>
@@ -2235,12 +2345,19 @@
     <message>
         <location line="+695"/>
 =======
+=======
+        <location filename="../guiutil.cpp" line="+111"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Enter a Bitcoin address (e.g. %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+699"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+618"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>%1 d</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2256,7 +2373,7 @@
     </message>
     <message>
         <location line="+2"/>
-        <location line="+47"/>
+        <location line="+48"/>
         <source>%1 s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2351,6 +2468,7 @@
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../bitcoin.cpp" line="+189"/>
         <source>%1 didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
@@ -2373,6 +2491,9 @@
 =======
         <location filename="../bitcoin.cpp" line="+118"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location filename="../bitcoin.cpp" line="+114"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Error: Specified data directory &quot;%1&quot; does not exist.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2387,7 +2508,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+65"/>
         <source>%1 didn&apos;t yet exit safely...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2467,11 +2588,13 @@
         <location line="+26"/>
         <location line="+23"/>
         <location line="+23"/>
+        <location line="+26"/>
+        <location filename="../rpcconsole.cpp" line="+1121"/>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
     <message>
-        <location line="-1430"/>
+        <location line="-1456"/>
         <source>Client version</source>
         <translation>Client version</translation>
     </message>
@@ -2481,12 +2604,7 @@
         <translation>&amp;Information</translation>
     </message>
     <message>
-        <location line="-29"/>
-        <source>Debug window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+44"/>
+        <location line="+15"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2585,12 +2703,17 @@
     <message>
         <location line="+65"/>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../rpcconsole.cpp" line="+501"/>
         <location line="+757"/>
 =======
         <location filename="../rpcconsole.cpp" line="+497"/>
         <location line="+759"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location filename="../rpcconsole.cpp" line="-624"/>
+        <location line="+756"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Select a peer to view detailed information.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2625,13 +2748,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1164"/>
+        <location line="+256"/>
+        <source>The mapped Autonomous System used for diversifying peer selection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Mapped AS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-1423"/>
         <location line="+1072"/>
         <source>User Agent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-737"/>
+        <location line="-1146"/>
+        <source>Node window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+409"/>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2641,7 +2779,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+32"/>
         <source>Increase font size</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2721,7 +2859,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../rpcconsole.cpp" line="-414"/>
+=======
+        <location filename="../rpcconsole.cpp" line="-408"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>In:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2817,7 +2959,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+68"/>
+=======
+        <location line="+66"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Executing command without any wallet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2863,7 +3009,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+13"/>
         <location line="+6"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
@@ -2888,13 +3034,16 @@
     </message>
     <message>
         <location line="-3"/>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+46"/>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
+=======
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-30"/>
-        <location line="+14"/>
+        <location line="+30"/>
         <source>An optional label to associate with the new receiving address.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2910,7 +3059,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-76"/>
+        <location line="-121"/>
+        <source>An optional label to associate with the new receiving address (used by you to identify an invoice).  It is also attached to the payment request.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>An optional message that is attached to the payment request and may be displayed to the sender.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+15"/>
         <source>&amp;Create new receiving address</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2960,7 +3119,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../receivecoinsdialog.cpp" line="+46"/>
+        <location filename="../receivecoinsdialog.cpp" line="+45"/>
         <source>Copy URI</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3003,7 +3162,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../receiverequestdialog.cpp" line="+63"/>
+        <location filename="../receiverequestdialog.cpp" line="+64"/>
         <source>Request payment to %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3090,10 +3249,14 @@
     <message>
         <location filename="../forms/sendcoinsdialog.ui" line="+14"/>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../sendcoinsdialog.cpp" line="+588"/>
 =======
         <location filename="../sendcoinsdialog.cpp" line="+601"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location filename="../sendcoinsdialog.cpp" line="+618"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Send Coins</source>
         <translation>Send Coins</translation>
     </message>
@@ -3178,12 +3341,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+26"/>
-        <source>collapse fee-settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+51"/>
+        <location line="+77"/>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction&apos;s virtual size.
 
 Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satoshis per kB&quot; for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
@@ -3246,7 +3404,26 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+696"/>
+=======
+        <location line="+457"/>
+        <source>Hide transaction fee settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+86"/>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+131"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Confirmation time target:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3282,10 +3459,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../sendcoinsdialog.cpp" line="-504"/>
 =======
         <location filename="../sendcoinsdialog.cpp" line="-513"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location filename="../sendcoinsdialog.cpp" line="-528"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Copy quantity</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3326,35 +3507,66 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+131"/>
         <location line="+5"/>
         <location line="+5"/>
         <location line="+4"/>
 =======
         <location line="+118"/>
+=======
+        <location line="+22"/>
+        <source>Cr&amp;eate Unsigned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Creates a Partially Signed Bitcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+95"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source> from wallet &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+14"/>
         <location line="+11"/>
         <source>%1 to &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-6"/>
         <location line="+10"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+5"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>%1 to %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+6"/>
+=======
+        <location line="+8"/>
+        <source>Do you want to draft this transaction?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Are you sure you want to send?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+5"/>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+43"/>
         <source>or</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3365,6 +3577,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-57"/>
         <source>from wallet %1</source>
         <translation type="unfinished"></translation>
@@ -3374,11 +3587,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 =======
         <location line="-21"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-22"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Please, review your transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+8"/>
         <source>Transaction fee</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3398,16 +3614,45 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+5"/>
         <source>Confirm send coins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+192"/>
 =======
         <location line="+190"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+0"/>
+        <source>Confirm transaction proposal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy PSBT to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Send</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>PSBT copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+166"/>
+        <source>Watch-only balance:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+24"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>The recipient address is not valid. Please recheck.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3438,11 +3683,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+4"/>
-        <source>The transaction was rejected with the following reason: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+4"/>
         <source>A fee higher than %1 is considered an absurdly high fee.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3457,7 +3697,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+43"/>
+=======
+        <location line="+118"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Estimated to begin confirmation within %n block(s).</source>
         <translation>
             <numerusform>Estimated to begin confirmation within %n block.</numerusform>
@@ -3465,8 +3709,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         </translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+101"/>
         <source>Warning: Invalid Whive address</source>
+=======
+        <location line="+100"/>
+        <source>Warning: Invalid Bitcoin address</source>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3494,13 +3743,13 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     <name>SendCoinsEntry</name>
     <message>
         <location filename="../forms/sendcoinsentry.ui" line="+155"/>
-        <location line="+546"/>
+        <location line="+550"/>
         <location line="+533"/>
         <source>A&amp;mount:</source>
         <translation>A&amp;mount:</translation>
     </message>
     <message>
-        <location line="-1192"/>
+        <location line="-1199"/>
         <source>Pay &amp;To:</source>
         <translation>Pay &amp;To:</translation>
     </message>
@@ -3515,6 +3764,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-46"/>
         <source>This is a normal payment.</source>
         <translation type="unfinished"></translation>
@@ -3522,6 +3772,10 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     <message>
         <location line="+39"/>
         <source>The Whive address to send the payment to</source>
+=======
+        <location line="-7"/>
+        <source>The Bitcoin address to send the payment to</source>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3541,14 +3795,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+7"/>
-        <location line="+555"/>
+        <location line="+562"/>
         <location line="+533"/>
         <source>Remove this entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-1028"/>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less whives than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+=======
+        <location line="-1035"/>
+        <source>The amount to send in the selected unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3577,13 +3841,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1016"/>
+        <location line="-1023"/>
+        <location line="+3"/>
         <source>Enter a label for this address to add it to the list of used addresses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+54"/>
         <source>A message that was attached to the whive: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
+=======
+        <location line="+58"/>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3598,6 +3868,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <source>Memo:</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
     <message>
         <location filename="../sendcoinsentry.cpp" line="+35"/>
         <source>Enter a label for this address to add it to your address book</source>
@@ -3612,6 +3883,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
 </context>
 <context>
     <name>ShutdownWindow</name>
@@ -3650,18 +3923,18 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+7"/>
-        <location line="+210"/>
+        <location line="+216"/>
         <source>Choose previously used address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-200"/>
-        <location line="+210"/>
+        <location line="-206"/>
+        <location line="+216"/>
         <source>Alt+A</source>
         <translation>Alt+A</translation>
     </message>
     <message>
-        <location line="-200"/>
+        <location line="-206"/>
         <source>Paste address from clipboard</source>
         <translation>Paste address from clipboard</translation>
     </message>
@@ -3672,6 +3945,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+12"/>
+        <location line="+3"/>
         <source>Enter the message you want to sign here</source>
         <translation>Enter the message you want to sign here</translation>
     </message>
@@ -3681,7 +3955,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>Signature</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="+30"/>
         <source>Copy the current signature to the system clipboard</source>
         <translation>Copy the current signature to the system clipboard</translation>
     </message>
@@ -3702,12 +3976,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
         <location line="+3"/>
-        <location line="+143"/>
+        <location line="+157"/>
         <source>Clear &amp;All</source>
         <translation>Clear &amp;All</translation>
     </message>
     <message>
-        <location line="-84"/>
+        <location line="-98"/>
         <source>&amp;Verify Message</source>
         <translation>&amp;Verify Message</translation>
     </message>
@@ -3722,9 +3996,27 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+37"/>
         <source>Verify the message to ensure it was signed with the specified Whive address</source>
         <translation>Verify the message to ensure it was signed with the specified Whive address</translation>
+=======
+        <location line="+29"/>
+        <location line="+3"/>
+        <source>The signed message to verify</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+3"/>
+        <source>The signature given when the message was signed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
+        <translation>Verify the message to ensure it was signed with the specified Bitcoin address</translation>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
     </message>
     <message>
         <location line="+3"/>
@@ -3737,63 +4029,68 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>Reset all verify message fields</translation>
     </message>
     <message>
-        <location filename="../signverifymessagedialog.cpp" line="+39"/>
+        <location line="-210"/>
         <source>Click &quot;Sign Message&quot; to generate signature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+81"/>
-        <location line="+78"/>
+        <location filename="../signverifymessagedialog.cpp" line="+117"/>
+        <location line="+99"/>
         <source>The entered address is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-78"/>
+        <location line="-99"/>
         <location line="+7"/>
-        <location line="+71"/>
-        <location line="+6"/>
+        <location line="+93"/>
+        <location line="+7"/>
         <source>Please check the address and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-77"/>
-        <location line="+77"/>
+        <location line="-100"/>
+        <location line="+99"/>
         <source>The entered address does not refer to a key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-69"/>
+        <location line="-91"/>
         <source>Wallet unlock was cancelled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+11"/>
+        <source>No error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
         <source>Private key for the entered address is not available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+3"/>
         <source>Message signing failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+12"/>
         <source>Message signed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+55"/>
+        <location line="+69"/>
         <source>The signature could not be decoded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+0"/>
-        <location line="+13"/>
+        <location line="+1"/>
+        <location line="+7"/>
         <source>Please check the signature and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+0"/>
+        <location line="-1"/>
         <source>The signature did not match the message digest.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3803,7 +4100,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="-32"/>
         <source>Message verified.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3872,10 +4169,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+23"/>
 =======
         <location line="+52"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+50"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Status</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4027,15 +4328,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+18"/>
 =======
         <location line="+23"/>
+=======
+        <location line="+16"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source> (Certificate was not verified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+4"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+3"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Merchant</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4190,7 +4499,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+15"/>
+        <location line="+16"/>
         <source>(n/a)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4456,7 +4765,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>WalletController</name>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../walletcontroller.cpp" line="-211"/>
+=======
+        <location filename="../walletcontroller.cpp" line="-219"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Close wallet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4474,7 +4787,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>WalletFrame</name>
     <message>
-        <location filename="../walletframe.cpp" line="+29"/>
+        <location filename="../walletframe.cpp" line="+28"/>
         <source>No wallet has been loaded.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4482,11 +4795,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>WalletModel</name>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location filename="../walletmodel.cpp" line="+215"/>
+=======
+        <location filename="../walletmodel.cpp" line="+195"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Send Coins</source>
         <translation type="unfinished">Send Coins</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+308"/>
 =======
@@ -4494,17 +4812,32 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
         <location line="+39"/>
         <location line="+6"/>
+=======
+        <location line="+288"/>
+        <location line="+45"/>
+        <location line="+13"/>
+        <location line="+5"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Fee bump error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-45"/>
+=======
+        <location line="-63"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Increasing transaction fee failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+8"/>
         <source>Do you want to increase the fee?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Do you want to draft a transaction with fee increase?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4528,7 +4861,17 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+21"/>
+        <source>Can&apos;t draft transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>PSBT copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+6"/>
         <source>Can&apos;t sign transaction.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4540,7 +4883,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
 =======
     <message>
-        <location line="+30"/>
+        <location line="+20"/>
         <source>default wallet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4549,7 +4892,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 <context>
     <name>WalletView</name>
     <message>
-        <location filename="../walletview.cpp" line="+47"/>
+        <location filename="../walletview.cpp" line="+46"/>
         <source>&amp;Export</source>
         <translation type="unfinished">&amp;Export</translation>
     </message>
@@ -4559,7 +4902,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished">Export the data in the current tab to a file</translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+207"/>
+=======
+        <location line="+182"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Backup Wallet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4612,6 +4959,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+3"/>
         <source>Rescans are not possible in pruned mode. You will need to use -reindex which will download the whole blockchain again.</source>
         <translation type="unfinished"></translation>
@@ -4622,6 +4970,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 =======
         <location line="+70"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+68"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Error: A fatal internal error occurred, see debug.log for details</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4637,6 +4988,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-184"/>
         <source>Whive Core</source>
         <translation type="unfinished">Whive Core</translation>
@@ -4646,6 +4998,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 =======
         <location line="-167"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-162"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>The %s developers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4685,7 +5040,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+11"/>
+        <location line="+8"/>
         <source>The block database contains a block which appears to be from the future. This may be due to your computer&apos;s date and time being set incorrectly. Only rebuild the block database if you are sure that your computer&apos;s date and time are correct</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4700,7 +5055,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+8"/>
         <source>Unable to replay blocks. You will need to rebuild the database using -reindex-chainstate.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4753,6 +5108,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <location line="+1"/>
         <source>Corrupted block database detected</source>
         <translation>Corrupted block database detected</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Could not find asmap file %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Could not parse asmap file %s</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4994,10 +5359,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-171"/>
 =======
         <location line="-156"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-151"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5007,26 +5376,34 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+22"/>
+        <location line="+19"/>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+44"/>
 =======
         <location line="+35"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="+31"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+22"/>
         <source>Error loading %s: You can&apos;t disable HD on an already existing HD wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
+=======
+        <location line="+27"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Error reading from database, shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5165,30 +5542,33 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-197"/>
 =======
         <location line="-179"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-174"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+18"/>
         <source>Error loading %s: You can&apos;t enable HD on an already existing non-HD wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+46"/>
+=======
+        <location line="+53"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>This is the transaction fee you may pay when fee estimates are not available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit %s and cryptographic software written by Eric Young and UPnP software written by Thomas Bernard.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+4"/>
         <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5222,7 +5602,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+19"/>
+=======
+        <location line="+20"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5286,6 +5670,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
     </message>
     <message>
 <<<<<<< HEAD:src/qt/locale/whive_en.ts
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="-134"/>
         <source>Can&apos;t generate a change-address key. Private keys are disabled for this wallet.</source>
         <translation type="unfinished"></translation>
@@ -5295,6 +5680,9 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
 =======
         <location line="-107"/>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_en.ts
+=======
+        <location line="-102"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5304,7 +5692,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD:src/qt/locale/whive_en.ts
         <location line="+60"/>
+=======
+        <location line="+41"/>
+>>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <source>Warning: Private keys detected in wallet {%s} with disabled private keys</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5314,7 +5706,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+39"/>
         <source>Loading block index...</source>
         <translation>Loading block index...</translation>
     </message>
@@ -5324,12 +5716,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of &quot;100 satos
         <translation>Loading wallet...</translation>
     </message>
     <message>
-        <location line="-40"/>
+        <location line="-42"/>
         <source>Cannot downgrade wallet</source>
         <translation>Cannot downgrade wallet</translation>
     </message>
     <message>
-        <location line="+49"/>
+        <location line="+51"/>
         <source>Rescanning...</source>
         <translation>Rescanning...</translation>
     </message>

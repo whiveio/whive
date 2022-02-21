@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_my.ts
+=======
+>>>>>>> upstream/0.20
 <TS language="my" version="2.1">
 <context>
     <name>AddressBookPage</name>
@@ -37,6 +40,7 @@
     <message>
         <source>&amp;Delete</source>
         <translation>&amp;ဖျက်</translation>
+<<<<<<< HEAD
 ========
 <TS language="yo" version="2.1">
 <context>
@@ -45,6 +49,8 @@
         <source>&amp;New</source>
         <translation>&amp;ati tuntun</translation>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
+=======
+>>>>>>> upstream/0.20
     </message>
     </context>
 <context>
@@ -59,6 +65,7 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
+<<<<<<< HEAD
         <source>Open Wallet</source>
         <translation>sii apamowo</translation>
     </message>
@@ -73,10 +80,23 @@
     <message>
         <source>Close wallet</source>
         <translation>Ti Apamowo</translation>
+=======
+        <source>Error</source>
+        <translation>အမှား</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>သတိပေးချက်</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation>အချက်အလက်</translation>
+>>>>>>> upstream/0.20
     </message>
     </context>
 <context>
     <name>CoinControlDialog</name>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_my.ts
 ========
     <message>
@@ -84,6 +104,8 @@
         <translation>Ojo</translation>
     </message>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
+=======
+>>>>>>> upstream/0.20
     </context>
 <context>
     <name>CreateWalletActivity</name>
@@ -96,16 +118,20 @@
     </context>
 <context>
     <name>FreespaceChecker</name>
+<<<<<<< HEAD
     <message>
         <source>name</source>
         <translation>oruko</translation>
     </message>
+=======
+>>>>>>> upstream/0.20
     </context>
 <context>
     <name>HelpMessageDialog</name>
     </context>
 <context>
     <name>Intro</name>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_my.ts
 ========
     <message>
@@ -113,6 +139,12 @@
         <translation>Ka bo</translation>
     </message>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
+=======
+    <message>
+        <source>Error</source>
+        <translation>အမှား</translation>
+    </message>
+>>>>>>> upstream/0.20
     </context>
 <context>
     <name>ModalOverlay</name>
@@ -126,8 +158,13 @@
 <context>
     <name>OptionsDialog</name>
     <message>
+<<<<<<< HEAD
         <source>&amp;OK</source>
         <translation>&amp;o da</translation>
+=======
+        <source>Error</source>
+        <translation>အမှား</translation>
+>>>>>>> upstream/0.20
     </message>
     </context>
 <context>
@@ -144,6 +181,7 @@
     </context>
 <context>
     <name>QRImageWidget</name>
+<<<<<<< HEAD
     <message>
         <source>&amp;Save Image...</source>
         <translation>fi aworan &amp;pamo</translation>
@@ -159,12 +197,18 @@
         <source>1 &amp;year</source>
         <translation>okan ati &amp;odun</translation>
     </message>
+=======
+    </context>
+<context>
+    <name>RPCConsole</name>
+>>>>>>> upstream/0.20
     </context>
 <context>
     <name>ReceiveCoinsDialog</name>
     </context>
 <context>
     <name>ReceiveRequestDialog</name>
+<<<<<<< HEAD
     <message>
         <source>&amp;Save Image...</source>
         <translation>fi aworan &amp;pamo</translation>
@@ -176,6 +220,11 @@
         <source>Date</source>
         <translation>Ojo</translation>
     </message>
+=======
+    </context>
+<context>
+    <name>RecentRequestsTableModel</name>
+>>>>>>> upstream/0.20
     </context>
 <context>
     <name>SendCoinsDialog</name>
@@ -184,9 +233,12 @@
     <name>SendCoinsEntry</name>
     </context>
 <context>
+<<<<<<< HEAD
     <name>SendConfirmationDialog</name>
     </context>
 <context>
+=======
+>>>>>>> upstream/0.20
     <name>ShutdownWindow</name>
     </context>
 <context>
@@ -197,6 +249,7 @@
     </context>
 <context>
     <name>TransactionDesc</name>
+<<<<<<< HEAD
     <message>
         <source>Date</source>
         <translation>Ojo</translation>
@@ -205,12 +258,15 @@
         <source>watch-only</source>
         <translation>wo nikan</translation>
     </message>
+=======
+>>>>>>> upstream/0.20
     </context>
 <context>
     <name>TransactionDescDialog</name>
     </context>
 <context>
     <name>TransactionTableModel</name>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_my.ts
     </context>
 <context>
@@ -236,12 +292,18 @@
         <translation>Ojo</translation>
     </message>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
+=======
+    </context>
+<context>
+    <name>TransactionView</name>
+>>>>>>> upstream/0.20
     </context>
 <context>
     <name>UnitDisplayStatusBarControl</name>
     </context>
 <context>
     <name>WalletController</name>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_my.ts
 ========
     <message>
@@ -249,6 +311,8 @@
         <translation>Ti Apamowo</translation>
     </message>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
+=======
+>>>>>>> upstream/0.20
     </context>
 <context>
     <name>WalletFrame</name>

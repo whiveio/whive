@@ -7,6 +7,8 @@
 #include <hash.h>
 #include <utilstrencodings.h>
 #include <test/test_bitcoin.h>
+#include <util/strencodings.h>
+#include <test/util/setup_common.h>
 
 #include <boost/test/unit_test.hpp>
 

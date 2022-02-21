@@ -44,7 +44,10 @@
     <message>
         <source>&amp;New</source>
         <translation>&amp;ati tuntun</translation>
+<<<<<<< HEAD
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
+=======
+>>>>>>> upstream/0.20
     </message>
     </context>
 <context>
@@ -182,9 +185,6 @@
     </context>
 <context>
     <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
     </context>
 <context>
     <name>ShutdownWindow</name>

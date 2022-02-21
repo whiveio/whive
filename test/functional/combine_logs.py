@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Copyright (c) 2017-2019 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Combine logs from multiple bitcoin nodes as well as the test_framework log.
 
 This streams the combined log output to stdout. Use combine_logs.py > outputfile
@@ -6,7 +9,6 @@ to write to an outputfile."""
 
 import argparse
 from collections import defaultdict, namedtuple
-import glob
 import heapq
 import itertools
 import os
@@ -50,10 +52,11 @@ def read_logs(tmp_dir):
     for each of the input log files."""
 
     # Find out what the folder is called that holds the debug.log file
-    chain = glob.glob("{}/node0/*/debug.log".format(tmp_dir))
-    if chain:
-        chain = chain[0]  # pick the first one if more than one chain was found (should never happen)
-        chain = re.search(r'node0/(.+?)/debug\.log$', chain).group(1)  # extract the chain name
+    glob = pathlib.Path(tmp_dir).glob('node0/**/debug.log')
+    path = next(glob, None)
+    if path:
+        assert next(glob, None) is None #  more than one debug.log, should never happen
+        chain = re.search(r'node0/(.+?)/debug\.log$', path.as_posix()).group(1)  # extract the chain name
     else:
         chain = 'regtest'  # fallback to regtest (should only happen when none exists)
 
