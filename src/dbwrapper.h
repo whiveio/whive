@@ -10,12 +10,9 @@
 #include <serialize.h>
 #include <span.h>
 #include <streams.h>
-/* #include <util.h>
+#include <util.h>
 #include <utilstrencodings.h>
 #include <version.h>
-#include <util/system.h> */
-#include <util/strencodings.h>
-#include <util/system.h>
 
 #include <leveldb/db.h>
 #include <leveldb/write_batch.h>

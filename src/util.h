@@ -20,26 +20,47 @@
 #include <logging.h>
 #include <sync.h>
 #include <tinyformat.h>
-#include <util/settings.h>
-#include <util/time.h>
+#include <utiltime.h>
+#include <utilmemory.h>
 
-#include <any>
+#include <atomic>
 #include <exception>
 #include <map>
 #include <optional>
 #include <set>
 #include <stdint.h>
 #include <string>
-#include <utility>
+#include <unordered_set>
 #include <vector>
 
-class UniValue;
+#include <boost/signals2/signal.hpp>
+#include <boost/thread/condition_variable.hpp> // for boost::thread_interrupted
 
 // Application startup time (used for uptime calculation)
 int64_t GetStartupTime();
 
+/** Signals for translation. */
+class CTranslationInterface
+{
+public:
+    /** Translate a message to the native language of the user. */
+    boost::signals2::signal<std::string (const char* psz)> Translate;
+};
+
+extern CTranslationInterface translationInterface;
+
 extern const char * const BITCOIN_CONF_FILENAME;
-extern const char * const BITCOIN_SETTINGS_FILENAME;
+extern const char * const BITCOIN_PID_FILENAME;
+
+/**
+ * Translation function: Call Translate signal on UI interface, which returns a boost::optional result.
+ * If no translation slot is registered, nothing is returned, and simply return the input.
+ */
+inline std::string _(const char* psz)
+{
+    boost::optional<std::string> rv = translationInterface.Translate(psz);
+    return rv ? (*rv) : psz;
+}
 
 void SetupEnvironment();
 bool SetupNetworking();
@@ -68,7 +89,7 @@ void DirectoryCommit(const fs::path &dirname);
 bool TruncateFile(FILE *file, unsigned int length);
 int RaiseFileDescriptorLimit(int nMinFD);
 void AllocateFileRange(FILE *file, unsigned int offset, unsigned int length);
-[[nodiscard]] bool RenameOver(fs::path src, fs::path dest);
+bool RenameOver(fs::path src, fs::path dest);
 bool LockDirectory(const fs::path& directory, const std::string lockfile_name, bool probe_only=false);
 bool DirIsWritable(const fs::path& directory);
 
@@ -87,8 +108,9 @@ void ReleaseDirectoryLocks();
 
 bool TryCreateDirectories(const fs::path& p);
 fs::path GetDefaultDataDir();
-// Return true if -datadir option points to a valid directory or is not specified.
-bool CheckDataDirOption();
+const fs::path &GetBlocksDir(bool fNetSpecific = true);
+const fs::path &GetDataDir(bool fNetSpecific = true);
+void ClearDatadirCache();
 fs::path GetConfigFile(const std::string& confPath);
 #ifndef WIN32
 fs::path GetPidFile();
@@ -117,7 +139,7 @@ UniValue RunCommandParseJSON(const std::string& str_command, const std::string& 
  * the datadir if they are not absolute.
  *
  * @param path The path to be conditionally prefixed with datadir.
- * @param net_specific Use network specific datadir variant
+ * @param net_specific Forwarded to GetDataDir().
  * @return The normalized path.
  */
 fs::path AbsPathForConfigVal(const fs::path& path, bool net_specific = true);
@@ -171,47 +193,25 @@ public:
     };
 
 protected:
+    friend class ArgsManagerHelper;
+
     struct Arg
     {
         std::string m_help_param;
         std::string m_help_text;
-        unsigned int m_flags;
+        bool m_debug_only;
+
+        Arg(const std::string& help_param, const std::string& help_text, bool debug_only) : m_help_param(help_param), m_help_text(help_text), m_debug_only(debug_only) {};
     };
 
-    mutable RecursiveMutex cs_args;
-    util::Settings m_settings GUARDED_BY(cs_args);
-    std::vector<std::string> m_command GUARDED_BY(cs_args);
-    std::string m_network GUARDED_BY(cs_args);
-    std::set<std::string> m_network_only_args GUARDED_BY(cs_args);
-    std::map<OptionsCategory, std::map<std::string, Arg>> m_available_args GUARDED_BY(cs_args);
-    bool m_accept_any_command GUARDED_BY(cs_args){true};
-    std::list<SectionInfo> m_config_sections GUARDED_BY(cs_args);
-    mutable fs::path m_cached_blocks_path GUARDED_BY(cs_args);
-    mutable fs::path m_cached_datadir_path GUARDED_BY(cs_args);
-    mutable fs::path m_cached_network_datadir_path GUARDED_BY(cs_args);
+    mutable CCriticalSection cs_args;
+    std::map<std::string, std::vector<std::string>> m_override_args;
+    std::map<std::string, std::vector<std::string>> m_config_args;
+    std::string m_network;
+    std::set<std::string> m_network_only_args;
+    std::map<OptionsCategory, std::map<std::string, Arg>> m_available_args;
 
-    [[nodiscard]] bool ReadConfigStream(std::istream& stream, const std::string& filepath, std::string& error, bool ignore_invalid_keys = false);
-
-    /**
-     * Returns true if settings values from the default section should be used,
-     * depending on the current network and whether the setting is
-     * network-specific.
-     */
-    bool UseDefaultSection(const std::string& arg) const EXCLUSIVE_LOCKS_REQUIRED(cs_args);
-
-    /**
-     * Get setting value.
-     *
-     * Result will be null if setting was unset, true if "-setting" argument was passed
-     * false if "-nosetting" argument was passed, and a string if a "-setting=value"
-     * argument was passed.
-     */
-    util::SettingsValue GetSetting(const std::string& arg) const;
-
-    /**
-     * Get list of setting values.
-     */
-    std::vector<util::SettingsValue> GetSettingsList(const std::string& arg) const;
+    bool ReadConfigStream(std::istream& stream, std::string& error, bool ignore_invalid_keys = false);
 
 public:
     ArgsManager();
@@ -222,8 +222,8 @@ public:
      */
     void SelectConfigNetwork(const std::string& network);
 
-    [[nodiscard]] bool ParseParameters(int argc, const char* const argv[], std::string& error);
-    [[nodiscard]] bool ReadConfigFiles(std::string& error, bool ignore_invalid_keys = false);
+    bool ParseParameters(int argc, const char* const argv[], std::string& error);
+    bool ReadConfigFiles(std::string& error, bool ignore_invalid_keys = false);
 
     /**
      * Log warnings for options in m_section_only_args when
@@ -350,7 +350,7 @@ public:
     void ForceSetArg(const std::string& strArg, const std::string& strValue);
 
     /**
-     * Returns the appropriate chain name from the program arguments.
+     * Looks for -regtest, -testnet and returns the appropriate BIP70 chain name.
      * @return CBaseChainParams::MAIN by default; raises runtime error if an invalid combination is given.
      */
     std::string GetChainName() const;
@@ -358,12 +358,7 @@ public:
     /**
      * Add argument
      */
-    void AddArg(const std::string& name, const std::string& help, unsigned int flags, const OptionsCategory& cat);
-
-    /**
-     * Add subcommand
-     */
-    void AddCommand(const std::string& cmd, const std::string& help);
+    void AddArg(const std::string& name, const std::string& help, const bool debug_only, const OptionsCategory& cat);
 
     /**
      * Add many hidden arguments
@@ -373,11 +368,7 @@ public:
     /**
      * Clear available arguments
      */
-    void ClearArgs() {
-        LOCK(cs_args);
-        m_available_args.clear();
-        m_network_only_args.clear();
-    }
+    void ClearArgs() { m_available_args.clear(); }
 
     /**
      * Get the help string
@@ -385,65 +376,9 @@ public:
     std::string GetHelpMessage() const;
 
     /**
-     * Return Flags for known arg.
-     * Return nullopt for unknown arg.
+     * Check whether we know of this arg
      */
-    std::optional<unsigned int> GetArgFlags(const std::string& name) const;
-
-    /**
-     * Read and update settings file with saved settings. This needs to be
-     * called after SelectParams() because the settings file location is
-     * network-specific.
-     */
-    bool InitSettings(std::string& error);
-
-    /**
-     * Get settings file path, or return false if read-write settings were
-     * disabled with -nosettings.
-     */
-    bool GetSettingsPath(fs::path* filepath = nullptr, bool temp = false) const;
-
-    /**
-     * Read settings file. Push errors to vector, or log them if null.
-     */
-    bool ReadSettingsFile(std::vector<std::string>* errors = nullptr);
-
-    /**
-     * Write settings file. Push errors to vector, or log them if null.
-     */
-    bool WriteSettingsFile(std::vector<std::string>* errors = nullptr) const;
-
-    /**
-     * Access settings with lock held.
-     */
-    template <typename Fn>
-    void LockSettings(Fn&& fn)
-    {
-        LOCK(cs_args);
-        fn(m_settings);
-    }
-
-    /**
-     * Log the config file options and the command line arguments,
-     * useful for troubleshooting.
-     */
-    void LogArgs() const;
-
-private:
-    /**
-     * Get data directory path
-     *
-     * @param net_specific Append network identifier to the returned path
-     * @return Absolute path on success, otherwise an empty path when a non-directory path would be returned
-     * @post Returned directory path is created unless it is empty
-     */
-    const fs::path& GetDataDir(bool net_specific) const;
-
-    // Helper function for LogArgs().
-    void logArgsPrefix(
-        const std::string& prefix,
-        const std::string& section,
-        const std::map<std::string, std::vector<util::SettingsValue>>& args) const;
+    bool IsArgKnown(const std::string& key) const;
 };
 
 extern ArgsManager gArgs;
@@ -476,14 +411,46 @@ std::string HelpMessageOpt(const std::string& option, const std::string& message
  */
 int GetNumCores();
 
+void RenameThread(const char* name);
+
+/**
+ * .. and a wrapper that just calls func once
+ */
+template <typename Callable> void TraceThread(const char* name,  Callable func)
+{
+    std::string s = strprintf("bitcoin-%s", name);
+    RenameThread(s.c_str());
+    try
+    {
+        LogPrintf("%s thread start\n", name);
+        func();
+        LogPrintf("%s thread exit\n", name);
+    }
+    catch (const boost::thread_interrupted&)
+    {
+        LogPrintf("%s thread interrupt\n", name);
+        throw;
+    }
+    catch (const std::exception& e) {
+        PrintExceptionContinue(&e, name);
+        throw;
+    }
+    catch (...) {
+        PrintExceptionContinue(nullptr, name);
+        throw;
+    }
+}
+
 std::string CopyrightHolders(const std::string& strPrefix);
 
 /**
  * On platforms that support it, tell the kernel the calling thread is
  * CPU-intensive and non-interactive. See SCHED_BATCH in sched(7) for details.
  *
+ * @return The return value of sched_setschedule(), or 1 on systems without
+ * sched_setschedule().
  */
-void ScheduleBatchPriority();
+int ScheduleBatchPriority(void);
 
 namespace util {
 

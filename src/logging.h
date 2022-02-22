@@ -27,7 +27,8 @@ extern const char * const DEFAULT_DEBUGLOGFILE;
 
 extern bool fLogIPs;
 
-struct LogCategory {
+struct CLogCategoryActive
+{
     std::string category;
     bool active;
 };
@@ -41,7 +42,7 @@ namespace BCLog {
         HTTP        = (1 <<  3),
         BENCH       = (1 <<  4),
         ZMQ         = (1 <<  5),
-        WALLETDB    = (1 <<  6),
+        DB          = (1 <<  6),
         RPC         = (1 <<  7),
         ESTIMATEFEE = (1 <<  8),
         ADDRMAN     = (1 <<  9),
@@ -65,11 +66,9 @@ namespace BCLog {
     class Logger
     {
     private:
-        mutable StdMutex m_cs; // Can not use Mutex from sync.h because in debug mode it would cause a deadlock when a potential deadlock was detected
-
-        FILE* m_fileout GUARDED_BY(m_cs) = nullptr;
-        std::list<std::string> m_msgs_before_open GUARDED_BY(m_cs);
-        bool m_buffering GUARDED_BY(m_cs) = true; //!< Buffer messages before logging can be started.
+        FILE* m_fileout = nullptr;
+        std::mutex m_file_mutex;
+        std::list<std::string> m_msgs_before_open;
 
         /**
          * m_started_new_line is a state variable that will suppress printing of
@@ -99,35 +98,12 @@ namespace BCLog {
         std::atomic<bool> m_reopen_file{false};
 
         /** Send a string to the log output */
-        void LogPrintStr(const std::string& str, const std::string& logging_function, const std::string& source_file, const int source_line);
+        void LogPrintStr(const std::string &str);
 
         /** Returns whether logs will be written to any output */
-        bool Enabled() const
-        {
-            StdLockGuard scoped_lock(m_cs);
-            return m_buffering || m_print_to_console || m_print_to_file || !m_print_callbacks.empty();
-        }
+        bool Enabled() const { return m_print_to_console || m_print_to_file; }
 
-        /** Connect a slot to the print signal and return the connection */
-        std::list<std::function<void(const std::string&)>>::iterator PushBackCallback(std::function<void(const std::string&)> fun)
-        {
-            StdLockGuard scoped_lock(m_cs);
-            m_print_callbacks.push_back(std::move(fun));
-            return --m_print_callbacks.end();
-        }
-
-        /** Delete a connection */
-        void DeleteCallback(std::list<std::function<void(const std::string&)>>::iterator it)
-        {
-            StdLockGuard scoped_lock(m_cs);
-            m_print_callbacks.erase(it);
-        }
-
-        /** Start logging (and flush all buffered messages) */
-        bool StartLogging();
-        /** Only for testing */
-        void DisconnectTestLogger();
-
+        bool OpenDebugLog();
         void ShrinkDebugFile();
 
         uint32_t GetCategoryMask() const { return m_categories.load(); }
@@ -159,6 +135,12 @@ static inline bool LogAcceptCategory(BCLog::LogFlags category)
     return g_logger->WillLogCategory(category);
 }
 
+/** Returns a string with the log categories. */
+std::string ListLogCategories();
+
+/** Returns a vector of the active log categories. */
+std::vector<CLogCategoryActive> ListActiveLogCategories();
+
 /** Return true if str parses as a log category and set the flag */
 bool GetLogCategory(BCLog::LogFlags& flag, const std::string& str);
 
@@ -176,30 +158,28 @@ template<typename T, typename... Args> static inline void MarkUsed(const T& t, c
 // unconditionally log to debug.log! It should not be the case that an inbound
 // peer can fill up a user's disk with debug.log entries.
 
-template <typename... Args>
-static inline void LogPrintf_(const std::string& logging_function, const std::string& source_file, const int source_line, const char* fmt, const Args&... args)
-{
-    if (LogInstance().Enabled()) {
-        std::string log_msg;
-        try {
-            log_msg = tfm::format(fmt, args...);
-        } catch (tinyformat::format_error& fmterr) {
-            /* Original format string will have newline so don't add one here */
-            log_msg = "Error \"" + std::string(fmterr.what()) + "\" while formatting log message: " + fmt;
-        }
-        LogInstance().LogPrintStr(log_msg, logging_function, source_file, source_line);
-    }
-}
+#ifdef USE_COVERAGE
+#define LogPrintf(...) do { MarkUsed(__VA_ARGS__); } while(0)
+#define LogPrint(category, ...) do { MarkUsed(__VA_ARGS__); } while(0)
+#else
+#define LogPrintf(...) do { \
+    if (g_logger->Enabled()) { \
+        std::string _log_msg_; /* Unlikely name to avoid shadowing variables */ \
+        try { \
+            _log_msg_ = tfm::format(__VA_ARGS__); \
+        } catch (tinyformat::format_error &fmterr) { \
+            /* Original format string will have newline so don't add one here */ \
+            _log_msg_ = "Error \"" + std::string(fmterr.what()) + "\" while formatting log message: " + FormatStringFromLogArgs(__VA_ARGS__); \
+        } \
+        g_logger->LogPrintStr(_log_msg_); \
+    } \
+} while(0)
 
-#define LogPrintf(...) LogPrintf_(__func__, __FILE__, __LINE__, __VA_ARGS__)
-
-// Use a macro instead of a function for conditional logging to prevent
-// evaluating arguments when logging for the category is not enabled.
-#define LogPrint(category, ...)              \
-    do {                                     \
-        if (LogAcceptCategory((category))) { \
-            LogPrintf(__VA_ARGS__);          \
-        }                                    \
-    } while (0)
+#define LogPrint(category, ...) do { \
+    if (LogAcceptCategory((category))) { \
+        LogPrintf(__VA_ARGS__); \
+    } \
+} while(0)
+#endif
 
 #endif // BITCOIN_LOGGING_H

@@ -9,7 +9,7 @@ print-%: FORCE
 
 DIST_SUBDIRS = secp256k1 univalue
 
-AM_LDFLAGS = $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS) $(GPROF_LDFLAGS) $(SANITIZER_LDFLAGS)
+AM_LDFLAGS = $(PTHREAD_CFLAGS) $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS) $(GPROF_LDFLAGS) $(SANITIZER_LDFLAGS)
 AM_CXXFLAGS = $(DEBUG_CXXFLAGS) $(HARDENED_CXXFLAGS) $(WARN_CXXFLAGS) $(NOWARN_CXXFLAGS) $(ERROR_CXXFLAGS) $(GPROF_CXXFLAGS) $(SANITIZER_CXXFLAGS)
 AM_CPPFLAGS = $(DEBUG_CPPFLAGS) $(HARDENED_CPPFLAGS)
 AM_LIBTOOLFLAGS = --preserve-dup-deps
@@ -25,8 +25,9 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-BITCOIN_INCLUDES=-I$(builddir) -I$(srcdir)/secp256k1/include $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS)
+BITCOIN_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
+BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
 BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
 LIBBITCOIN_SERVER=libbitcoin_server.a
@@ -46,6 +47,7 @@ LIBBITCOINCONSENSUS=libwhiveconsensus.la
 endif
 if ENABLE_WALLET
 LIBBITCOIN_WALLET=libbitcoin_wallet.a
+LIBBITCOIN_WALLET_TOOL=libbitcoin_wallet_tool.a
 endif
 
 LIBBITCOIN_CRYPTO= $(LIBBITCOIN_CRYPTO_BASE)
@@ -76,6 +78,7 @@ EXTRA_LIBRARIES += \
   $(LIBBITCOIN_CLI) \
   $(LIBBITCOIN_IPC) \
   $(LIBBITCOIN_WALLET) \
+  $(LIBBITCOIN_WALLET_TOOL) \
   $(LIBBITCOIN_ZMQ)
 
 lib_LTLIBRARIES = $(LIBBITCOINCONSENSUS)
@@ -116,11 +119,14 @@ endif
 BITCOIN_CORE_H = \
   addrdb.h \
   addrman.h \
+  attributes.h \
+  banman.h \
   base58.h \
   bech32.h \
   blockencodings.h \
   blockfilter.h \
   bloom.h \
+  blockencodings.h \
   chain.h \
   chainparams.h \
   chainparamsbase.h \
@@ -130,12 +136,14 @@ BITCOIN_CORE_H = \
   clientversion.h \
   coins.h \
   compat.h \
+  compat/assumptions.h \
   compat/byteswap.h \
   compat/cpuid.h \
   compat/endian.h \
   compat/sanity.h \
   compressor.h \
   consensus/consensus.h \
+  consensus/tx_check.h \
   consensus/tx_verify.h \
   core_io.h \
   core_memusage.h \
@@ -167,6 +175,9 @@ BITCOIN_CORE_H = \
   interfaces/wallet.h \
   key.h \
   key_io.h \
+  keystore.h \
+  dbwrapper.h \
+  limitedmap.h \
   logging.h \
   logging/timer.h \
   mapport.h \
@@ -195,11 +206,14 @@ BITCOIN_CORE_H = \
   policy/packages.h \
   policy/policy.h \
   policy/rbf.h \
+  policy/settings.h \
   pow.h \
   protocol.h \
+  psbt.h \
   random.h \
   randomenv.h \
   reverse_iterator.h \
+  reverselock.h \
   rpc/blockchain.h \
   rpc/client.h \
   rpc/mining.h \
@@ -209,10 +223,12 @@ BITCOIN_CORE_H = \
   rpc/register.h \
   rpc/request.h \
   rpc/server.h \
+  rpc/rawtransaction.h \
+  rpc/register.h \
   rpc/util.h \
   scheduler.h \
   script/descriptor.h \
-  script/keyorigin.h \
+  script/ismine.h \
   script/sigcache.h \
   script/sign.h \
   script/signingprovider.h \
@@ -290,6 +306,7 @@ BITCOIN_CORE_H = \
   wallet/transaction.h \
   wallet/wallet.h \
   wallet/walletdb.h \
+  wallet/wallettool.h \
   wallet/walletutil.h \
   walletinitinterface.h \
   warnings.h \
@@ -309,16 +326,14 @@ libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 ipc/capnp/libbitcoin_ipc_a-ipc.$(OBJEXT): $(libbitcoin_ipc_mpgen_input:=.h)
 
 # server: shared between whived and whive-qt
-# Contains code accessing mempool and chain state that is meant to be separated
-# from wallet and gui code (see node/README.md). Shared code should go in
-# libbitcoin_common or libbitcoin_util libraries, instead.
-libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(NATPMP_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
-  bloom.cpp \
+  banman.cpp \
   blockencodings.cpp \
+  blockfilter.cpp \
   chain.cpp \
   checkpoints.cpp \
   consensus/tx_verify.cpp \
@@ -350,6 +365,7 @@ libbitcoin_server_a_SOURCES = \
   policy/fees.cpp \
   policy/packages.cpp \
   policy/rbf.cpp \
+  policy/settings.cpp \
   pow.cpp \
   rest.cpp \
   rpc/blockchain.cpp \
@@ -372,6 +388,13 @@ libbitcoin_server_a_SOURCES = \
   validationinterface.cpp \
   versionbits.cpp \
   $(BITCOIN_CORE_H)
+
+if ENABLE_WALLET
+libbitcoin_server_a_SOURCES += wallet/init.cpp
+endif
+if !ENABLE_WALLET
+libbitcoin_server_a_SOURCES += dummywallet.cpp
+endif
 
 if ENABLE_ZMQ
 libbitcoin_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
@@ -436,14 +459,16 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/chacha20.h \
   crypto/chacha20.cpp \
   crypto/common.h \
+  crypto/hkdf_sha256_32.cpp \
+  crypto/hkdf_sha256_32.h \
   crypto/hmac_sha256.cpp \
   crypto/hmac_sha256.h \
   crypto/hmac_sha512.cpp \
   crypto/hmac_sha512.h \
   crypto/poly1305.h \
   crypto/poly1305.cpp \
-  crypto/muhash.h \
-  crypto/muhash.cpp \
+  #crypto/muhash.h \
+  #crypto/muhash.cpp \
   crypto/ripemd160.cpp \
   crypto/ripemd160.h \
   crypto/sha1.cpp \
@@ -454,6 +479,8 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/sha3.h \
   crypto/sha512.cpp \
   crypto/sha512.h \
+  crypto/siphash.cpp \
+  crypto/siphash.h \
   crypto/yespower/yespower.h \
   crypto/yespower/yespower.c \
   crypto/yespower/sha256.h \
@@ -496,6 +523,7 @@ libbitcoin_consensus_a_SOURCES = \
   consensus/merkle.cpp \
   consensus/merkle.h \
   consensus/params.h \
+  consensus/tx_check.cpp \
   consensus/validation.h \
   dbwrapper.h \
   dbwrapper.cpp \
@@ -521,6 +549,8 @@ libbitcoin_consensus_a_SOURCES = \
   tinyformat.h \
   uint256.cpp \
   uint256.h \
+  util/strencodings.cpp \
+  util/strencodings.h \
   utilstrencodings.cpp \
   utilstrencodings.h \
   version.h
@@ -531,6 +561,7 @@ libbitcoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_common_a_SOURCES = \
   base58.cpp \
   bech32.cpp \
+  bloom.cpp \
   chainparams.cpp \
   coins.cpp \
   compressor.cpp \
@@ -547,6 +578,7 @@ libbitcoin_common_a_SOURCES = \
   net_permissions.cpp \
   outputtype.cpp \
   policy/feerate.cpp \
+  policy/policy.cpp \
   protocol.cpp \
   psbt.cpp \
   rpc/rawtransaction_util.cpp \
@@ -637,7 +669,8 @@ if TARGET_WINDOWS
 whive_daemon_sources += bitcoind-res.rc
 endif
 
-whive_bin_ldadd = \
+whived_bin_ldadd = \
+  $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -657,13 +690,13 @@ whived_SOURCES = $(bitcoin_daemon_sources) init/bitcoind.cpp
 whived_CPPFLAGS = $(bitcoin_bin_cppflags)
 whived_CXXFLAGS = $(bitcoin_bin_cxxflags)
 whived_LDFLAGS = $(bitcoin_bin_ldflags)
-whived_LDADD = $(LIBBITCOIN_SERVER) $(bitcoin_bin_ldadd)
+whived_LDADD = $(LIBBITCOIN_SERVER) $(whived_bin_ldadd)
 
 bitcoin_node_SOURCES = $(bitcoin_daemon_sources) init/bitcoin-node.cpp
 bitcoin_node_CPPFLAGS = $(bitcoin_bin_cppflags)
 bitcoin_node_CXXFLAGS = $(bitcoin_bin_cxxflags)
 bitcoin_node_LDFLAGS = $(bitcoin_bin_ldflags)
-bitcoin_node_LDADD = $(LIBBITCOIN_SERVER) $(bitcoin_bin_ldadd) $(LIBBITCOIN_IPC) $(LIBMULTIPROCESS_LIBS)
+bitcoin_node_LDADD = $(LIBBITCOIN_SERVER) $(whived_bin_ldadd) $(LIBBITCOIN_IPC) $(LIBMULTIPROCESS_LIBS)
 
 # whive-cli binary #
 whive_cli_SOURCES = bitcoin-cli.cpp
@@ -710,7 +743,7 @@ bitcoin_wallet_SOURCES = bitcoin-wallet.cpp
 bitcoin_wallet_CPPFLAGS = $(bitcoin_bin_cppflags)
 bitcoin_wallet_CXXFLAGS = $(bitcoin_bin_cxxflags)
 bitcoin_wallet_LDFLAGS = $(bitcoin_bin_ldflags)
-bitcoin_wallet_LDADD = $(LIBBITCOIN_WALLET_TOOL) $(bitcoin_bin_ldadd)
+bitcoin_wallet_LDADD = $(LIBBITCOIN_WALLET_TOOL) $(whived_bin_ldadd)
 
 if TARGET_WINDOWS
 bitcoin_wallet_SOURCES += bitcoin-wallet-res.rc
@@ -741,7 +774,7 @@ bitcoin_util_LDADD += $(BOOST_LIBS)
 # bitcoinconsensus library #
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h
-libwhiveconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libbitcoin_crypto_base_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
+libwhiveconsensus_la_SOURCES = $(crypto_libbitcoin_crypto_base_a_SOURCES) $(libbitcoin_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
   libwhiveconsensus_la_SOURCES += compat/glibc_compat.cpp

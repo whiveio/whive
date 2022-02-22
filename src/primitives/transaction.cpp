@@ -78,6 +78,8 @@ uint256 CTransaction::ComputeWitnessHash() const
     return SerializeHash(*this, SER_GETHASH, 0);
 }
 
+/* For backward compatibility, the hash is initialized to 0. TODO: remove the need for this default constructor entirely. */
+CTransaction::CTransaction() : vin(), vout(), nVersion(CTransaction::CURRENT_VERSION), nLockTime(0), hash{}, m_witness_hash{} {}
 CTransaction::CTransaction(const CMutableTransaction& tx) : vin(tx.vin), vout(tx.vout), nVersion(tx.nVersion), nLockTime(tx.nLockTime), hash{ComputeHash()}, m_witness_hash{ComputeWitnessHash()} {}
 CTransaction::CTransaction(CMutableTransaction&& tx) : vin(std::move(tx.vin)), vout(std::move(tx.vout)), nVersion(tx.nVersion), nLockTime(tx.nLockTime), hash{ComputeHash()}, m_witness_hash{ComputeWitnessHash()} {}
 
@@ -88,6 +90,8 @@ CAmount CTransaction::GetValueOut() const
         if (!MoneyRange(tx_out.nValue) || !MoneyRange(nValueOut + tx_out.nValue))
             throw std::runtime_error(std::string(__func__) + ": value out of range");
         nValueOut += tx_out.nValue;
+        if (!MoneyRange(tx_out.nValue) || !MoneyRange(nValueOut))
+            throw std::runtime_error(std::string(__func__) + ": value out of range");
     }
     assert(MoneyRange(nValueOut));
     return nValueOut;

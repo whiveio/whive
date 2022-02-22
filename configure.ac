@@ -254,8 +254,8 @@ AC_ARG_ENABLE([threadlocal],
   [use_thread_local=auto])
 
 AC_ARG_ENABLE([asm],
-  [AS_HELP_STRING([--enable-asm],
-  [Enable assembly routines (default is yes)])],
+  [AS_HELP_STRING([--disable-asm],
+  [disable assembly routines (enabled by default)])],
   [use_asm=$enableval],
   [use_asm=yes])
 
@@ -395,7 +395,14 @@ if test x$use_sanitizers != x; then
   AX_CHECK_LINK_FLAG(
     [[-fsanitize=$use_sanitizers]],
     [[SANITIZER_LDFLAGS=-fsanitize=$use_sanitizers]],
-    [AC_MSG_ERROR([linker did not accept requested flags, you are missing required libraries])])
+    [AC_MSG_ERROR([linker did not accept requested flags, you are missing required libraries])],
+    [],
+    [AC_LANG_PROGRAM([[
+    #include <cstdint>
+    #include <cstddef>
+    extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) { return 0; }
+    __attribute__((weak)) // allow for libFuzzer linking
+    ]],[[]])])
 fi
 
 ERROR_CXXFLAGS=
@@ -1582,9 +1589,17 @@ AC_MSG_CHECKING([whether to build bitcoind])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build utils (bitcoin-cli bitcoin-tx)])
-AM_CONDITIONAL([BUILD_BITCOIN_UTILS], [test x$build_bitcoin_utils = xyes])
-AC_MSG_RESULT($build_bitcoin_utils)
+AC_MSG_CHECKING([whether to build bitcoin-cli])
+AM_CONDITIONAL([BUILD_BITCOIN_CLI], [test x$build_bitcoin_cli = xyes])
+AC_MSG_RESULT($build_bitcoin_cli)
+
+AC_MSG_CHECKING([whether to build bitcoin-tx])
+AM_CONDITIONAL([BUILD_BITCOIN_TX], [test x$build_bitcoin_tx = xyes])
+AC_MSG_RESULT($build_bitcoin_tx)
+
+AC_MSG_CHECKING([whether to build bitcoin-wallet])
+AM_CONDITIONAL([BUILD_BITCOIN_WALLET], [test x$build_bitcoin_wallet = xyes])
+AC_MSG_RESULT($build_bitcoin_wallet)
 
 AC_MSG_CHECKING([whether to build bitcoin-util])
 AM_CONDITIONAL([BUILD_BITCOIN_UTIL], [test x$build_bitcoin_util = xyes])
@@ -1747,7 +1762,7 @@ else
   AC_MSG_RESULT([no])
 fi
 
-if test x$build_bitcoin_utils$build_bitcoin_libs$build_bitcoind$bitcoin_enable_qt$use_bench$use_tests = xnononononono; then
+if test x$build_bitcoin_wallet$build_bitcoin_cli$build_bitcoin_tx$build_bitcoin_libs$build_bitcoind$bitcoin_enable_qt$use_bench$use_tests = xnononononononono; then
   AC_MSG_ERROR([No targets! Please specify at least one of: --with-utils --with-libs --with-daemon --with-gui --enable-bench or --enable-tests])
 fi
 

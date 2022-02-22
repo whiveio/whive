@@ -13,6 +13,8 @@
 #include <mutex>
 #include <string>
 #include <thread>
+#include <mutex>
+
 
 ////////////////////////////////////////////////
 //                                            //
@@ -61,29 +63,8 @@ void DeleteLock(void* cs);
 bool LockStackEmpty();
 
 /**
- * Call abort() if a potential lock order deadlock bug is detected, instead of
- * just logging information and throwing a logic_error. Defaults to true, and
- * set to false in DEBUG_LOCKORDER unit tests.
- */
-extern bool g_debug_lockorder_abort;
-#else
-template <typename MutexType>
-inline void EnterCritical(const char* pszName, const char* pszFile, int nLine, MutexType* cs, bool fTry = false) {}
-inline void LeaveCritical() {}
-inline void CheckLastCritical(void* cs, std::string& lockname, const char* guardname, const char* file, int line) {}
-template <typename MutexType>
-inline void AssertLockHeldInternal(const char* pszName, const char* pszFile, int nLine, MutexType* cs) EXCLUSIVE_LOCKS_REQUIRED(cs) {}
-template <typename MutexType>
-void AssertLockNotHeldInternal(const char* pszName, const char* pszFile, int nLine, MutexType* cs) LOCKS_EXCLUDED(cs) {}
-inline void DeleteLock(void* cs) {}
-inline bool LockStackEmpty() { return true; }
-#endif
-#define AssertLockHeld(cs) AssertLockHeldInternal(#cs, __FILE__, __LINE__, &cs)
-#define AssertLockNotHeld(cs) AssertLockNotHeldInternal(#cs, __FILE__, __LINE__, &cs)
-
-/**
- * Template mixin that adds -Wthread-safety locking annotations and lock order
- * checking to a subset of the mutex API.
+ * Template mixin that adds -Wthread-safety locking
+ * annotations to a subset of the mutex API.
  */
 template <typename PARENT>
 class LOCKABLE AnnotatedMixin : public PARENT
@@ -134,7 +115,13 @@ void static inline DeleteLock(void* cs) {}
  * Wrapped mutex: supports recursive locking, but no waiting
  * TODO: We should move away from using the recursive lock by default.
  */
-using RecursiveMutex = AnnotatedMixin<std::recursive_mutex>;
+class CCriticalSection : public AnnotatedMixin<std::recursive_mutex>
+{
+public:
+    ~CCriticalSection() {
+        DeleteLock((void*)this);
+    }
+};
 
 /** Wrapped mutex: supports waiting but not recursive locking */
 typedef AnnotatedMixin<std::mutex> CWaitableCriticalSection;
@@ -157,7 +144,7 @@ private:
 
     void Enter(const char* pszName, const char* pszFile, int nLine)
     {
-        EnterCritical(pszName, pszFile, nLine, Base::mutex());
+        EnterCritical(pszName, pszFile, nLine, (void*)(lock.mutex()));
 #ifdef DEBUG_LOCKCONTENTION
         if (!lock.try_lock()) {
             PrintLockContention(pszName, pszFile, nLine);
@@ -170,9 +157,9 @@ private:
 
     bool TryEnter(const char* pszName, const char* pszFile, int nLine)
     {
-        EnterCritical(pszName, pszFile, nLine, Base::mutex(), true);
-        Base::try_lock();
-        if (!Base::owns_lock())
+        EnterCritical(pszName, pszFile, nLine, (void*)(lock.mutex()), true);
+        lock.try_lock();
+        if (!lock.owns_lock())
             LeaveCritical();
         return lock.owns_lock();
     }
@@ -244,30 +231,23 @@ public:
      friend class reverse_lock;
 };
 
-#define REVERSE_LOCK(g) typename std::decay<decltype(g)>::type::reverse_lock PASTE2(revlock, __COUNTER__)(g, #g, __FILE__, __LINE__)
+#define PASTE(x, y) x ## y
+#define PASTE2(x, y) PASTE(x, y)
 
-template<typename MutexArg>
-using DebugLock = UniqueLock<typename std::remove_reference<typename std::remove_pointer<MutexArg>::type>::type>;
-
-#define LOCK(cs) DebugLock<decltype(cs)> PASTE2(criticalblock, __COUNTER__)(cs, #cs, __FILE__, __LINE__)
-#define LOCK2(cs1, cs2)                                               \
-    DebugLock<decltype(cs1)> criticalblock1(cs1, #cs1, __FILE__, __LINE__); \
-    DebugLock<decltype(cs2)> criticalblock2(cs2, #cs2, __FILE__, __LINE__);
-#define TRY_LOCK(cs, name) DebugLock<decltype(cs)> name(cs, #cs, __FILE__, __LINE__, true)
-#define WAIT_LOCK(cs, name) DebugLock<decltype(cs)> name(cs, #cs, __FILE__, __LINE__)
+#define LOCK(cs) CCriticalBlock PASTE2(criticalblock, __COUNTER__)(cs, #cs, __FILE__, __LINE__)
+#define LOCK2(cs1, cs2) CCriticalBlock criticalblock1(cs1, #cs1, __FILE__, __LINE__), criticalblock2(cs2, #cs2, __FILE__, __LINE__)
+#define TRY_LOCK(cs, name) CCriticalBlock name(cs, #cs, __FILE__, __LINE__, true)
 
 #define ENTER_CRITICAL_SECTION(cs)                            \
     {                                                         \
-        EnterCritical(#cs, __FILE__, __LINE__, &cs); \
+        EnterCritical(#cs, __FILE__, __LINE__, (void*)(&cs)); \
         (cs).lock();                                          \
     }
 
-#define LEAVE_CRITICAL_SECTION(cs)                                          \
-    {                                                                       \
-        std::string lockname;                                               \
-        CheckLastCritical((void*)(&cs), lockname, #cs, __FILE__, __LINE__); \
-        (cs).unlock();                                                      \
-        LeaveCritical();                                                    \
+#define LEAVE_CRITICAL_SECTION(cs) \
+    {                              \
+        (cs).unlock();             \
+        LeaveCritical();           \
     }
 
 //! Run code while locking a mutex.

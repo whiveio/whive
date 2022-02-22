@@ -9,13 +9,16 @@ endif
 
 if !ENABLE_FUZZ
 bin_PROGRAMS += test/test_bitcoin
-noinst_PROGRAMS += test/test_bitcoin_fuzzy
+endif
+
 TEST_SRCDIR = test
 TEST_BINARY=test/test_bitcoin$(EXEEXT)
 FUZZ_BINARY=test/fuzz/fuzz$(EXEEXT)
 
 JSON_TEST_FILES = \
+  test/data/script_tests.json \
   test/data/base58_encode_decode.json \
+  test/data/blockfilters.json \
   test/data/key_io_valid.json \
   test/data/key_io_invalid.json \
   test/data/script_tests.json \
@@ -73,6 +76,8 @@ BITCOIN_TESTS =\
   test/bip32_tests.cpp \
   test/blockchain_tests.cpp \
   test/blockencodings_tests.cpp \
+  test/blockfilter_tests.cpp \
+  test/blockfilter_index_tests.cpp \
   test/bloom_tests.cpp \
   test/bswap_tests.cpp \
   test/checkqueue_tests.cpp \
@@ -84,6 +89,8 @@ BITCOIN_TESTS =\
   test/cuckoocache_tests.cpp \
   test/denialofservice_tests.cpp \
   test/descriptor_tests.cpp \
+  test/flatfile_tests.cpp \
+  test/fs_tests.cpp \
   test/getarg_tests.cpp \
   test/hash_tests.cpp \
   test/i2p_tests.cpp \
@@ -92,7 +99,7 @@ BITCOIN_TESTS =\
   test/key_tests.cpp \
   test/logging_tests.cpp \
   test/dbwrapper_tests.cpp \
-  test/main_tests.cpp \
+  test/validation_tests.cpp \
   test/mempool_tests.cpp \
   test/merkle_tests.cpp \
   test/merkleblock_tests.cpp \
@@ -165,7 +172,9 @@ endif
 
 BITCOIN_TEST_SUITE += \
   wallet/test/wallet_test_fixture.cpp \
-  wallet/test/wallet_test_fixture.h
+  wallet/test/wallet_test_fixture.h \
+  wallet/test/init_test_fixture.cpp \
+  wallet/test/init_test_fixture.h
 endif
 
 test_test_bitcoin_SOURCES = $(BITCOIN_TEST_SUITE) $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
@@ -310,7 +319,15 @@ CLEAN_BITCOIN_TEST = test/*.gcda test/*.gcno test/fuzz/*.gcda test/fuzz/*.gcno t
 
 CLEANFILES += $(CLEAN_BITCOIN_TEST)
 
+if TARGET_WINDOWS
 bitcoin_test: $(TEST_BINARY)
+else
+if ENABLE_BENCH
+bitcoin_test: $(TEST_BINARY) $(BENCH_BINARY)
+else
+bitcoin_test: $(TEST_BINARY)
+endif
+endif
 
 bitcoin_test_check: $(TEST_BINARY) FORCE
 	$(MAKE) check-TESTS TESTS=$^
@@ -319,8 +336,10 @@ bitcoin_test_clean : FORCE
 	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_bitcoin_OBJECTS) $(TEST_BINARY)
 
 check-local: $(BITCOIN_TESTS:.cpp=.cpp.test)
+if BUILD_BITCOIN_TX
 	@echo "Running test/util/bitcoin-util-test.py..."
 	$(PYTHON) $(top_builddir)/test/util/bitcoin-util-test.py
+endif
 	@echo "Running test/util/rpcauth-test.py..."
 	$(PYTHON) $(top_builddir)/test/util/rpcauth-test.py
 if TARGET_WINDOWS
