@@ -1,9 +1,9 @@
-<TS language="gd" version="2.1">
+<TS version="2.1" language="gd">
 <context>
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Dèan briogadh deas airson seòladh no bileag a dheasachadh</translation>
+        <translation type="unfinished">Dèan briogadh deas airson seòladh no bileag a dheasachadh</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -19,28 +19,88 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Tagh an seòladh airson buinn a chuir thuige</translation>
+        <translation type="unfinished">Tagh an seòladh airson buinn a chuir thuige</translation>
     </message>
     <message>
         <source>Sending addresses</source>
-        <translation>A ’cur sheòlaidhean</translation>
+        <translation type="unfinished">A ’cur sheòlaidhean</translation>
     </message>
     </context>
 <context>
     <name>AddressTableModel</name>
     <message>
         <source>Address</source>
-        <translation>Seòladh</translation>
+        <translation type="unfinished">Seòladh</translation>
     </message>
     </context>
 <context>
-    <name>AskPassphraseDialog</name>
-    </context>
-<context>
-    <name>BanTableModel</name>
+    <name>QObject</name>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n year(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>BitcoinGUI</name>
+    <message numerus="yes">
+        <source>Processed %n block(s) of transaction history.</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     <message>
         <source>Error</source>
         <translation>Mearachd</translation>
@@ -53,22 +113,23 @@
         <source>Information</source>
         <translation>Fiosrachadh</translation>
     </message>
-    </context>
-<context>
-    <name>CoinControlDialog</name>
-    </context>
-<context>
-    <name>CreateWalletActivity</name>
+    <message numerus="yes">
+        <source>%n active connection(s) to Bitcoin network.</source>
+        <extracomment>A substring of the tooltip.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>CreateWalletDialog</name>
     <message>
         <source>Wallet Name</source>
-        <translation>Ainm Wallet</translation>
+        <translation type="unfinished">Ainm Wallet</translation>
     </message>
-    </context>
-<context>
-    <name>EditAddressDialog</name>
     </context>
 <context>
     <name>FreespaceChecker</name>
@@ -78,10 +139,17 @@
     </message>
     </context>
 <context>
-    <name>HelpMessageDialog</name>
-    </context>
-<context>
     <name>Intro</name>
+    <message numerus="yes">
+        <source>(sufficient to restore backups %n day(s) old)</source>
+        <extracomment>Explanatory text on the capability of the current prune target.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     <message>
         <source>Error</source>
         <translation>Mearachd</translation>
@@ -91,20 +159,14 @@
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
-        <translation>Fhoirm</translation>
+        <translation type="unfinished">Fhoirm</translation>
     </message>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OpenWalletActivity</name>
     </context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Error</source>
-        <translation>Mearachd</translation>
+        <translation type="unfinished">Mearachd</translation>
     </message>
     </context>
 <context>
@@ -115,80 +177,70 @@
     </message>
     </context>
 <context>
-    <name>PaymentServer</name>
-    </context>
-<context>
     <name>PeerTableModel</name>
-    </context>
-<context>
-    <name>QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
-    <name>RPCConsole</name>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
-<context>
-    <name>ReceiveRequestDialog</name>
     <message>
         <source>Address</source>
-        <translation>Seòladh</translation>
+        <extracomment>Title of Peers Table column which contains the IP/Onion/I2P address of the connected peer.</extracomment>
+        <translation type="unfinished">Seòladh</translation>
     </message>
     </context>
 <context>
-    <name>RecentRequestsTableModel</name>
-    </context>
-<context>
     <name>SendCoinsDialog</name>
-    </context>
-<context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
+    <message numerus="yes">
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>TransactionDesc</name>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>matures in %n more block(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>TransactionTableModel</name>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>TransactionView</name>
     <message>
         <source>Address</source>
-        <translation>Seòladh</translation>
+        <translation type="unfinished">Seòladh</translation>
     </message>
     </context>
 <context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletController</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
-<context>
     <name>WalletView</name>
-    </context>
-<context>
-    <name>bitcoin-core</name>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Mearachd</translation>
+    </message>
     </context>
 </TS>

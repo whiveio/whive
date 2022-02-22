@@ -1,4 +1,4 @@
-<TS language="ms" version="2.1">
+<TS version="2.1" language="ms">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -8,7 +8,11 @@
         <translation>&amp;Baru</translation>
 ========
         <source>Right-click to edit address or label</source>
+<<<<<<< HEAD
         <translation>Δεξί-κλικ για επεξεργασία της διεύθυνσης ή της ετικέτας</translation>
+=======
+        <translation type="unfinished">Klik-kanan untuk edit alamat ataupun label</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Create a new address</source>
@@ -16,12 +20,37 @@
     </message>
     <message>
         <source>&amp;New</source>
+<<<<<<< HEAD
         <translation>&amp;Νέo</translation>
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
         <translation>Αντέγραψε την επιλεγμένη διεύθυνση στο πρόχειρο του συστήματος</translation>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_el.ts
+=======
+        <translation type="unfinished">&amp;Baru</translation>
+    </message>
+    <message>
+        <source>Copy the currently selected address to the system clipboard</source>
+        <translation>Salin alamat terpilih ke dalam sistem papan klip</translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation type="unfinished">&amp;Salin</translation>
+    </message>
+    <message>
+        <source>C&amp;lose</source>
+        <translation type="unfinished">&amp;Tutup</translation>
+    </message>
+    <message>
+        <source>Delete the currently selected address from the list</source>
+        <translation>Padam alamat semasa yang dipilih dari senaraiyang dipilih dari senarai</translation>
+    </message>
+    <message>
+        <source>Enter address or label to search</source>
+        <translation type="unfinished">Masukkan alamat atau label untuk carian
+</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
@@ -29,6 +58,7 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
+<<<<<<< HEAD
         <translation>Pilih alamat untuk menghantar koin kepada</translation>
     </message>
     <message>
@@ -45,10 +75,29 @@
         <translation>Alamat penerima</translation>
 =======
         <translation>alamat-alamat penerimaan</translation>
+=======
+        <translation type="unfinished">Pilih alamat untuk hantar koin kepada</translation>
+    </message>
+    <message>
+        <source>Choose the address to receive coins with</source>
+        <translation type="unfinished">Pilih alamat untuk menerima koin dengan</translation>
+    </message>
+    <message>
+        <source>C&amp;hoose</source>
+        <translation type="unfinished">&amp;Pilih</translation>
+    </message>
+    <message>
+        <source>Sending addresses</source>
+        <translation type="unfinished">alamat-alamat penghantaran</translation>
+    </message>
+    <message>
+        <source>Receiving addresses</source>
+        <translation type="unfinished">alamat-alamat penerimaan</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ini adalah alamat Bitcoin anda untuk pembayaran. Periksa jumlah dan alamat penerima sebelum membuat penghantaran koin sentiasa.</translation>
+        <translation type="unfinished">Ini adalah alamat Bitcoin anda untuk pembayaran. Periksa jumlah dan alamat penerima sebelum membuat penghantaran koin sentiasa.</translation>
     </message>
     <message>
 <<<<<<< HEAD
@@ -63,10 +112,11 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
-        <translation>&amp;Salin Aamat</translation>
+        <translation type="unfinished">&amp;Salin Aamat</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
+<<<<<<< HEAD
         <translation>Salin &amp; Label</translation>
     </message>
     <message>
@@ -161,18 +211,37 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
         <translation>Σφάλμα κατά την προσπάθεια αποθήκευσης της λίστας διευθύνσεων στο %1. Παρακαλώ δοκιμάστε ξανά.</translation>
+=======
+        <translation type="unfinished">Salin &amp; Label</translation>
+    </message>
+    <message>
+        <source>Export Address List</source>
+        <translation type="unfinished">Eskport Senarai Alamat</translation>
+    </message>
+    <message>
+        <source>There was an error trying to save the address list to %1. Please try again.</source>
+        <extracomment>An error message. %1 is a stand-in argument for the name of the file we attempted to save to.</extracomment>
+        <translation type="unfinished">Terdapat ralat semasa cubaan menyimpan senarai alamat kepada %1. Sila cuba lagi.</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation type="unfinished">Mengeksport Gagal</translation>
+>>>>>>> upstream/22.x
     </message>
 </context>
 <context>
     <name>AddressTableModel</name>
     <message>
+<<<<<<< HEAD
         <source>Label</source>
 <<<<<<<< HEAD:src/qt/locale/bitcoin_ms.ts
         <translation>Label</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/22.x
         <source>Address</source>
-        <translation>Alamat</translation>
+        <translation type="unfinished">Alamat</translation>
     </message>
     </context>
 ========
@@ -184,7 +253,11 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     </message>
     <message>
         <source>(no label)</source>
+<<<<<<< HEAD
         <translation>(χωρίς ετικέτα)</translation>
+=======
+        <translation type="unfinished">(tiada label)</translation>
+>>>>>>> upstream/22.x
     </message>
 </context>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_el.ts
@@ -212,11 +285,8 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation>Show passphrase</translation>
     </message>
     <message>
-        <source>Show passphrase</source>
-        <translation>Show passphrase</translation>
-    </message>
-    <message>
         <source>Encrypt wallet</source>
+<<<<<<< HEAD
         <translation>Menyulitkan wallet</translation>
     </message>
     <message>
@@ -393,19 +463,121 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
         <source>Warning: The Caps Lock key is on!</source>
         <translation>Προσοχη: το πλήκτρο Caps Lock είναι ενεργο.</translation>
+=======
+        <translation type="unfinished">Dompet encrypt</translation>
+    </message>
+    <message>
+        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
+        <translation type="unfinished">Operasi ini perlukan frasa laluan dompet anda untuk membuka kunci dompet.</translation>
+    </message>
+    <message>
+        <source>Unlock wallet</source>
+        <translation type="unfinished">Membuka kunci dompet</translation>
+    </message>
+    <message>
+        <source>Change passphrase</source>
+        <translation type="unfinished">Menukar frasa laluan</translation>
+    </message>
+    <message>
+        <source>Confirm wallet encryption</source>
+        <translation type="unfinished">Mengesahkan enkripsi dompet</translation>
+    </message>
+    <message>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <translation type="unfinished">Amaran: Jika anda enkripkan dompet anda dan hilangkan frasa laluan, anda akan &lt;b&gt;ANDA AKAN HILANGKAN SEMUA BITCOIN ANDA&lt;/b&gt;!</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to encrypt your wallet?</source>
+        <translation type="unfinished">Anda pasti untuk membuat enkripsi dompet anda?</translation>
+    </message>
+    <message>
+        <source>Wallet encrypted</source>
+        <translation type="unfinished">Dompet dienkripsi</translation>
+    </message>
+    <message>
+        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
+        <translation type="unfinished">PENTING: Apa-apa sandaran yang anda buat sebelum ini untuk fail dompet anda hendaklah digantikan dengan fail dompet enkripsi yang dijana baru. Untuk sebab-sebab keselamatan , sandaran fail dompet yang belum dibuat enkripsi sebelum ini akan menjadi tidak berguna secepat anda mula guna dompet enkripsi baru.</translation>
+    </message>
+    <message>
+        <source>Wallet encryption failed</source>
+        <translation type="unfinished">Enkripsi dompet gagal</translation>
+    </message>
+    <message>
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation type="unfinished">Enkripsi dompet gagal kerana ralat dalaman. Dompet anda tidak dienkripkan.</translation>
+    </message>
+    <message>
+        <source>The supplied passphrases do not match.</source>
+        <translation type="unfinished">Frasa laluan yang dibekalkan tidak sepadan.</translation>
+    </message>
+    <message>
+        <source>Wallet unlock failed</source>
+        <translation type="unfinished">Pembukaan kunci dompet gagal</translation>
+    </message>
+    <message>
+        <source>The passphrase entered for the wallet decryption was incorrect.</source>
+        <translation type="unfinished">Frasa laluan dimasukki untuk dekripsi dompet adalah tidak betul.</translation>
+    </message>
+    <message>
+        <source>Wallet passphrase was successfully changed.</source>
+        <translation type="unfinished">Frasa laluan dompet berjaya ditukar.</translation>
+    </message>
+    <message>
+        <source>Warning: The Caps Lock key is on!</source>
+        <translation type="unfinished">Amaran: Kunci Caps Lock buka!</translation>
+>>>>>>> upstream/22.x
     </message>
 </context>
 <context>
     <name>BanTableModel</name>
     <message>
-        <source>IP/Netmask</source>
-        <translation>IP/Netmask</translation>
-    </message>
-    <message>
         <source>Banned Until</source>
+<<<<<<< HEAD
         <translation>Απαγορευμένο έως</translation>
+=======
+        <translation type="unfinished">Diharamkan sehingga</translation>
+>>>>>>> upstream/22.x
     </message>
 </context>
+<context>
+    <name>QObject</name>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n year(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    </context>
 <context>
     <name>BitcoinGUI</name>
 <<<<<<< HEAD
@@ -415,14 +587,6 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <name>CoinControlDialog</name>
     </context>
 =======
-    <message>
-        <source>Sign &amp;message...</source>
-        <translation>Tandatangan &amp; mesej...</translation>
-    </message>
-    <message>
-        <source>Synchronizing with network...</source>
-        <translation>Penyegerakan dengan rangkaian...</translation>
-    </message>
     <message>
         <source>&amp;Overview</source>
         <translation>&amp;Gambaran Keseluruhan</translation>
@@ -449,11 +613,11 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     </message>
     <message>
         <source>&amp;About %1</source>
-        <translation>&amp;Mengenai%1</translation>
+        <translation type="unfinished">&amp;Mengenai%1</translation>
     </message>
     <message>
         <source>Show information about %1</source>
-        <translation>Menunjuk informasi mengenai%1</translation>
+        <translation type="unfinished">Menunjuk informasi mengenai%1</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
@@ -464,64 +628,17 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation>Menunjuk informasi megenai Qt</translation>
     </message>
     <message>
-        <source>&amp;Options...</source>
-        <translation>Pilihan</translation>
-    </message>
-    <message>
         <source>Modify configuration options for %1</source>
-        <translation>Mengubah suai pilihan konfigurasi untuk %1</translation>
-    </message>
-    <message>
-        <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Enkripsi Dompet</translation>
-    </message>
-    <message>
-        <source>&amp;Backup Wallet...</source>
-        <translation>&amp;Dompet Sandaran...</translation>
-    </message>
-    <message>
-        <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Menukar frasa-laluan</translation>
-    </message>
-    <message>
-        <source>Open &amp;URI...</source>
-        <translation>Buka &amp;URI...</translation>
-    </message>
-    <message>
-        <source>Create Wallet...</source>
-        <translation>Create Wallet...</translation>
-    </message>
-    <message>
-        <source>Create a new wallet</source>
-        <translation>Create a new wallet</translation>
+        <translation type="unfinished">Mengubah suai pilihan konfigurasi untuk %1</translation>
     </message>
     <message>
         <source>Wallet:</source>
-        <translation>dompet</translation>
-    </message>
-    <message>
-        <source>Click to disable network activity.</source>
-        <translation>Tekan untuk lumpuhkan rangkaian</translation>
+        <translation type="unfinished">dompet</translation>
     </message>
     <message>
         <source>Network activity disabled.</source>
-        <translation>Aktiviti rangkaian dilumpuhkan</translation>
-    </message>
-    <message>
-        <source>Click to enable network activity again.</source>
-        <translation>Tekan untuk mengaktifkan rangkain semula</translation>
-    </message>
-    <message>
-        <source>Syncing Headers (%1%)...</source>
-        <translation>Penyelarasn tajuk (%1%)...</translation>
-    </message>
-    <message>
-        <source>Reindexing blocks on disk...</source>
-        <translation>Reindexi blok pada cakera...</translation>
-    </message>
-    <message>
-        <source>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</source>
-        <translation>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</translation>
+        <extracomment>A substring of the tooltip.</extracomment>
+        <translation type="unfinished">Aktiviti rangkaian dilumpuhkan</translation>
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
@@ -534,10 +651,6 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
         <translation>Tukar kata laluan untuk dompet disulitkan</translation>
-    </message>
-    <message>
-        <source>&amp;Verify message...</source>
-        <translation>sahkan mesej</translation>
     </message>
     <message>
         <source>&amp;Send</source>
@@ -586,14 +699,15 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation>Request payments (generates QR codes and bitcoin: URIs)
+        <translation type="unfinished">Request payments (generates QR codes and bitcoin: URIs)
 </translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
-        <translation>Tunjukkan senarai alamat dan label yang digunakan
+        <translation type="unfinished">Tunjukkan senarai alamat dan label yang digunakan
 </translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>Show the list of used receiving addresses and labels</source>
         <translation>Show the list of used receiving addresses and labels</translation>
@@ -629,6 +743,13 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
         <source>Transactions after this will not yet be visible.</source>
         <translation>Transactions after this will not yet be visible.</translation>
+=======
+    <message numerus="yes">
+        <source>Processed %n block(s) of transaction history.</source>
+        <translation>
+            <numerusform />
+        </translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Error</source>
@@ -647,6 +768,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation>Terkini</translation>
     </message>
     <message>
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         <source>&amp;Load PSBT from file...</source>
@@ -686,19 +808,14 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation>Open a bitcoin: URI</translation>
     </message>
     <message>
+=======
+>>>>>>> upstream/22.x
         <source>Open Wallet</source>
-        <translation>Buka Wallet</translation>
-    </message>
-    <message>
-        <source>Open a wallet</source>
-        <translation>Open a wallet</translation>
-    </message>
-    <message>
-        <source>Close Wallet...</source>
-        <translation>Tutup Wallet...</translation>
+        <translation type="unfinished">Buka Wallet</translation>
     </message>
     <message>
         <source>Close wallet</source>
+<<<<<<< HEAD
         <translation>Tutup Wallet</translation>
     </message>
     <message>
@@ -715,6 +832,9 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
 >>>>>>> upstream/0.21
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation>Show the %1 help message to get a list with possible Bitcoin command-line options</translation>
+=======
+        <translation type="unfinished">Tutup Wallet</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
 <<<<<<< HEAD
@@ -729,112 +849,15 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
 >>>>>>> upstream/0.21
         <source>default wallet</source>
-        <translation>dompet lalai
+        <translation type="unfinished">dompet lalai
 </translation>
     </message>
-    <message>
-        <source>No wallets available</source>
-        <translation>No wallets available</translation>
-    </message>
-    <message>
-        <source>&amp;Window</source>
-        <translation>&amp;Window</translation>
-    </message>
-    <message>
-        <source>Minimize</source>
-        <translation>Minimize</translation>
-    </message>
-    <message>
-        <source>Zoom</source>
-        <translation>Zoom</translation>
-    </message>
-    <message>
-        <source>Main Window</source>
-        <translation>Main Window</translation>
-    </message>
-    <message>
-        <source>%1 client</source>
-        <translation>%1 client</translation>
-    </message>
-    <message>
-        <source>Connecting to peers...</source>
-        <translation>Connecting to peers...</translation>
-    </message>
-    <message>
-        <source>Catching up...</source>
-        <translation>Catching up...</translation>
-    </message>
-    <message>
-        <source>Error: %1</source>
-        <translation>Error: %1</translation>
-    </message>
-    <message>
-        <source>Warning: %1</source>
-        <translation>Warning: %1</translation>
-    </message>
-    <message>
-        <source>Date: %1
-</source>
-        <translation>Date: %1
-</translation>
-    </message>
-    <message>
-        <source>Amount: %1
-</source>
-        <translation>Amount: %1
-</translation>
-    </message>
-    <message>
-        <source>Wallet: %1
-</source>
-        <translation>Wallet: %1
-</translation>
-    </message>
-    <message>
-        <source>Type: %1
-</source>
-        <translation>Type: %1
-</translation>
-    </message>
-    <message>
-        <source>Label: %1
-</source>
-        <translation>Label: %1
-</translation>
-    </message>
-    <message>
-        <source>Address: %1
-</source>
-        <translation>Address: %1
-</translation>
-    </message>
-    <message>
-        <source>Sent transaction</source>
-        <translation>Sent transaction</translation>
-    </message>
-    <message>
-        <source>Incoming transaction</source>
-        <translation>Incoming transaction</translation>
-    </message>
-    <message>
-        <source>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</source>
-        <translation>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>Private key &lt;b&gt;disabled&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
+    <message numerus="yes">
+        <source>%n active connection(s) to Bitcoin network.</source>
+        <extracomment>A substring of the tooltip.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
     </message>
     <message>
 <<<<<<< HEAD
@@ -853,175 +876,32 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
 <context>
     <name>CoinControlDialog</name>
     <message>
-        <source>Coin Selection</source>
-        <translation>Coin Selection</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Quantity:</translation>
-    </message>
-    <message>
-        <source>Bytes:</source>
-        <translation>Bytes:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Amount:</translation>
-    </message>
-    <message>
-        <source>Fee:</source>
-        <translation>Fee:</translation>
-    </message>
-    <message>
-        <source>Dust:</source>
-        <translation>Dust:</translation>
-    </message>
-    <message>
-        <source>After Fee:</source>
-        <translation>After Fee:</translation>
-    </message>
-    <message>
-        <source>Change:</source>
-        <translation>Change:</translation>
-    </message>
-    <message>
-        <source>(un)select all</source>
-        <translation>(un)select all</translation>
-    </message>
-    <message>
-        <source>Tree mode</source>
-        <translation>Tree mode</translation>
-    </message>
-    <message>
-        <source>List mode</source>
-        <translation>List mode</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>Amount</translation>
-    </message>
-    <message>
-        <source>Received with label</source>
-        <translation>Received with label</translation>
-    </message>
-    <message>
-        <source>Received with address</source>
-        <translation>Received with address</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Date</translation>
-    </message>
-    <message>
-        <source>Confirmations</source>
-        <translation>Confirmations</translation>
-    </message>
-    <message>
-        <source>Confirmed</source>
-        <translation>Confirmed</translation>
-    </message>
-    <message>
-        <source>Copy address</source>
-        <translation>Copy address</translation>
-    </message>
-    <message>
-        <source>Copy label</source>
-        <translation>Copy label</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Copy amount</translation>
-    </message>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>Copy transaction ID</translation>
-    </message>
-    <message>
-        <source>Lock unspent</source>
-        <translation>Lock unspent</translation>
-    </message>
-    <message>
-        <source>Unlock unspent</source>
-        <translation>Unlock unspent</translation>
-    </message>
-    <message>
-        <source>Copy quantity</source>
-        <translation>Copy quantity</translation>
-    </message>
-    <message>
-        <source>Copy fee</source>
-        <translation>Copy fee</translation>
-    </message>
-    <message>
-        <source>Copy after fee</source>
-        <translation>Copy after fee</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>Copy bytes</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>Copy dust</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>Copy change</translation>
-    </message>
-    <message>
-        <source>(%1 locked)</source>
-        <translation>(%1 locked)</translation>
-    </message>
-    <message>
-        <source>yes</source>
-        <translation>yes</translation>
-    </message>
-    <message>
-        <source>no</source>
-        <translation>no</translation>
-    </message>
-    <message>
-        <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation>This label turns red if any recipient receives an amount smaller than the current dust threshold.</translation>
-    </message>
-    <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Can vary +/- %1 satoshi(s) per input.</translation>
-    </message>
-    <message>
         <source>(no label)</source>
-        <translation>(tiada label)</translation>
+        <translation type="unfinished">(tiada label)</translation>
     </message>
-    <message>
-        <source>change from %1 (%2)</source>
-        <translation>change from %1 (%2)</translation>
-    </message>
-    <message>
-        <source>(change)</source>
-        <translation>(change)</translation>
-    </message>
-</context>
+    </context>
 <context>
-    <name>CreateWalletActivity</name>
+    <name>OpenWalletActivity</name>
     <message>
-        <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</translation>
+        <source>default wallet</source>
+        <translation type="unfinished">dompet lalai
+</translation>
     </message>
+    </context>
+<context>
+    <name>WalletController</name>
     <message>
-        <source>Create wallet failed</source>
-        <translation>Create wallet failed</translation>
+        <source>Close wallet</source>
+        <translation type="unfinished">Tutup Wallet</translation>
     </message>
-    <message>
-        <source>Create wallet warning</source>
-        <translation>Create wallet warning</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CreateWalletDialog</name>
     <message>
-        <source>Create Wallet</source>
-        <translation>Create Wallet</translation>
+        <source>Wallet</source>
+        <translation type="unfinished">dompet</translation>
     </message>
+<<<<<<< HEAD
     <message>
 <<<<<<< HEAD
 =======
@@ -2060,6 +1940,9 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
 >>>>>>> upstream/0.21
     </message>
 </context>
+=======
+    </context>
+>>>>>>> upstream/22.x
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -2092,21 +1975,10 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation>The address associated with this address list entry. This can only be modified for sending addresses.</translation>
     </message>
     <message>
-        <source>&amp;Label</source>
-        <translation>&amp;Label</translation>
-    </message>
-    <message>
-        <source>The label associated with this address list entry</source>
-        <translation>The label associated with this address list entry</translation>
-    </message>
-    <message>
-        <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
-        <translation>The address associated with this address list entry. This can only be modified for sending addresses.</translation>
-    </message>
-    <message>
         <source>&amp;Address</source>
         <translation>&amp;Διεύθυνση</translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>New sending address</source>
 <<<<<<< HEAD
@@ -2542,6 +2414,17 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
         <translation>Error: Specified data directory "%1" cannot be created.</translation>
+=======
+    </context>
+<context>
+    <name>Intro</name>
+    <message numerus="yes">
+        <source>(sufficient to restore backups %n day(s) old)</source>
+        <extracomment>Explanatory text on the capability of the current prune target.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Error</source>
@@ -2565,6 +2448,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
 =======
 >>>>>>> upstream/0.21
 <context>
+<<<<<<< HEAD
     <name>ModalOverlay</name>
     <message>
         <source>Form</source>
@@ -3997,6 +3881,12 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
 =======
 >>>>>>> upstream/0.20
 =======
+=======
+    <name>OptionsDialog</name>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Ralat</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings-&gt;Mask values.</source>
@@ -4004,6 +3894,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     </message>
 </context>
 <context>
+<<<<<<< HEAD
     <name>PSBTOperationsDialog</name>
     <message>
         <source>Dialog</source>
@@ -5059,6 +4950,13 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
         <source>Could not unlock wallet.</source>
         <translation>Could not unlock wallet.</translation>
+=======
+    <name>PeerTableModel</name>
+    <message>
+        <source>Address</source>
+        <extracomment>Title of Peers Table column which contains the IP/Onion/I2P address of the connected peer.</extracomment>
+        <translation type="unfinished">Alamat</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Could not generate new %1 address</source>
@@ -5069,6 +4967,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
 <context>
     <name>ReceiveRequestDialog</name>
     <message>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -5102,11 +5001,16 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
         <source>Copy &amp;URI</source>
         <translation>Copy &amp;URI</translation>
+=======
+        <source>Wallet:</source>
+        <translation type="unfinished">dompet</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Copy &amp;Address</source>
-        <translation>&amp;Salin Alamat</translation>
+        <translation type="unfinished">&amp;Salin Alamat</translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>&amp;Save Image...</source>
         <translation>&amp;Save Image...</translation>
@@ -6045,9 +5949,16 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation>Message</translation>
     </message>
     <message>
+=======
+    </context>
+<context>
+    <name>RecentRequestsTableModel</name>
+    <message>
+>>>>>>> upstream/22.x
         <source>(no label)</source>
-        <translation>(tiada label)</translation>
+        <translation type="unfinished">(tiada label)</translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>(no message)</source>
         <translation>(no message)</translation>
@@ -6065,6 +5976,9 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
 >>>>>>> upstream/0.20
 =======
 >>>>>>> upstream/0.21
+=======
+    </context>
+>>>>>>> upstream/22.x
 <context>
     <name>SendCoinsDialog</name>
     </context>
@@ -6223,150 +6137,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Clear &amp;All</translation>
     </message>
     <message>
-        <source>Send Coins</source>
-        <translation>Send Coins</translation>
-    </message>
-    <message>
-        <source>Coin Control Features</source>
-        <translation>Coin Control Features</translation>
-    </message>
-    <message>
-        <source>Inputs...</source>
-        <translation>Inputs...</translation>
-    </message>
-    <message>
-        <source>automatically selected</source>
-        <translation>automatically selected</translation>
-    </message>
-    <message>
-        <source>Insufficient funds!</source>
-        <translation>Insufficient funds!</translation>
-    </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>Quantity:</translation>
-    </message>
-    <message>
-        <source>Bytes:</source>
-        <translation>Bytes:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Amount:</translation>
-    </message>
-    <message>
-        <source>Fee:</source>
-        <translation>Fee:</translation>
-    </message>
-    <message>
-        <source>After Fee:</source>
-        <translation>After Fee:</translation>
-    </message>
-    <message>
-        <source>Change:</source>
-        <translation>Change:</translation>
-    </message>
-    <message>
-        <source>If this is activated, but the change address is empty or invalid, change will be sent to a newly generated address.</source>
-        <translation>If this is activated, but the change address is empty or invalid, change will be sent to a newly generated address.</translation>
-    </message>
-    <message>
-        <source>Custom change address</source>
-        <translation>Custom change address</translation>
-    </message>
-    <message>
-        <source>Transaction Fee:</source>
-        <translation>Transaction Fee:</translation>
-    </message>
-    <message>
-        <source>Choose...</source>
-        <translation>Choose...</translation>
-    </message>
-    <message>
-        <source>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</source>
-        <translation>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</translation>
-    </message>
-    <message>
-        <source>Warning: Fee estimation is currently not possible.</source>
-        <translation>Warning: Fee estimation is currently not possible.</translation>
-    </message>
-    <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
-
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
-        <translation>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
-
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</translation>
-    </message>
-    <message>
-        <source>per kilobyte</source>
-        <translation>per kilobyte</translation>
-    </message>
-    <message>
-        <source>Hide</source>
-        <translation>Hide</translation>
-    </message>
-    <message>
-        <source>Recommended:</source>
-        <translation>Recommended:</translation>
-    </message>
-    <message>
-        <source>Custom:</source>
-        <translation>Custom:</translation>
-    </message>
-    <message>
-        <source>(Smart fee not initialized yet. This usually takes a few blocks...)</source>
-        <translation>(Smart fee not initialized yet. This usually takes a few blocks...)</translation>
-    </message>
-    <message>
-        <source>Send to multiple recipients at once</source>
-        <translation>Send to multiple recipients at once</translation>
-    </message>
-    <message>
-        <source>Add &amp;Recipient</source>
-        <translation>Add &amp;Recipient</translation>
-    </message>
-    <message>
-        <source>Clear all fields of the form.</source>
-        <translation>Clear all fields of the form.</translation>
-    </message>
-    <message>
-        <source>Dust:</source>
-        <translation>Dust:</translation>
-    </message>
-    <message>
-        <source>Hide transaction fee settings</source>
-        <translation>Hide transaction fee settings</translation>
-    </message>
-    <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</translation>
-    </message>
-    <message>
-        <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
-        <translation>A too low fee might result in a never confirming transaction (read the tooltip)</translation>
-    </message>
-    <message>
-        <source>Confirmation time target:</source>
-        <translation>Confirmation time target:</translation>
-    </message>
-    <message>
-        <source>Enable Replace-By-Fee</source>
-        <translation>Enable Replace-By-Fee</translation>
-    </message>
-    <message>
-        <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
-        <translation>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</translation>
-    </message>
-    <message>
-        <source>Clear &amp;All</source>
-        <translation>Clear &amp;All</translation>
-    </message>
-    <message>
         <source>Balance:</source>
         <translation>Baki</translation>
 >>>>>>> upstream/0.20
     </message>
+<<<<<<< HEAD
     <message>
         <source>Confirm the send action</source>
         <translation>Confirm the send action</translation>
@@ -7364,12 +7139,24 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>KB/s</source>
         <translation>KB/s</translation>
+=======
+    <message numerus="yes">
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation type="unfinished">(tiada label)</translation>
+>>>>>>> upstream/22.x
     </message>
 </context>
 <context>
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
+<<<<<<< HEAD
         <translation><numerusform>Open for %n more blocks</numerusform></translation>
     </message>
     <message>
@@ -9455,9 +9242,21 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</source>
         <translation>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</translation>
+=======
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>matures in %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+>>>>>>> upstream/22.x
     </message>
 </context>
 <context>
+<<<<<<< HEAD
     <name>WalletFrame</name>
     <message>
         <source>No wallet has been loaded.</source>
@@ -9490,11 +9289,35 @@ Go to File &gt; Open Wallet to load a wallet.
         <source>Create a new wallet</source>
         <translation>Create a new wallet</translation>
 >>>>>>> upstream/0.21
+=======
+    <name>TransactionTableModel</name>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+>>>>>>> upstream/22.x
     </message>
-</context>
+    <message>
+        <source>(no label)</source>
+        <translation type="unfinished">(tiada label)</translation>
+    </message>
+    </context>
+<context>
+    <name>TransactionView</name>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished">Alamat</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation type="unfinished">Mengeksport Gagal</translation>
+    </message>
+    </context>
 <context>
     <name>WalletModel</name>
     <message>
+<<<<<<< HEAD
         <source>Send Coins</source>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -9596,44 +9419,35 @@ Go to File &gt; Open Wallet to load a wallet.
     <message>
         <source>default wallet</source>
         <translation>Προεπιλεγμένο πορτοφόλι</translation>
+=======
+        <source>default wallet</source>
+        <translation type="unfinished">dompet lalai
+</translation>
+>>>>>>> upstream/22.x
     </message>
 </context>
 <context>
     <name>WalletView</name>
     <message>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_ms.ts
         <source>Export the data in the current tab to a file</source>
         <translation>Eksport maklumat dalam halaman sekarang kepada fail</translation>
+=======
+        <source>&amp;Export</source>
+        <translation type="unfinished">&amp;Eksport</translation>
     </message>
     <message>
-        <source>Backup Wallet</source>
-        <translation>Backup Wallet</translation>
+        <source>Export the data in the current tab to a file</source>
+        <translation type="unfinished">
+Alihkan fail data ke dalam tab semasa</translation>
     </message>
     <message>
-        <source>Wallet Data (*.dat)</source>
-        <translation>Wallet Data (*.dat)</translation>
+        <source>Error</source>
+        <translation type="unfinished">Ralat</translation>
+>>>>>>> upstream/22.x
     </message>
-    <message>
-        <source>Backup Failed</source>
-        <translation>Backup Failed</translation>
-    </message>
-    <message>
-        <source>There was an error trying to save the wallet data to %1.</source>
-        <translation>There was an error trying to save the wallet data to %1.</translation>
-    </message>
-    <message>
-        <source>Backup Successful</source>
-        <translation>Backup Successful</translation>
-    </message>
-    <message>
-        <source>The wallet data was successfully saved to %1.</source>
-        <translation>The wallet data was successfully saved to %1.</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Cancel</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>bitcoin-core</name>
     </context>
@@ -9799,6 +9613,7 @@ Go to File &gt; Open Wallet to load a wallet.
 <context>
     <name>bitcoin-core</name>
     <message>
+<<<<<<< HEAD
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -11390,4 +11205,10 @@ The transaction amount is too small to send after the fee has been deducted</tra
     </message>
     </context>
 >>>>>>> upstream/0.19
+=======
+        <source>Done loading</source>
+        <translation type="unfinished">Baca Selesai</translation>
+    </message>
+    </context>
+>>>>>>> upstream/22.x
 </TS>

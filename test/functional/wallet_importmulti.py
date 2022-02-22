@@ -1,8 +1,25 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2018 The Bitcoin Core developers
+# Copyright (c) 2014-2020 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test the importmulti RPC."""
+"""Test the importmulti RPC.
+
+Test importmulti by generating keys on node0, importing the scriptPubKeys and
+addresses on node1 and then testing the address info for the different address
+variants.
+
+- `get_key()` and `get_multisig()` are called to generate keys on node0 and
+  return the privkeys, pubkeys and all variants of scriptPubKey and address.
+- `test_importmulti()` is called to send an importmulti call to node1, test
+  success, and (if unsuccessful) test the error code and error message returned.
+- `test_address()` is called to call getaddressinfo for an address on node1
+  and test the values returned."""
+
+from test_framework.blocktools import COINBASE_MATURITY
+from test_framework.script import (
+    CScript,
+    OP_NOP,
+)
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal, assert_greater_than, assert_raises_rpc_error
 
@@ -38,7 +55,7 @@ class ImportMultiTest(BitcoinTestFramework):
         self.nodes[0].generate(1)
         self.nodes[1].generate(1)
         timestamp = self.nodes[1].getblock(self.nodes[1].getbestblockhash())['mediantime']
-        self.nodes[1].syncwithvalidationinterfacequeue()
+        self.nodes[1].syncwithvalidationinterfacequeue()  # Sync the timestamp to the wallet, so that importmulti works
 
         node0_address1 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
 
@@ -240,12 +257,9 @@ class ImportMultiTest(BitcoinTestFramework):
 
 
         # P2SH address
-        sig_address_1 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        sig_address_2 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        sig_address_3 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        multi_sig_script = self.nodes[0].createmultisig(2, [sig_address_1['pubkey'], sig_address_2['pubkey'], sig_address_3['pubkey']])
-        self.nodes[1].generate(100)
-        self.nodes[1].sendtoaddress(multi_sig_script['address'], 10.00)
+        multisig = get_multisig(self.nodes[0])
+        self.nodes[1].generate(COINBASE_MATURITY)
+        self.nodes[1].sendtoaddress(multisig.p2sh_addr, 10.00)
         self.nodes[1].generate(1)
         timestamp = self.nodes[1].getblock(self.nodes[1].getbestblockhash())['mediantime']
         self.nodes[1].syncwithvalidationinterfacequeue()
@@ -268,12 +282,9 @@ class ImportMultiTest(BitcoinTestFramework):
 
 
         # P2SH + Redeem script
-        sig_address_1 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        sig_address_2 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        sig_address_3 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        multi_sig_script = self.nodes[0].createmultisig(2, [sig_address_1['pubkey'], sig_address_2['pubkey'], sig_address_3['pubkey']])
-        self.nodes[1].generate(100)
-        self.nodes[1].sendtoaddress(multi_sig_script['address'], 10.00)
+        multisig = get_multisig(self.nodes[0])
+        self.nodes[1].generate(COINBASE_MATURITY)
+        self.nodes[1].sendtoaddress(multisig.p2sh_addr, 10.00)
         self.nodes[1].generate(1)
         timestamp = self.nodes[1].getblock(self.nodes[1].getbestblockhash())['mediantime']
         self.nodes[1].syncwithvalidationinterfacequeue()
@@ -296,12 +307,9 @@ class ImportMultiTest(BitcoinTestFramework):
 
 
         # P2SH + Redeem script + Private Keys + !Watchonly
-        sig_address_1 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        sig_address_2 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        sig_address_3 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        multi_sig_script = self.nodes[0].createmultisig(2, [sig_address_1['pubkey'], sig_address_2['pubkey'], sig_address_3['pubkey']])
-        self.nodes[1].generate(100)
-        self.nodes[1].sendtoaddress(multi_sig_script['address'], 10.00)
+        multisig = get_multisig(self.nodes[0])
+        self.nodes[1].generate(COINBASE_MATURITY)
+        self.nodes[1].sendtoaddress(multisig.p2sh_addr, 10.00)
         self.nodes[1].generate(1)
         timestamp = self.nodes[1].getblock(self.nodes[1].getbestblockhash())['mediantime']
         self.nodes[1].syncwithvalidationinterfacequeue()
@@ -324,12 +332,9 @@ class ImportMultiTest(BitcoinTestFramework):
         assert_equal(p2shunspent['solvable'], True)
 
         # P2SH + Redeem script + Private Keys + Watchonly
-        sig_address_1 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        sig_address_2 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        sig_address_3 = self.nodes[0].getaddressinfo(self.nodes[0].getnewaddress())
-        multi_sig_script = self.nodes[0].createmultisig(2, [sig_address_1['pubkey'], sig_address_2['pubkey'], sig_address_3['pubkey']])
-        self.nodes[1].generate(100)
-        self.nodes[1].sendtoaddress(multi_sig_script['address'], 10.00)
+        multisig = get_multisig(self.nodes[0])
+        self.nodes[1].generate(COINBASE_MATURITY)
+        self.nodes[1].sendtoaddress(multisig.p2sh_addr, 10.00)
         self.nodes[1].generate(1)
         timestamp = self.nodes[1].getblock(self.nodes[1].getbestblockhash())['mediantime']
         self.nodes[1].syncwithvalidationinterfacequeue()
@@ -768,6 +773,27 @@ class ImportMultiTest(BitcoinTestFramework):
         assert_equal(pub_import_info['pubkey'], pub)
         assert 'hdmasterfingerprint' not in pub_import_info
         assert 'hdkeypath' not in pub_import_info
+
+        # Bech32m addresses and descriptors cannot be imported
+        self.log.info("Bech32m addresses and descriptors cannot be imported")
+        self.test_importmulti(
+            {
+                "scriptPubKey": {"address": "bcrt1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqc8gma6"},
+                "timestamp": "now",
+            },
+            success=False,
+            error_code=-5,
+            error_message="Bech32m addresses cannot be imported into legacy wallets",
+        )
+        self.test_importmulti(
+            {
+                "desc": descsum_create("tr({})".format(pub)),
+                "timestamp": "now",
+            },
+            success=False,
+            error_code=-5,
+            error_message="Bech32m descriptors cannot be imported into legacy wallets",
+        )
 
         # Import some public keys to the keypool of a no privkey wallet
         self.log.info("Adding pubkey to keypool of disableprivkey wallet")

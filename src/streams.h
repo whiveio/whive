@@ -1,22 +1,24 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_STREAMS_H
 #define BITCOIN_STREAMS_H
 
-#include <support/allocators/zeroafterfree.h>
 #include <serialize.h>
+#include <span.h>
+#include <support/allocators/zeroafterfree.h>
 
 #include <algorithm>
 #include <assert.h>
 #include <ios>
 #include <limits>
+#include <optional>
 #include <stdint.h>
 #include <stdio.h>
-#include <string>
 #include <string.h>
+#include <string>
 #include <utility>
 #include <vector>
 
@@ -138,6 +140,74 @@ private:
     size_t nPos;
 };
 
+/** Minimal stream for reading from an existing vector by reference
+ */
+class VectorReader
+{
+private:
+    const int m_type;
+    const int m_version;
+    const std::vector<unsigned char>& m_data;
+    size_t m_pos = 0;
+
+public:
+
+    /**
+     * @param[in]  type Serialization Type
+     * @param[in]  version Serialization Version (including any flags)
+     * @param[in]  data Referenced byte vector to overwrite/append
+     * @param[in]  pos Starting position. Vector index where reads should start.
+     */
+    VectorReader(int type, int version, const std::vector<unsigned char>& data, size_t pos)
+        : m_type(type), m_version(version), m_data(data), m_pos(pos)
+    {
+        if (m_pos > m_data.size()) {
+            throw std::ios_base::failure("VectorReader(...): end of data (m_pos > m_data.size())");
+        }
+    }
+
+    /**
+     * (other params same as above)
+     * @param[in]  args  A list of items to deserialize starting at pos.
+     */
+    template <typename... Args>
+    VectorReader(int type, int version, const std::vector<unsigned char>& data, size_t pos,
+                  Args&&... args)
+        : VectorReader(type, version, data, pos)
+    {
+        ::UnserializeMany(*this, std::forward<Args>(args)...);
+    }
+
+    template<typename T>
+    VectorReader& operator>>(T&& obj)
+    {
+        // Unserialize from this stream
+        ::Unserialize(*this, obj);
+        return (*this);
+    }
+
+    int GetVersion() const { return m_version; }
+    int GetType() const { return m_type; }
+
+    size_t size() const { return m_data.size() - m_pos; }
+    bool empty() const { return m_data.size() == m_pos; }
+
+    void read(char* dst, size_t n)
+    {
+        if (n == 0) {
+            return;
+        }
+
+        // Read from the beginning of the buffer
+        size_t pos_next = m_pos + n;
+        if (pos_next > m_data.size()) {
+            throw std::ios_base::failure("VectorReader::read(): end of data");
+        }
+        memcpy(dst, m_data.data() + m_pos, n);
+        m_pos = pos_next;
+    }
+};
+
 /** Double ended buffer combining vector and stream-like interfaces.
  *
  * >> and << read and write unformatted data using the above serialization templates.
@@ -146,14 +216,14 @@ private:
 class CDataStream
 {
 protected:
-    typedef CSerializeData vector_type;
+    using vector_type = SerializeData;
     vector_type vch;
-    unsigned int nReadPos;
+    unsigned int nReadPos{0};
 
     int nType;
     int nVersion;
-public:
 
+public:
     typedef vector_type::allocator_type   allocator_type;
     typedef vector_type::size_type        size_type;
     typedef vector_type::difference_type  difference_type;
@@ -165,60 +235,20 @@ public:
     typedef vector_type::reverse_iterator reverse_iterator;
 
     explicit CDataStream(int nTypeIn, int nVersionIn)
-    {
-        Init(nTypeIn, nVersionIn);
-    }
+        : nType{nTypeIn},
+          nVersion{nVersionIn} {}
 
-    CDataStream(const_iterator pbegin, const_iterator pend, int nTypeIn, int nVersionIn) : vch(pbegin, pend)
-    {
-        Init(nTypeIn, nVersionIn);
-    }
-
-    CDataStream(const char* pbegin, const char* pend, int nTypeIn, int nVersionIn) : vch(pbegin, pend)
-    {
-        Init(nTypeIn, nVersionIn);
-    }
-
-    CDataStream(const vector_type& vchIn, int nTypeIn, int nVersionIn) : vch(vchIn.begin(), vchIn.end())
-    {
-        Init(nTypeIn, nVersionIn);
-    }
-
-    CDataStream(const std::vector<char>& vchIn, int nTypeIn, int nVersionIn) : vch(vchIn.begin(), vchIn.end())
-    {
-        Init(nTypeIn, nVersionIn);
-    }
-
-    CDataStream(const std::vector<unsigned char>& vchIn, int nTypeIn, int nVersionIn) : vch(vchIn.begin(), vchIn.end())
-    {
-        Init(nTypeIn, nVersionIn);
-    }
+    explicit CDataStream(Span<const uint8_t> sp, int nTypeIn, int nVersionIn)
+        : vch(sp.data(), sp.data() + sp.size()),
+          nType{nTypeIn},
+          nVersion{nVersionIn} {}
 
     template <typename... Args>
     CDataStream(int nTypeIn, int nVersionIn, Args&&... args)
+        : nType{nTypeIn},
+          nVersion{nVersionIn}
     {
-        Init(nTypeIn, nVersionIn);
         ::SerializeMany(*this, std::forward<Args>(args)...);
-    }
-
-    void Init(int nTypeIn, int nVersionIn)
-    {
-        nReadPos = 0;
-        nType = nTypeIn;
-        nVersion = nVersionIn;
-    }
-
-    CDataStream& operator+=(const CDataStream& b)
-    {
-        vch.insert(vch.end(), b.begin(), b.end());
-        return *this;
-    }
-
-    friend CDataStream operator+(const CDataStream& a, const CDataStream& b)
-    {
-        CDataStream ret = a;
-        ret += b;
-        return (ret);
     }
 
     std::string str() const
@@ -241,12 +271,12 @@ public:
     const_reference operator[](size_type pos) const  { return vch[pos + nReadPos]; }
     reference operator[](size_type pos)              { return vch[pos + nReadPos]; }
     void clear()                                     { vch.clear(); nReadPos = 0; }
-    iterator insert(iterator it, const char x=char()) { return vch.insert(it, x); }
-    void insert(iterator it, size_type n, const char x) { vch.insert(it, n, x); }
+    iterator insert(iterator it, const uint8_t x) { return vch.insert(it, x); }
+    void insert(iterator it, size_type n, const uint8_t x) { vch.insert(it, n, x); }
     value_type* data()                               { return vch.data() + nReadPos; }
     const value_type* data() const                   { return vch.data() + nReadPos; }
 
-    void insert(iterator it, std::vector<char>::const_iterator first, std::vector<char>::const_iterator last)
+    void insert(iterator it, std::vector<uint8_t>::const_iterator first, std::vector<uint8_t>::const_iterator last)
     {
         if (last == first) return;
         assert(last - first > 0);
@@ -317,12 +347,17 @@ public:
         nReadPos = 0;
     }
 
-    bool Rewind(size_type n)
+    bool Rewind(std::optional<size_type> n = std::nullopt)
     {
+        // Total rewind if no size is passed
+        if (!n) {
+            nReadPos = 0;
+            return true;
+        }
         // Rewind by n characters if the buffer hasn't been compacted yet
-        if (n > nReadPos)
+        if (*n > nReadPos)
             return false;
-        nReadPos -= n;
+        nReadPos -= *n;
         return true;
     }
 
@@ -404,11 +439,6 @@ public:
         // Unserialize from this stream
         ::Unserialize(*this, obj);
         return (*this);
-    }
-
-    void GetAndClear(CSerializeData &d) {
-        d.insert(d.end(), begin(), end());
-        clear();
     }
 
     /**

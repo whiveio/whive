@@ -1,12 +1,17 @@
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_bn.ts
 <TS language="bn" version="2.1">
 ========
 <TS language="uz@Latn" version="2.1">
 >>>>>>>> upstream/0.20:src/qt/locale/bitcoin_uz@Latn.ts
+=======
+<TS version="2.1" language="uz@Latn">
+>>>>>>> upstream/22.x
 <context>
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_bn.ts
         <translation>ঠিকানা কিংবা লেভেল সম্পাদনার জন্য রাইট-ক্লিক করুন</translation>
@@ -30,6 +35,9 @@
 =======
 >>>>>>> upstream/0.21
         <translation>Manzil yoki yorliqni tahrirlash uchun oʻng tugmani bosing</translation>
+=======
+        <translation type="unfinished">Manzil yoki yorliqni tahrirlash uchun oʻng tugmani bosing</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Create a new address</source>
@@ -37,15 +45,15 @@
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>&amp;Yangi</translation>
+        <translation type="unfinished">&amp;Yangi</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;Nusxalash</translation>
+        <translation type="unfinished">&amp;Nusxalash</translation>
     </message>
     <message>
         <source>C&amp;lose</source>
-        <translation>Yo&amp;pish</translation>
+        <translation type="unfinished">Yo&amp;pish</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -53,8 +61,12 @@
     </message>
     <message>
         <source>&amp;Copy Address</source>
+<<<<<<< HEAD
         <translation>&amp;Manzillarni nusxalash</translation>
 >>>>>>>> upstream/0.20:src/qt/locale/bitcoin_uz@Latn.ts
+=======
+        <translation type="unfinished">&amp;Manzillarni nusxalash</translation>
+>>>>>>> upstream/22.x
     </message>
     </context>
 <context>
@@ -65,22 +77,66 @@
         <translation>ঠিকানা </translation>
 ========
         <source>Label</source>
-        <translation>Yorliq</translation>
+        <translation type="unfinished">Yorliq</translation>
     </message>
     <message>
         <source>Address</source>
+<<<<<<< HEAD
         <translation>Manzil</translation>
 >>>>>>>> upstream/0.20:src/qt/locale/bitcoin_uz@Latn.ts
+=======
+        <translation type="unfinished">Manzil</translation>
+>>>>>>> upstream/22.x
     </message>
     </context>
 <context>
-    <name>AskPassphraseDialog</name>
-    </context>
-<context>
-    <name>BanTableModel</name>
+    <name>QObject</name>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n year(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>BitcoinGUI</name>
+<<<<<<< HEAD
     <message>
         <source>Warning</source>
         <translation>সতর্কতা</translation>
@@ -106,33 +162,38 @@
     </context>
 <context>
     <name>HelpMessageDialog</name>
+=======
+    <message numerus="yes">
+        <source>Processed %n block(s) of transaction history.</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n active connection(s) to Bitcoin network.</source>
+        <extracomment>A substring of the tooltip.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+>>>>>>> upstream/22.x
     </context>
 <context>
     <name>Intro</name>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OpenWalletActivity</name>
-    </context>
-<context>
-    <name>OptionsDialog</name>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PSBTOperationsDialog</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
+    <message numerus="yes">
+        <source>(sufficient to restore backups %n day(s) old)</source>
+        <extracomment>Explanatory text on the capability of the current prune target.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>PeerTableModel</name>
+<<<<<<< HEAD
     </context>
 <context>
     <name>QObject</name>
@@ -163,16 +224,24 @@
     </message>
 =======
 >>>>>>> upstream/0.21
+=======
+    <message>
+        <source>Address</source>
+        <extracomment>Title of Peers Table column which contains the IP/Onion/I2P address of the connected peer.</extracomment>
+        <translation type="unfinished">Manzil</translation>
+    </message>
+>>>>>>> upstream/22.x
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Label</source>
-        <translation>Yorliq</translation>
+        <translation type="unfinished">Yorliq</translation>
     </message>
     </context>
 <context>
     <name>SendCoinsDialog</name>
+<<<<<<< HEAD
     </context>
 <context>
     <name>SendCoinsEntry</name>
@@ -193,12 +262,32 @@
     </context>
 <context>
     <name>TrafficGraphWidget</name>
+=======
+    <message numerus="yes">
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+>>>>>>> upstream/22.x
     </context>
 <context>
     <name>TransactionDesc</name>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>matures in %n more block(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>TransactionTableModel</name>
@@ -206,7 +295,14 @@
 ========
     <message>
         <source>Label</source>
-        <translation>Yorliq</translation>
+        <translation type="unfinished">Yorliq</translation>
+    </message>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+            <numerusform />
+        </translation>
     </message>
 >>>>>>>> upstream/0.20:src/qt/locale/bitcoin_uz@Latn.ts
     </context>
@@ -218,10 +314,11 @@
         <translation>ঠিকানা </translation>
 ========
         <source>Label</source>
-        <translation>Yorliq</translation>
+        <translation type="unfinished">Yorliq</translation>
     </message>
     <message>
         <source>Address</source>
+<<<<<<< HEAD
         <translation>Manzil</translation>
 >>>>>>>> upstream/0.20:src/qt/locale/bitcoin_uz@Latn.ts
     </message>
@@ -264,4 +361,9 @@
         <translation>সতর্কতা</translation>
     </message>
     </context>
+=======
+        <translation type="unfinished">Manzil</translation>
+    </message>
+    </context>
+>>>>>>> upstream/22.x
 </TS>

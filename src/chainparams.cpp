@@ -6,10 +6,12 @@
 
 #include <chainparams.h>
 #include <consensus/merkle.h>
+#include <deploymentinfo.h>
 #include <hash.h> // for signet block challenge hash
 #include <tinyformat.h>
 #include <util.h>
 #include <utilstrencodings.h>
+#include <util/system.h>
 
 #include <assert.h>
 
@@ -63,7 +65,7 @@ void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64
 }
 
 /**
- * Main network
+ * Main network on which people trade goods and services.
  */
 /**
  * What makes a good checkpoint block?
@@ -155,7 +157,7 @@ public:
 
         bech32_hrp = "wv";
 
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
+        vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_main), std::end(chainparams_seed_main));
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
@@ -166,6 +168,10 @@ public:
             {
                 { 0, uint256S("0")}
            }
+        };
+
+        m_assumeutxo_data = MapAssumeutxo{
+         // TODO to be specified in a future patch.
         };
 
         chainTxData = ChainTxData{
@@ -181,7 +187,7 @@ public:
 };
 
 /**
- * Testnet (v3)
+ * Testnet (v3): public test network which is reset from time to time.
  */
 class CTestNetParams : public CChainParams {
 public:
@@ -246,7 +252,7 @@ public:
 
         bech32_hrp = "tw";
 
-        vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
+        vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_test), std::end(chainparams_seed_test));
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
@@ -259,6 +265,10 @@ public:
            }
         };
 
+        m_assumeutxo_data = MapAssumeutxo{
+            // TODO to be specified in a future patch.
+        };
+
         chainTxData = ChainTxData{
             1580661362,
             0,
@@ -268,7 +278,7 @@ public:
 };
 
 /**
- * Signet
+ * Signet: test network with an additional consensus parameter (see BIP325).
  */
 class SigNetParams : public CChainParams {
 public:
@@ -282,15 +292,15 @@ public:
             vSeeds.emplace_back("2a01:7c8:d005:390::5");
             vSeeds.emplace_back("v7ajjeirttkbnt32wpy3c6w3emwnfr3fkla7hpxcfokr3ysd3kqtzmqd.onion:38333");
 
-            consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000019fd16269a");
-            consensus.defaultAssumeValid = uint256S("0x0000002a1de0f46379358c1fd09906f7ac59adf3712323ed90eb59e4c183c020"); // 9434
+            consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000008546553c03");
+            consensus.defaultAssumeValid = uint256S("0x000000187d4440e5bff91488b700a140441e089a8aaea707414982460edbfe54"); // 47200
             m_assumed_blockchain_size = 1;
             m_assumed_chain_state_size = 0;
             chainTxData = ChainTxData{
-                // Data from RPC: getchaintxstats 4096 0000002a1de0f46379358c1fd09906f7ac59adf3712323ed90eb59e4c183c020
-                /* nTime    */ 1603986000,
-                /* nTxCount */ 9582,
-                /* dTxRate  */ 0.00159272030651341,
+                // Data from RPC: getchaintxstats 4096 000000187d4440e5bff91488b700a140441e089a8aaea707414982460edbfe54
+                /* nTime    */ 1626696658,
+                /* nTxCount */ 387761,
+                /* dTxRate  */ 0.04035946932424404,
             };
         } else {
             const auto signet_challenge = args.GetArgs("-signetchallenge");
@@ -377,7 +387,8 @@ public:
 };
 
 /**
- * Regression test
+ * Regression test: intended for private networks only. Has minimal difficulty to ensure that
+ * blocks can be found instantly.
  */
 class CRegTestParams : public CChainParams {
 public:
@@ -420,7 +431,9 @@ public:
         pchMessageStart[2] = 0x5d;
         pchMessageStart[3] = 0xac;
         nDefaultPort = 18432;
-        nPruneAfterHeight = 1000;
+        nPruneAfterHeight = args.GetBoolArg("-fastprune", false) ? 100 : 1000;
+        m_assumed_blockchain_size = 0;
+        m_assumed_chain_state_size = 0;
 
         genesis = CreateGenesisBlock(1580662895, 1, 0x207fffff, 1, 200 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -439,6 +452,17 @@ public:
             {
                 {0, uint256S("0x0")},
             }
+        };
+
+        m_assumeutxo_data = MapAssumeutxo{
+            {
+                110,
+                {AssumeutxoHash{uint256S("0x1ebbf5850204c0bdb15bf030f47c7fe91d45c44c712697e4509ba67adb01c618")}, 110},
+            },
+            {
+                200,
+                {AssumeutxoHash{uint256S("0x51c8d11d8b5c1de51543c579736e786aa2736206d1e11e627568029ce092cf62")}, 200},
+            },
         };
 
         chainTxData = ChainTxData{

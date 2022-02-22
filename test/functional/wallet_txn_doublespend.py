@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2018 The Bitcoin Core developers
+# Copyright (c) 2014-2020 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the wallet accounts properly when there is a double-spend conflict."""
@@ -12,9 +12,10 @@ from test_framework.util import (
     sync_blocks,
 )
 
+
 class TxnMallTest(BitcoinTestFramework):
     def set_test_params(self):
-        self.num_nodes = 4
+        self.num_nodes = 3
         self.supports_cli = False
 
     def skip_test_if_missing_module(self):
@@ -32,9 +33,16 @@ class TxnMallTest(BitcoinTestFramework):
     def run_test(self):
         # All nodes should start with 1,250 BTC:
         starting_balance = 1250
-        for i in range(4):
+
+        # All nodes should be out of IBD.
+        # If the nodes are not all out of IBD, that can interfere with
+        # blockchain sync later in the test when nodes are connected, due to
+        # timing issues.
+        for n in self.nodes:
+            assert n.getblockchaininfo()["initialblockdownload"] == False
+
+        for i in range(3):
             assert_equal(self.nodes[i].getbalance(), starting_balance)
-            self.nodes[i].getnewaddress("")  # bug workaround, coins generated assigned to first getnewaddress!
 
         # Assign coins to foo and bar addresses:
         node0_address_foo = self.nodes[0].getnewaddress()
@@ -128,6 +136,7 @@ class TxnMallTest(BitcoinTestFramework):
 
         # Node1's balance should be its initial balance (1250 for 25 block rewards) plus the doublespend:
         assert_equal(self.nodes[1].getbalance(), 1250 + 1240)
+
 
 if __name__ == '__main__':
     TxnMallTest().main()

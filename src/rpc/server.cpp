@@ -189,8 +189,8 @@ std::string CRPCTable::help(const std::string& strCommand, const JSONRPCRequest&
         vCommands.push_back(make_pair(entry.second->category + entry.first, entry.second));
     sort(vCommands.begin(), vCommands.end());
 
-    JSONRPCRequest jreq(helpreq);
-    jreq.fHelp = true;
+    JSONRPCRequest jreq = helpreq;
+    jreq.mode = JSONRPCRequest::GET_HELP;
     jreq.params = UniValue();
 
     for (const std::pair<std::string, const CRPCCommand*>& command : vCommands)
@@ -239,17 +239,23 @@ static RPCHelpMan help()
     return RPCHelpMan{"help",
                 "\nList all commands, or get help for a specified command.\n",
                 {
-                    {"command", RPCArg::Type::STR, /* default */ "all commands", "The command to get help on"},
+                    {"command", RPCArg::Type::STR, RPCArg::DefaultHint{"all commands"}, "The command to get help on"},
                 },
-                RPCResult{
-                    RPCResult::Type::STR, "", "The help text"
+                {
+                    RPCResult{RPCResult::Type::STR, "", "The help text"},
+                    RPCResult{RPCResult::Type::ANY, "", ""},
                 },
                 RPCExamples{""},
         [&](const RPCHelpMan& self, const JSONRPCRequest& jsonRequest) -> UniValue
 {
     std::string strCommand;
-    if (jsonRequest.params.size() > 0)
+    if (jsonRequest.params.size() > 0) {
         strCommand = jsonRequest.params[0].get_str();
+    }
+    if (strCommand == "dump_all_command_conversions") {
+        // Used for testing only, undocumented
+        return tableRPC.dumpArgMap(jsonRequest);
+    }
 
     return tableRPC.help(strCommand, jsonRequest);
 },
@@ -348,12 +354,13 @@ static RPCHelpMan getrpcinfo()
 
 // clang-format off
 static const CRPCCommand vRPCCommands[] =
-{ //  category              name                      actor (function)         argNames
-  //  --------------------- ------------------------  -----------------------  ----------
+{ //  category               actor (function)
+  //  ---------------------  -----------------------
     /* Overall control/query calls */
-    { "control",            "help",                   &help,                   {"command"}  },
-    { "control",            "stop",                   &stop,                   {}  },
-    { "control",            "uptime",                 &uptime,                 {}  },
+    { "control",             &getrpcinfo,             },
+    { "control",             &help,                   },
+    { "control",             &stop,                   },
+    { "control",             &uptime,                 },
 };
 
 CRPCTable::CRPCTable()
@@ -525,6 +532,16 @@ static inline JSONRPCRequest transformNamedArguments(const JSONRPCRequest& in, c
     return out;
 }
 
+static bool ExecuteCommands(const std::vector<const CRPCCommand*>& commands, const JSONRPCRequest& request, UniValue& result)
+{
+    for (const auto& command : commands) {
+        if (ExecuteCommand(*command, request, result, &command == &commands.back())) {
+            return true;
+        }
+    }
+    return false;
+}
+
 UniValue CRPCTable::execute(const JSONRPCRequest &request) const
 {
     // Return immediately if in warmup
@@ -535,11 +552,15 @@ UniValue CRPCTable::execute(const JSONRPCRequest &request) const
     }
 
     // Find method
-    const CRPCCommand *pcmd = tableRPC[request.strMethod];
-    if (!pcmd)
-        throw JSONRPCError(RPC_METHOD_NOT_FOUND, "Method not found");
-
-    g_rpcSignals.PreCommand(*pcmd);
+    auto it = mapCommands.find(request.strMethod);
+    if (it != mapCommands.end()) {
+        UniValue result;
+        if (ExecuteCommands(it->second, request, result)) {
+            return result;
+        }
+    }
+    throw JSONRPCError(RPC_METHOD_NOT_FOUND, "Method not found");
+}
 
     try
     {
@@ -567,15 +588,21 @@ std::vector<std::string> CRPCTable::listCommands() const
     return commandList;
 }
 
-std::string HelpExampleCli(const std::string& methodname, const std::string& args)
+UniValue CRPCTable::dumpArgMap(const JSONRPCRequest& args_request) const
 {
-    return "> whive-cli " + methodname + " " + args + "\n";
-}
+    JSONRPCRequest request = args_request;
+    request.mode = JSONRPCRequest::GET_ARGS;
 
-std::string HelpExampleRpc(const std::string& methodname, const std::string& args)
-{
-    return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
-        "\"method\": \"" + methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:8372/\n";
+    UniValue ret{UniValue::VARR};
+    for (const auto& cmd : mapCommands) {
+        UniValue result;
+        if (ExecuteCommands(cmd.second, request, result)) {
+            for (const auto& values : result.getValues()) {
+                ret.push_back(values);
+            }
+        }
+    }
+    return ret;
 }
 
 void RPCSetTimerInterfaceIfUnset(RPCTimerInterface *iface)

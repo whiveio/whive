@@ -22,7 +22,9 @@
 #include <stdint.h>
 #include <string>
 
-QString TransactionDesc::FormatTxStatus(const interfaces::WalletTx& wtx, const interfaces::WalletTxStatus& status, bool inMempool, int numBlocks, int64_t adjustedTime)
+#include <QLatin1String>
+
+QString TransactionDesc::FormatTxStatus(const interfaces::WalletTx& wtx, const interfaces::WalletTxStatus& status, bool inMempool, int numBlocks)
 {
     if (!status.is_final)
     {
@@ -34,14 +36,16 @@ QString TransactionDesc::FormatTxStatus(const interfaces::WalletTx& wtx, const i
     else
     {
         int nDepth = status.depth_in_main_chain;
-        if (nDepth < 0)
+        if (nDepth < 0) {
             return tr("conflicted with a transaction with %1 confirmations").arg(-nDepth);
-        else if (nDepth == 0)
-            return tr("0/unconfirmed, %1").arg((inMempool ? tr("in memory pool") : tr("not in memory pool"))) + (status.is_abandoned ? ", "+tr("abandoned") : "");
-        else if (nDepth < 6)
+        } else if (nDepth == 0) {
+            const QString abandoned{status.is_abandoned ? QLatin1String(", ") + tr("abandoned") : QString()};
+            return tr("0/unconfirmed, %1").arg(inMempool ? tr("in memory pool") : tr("not in memory pool")) + abandoned;
+        } else if (nDepth < 6) {
             return tr("%1/unconfirmed").arg(nDepth);
-        else
+        } else {
             return tr("%1 confirmations").arg(nDepth);
+        }
     }
 }
 

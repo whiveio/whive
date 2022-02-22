@@ -12,6 +12,7 @@
 #include <validationinterface.h>
 
 class CBlockIndex;
+class CChainState;
 
 struct IndexSummary {
     std::string name;
@@ -66,16 +67,26 @@ private:
     /// over and the sync thread exits.
     void ThreadSync();
 
-    /// Write the current chain block locator to the DB.
-    bool WriteBestBlock(const CBlockIndex* block_index);
-
+    /// Write the current index state (eg. chain block locator and subclass-specific items) to disk.
+    ///
+    /// Recommendations for error handling:
+    /// If called on a successor of the previous committed best block in the index, the index can
+    /// continue processing without risk of corruption, though the index state will need to catch up
+    /// from further behind on reboot. If the new state is not a successor of the previous state (due
+    /// to a chain reorganization), the index must halt until Commit succeeds or else it could end up
+    /// getting corrupted.
+    bool Commit();
 protected:
+    CChainState* m_chainstate{nullptr};
+
     void BlockConnected(const std::shared_ptr<const CBlock>& block, const CBlockIndex* pindex) override;
 
     void ChainStateFlushed(const CBlockLocator& locator) override;
 
+    const CBlockIndex* CurrentIndex() { return m_best_block_index.load(); };
+
     /// Initialize internal state from the database and block index.
-    virtual bool Init();
+    [[nodiscard]] virtual bool Init();
 
     /// Write update index entries for a newly connected block.
     virtual bool WriteBlock(const CBlock& block, const CBlockIndex* pindex) { return true; }
@@ -94,13 +105,13 @@ public:
     /// sync once and only needs to process blocks in the ValidationInterface
     /// queue. If the index is catching up from far behind, this method does
     /// not block and immediately returns false.
-    bool BlockUntilSyncedToCurrentChain() const;
+    bool BlockUntilSyncedToCurrentChain() const LOCKS_EXCLUDED(::cs_main);
 
     void Interrupt();
 
     /// Start initializes the sync state and registers the instance as a
     /// ValidationInterface so that it stays in sync with blockchain updates.
-    void Start();
+    [[nodiscard]] bool Start(CChainState& active_chainstate);
 
     /// Stops the instance from staying in sync with blockchain updates.
     void Stop();

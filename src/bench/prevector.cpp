@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2018 The Bitcoin Core developers
+// Copyright (c) 2015-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,11 +14,11 @@ struct nontrivial_t {
     nontrivial_t() :x(-1) {}
     SERIALIZE_METHODS(nontrivial_t, obj) { READWRITE(obj.x); }
 };
-static_assert(!IS_TRIVIALLY_CONSTRUCTIBLE<nontrivial_t>::value,
+static_assert(!std::is_trivially_default_constructible<nontrivial_t>::value,
               "expected nontrivial_t to not be trivially constructible");
 
 typedef unsigned char trivial_t;
-static_assert(IS_TRIVIALLY_CONSTRUCTIBLE<trivial_t>::value,
+static_assert(std::is_trivially_default_constructible<trivial_t>::value,
               "expected trivial_t to be trivially constructible");
 
 template <typename T>
@@ -76,7 +76,7 @@ static void PrevectorDeserialize(benchmark::Bench& bench)
         for (auto x = 0; x < 1000; ++x) {
             s0 >> t1;
         }
-        s0.Init(SER_NETWORK, 0);
+        s0.Rewind();
     });
 }
 

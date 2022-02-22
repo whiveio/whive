@@ -56,7 +56,9 @@ All three configurations assume several paths that might need to be adjusted.
 Binary:              `/usr/bin/whived`
 Configuration file:  `/etc/whive/whive.conf`
 Data directory:      `/var/lib/whived`
-PID file:            `/var/run/whived/whived.pid` (OpenRC and Upstart) or `/run/whived/whived.pid` (systemd)
+PID file:            `/var/run/whived/whived.pid` (OpenRC and
+Upstart) or 
+                     `/run/whived/whived.pid` (systemd)
 Lock file:           `/var/lock/subsys/whived` (CentOS)
 
 The PID directory (if applicable) and data directory should both be owned by the

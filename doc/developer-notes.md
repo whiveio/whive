@@ -15,7 +15,7 @@ Developer Notes
         - [Compiling for debugging](#compiling-for-debugging)
         - [Compiling for gprof profiling](#compiling-for-gprof-profiling)
         - [`debug.log`](#debuglog)
-        - [Testnet and Regtest modes](#testnet-and-regtest-modes)
+        - [Signet, testnet, and regtest modes](#signet-testnet-and-regtest-modes)
         - [DEBUG_LOCKORDER](#debug_lockorder)
         - [Valgrind suppressions file](#valgrind-suppressions-file)
         - [Compiling for test coverage](#compiling-for-test-coverage)
@@ -74,6 +74,11 @@ tool to clean up patches automatically before submission.
     on the same line as the `if`, without braces. In every other case,
     braces are required, and the `then` and `else` clauses must appear
     correctly indented on a new line.
+  - There's no hard limit on line width, but prefer to keep lines to <100
+    characters if doing so does not decrease readability. Break up long
+    function declarations over multiple lines using the Clang Format
+    [AlignAfterOpenBracket](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)
+    style option.
 
 - **Symbol naming conventions**. These are preferred in new code, but are not
 required when doing so would need changes to significant pieces of existing
@@ -82,7 +87,7 @@ code.
     separate words (snake_case).
     - Class member variables have a `m_` prefix.
     - Global variables have a `g_` prefix.
-  - Compile-time constant names are all uppercase, and use `_` to separate words.
+  - Constant names are all uppercase, and use `_` to separate words.
   - Class names, function names, and method names are UpperCamelCase
     (PascalCase). Do not prefix class names with `C`.
   - Test suite naming convention: The Boost test suite in file
@@ -129,7 +134,14 @@ public:
 Doxygen comments
 -----------------
 
-To facilitate the generation of documentation, use doxygen-compatible comment blocks for functions, methods and fields.
+Refer to [/test/functional/README.md#style-guidelines](/test/functional/README.md#style-guidelines).
+
+Coding Style (Doxygen-compatible comments)
+------------------------------------------
+
+Whive Core uses [Doxygen](https://www.doxygen.nl/) to generate its official documentation.
+
+Use Doxygen-compatible comment blocks for functions, methods, and fields.
 
 For example, to describe a function use:
 
@@ -148,7 +160,7 @@ For example, to describe a function use:
 bool function(int arg1, const char *arg2, std::string& arg3)
 ```
 
-A complete list of `@xxx` commands can be found at http://www.doxygen.nl/manual/commands.html.
+A complete list of `@xxx` commands can be found at https://www.doxygen.nl/manual/commands.html.
 As Doxygen recognizes the comments by the delimiters (`/**` and `*/` in this case), you don't
 *need* to provide any commands for a comment to be valid; just a description text is fine.
 
@@ -164,14 +176,6 @@ class CAlert
 
 To describe a member or variable use:
 ```c++
-<<<<<<< HEAD
-int var; //!< Detailed description after the member
-```
-
-or
-```cpp
-=======
->>>>>>> upstream/0.20
 //! Description before the member
 int var;
 ```
@@ -196,12 +200,6 @@ Not picked up by Doxygen:
 //
 ```
 
-<<<<<<< HEAD
-A full list of comment syntaxes picked up by doxygen can be found at http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html,
-but if possible use one of the above styles.
-
-Documentation can be generated with `make docs` and cleaned up with `make clean-docs`.
-=======
 Also not picked up by Doxygen:
 ```c++
 /*
@@ -209,11 +207,10 @@ Also not picked up by Doxygen:
  */
 ```
 
-A full list of comment syntaxes picked up by Doxygen can be found at http://www.doxygen.nl/manual/docblocks.html,
+A full list of comment syntaxes picked up by Doxygen can be found at https://www.doxygen.nl/manual/docblocks.html,
 but the above styles are favored.
 
 Recommendations:
->>>>>>> upstream/0.20
 
 - Avoiding duplicating type and input/output information in function
   descriptions.
@@ -223,7 +220,7 @@ Recommendations:
 
 - Backticks aren't required when referring to functions Doxygen already knows
   about; it will build hyperlinks for these automatically. See
-  http://www.doxygen.nl/manual/autolink.html for complete info.
+  https://www.doxygen.nl/manual/autolink.html for complete info.
 
 - Avoid linking to external documentation; links can break.
 
@@ -266,14 +263,15 @@ on all categories (and give you a very large `debug.log` file).
 The Qt code routes `qDebug()` output to `debug.log` under category "qt": run with `-debug=qt`
 to see it.
 
-### Testnet and Regtest modes
+### Signet, testnet, and regtest modes
 
-Run with the `-testnet` option to run with "play whives" on the test network, if you
-are testing multi-machine code that needs to operate across the internet.
+If you are testing multi-machine code that needs to operate across the internet,
+you can run with either the `-signet` or the `-testnet` config option to test
+with "play bitcoins" on a test network.
 
-If you are testing something that can run on one machine, run with the `-regtest` option.
-In regression test mode, blocks can be created on-demand; see [test/functional/](/test/functional) for tests
-that run in `-regtest` mode.
+If you are testing something that can run on one machine, run with the
+`-regtest` option.  In regression test mode, blocks can be created on demand;
+see [test/functional/](/test/functional) for tests that run in `-regtest` mode.
 
 ### DEBUG_LOCKORDER
 
@@ -282,6 +280,33 @@ multi-threading bugs can be very difficult to track down. The `--enable-debug`
 configure option adds `-DDEBUG_LOCKORDER` to the compiler flags. This inserts
 run-time checks to keep track of which locks are held and adds warnings to the
 `debug.log` file if inconsistencies are detected.
+
+### Assertions and Checks
+
+The util file `src/util/check.h` offers helpers to protect against coding and
+internal logic bugs. They must never be used to validate user, network or any
+other input.
+
+* `assert` or `Assert` should be used to document assumptions when any
+  violation would mean that it is not safe to continue program execution. The
+  code is always compiled with assertions enabled.
+   - For example, a nullptr dereference or any other logic bug in validation
+     code means the program code is faulty and must terminate immediately.
+* `CHECK_NONFATAL` should be used for recoverable internal logic bugs. On
+  failure, it will throw an exception, which can be caught to recover from the
+  error.
+   - For example, a nullptr dereference or any other logic bug in RPC code
+     means that the RPC code is faulty and can not be executed. However, the
+     logic bug can be shown to the user and the program can continue to run.
+* `Assume` should be used to document assumptions when program execution can
+  safely continue even if the assumption is violated. In debug builds it
+  behaves like `Assert`/`assert` to notify developers and testers about
+  nonfatal errors. In production it doesn't warn or log anything, though the
+  expression is always evaluated.
+   - For example it can be assumed that a variable is only initialized once,
+     but a failed assumption does not result in a fatal bug. A failed
+     assumption may or may not result in a slightly degraded user experience,
+     but it is safe to continue program execution.
 
 ### Valgrind suppressions file
 
@@ -295,12 +320,8 @@ in-tree. Example use:
 $ valgrind --suppressions=contrib/valgrind.supp src/test/test_bitcoin
 $ valgrind --suppressions=contrib/valgrind.supp --leak-check=full \
       --show-leak-kinds=all src/test/test_bitcoin --log_level=test_suite
-<<<<<<< HEAD
-$ valgrind -v --leak-check=full src/whived -printtoconsole
-=======
 $ valgrind -v --leak-check=full src/bitcoind -printtoconsole
 $ ./test/functional/test_runner.py --valgrind
->>>>>>> upstream/0.20
 ```
 
 ### Compiling for test coverage
@@ -527,7 +548,7 @@ General Whive Core
   - *Rationale*: RPC allows for better automatic testing. The test suite for
     the GUI is very limited.
 
-- Make sure pull requests pass Travis CI before merging.
+- Make sure pull requests pass CI before merging.
 
   - *Rationale*: Makes sure that they pass thorough testing, and that the tester will keep passing
      on the master branch. Otherwise, all new pull requests will start failing the tests, resulting in
@@ -572,11 +593,6 @@ Common misconceptions are clarified in those sections:
   `unique_ptr` for allocations in a function.
 
   - *Rationale*: This avoids memory and resource leaks, and ensures exception safety.
-
-- Use `MakeUnique()` to construct objects owned by `unique_ptr`s.
-
-  - *Rationale*: `MakeUnique` is concise and ensures exception safety in complex expressions.
-    `MakeUnique` is a temporary project local implementation of `std::make_unique` (C++14).
 
 C++ data structures
 --------------------
@@ -763,6 +779,11 @@ Threads and synchronization
   get compile-time warnings about potential race conditions in code. Combine annotations in function declarations with
   run-time asserts in function definitions:
 
+  - In functions that are declared separately from where they are defined, the
+    thread safety annotations should be added exclusively to the function
+    declaration. Annotations on the definition could lead to false positives
+    (lack of compile failure) at call sites between the two.
+
 ```C++
 // txmempool.h
 class CTxMemPool
@@ -790,7 +811,7 @@ class ChainstateManager
 {
 public:
     ...
-    bool ProcessNewBlock(...) EXCLUSIVE_LOCKS_REQUIRED(!::cs_main);
+    bool ProcessNewBlock(...) LOCKS_EXCLUDED(::cs_main);
     ...
 }
 
@@ -956,17 +977,12 @@ Current subtrees include:
   - **Note**: Follow the instructions in [Upgrading LevelDB](#upgrading-leveldb) when
     merging upstream changes to the leveldb subtree.
 
-<<<<<<< HEAD
-- src/libsecp256k1
-  - Upstream at https://github.com/bitcoin-core/secp256k1/ ; actively maintaned by Core contributors.
-=======
 - src/crc32c
   - Used by leveldb for hardware acceleration of CRC32C checksums for data integrity.
   - Upstream at https://github.com/google/crc32c ; Maintained by Google.
 
 - src/secp256k1
   - Upstream at https://github.com/bitcoin-core/secp256k1/ ; actively maintained by Core contributors.
->>>>>>> upstream/0.20
 
 - src/crypto/ctaes
   - Upstream at https://github.com/bitcoin-core/ctaes ; actively maintained by Core contributors.
@@ -1073,7 +1089,7 @@ Scripted diffs
 --------------
 
 For reformatting and refactoring commits where the changes can be easily automated using a bash script, we use
-scripted-diff commits. The bash script is included in the commit message and our Travis CI job checks that
+scripted-diff commits. The bash script is included in the commit message and our CI job checks that
 the result of the script is identical to the commit. This aids reviewers since they can verify that the script
 does exactly what it is supposed to do. It is also helpful for rebasing (since the same script can just be re-run
 on the new master commit).
@@ -1175,13 +1191,6 @@ A few guidelines for introducing and reviewing new RPC interfaces:
 - Don't forget to fill in the argument names correctly in the RPC command table.
 
   - *Rationale*: If not, the call can not be used with name-based arguments.
-
-- Set okSafeMode in the RPC command table to a sensible value: safe mode is when the
-  blockchain is regarded to be in a confused state, and the client deems it unsafe to
-  do anything irreversible such as send. Anything that just queries should be permitted.
-
-  - *Rationale*: Troubleshooting a node in safe mode is difficult if half the
-    RPCs don't work.
 
 - Add every non-string RPC argument `(method, idx, name)` to the table `vRPCConvertParams` in `rpc/client.cpp`.
 

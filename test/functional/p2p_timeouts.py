@@ -55,8 +55,10 @@ class TimeoutsTest(BitcoinTestFramework):
         assert no_version_node.is_connected
         assert no_send_node.is_connected
 
-        no_verack_node.send_message(msg_ping())
-        no_version_node.send_message(msg_ping())
+        with self.nodes[0].assert_debug_log(['Unsupported message "ping" prior to verack from peer=0']):
+            no_verack_node.send_message(msg_ping())
+        with self.nodes[0].assert_debug_log(['non-version message before version handshake. Message "ping" from peer=1']):
+            no_version_node.send_message(msg_ping())
 
         sleep(30)
 
@@ -69,7 +71,11 @@ class TimeoutsTest(BitcoinTestFramework):
         no_verack_node.send_message(msg_ping())
         no_version_node.send_message(msg_ping())
 
-        sleep(31)
+        expected_timeout_logs = [
+            "version handshake timeout peer=0",
+            "socket no message in first 3 seconds, 1 0 peer=1",
+            "socket no message in first 3 seconds, 0 0 peer=2",
+        ]
 
         assert not no_verack_node.is_connected
         assert not no_version_node.is_connected

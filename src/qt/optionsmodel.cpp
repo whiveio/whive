@@ -12,13 +12,15 @@
 #include <qt/guiutil.h>
 
 #include <interfaces/node.h>
-#include <validation.h> // For DEFAULT_SCRIPTCHECK_THREADS
+#include <mapport.h>
 #include <net.h>
 #include <netbase.h>
-#include <txdb.h> // for -dbcache defaults
+#include <txdb.h>       // for -dbcache defaults
 #include <util/string.h>
+#include <validation.h> // For DEFAULT_SCRIPTCHECK_THREADS
 
 #include <QDebug>
+#include <QLatin1Char>
 #include <QSettings>
 #include <QStringList>
 
@@ -53,14 +55,15 @@ void OptionsModel::Init(bool resetSettings)
     // These are Qt-only settings:
 
     // Window
-    if (!settings.contains("fHideTrayIcon"))
+    if (!settings.contains("fHideTrayIcon")) {
         settings.setValue("fHideTrayIcon", false);
-    fHideTrayIcon = settings.value("fHideTrayIcon").toBool();
-    Q_EMIT hideTrayIconChanged(fHideTrayIcon);
+    }
+    m_show_tray_icon = !settings.value("fHideTrayIcon").toBool();
+    Q_EMIT showTrayIconChanged(m_show_tray_icon);
 
     if (!settings.contains("fMinimizeToTray"))
         settings.setValue("fMinimizeToTray", false);
-    fMinimizeToTray = settings.value("fMinimizeToTray").toBool() && !fHideTrayIcon;
+    fMinimizeToTray = settings.value("fMinimizeToTray").toBool() && m_show_tray_icon;
 
     if (!settings.contains("fMinimizeOnClose"))
         settings.setValue("fMinimizeOnClose", false);
@@ -113,6 +116,13 @@ void OptionsModel::Init(bool resetSettings)
         settings.setValue("bSpendZeroConfChange", true);
     if (!gArgs.SoftSetBoolArg("-spendzeroconfchange", settings.value("bSpendZeroConfChange").toBool()))
         addOverriddenOption("-spendzeroconfchange");
+
+    if (!settings.contains("external_signer_path"))
+        settings.setValue("external_signer_path", "");
+
+    if (!gArgs.SoftSetArg("-signer", settings.value("external_signer_path").toString().toStdString())) {
+        addOverriddenOption("-signer");
+    }
 #endif
 
     // Network
@@ -120,6 +130,13 @@ void OptionsModel::Init(bool resetSettings)
         settings.setValue("fUseUPnP", DEFAULT_UPNP);
     if (!gArgs.SoftSetBoolArg("-upnp", settings.value("fUseUPnP").toBool()))
         addOverriddenOption("-upnp");
+
+    if (!settings.contains("fUseNatpmp")) {
+        settings.setValue("fUseNatpmp", DEFAULT_NATPMP);
+    }
+    if (!gArgs.SoftSetBoolArg("-natpmp", settings.value("fUseNatpmp").toBool())) {
+        addOverriddenOption("-natpmp");
+    }
 
     if (!settings.contains("fListen"))
         settings.setValue("fListen", DEFAULT_LISTEN);
@@ -153,6 +170,12 @@ void OptionsModel::Init(bool resetSettings)
         addOverriddenOption("-lang");
 
     language = settings.value("language").toString();
+
+    if (!settings.contains("UseEmbeddedMonospacedFont")) {
+        settings.setValue("UseEmbeddedMonospacedFont", "true");
+    }
+    m_use_embedded_monospaced_font = settings.value("UseEmbeddedMonospacedFont").toBool();
+    Q_EMIT useEmbeddedMonospacedFontChanged(m_use_embedded_monospaced_font);
 }
 
 /** Helper function to copy contents from one QSettings to another.
@@ -179,7 +202,7 @@ void OptionsModel::Reset()
     QSettings settings;
 
     // Backup old settings to chain-specific datadir for troubleshooting
-    BackupSettings(GetDataDir(true) / "guisettings.ini.bak", settings);
+    BackupSettings(gArgs.GetDataDirNet() / "guisettings.ini.bak", settings);
 
     // Save the strDataDir setting
     QString dataDir = Intro::getDefaultDataDirectory();
@@ -218,7 +241,7 @@ static ProxySetting GetProxySetting(QSettings &settings, const QString &name)
         return default_val;
     }
     // contains IP at index 0 and port at index 1
-    QStringList ip_port = settings.value(name).toString().split(":", QString::SkipEmptyParts);
+    QStringList ip_port = GUIUtil::SplitSkipEmptyParts(settings.value(name).toString(), ":");
     if (ip_port.size() == 2) {
         return {true, ip_port.at(0), ip_port.at(1)};
     } else { // Invalid: return default
@@ -228,7 +251,7 @@ static ProxySetting GetProxySetting(QSettings &settings, const QString &name)
 
 static void SetProxySetting(QSettings &settings, const QString &name, const ProxySetting &ip_port)
 {
-    settings.setValue(name, ip_port.ip + ":" + ip_port.port);
+    settings.setValue(name, QString{ip_port.ip + QLatin1Char(':') + ip_port.port});
 }
 
 static const QString GetDefaultProxyAddress()
@@ -271,8 +294,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
         {
         case StartAtStartup:
             return GUIUtil::GetStartOnSystemStartup();
-        case HideTrayIcon:
-            return fHideTrayIcon;
+        case ShowTrayIcon:
+            return m_show_tray_icon;
         case MinimizeToTray:
             return fMinimizeToTray;
         case MapPortUPnP:
@@ -280,7 +303,13 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return settings.value("fUseUPnP");
 #else
             return false;
-#endif
+#endif // USE_UPNP
+        case MapPortNatpmp:
+#ifdef USE_NATPMP
+            return settings.value("fUseNatpmp");
+#else
+            return false;
+#endif // USE_NATPMP
         case MinimizeOnClose:
             return fMinimizeOnClose;
 
@@ -303,6 +332,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
 #ifdef ENABLE_WALLET
         case SpendZeroConfChange:
             return settings.value("bSpendZeroConfChange");
+        case ExternalSignerPath:
+            return settings.value("external_signer_path");
 #endif
         case DisplayUnit:
             return nDisplayUnit;
@@ -310,6 +341,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return strThirdPartyTxUrls;
         case Language:
             return settings.value("language");
+        case UseEmbeddedMonospacedFont:
+            return m_use_embedded_monospaced_font;
         case CoinControlFeatures:
             return fCoinControlFeatures;
         case Prune:
@@ -341,10 +374,10 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
         case StartAtStartup:
             successful = GUIUtil::SetStartOnSystemStartup(value.toBool());
             break;
-        case HideTrayIcon:
-            fHideTrayIcon = value.toBool();
-            settings.setValue("fHideTrayIcon", fHideTrayIcon);
-    		Q_EMIT hideTrayIconChanged(fHideTrayIcon);
+        case ShowTrayIcon:
+            m_show_tray_icon = value.toBool();
+            settings.setValue("fHideTrayIcon", !m_show_tray_icon);
+            Q_EMIT showTrayIconChanged(m_show_tray_icon);
             break;
         case MinimizeToTray:
             fMinimizeToTray = value.toBool();
@@ -352,7 +385,9 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             break;
         case MapPortUPnP: // core option - can be changed on-the-fly
             settings.setValue("fUseUPnP", value.toBool());
-            node().mapPort(value.toBool());
+            break;
+        case MapPortNatpmp: // core option - can be changed on-the-fly
+            settings.setValue("fUseNatpmp", value.toBool());
             break;
         case MinimizeOnClose:
             fMinimizeOnClose = value.toBool();
@@ -418,6 +453,12 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
                 setRestartRequired(true);
             }
             break;
+        case ExternalSignerPath:
+            if (settings.value("external_signer_path") != value.toString()) {
+                settings.setValue("external_signer_path", value.toString());
+                setRestartRequired(true);
+            }
+            break;
 #endif
         case DisplayUnit:
             setDisplayUnit(value);
@@ -434,6 +475,11 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
                 settings.setValue("language", value);
                 setRestartRequired(true);
             }
+            break;
+        case UseEmbeddedMonospacedFont:
+            m_use_embedded_monospaced_font = value.toBool();
+            settings.setValue("UseEmbeddedMonospacedFont", m_use_embedded_monospaced_font);
+            Q_EMIT useEmbeddedMonospacedFontChanged(m_use_embedded_monospaced_font);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

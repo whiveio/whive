@@ -6,6 +6,8 @@
 #
 # Test getblockstats rpc call
 #
+
+from test_framework.blocktools import COINBASE_MATURITY
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
@@ -53,8 +55,9 @@ class GetblockstatsTest(BitcoinTestFramework):
         return [self.nodes[0].getblockstats(hash_or_height=self.start_height + i) for i in range(self.max_stat_pos+1)]
 
     def generate_test_data(self, filename):
-        mocktime = time.time()
-        self.nodes[0].generate(101)
+        mocktime = 1525107225
+        self.nodes[0].setmocktime(mocktime)
+        self.nodes[0].generate(COINBASE_MATURITY + 1)
 
         self.nodes[0].sendtoaddress(address=self.nodes[1].getnewaddress(), amount=10, subtractfeefromamount=True)
         self.nodes[0].generate(1)

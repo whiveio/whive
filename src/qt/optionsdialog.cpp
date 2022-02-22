@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2019 The Bitcoin Core developers
+// Copyright (c) 2011-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -23,10 +23,12 @@
 #include <QIntValidator>
 #include <QLocale>
 #include <QMessageBox>
+#include <QSettings>
+#include <QSystemTrayIcon>
 #include <QTimer>
 
 OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
-    QDialog(parent),
+    QDialog(parent, GUIUtil::dialog_flags),
     ui(new Ui::OptionsDialog),
     model(0),
     mapper(0)
@@ -52,6 +54,13 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
 #ifndef USE_UPNP
     ui->mapPortUpnp->setEnabled(false);
 #endif
+#ifndef USE_NATPMP
+    ui->mapPortNatpmp->setEnabled(false);
+#endif
+    connect(this, &QDialog::accepted, [this](){
+        QSettings settings;
+        model->node().mapPort(settings.value("fUseUPnP").toBool(), settings.value("fUseNatpmp").toBool());
+    });
 
     ui->proxyIp->setEnabled(false);
     ui->proxyPort->setEnabled(false);
@@ -86,6 +95,11 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
         ui->thirdPartyTxUrls->setVisible(false);
     }
 
+#ifndef ENABLE_EXTERNAL_SIGNER
+    //: "External signing" means using devices such as hardware wallets.
+    ui->externalSignerPath->setToolTip(tr("Compiled without external signing support (required for external signing)"));
+    ui->externalSignerPath->setEnabled(false);
+#endif
     /* Display elements init */
     QDir translations(":translations");
 
@@ -132,11 +146,25 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     connect(ui->proxyPortTor, &QLineEdit::textChanged, this, &OptionsDialog::updateProxyValidationState);
 
     if (!QSystemTrayIcon::isSystemTrayAvailable()) {
-        ui->hideTrayIcon->setChecked(true);
-        ui->hideTrayIcon->setEnabled(false);
+        ui->showTrayIcon->setChecked(false);
+        ui->showTrayIcon->setEnabled(false);
         ui->minimizeToTray->setChecked(false);
         ui->minimizeToTray->setEnabled(false);
     }
+
+    QFont embedded_font{GUIUtil::fixedPitchFont(true)};
+    ui->embeddedFont_radioButton->setText(ui->embeddedFont_radioButton->text().arg(QFontInfo(embedded_font).family()));
+    embedded_font.setWeight(QFont::Bold);
+    ui->embeddedFont_label_1->setFont(embedded_font);
+    ui->embeddedFont_label_9->setFont(embedded_font);
+
+    QFont system_font{GUIUtil::fixedPitchFont(false)};
+    ui->systemFont_radioButton->setText(ui->systemFont_radioButton->text().arg(QFontInfo(system_font).family()));
+    system_font.setWeight(QFont::Bold);
+    ui->systemFont_label_1->setFont(system_font);
+    ui->systemFont_label_9->setFont(system_font);
+    // Checking the embeddedFont_radioButton automatically unchecks the systemFont_radioButton.
+    ui->systemFont_radioButton->setChecked(true);
 
     GUIUtil::handleCloseWindowShortcut(this);
 }
@@ -171,11 +199,12 @@ void OptionsDialog::setModel(OptionsModel *_model)
     /* warn when one of the following settings changes by user action (placed here so init via mapper doesn't trigger them) */
 
     /* Main */
-    connect(ui->prune, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
-    connect(ui->prune, SIGNAL(clicked(bool)), this, SLOT(togglePruneWarning(bool)));
-    connect(ui->pruneSize, SIGNAL(valueChanged(int)), this, SLOT(showRestartWarning()));
-    connect(ui->databaseCache, SIGNAL(valueChanged(int)), this, SLOT(showRestartWarning()));
-    connect(ui->threadsScriptVerif, SIGNAL(valueChanged(int)), this, SLOT(showRestartWarning()));
+    connect(ui->prune, &QCheckBox::clicked, this, &OptionsDialog::showRestartWarning);
+    connect(ui->prune, &QCheckBox::clicked, this, &OptionsDialog::togglePruneWarning);
+    connect(ui->pruneSize, qOverload<int>(&QSpinBox::valueChanged), this, &OptionsDialog::showRestartWarning);
+    connect(ui->databaseCache, qOverload<int>(&QSpinBox::valueChanged), this, &OptionsDialog::showRestartWarning);
+    connect(ui->externalSignerPath, &QLineEdit::textChanged, [this]{ showRestartWarning(); });
+    connect(ui->threadsScriptVerif, qOverload<int>(&QSpinBox::valueChanged), this, &OptionsDialog::showRestartWarning);
     /* Wallet */
     connect(ui->spendZeroConfChange, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
     /* Network */
@@ -183,8 +212,18 @@ void OptionsDialog::setModel(OptionsModel *_model)
     connect(ui->connectSocks, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
     connect(ui->connectSocksTor, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
     /* Display */
-    connect(ui->lang, SIGNAL(valueChanged()), this, SLOT(showRestartWarning()));
-    connect(ui->thirdPartyTxUrls, SIGNAL(textChanged(const QString &)), this, SLOT(showRestartWarning()));
+    connect(ui->lang, qOverload<>(&QValueComboBox::valueChanged), [this]{ showRestartWarning(); });
+    connect(ui->thirdPartyTxUrls, &QLineEdit::textChanged, [this]{ showRestartWarning(); });
+}
+
+void OptionsDialog::setCurrentTab(OptionsDialog::Tab tab)
+{
+    QWidget *tab_widget = nullptr;
+    if (tab == OptionsDialog::Tab::TAB_NETWORK) tab_widget = ui->tabNetwork;
+    if (tab == OptionsDialog::Tab::TAB_MAIN) tab_widget = ui->tabMain;
+    if (tab_widget && ui->tabWidget->currentWidget() != tab_widget) {
+        ui->tabWidget->setCurrentWidget(tab_widget);
+    }
 }
 
 void OptionsDialog::setMapper()
@@ -199,9 +238,11 @@ void OptionsDialog::setMapper()
     /* Wallet */
     mapper->addMapping(ui->spendZeroConfChange, OptionsModel::SpendZeroConfChange);
     mapper->addMapping(ui->coinControlFeatures, OptionsModel::CoinControlFeatures);
+    mapper->addMapping(ui->externalSignerPath, OptionsModel::ExternalSignerPath);
 
     /* Network */
     mapper->addMapping(ui->mapPortUpnp, OptionsModel::MapPortUPnP);
+    mapper->addMapping(ui->mapPortNatpmp, OptionsModel::MapPortNatpmp);
     mapper->addMapping(ui->allowIncoming, OptionsModel::Listen);
 
     mapper->addMapping(ui->connectSocks, OptionsModel::ProxyUse);
@@ -214,8 +255,10 @@ void OptionsDialog::setMapper()
 
     /* Window */
 #ifndef Q_OS_MAC
-    mapper->addMapping(ui->hideTrayIcon, OptionsModel::HideTrayIcon);
-    mapper->addMapping(ui->minimizeToTray, OptionsModel::MinimizeToTray);
+    if (QSystemTrayIcon::isSystemTrayAvailable()) {
+        mapper->addMapping(ui->showTrayIcon, OptionsModel::ShowTrayIcon);
+        mapper->addMapping(ui->minimizeToTray, OptionsModel::MinimizeToTray);
+    }
     mapper->addMapping(ui->minimizeOnClose, OptionsModel::MinimizeOnClose);
 #endif
 
@@ -223,6 +266,7 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->lang, OptionsModel::Language);
     mapper->addMapping(ui->unit, OptionsModel::DisplayUnit);
     mapper->addMapping(ui->thirdPartyTxUrls, OptionsModel::ThirdPartyTxUrls);
+    mapper->addMapping(ui->embeddedFont_radioButton, OptionsModel::UseEmbeddedMonospacedFont);
 }
 
 void OptionsDialog::setOkButtonState(bool fState)
@@ -272,16 +316,13 @@ void OptionsDialog::on_cancelButton_clicked()
     reject();
 }
 
-void OptionsDialog::on_hideTrayIcon_stateChanged(int fState)
+void OptionsDialog::on_showTrayIcon_stateChanged(int state)
 {
-    if(fState)
-    {
+    if (state == Qt::Checked) {
+        ui->minimizeToTray->setEnabled(true);
+    } else {
         ui->minimizeToTray->setChecked(false);
         ui->minimizeToTray->setEnabled(false);
-    }
-    else
-    {
-        ui->minimizeToTray->setEnabled(true);
     }
 }
 

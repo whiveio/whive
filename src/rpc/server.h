@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -105,7 +105,6 @@ void RPCUnsetTimerInterface(RPCTimerInterface *iface);
  */
 void RPCRunLater(const std::string& name, std::function<void(void)> func, int64_t nSeconds);
 
-typedef UniValue(*rpcfn_type)(const JSONRPCRequest& jsonRequest);
 typedef RPCHelpMan (*RpcMethodFnType)();
 
 class CRPCCommand
@@ -124,23 +123,13 @@ public:
     }
 
     //! Simplified constructor taking plain RpcMethodFnType function pointer.
-    CRPCCommand(std::string category, std::string name_in, RpcMethodFnType fn, std::vector<std::string> args_in)
+    CRPCCommand(std::string category, RpcMethodFnType fn)
         : CRPCCommand(
               category,
               fn().m_name,
               [fn](const JSONRPCRequest& request, UniValue& result, bool) { result = fn().HandleRequest(request); return true; },
               fn().GetArgNames(),
               intptr_t(fn))
-    {
-        CHECK_NONFATAL(fn().m_name == name_in);
-        CHECK_NONFATAL(fn().GetArgNames() == args_in);
-    }
-
-    //! Simplified constructor taking plain rpcfn_type function pointer.
-    CRPCCommand(const char* category, const char* name, rpcfn_type fn, std::initializer_list<const char*> args)
-        : CRPCCommand(category, name,
-                      [fn](const JSONRPCRequest& request, UniValue& result, bool) { result = fn(request); return true; },
-                      {args.begin(), args.end()}, intptr_t(fn))
     {
     }
 
@@ -176,6 +165,10 @@ public:
     */
     std::vector<std::string> listCommands() const;
 
+    /**
+     * Return all named arguments that need to be converted by the client from string to another JSON type
+     */
+    UniValue dumpArgMap(const JSONRPCRequest& request) const;
 
     /**
      * Appends a CRPCCommand to the dispatch table.

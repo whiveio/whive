@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_my.ts
 <TS language="my" version="2.1">
 <context>
@@ -39,43 +40,89 @@
         <translation>&amp;ဖျက်</translation>
 ========
 <TS language="yo" version="2.1">
+=======
+<TS version="2.1" language="yo">
+>>>>>>> upstream/22.x
 <context>
     <name>AddressBookPage</name>
     <message>
         <source>&amp;New</source>
+<<<<<<< HEAD
         <translation>&amp;ati tuntun</translation>
 <<<<<<< HEAD
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
 =======
 >>>>>>> upstream/0.20
+=======
+        <translation type="unfinished">&amp;ati tuntun</translation>
+>>>>>>> upstream/22.x
     </message>
     </context>
 <context>
-    <name>AddressTableModel</name>
-    </context>
-<context>
-    <name>AskPassphraseDialog</name>
-    </context>
-<context>
-    <name>BanTableModel</name>
+    <name>QObject</name>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n year(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>BitcoinGUI</name>
+    <message numerus="yes">
+        <source>Processed %n block(s) of transaction history.</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
     <message>
         <source>Open Wallet</source>
-        <translation>sii apamowo</translation>
+        <translation type="unfinished">sii apamowo</translation>
     </message>
     <message>
         <source>Open a wallet</source>
-        <translation>sii apamowo</translation>
-    </message>
-    <message>
-        <source>Close Wallet...</source>
-        <translation>ti apamowo</translation>
+        <translation type="unfinished">sii apamowo</translation>
     </message>
     <message>
         <source>Close wallet</source>
-        <translation>Ti Apamowo</translation>
+        <translation type="unfinished">Ti Apamowo</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n active connection(s) to Bitcoin network.</source>
+        <extracomment>A substring of the tooltip.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
     </message>
     </context>
 <context>
@@ -84,18 +131,16 @@
 ========
     <message>
         <source>Date</source>
-        <translation>Ojo</translation>
+        <translation type="unfinished">Ojo</translation>
     </message>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
     </context>
 <context>
-    <name>CreateWalletActivity</name>
-    </context>
-<context>
-    <name>CreateWalletDialog</name>
-    </context>
-<context>
-    <name>EditAddressDialog</name>
+    <name>WalletController</name>
+    <message>
+        <source>Close wallet</source>
+        <translation type="unfinished">Ti Apamowo</translation>
+    </message>
     </context>
 <context>
     <name>FreespaceChecker</name>
@@ -105,26 +150,24 @@
     </message>
     </context>
 <context>
-    <name>HelpMessageDialog</name>
-    </context>
-<context>
     <name>Intro</name>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_my.ts
 ========
+=======
+    <message numerus="yes">
+        <source>(sufficient to restore backups %n day(s) old)</source>
+        <extracomment>Explanatory text on the capability of the current prune target.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+>>>>>>> upstream/22.x
     <message>
         <source>Welcome</source>
         <translation>Ka bo</translation>
     </message>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OpenWalletActivity</name>
     </context>
 <context>
     <name>OptionsDialog</name>
@@ -134,83 +177,54 @@
     </message>
     </context>
 <context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PSBTOperationsDialog</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
-<context>
-    <name>QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    <message>
-        <source>&amp;Save Image...</source>
-        <translation>fi aworan &amp;pamo</translation>
-    </message>
-    </context>
-<context>
     <name>RPCConsole</name>
     <message>
         <source>Name</source>
-        <translation>Oruko</translation>
+        <translation type="unfinished">Oruko</translation>
     </message>
     <message>
         <source>1 &amp;year</source>
-        <translation>okan ati &amp;odun</translation>
-    </message>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
-<context>
-    <name>ReceiveRequestDialog</name>
-    <message>
-        <source>&amp;Save Image...</source>
-        <translation>fi aworan &amp;pamo</translation>
+        <translation type="unfinished">okan ati &amp;odun</translation>
     </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Date</source>
-        <translation>Ojo</translation>
+        <translation type="unfinished">Ojo</translation>
     </message>
     </context>
 <context>
     <name>SendCoinsDialog</name>
-    </context>
-<context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
+    <message numerus="yes">
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>TransactionDesc</name>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
     <message>
         <source>Date</source>
-        <translation>Ojo</translation>
+        <translation type="unfinished">Ojo</translation>
     </message>
     <message>
         <source>watch-only</source>
-        <translation>wo nikan</translation>
+        <translation type="unfinished">wo nikan</translation>
     </message>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
+    <message numerus="yes">
+        <source>matures in %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>TransactionTableModel</name>
@@ -221,25 +235,32 @@
 ========
     <message>
         <source>Date</source>
-        <translation>Ojo</translation>
+        <translation type="unfinished">Ojo</translation>
+    </message>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
     </message>
     <message>
         <source>watch-only</source>
-        <translation>wo nikan</translation>
+        <translation type="unfinished">wo nikan</translation>
     </message>
     </context>
 <context>
     <name>TransactionView</name>
     <message>
         <source>This year</source>
-        <translation>Odun yi</translation>
+        <translation type="unfinished">Odun yi</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation>Ojo</translation>
+        <translation type="unfinished">Ojo</translation>
     </message>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_yo.ts
     </context>
+<<<<<<< HEAD
 <context>
     <name>UnitDisplayStatusBarControl</name>
     </context>
@@ -273,4 +294,6 @@
 <context>
     <name>bitcoin-core</name>
     </context>
+=======
+>>>>>>> upstream/22.x
 </TS>

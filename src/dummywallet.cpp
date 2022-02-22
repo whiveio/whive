@@ -38,6 +38,7 @@ void DummyWalletInit::AddWalletOptions(ArgsManager& argsman) const
         "-paytxfee=<amt>",
         "-rescan",
         "-salvagewallet",
+        "-signer=<cmd>",
         "-spendzeroconfchange",
         "-txconfirmtarget=<n>",
         "-wallet=<path>",
@@ -49,8 +50,8 @@ void DummyWalletInit::AddWalletOptions(ArgsManager& argsman) const
         "-flushwallet",
         "-privdb",
         "-walletrejectlongchains",
-    };
-    gArgs.AddHiddenArgs(opts);
+        "-unsafesqlitesync",
+    });
 }
 
 const WalletInitInterface& g_wallet_init_interface = DummyWalletInit();

@@ -9,6 +9,13 @@ This test uses 4GB of disk space.
 This test takes 30 mins or more (up to 2 hours)
 """
 
+from test_framework.blocktools import create_coinbase
+from test_framework.messages import CBlock
+from test_framework.script import (
+    CScript,
+    OP_NOP,
+    OP_RETURN,
+)
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
@@ -21,6 +28,48 @@ from test_framework.util import (
 # compatible with pruning based on key creation time.
 TIMESTAMP_WINDOW = 2 * 60 * 60
 
+def mine_large_blocks(node, n):
+    # Make a large scriptPubKey for the coinbase transaction. This is OP_RETURN
+    # followed by 950k of OP_NOP. This would be non-standard in a non-coinbase
+    # transaction but is consensus valid.
+
+    # Set the nTime if this is the first time this function has been called.
+    # A static variable ensures that time is monotonicly increasing and is therefore
+    # different for each block created => blockhash is unique.
+    if "nTimes" not in mine_large_blocks.__dict__:
+        mine_large_blocks.nTime = 0
+
+    # Get the block parameters for the first block
+    big_script = CScript([OP_RETURN] + [OP_NOP] * 950000)
+    best_block = node.getblock(node.getbestblockhash())
+    height = int(best_block["height"]) + 1
+    mine_large_blocks.nTime = max(mine_large_blocks.nTime, int(best_block["time"])) + 1
+    previousblockhash = int(best_block["hash"], 16)
+
+    for _ in range(n):
+        # Build the coinbase transaction (with large scriptPubKey)
+        coinbase_tx = create_coinbase(height)
+        coinbase_tx.vin[0].nSequence = 2 ** 32 - 1
+        coinbase_tx.vout[0].scriptPubKey = big_script
+        coinbase_tx.rehash()
+
+        # Build the block
+        block = CBlock()
+        block.nVersion = best_block["version"]
+        block.hashPrevBlock = previousblockhash
+        block.nTime = mine_large_blocks.nTime
+        block.nBits = int('207fffff', 16)
+        block.nNonce = 0
+        block.vtx = [coinbase_tx]
+        block.hashMerkleRoot = block.calc_merkle_root()
+        block.solve()
+
+        # Submit to the node
+        node.submitblock(block.serialize().hex())
+
+        previousblockhash = block.sha256
+        height += 1
+        mine_large_blocks.nTime += 1
 
 def calc_usage(blockdir):
     return sum(os.path.getsize(blockdir+f) for f in os.listdir(blockdir) if os.path.isfile(os.path.join(blockdir, f))) / (1024. * 1024.)

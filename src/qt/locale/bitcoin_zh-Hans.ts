@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
 <TS language="zh-Hans" version="2.1">
 ========
@@ -7,15 +8,22 @@
 =======
 <TS language="zh-Hans" version="2.1">
 >>>>>>> upstream/0.19
+=======
+<TS version="2.1" language="zh_Hans">
+>>>>>>> upstream/22.x
 <context>
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
 =======
 >>>>>>> upstream/0.19
         <translation>右击编辑地址或标签</translation>
+=======
+        <translation type="unfinished">右击编辑地址或标签</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Create a new address</source>
@@ -23,7 +31,7 @@
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>新建</translation>
+        <translation type="unfinished">新建</translation>
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
@@ -49,11 +57,11 @@
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>复制</translation>
+        <translation type="unfinished">复制</translation>
     </message>
     <message>
         <source>C&amp;lose</source>
-        <translation>关闭</translation>
+        <translation type="unfinished">关闭</translation>
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
@@ -64,9 +72,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <translation>پتہ یا لیبل تلاشی کے لئے درج کریں</translation>
 =======
         <translation>输入地址或者标签进行搜索</translation>
+=======
+        <translation type="unfinished">输入地址或者标签进行搜索</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -101,27 +113,27 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>选择发送比特币地址</translation>
+        <translation type="unfinished">选择发送比特币地址</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>选择接收比特币地址</translation>
+        <translation type="unfinished">选择接收比特币地址</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
-        <translation>选择</translation>
+        <translation type="unfinished">选择</translation>
     </message>
     <message>
         <source>Sending addresses</source>
-        <translation>发送地址</translation>
+        <translation type="unfinished">发送地址</translation>
     </message>
     <message>
         <source>Receiving addresses</source>
-        <translation>接收地址</translation>
+        <translation type="unfinished">接收地址</translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这是你的比特币发币地址。发送前请确认发送数量和接收地址</translation>
+        <translation type="unfinished">这是你的比特币发币地址。发送前请确认发送数量和接收地址</translation>
     </message>
     <message>
 <<<<<<< HEAD
@@ -138,24 +150,25 @@
 =======
         <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>这是你的比特币接收地址。点击接收选项卡中“创建新的接收地址”按钮来创建新的地址。
+        <translation type="unfinished">这是你的比特币接收地址。点击接收选项卡中“创建新的接收地址”按钮来创建新的地址。
 签名只能使用“传统”类型的地址。</translation>
 >>>>>>> upstream/0.21
     </message>
     <message>
         <source>&amp;Copy Address</source>
-        <translation>复制地址</translation>
+        <translation type="unfinished">复制地址</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
-        <translation>复制标签</translation>
+        <translation type="unfinished">复制标签</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>编辑</translation>
+        <translation type="unfinished">编辑</translation>
     </message>
     <message>
         <source>Export Address List</source>
+<<<<<<< HEAD
         <translation>导出地址列表</translation>
     </message>
     <message>
@@ -188,16 +201,29 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation>保存地址列表至%1时发生错误，请重试。</translation>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_zh-Hans.ts
 >>>>>>> upstream/0.19
+=======
+        <translation type="unfinished">导出地址列表</translation>
+    </message>
+    <message>
+        <source>There was an error trying to save the address list to %1. Please try again.</source>
+        <extracomment>An error message. %1 is a stand-in argument for the name of the file we attempted to save to.</extracomment>
+        <translation type="unfinished">保存地址列表至%1时发生错误，请重试。</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation type="unfinished">导出失败</translation>
+>>>>>>> upstream/22.x
     </message>
 </context>
 <context>
     <name>AddressTableModel</name>
     <message>
         <source>Label</source>
-        <translation>标签</translation>
+        <translation type="unfinished">标签</translation>
     </message>
     <message>
         <source>Address</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
 =======
@@ -217,6 +243,13 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 >>>>>>>> upstream/0.19:src/qt/locale/bitcoin_ur.ts
 =======
 >>>>>>> upstream/0.19
+=======
+        <translation type="unfinished">地址</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation type="unfinished">(无标签)</translation>
+>>>>>>> upstream/22.x
     </message>
 </context>
 <context>
@@ -260,7 +293,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Show passphrase</source>
-        <translation>显示密码</translation>
+        <translation type="unfinished">显示密码</translation>
     </message>
     <message>
 <<<<<<< HEAD
@@ -279,7 +312,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 =======
 >>>>>>> upstream/0.21
         <source>Encrypt wallet</source>
-        <translation>加密钱包</translation>
+        <translation type="unfinished">加密钱包</translation>
     </message>
     <message>
 <<<<<<< HEAD
@@ -311,10 +344,11 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 =======
 >>>>>>> upstream/0.21
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>此操作需要您的钱包密码用来解锁钱包。</translation>
+        <translation type="unfinished">此操作需要您的钱包密码用来解锁钱包。</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
+<<<<<<< HEAD
         <translation>解锁钱包</translation>
     </message>
     <message>
@@ -324,13 +358,53 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 >>>>>>> upstream/0.20
 =======
 >>>>>>> upstream/0.21
+=======
+        <translation type="unfinished">解锁钱包</translation>
+>>>>>>> upstream/22.x
     </message>
     </context>
 <context>
-    <name>BanTableModel</name>
+    <name>QObject</name>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n year(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>BitcoinGUI</name>
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
 ========
     <message>
@@ -501,12 +575,27 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation>billetera por defecto</translation>
     </message>
 >>>>>>> upstream/0.19
+=======
+    <message numerus="yes">
+        <source>Processed %n block(s) of transaction history.</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n active connection(s) to Bitcoin network.</source>
+        <extracomment>A substring of the tooltip.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+>>>>>>> upstream/22.x
     </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
         <source>(no label)</source>
-        <translation>(无标签)</translation>
+        <translation type="unfinished">(无标签)</translation>
     </message>
 <<<<<<< HEAD
     <message>
@@ -517,6 +606,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 >>>>>>> upstream/0.19
     </context>
 <context>
+<<<<<<< HEAD
     <name>CreateWalletActivity</name>
     </context>
 <context>
@@ -546,31 +636,20 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <name>HelpMessageDialog</name>
     </context>
 <context>
+=======
+>>>>>>> upstream/22.x
     <name>Intro</name>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OpenWalletActivity</name>
-    </context>
-<context>
-    <name>OptionsDialog</name>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PSBTOperationsDialog</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
+    <message numerus="yes">
+        <source>(sufficient to restore backups %n day(s) old)</source>
+        <extracomment>Explanatory text on the capability of the current prune target.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>PeerTableModel</name>
+<<<<<<< HEAD
     </context>
 <context>
     <name>QObject</name>
@@ -609,6 +688,13 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 =======
 >>>>>>> upstream/0.21
+=======
+    <message>
+        <source>Address</source>
+        <extracomment>Title of Peers Table column which contains the IP/Onion/I2P address of the connected peer.</extracomment>
+        <translation type="unfinished">地址</translation>
+    </message>
+>>>>>>> upstream/22.x
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
@@ -621,11 +707,11 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 =======
 >>>>>>> upstream/0.19
         <source>Label</source>
-        <translation>标签</translation>
+        <translation type="unfinished">标签</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(无标签)</translation>
+        <translation type="unfinished">(无标签)</translation>
     </message>
 <<<<<<< HEAD
     <message>
@@ -637,9 +723,15 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </context>
 <context>
     <name>SendCoinsDialog</name>
+    <message numerus="yes">
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
     <message>
         <source>(no label)</source>
-        <translation>(无标签)</translation>
+        <translation type="unfinished">(无标签)</translation>
     </message>
 <<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
@@ -661,19 +753,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 >>>>>>> upstream/0.19
 </context>
 <context>
-    <name>SendCoinsEntry</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
     <name>TransactionDesc</name>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <message>
         <source>Date</source>
@@ -688,6 +769,20 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </context>
 <context>
     <name>TransactionDescDialog</name>
+=======
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>matures in %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+>>>>>>> upstream/22.x
     </context>
 <context>
     <name>TransactionTableModel</name>
@@ -700,11 +795,17 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 =======
 >>>>>>> upstream/0.19
         <source>Label</source>
-        <translation>标签</translation>
+        <translation type="unfinished">标签</translation>
+    </message>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(无标签)</translation>
+        <translation type="unfinished">(无标签)</translation>
     </message>
 <<<<<<< HEAD
     <message>
@@ -717,6 +818,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>TransactionView</name>
     <message>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <source>Other</source>
         <translation>Other</translation>
@@ -738,11 +840,14 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 >>>>>>> upstream/0.19
     </message>
     <message>
+=======
+>>>>>>> upstream/22.x
         <source>Label</source>
-        <translation>标签</translation>
+        <translation type="unfinished">标签</translation>
     </message>
     <message>
         <source>Address</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_zh-Hans.ts
         <translation>地址</translation>
@@ -752,13 +857,17 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 =======
         <translation>地址</translation>
 >>>>>>> upstream/0.19
+=======
+        <translation type="unfinished">地址</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>导出失败</translation>
+        <translation type="unfinished">导出失败</translation>
     </message>
     </context>
 <context>
+<<<<<<< HEAD
     <name>UnitDisplayStatusBarControl</name>
     </context>
 <context>
@@ -816,4 +925,16 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 =======
 >>>>>>> upstream/0.19
     </context>
+=======
+    <name>WalletView</name>
+    <message>
+        <source>&amp;Export</source>
+        <translation type="unfinished">导出</translation>
+    </message>
+    <message>
+        <source>Export the data in the current tab to a file</source>
+        <translation type="unfinished">导出当前数据到文件</translation>
+    </message>
+    </context>
+>>>>>>> upstream/22.x
 </TS>

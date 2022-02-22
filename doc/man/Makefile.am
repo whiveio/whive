@@ -12,6 +12,10 @@ if BUILD_BITCOIN_UTILS
   dist_man1_MANS+=whive-cli.1 whive-tx.1
 endif
 
+if BUILD_BITCOIN_UTIL
+  dist_man1_MANS+=bitcoin-util.1
+endif
+
 if ENABLE_WALLET
 if BUILD_BITCOIN_WALLET
   dist_man1_MANS+=bitcoin-wallet.1

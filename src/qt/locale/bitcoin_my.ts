@@ -1,13 +1,17 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_my.ts
 =======
 >>>>>>> upstream/0.20
 <TS language="my" version="2.1">
+=======
+<TS version="2.1" language="my">
+>>>>>>> upstream/22.x
 <context>
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>လိပ်စာ သို့မဟုတ် ခေါင်းစဉ်တပ်ရန် Right-click နှိပ်ပါ။</translation>
+        <translation type="unfinished">လိပ်စာ သို့မဟုတ် ခေါင်းစဉ်တပ်ရန် Right-click နှိပ်ပါ။</translation>
     </message>
     <message>
         <source>Create a new address</source>
@@ -15,7 +19,7 @@
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>&amp;အသစ်</translation>
+        <translation type="unfinished">&amp;အသစ်</translation>
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
@@ -23,7 +27,7 @@
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;ကူးမယ်</translation>
+        <translation type="unfinished">&amp;ကူးမယ်</translation>
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
@@ -31,7 +35,11 @@
     </message>
     <message>
         <source>Enter address or label to search</source>
+<<<<<<< HEAD
         <translation>လိပ်စာရိုက်ထည့်ပါ</translation>
+=======
+        <translation type="unfinished">လိပ်စာရိုက်ထည့်ပါ</translation>
+>>>>>>> upstream/22.x
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
@@ -72,26 +80,89 @@
         <source>Exporting Failed</source>
         <translation>တင်ပို့မှုမအောင်မြင်ပါ</translation>
     </message>
-    </context>
+    <message>
+        <source>Choose the address to send coins to</source>
+        <translation type="unfinished">လိပ်စာကိုပေးပို့ဖို့လိပ်စာရွေးချယ်ပါ</translation>
+    </message>
+    <message>
+        <source>Sending addresses</source>
+        <translation type="unfinished">လိပ်စာပေးပို့နေသည်</translation>
+    </message>
+    <message>
+        <source>Receiving addresses</source>
+        <translation type="unfinished">လိပ်စာလက်ခံရရှိသည်</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation type="unfinished">တင်ပို့မှုမအောင်မြင်ပါ</translation>
+    </message>
+</context>
 <context>
     <name>AddressTableModel</name>
     <message>
         <source>Label</source>
+<<<<<<< HEAD
         <translation>တံဆိပ်</translation>
     </message>
     <message>
         <source>Address</source>
         <translation>လိပ်စာ</translation>
+=======
+        <translation type="unfinished">တံဆိပ်</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished">လိပ်စာ</translation>
+>>>>>>> upstream/22.x
     </message>
     </context>
 <context>
-    <name>AskPassphraseDialog</name>
-    </context>
-<context>
-    <name>BanTableModel</name>
+    <name>QObject</name>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n year(s)</source>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>BitcoinGUI</name>
+    <message numerus="yes">
+        <source>Processed %n block(s) of transaction history.</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
     <message>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -135,9 +206,25 @@
         <translation>ချဲ့</translation>
 >>>>>>> upstream/0.21
     </message>
+    <message>
+        <source>Up to date</source>
+        <translation>နောက်ဆုံးပေါ်</translation>
+    </message>
+    <message>
+        <source>Zoom</source>
+        <translation type="unfinished">ချဲ့</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n active connection(s) to Bitcoin network.</source>
+        <extracomment>A substring of the tooltip.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
     </context>
 <context>
     <name>CoinControlDialog</name>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<<< HEAD:src/qt/locale/bitcoin_my.ts
@@ -200,6 +287,30 @@
 =======
 =======
 >>>>>>> upstream/0.21
+=======
+    <message>
+        <source>Date</source>
+        <translation type="unfinished">နေ့စွဲ</translation>
+    </message>
+    <message>
+        <source>yes</source>
+        <translation type="unfinished">ဟုတ်တယ်</translation>
+    </message>
+    <message>
+        <source>no</source>
+        <translation type="unfinished">မဟုတ်ဘူး</translation>
+    </message>
+    </context>
+<context>
+    <name>Intro</name>
+    <message numerus="yes">
+        <source>(sufficient to restore backups %n day(s) old)</source>
+        <extracomment>Explanatory text on the capability of the current prune target.</extracomment>
+        <translation type="unfinished">
+            <numerusform />
+        </translation>
+    </message>
+>>>>>>> upstream/22.x
     <message>
         <source>Error</source>
         <translation>အမှား</translation>
@@ -208,15 +319,6 @@
 >>>>>>> upstream/0.20
 =======
 >>>>>>> upstream/0.21
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OpenWalletActivity</name>
     </context>
 <context>
     <name>OptionsDialog</name>
@@ -227,25 +329,21 @@
         <translation>&amp;o da</translation>
 =======
         <source>Error</source>
+<<<<<<< HEAD
         <translation>အမှား</translation>
 >>>>>>> upstream/0.20
 =======
         <source>Error</source>
         <translation>အမှား</translation>
 >>>>>>> upstream/0.21
+=======
+        <translation type="unfinished">အမှား</translation>
+>>>>>>> upstream/22.x
     </message>
     </context>
 <context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PSBTOperationsDialog</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
     <name>PeerTableModel</name>
+<<<<<<< HEAD
     </context>
 <context>
     <name>QObject</name>
@@ -283,12 +381,19 @@
     <message>
         <source>&amp;Save Image...</source>
         <translation>fi aworan &amp;pamo</translation>
+=======
+    <message>
+        <source>Address</source>
+        <extracomment>Title of Peers Table column which contains the IP/Onion/I2P address of the connected peer.</extracomment>
+        <translation type="unfinished">လိပ်စာ</translation>
+>>>>>>> upstream/22.x
     </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Date</source>
+<<<<<<< HEAD
 <<<<<<< HEAD
         <translation>Ojo</translation>
     </message>
@@ -436,23 +541,92 @@
     </context>
 <context>
     <name>WalletModel</name>
+=======
+        <translation type="unfinished">နေ့စွဲ</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished">တံဆိပ်</translation>
+    </message>
+    </context>
+<context>
+    <name>SendCoinsDialog</name>
+    <message numerus="yes">
+        <source>Estimated to begin confirmation within %n block(s).</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    </context>
+<context>
+    <name>TransactionDesc</name>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished">နေ့စွဲ</translation>
+    </message>
+    <message numerus="yes">
+        <source>matures in %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    </context>
+<context>
+    <name>TransactionTableModel</name>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished">နေ့စွဲ</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished">တံဆိပ်</translation>
+    </message>
+    <message numerus="yes">
+        <source>Open for %n more block(s)</source>
+        <translation>
+            <numerusform />
+        </translation>
+    </message>
+    </context>
+<context>
+    <name>TransactionView</name>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished">နေ့စွဲ</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished">တံဆိပ်</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished">လိပ်စာ</translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation type="unfinished">တင်ပို့မှုမအောင်မြင်ပါ</translation>
+    </message>
+>>>>>>> upstream/22.x
     </context>
 <context>
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;ထုတ်ယူသိမ်းဆည်း</translation>
+        <translation type="unfinished">&amp;ထုတ်ယူသိမ်းဆည်း</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>လက်ရှိ tab မှာရှိတဲ့ဒေတာတွေကို ဖိုင်လ်မှာသိမ်းမယ်။</translation>
+        <translation type="unfinished">လက်ရှိ tab မှာရှိတဲ့ဒေတာတွေကို ဖိုင်လ်မှာသိမ်းမယ်။</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>အမှား</translation>
+        <translation type="unfinished">အမှား</translation>
     </message>
-    </context>
-<context>
-    <name>bitcoin-core</name>
     </context>
 </TS>

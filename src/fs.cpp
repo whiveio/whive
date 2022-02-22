@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2019 The Bitcoin Core developers
+// Copyright (c) 2017-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -24,6 +24,12 @@ namespace fsbridge {
 FILE *fopen(const fs::path& p, const char *mode)
 {
     return ::fopen(p.string().c_str(), mode);
+}
+
+fs::path AbsPathJoin(const fs::path& base, const fs::path& path)
+{
+    assert(base.is_absolute());
+    return fs::absolute(path, base);
 }
 
 #ifndef WIN32

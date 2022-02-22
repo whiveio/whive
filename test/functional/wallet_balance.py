@@ -5,6 +5,8 @@
 """Test the wallet balance RPC methods."""
 from decimal import Decimal
 
+from test_framework.address import ADDRESS_BCRT1_UNSPENDABLE as ADDRESS_WATCHONLY
+from test_framework.blocktools import COINBASE_MATURITY
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_equal,
@@ -65,7 +67,7 @@ class WalletTest(BitcoinTestFramework):
         self.nodes[0].generate(1)
         self.sync_all()
         self.nodes[1].generate(1)
-        self.nodes[1].generatetoaddress(100, RANDOM_COINBASE_ADDRESS)
+        self.nodes[1].generatetoaddress(COINBASE_MATURITY + 1, ADDRESS_WATCHONLY)
         self.sync_all()
 
         if not self.options.descriptors:
@@ -260,8 +262,6 @@ class WalletTest(BitcoinTestFramework):
         self.log.info('Put txs back into mempool of node 1 (not node 0)')
         self.nodes[0].invalidateblock(block_reorg)
         self.nodes[1].invalidateblock(block_reorg)
-        self.sync_blocks()
-        self.nodes[0].syncwithvalidationinterfacequeue()
         assert_equal(self.nodes[0].getbalance(minconf=0), 0)  # wallet txs not in the mempool are untrusted
         self.nodes[0].generatetoaddress(1, ADDRESS_WATCHONLY)
         assert_equal(self.nodes[0].getbalance(minconf=0), 0)  # wallet txs not in the mempool are untrusted
