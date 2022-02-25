@@ -9,9 +9,6 @@
 #include <crypto/common.h>
 #include <crypto/sha3.h>
 #include <hash.h>
-#include <utilstrencodings.h>
-#include <util/strencodings.h>
-#include <util/asmap.h>
 #include <prevector.h>
 #include <tinyformat.h>
 #include <util/asmap.h>
@@ -439,7 +436,7 @@ bool CNetAddr::IsLocal() const
         return true;
     }
 
-   return false;
+    return false;
 }
 
 /**
@@ -647,6 +644,16 @@ bool operator<(const CNetAddr& a, const CNetAddr& b)
     return std::tie(a.m_net, a.m_addr) < std::tie(b.m_net, b.m_addr);
 }
 
+/**
+ * Try to get our IPv4 address.
+ *
+ * @param[out] pipv4Addr The in_addr struct to which to copy.
+ *
+ * @returns Whether or not the operation was successful, in particular, whether
+ *          or not our address was an IPv4 address.
+ *
+ * @see CNetAddr::IsIPv4()
+ */
 bool CNetAddr::GetInAddr(struct in_addr* pipv4Addr) const
 {
     if (!IsIPv4())
@@ -656,6 +663,16 @@ bool CNetAddr::GetInAddr(struct in_addr* pipv4Addr) const
     return true;
 }
 
+/**
+ * Try to get our IPv6 address.
+ *
+ * @param[out] pipv6Addr The in6_addr struct to which to copy.
+ *
+ * @returns Whether or not the operation was successful, in particular, whether
+ *          or not our address was an IPv6 address.
+ *
+ * @see CNetAddr::IsIPv6()
+ */
 bool CNetAddr::GetIn6Addr(struct in6_addr* pipv6Addr) const
 {
     if (!IsIPv6()) {
@@ -951,6 +968,18 @@ bool operator<(const CService& a, const CService& b)
     return static_cast<CNetAddr>(a) < static_cast<CNetAddr>(b) || (static_cast<CNetAddr>(a) == static_cast<CNetAddr>(b) && a.port < b.port);
 }
 
+/**
+ * Obtain the IPv4/6 socket address this represents.
+ *
+ * @param[out] paddr The obtained socket address.
+ * @param[in,out] addrlen The size, in bytes, of the address structure pointed
+ *                        to by paddr. The value that's pointed to by this
+ *                        parameter might change after calling this function if
+ *                        the size of the corresponding address structure
+ *                        changed.
+ *
+ * @returns Whether or not the operation was successful.
+ */
 bool CService::GetSockAddr(struct sockaddr* paddr, socklen_t *addrlen) const
 {
     if (IsIPv4()) {
@@ -981,6 +1010,9 @@ bool CService::GetSockAddr(struct sockaddr* paddr, socklen_t *addrlen) const
     return false;
 }
 
+/**
+ * @returns An identifier unique to this service's address and port number.
+ */
 std::vector<unsigned char> CService::GetKey() const
 {
     auto key = GetAddrBytes();
@@ -1035,6 +1067,10 @@ CSubNet::CSubNet(const CNetAddr& addr, uint8_t mask) : CSubNet()
     }
 }
 
+/**
+ * @returns The number of 1-bits in the prefix of the specified subnet mask. If
+ *          the specified subnet mask is not a valid one, -1.
+ */
 static inline int NetmaskBits(uint8_t x)
 {
     switch(x) {

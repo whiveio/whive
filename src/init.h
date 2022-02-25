@@ -9,7 +9,6 @@
 #include <any>
 #include <memory>
 #include <string>
-#include <util.h>
 
 //! Default value for -daemon option
 static constexpr bool DEFAULT_DAEMON = false;

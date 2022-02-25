@@ -16,7 +16,6 @@
 #include <map>
 #include <memory>
 #include <set>
-#include <stdint.h>
 #include <string>
 #include <string.h>
 #include <utility>

@@ -59,7 +59,12 @@
 */
 
 /**
- * Functions to gather random data via the OpenSSL PRNG
+ * Generate random data via the internal PRNG.
+ *
+ * These functions are designed to be fast (sub microsecond), but do not necessarily
+ * meaningfully add entropy to the PRNG state.
+ *
+ * Thread-safe.
  */
 void GetRandBytes(unsigned char* buf, int num) noexcept;
 /** Generate a uniform random integer in the range [0..range). Precondition: range > 0 */
@@ -106,14 +111,9 @@ void RandAddPeriodic() noexcept;
 void RandAddEvent(const uint32_t event_info) noexcept;
 
 /**
- * Function to gather random data from multiple sources, failing whenever any
- * of those sources fail to provide a result.
- */
-void GetStrongRandBytes(unsigned char* buf, int num);
-
-/**
  * Fast randomness source. This is seeded once with secure random data, but
- * is completely deterministic and insecure after that.
+ * is completely deterministic and does not gather more entropy after that.
+ *
  * This class is not thread-safe.
  */
 class FastRandomContext
@@ -135,7 +135,7 @@ private:
         if (requires_seed) {
             RandomSeed();
         }
-        rng.Output(bytebuf, sizeof(bytebuf));
+        rng.Keystream(bytebuf, sizeof(bytebuf));
         bytebuf_size = sizeof(bytebuf);
     }
 
@@ -146,13 +146,21 @@ private:
     }
 
 public:
-    explicit FastRandomContext(bool fDeterministic = false);
+    explicit FastRandomContext(bool fDeterministic = false) noexcept;
 
     /** Initialize with explicit seed (only for testing) */
-    explicit FastRandomContext(const uint256& seed);
+    explicit FastRandomContext(const uint256& seed) noexcept;
+
+    // Do not permit copying a FastRandomContext (move it, or create a new one to get reseeded).
+    FastRandomContext(const FastRandomContext&) = delete;
+    FastRandomContext(FastRandomContext&&) = delete;
+    FastRandomContext& operator=(const FastRandomContext&) = delete;
+
+    /** Move a FastRandomContext. If the original one is used again, it will be reseeded. */
+    FastRandomContext& operator=(FastRandomContext&& from) noexcept;
 
     /** Generate a random 64-bit integer. */
-    uint64_t rand64()
+    uint64_t rand64() noexcept
     {
         if (bytebuf_size < 8) FillByteBuffer();
         uint64_t ret = ReadLE64(bytebuf + 64 - bytebuf_size);
@@ -194,19 +202,19 @@ public:
     std::vector<unsigned char> randbytes(size_t len);
 
     /** Generate a random 32-bit integer. */
-    uint32_t rand32() { return randbits(32); }
+    uint32_t rand32() noexcept { return randbits(32); }
 
     /** generate a random uint256. */
-    uint256 rand256();
+    uint256 rand256() noexcept;
 
     /** Generate a random boolean. */
-    bool randbool() { return randbits(1); }
+    bool randbool() noexcept { return randbits(1); }
 
     // Compatibility with the C++11 UniformRandomBitGenerator concept
     typedef uint64_t result_type;
     static constexpr uint64_t min() { return 0; }
     static constexpr uint64_t max() { return std::numeric_limits<uint64_t>::max(); }
-    inline uint64_t operator()() { return rand64(); }
+    inline uint64_t operator()() noexcept { return rand64(); }
 };
 
 /** More efficient than using std::shuffle on a FastRandomContext.
@@ -249,7 +257,12 @@ void GetOSRand(unsigned char* ent32);
  */
 bool Random_SanityCheck();
 
-/** Initialize the RNG. */
+/**
+ * Initialize global RNG state and log any CPU features that are used.
+ *
+ * Calling this function is optional. RNG state will be initialized when first
+ * needed if it is not called.
+ */
 void RandomInit();
 
 #endif // BITCOIN_RANDOM_H

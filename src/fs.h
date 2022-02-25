@@ -7,10 +7,12 @@
 
 #include <stdio.h>
 #include <string>
+#if defined WIN32 && defined __GLIBCXX__
+#include <ext/stdio_filebuf.h>
+#endif
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
-#include <boost/filesystem/detail/utf8_codecvt_facet.hpp>
 
 /** Filesystem operations and types */
 namespace fs = boost::filesystem;
