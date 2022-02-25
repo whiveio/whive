@@ -10,11 +10,6 @@
 #define BITCOIN_UTILSTRENCODINGS_H
 
 #include <stdint.h>
-#include <attributes.h>
-#include <span.h>
-
-#include <cstdint>
-#include <iterator>
 #include <string>
 #include <vector>
 
@@ -51,28 +46,19 @@ bool IsHex(const std::string& str);
 * Return true if the string is a hex number, optionally prefixed with "0x"
 */
 bool IsHexNumber(const std::string& str);
-std::vector<unsigned char> DecodeBase64(const char* p, bool* pf_invalid = nullptr);
-std::string DecodeBase64(const std::string& str, bool* pf_invalid = nullptr);
-std::string EncodeBase64(Span<const unsigned char> input);
+std::vector<unsigned char> DecodeBase64(const char* p, bool* pfInvalid = nullptr);
+std::string DecodeBase64(const std::string& str);
+std::string EncodeBase64(const unsigned char* pch, size_t len);
 std::string EncodeBase64(const std::string& str);
-std::vector<unsigned char> DecodeBase32(const char* p, bool* pf_invalid = nullptr);
-std::string DecodeBase32(const std::string& str, bool* pf_invalid = nullptr);
+std::vector<unsigned char> DecodeBase32(const char* p, bool* pfInvalid = nullptr);
+std::string DecodeBase32(const std::string& str);
+std::string EncodeBase32(const unsigned char* pch, size_t len);
+std::string EncodeBase32(const std::string& str);
 
-/**
- * Base32 encode.
- * If `pad` is true, then the output will be padded with '=' so that its length
- * is a multiple of 8.
- */
-std::string EncodeBase32(Span<const unsigned char> input, bool pad = true);
-
-/**
- * Base32 encode.
- * If `pad` is true, then the output will be padded with '=' so that its length
- * is a multiple of 8.
- */
-std::string EncodeBase32(const std::string& str, bool pad = true);
-
-void SplitHostPort(std::string in, uint16_t& portOut, std::string& hostOut);
+void SplitHostPort(std::string in, int &portOut, std::string &hostOut);
+std::string i64tostr(int64_t n);
+std::string itostr(int n);
+int64_t atoi64(const char* psz);
 int64_t atoi64(const std::string& str);
 int atoi(const std::string& str);
 

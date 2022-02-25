@@ -251,7 +251,7 @@
 #define LT_OBJDIR ".libs/"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "https://github.com/bitcoin/bitcoin/issues"
+#define PACKAGE_BUGREPORT "https://github.com/whiveio/whive/issues"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "Whive Core"

@@ -1,9 +1,9 @@
-prefix=/
+prefix=/usr/local
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
-Name: Bitcoin Core consensus library
+Name: Whive Core consensus library
 Description: Library for the Whive consensus protocol.
 Version: 2.22.0
 Libs: -L${libdir} -lbitcoinconsensus

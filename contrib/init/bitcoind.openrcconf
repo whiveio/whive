@@ -13,8 +13,8 @@
 #BITCOIND_DATADIR="/var/lib/bitcoind"
 
 # User and group to own bitcoind process
-#BITCOIND_USER="bitcoin"
-#BITCOIND_GROUP="bitcoin"
+#BITCOIND_USER="whive"
+#BITCOIND_GROUP="whive"
 
 # Path to bitcoind executable
 #BITCOIND_BIN="/usr/bin/bitcoind"

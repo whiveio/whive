@@ -4,7 +4,6 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <logging.h>
-//#include <utiltime.h>
 #include <util/threadnames.h>
 #include <util/string.h>
 #include <util/time.h>
@@ -13,6 +12,8 @@
 
 const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
+BCLog::Logger& LogInstance()
+{
 /**
  * NOTE: the logger instances is leaked on exit. This is ugly, but will be
  * cleaned up by the OS/libc. Defining a logger as a global object doesn't work
@@ -28,7 +29,9 @@ const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
  * This method of initialization was originally introduced in
  * ee3374234c60aba2cc4c5cd5cac1c0aefc2d817c.
  */
-BCLog::Logger* const g_logger = new BCLog::Logger();
+    static BCLog::Logger* g_logger{new BCLog::Logger()};
+    return *g_logger;
+}
 
 bool fLogIPs = DEFAULT_LOGIPS;
 
@@ -189,7 +192,7 @@ std::vector<LogCategory> BCLog::Logger::LogCategoriesList() const
     return ret;
 }
 
-std::string BCLog::Logger::LogTimestampStr(const std::string &str)
+std::string BCLog::Logger::LogTimestampStr(const std::string& str)
 {
     std::string strStamped;
 
@@ -210,11 +213,6 @@ std::string BCLog::Logger::LogTimestampStr(const std::string &str)
         strStamped += ' ' + str;
     } else
         strStamped = str;
-
-    if (!str.empty() && str[str.size()-1] == '\n')
-        m_started_new_line = true;
-    else
-        m_started_new_line = false;
 
     return strStamped;
 }
@@ -266,7 +264,7 @@ void BCLog::Logger::LogPrintStr(const std::string& str, const std::string& loggi
 
     if (m_print_to_console) {
         // print to console
-        fwrite(strTimestamped.data(), 1, strTimestamped.size(), stdout);
+        fwrite(str_prefixed.data(), 1, str_prefixed.size(), stdout);
         fflush(stdout);
     }
     for (const auto& cb : m_print_callbacks) {
@@ -303,7 +301,7 @@ void BCLog::Logger::ShrinkDebugFile()
     size_t log_size = 0;
     try {
         log_size = fs::file_size(m_file_path);
-    } catch (boost::filesystem::filesystem_error &) {}
+    } catch (const fs::filesystem_error&) {}
 
     // If debug.log file is more than 10% bigger the RECENT_DEBUG_HISTORY_SIZE
     // trim it down by saving only the last RECENT_DEBUG_HISTORY_SIZE bytes

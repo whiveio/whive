@@ -426,35 +426,17 @@ public:
     CScript(std::vector<unsigned char>::const_iterator pbegin, std::vector<unsigned char>::const_iterator pend) : CScriptBase(pbegin, pend) { }
     CScript(const unsigned char* pbegin, const unsigned char* pend) : CScriptBase(pbegin, pend) { }
 
-    ADD_SERIALIZE_METHODS;
+    SERIALIZE_METHODS(CScript, obj) { READWRITEAS(CScriptBase, obj); }
 
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITEAS(CScriptBase, *this);
-    }
-
-    CScript& operator+=(const CScript& b)
-    {
-        reserve(size() + b.size());
-        insert(end(), b.begin(), b.end());
-        return *this;
-    }
-
-    friend CScript operator+(const CScript& a, const CScript& b)
-    {
-        CScript ret = a;
-        ret += b;
-        return ret;
-    }
-
-    CScript(int64_t b)        { operator<<(b); }
-
+    explicit CScript(int64_t b) { operator<<(b); }
     explicit CScript(opcodetype b)     { operator<<(b); }
     explicit CScript(const CScriptNum& b) { operator<<(b); }
-    explicit CScript(const std::vector<unsigned char>& b) { operator<<(b); }
+    // delete non-existent constructor to defend against future introduction
+    // e.g. via prevector
+    explicit CScript(const std::vector<unsigned char>& b) = delete;
 
     /** Delete non-existent operator to defend against future introduction */
-    //CScript& operator<<(const CScript& b) = delete;
+    CScript& operator<<(const CScript& b) = delete;
 
     CScript& operator<<(int64_t b) { return push_int64(b); }
 
@@ -501,15 +483,6 @@ public:
         return *this;
     }
 
-    CScript& operator<<(const CScript& b)
-    {
-        // I'm not sure if this should push the script or concatenate scripts.
-        // If there's ever a use for pushing a script onto a script, delete this member fn
-        assert(!"Warning: Pushing a CScript onto a CScript with << is probably not intended, use + to concatenate!");
-        return *this;
-    }
-
-
     bool GetOp(const_iterator& pc, opcodetype& opcodeRet, std::vector<unsigned char>& vchRet) const
     {
         return GetScriptOp(pc, end(), opcodeRet, &vchRet);
@@ -519,7 +492,6 @@ public:
     {
         return GetScriptOp(pc, end(), opcodeRet, nullptr);
     }
-
 
     /** Encode/decode small integers: */
     static int DecodeOP_N(opcodetype opcode)
@@ -538,7 +510,7 @@ public:
     }
 
     /**
-     * Pre-version-0.6, Bitcoin always counted CHECKMULTISIGs
+     * Pre-version-0.6, Whive always counted CHECKMULTISIGs
      * as 20 sigops. With pay-to-script-hash, that changed:
      * CHECKMULTISIGs serialized in scriptSigs are
      * counted more accurately, assuming they are of the form
@@ -597,13 +569,7 @@ struct CScriptWitness
     std::string ToString() const;
 };
 
-class CReserveScript
-{
-public:
-    CScript reserveScript;
-    virtual void KeepScript() {}
-    CReserveScript() {}
-    virtual ~CReserveScript() {}
-};
+/** Test for OP_SUCCESSx opcodes as defined by BIP342. */
+bool IsOpSuccess(const opcodetype& opcode);
 
 #endif // BITCOIN_SCRIPT_SCRIPT_H
