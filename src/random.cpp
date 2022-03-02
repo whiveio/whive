@@ -38,7 +38,6 @@
 #include <sys/random.h>
 #endif
 #ifdef HAVE_SYSCTL_ARND
-//#include <utilstrencodings.h> // for ARRAYLEN
 #include <sys/sysctl.h>
 #endif
 

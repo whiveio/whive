@@ -5,19 +5,18 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <chainparams.h>
+
+#include <chainparamsseeds.h>
 #include <consensus/merkle.h>
 #include <deploymentinfo.h>
 #include <hash.h> // for signet block challenge hash
-#include <tinyformat.h>
-#include <util.h>
-#include <utilstrencodings.h>
 #include <util/system.h>
 
 #include <assert.h>
 
-#include <chainparamsseeds.h>
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/split.hpp>
 #include <arith_uint256.h>
-
 
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
@@ -56,12 +55,6 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
     const char* pszTimestamp = "Trustless Rewards For Sustainable Energy Adoption - UN SDGs 7 9 11 13 , 2/02/2020";
     const CScript genesisOutputScript = CScript() << ParseHex("04f922793e1e9fd953403b475bbfe8ea3216b8b708166853c02f3f6b95232cf9e36bcc2991dbef1388f42b5a72700ec8376a79ee4ffc002355ee390d192b27c971") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
-}
-
-void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout)
-{
-    consensus.vDeployments[d].nStartTime = nStartTime;
-    consensus.vDeployments[d].nTimeout = nTimeout;
 }
 
 /**
@@ -180,9 +173,6 @@ public:
             /* nTxCount */ 0,
             /* dTxRate  */ 0
         };
-
-        /* TODO disable fallback fee on mainnet */
-        m_fallback_fee_enabled = true;
     }
 };
 
@@ -231,6 +221,8 @@ public:
         pchMessageStart[3] = 0x61;   //a
         nDefaultPort = 18373;
         nPruneAfterHeight = 1000;
+        m_assumed_blockchain_size = 3;
+        m_assumed_chain_state_size = 1;
 
         genesis = CreateGenesisBlock(1580661362, 156465, 0x1f00ffff, 1, 200 * COIN);
         
@@ -564,9 +556,4 @@ void SelectParams(const std::string& network)
 {
     SelectBaseParams(network);
     globalChainParams = CreateChainParams(gArgs, network);
-}
-
-void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout)
-{
-    globalChainParams->UpdateVersionBitsParameters(d, nStartTime, nTimeout);
 }

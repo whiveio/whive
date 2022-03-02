@@ -13,8 +13,8 @@
 #include <any>
 #include <stdint.h>
 #include <vector>
-#include <stdint.h>
-#include <amount.h>
+
+extern RecursiveMutex cs_main;
 
 class CBlock;
 class CBlockIndex;
@@ -28,8 +28,7 @@ struct NodeContext;
 static constexpr int NUM_GETBLOCKSTATS_PERCENTILES = 5;
 
 /**
- * Get the difficulty of the net wrt to the given block index, or the chain tip if
- * not provided.
+ * Get the difficulty of the net wrt to the given block index.
  *
  * @return A floating point number that is a multiple of the main net minimum
  * difficulty (4295032833 hashes).
@@ -40,16 +39,16 @@ double GetDifficulty(const CBlockIndex* blockindex);
 void RPCNotifyBlockChange(const CBlockIndex*);
 
 /** Block description to JSON */
-UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool txDetails = false);
+UniValue blockToJSON(const CBlock& block, const CBlockIndex* tip, const CBlockIndex* blockindex, bool txDetails = false) LOCKS_EXCLUDED(cs_main);
 
 /** Mempool information to JSON */
-UniValue mempoolInfoToJSON();
+UniValue MempoolInfoToJSON(const CTxMemPool& pool);
 
 /** Mempool to JSON */
 UniValue MempoolToJSON(const CTxMemPool& pool, bool verbose = false, bool include_mempool_sequence = false);
 
 /** Block header to JSON */
-UniValue blockheaderToJSON(const CBlockIndex* blockindex);
+UniValue blockheaderToJSON(const CBlockIndex* tip, const CBlockIndex* blockindex) LOCKS_EXCLUDED(cs_main);
 
 /** Used by getblockstats to get feerates at different percentiles by weight  */
 void CalculatePercentilesByWeight(CAmount result[NUM_GETBLOCKSTATS_PERCENTILES], std::vector<std::pair<CAmount, int64_t>>& scores, int64_t total_weight);

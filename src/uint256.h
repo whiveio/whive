@@ -11,7 +11,6 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
-#include <crypto/common.h>
 
 /** Template base class for fixed-sized opaque blobs. */
 template<unsigned int BITS>

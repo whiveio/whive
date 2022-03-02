@@ -8,8 +8,6 @@
 #include <compat.h>
 #include <sync.h>
 #include <tinyformat.h>
-/* #include <util.h>
-#include <utilstrencodings.h> */
 #include <util/sock.h>
 #include <util/strencodings.h>
 #include <util/string.h>
@@ -25,9 +23,13 @@
 
 #ifndef WIN32
 #include <fcntl.h>
+#else
+#include <codecvt>
 #endif
 
-#include <boost/algorithm/string/case_conv.hpp> // for to_lower()
+#ifdef USE_POLL
+#include <poll.h>
+#endif
 
 // Settings
 static Mutex g_proxyinfo_mutex;
@@ -245,10 +247,10 @@ enum SOCKSVersion: uint8_t {
 
 /** Values defined for METHOD in RFC1928 */
 enum SOCKS5Method: uint8_t {
-    NOAUTH = 0x00,        //! No authentication required
-    GSSAPI = 0x01,        //! GSSAPI
-    USER_PASS = 0x02,     //! Username/password
-    NO_ACCEPTABLE = 0xff, //! No acceptable methods
+    NOAUTH = 0x00,        //!< No authentication required
+    GSSAPI = 0x01,        //!< GSSAPI
+    USER_PASS = 0x02,     //!< Username/password
+    NO_ACCEPTABLE = 0xff, //!< No acceptable methods
 };
 
 /** Values defined for CMD in RFC1928 */
@@ -260,15 +262,15 @@ enum SOCKS5Command: uint8_t {
 
 /** Values defined for REP in RFC1928 */
 enum SOCKS5Reply: uint8_t {
-    SUCCEEDED = 0x00,        //! Succeeded
-    GENFAILURE = 0x01,       //! General failure
-    NOTALLOWED = 0x02,       //! Connection not allowed by ruleset
-    NETUNREACHABLE = 0x03,   //! Network unreachable
-    HOSTUNREACHABLE = 0x04,  //! Network unreachable
-    CONNREFUSED = 0x05,      //! Connection refused
-    TTLEXPIRED = 0x06,       //! TTL expired
-    CMDUNSUPPORTED = 0x07,   //! Command not supported
-    ATYPEUNSUPPORTED = 0x08, //! Address type not supported
+    SUCCEEDED = 0x00,        //!< Succeeded
+    GENFAILURE = 0x01,       //!< General failure
+    NOTALLOWED = 0x02,       //!< Connection not allowed by ruleset
+    NETUNREACHABLE = 0x03,   //!< Network unreachable
+    HOSTUNREACHABLE = 0x04,  //!< Network unreachable
+    CONNREFUSED = 0x05,      //!< Connection refused
+    TTLEXPIRED = 0x06,       //!< TTL expired
+    CMDUNSUPPORTED = 0x07,   //!< Command not supported
+    ATYPEUNSUPPORTED = 0x08, //!< Address type not supported
 };
 
 /** Values defined for ATYPE in RFC1928 */

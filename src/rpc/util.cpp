@@ -154,12 +154,12 @@ std::string ShellQuoteIfNeeded(const std::string& s)
 
 std::string HelpExampleCli(const std::string& methodname, const std::string& args)
 {
-    return "> bitcoin-cli " + methodname + " " + args + "\n";
+    return "> whive-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleCliNamed(const std::string& methodname, const RPCArgList& args)
 {
-    std::string result = "> bitcoin-cli -named " + methodname;
+    std::string result = "> whive-cli -named " + methodname;
     for (const auto& argpair: args) {
         const auto& value = argpair.second.isStr()
                 ? argpair.second.get_str()
@@ -265,7 +265,7 @@ public:
         return UniValue(UniValue::VOBJ);
     }
 
-    UniValue operator()(const CKeyID& keyID) const
+    UniValue operator()(const PKHash& keyID) const
     {
         UniValue obj(UniValue::VOBJ);
         obj.pushKV("isscript", false);
@@ -273,7 +273,7 @@ public:
         return obj;
     }
 
-    UniValue operator()(const CScriptID& scriptID) const
+    UniValue operator()(const ScriptHash& scriptID) const
     {
         UniValue obj(UniValue::VOBJ);
         obj.pushKV("isscript", true);

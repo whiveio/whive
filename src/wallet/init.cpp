@@ -120,25 +120,6 @@ bool WalletInit::ParameterInteraction() const
     if (gArgs.GetBoolArg("-sysperms", false))
         return InitError(Untranslated("-sysperms is not allowed in combination with enabled wallet functionality"));
 
-    if (::minRelayTxFee.GetFeePerK() > HIGH_TX_FEE_PER_KB)
-        InitWarning(AmountHighWarn("-minrelaytxfee") + " " +
-                    _("The wallet will avoid paying less than the minimum relay fee."));
-
-    if (gArgs.IsArgSet("-maxtxfee"))
-    {
-        CAmount nMaxFee = 0;
-        if (!ParseMoney(gArgs.GetArg("-maxtxfee", ""), nMaxFee))
-            return InitError(AmountErrMsg("maxtxfee", gArgs.GetArg("-maxtxfee", "")));
-        if (nMaxFee > HIGH_MAX_TX_FEE)
-            InitWarning(_("-maxtxfee is set very high! Fees this large could be paid on a single transaction."));
-        maxTxFee = nMaxFee;
-        if (CFeeRate(maxTxFee, 1000) < ::minRelayTxFee)
-        {
-            return InitError(strprintf(_("Invalid amount for -maxtxfee=<amount>: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)"),
-                                       gArgs.GetArg("-maxtxfee", ""), ::minRelayTxFee.ToString()));
-        }
-    }
-
     return true;
 }
 
@@ -147,48 +128,7 @@ void WalletInit::Construct(NodeContext& node) const
     ArgsManager& args = *Assert(node.args);
     if (args.GetBoolArg("-disablewallet", DEFAULT_DISABLE_WALLET)) {
         LogPrintf("Wallet disabled!\n");
-        return true;
-    }
-
-    for (const std::string& walletFile : gArgs.GetArgs("-wallet")) {
-        std::shared_ptr<CWallet> pwallet = CWallet::CreateWalletFromFile(walletFile, fs::absolute(walletFile, GetWalletDir()));
-        if (!pwallet) {
-            return false;
-        }
-        AddWallet(pwallet);
-    }
-
-    return true;
-}
-
-void WalletInit::Start(CScheduler& scheduler) const
-{
-    for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
-        pwallet->postInitProcess();
-    }
-
-    // Run a thread to flush wallet periodically
-    scheduler.scheduleEvery(MaybeCompactWalletDB, 500);
-}
-
-void WalletInit::Flush() const
-{
-    for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
-        pwallet->Flush(false);
-    }
-}
-
-void WalletInit::Stop() const
-{
-    for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
-        pwallet->Flush(true);
-    }
-}
-
-void WalletInit::Close() const
-{
-    for (const std::shared_ptr<CWallet>& pwallet : GetWallets()) {
-        RemoveWallet(pwallet);
+        return;
     }
     auto wallet_client = interfaces::MakeWalletClient(*node.chain, args);
     node.wallet_client = wallet_client.get();

@@ -18,8 +18,6 @@
 #include <univalue.h>
 #include <util/check.h>
 
-#include <boost/variant/static_visitor.hpp>
-
 #include <string>
 #include <variant>
 #include <vector>

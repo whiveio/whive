@@ -182,7 +182,6 @@ CBanDB::CBanDB(fs::path ban_list_path)
     : m_banlist_dat(ban_list_path.string() + ".dat"),
       m_banlist_json(ban_list_path.string() + ".json")
 {
-    pathBanlist = GetDataDir() / "banlist.dat";
 }
 
 bool CBanDB::Write(const banmap_t& banSet)

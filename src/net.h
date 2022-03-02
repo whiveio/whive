@@ -13,6 +13,7 @@
 #include <bloom.h>
 #include <chainparams.h>
 #include <compat.h>
+#include <crypto/siphash.h>
 #include <hash.h>
 #include <i2p.h>
 #include <net_permissions.h>
@@ -56,7 +57,7 @@ static constexpr auto FEELER_INTERVAL = 2min;
 static constexpr auto EXTRA_BLOCK_RELAY_ONLY_PEER_INTERVAL = 5min;
 /** Maximum length of incoming protocol messages (no message over 4 MB is currently acceptable). */
 static const unsigned int MAX_PROTOCOL_MESSAGE_LENGTH = 4 * 1000 * 1000;
-/** Maximum length of strSubVer in `version` message */
+/** Maximum length of the user agent string in `version` message */
 static const unsigned int MAX_SUBVERSION_LENGTH = 256;
 /** Maximum number of automatic outgoing nodes over which we'll relay everything (blocks, tx, addrs, etc) */
 static const int MAX_OUTBOUND_FULL_RELAY_CONNECTIONS = 8;
@@ -84,9 +85,6 @@ static const bool DEFAULT_DNSSEED = true;
 static const bool DEFAULT_FIXEDSEEDS = true;
 static const size_t DEFAULT_MAXRECEIVEBUFFER = 5 * 1000;
 static const size_t DEFAULT_MAXSENDBUFFER    = 1 * 1000;
-
-// NOTE: When adjusting this, update rpcnet:setban's help ("24h")
-static const unsigned int DEFAULT_MISBEHAVING_BANTIME = 60 * 60 * 24;  // Default 24-hour ban
 
 typedef int64_t NodeId;
 
@@ -761,9 +759,11 @@ public:
         int nMaxFeeler = 0;
         CClientUIInterface* uiInterface = nullptr;
         NetEventsInterface* m_msgproc = nullptr;
+        BanMan* m_banman = nullptr;
         unsigned int nSendBufferMaxSize = 0;
         unsigned int nReceiveFloodSize = 0;
         uint64_t nMaxOutboundLimit = 0;
+        int64_t m_peer_connect_timeout = DEFAULT_PEER_CONNECT_TIMEOUT;
         std::vector<std::string> vSeedNodes;
         std::vector<NetWhitelistPermissions> vWhitelistedRange;
         std::vector<NetWhitebindPermissions> vWhiteBinds;
@@ -789,9 +789,11 @@ public:
         nMaxFeeler = connOptions.nMaxFeeler;
         m_max_outbound = m_max_outbound_full_relay + m_max_outbound_block_relay + nMaxFeeler;
         clientInterface = connOptions.uiInterface;
+        m_banman = connOptions.m_banman;
         m_msgproc = connOptions.m_msgproc;
         nSendBufferMaxSize = connOptions.nSendBufferMaxSize;
         nReceiveFloodSize = connOptions.nReceiveFloodSize;
+        m_peer_connect_timeout = connOptions.m_peer_connect_timeout;
         {
             LOCK(cs_totalBytesSent);
             nMaxOutboundLimit = connOptions.nMaxOutboundLimit;
@@ -818,6 +820,7 @@ public:
 
     void Interrupt();
     bool GetNetworkActive() const { return fNetworkActive; };
+    bool GetUseAddrmanOutgoing() const { return m_use_addrman_outgoing; };
     void SetNetworkActive(bool active);
     void OpenNetworkConnection(const CAddress& addrConnect, bool fCountFailure, CSemaphoreGrant* grantOutbound, const char* strDest, ConnectionType conn_type);
     bool CheckIncomingNonce(uint64_t nonce);
@@ -903,6 +906,8 @@ public:
     size_t GetNodeCount(ConnectionDirection) const;
     void GetNodeStats(std::vector<CNodeStats>& vstats) const;
     bool DisconnectNode(const std::string& node);
+    bool DisconnectNode(const CSubNet& subnet);
+    bool DisconnectNode(const CNetAddr& addr);
     bool DisconnectNode(NodeId id);
 
     //! Used to convey which local services we are offering peers during node
@@ -1018,8 +1023,6 @@ private:
 
     size_t SocketSendData(CNode& node) const EXCLUSIVE_LOCKS_REQUIRED(node.cs_vSend);
     void DumpAddresses();
-    void DumpData();
-    void DumpBanlist();
 
     // Network stats
     void RecordBytesRecv(uint64_t bytes);
@@ -1044,12 +1047,15 @@ private:
     std::chrono::seconds nMaxOutboundCycleStartTime GUARDED_BY(cs_totalBytesSent) {0};
     uint64_t nMaxOutboundLimit GUARDED_BY(cs_totalBytesSent);
 
+    // P2P timeout in seconds
+    int64_t m_peer_connect_timeout;
+
     // Whitelisted ranges. Any node connecting from these is automatically
     // whitelisted (as well as those connecting to whitelisted binds).
     std::vector<NetWhitelistPermissions> vWhitelistedRange;
 
-    unsigned int nSendBufferMaxSize;
-    unsigned int nReceiveFloodSize;
+    unsigned int nSendBufferMaxSize{0};
+    unsigned int nReceiveFloodSize{0};
 
     std::vector<ListenSocket> vhListenSocket;
     std::atomic<bool> fNetworkActive{true};
@@ -1139,8 +1145,8 @@ private:
     bool fMsgProcWake GUARDED_BY(mutexMsgProc);
 
     std::condition_variable condMsgProc;
-    std::mutex mutexMsgProc;
-    std::atomic<bool> flagInterruptMsgProc;
+    Mutex mutexMsgProc;
+    std::atomic<bool> flagInterruptMsgProc{false};
 
     /**
      * This is signaled when network activity should cease.
