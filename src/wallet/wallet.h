@@ -8,6 +8,8 @@
 #define BITCOIN_WALLET_WALLET_H
 
 #include <amount.h>
+#include <interfaces/chain.h>
+#include <interfaces/handler.h>
 #include <outputtype.h>
 #include <policy/feerate.h>
 #include <psbt.h>
@@ -18,16 +20,14 @@
 #include <util/system.h>
 #include <util/ui_change_type.h>
 #include <validationinterface.h>
-#include <script/ismine.h>
-#include <script/sign.h>
-#include <util.h>
+#include <wallet/coinselection.h>
 #include <wallet/crypter.h>
 #include <wallet/receive.h>
 #include <wallet/scriptpubkeyman.h>
 #include <wallet/spend.h>
 #include <wallet/transaction.h>
 #include <wallet/walletdb.h>
-#include <wallet/rpcwallet.h>
+#include <wallet/walletutil.h>
 
 #include <algorithm>
 #include <atomic>
@@ -103,12 +103,9 @@ constexpr CAmount HIGH_MAX_TX_FEE{100 * HIGH_TX_FEE_PER_KB};
 //! Pre-calculated constants for input size estimation in *virtual size*
 static constexpr size_t DUMMY_NESTED_P2WPKH_INPUT_SIZE = 91;
 
-class CBlockIndex;
 class CCoinControl;
 class COutput;
 class CScript;
-class CTxMemPool;
-class CBlockPolicyEstimator;
 class CWalletTx;
 struct FeeCalculation;
 enum class FeeEstimateMode;
@@ -241,13 +238,15 @@ private:
     friend class WalletRescanReserver;
 
     //! the current wallet version: clients below this version are not able to load the wallet
-    int nWalletVersion = FEATURE_BASE;
+    int nWalletVersion GUARDED_BY(cs_wallet){FEATURE_BASE};
 
     /** The next scheduled rebroadcast of wallet transactions. */
     int64_t nNextResend = 0;
     /** Whether this wallet will submit newly created transactions to the node's mempool and
      * prompt rebroadcasts (see ResendWalletTransactions()). */
     bool fBroadcastTransactions = false;
+    // Local time that the tip block was received. Used to schedule wallet rebroadcasts.
+    std::atomic<int64_t> m_best_block_time {0};
 
     /**
      * Used to keep track of spent outpoints, and
@@ -255,9 +254,9 @@ private:
      * mutated transactions where the mutant gets mined).
      */
     typedef std::multimap<COutPoint, uint256> TxSpends;
-    TxSpends mapTxSpends;
-    void AddToSpends(const COutPoint& outpoint, const uint256& wtxid);
-    void AddToSpends(const uint256& wtxid);
+    TxSpends mapTxSpends GUARDED_BY(cs_wallet);
+    void AddToSpends(const COutPoint& outpoint, const uint256& wtxid) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
+    void AddToSpends(const uint256& wtxid) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
 
     /**
      * Add a transaction to the wallet, or update it.  pIndex and posInBlock should
@@ -280,7 +279,7 @@ private:
     /** Mark a transaction's inputs dirty, thus forcing the outputs to be recomputed */
     void MarkInputsDirty(const CTransactionRef& tx) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
 
-    void SyncMetaData(std::pair<TxSpends::iterator, TxSpends::iterator>);
+    void SyncMetaData(std::pair<TxSpends::iterator, TxSpends::iterator>) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
 
     /* Used by TransactionAddedToMemorypool/BlockConnected/Disconnected/ScanForWalletTransactions.
      * Should be called with non-zero block_hash and posInBlock if this is for a transaction that is included in a block. */
@@ -313,7 +312,7 @@ private:
      * Processed hash is a pointer on node's tip and doesn't imply that the wallet
      * has scanned sequentially all blocks up to this one.
      */
-    const CBlockIndex* m_last_block_processed = nullptr;
+    uint256 m_last_block_processed GUARDED_BY(cs_wallet);
 
     /** Height of last block processed is used by wallet to know depth of transactions
      * without relying on Chain interface beyond asynchronous updates. For safety, we
@@ -395,11 +394,10 @@ public:
      * interested in, including received and sent transactions. */
     std::map<uint256, CWalletTx> mapWallet GUARDED_BY(cs_wallet);
 
-    typedef std::pair<CWalletTx*, CAccountingEntry*> TxPair;
-    typedef std::multimap<int64_t, TxPair > TxItems;
+    typedef std::multimap<int64_t, CWalletTx*> TxItems;
     TxItems wtxOrdered;
 
-    int64_t nOrderPosNext = 0;
+    int64_t nOrderPosNext GUARDED_BY(cs_wallet) = 0;
     uint64_t nAccountingEntryNumber = 0;
 
     std::map<CTxDestination, CAddressBookData> m_address_book GUARDED_BY(cs_wallet);
@@ -436,7 +434,7 @@ public:
     /**
      * Find non-change parent output.
      */
-    const CTxOut& FindNonChangeParentOutput(const CTransaction& tx, int output) const;
+    const CTxOut& FindNonChangeParentOutput(const CTransaction& tx, int output) const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
 
     /**
      * Shuffle and select coins until nTargetValue is reached while avoiding
@@ -507,8 +505,6 @@ public:
      */
     int64_t IncOrderPosNext(WalletBatch *batch = nullptr) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
     DBErrors ReorderTransactions();
-    bool AccountMove(std::string strFrom, std::string strTo, CAmount nAmount, std::string strComment = "") EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
-    bool GetLabelDestination(CTxDestination &dest, const std::string& label, bool bForceNew = false);
 
     void MarkDirty();
 
@@ -608,9 +604,6 @@ public:
      */
     void CommitTransaction(CTransactionRef tx, mapValue_t mapValue, std::vector<std::pair<std::string, std::string>> orderForm);
 
-    void ListAccountCreditDebit(const std::string& strAccount, std::list<CAccountingEntry>& entries);
-    bool AddAccountingEntry(const CAccountingEntry&);
-    bool AddAccountingEntry(const CAccountingEntry&, WalletBatch *batch);
     bool DummySignTx(CMutableTransaction &txNew, const std::set<CTxOut> &txouts, bool use_max_sig = false) const
     {
         std::vector<CTxOut> v_txouts(txouts.size());
@@ -666,13 +659,6 @@ public:
     std::map<CTxDestination, CAmount> GetAddressBalances() const;
 
     std::set<CTxDestination> GetLabelAddresses(const std::string& label) const;
-    void DeleteLabel(const std::string& label);
-
-    /**
-     * Marks all outputs in each one of the destinations dirty, so their cache is
-     * reset and does not return outdated information.
-     */
-    void MarkDestinationsDirty(const std::set<CTxDestination>& destinations) EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
 
     /**
      * Marks all outputs in each one of the destinations dirty, so their cache is
@@ -728,7 +714,7 @@ public:
     int GetVersion() const { LOCK(cs_wallet); return nWalletVersion; }
 
     //! Get wallet transactions that conflict with given transaction (spend same outputs)
-    std::set<uint256> GetConflicts(const uint256& txid) const;
+    std::set<uint256> GetConflicts(const uint256& txid) const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
 
     //! Check if a given transaction has any of its outputs spent by another transaction in the wallet
     bool HasWalletSpend(const uint256& txid) const EXCLUSIVE_LOCKS_REQUIRED(cs_wallet);
@@ -813,6 +799,9 @@ public:
 
     /** set a single wallet flag */
     void SetWalletFlag(uint64_t flags);
+
+    /** Unsets a single wallet flag */
+    void UnsetWalletFlag(uint64_t flag);
 
     /** check if a certain wallet flag is set */
     bool IsWalletFlagSet(uint64_t flag) const override;
@@ -927,67 +916,11 @@ public:
     ScriptPubKeyMan* AddWalletDescriptor(WalletDescriptor& desc, const FlatSigningProvider& signing_provider, const std::string& label, bool internal);
 };
 
-/** A key allocated from the key pool. */
-class CReserveKey final : public CReserveScript
-{
-protected:
-    CWallet* pwallet;
-    int64_t nIndex;
-    CPubKey vchPubKey;
-    bool fInternal;
-public:
-    explicit CReserveKey(CWallet* pwalletIn)
-    {
-        nIndex = -1;
-        pwallet = pwalletIn;
-        fInternal = false;
-    }
-
-    CReserveKey() = default;
-    CReserveKey(const CReserveKey&) = delete;
-    CReserveKey& operator=(const CReserveKey&) = delete;
-
-    ~CReserveKey()
-    {
-        ReturnKey();
-    }
-
-    void ReturnKey();
-    bool GetReservedKey(CPubKey &pubkey, bool internal = false);
-    void KeepKey();
-    void KeepScript() override { KeepKey(); }
-};
-
-
 /**
- * DEPRECATED Account information.
- * Stored in wallet with key "acc"+string account name.
+ * Called periodically by the schedule thread. Prompts individual wallets to resend
+ * their transactions. Actual rebroadcast schedule is managed by the wallets themselves.
  */
-class CAccount
-{
-public:
-    CPubKey vchPubKey;
-
-    CAccount()
-    {
-        SetNull();
-    }
-
-    void SetNull()
-    {
-        vchPubKey = CPubKey();
-    }
-
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        int nVersion = s.GetVersion();
-        if (!(s.GetType() & SER_GETHASH))
-            READWRITE(nVersion);
-        READWRITE(vchPubKey);
-    }
-};
+void MaybeResendWalletTxs();
 
 /** RAII object to check and reserve a wallet rescan */
 class WalletRescanReserver

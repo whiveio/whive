@@ -36,8 +36,8 @@
 
 WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     QStackedWidget(parent),
-    clientModel(0),
-    walletModel(0),
+    clientModel(nullptr),
+    walletModel(nullptr),
     platformStyle(_platformStyle)
 {
     // Create tabs
@@ -80,10 +80,10 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     connect(sendCoinsPage, &SendCoinsDialog::coinsSent, transactionView, qOverload<const uint256&>(&TransactionView::focusTransaction));
 
     // Clicking on "Export" allows to export the transaction list
-    connect(exportButton, SIGNAL(clicked()), transactionView, SLOT(exportClicked()));
+    connect(exportButton, &QPushButton::clicked, transactionView, &TransactionView::exportClicked);
 
     // Pass through messages from sendCoinsPage
-    connect(sendCoinsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
+    connect(sendCoinsPage, &SendCoinsDialog::message, this, &WalletView::message);
     // Pass through messages from transactionView
     connect(transactionView, &TransactionView::message, this, &WalletView::message);
 
@@ -118,24 +118,23 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     if (_walletModel)
     {
         // Receive and pass through messages from wallet model
-        connect(_walletModel, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
+        connect(_walletModel, &WalletModel::message, this, &WalletView::message);
 
         // Handle changes in encryption status
-        connect(_walletModel, SIGNAL(encryptionStatusChanged()), this, SIGNAL(encryptionStatusChanged()));
+        connect(_walletModel, &WalletModel::encryptionStatusChanged, this, &WalletView::encryptionStatusChanged);
         updateEncryptionStatus();
 
         // update HD status
         Q_EMIT hdEnabledStatusChanged();
 
         // Balloon pop-up for new transaction
-        connect(_walletModel->getTransactionTableModel(), SIGNAL(rowsInserted(QModelIndex,int,int)),
-                this, SLOT(processNewTransaction(QModelIndex,int,int)));
+        connect(_walletModel->getTransactionTableModel(), &TransactionTableModel::rowsInserted, this, &WalletView::processNewTransaction);
 
         // Ask for passphrase if needed
-        connect(_walletModel, SIGNAL(requireUnlock()), this, SLOT(unlockWallet()));
+        connect(_walletModel, &WalletModel::requireUnlock, this, &WalletView::unlockWallet);
 
         // Show progress dialog
-        connect(_walletModel, SIGNAL(showProgress(QString,int)), this, SLOT(showProgress(QString,int)));
+        connect(_walletModel, &WalletModel::showProgress, this, &WalletView::showProgress);
     }
 }
 
@@ -315,9 +314,7 @@ void WalletView::usedSendingAddresses()
     if(!walletModel)
         return;
 
-    usedSendingAddressesPage->show();
-    usedSendingAddressesPage->raise();
-    usedSendingAddressesPage->activateWindow();
+    GUIUtil::bringToFront(usedSendingAddressesPage);
 }
 
 void WalletView::usedReceivingAddresses()
@@ -325,31 +322,24 @@ void WalletView::usedReceivingAddresses()
     if(!walletModel)
         return;
 
-    usedReceivingAddressesPage->show();
-    usedReceivingAddressesPage->raise();
-    usedReceivingAddressesPage->activateWindow();
+    GUIUtil::bringToFront(usedReceivingAddressesPage);
 }
 
 void WalletView::showProgress(const QString &title, int nProgress)
 {
-    if (nProgress == 0)
-    {
-        progressDialog = new QProgressDialog(title, "", 0, 100);
+    if (nProgress == 0) {
+        progressDialog = new QProgressDialog(title, tr("Cancel"), 0, 100);
+        GUIUtil::PolishProgressDialog(progressDialog);
         progressDialog->setWindowModality(Qt::ApplicationModal);
         progressDialog->setAutoClose(false);
         progressDialog->setValue(0);
-        progressDialog->setCancelButtonText(tr("Cancel"));
-    }
-    else if (nProgress == 100)
-    {
-        if (progressDialog)
-        {
+    } else if (nProgress == 100) {
+        if (progressDialog) {
             progressDialog->close();
             progressDialog->deleteLater();
             progressDialog = nullptr;
         }
-    }
-    else if (progressDialog) {
+    } else if (progressDialog) {
         if (progressDialog->wasCanceled()) {
             getWalletModel()->wallet().abortRescan();
         } else {

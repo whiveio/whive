@@ -5,7 +5,7 @@
 
 #include <wallet/coincontrol.h>
 
-#include <util.h>
+#include <util/system.h>
 
 CCoinControl::CCoinControl()
 {

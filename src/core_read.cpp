@@ -205,6 +205,20 @@ bool DecodeHexTx(CMutableTransaction& tx, const std::string& hex_tx, bool try_no
     return DecodeTx(tx, txData, try_no_witness, try_witness);
 }
 
+bool DecodeHexBlockHeader(CBlockHeader& header, const std::string& hex_header)
+{
+    if (!IsHex(hex_header)) return false;
+
+    const std::vector<unsigned char> header_data{ParseHex(hex_header)};
+    CDataStream ser_header(header_data, SER_NETWORK, PROTOCOL_VERSION);
+    try {
+        ser_header >> header;
+    } catch (const std::exception&) {
+        return false;
+    }
+    return true;
+}
+
 bool DecodeHexBlk(CBlock& block, const std::string& strHexBlk)
 {
     if (!IsHex(strHexBlk))
@@ -222,31 +236,13 @@ bool DecodeHexBlk(CBlock& block, const std::string& strHexBlk)
     return true;
 }
 
-bool DecodePSBT(PartiallySignedTransaction& psbt, const std::string& base64_tx, std::string& error)
+bool ParseHashStr(const std::string& strHex, uint256& result)
 {
-    std::vector<unsigned char> tx_data = DecodeBase64(base64_tx.c_str());
-    CDataStream ss_data(tx_data, SER_NETWORK, PROTOCOL_VERSION);
-    try {
-        ss_data >> psbt;
-        if (!ss_data.empty()) {
-            error = "extra data after PSBT";
-            return false;
-        }
-    } catch (const std::exception& e) {
-        error = e.what();
+    if ((strHex.size() != 64) || !IsHex(strHex))
         return false;
-    }
-    return true;
-}
 
-uint256 ParseHashStr(const std::string& strHex, const std::string& strName)
-{
-    if (!IsHex(strHex)) // Note: IsHex("") is false
-        throw std::runtime_error(strName + " must be hexadecimal string (not '" + strHex + "')");
-
-    uint256 result;
     result.SetHex(strHex);
-    return result;
+    return true;
 }
 
 std::vector<unsigned char> ParseHexUV(const UniValue& v, const std::string& strName)

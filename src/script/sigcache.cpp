@@ -8,7 +8,7 @@
 #include <pubkey.h>
 #include <random.h>
 #include <uint256.h>
-#include <util.h>
+#include <util/system.h>
 
 #include <cuckoocache.h>
 

@@ -149,7 +149,6 @@ TxoutType Solver(const CScript& scriptPubKey, std::vector<std::vector<unsigned c
     // it is always OP_HASH160 20 [20 byte hash] OP_EQUAL
     if (scriptPubKey.IsPayToScriptHash())
     {
-        typeRet = TX_SCRIPTHASH;
         std::vector<unsigned char> hashBytes(scriptPubKey.begin()+2, scriptPubKey.begin()+22);
         vSolutionsRet.push_back(hashBytes);
         return TxoutType::SCRIPTHASH;
@@ -171,7 +170,6 @@ TxoutType Solver(const CScript& scriptPubKey, std::vector<std::vector<unsigned c
             return TxoutType::WITNESS_V1_TAPROOT;
         }
         if (witnessversion != 0) {
-            typeRet = TX_WITNESS_UNKNOWN;
             vSolutionsRet.push_back(std::vector<unsigned char>{(unsigned char)witnessversion});
             vSolutionsRet.push_back(std::move(witnessprogram));
             return TxoutType::WITNESS_UNKNOWN;
@@ -190,13 +188,11 @@ TxoutType Solver(const CScript& scriptPubKey, std::vector<std::vector<unsigned c
 
     std::vector<unsigned char> data;
     if (MatchPayToPubkey(scriptPubKey, data)) {
-        typeRet = TX_PUBKEY;
         vSolutionsRet.push_back(std::move(data));
         return TxoutType::PUBKEY;
     }
 
     if (MatchPayToPubkeyHash(scriptPubKey, data)) {
-        typeRet = TX_PUBKEYHASH;
         vSolutionsRet.push_back(std::move(data));
         return TxoutType::PUBKEYHASH;
     }
@@ -225,7 +221,7 @@ bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet)
         if (!pubKey.IsValid())
             return false;
 
-        addressRet = pubKey.GetID();
+        addressRet = PKHash(pubKey);
         return true;
     }
     case TxoutType::PUBKEYHASH: {
@@ -274,7 +270,6 @@ bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet)
 bool ExtractDestinations(const CScript& scriptPubKey, TxoutType& typeRet, std::vector<CTxDestination>& addressRet, int& nRequiredRet)
 {
     addressRet.clear();
-    typeRet = TX_NONSTANDARD;
     std::vector<valtype> vSolutions;
     typeRet = Solver(scriptPubKey, vSolutions);
     if (typeRet == TxoutType::NONSTANDARD) {
@@ -293,7 +288,7 @@ bool ExtractDestinations(const CScript& scriptPubKey, TxoutType& typeRet, std::v
             if (!pubKey.IsValid())
                 continue;
 
-            CTxDestination address = pubKey.GetID();
+            CTxDestination address = PKHash(pubKey);
             addressRet.push_back(address);
         }
 

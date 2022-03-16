@@ -2,10 +2,13 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#if defined(HAVE_CONFIG_H)
+#include <config/bitcoin-config.h>
+#endif
+
 #include <sync.h>
 
 #include <logging.h>
-#include <utilstrencodings.h>
 #include <tinyformat.h>
 #include <util/strencodings.h>
 #include <util/threadnames.h>
@@ -44,13 +47,17 @@ void PrintLockContention(const char* pszName, const char* pszFile, int nLine)
 //
 
 struct CLockLocation {
-    CLockLocation(const char* pszName, const char* pszFile, int nLine, bool fTryIn)
-    {
-        mutexName = pszName;
-        sourceFile = pszFile;
-        sourceLine = nLine;
-        fTry = fTryIn;
-    }
+    CLockLocation(
+        const char* pszName,
+        const char* pszFile,
+        int nLine,
+        bool fTryIn,
+        const std::string& thread_name)
+        : fTry(fTryIn),
+          mutexName(pszName),
+          sourceFile(pszFile),
+          m_thread_name(thread_name),
+          sourceLine(nLine) {}
 
     std::string ToString() const
     {
@@ -68,6 +75,7 @@ private:
     bool fTry;
     std::string mutexName;
     std::string sourceFile;
+    const std::string& m_thread_name;
     int sourceLine;
 };
 
@@ -208,7 +216,7 @@ static void pop_lock()
 template <typename MutexType>
 void EnterCritical(const char* pszName, const char* pszFile, int nLine, MutexType* cs, bool fTry)
 {
-    push_lock(cs, CLockLocation(pszName, pszFile, nLine, fTry));
+    push_lock(cs, CLockLocation(pszName, pszFile, nLine, fTry, util::ThreadGetInternalName()));
 }
 template void EnterCritical(const char*, const char*, int, Mutex*, bool);
 template void EnterCritical(const char*, const char*, int, RecursiveMutex*, bool);

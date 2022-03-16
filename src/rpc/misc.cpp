@@ -25,6 +25,7 @@
 #include <util/system.h>
 
 #include <stdint.h>
+#include <tuple>
 #ifdef HAVE_MALLOC_INFO
 #include <malloc.h>
 #endif
@@ -106,7 +107,7 @@ static RPCHelpMan createmultisig()
                 RPCExamples{
             "\nCreate a multisig address from 2 public keys\n"
             + HelpExampleCli("createmultisig", "2 \"[\\\"03789ed0bb717d88f7d321a368d905e7430207ebbd82bd342cf11ae157a7ace5fd\\\",\\\"03dbc6764b8884a92e871274b87583e6d5c2a58819473e17e107ef3f6aa5a61626\\\"]\"") +
-            "\nAs a json rpc call\n"
+            "\nAs a JSON-RPC call\n"
             + HelpExampleRpc("createmultisig", "2, \"[\\\"03789ed0bb717d88f7d321a368d905e7430207ebbd82bd342cf11ae157a7ace5fd\\\",\\\"03dbc6764b8884a92e871274b87583e6d5c2a58819473e17e107ef3f6aa5a61626\\\"]\"")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
@@ -120,8 +121,7 @@ static RPCHelpMan createmultisig()
         if (IsHex(keys[i].get_str()) && (keys[i].get_str().length() == 66 || keys[i].get_str().length() == 130)) {
             pubkeys.push_back(HexToPubKey(keys[i].get_str()));
         } else {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, strprintf("Invalid public key: %s\nNote that from v0.16, createmultisig no longer accepts addresses."
-            " Users must use addmultisigaddress to create multisig addresses with addresses known to the wallet.", keys[i].get_str()));
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, strprintf("Invalid public key: %s\n.", keys[i].get_str()));
         }
     }
 
@@ -295,7 +295,7 @@ static RPCHelpMan verifymessage()
             "\nUnlock the wallet for 30 seconds\n"
             + HelpExampleCli("walletpassphrase", "\"mypassphrase\" 30") +
             "\nCreate the signature\n"
-            + HelpExampleCli("signmessage", "\"CJLsC5DvMAXhepcVrNBsS912FzJpET9ej5\" \"my message\"") +
+            + HelpExampleCli("signmessage", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\" \"my message\"") +
             "\nVerify the signature\n"
             + HelpExampleCli("verifymessage", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\" \"signature\" \"my message\"") +
             "\nAs a JSON-RPC call\n"
@@ -344,7 +344,7 @@ static RPCHelpMan signmessagewithprivkey()
             + HelpExampleCli("signmessagewithprivkey", "\"privkey\" \"my message\"") +
             "\nVerify the signature\n"
             + HelpExampleCli("verifymessage", "\"1D1ZrZNe3JUo7ZycKEYQQiQAWd9y54F4XX\" \"signature\" \"my message\"") +
-            "\nAs json rpc\n"
+            "\nAs a JSON-RPC call\n"
             + HelpExampleRpc("signmessagewithprivkey", "\"privkey\", \"my message\"")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
@@ -536,9 +536,9 @@ static void EnableOrDisableLogCategories(UniValue cats, bool enable) {
 
         bool success;
         if (enable) {
-            success = g_logger->EnableCategory(cat);
+            success = LogInstance().EnableCategory(cat);
         } else {
-            success = g_logger->DisableCategory(cat);
+            success = LogInstance().DisableCategory(cat);
         }
 
         if (!success) {
@@ -589,7 +589,7 @@ static RPCHelpMan logging()
     if (request.params[1].isArray()) {
         EnableOrDisableLogCategories(request.params[1], false);
     }
-    uint32_t updated_log_categories = g_logger->GetCategoryMask();
+    uint32_t updated_log_categories = LogInstance().GetCategoryMask();
     uint32_t changed_log_categories = original_log_categories ^ updated_log_categories;
 
     // Update libevent logging if BCLog::LIBEVENT has changed.
@@ -598,8 +598,8 @@ static RPCHelpMan logging()
     // Throw an error if the user has explicitly asked to change only the libevent
     // flag and it failed.
     if (changed_log_categories & BCLog::LIBEVENT) {
-        if (!UpdateHTTPServerLogging(g_logger->WillLogCategory(BCLog::LIBEVENT))) {
-            g_logger->DisableCategory(BCLog::LIBEVENT);
+        if (!UpdateHTTPServerLogging(LogInstance().WillLogCategory(BCLog::LIBEVENT))) {
+            LogInstance().DisableCategory(BCLog::LIBEVENT);
             if (changed_log_categories == BCLog::LIBEVENT) {
             throw JSONRPCError(RPC_INVALID_PARAMETER, "libevent logging cannot be updated when using libevent before v2.1.1.");
             }

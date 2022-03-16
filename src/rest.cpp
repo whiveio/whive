@@ -6,20 +6,18 @@
 #include <chain.h>
 #include <chainparams.h>
 #include <core_io.h>
+#include <httpserver.h>
 #include <index/txindex.h>
 #include <node/blockstorage.h>
 #include <node/context.h>
 #include <primitives/block.h>
 #include <primitives/transaction.h>
-#include <validation.h>
-#include <httpserver.h>
 #include <rpc/blockchain.h>
 #include <rpc/protocol.h>
 #include <rpc/server.h>
 #include <streams.h>
 #include <sync.h>
 #include <txmempool.h>
-#include <utilstrencodings.h>
 #include <util/check.h>
 #include <util/system.h>
 #include <validation.h>
@@ -169,15 +167,6 @@ static std::string AvailableDataFormatsString()
     return formats;
 }
 
-static bool ParseHashStr(const std::string& strReq, uint256& v)
-{
-    if (!IsHex(strReq) || (strReq.size() != 64))
-        return false;
-
-    v.SetHex(strReq);
-    return true;
-}
-
 static bool CheckWarmup(HTTPRequest* req)
 {
     std::string statusmessage;
@@ -209,6 +198,7 @@ static bool rest_headers(const std::any& context,
     if (!ParseHashStr(hashStr, hash))
         return RESTERR(req, HTTP_BAD_REQUEST, "Invalid hash: " + hashStr);
 
+    const CBlockIndex* tip = nullptr;
     std::vector<const CBlockIndex *> headers;
     headers.reserve(count);
     {
@@ -227,13 +217,13 @@ static bool rest_headers(const std::any& context,
         }
     }
 
-    CDataStream ssHeader(SER_NETWORK, PROTOCOL_VERSION);
-    for (const CBlockIndex *pindex : headers) {
-        ssHeader << pindex->GetBlockHeader();
-    }
-
     switch (rf) {
     case RetFormat::BINARY: {
+        CDataStream ssHeader(SER_NETWORK, PROTOCOL_VERSION);
+        for (const CBlockIndex *pindex : headers) {
+            ssHeader << pindex->GetBlockHeader();
+        }
+
         std::string binaryHeader = ssHeader.str();
         req->WriteHeader("Content-Type", "application/octet-stream");
         req->WriteReply(HTTP_OK, binaryHeader);
@@ -253,11 +243,8 @@ static bool rest_headers(const std::any& context,
     }
     case RetFormat::JSON: {
         UniValue jsonHeaders(UniValue::VARR);
-        {
-            LOCK(cs_main);
-            for (const CBlockIndex *pindex : headers) {
-                jsonHeaders.push_back(blockheaderToJSON(pindex));
-            }
+        for (const CBlockIndex *pindex : headers) {
+            jsonHeaders.push_back(blockheaderToJSON(tip, pindex));
         }
         std::string strJSON = jsonHeaders.write() + "\n";
         req->WriteHeader("Content-Type", "application/json");
@@ -286,6 +273,7 @@ static bool rest_block(const std::any& context,
 
     CBlock block;
     CBlockIndex* pblockindex = nullptr;
+    CBlockIndex* tip = nullptr;
     {
         ChainstateManager* maybe_chainman = GetChainman(context, req);
         if (!maybe_chainman) return false;
@@ -304,11 +292,10 @@ static bool rest_block(const std::any& context,
             return RESTERR(req, HTTP_NOT_FOUND, hashStr + " not found");
     }
 
-    CDataStream ssBlock(SER_NETWORK, PROTOCOL_VERSION | RPCSerializationFlags());
-    ssBlock << block;
-
     switch (rf) {
     case RetFormat::BINARY: {
+        CDataStream ssBlock(SER_NETWORK, PROTOCOL_VERSION | RPCSerializationFlags());
+        ssBlock << block;
         std::string binaryBlock = ssBlock.str();
         req->WriteHeader("Content-Type", "application/octet-stream");
         req->WriteReply(HTTP_OK, binaryBlock);
@@ -325,11 +312,7 @@ static bool rest_block(const std::any& context,
     }
 
     case RetFormat::JSON: {
-        UniValue objBlock;
-        {
-            LOCK(cs_main);
-            objBlock = blockToJSON(block, pblockindex, showTxDetails);
-        }
+        UniValue objBlock = blockToJSON(block, tip, pblockindex, showTxDetails);
         std::string strJSON = objBlock.write() + "\n";
         req->WriteHeader("Content-Type", "application/json");
         req->WriteReply(HTTP_OK, strJSON);
@@ -449,11 +432,11 @@ static bool rest_tx(const std::any& context, HTTPRequest* req, const std::string
         return RESTERR(req, HTTP_NOT_FOUND, hashStr + " not found");
     }
 
-    CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION | RPCSerializationFlags());
-    ssTx << tx;
-
     switch (rf) {
     case RetFormat::BINARY: {
+        CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION | RPCSerializationFlags());
+        ssTx << tx;
+
         std::string binaryTx = ssTx.str();
         req->WriteHeader("Content-Type", "application/octet-stream");
         req->WriteReply(HTTP_OK, binaryTx);
@@ -557,7 +540,7 @@ static bool rest_getutxos(const std::any& context, HTTPRequest* req, const std::
                 oss >> fCheckMemPool;
                 oss >> vOutPoints;
             }
-        } catch (const std::ios_base::failure& e) {
+        } catch (const std::ios_base::failure&) {
             // abort in case of unreadable binary data
             return RESTERR(req, HTTP_BAD_REQUEST, "Parse error");
         }
@@ -737,6 +720,7 @@ static const struct {
       {"/rest/mempool/contents", rest_mempool_contents},
       {"/rest/headers/", rest_headers},
       {"/rest/getutxos", rest_getutxos},
+      {"/rest/blockhashbyheight/", rest_blockhash_by_height},
 };
 
 void StartREST(const std::any& context)

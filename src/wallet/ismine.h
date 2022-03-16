@@ -9,6 +9,7 @@
 #include <script/standard.h>
 
 #include <stdint.h>
+#include <bitset>
 
 class CWallet;
 class CScript;

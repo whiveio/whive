@@ -6,8 +6,6 @@
 #include <chainparamsbase.h>
 
 #include <tinyformat.h>
-#include <util.h>
-#include <utilmemory.h>
 #include <util/system.h>
 
 #include <assert.h>
@@ -45,9 +43,9 @@ const CBaseChainParams& BaseParams()
 std::unique_ptr<CBaseChainParams> CreateBaseChainParams(const std::string& chain)
 {
     if (chain == CBaseChainParams::MAIN) {
-        return MakeUnique<CBaseChainParams>("", 1867);
+        return std::make_unique<CBaseChainParams>("", 1867, 1868);
     } else if (chain == CBaseChainParams::TESTNET) {
-        return MakeUnique<CBaseChainParams>("testnet3", 18867);
+        return std::make_unique<CBaseChainParams>("testnet3", 18867, 18868);
     } else if (chain == CBaseChainParams::SIGNET) {
         return std::make_unique<CBaseChainParams>("signet", 38332, 38334);
     } else if (chain == CBaseChainParams::REGTEST) {

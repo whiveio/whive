@@ -11,6 +11,7 @@
 #include <any>
 #include <memory>
 #include <string>
+#include <vector>
 
 class CRPCCommand;
 class CWallet;

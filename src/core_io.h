@@ -6,15 +6,16 @@
 #define BITCOIN_CORE_IO_H
 
 #include <amount.h>
+#include <attributes.h>
 
 #include <string>
 #include <vector>
 
 class CBlock;
+class CBlockHeader;
 class CScript;
 class CTransaction;
 struct CMutableTransaction;
-struct PartiallySignedTransaction;
 class uint256;
 class UniValue;
 class CTxUndo;
@@ -36,7 +37,6 @@ bool DecodeHexBlockHeader(CBlockHeader&, const std::string& hex_header);
  */
 bool ParseHashStr(const std::string& strHex, uint256& result);
 std::vector<unsigned char> ParseHexUV(const UniValue& v, const std::string& strName);
-bool DecodePSBT(PartiallySignedTransaction& psbt, const std::string& base64_tx, std::string& error);
 int ParseSighashString(const UniValue& sighash);
 
 // core_write.cpp

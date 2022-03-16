@@ -6,7 +6,7 @@
 #include <bench/nanobench.h>
 
 #include <bech32.h>
-#include <utilstrencodings.h>
+#include <util/strencodings.h>
 
 #include <string>
 #include <vector>

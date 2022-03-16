@@ -1715,7 +1715,7 @@ void PeerManagerImpl::ProcessGetBlockData(CNode& pfrom, Peer& peer, const CInv& 
         LOCK(cs_main);
         const CBlockIndex* pindex = m_chainman.m_blockman.LookupBlockIndex(inv.hash);
         if (pindex) {
-            if (pindex->nChainTx && !pindex->IsValid(BLOCK_VALID_SCRIPTS) &&
+            if (pindex->HaveTxsDownloaded() && !pindex->IsValid(BLOCK_VALID_SCRIPTS) &&
                     pindex->IsValid(BLOCK_VALID_TREE)) {
                 // If we have the block and all of its parents, but have not yet validated it,
                 // we might be in the middle of connecting it (ie in the unlock of cs_main
@@ -2485,19 +2485,17 @@ void PeerManagerImpl::ProcessMessage(CNode& pfrom, const std::string& msg_type, 
             return;
         }
 
-        if (nVersion < MIN_PEER_PROTO_VERSION)
-        {
+        if (nVersion < MIN_PEER_PROTO_VERSION) {
             // disconnect from peers older than this proto version
             LogPrint(BCLog::NET, "peer=%d using obsolete version %i; disconnecting\n", pfrom.GetId(), nVersion);
             pfrom.fDisconnect = true;
             return;
         }
 
-        if (nVersion == 10300)
-            nVersion = 300;
         if (!vRecv.empty())
             vRecv >> addrFrom >> nNonce;
         if (!vRecv.empty()) {
+            std::string strSubVer;
             vRecv >> LIMITED_STRING(strSubVer, MAX_SUBVERSION_LENGTH);
             cleanSubVer = SanitizeString(strSubVer);
         }
@@ -3167,8 +3165,6 @@ void PeerManagerImpl::ProcessMessage(CNode& pfrom, const std::string& msg_type, 
             return;
         }
 
-        std::deque<COutPoint> vWorkQueue;
-        std::vector<uint256> vEraseQueue;
         CTransactionRef ptx;
         vRecv >> ptx;
         const CTransaction& tx = *ptx;
@@ -3378,8 +3374,6 @@ void PeerManagerImpl::ProcessMessage(CNode& pfrom, const std::string& msg_type, 
             return;
         }
 
-    else if (strCommand == NetMsgType::CMPCTBLOCK && !fImporting && !fReindex) // Ignore blocks received while importing
-    {
         CBlockHeaderAndShortTxIDs cmpctblock;
         vRecv >> cmpctblock;
 
@@ -3671,8 +3665,6 @@ void PeerManagerImpl::ProcessMessage(CNode& pfrom, const std::string& msg_type, 
             return;
         }
 
-    else if (strCommand == NetMsgType::HEADERS && !fImporting && !fReindex) // Ignore headers received while importing
-    {
         std::vector<CBlockHeader> headers;
 
         // Bypass the normal CBlock deserialization, as we don't want to risk deserializing 2000 full blocks.
@@ -4249,7 +4241,6 @@ void PeerManagerImpl::CheckForStaleTipAndEvictPeers()
     EvictExtraOutboundPeers(time_in_seconds);
 
     if (time_in_seconds > m_stale_tip_check_time) {
-        LOCK(cs_main);
         // Check whether our tip is stale, and if so, allow using an extra
         // outbound peer
         if (!fImporting && !fReindex && m_connman.GetNetworkActive() && m_connman.GetUseAddrmanOutgoing() && TipMayBeStale()) {
@@ -4504,14 +4495,6 @@ bool PeerManagerImpl::SendMessages(CNode* pto)
                 LogPrint(BCLog::NET, "initial getheaders (%d) to peer=%d (startheight:%d)\n", pindexStart->nHeight, pto->GetId(), peer->m_starting_height);
                 m_connman.PushMessage(pto, msgMaker.Make(NetMsgType::GETHEADERS, m_chainman.ActiveChain().GetLocator(pindexStart), uint256()));
             }
-        }
-
-        // Resend wallet transactions that haven't gotten in a block yet
-        // Except during reindex, importing and IBD, when old wallet
-        // transactions become unconfirmed and spams other nodes.
-        if (!fReindex && !fImporting && !IsInitialBlockDownload())
-        {
-            GetMainSignals().Broadcast(nTimeBestReceived, connman);
         }
 
         //
@@ -4912,6 +4895,8 @@ bool PeerManagerImpl::SendMessages(CNode* pto)
                 m_txrequest.ForgetTxHash(gtxid.GetHash());
             }
         }
+
+
         if (!vGetData.empty())
             m_connman.PushMessage(pto, msgMaker.Make(NetMsgType::GETDATA, vGetData));
 

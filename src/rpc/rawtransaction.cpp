@@ -24,11 +24,11 @@
 #include <rpc/blockchain.h>
 #include <rpc/rawtransaction_util.h>
 #include <rpc/server.h>
+#include <rpc/util.h>
 #include <script/script.h>
 #include <script/sign.h>
 #include <script/signingprovider.h>
 #include <script/standard.h>
-#include <txmempool.h>
 #include <uint256.h>
 #include <util/bip32.h>
 #include <util/moneystr.h>
@@ -74,16 +74,13 @@ static RPCHelpMan getrawtransaction()
                 "getrawtransaction",
                 "\nReturn the raw transaction data.\n"
 
-            "\nNOTE: By default this function only works for mempool transactions. If the -txindex option is\n"
-            "enabled, it also works for blockchain transactions. If the block which contains the transaction\n"
-            "is known, its hash can be provided even for nodes without -txindex. Note that if a blockhash is\n"
-            "provided, only that block will be searched and if the transaction is in the mempool or other\n"
-            "blocks, or if this node does not have the given block available, the transaction will not be found.\n"
-            "DEPRECATED: for now, it also works for transactions with unspent outputs.\n"
+                "\nBy default this function only works for mempool transactions. When called with a blockhash\n"
+                "argument, getrawtransaction will return the transaction if the specified block is available and\n"
+                "the transaction is found in that block. When called without a blockhash argument, getrawtransaction\n"
+                "will return the transaction if it is in the mempool, or if -txindex is enabled and the transaction\n"
+                "is in a block in the blockchain.\n"
 
-            "\nReturn the raw transaction data.\n"
-            "\nIf verbose is 'true', returns an Object with information about 'txid'.\n"
-            "If verbose is 'false' or omitted, returns a string that is serialized, hex-encoded data for 'txid'.\n"
+                "\nHint: Use gettransaction for wallet transactions.\n"
 
                 "\nIf verbose is 'true', returns an Object with information about 'txid'.\n"
                 "If verbose is 'false' or omitted, returns a string that is serialized, hex-encoded data for 'txid'.\n",
@@ -596,7 +593,7 @@ static RPCHelpMan decodescript()
     } else {
         // Empty scripts are valid
     }
-    ScriptPubKeyToUniv(script, r, false);
+    ScriptPubKeyToUniv(script, r, /* fIncludeHex */ false);
 
     UniValue type;
     type = find_value(r, "type");
@@ -604,11 +601,10 @@ static RPCHelpMan decodescript()
     if (type.isStr() && type.get_str() != "scripthash") {
         // P2SH cannot be wrapped in a P2SH. If this script is already a P2SH,
         // don't return the address for a P2SH of the P2SH.
-        r.pushKV("p2sh", EncodeDestination(CScriptID(script)));
+        r.pushKV("p2sh", EncodeDestination(ScriptHash(script)));
         // P2SH and witness programs cannot be wrapped in P2WSH, if this script
         // is a witness program, don't return addresses for a segwit programs.
         if (type.get_str() == "pubkey" || type.get_str() == "pubkeyhash" || type.get_str() == "multisig" || type.get_str() == "nonstandard") {
-            txnouttype which_type;
             std::vector<std::vector<unsigned char>> solutions_data;
             TxoutType which_type = Solver(script, solutions_data);
             // Uncompressed pubkeys cannot be used with segwit checksigs.
@@ -631,8 +627,8 @@ static RPCHelpMan decodescript()
                 // Newer segwit program versions should be considered when then become available.
                 segwitScr = GetScriptForDestination(WitnessV0ScriptHash(script));
             }
-            ScriptPubKeyToUniv(segwitScr, sr, true);
-            sr.pushKV("p2sh-segwit", EncodeDestination(CScriptID(segwitScr)));
+            ScriptPubKeyToUniv(segwitScr, sr, /* fIncludeHex */ true);
+            sr.pushKV("p2sh-segwit", EncodeDestination(ScriptHash(segwitScr)));
             r.pushKV("segwit", sr);
         }
     }
@@ -849,10 +845,10 @@ static RPCHelpMan sendrawtransaction()
             "\nCreate a transaction\n"
             + HelpExampleCli("createrawtransaction", "\"[{\\\"txid\\\" : \\\"mytxid\\\",\\\"vout\\\":0}]\" \"{\\\"myaddress\\\":0.01}\"") +
             "Sign the transaction, and get back the hex\n"
-            + HelpExampleCli("signrawtransaction", "\"myhex\"") +
+            + HelpExampleCli("signrawtransactionwithwallet", "\"myhex\"") +
             "\nSend the transaction (signed hex)\n"
             + HelpExampleCli("sendrawtransaction", "\"signedhex\"") +
-            "\nAs a json rpc call\n"
+            "\nAs a JSON-RPC call\n"
             + HelpExampleRpc("sendrawtransaction", "\"signedhex\"")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
@@ -867,7 +863,6 @@ static RPCHelpMan sendrawtransaction()
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed. Make sure the tx has at least one input.");
     }
     CTransactionRef tx(MakeTransactionRef(std::move(mtx)));
-    const uint256& hashTx = tx->GetHash();
 
     const CFeeRate max_raw_tx_fee_rate = request.params[1].isNull() ?
                                              DEFAULT_MAX_RAW_TX_FEE_RATE :
@@ -932,7 +927,7 @@ static RPCHelpMan testmempoolaccept()
             "\nCreate a transaction\n"
             + HelpExampleCli("createrawtransaction", "\"[{\\\"txid\\\" : \\\"mytxid\\\",\\\"vout\\\":0}]\" \"{\\\"myaddress\\\":0.01}\"") +
             "Sign the transaction, and get back the hex\n"
-            + HelpExampleCli("signrawtransaction", "\"myhex\"") +
+            + HelpExampleCli("signrawtransactionwithwallet", "\"myhex\"") +
             "\nTest acceptance of the transaction (signed hex)\n"
             + HelpExampleCli("testmempoolaccept", R"('["signedhex"]')") +
             "\nAs a JSON-RPC call\n"
@@ -1150,7 +1145,7 @@ static RPCHelpMan decodepsbt()
     // Unserialize the transactions
     PartiallySignedTransaction psbtx;
     std::string error;
-    if (!DecodePSBT(psbtx, request.params[0].get_str(), error)) {
+    if (!DecodeBase64PSBT(psbtx, request.params[0].get_str(), error)) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, strprintf("TX decode failed %s", error));
     }
 
@@ -1245,11 +1240,8 @@ static RPCHelpMan decodepsbt()
                 UniValue keypath(UniValue::VOBJ);
                 keypath.pushKV("pubkey", HexStr(entry.first));
 
-                uint32_t fingerprint = entry.second.at(0);
-                keypath.pushKV("master_fingerprint", strprintf("%08x", bswap_32(fingerprint)));
-
-                entry.second.erase(entry.second.begin());
-                keypath.pushKV("path", WriteHDKeypath(entry.second));
+                keypath.pushKV("master_fingerprint", strprintf("%08x", ReadBE32(entry.second.fingerprint)));
+                keypath.pushKV("path", WriteHDKeypath(entry.second.path));
                 keypaths.push_back(keypath);
             }
             in.pushKV("bip32_derivs", keypaths);
@@ -1307,12 +1299,8 @@ static RPCHelpMan decodepsbt()
             for (auto entry : output.hd_keypaths) {
                 UniValue keypath(UniValue::VOBJ);
                 keypath.pushKV("pubkey", HexStr(entry.first));
-
-                uint32_t fingerprint = entry.second.at(0);
-                keypath.pushKV("master_fingerprint", strprintf("%08x", bswap_32(fingerprint)));
-
-                entry.second.erase(entry.second.begin());
-                keypath.pushKV("path", WriteHDKeypath(entry.second));
+                keypath.pushKV("master_fingerprint", strprintf("%08x", ReadBE32(entry.second.fingerprint)));
+                keypath.pushKV("path", WriteHDKeypath(entry.second.path));
                 keypaths.push_back(keypath);
             }
             out.pushKV("bip32_derivs", keypaths);
@@ -1372,29 +1360,24 @@ static RPCHelpMan combinepsbt()
     // Unserialize the transactions
     std::vector<PartiallySignedTransaction> psbtxs;
     UniValue txs = request.params[0].get_array();
+    if (txs.empty()) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Parameter 'txs' cannot be empty");
+    }
     for (unsigned int i = 0; i < txs.size(); ++i) {
         PartiallySignedTransaction psbtx;
         std::string error;
-        if (!DecodePSBT(psbtx, txs[i].get_str(), error)) {
+        if (!DecodeBase64PSBT(psbtx, txs[i].get_str(), error)) {
             throw JSONRPCError(RPC_DESERIALIZATION_ERROR, strprintf("TX decode failed %s", error));
         }
         psbtxs.push_back(psbtx);
     }
 
-    PartiallySignedTransaction merged_psbt(psbtxs[0]); // Copy the first one
-
-    // Merge
-    for (auto it = std::next(psbtxs.begin()); it != psbtxs.end(); ++it) {
-        if (*it != merged_psbt) {
-            throw JSONRPCError(RPC_INVALID_PARAMETER, "PSBTs do not refer to the same transactions.");
-        }
-        merged_psbt.Merge(*it);
-    }
-    if (!merged_psbt.IsSane()) {
-        throw JSONRPCError(RPC_INVALID_PARAMETER, "Merged PSBT is inconsistent");
+    PartiallySignedTransaction merged_psbt;
+    const TransactionError error = CombinePSBTs(merged_psbt, psbtxs);
+    if (error != TransactionError::OK) {
+        throw JSONRPCTransactionError(error);
     }
 
-    UniValue result(UniValue::VOBJ);
     CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
     ssTx << merged_psbt;
     return EncodeBase64(ssTx);
@@ -1432,35 +1415,27 @@ static RPCHelpMan finalizepsbt()
     // Unserialize the transactions
     PartiallySignedTransaction psbtx;
     std::string error;
-    if (!DecodePSBT(psbtx, request.params[0].get_str(), error)) {
+    if (!DecodeBase64PSBT(psbtx, request.params[0].get_str(), error)) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, strprintf("TX decode failed %s", error));
     }
 
-    // Finalize input signatures -- in case we have partial signatures that add up to a complete
-    //   signature, but have not combined them yet (e.g. because the combiner that created this
-    //   PartiallySignedTransaction did not understand them), this will combine them into a final
-    //   script.
-    bool complete = true;
-    for (unsigned int i = 0; i < psbtx.tx->vin.size(); ++i) {
-        SignatureData sigdata;
-        complete &= SignPSBTInput(DUMMY_SIGNING_PROVIDER, psbtx, sigdata, i, SIGHASH_ALL);
-    }
+    bool extract = request.params[1].isNull() || (!request.params[1].isNull() && request.params[1].get_bool());
+
+    CMutableTransaction mtx;
+    bool complete = FinalizeAndExtractPSBT(psbtx, mtx);
 
     UniValue result(UniValue::VOBJ);
     CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-    bool extract = request.params[1].isNull() || (!request.params[1].isNull() && request.params[1].get_bool());
+    std::string result_str;
+
     if (complete && extract) {
-        CMutableTransaction mtx(*psbtx.tx);
-        for (unsigned int i = 0; i < mtx.vin.size(); ++i) {
-            mtx.vin[i].scriptSig = psbtx.inputs[i].final_script_sig;
-            mtx.vin[i].scriptWitness = psbtx.inputs[i].final_script_witness;
-        }
         ssTx << mtx;
         result_str = HexStr(ssTx);
         result.pushKV("hex", result_str);
     } else {
         ssTx << psbtx;
-        result.pushKV("psbt", EncodeBase64(ssTx.str()));
+        result_str = EncodeBase64(ssTx.str());
+        result.pushKV("psbt", result_str);
     }
     result.pushKV("complete", complete);
 
@@ -1861,81 +1836,40 @@ static RPCHelpMan analyzepsbt()
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, strprintf("TX decode failed %s", error));
     }
 
-    // Go through each input and build status
+    PSBTAnalysis psbta = AnalyzePSBT(psbtx);
+
     UniValue result(UniValue::VOBJ);
     UniValue inputs_result(UniValue::VARR);
-    bool calc_fee = true;
-    bool all_final = true;
-    bool only_missing_sigs = true;
-    bool only_missing_final = false;
-    CAmount in_amt = 0;
-    for (unsigned int i = 0; i < psbtx.tx->vin.size(); ++i) {
-        PSBTInput& input = psbtx.inputs[i];
+    for (const auto& input : psbta.inputs) {
         UniValue input_univ(UniValue::VOBJ);
         UniValue missing(UniValue::VOBJ);
 
-        // Check for a UTXO
-        CTxOut utxo;
-        if (psbtx.GetInputUTXO(utxo, i)) {
-            in_amt += utxo.nValue;
-            input_univ.pushKV("has_utxo", true);
-        } else {
-            input_univ.pushKV("has_utxo", false);
-            input_univ.pushKV("is_final", false);
-            input_univ.pushKV("next", "updater");
-            calc_fee = false;
-        }
+        input_univ.pushKV("has_utxo", input.has_utxo);
+        input_univ.pushKV("is_final", input.is_final);
+        input_univ.pushKV("next", PSBTRoleName(input.next));
 
-        // Check if it is final
-        if (!utxo.IsNull() && !PSBTInputSigned(input)) {
-            input_univ.pushKV("is_final", false);
-            all_final = false;
-
-            // Figure out what is missing
-            SignatureData outdata;
-            bool complete = SignPSBTInput(DUMMY_SIGNING_PROVIDER, psbtx, i, 1, &outdata);
-
-            // Things are missing
-            if (!complete) {
-                if (!outdata.missing_pubkeys.empty()) {
-                    // Missing pubkeys
-                    UniValue missing_pubkeys_univ(UniValue::VARR);
-                    for (const CKeyID& pubkey : outdata.missing_pubkeys) {
-                        missing_pubkeys_univ.push_back(HexStr(pubkey));
-                    }
-                    missing.pushKV("pubkeys", missing_pubkeys_univ);
-                }
-                if (!outdata.missing_redeem_script.IsNull()) {
-                    // Missing redeemScript
-                    missing.pushKV("redeemscript", HexStr(outdata.missing_redeem_script));
-                }
-                if (!outdata.missing_witness_script.IsNull()) {
-                    // Missing witnessScript
-                    missing.pushKV("witnessscript", HexStr(outdata.missing_witness_script));
-                }
-                if (!outdata.missing_sigs.empty()) {
-                    // Missing sigs
-                    UniValue missing_sigs_univ(UniValue::VARR);
-                    for (const CKeyID& pubkey : outdata.missing_sigs) {
-                        missing_sigs_univ.push_back(HexStr(pubkey));
-                    }
-                    missing.pushKV("signatures", missing_sigs_univ);
-                }
-                input_univ.pushKV("missing", missing);
-
-                // If we are only missing signatures and nothing else, then next is signer
-                if (outdata.missing_pubkeys.empty() && outdata.missing_redeem_script.IsNull() && outdata.missing_witness_script.IsNull() && !outdata.missing_sigs.empty()) {
-                    input_univ.pushKV("next", "signer");
-                } else {
-                    only_missing_sigs = false;
-                    input_univ.pushKV("next", "updater");
-                }
-            } else {
-                only_missing_final = true;
-                input_univ.pushKV("next", "finalizer");
+        if (!input.missing_pubkeys.empty()) {
+            UniValue missing_pubkeys_univ(UniValue::VARR);
+            for (const CKeyID& pubkey : input.missing_pubkeys) {
+                missing_pubkeys_univ.push_back(HexStr(pubkey));
             }
-        } else if (!utxo.IsNull()){
-            input_univ.pushKV("is_final", true);
+            missing.pushKV("pubkeys", missing_pubkeys_univ);
+        }
+        if (!input.missing_redeem_script.IsNull()) {
+            missing.pushKV("redeemscript", HexStr(input.missing_redeem_script));
+        }
+        if (!input.missing_witness_script.IsNull()) {
+            missing.pushKV("witnessscript", HexStr(input.missing_witness_script));
+        }
+        if (!input.missing_sigs.empty()) {
+            UniValue missing_sigs_univ(UniValue::VARR);
+            for (const CKeyID& pubkey : input.missing_sigs) {
+                missing_sigs_univ.push_back(HexStr(pubkey));
+            }
+            missing.pushKV("signatures", missing_sigs_univ);
+        }
+        if (!missing.getKeys().empty()) {
+            input_univ.pushKV("missing", missing);
         }
         inputs_result.push_back(input_univ);
     }
@@ -1955,56 +1889,6 @@ static RPCHelpMan analyzepsbt()
         result.pushKV("error", psbta.error);
     }
 
-        // Get the fee
-        CAmount fee = in_amt - out_amt;
-
-        // Estimate the size
-        CMutableTransaction mtx(*psbtx.tx);
-        CCoinsView view_dummy;
-        CCoinsViewCache view(&view_dummy);
-        bool success = true;
-
-        for (unsigned int i = 0; i < psbtx.tx->vin.size(); ++i) {
-            PSBTInput& input = psbtx.inputs[i];
-            if (SignPSBTInput(DUMMY_SIGNING_PROVIDER, psbtx, i, 1, nullptr, true)) {
-                mtx.vin[i].scriptSig = input.final_script_sig;
-                mtx.vin[i].scriptWitness = input.final_script_witness;
-
-                Coin newcoin;
-                if (!psbtx.GetInputUTXO(newcoin.out, i)) {
-                    success = false;
-                    break;
-                }
-                newcoin.nHeight = 1;
-                view.AddCoin(psbtx.tx->vin[i].prevout, std::move(newcoin), true);
-            } else {
-                success = false;
-                break;
-            }
-        }
-
-        if (success) {
-            CTransaction ctx = CTransaction(mtx);
-            size_t size = GetVirtualTransactionSize(ctx, GetTransactionSigOpCost(ctx, view, STANDARD_SCRIPT_VERIFY_FLAGS));
-            result.pushKV("estimated_vsize", (int)size);
-            // Estimate fee rate
-            CFeeRate feerate(fee, size);
-            result.pushKV("estimated_feerate", ValueFromAmount(feerate.GetFeePerK()));
-        }
-        result.pushKV("fee", ValueFromAmount(fee));
-
-        if (only_missing_sigs) {
-            result.pushKV("next", "signer");
-        } else if (only_missing_final) {
-            result.pushKV("next", "finalizer");
-        } else if (all_final) {
-            result.pushKV("next", "extractor");
-        } else {
-            result.pushKV("next", "updater");
-        }
-    } else {
-        result.pushKV("next", "updater");
-    }
     return result;
 },
     };

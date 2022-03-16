@@ -51,7 +51,7 @@ bool noui_ThreadSafeQuestion(const bilingual_str& /* ignored interactive message
     return noui_ThreadSafeMessageBox(Untranslated(message), caption, style);
 }
 
-static void noui_InitMessage(const std::string& message)
+void noui_InitMessage(const std::string& message)
 {
     LogPrintf("init message: %s\n", message);
 }

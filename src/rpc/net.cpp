@@ -8,7 +8,6 @@
 #include <chainparams.h>
 #include <clientversion.h>
 #include <core_io.h>
-#include <validation.h>
 #include <net.h>
 #include <net_permissions.h>
 #include <net_processing.h>
@@ -18,6 +17,7 @@
 #include <policy/settings.h>
 #include <rpc/blockchain.h>
 #include <rpc/protocol.h>
+#include <rpc/util.h>
 #include <sync.h>
 #include <timedata.h>
 #include <util/strencodings.h>
@@ -238,7 +238,7 @@ static RPCHelpMan getpeerinfo()
             obj.pushKV("synced_headers", statestats.nSyncHeight);
             obj.pushKV("synced_blocks", statestats.nCommonHeight);
             UniValue heights(UniValue::VARR);
-            for (int height : statestats.vHeightInFlight) {
+            for (const int height : statestats.vHeightInFlight) {
                 heights.push_back(height);
             }
             obj.pushKV("inflight", heights);
@@ -253,14 +253,14 @@ static RPCHelpMan getpeerinfo()
         obj.pushKV("minfeefilter", ValueFromAmount(stats.minFeeFilter));
 
         UniValue sendPerMsgCmd(UniValue::VOBJ);
-        for (const mapMsgCmdSize::value_type &i : stats.mapSendBytesPerMsgCmd) {
+        for (const auto& i : stats.mapSendBytesPerMsgCmd) {
             if (i.second > 0)
                 sendPerMsgCmd.pushKV(i.first, i.second);
         }
         obj.pushKV("bytessent_per_msg", sendPerMsgCmd);
 
         UniValue recvPerMsgCmd(UniValue::VOBJ);
-        for (const mapMsgCmdSize::value_type &i : stats.mapRecvBytesPerMsgCmd) {
+        for (const auto& i : stats.mapRecvBytesPerMsgCmd) {
             if (i.second > 0)
                 recvPerMsgCmd.pushKV(i.first, i.second);
         }
@@ -567,7 +567,7 @@ static UniValue GetNetworksInfo()
         UniValue obj(UniValue::VOBJ);
         GetProxy(network, proxy);
         obj.pushKV("name", GetNetworkName(network));
-        obj.pushKV("limited", IsLimited(network));
+        obj.pushKV("limited", !IsReachable(network));
         obj.pushKV("reachable", IsReachable(network));
         obj.pushKV("proxy", proxy.IsValid() ? proxy.proxy.ToStringIPPort() : std::string());
         obj.pushKV("proxy_randomize_credentials", proxy.randomize_credentials);
@@ -723,6 +723,7 @@ static RPCHelpMan setban()
     {
         if (isSubnet ? node.banman->IsBanned(subNet) : node.banman->IsBanned(netAddr)) {
             throw JSONRPCError(RPC_CLIENT_NODE_ALREADY_ADDED, "Error: IP/Subnet already banned");
+        }
 
         int64_t banTime = 0; //use standard bantime if not specified
         if (!request.params[2].isNull())

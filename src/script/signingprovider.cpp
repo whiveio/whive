@@ -7,7 +7,7 @@
 #include <script/signingprovider.h>
 #include <script/standard.h>
 
-#include <util.h>
+#include <util/system.h>
 
 const SigningProvider& DUMMY_SIGNING_PROVIDER = SigningProvider();
 
@@ -200,6 +200,7 @@ CKeyID GetKeyForDestination(const SigningProvider& store, const CTxDestination& 
     }
     if (auto script_hash = std::get_if<ScriptHash>(&dest)) {
         CScript script;
+        CScriptID script_id(*script_hash);
         CTxDestination inner_dest;
         if (store.GetCScript(script_id, script) && ExtractDestination(script, inner_dest)) {
             if (auto inner_witness_id = std::get_if<WitnessV0KeyHash>(&inner_dest)) {

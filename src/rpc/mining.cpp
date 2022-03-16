@@ -22,10 +22,6 @@
 #include <rpc/mining.h>
 #include <rpc/net.h>
 #include <rpc/server.h>
-#include <shutdown.h>
-#include <txmempool.h>
-#include <util.h>
-#include <utilstrencodings.h>
 #include <rpc/util.h>
 #include <script/descriptor.h>
 #include <script/script.h>
@@ -44,16 +40,6 @@
 
 #include <memory>
 #include <stdint.h>
-
-unsigned int ParseConfirmTarget(const UniValue& value)
-{
-    int target = value.get_int();
-    unsigned int max_target = ::feeEstimator.HighestTargetTracked(FeeEstimateHorizon::LONG_HALFLIFE);
-    if (target < 1 || (unsigned int)target > max_target) {
-        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Invalid conf_target, must be between %u - %u", 1, max_target));
-    }
-    return (unsigned int)target;
-}
 
 /**
  * Return average network hashes per second based on the last 'lookup' blocks,
@@ -485,7 +471,7 @@ static RPCHelpMan prioritisetransaction()
 {
     LOCK(cs_main);
 
-    uint256 hash = ParseHashStr(request.params[0].get_str(), "txid");
+    uint256 hash(ParseHashV(request.params[0], "txid"));
     CAmount nAmount = request.params[2].get_int64();
 
     if (!(request.params[1].isNull() || request.params[1].get_real() == 0)) {
@@ -710,7 +696,7 @@ static RPCHelpMan getblocktemplate()
             // Format: <hashBestChain><nTransactionsUpdatedLast>
             std::string lpstr = lpval.get_str();
 
-            hashWatchedChain.SetHex(lpstr.substr(0, 64));
+            hashWatchedChain = ParseHashV(lpstr.substr(0, 64), "longpollid");
             nTransactionsUpdatedLastLP = atoi64(lpstr.substr(64));
         }
         else
@@ -725,7 +711,7 @@ static RPCHelpMan getblocktemplate()
         {
             checktxtime = std::chrono::steady_clock::now() + std::chrono::minutes(1);
 
-            WaitableLock lock(g_best_block_mutex);
+            WAIT_LOCK(g_best_block_mutex, lock);
             while (g_best_block == hashWatchedChain && IsRPCRunning())
             {
                 if (g_best_block_cv.wait_until(lock, checktxtime) == std::cv_status::timeout)
@@ -771,7 +757,6 @@ static RPCHelpMan getblocktemplate()
         nTransactionsUpdatedLast = mempool.GetTransactionsUpdated();
         CBlockIndex* pindexPrevNew = active_chain.Tip();
         nStart = GetTime();
-        fLastTemplateSupportsSegwit = fSupportsSegwit;
 
         // Create new block
         CScript scriptDummy = CScript() << OP_TRUE;

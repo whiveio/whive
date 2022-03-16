@@ -4,8 +4,6 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <rpc/client.h>
-#include <rpc/protocol.h>
-#include <util.h>
 #include <util/system.h>
 
 #include <set>
@@ -19,6 +17,7 @@ public:
     std::string paramName;  //!< parameter name
 };
 
+// clang-format off
 /**
  * Specify a (method, idx, name) here if the argument is a non-string RPC
  * argument and needs to be converted from JSON.
@@ -47,14 +46,10 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "settxfee", 0, "amount" },
     { "sethdseed", 0, "newkeypool" },
     { "getreceivedbyaddress", 1, "minconf" },
-    { "getreceivedbyaccount", 1, "minconf" },
     { "getreceivedbylabel", 1, "minconf" },
     { "listreceivedbyaddress", 0, "minconf" },
     { "listreceivedbyaddress", 1, "include_empty" },
     { "listreceivedbyaddress", 2, "include_watchonly" },
-    { "listreceivedbyaccount", 0, "minconf" },
-    { "listreceivedbyaccount", 1, "include_empty" },
-    { "listreceivedbyaccount", 2, "include_watchonly" },
     { "listreceivedbylabel", 0, "minconf" },
     { "listreceivedbylabel", 1, "include_empty" },
     { "listreceivedbylabel", 2, "include_watchonly" },
@@ -66,15 +61,9 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "waitforblockheight", 1, "timeout" },
     { "waitforblock", 1, "timeout" },
     { "waitfornewblock", 0, "timeout" },
-    { "move", 2, "amount" },
-    { "move", 3, "minconf" },
-    { "sendfrom", 2, "amount" },
-    { "sendfrom", 3, "minconf" },
     { "listtransactions", 1, "count" },
     { "listtransactions", 2, "skip" },
     { "listtransactions", 3, "include_watchonly" },
-    { "listaccounts", 0, "minconf" },
-    { "listaccounts", 1, "include_watchonly" },
     { "walletpassphrase", 1, "timeout" },
     { "getblocktemplate", 0, "template_request" },
     { "listsinceblock", 1, "target_confirmations" },
@@ -110,8 +99,6 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "createrawtransaction", 2, "locktime" },
     { "createrawtransaction", 3, "replaceable" },
     { "decoderawtransaction", 1, "iswitness" },
-    { "signrawtransaction", 1, "prevtxs" },
-    { "signrawtransaction", 2, "privkeys" },
     { "signrawtransactionwithkey", 1, "privkeys" },
     { "signrawtransactionwithkey", 2, "prevtxs" },
     { "signrawtransactionwithwallet", 1, "prevtxs" },
@@ -133,6 +120,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "createpsbt", 2, "locktime" },
     { "createpsbt", 3, "replaceable" },
     { "combinepsbt", 0, "txs"},
+    { "joinpsbts", 0, "txs"},
     { "finalizepsbt", 1, "extract"},
     { "converttopsbt", 1, "permitsigdata"},
     { "converttopsbt", 2, "iswitness"},
@@ -204,6 +192,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "addpeeraddress", 1, "port"},
     { "stop", 0, "wait" },
 };
+// clang-format on
 
 class CRPCConvertTable
 {

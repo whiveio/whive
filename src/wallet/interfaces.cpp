@@ -109,20 +109,20 @@ WalletTxOut MakeWalletTxOut(const CWallet& wallet,
 class WalletImpl : public Wallet
 {
 public:
-    WalletImpl(const std::shared_ptr<CWallet>& wallet) : m_shared_wallet(wallet), m_wallet(*wallet.get()) {}
+    explicit WalletImpl(const std::shared_ptr<CWallet>& wallet) : m_wallet(wallet) {}
 
     bool encryptWallet(const SecureString& wallet_passphrase) override
     {
-        return m_wallet.EncryptWallet(wallet_passphrase);
+        return m_wallet->EncryptWallet(wallet_passphrase);
     }
-    bool isCrypted() override { return m_wallet.IsCrypted(); }
-    bool lock() override { return m_wallet.Lock(); }
-    bool unlock(const SecureString& wallet_passphrase) override { return m_wallet.Unlock(wallet_passphrase); }
-    bool isLocked() override { return m_wallet.IsLocked(); }
+    bool isCrypted() override { return m_wallet->IsCrypted(); }
+    bool lock() override { return m_wallet->Lock(); }
+    bool unlock(const SecureString& wallet_passphrase) override { return m_wallet->Unlock(wallet_passphrase); }
+    bool isLocked() override { return m_wallet->IsLocked(); }
     bool changeWalletPassphrase(const SecureString& old_wallet_passphrase,
         const SecureString& new_wallet_passphrase) override
     {
-        return m_wallet.ChangeWalletPassphrase(old_wallet_passphrase, new_wallet_passphrase);
+        return m_wallet->ChangeWalletPassphrase(old_wallet_passphrase, new_wallet_passphrase);
     }
     void abortRescan() override { m_wallet->AbortRescan(); }
     bool backupWallet(const std::string& filename) override { return m_wallet->BackupWallet(filename); }
@@ -160,11 +160,11 @@ public:
     };
     bool setAddressBook(const CTxDestination& dest, const std::string& name, const std::string& purpose) override
     {
-        return m_wallet.SetAddressBook(dest, name, purpose);
+        return m_wallet->SetAddressBook(dest, name, purpose);
     }
     bool delAddressBook(const CTxDestination& dest) override
     {
-        return m_wallet.DelAddressBook(dest);
+        return m_wallet->DelAddressBook(dest);
     }
     bool getAddress(const CTxDestination& dest,
         std::string* name,
@@ -189,7 +189,7 @@ public:
     }
     std::vector<WalletAddress> getAddresses() override
     {
-        LOCK(m_wallet.cs_wallet);
+        LOCK(m_wallet->cs_wallet);
         std::vector<WalletAddress> result;
         for (const auto& item : m_wallet->m_address_book) {
             if (item.second.IsChange()) continue;
@@ -254,7 +254,7 @@ public:
         LOCK(m_wallet->cs_wallet);
         m_wallet->CommitTransaction(std::move(tx), std::move(value_map), std::move(order_form));
     }
-    bool transactionCanBeAbandoned(const uint256& txid) override { return m_wallet.TransactionCanBeAbandoned(txid); }
+    bool transactionCanBeAbandoned(const uint256& txid) override { return m_wallet->TransactionCanBeAbandoned(txid); }
     bool abandonTransaction(const uint256& txid) override
     {
         LOCK(m_wallet->cs_wallet);
@@ -313,14 +313,14 @@ public:
     bool tryGetTxStatus(const uint256& txid,
         interfaces::WalletTxStatus& tx_status,
         int& num_blocks,
-        int64_t& adjusted_time) override
+        int64_t& block_time) override
     {
         TRY_LOCK(m_wallet->cs_wallet, locked_wallet);
         if (!locked_wallet) {
             return false;
         }
-        auto mi = m_wallet.mapWallet.find(txid);
-        if (mi == m_wallet.mapWallet.end()) {
+        auto mi = m_wallet->mapWallet.find(txid);
+        if (mi == m_wallet->mapWallet.end()) {
             return false;
         }
         num_blocks = m_wallet->GetLastBlockHeight();
@@ -333,8 +333,7 @@ public:
         WalletTxStatus& tx_status,
         WalletOrderForm& order_form,
         bool& in_mempool,
-        int& num_blocks,
-        int64_t& adjusted_time) override
+        int& num_blocks) override
     {
         LOCK(m_wallet->cs_wallet);
         auto mi = m_wallet->mapWallet.find(txid);
@@ -358,15 +357,16 @@ public:
     }
     WalletBalances getBalances() override
     {
+        const auto bal = m_wallet->GetBalance();
         WalletBalances result;
         result.balance = bal.m_mine_trusted;
         result.unconfirmed_balance = bal.m_mine_untrusted_pending;
         result.immature_balance = bal.m_mine_immature;
         result.have_watch_only = haveWatchOnly();
         if (result.have_watch_only) {
-            result.watch_only_balance = m_wallet.GetBalance(ISMINE_WATCH_ONLY);
-            result.unconfirmed_watch_only_balance = m_wallet.GetUnconfirmedWatchOnlyBalance();
-            result.immature_watch_only_balance = m_wallet.GetImmatureWatchOnlyBalance();
+            result.watch_only_balance = bal.m_watchonly_trusted;
+            result.unconfirmed_watch_only_balance = bal.m_watchonly_untrusted_pending;
+            result.immature_watch_only_balance = bal.m_watchonly_immature;
         }
         return result;
     }
@@ -380,10 +380,10 @@ public:
         balances = getBalances();
         return true;
     }
-    CAmount getBalance() override { return m_wallet.GetBalance(); }
+    CAmount getBalance() override { return m_wallet->GetBalance().m_mine_trusted; }
     CAmount getAvailableBalance(const CCoinControl& coin_control) override
     {
-        return m_wallet.GetAvailableBalance(&coin_control);
+        return m_wallet->GetAvailableBalance(&coin_control);
     }
     isminetype txinIsMine(const CTxIn& txin) override
     {
@@ -435,7 +435,7 @@ public:
         }
         return result;
     }
-    CAmount getRequiredFee(unsigned int tx_bytes) override { return GetRequiredFee(m_wallet, tx_bytes); }
+    CAmount getRequiredFee(unsigned int tx_bytes) override { return GetRequiredFee(*m_wallet, tx_bytes); }
     CAmount getMinimumFee(unsigned int tx_bytes,
         const CCoinControl& coin_control,
         int* returned_target,
@@ -443,7 +443,7 @@ public:
     {
         FeeCalculation fee_calc;
         CAmount result;
-        result = GetMinimumFee(m_wallet, tx_bytes, coin_control, ::mempool, ::feeEstimator, &fee_calc);
+        result = GetMinimumFee(*m_wallet, tx_bytes, coin_control, &fee_calc);
         if (returned_target) *returned_target = fee_calc.returnedTarget;
         if (reason) *reason = fee_calc.reason;
         return result;
@@ -462,11 +462,11 @@ public:
     bool isLegacy() override { return m_wallet->IsLegacy(); }
     std::unique_ptr<Handler> handleUnload(UnloadFn fn) override
     {
-        return MakeHandler(m_wallet.NotifyUnload.connect(fn));
+        return MakeHandler(m_wallet->NotifyUnload.connect(fn));
     }
     std::unique_ptr<Handler> handleShowProgress(ShowProgressFn fn) override
     {
-        return MakeHandler(m_wallet.ShowProgress.connect(fn));
+        return MakeHandler(m_wallet->ShowProgress.connect(fn));
     }
     std::unique_ptr<Handler> handleStatusChanged(StatusChangedFn fn) override
     {
@@ -485,7 +485,11 @@ public:
     }
     std::unique_ptr<Handler> handleWatchOnlyChanged(WatchOnlyChangedFn fn) override
     {
-        return MakeHandler(m_wallet.NotifyWatchonlyChanged.connect(fn));
+        return MakeHandler(m_wallet->NotifyWatchonlyChanged.connect(fn));
+    }
+    std::unique_ptr<Handler> handleCanGetAddressesChanged(CanGetAddressesChangedFn fn) override
+    {
+        return MakeHandler(m_wallet->NotifyCanGetAddressesChanged.connect(fn));
     }
     CWallet* wallet() override { return m_wallet.get(); }
 

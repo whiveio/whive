@@ -98,7 +98,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nOffsetSample)
         }
 
         if (LogAcceptCategory(BCLog::NET)) {
-            for (int64_t n : vSorted) {
+            for (const int64_t n : vSorted) {
                 LogPrint(BCLog::NET, "%+d  ", n); /* Continued */
             }
             LogPrint(BCLog::NET, "|  "); /* Continued */

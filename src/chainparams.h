@@ -122,7 +122,6 @@ public:
     const MapAssumeutxo& Assumeutxo() const { return m_assumeutxo_data; }
 
     const ChainTxData& TxData() const { return chainTxData; }
-    void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
 protected:
     CChainParams() {}
 
@@ -165,10 +164,5 @@ const CChainParams &Params();
  * @throws std::runtime_error when the chain is not supported.
  */
 void SelectParams(const std::string& chain);
-
-/**
- * Allows modifying the Version Bits regtest parameters.
- */
-void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
 
 #endif // BITCOIN_CHAINPARAMS_H

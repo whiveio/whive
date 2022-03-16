@@ -11,11 +11,11 @@
 #include <qt/intro.h>
 #include <qt/forms/ui_intro.h>
 
+#include <qt/guiconstants.h>
 #include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
 
 #include <interfaces/node.h>
-//#include <util.h>
 #include <util/system.h>
 #include <validation.h>
 
@@ -168,7 +168,7 @@ Intro::~Intro()
 {
     delete ui;
     /* Ensure thread is finished before it is deleted */
-    Q_EMIT stopThread();
+    thread->quit();
     thread->wait();
 }
 
@@ -180,7 +180,7 @@ QString Intro::getDataDirectory()
 void Intro::setDataDirectory(const QString &dataDir)
 {
     ui->dataDirectory->setText(dataDir);
-    if(dataDir == getDefaultDataDirectory())
+    if(dataDir == GUIUtil::getDefaultDataDirectory())
     {
         ui->dataDirDefault->setChecked(true);
         ui->dataDirectory->setEnabled(false);
@@ -212,7 +212,7 @@ bool Intro::showIfNeeded(bool& did_show_intro, int64_t& prune_MiB)
     if(!gArgs.GetArg("-datadir", "").empty())
         return true;
     /* 1) Default data directory for operating system */
-    QString dataDir = getDefaultDataDirectory();
+    QString dataDir = GUIUtil::getDefaultDataDirectory();
     /* 2) Allow QSettings to override default dir */
     dataDir = settings.value("strDataDir", dataDir).toString();
 
@@ -320,7 +320,7 @@ void Intro::on_dataDirectory_textChanged(const QString &dataDirStr)
 
 void Intro::on_ellipsisButton_clicked()
 {
-    QString dir = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(0, "Choose data directory", ui->dataDirectory->text()));
+    QString dir = QDir::toNativeSeparators(QFileDialog::getExistingDirectory(nullptr, "Choose data directory", ui->dataDirectory->text()));
     if(!dir.isEmpty())
         ui->dataDirectory->setText(dir);
 }
@@ -342,11 +342,10 @@ void Intro::startThread()
     FreespaceChecker *executor = new FreespaceChecker(this);
     executor->moveToThread(thread);
 
-    connect(executor, SIGNAL(reply(int,QString,quint64)), this, SLOT(setStatus(int,QString,quint64)));
-    connect(this, SIGNAL(requestCheck()), executor, SLOT(check()));
+    connect(executor, &FreespaceChecker::reply, this, &Intro::setStatus);
+    connect(this, &Intro::requestCheck, executor, &FreespaceChecker::check);
     /*  make sure executor object is deleted in its own thread */
-    connect(this, SIGNAL(stopThread()), executor, SLOT(deleteLater()));
-    connect(this, SIGNAL(stopThread()), thread, SLOT(quit()));
+    connect(thread, &QThread::finished, executor, &QObject::deleteLater);
 
     thread->start();
 }

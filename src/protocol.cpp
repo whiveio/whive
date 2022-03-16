@@ -6,13 +6,6 @@
 
 #include <protocol.h>
 
-/* #include <util.h>
-#include <utilstrencodings.h>
-
-#ifndef WIN32
-# include <arpa/inet.h>
-#endif
-#include <util/strencodings.h> */
 #include <util/system.h>
 
 static std::atomic<bool> g_initial_block_download_completed(false);
@@ -136,7 +129,7 @@ ServiceFlags GetDesirableServiceFlags(ServiceFlags services) {
     if ((services & NODE_NETWORK_LIMITED) && g_initial_block_download_completed) {
         return ServiceFlags(NODE_NETWORK_LIMITED | NODE_WITNESS);
     }
-    return ServiceFlags(NODE_NETWORK);
+    return ServiceFlags(NODE_NETWORK | NODE_WITNESS);
 }
 
 void SetServiceFlagsIBDCache(bool state) {

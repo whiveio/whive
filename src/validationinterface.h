@@ -7,6 +7,7 @@
 #define BITCOIN_VALIDATIONINTERFACE_H
 
 #include <primitives/transaction.h> // CTransaction(Ref)
+#include <sync.h>
 
 #include <functional>
 #include <memory>
@@ -17,7 +18,6 @@ class CBlock;
 class CBlockIndex;
 struct CBlockLocator;
 class CConnman;
-class CReserveScript;
 class CValidationInterface;
 class uint256;
 class CScheduler;

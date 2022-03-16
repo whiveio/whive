@@ -9,16 +9,18 @@
 #include <hash.h>
 #include <tinyformat.h>
 #include <util/strencodings.h>
-//#include <crypto/common.h>
-#include <hashdb.h>
+#include <crypto/common.h>
+#include <crypto/yespower/yespower.h>
+//#include <hashdb.h>
 #include <streams.h>
+#include <pow.h>
 #include <sync.h>
 
-extern "C" void yespower_hash(const void *input, void *output);
+//extern "C" void yespower_hash(const void *input, void *output);
 
 uint256 CBlockHeader::GetHash() const
 {
-    uint256 hash;
+    /* uint256 hash;
     if (phashdb) {
         if(!phashdb->Read(*this, hash)) {
             yespower_hash(BEGIN(nVersion), &hash);
@@ -27,8 +29,11 @@ uint256 CBlockHeader::GetHash() const
     } else {
         yespower_hash(BEGIN(nVersion), &hash);
     }
-    return hash;
+    return hash; */
+    return SerializeHash(*this);
 }
+
+
 
 std::string CBlock::ToString() const
 {

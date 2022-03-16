@@ -50,14 +50,8 @@ public:
      */
     static bool showIfNeeded(bool& did_show_intro, int64_t& prune_MiB);
 
-    /**
-     * Determine default data directory for operating system.
-     */
-    static QString getDefaultDataDirectory();
-
 Q_SIGNALS:
     void requestCheck();
-    void stopThread();
 
 public Q_SLOTS:
     void setStatus(int status, const QString &message, quint64 bytesAvailable);

@@ -52,8 +52,6 @@ struct BIP9Stats {
     bool possible;
 };
 
-extern const struct VBDeploymentInfo VersionBitsDeploymentInfo[];
-
 /**
  * Abstract class that implements BIP9-style threshold logic, and caches results.
  */

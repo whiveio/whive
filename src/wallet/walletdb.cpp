@@ -103,7 +103,7 @@ bool WalletBatch::WriteKeyMetadata(const CKeyMetadata& meta, const CPubKey& pubk
 
 bool WalletBatch::WriteKey(const CPubKey& vchPubKey, const CPrivKey& vchPrivKey, const CKeyMetadata& keyMeta)
 {
-    if (!WriteIC(std::make_pair(std::string("keymeta"), vchPubKey), keyMeta, false)) {
+    if (!WriteKeyMetadata(keyMeta, vchPubKey, false)) {
         return false;
     }
 
@@ -120,7 +120,7 @@ bool WalletBatch::WriteCryptedKey(const CPubKey& vchPubKey,
                                 const std::vector<unsigned char>& vchCryptedSecret,
                                 const CKeyMetadata &keyMeta)
 {
-    if (!WriteIC(std::make_pair(std::string("keymeta"), vchPubKey), keyMeta)) {
+    if (!WriteKeyMetadata(keyMeta, vchPubKey, true)) {
         return false;
     }
 
@@ -303,10 +303,6 @@ public:
     std::map<uint160, CHDChain> m_hd_chains;
 
     CWalletScanState() {
-        nKeys = nCKeys = nWatchKeys = nKeyMeta = m_unknown_records = 0;
-        fIsEncrypted = false;
-        fAnyUnordered = false;
-        nFileVersion = 0;
     }
 };
 
@@ -712,8 +708,15 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
                    strType != DBKeys::FLAGS) {
             wss.m_unknown_records++;
         }
-    } catch (...)
-    {
+    } catch (const std::exception& e) {
+        if (strErr.empty()) {
+            strErr = e.what();
+        }
+        return false;
+    } catch (...) {
+        if (strErr.empty()) {
+            strErr = "Caught unknown exception in ReadKeyValue";
+        }
         return false;
     }
     return true;
@@ -867,7 +870,7 @@ DBErrors WalletBatch::LoadWallet(CWallet* pwallet)
         }
     }
 
-    for (uint256 hash : wss.vWalletUpgrade)
+    for (const uint256& hash : wss.vWalletUpgrade)
         WriteTx(pwallet->mapWallet.at(hash));
 
     // Rewrite encrypted wallets of versions 0.4.0 and 0.5.0rc:
@@ -880,10 +883,12 @@ DBErrors WalletBatch::LoadWallet(CWallet* pwallet)
     if (wss.fAnyUnordered)
         result = pwallet->ReorderTransactions();
 
-    pwallet->laccentries.clear();
-    ListAccountCreditDebit("*", pwallet->laccentries);
-    for (CAccountingEntry& entry : pwallet->laccentries) {
-        pwallet->wtxOrdered.insert(make_pair(entry.nOrderPos, CWallet::TxPair(nullptr, &entry)));
+    // Upgrade all of the wallet keymetadata to have the hd master key id
+    // This operation is not atomic, but if it fails, updated entries are still backwards compatible with older software
+    try {
+        pwallet->UpgradeKeyMetadata();
+    } catch (...) {
+        result = DBErrors::CORRUPT;
     }
 
     // Upgrade all of the descriptor caches to cache the last hardened xpub
@@ -978,7 +983,7 @@ DBErrors WalletBatch::ZapSelectTx(std::vector<uint256>& vTxHashIn, std::vector<u
     // erase each matching wallet TX
     bool delerror = false;
     std::vector<uint256>::iterator it = vTxHashIn.begin();
-    for (uint256 hash : vTxHash) {
+    for (const uint256& hash : vTxHash) {
         while (it < vTxHashIn.end() && (*it) < hash) {
             it++;
         }
