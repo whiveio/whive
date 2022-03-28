@@ -70,10 +70,6 @@
         <translation type="unfinished">Ito ang iyong mga Bitcoin address para sa pagpapadala ng bayad. Laging suriin ang halaga at ang address na tatanggap bago magpadala ng coins.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Ito ang iyong mga Bitcoin address para sa pagtanggap ng mga pagbabayad. Gamitin ang pindutang 'Lumikha ng bagong address sa pagtanggap' sa tab na tumanggap upang lumikha ng mga bagong address.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">Kopyahin ang address</translation>
     </message>
@@ -443,10 +439,6 @@
             <numerusform />
         </translation>
     </message>
-    <message numerus="yes">
-        <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Processed %n block of transaction history.</numerusform><numerusform>Processed %n blocks of transaction history.</numerusform></translation>
-    </message>
     <message>
         <source>%1 behind</source>
         <translation>%1 sa likuran</translation>
@@ -480,20 +472,12 @@
         <translation type="unfinished">Bintana ng Node</translation>
     </message>
     <message>
-        <source>Open node debugging and diagnostic console</source>
-        <translation>Open node debugging and diagnostic console</translation>
-    </message>
-    <message>
         <source>&amp;Sending addresses</source>
         <translation type="unfinished">Mga address para sa pagpapadala</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses</source>
         <translation type="unfinished">Mga address para sa pagtanggap</translation>
-    </message>
-    <message>
-        <source>Open a bitcoin: URI</source>
-        <translation>Open a bitcoin: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -733,10 +717,6 @@
 <context>
     <name>CreateWalletActivity</name>
     <message>
-        <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>Lumilikha ng Wallet 1 %1 1...</translation>
-    </message>
-    <message>
         <source>Create wallet failed</source>
         <translation type="unfinished">Nabigo ang Pag likha ng Pitaka</translation>
     </message>
@@ -778,10 +758,6 @@
         <translation type="unfinished">Gumawa ng Pitaka</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Walet</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Pangalan ng Pitaka</translation>
     </message>
@@ -790,24 +766,8 @@
         <translation type="unfinished">Walet</translation>
     </message>
     <message>
-        <source>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</source>
-        <translation>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</translation>
-    </message>
-    <message>
-        <source>Encrypt Wallet</source>
-        <translation>Encrypt Wallet</translation>
-    </message>
-    <message>
-        <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
-        <translation>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</translation>
-    </message>
-    <message>
         <source>Disable Private Keys</source>
         <translation type="unfinished">Huwag paganahin ang Privbadong susi</translation>
-    </message>
-    <message>
-        <source>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</source>
-        <translation>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</translation>
     </message>
     <message>
         <source>Make Blank Wallet</source>
@@ -945,10 +905,6 @@
     <message>
         <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
         <translation type="unfinished">Pagkatapos mong mag-click ng OK, %1 ay magsisimulang mag-download at mag-proseso ng buong blockchain (%2GB) magmula sa pinakaunang transaksyon sa %3 nuong ang %4 ay paunang nilunsad.</translation>
-    </message>
-    <message>
-        <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
-        <translation>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</translation>
     </message>
     <message>
         <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
@@ -1097,10 +1053,6 @@
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
         <translation type="unfinished">Ang pag-revert ng pagtatampok na ito ay nangangailangan ng muling pag-download ng buong blockchain.</translation>
-    </message>
-    <message>
-        <source>(0 = auto, &lt;0 = leave that many cores free)</source>
-        <translation>(0 = auto, &lt;0 = leave that many cores free)</translation>
     </message>
     <message>
         <source>W&amp;allet</source>
@@ -2140,10 +2092,6 @@
         <translation type="unfinished">Alisin ang entry na ito</translation>
     </message>
     <message>
-        <source>The amount to send in the selected unit</source>
-        <translation>The amount to send in the selected unit</translation>
-    </message>
-    <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished">Ibabawas ang bayad mula sa halagang ipapadala. Ang tatanggap ay makakatanggap ng mas kaunting mga bitcoin kaysa sa pinasok mo sa patlang ng halaga. Kung napili ang maraming tatanggap, ang bayad ay paghihiwalayin.</translation>
     </message>
@@ -2245,14 +2193,6 @@
     <message>
         <source>The Bitcoin address the message was signed with</source>
         <translation type="unfinished">Ang Bitcoin address na pumirma sa mensahe</translation>
-    </message>
-    <message>
-        <source>The signed message to verify</source>
-        <translation>The signed message to verify</translation>
-    </message>
-    <message>
-        <source>The signature given when the message was signed</source>
-        <translation>The signature given when the message was signed</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
@@ -2446,10 +2386,6 @@
     <message>
         <source>Transaction virtual size</source>
         <translation type="unfinished">Ang virtual size ng transaksyon</translation>
-    </message>
-    <message>
-        <source> (Certificate was not verified)</source>
-        <translation> (Certificate was not verified)</translation>
     </message>
     <message>
         <source>Merchant</source>
@@ -2712,10 +2648,6 @@
     <message>
         <source>Do you want to increase the fee?</source>
         <translation type="unfinished">Nais mo bang dagdagan ang bayad?</translation>
-    </message>
-    <message>
-        <source>Do you want to draft a transaction with fee increase?</source>
-        <translation>Do you want to draft a transaction with fee increase?</translation>
     </message>
     <message>
         <source>Current fee:</source>

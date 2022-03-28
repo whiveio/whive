@@ -36,6 +36,7 @@ public:
     explicit BitcoinUnits(QObject *parent);
 
     /** Whive units.
+      @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum Unit
     {

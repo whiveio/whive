@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>Vytvořit novou adresu</translation>
+        <translation>Vytvoř novou adresu</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -588,14 +588,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Zavřít všechny peněženky</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>Zavřít všechny peněženky</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Zavřít všechny peněženky</translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">Seznam argumentů Bitcoinu pro příkazovou řádku získáš v nápovědě %1</translation>
     </message>
@@ -606,14 +598,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Mask the values in the Overview tab</source>
         <translation type="unfinished">Skrýt částky v přehledu</translation>
-    </message>
-    <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;Skrýt částky</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>Skrýt částky v přehledu</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -923,10 +907,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Vytvořit peněženku</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Peněženka</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Název peněženky</translation>
     </message>
@@ -945,10 +925,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Pokročilé možnosti.</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Pokročilé možnosti.</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -973,14 +949,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Descriptor Wallet</source>
         <translation type="unfinished">Popisovačová peněženka</translation>
-    </message>
-    <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation>Použít popisovače pro správu scriptPubKey</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>Popisovačová peněženka</translation>
     </message>
     <message>
         <source>Create</source>
@@ -1440,14 +1408,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Použít samostatnou SOCKS&amp;5 proxy ke spojení s protějšky přes skryté služby v Toru:</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Připojí se do Bitcoinové sítě přes vyhrazenou SOCKS5 proxy pro služby v Tor síti.</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
-        <translation>Použít samostatnou SOCKS&amp;5 proxy ke spojení s protějšky přes skryté služby v Toru:</translation>
-    </message>
-    <message>
         <source>&amp;Third party transaction URLs</source>
         <translation type="unfinished">&amp;URL třetích stran pro transakce</translation>
     </message>
@@ -1681,86 +1641,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Pays transaction fee: </source>
         <translation type="unfinished">Platí transakční poplatek:</translation>
-    </message>
-    <message>
-        <source>Sign Tx</source>
-        <translation>Podepsat transakci</translation>
-    </message>
-    <message>
-        <source>Broadcast Tx</source>
-        <translation>Odeslat transakci do sítě</translation>
-    </message>
-    <message>
-        <source>Copy to Clipboard</source>
-        <translation>Kopírovat do schránky</translation>
-    </message>
-    <message>
-        <source>Save...</source>
-        <translation>Uložit...</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation>Zavřít</translation>
-    </message>
-    <message>
-        <source>Failed to load transaction: %1</source>
-        <translation>Nepodařilo se načíst transakci: %1</translation>
-    </message>
-    <message>
-        <source>Failed to sign transaction: %1</source>
-        <translation>Nepodařilo se podepsat transakci: %1</translation>
-    </message>
-    <message>
-        <source>Could not sign any more inputs.</source>
-        <translation>Nelze podepsat další vstupy.</translation>
-    </message>
-    <message>
-        <source>Signed %1 inputs, but more signatures are still required.</source>
-        <translation>Podepsáno %1 výstupů, ale jsou ještě potřeba další podpisy.</translation>
-    </message>
-    <message>
-        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
-        <translation>Transakce byla úspěšně podepsána. Transakce je připravena k odeslání.</translation>
-    </message>
-    <message>
-        <source>Unknown error processing transaction.</source>
-        <translation>Neznámá chyba při zpracování transakce.</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast successfully! Transaction ID: %1</source>
-        <translation>Transakce byla úspěšně odeslána! ID transakce: %1</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast failed: %1</source>
-        <translation>Odeslání transakce se nezdařilo: %1</translation>
-    </message>
-    <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation>PSBT zkopírována do schránky.</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Zachovaj procesní data</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Částečně podepsaná transakce (Binární) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved to disk.</source>
-        <translation>PSBT uložena na disk.</translation>
-    </message>
-    <message>
-        <source> * Sends %1 to %2</source>
-        <translation> * Odešle %1 na %2</translation>
-    </message>
-    <message>
-        <source>Unable to calculate transaction fee or total transaction amount.</source>
-        <translation>Nelze vypočítat transakční poplatek nebo celkovou výši transakce.</translation>
-    </message>
-    <message>
-        <source>Pays transaction fee: </source>
-        <translation>Platí transakční poplatek:</translation>
     </message>
     <message>
         <source>Total Amount</source>
@@ -2036,10 +1916,6 @@ Pokud vidíte tuto chybu, měli byste požádat, aby obchodník poskytl adresu k
         <translation type="unfinished">Velikost aktuálního bloku</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>Velikost aktuálního bloku</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">Otevři soubor s ladicími záznamy %1 z aktuálního datového adresáře. U velkých žurnálů to může pár vteřin zabrat.</translation>
     </message>
@@ -2066,10 +1942,6 @@ Pokud vidíte tuto chybu, měli byste požádat, aby obchodník poskytl adresu k
     <message>
         <source>The network protocol this peer is connected through: IPv4, IPv6, Onion, I2P, or CJDNS.</source>
         <translation type="unfinished">Síťový protokol, přes který je protějšek připojen: IPv4, IPv6, Onion, I2P, nebo CJDNS.</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Oprávnění</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2610,22 +2482,6 @@ Pokud vidíte tuto chybu, měli byste požádat, aby obchodník poskytl adresu k
         <translation type="unfinished">PSBT uložena</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation>Vytvořit bez podpisu</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Zachovaj procesní data</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Částečně podepsaná transakce (Binární) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>PSBT uložena</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">nebo</translation>
     </message>
@@ -2636,10 +2492,6 @@ Pokud vidíte tuto chybu, měli byste požádat, aby obchodník poskytl adresu k
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation type="unfinished">Zkontrolujte prosím svůj návrh transakce. Výsledkem bude částečně podepsaná bitcoinová transakce (PSBT), kterou můžete uložit nebo kopírovat a poté podepsat např. pomocí offline %1 peněženky nebo hardwarové peněženky kompatibilní s PSBT.</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Zkontrolujte prosím svůj návrh transakce. Výsledkem bude částečně podepsaná bitcoinová transakce (PSBT), kterou můžete uložit nebo kopírovat a poté podepsat např. pomocí offline %1 peněženky nebo hardwarové peněženky kompatibilní s PSBT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3452,26 +3304,6 @@ Přejděte do Soubor &gt; Otevřít peněženku pro načtení peněženky.
     <message>
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">Nelze dekódovat PSBT</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>Nelze dekódovat PSBT ze schránky (neplatné kódování base64)</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>Načíst data o transakci</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>Částečně podepsaná transakce (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation>Soubor PSBT musí být menší než 100 MiB</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT</source>
-        <translation>Nelze dekódovat PSBT</translation>
     </message>
     <message>
         <source>Backup Wallet</source>

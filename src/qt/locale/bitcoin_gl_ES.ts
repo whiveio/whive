@@ -739,10 +739,6 @@
         <translation type="unfinished">Crea unha Carteira</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Wallet</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Nome da Carteira</translation>
     </message>

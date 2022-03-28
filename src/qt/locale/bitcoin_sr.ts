@@ -596,10 +596,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Нема доступних новчаника</translation>
     </message>
     <message>
-        <source>&amp;Window</source>
-        <translation>&amp;Прозор</translation>
-    </message>
-    <message>
         <source>Minimize</source>
         <translation type="unfinished">Умањи</translation>
     </message>
@@ -893,10 +889,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Create Wallet</source>
         <translation type="unfinished">Направи новчаник</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Новчаник</translation>
     </message>
     <message>
         <source>Wallet Name</source>
@@ -2818,58 +2810,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>watch-only</source>
         <translation type="unfinished">гледај-само</translation>
-    </message>
-    <message>
-        <source>Open until %1</source>
-        <translation>Отворено до %1</translation>
-    </message>
-    <message>
-        <source>Unconfirmed</source>
-        <translation>Непотврђено</translation>
-    </message>
-    <message>
-        <source>Abandoned</source>
-        <translation>Напуштено</translation>
-    </message>
-    <message>
-        <source>Confirming (%1 of %2 recommended confirmations)</source>
-        <translation>Потврђивање у току (%1 од %2 препоручене потврде)</translation>
-    </message>
-    <message>
-        <source>Conflicted</source>
-        <translation>Неуслагашен</translation>
-    </message>
-    <message>
-        <source>Immature (%1 confirmations, will be available after %2)</source>
-        <translation>Није доспео (%1 потврде, биће доступан након %2)</translation>
-    </message>
-    <message>
-        <source>Generated but not accepted</source>
-        <translation>Генерисан али није прихваћен</translation>
-    </message>
-    <message>
-        <source>Received with</source>
-        <translation>Примљен са</translation>
-    </message>
-    <message>
-        <source>Received from</source>
-        <translation>Примљено од</translation>
-    </message>
-    <message>
-        <source>Sent to</source>
-        <translation>Послато ка</translation>
-    </message>
-    <message>
-        <source>Payment to yourself</source>
-        <translation>Уплата самом себи</translation>
-    </message>
-    <message>
-        <source>Mined</source>
-        <translation>Рударено</translation>
-    </message>
-    <message>
-        <source>watch-only</source>
-        <translation>гледај-само</translation>
     </message>
     <message>
         <source>(no label)</source>

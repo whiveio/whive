@@ -523,10 +523,6 @@
         <translation type="unfinished">Otvori bitcoin: URI</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation>Otvori bitcoin: URI</translation>
-    </message>
-    <message>
         <source>Open Wallet</source>
         <translation type="unfinished">Otvorite novčanik</translation>
     </message>
@@ -541,14 +537,6 @@
     <message>
         <source>Close all wallets</source>
         <translation type="unfinished">Zatvori sve novčanike</translation>
-    </message>
-    <message>
-        <source>Close All Wallets...</source>
-        <translation>Zatvori sve novčanike...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Zatvori sve novčanike</translation>
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
@@ -851,10 +839,6 @@
     <message>
         <source>Create Wallet</source>
         <translation type="unfinished">Stvorite novčanik</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Novčanik</translation>
     </message>
     <message>
         <source>Wallet Name</source>
@@ -1638,20 +1622,12 @@
         <translation type="unfinished">Mapirano kao</translation>
     </message>
     <message>
-        <source>Mapped AS</source>
-        <translation>Mapirano kao</translation>
-    </message>
-    <message>
         <source>User Agent</source>
         <translation type="unfinished">Korisnički agent</translation>
     </message>
     <message>
         <source>Node window</source>
         <translation type="unfinished">Konzola za čvor</translation>
-    </message>
-    <message>
-        <source>Node window</source>
-        <translation>Konzola za čvor</translation>
     </message>
     <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
@@ -1831,10 +1807,6 @@
     <message>
         <source>An optional message that is attached to the payment request and may be displayed to the sender.</source>
         <translation type="unfinished">Izborna poruka je priložena zahtjevu za plaćanje i može se prikazati pošiljatelju.</translation>
-    </message>
-    <message>
-        <source>An optional message that is attached to the payment request and may be displayed to the sender.</source>
-        <translation>Izborna poruka je priložena zahtjevu za plaćanje i može se prikazati pošiljatelju.</translation>
     </message>
     <message>
         <source>&amp;Create new receiving address</source>
@@ -2123,10 +2095,6 @@
         <translation type="unfinished">Cr&amp;eate nije potpisan</translation>
     </message>
     <message>
-        <source>Cr&amp;eate Unsigned</source>
-        <translation>Cr&amp;eate nije potpisan</translation>
-    </message>
-    <message>
         <source> from wallet '%1'</source>
         <translation type="unfinished">iz novčanika '%1'</translation>
     </message>
@@ -2141,10 +2109,6 @@
     <message>
         <source>Do you want to draft this transaction?</source>
         <translation type="unfinished">Želite li kreirati nacrt transakcije?</translation>
-    </message>
-    <message>
-        <source>Do you want to draft this transaction?</source>
-        <translation>Želite li kreirati nacrt transakcije?</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
@@ -2189,10 +2153,6 @@
     <message>
         <source>Watch-only balance:</source>
         <translation type="unfinished">Saldo samo za gledanje:</translation>
-    </message>
-    <message>
-        <source>Watch-only balance:</source>
-        <translation>Saldo samo za gledanje:</translation>
     </message>
     <message>
         <source>The recipient address is not valid. Please recheck.</source>
@@ -2403,14 +2363,6 @@
     <message>
         <source>The signature given when the message was signed</source>
         <translation type="unfinished">Potpis predan kad je poruka bila potpisana</translation>
-    </message>
-    <message>
-        <source>The signed message to verify</source>
-        <translation>Potpisana poruka za provjeru</translation>
-    </message>
-    <message>
-        <source>The signature given when the message was signed</source>
-        <translation>Potpis predan kad je poruka bila potpisana</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
@@ -2933,14 +2885,6 @@
     <message>
         <source>PSBT copied</source>
         <translation type="unfinished">PSBT kopiran</translation>
-    </message>
-    <message>
-        <source>Can't draft transaction.</source>
-        <translation>Nije moguće pripremiti nacrt transakcije</translation>
-    </message>
-    <message>
-        <source>PSBT copied</source>
-        <translation>PSBT kopiran</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>

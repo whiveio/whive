@@ -2,10 +2,6 @@
 <context>
     <name>AddressBookPage</name>
     <message>
-        <source>Right-click to edit address or label</source>
-        <translation>Right-click to edit address or label</translation>
-    </message>
-    <message>
         <source>Create a new address</source>
         <translation>Crea novam inscriptionem</translation>
     </message>
@@ -15,15 +11,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>An abundance of inscription are on it are a covering to the system is already in the selected</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation>&amp;Transcribe</translation>
-    </message>
-    <message>
-        <source>C&amp;lose</source>
-        <translation>C&amp;laude</translation>
+        <translation>Copia inscriptionem iam selectam in latibulum systematis</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -791,10 +779,6 @@
     <message>
         <source>Bytes:</source>
         <translation type="unfinished">Octecti:</translation>
-    </message>
-    <message>
-        <source>Bytes:</source>
-        <translation>Octecti:</translation>
     </message>
     <message>
         <source>Amount:</source>

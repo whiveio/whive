@@ -667,14 +667,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">모든 지갑 닫기</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>모든 지갑 닫기...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>모든 지갑 닫기</translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">사용할 수 있는 비트코인 명령줄 옵션 목록을 가져오기 위해 %1 도움말 메시지를 표시합니다.</translation>
     </message>
@@ -1020,10 +1012,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">지갑 생성하기</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>지갑</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">지갑 이름</translation>
     </message>
@@ -1048,24 +1036,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">이 지갑에 대한 개인 키를 비활성화합니다. 개인 키가 비활성화 된 지갑에는 개인 키가 없으며 HD 시드 또는 가져온 개인 키를 가질 수 없습니다. 이는 조회-전용 지갑에 이상적입니다.</translation>
     </message>
     <message>
-        <source>Advanced Options</source>
-        <translation>고급 옵션</translation>
-    </message>
-    <message>
-        <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
-        <translation>이 지갑에 대한 개인 키를 비활성화합니다. 개인 키가 비활성화 된 지갑에는 개인 키가 없으며 HD 시드 또는 가져온 개인 키를 가질 수 없습니다. 이는 조회-전용 지갑에 이상적입니다.</translation>
-    </message>
-    <message>
         <source>Disable Private Keys</source>
         <translation type="unfinished">개인키 비활성화 하기</translation>
     </message>
     <message>
         <source>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</source>
         <translation type="unfinished">빈 지갑을 만드십시오. 빈 지갑은 처음에는 개인 키나 스크립트를 가지고 있지 않습니다. 개인 키와 주소를 가져 오거나 HD 시드를 설정하는 것은 나중에 할 수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</source>
-        <translation>빈 지갑을 만드십시오. 빈 지갑은 처음에는 개인 키나 스크립트를 가지고 있지 않습니다. 개인 키와 주소를 가져 오거나 HD 시드를 설정하는 것은 나중에 할 수 있습니다.</translation>
     </message>
     <message>
         <source>Make Blank Wallet</source>
@@ -1078,14 +1054,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Descriptor Wallet</source>
         <translation type="unfinished">디스크립터 지갑</translation>
-    </message>
-    <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation>scriptPubKey 관리를 위해 디스크립터를 사용하세요.</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>디스크립터 지갑</translation>
     </message>
     <message>
         <source>Create</source>
@@ -1555,14 +1523,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Tor onion 서비스를 통해 피어에 도달하려면 별도의 SOCKS &amp; 5 프록시를 사용하십시오.</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Tor onion 서비스를 위한 별도의 SOCKS5 프록시를 통해 Bitcoin 네트워크에 연결합니다.</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
-        <translation>Tor onion 서비스를 통해 피어에 도달하려면 별도의 SOCKS &amp; 5 프록시를 사용하십시오.</translation>
-    </message>
-    <message>
         <source>&amp;Third party transaction URLs</source>
         <translation type="unfinished">제 3자 거래 URL들(&amp;T)</translation>
     </message>
@@ -2026,14 +1986,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">매핑된 AS</translation>
     </message>
     <message>
-        <source>The mapped Autonomous System used for diversifying peer selection.</source>
-        <translation>피어 선택을 다양 화하는 데 사용되는 매핑 된 자율 시스템입니다.</translation>
-    </message>
-    <message>
-        <source>Mapped AS</source>
-        <translation>매핑된 AS</translation>
-    </message>
-    <message>
         <source>User Agent</source>
         <translation type="unfinished">유저 에이전트</translation>
     </message>
@@ -2044,10 +1996,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Current block height</source>
         <translation type="unfinished">현재 블록 높이</translation>
-    </message>
-    <message>
-        <source>Current block height</source>
-        <translation>현재 블록 높이</translation>
     </message>
     <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
@@ -2064,10 +2012,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Permissions</source>
         <translation type="unfinished">권한</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>권한</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2587,22 +2531,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">PSBT 저장됨</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation>서명되지 않은 것을 생성</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>트랜잭션 데이터 저장</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>부분적으로 서명된 비트코인 트랜잭션 (2진 표기) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>PSBT 저장됨</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">또는</translation>
     </message>
@@ -2736,10 +2664,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">선택한 단위로 보낼 수량</translation>
     </message>
     <message>
-        <source>The amount to send in the selected unit</source>
-        <translation>선택한 단위로 보낼 수량</translation>
-    </message>
-    <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished">수수료가 송금되는 금액에서 공제됩니다. 수령자는 금액 필드에서 입력한 금액보다 적은 금액을 전송받게 됩니다. 받는 사람이 여러 명인 경우 수수료는 균등하게 나누어집니다.</translation>
     </message>
@@ -2853,14 +2777,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>The signature given when the message was signed</source>
         <translation type="unfinished">메세지의 서명되었을 때의 시그니처</translation>
-    </message>
-    <message>
-        <source>The signed message to verify</source>
-        <translation>검증할 서명된 메세지</translation>
-    </message>
-    <message>
-        <source>The signature given when the message was signed</source>
-        <translation>메세지의 서명되었을 때의 시그니처</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
@@ -3380,10 +3296,6 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">수수료가 인상 된 거래를 작성 하시겠습니까?</translation>
     </message>
     <message>
-        <source>Do you want to draft a transaction with fee increase?</source>
-        <translation>수수료가 인상 된 거래를 작성 하시겠습니까?</translation>
-    </message>
-    <message>
         <source>Current fee:</source>
         <translation type="unfinished">현재 수수료:</translation>
     </message>
@@ -3453,26 +3365,6 @@ Go to File &gt; Open Wallet to load a wallet.
     <message>
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">PSBT를 디코드 할 수 없음</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>클립 보드에서 PSBT를 디코딩 할 수 없습니다 (잘못된 base64).</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>트랜젝션 데이터 불러오기</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>부분적으로 서명된 비트코인 트랜잭션 (* .psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation>PSBT 파일은 100MiB보다 작아야합니다.</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT</source>
-        <translation>PSBT를 디코드 할 수 없음</translation>
     </message>
     <message>
         <source>Backup Wallet</source>

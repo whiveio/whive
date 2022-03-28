@@ -76,12 +76,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 Η υπογραφή είναι διαθέσιμη μόνο σε διευθύνσεις 'παλαιού τύπου'.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Αυτές είναι οι Bitcoin διευθύνσεις για την λήψη πληρωμών. Χρησιμοποιήστε το κουμπί  'Δημιουργία νέας διεύθυνσης λήψεων' στο παράθυρο λήψεων για την δημιουργία νέας διεύθυνσης.
-Η υπογραφή είναι διαθέσιμη μόνο σε διευθύνσεις 'παλαιού τύπου'.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">&amp;Αντιγραφή Διεύθυνσης</translation>
     </message>
@@ -636,14 +630,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Κλείσιμο όλων των πορτοφολιών</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>Κλείσιμο όλων των πορτοφολιών...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Κλείσιμο όλων των πορτοφολιών</translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">Εμφάνισε το %1 βοηθητικό μήνυμα για λήψη μιας λίστας με διαθέσιμες επιλογές για Bitcoin εντολές </translation>
     </message>
@@ -654,14 +640,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Mask the values in the Overview tab</source>
         <translation type="unfinished">Απόκρυψη τιμών στην καρτέλα Επισκόπησης</translation>
-    </message>
-    <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;Απόκρυψη τιμών</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>Απόκρυψη τιμών στην καρτέλα Επισκόπησης</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -1005,10 +983,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Δημιουργία Πορτοφολιού</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Πορτοφόλι</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Όνομα Πορτοφολιού</translation>
     </message>
@@ -1027,10 +1001,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Προχωρημένες ρυθμίσεις</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Προχωρημένες ρυθμίσεις</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1055,14 +1025,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Descriptor Wallet</source>
         <translation type="unfinished">Πορτοφόλι Περιγραφέα </translation>
-    </message>
-    <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation>χρήση περιγραφέων για την διαχείριση του scriptPubKey</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>Πορτοφόλι Περιγραφέα </translation>
     </message>
     <message>
         <source>Create</source>
@@ -1521,14 +1483,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Χρησιμοποιήστε ξεχωριστό διακομιστή μεσολάβησης SOCKS&amp;5 για σύνδεση με αποδέκτες μέσω των υπηρεσιών onion του Tor:</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Συνδεθείτε στο δίκτυο Bitcoin μέσω ενός ξεχωριστού διακομιστή μεσολάβησης SOCKS5 για τις onion υπηρεσίες του Tor.</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
-        <translation>Χρησιμοποιήστε ξεχωριστό διακομιστή μεσολάβησης SOCKS&amp;5 για σύνδεση με αποδέκτες μέσω των υπηρεσιών onion του Tor:</translation>
-    </message>
-    <message>
         <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
         <translation type="unfinished">Οι επιλογές που έχουν οριστεί σε αυτό το παράθυρο διαλόγου παραβλέπονται από τη γραμμή εντολών ή από το αρχείο διαμόρφωσης:</translation>
     </message>
@@ -1680,14 +1634,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Αναμετάδωση Tx</translation>
     </message>
     <message>
-        <source>Sign Tx</source>
-        <translation>Υπόγραψε Tx</translation>
-    </message>
-    <message>
-        <source>Broadcast Tx</source>
-        <translation>Αναμετάδωση Tx</translation>
-    </message>
-    <message>
         <source>Copy to Clipboard</source>
         <translation type="unfinished">Αντιγραφή στο Πρόχειρο</translation>
     </message>
@@ -1729,39 +1675,6 @@ ID Συναλλαγής: %1</translation>
         <translation type="unfinished">PSBT αντιγράφηκε στο πρόχειρο.</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation>Κλείσιμο</translation>
-    </message>
-    <message>
-        <source>Failed to load transaction: %1</source>
-        <translation>Αποτυχία φόρτωσης μεταφοράς: %1</translation>
-    </message>
-    <message>
-        <source>Failed to sign transaction: %1</source>
-        <translation>Αποτυχία εκπλήρωσης συναλλαγής: %1</translation>
-    </message>
-    <message>
-        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
-        <translation>Η συναλλαγή υπογράφηκε με επιτυχία. Η συναλλαγή είναι έτοιμη για μετάδοση.</translation>
-    </message>
-    <message>
-        <source>Unknown error processing transaction.</source>
-        <translation>Άγνωστο λάθος  επεξεργασίας μεταφοράς.</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast successfully! Transaction ID: %1</source>
-        <translation>Έγινε επιτυχής αναμετάδοση της συναλλαγής! 
-ID Συναλλαγής: %1</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast failed: %1</source>
-        <translation>Η αναμετάδοση της συναλαγής απέτυχε: %1</translation>
-    </message>
-    <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation>PSBT αντιγράφηκε στο πρόχειρο.</translation>
-    </message>
-    <message>
         <source>Save Transaction Data</source>
         <translation type="unfinished">Αποθήκευση Δεδομένων Συναλλαγής</translation>
     </message>
@@ -1780,22 +1693,6 @@ ID Συναλλαγής: %1</translation>
     <message>
         <source>Pays transaction fee: </source>
         <translation type="unfinished">Πληρωμή τέλους συναλλαγής:</translation>
-    </message>
-    <message>
-        <source>PSBT saved to disk.</source>
-        <translation>PSBT αποθηκεύτηκε στο δίσκο.</translation>
-    </message>
-    <message>
-        <source> * Sends %1 to %2</source>
-        <translation>* Στέλνει %1 προς  %2</translation>
-    </message>
-    <message>
-        <source>Unable to calculate transaction fee or total transaction amount.</source>
-        <translation>Δεν είναι δυνατός ο υπολογισμός των κρατήσεων ή του συνολικού ποσού συναλλαγής.</translation>
-    </message>
-    <message>
-        <source>Pays transaction fee: </source>
-        <translation>Πληρωμή τέλους συναλλαγής:</translation>
     </message>
     <message>
         <source>Total Amount</source>
@@ -2045,10 +1942,6 @@ ID Συναλλαγής: %1</translation>
         <translation type="unfinished">Τωρινό ύψος block</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>Τωρινό ύψος block</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">Ανοίξτε το αρχείο καταγραφής εντοπισμού σφαλμάτων %1 από τον τρέχοντα κατάλογο δεδομένων. Αυτό μπορεί να διαρκέσει μερικά δευτερόλεπτα για τα μεγάλα αρχεία καταγραφής.</translation>
     </message>
@@ -2067,10 +1960,6 @@ ID Συναλλαγής: %1</translation>
     <message>
         <source>Direction/Type</source>
         <translation type="unfinished">Κατεύθυνση/Τύπος</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Αδειες</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2611,20 +2500,12 @@ ID Συναλλαγής: %1</translation>
         <translation type="unfinished">Υπογραφή και αποστολή</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation>Δημιουργία Ανυπόγραφου</translation>
-    </message>
-    <message>
         <source>Save Transaction Data</source>
         <translation type="unfinished">Αποθήκευση Δεδομένων Συναλλαγής</translation>
     </message>
     <message>
         <source>PSBT saved</source>
         <translation type="unfinished">Το PSBT αποθηκεύτηκε</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>Το PSBT αποθηκεύτηκε</translation>
     </message>
     <message>
         <source>or</source>
@@ -2637,10 +2518,6 @@ ID Συναλλαγής: %1</translation>
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation type="unfinished">Παρακαλούμε, ελέγξτε την πρόταση συναλλαγής. Θα παραχθεί μια συναλλαγή Bitcoin με μερική υπογραφή (PSBT), την οποία μπορείτε να αντιγράψετε και στη συνέχεια να υπογράψετε με π.χ. ένα πορτοφόλι %1 εκτός σύνδεσης ή ένα πορτοφόλι υλικού συμβατό με το PSBT.</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Παρακαλούμε, ελέγξτε την πρόταση συναλλαγής. Θα παραχθεί μια συναλλαγή Bitcoin με μερική υπογραφή (PSBT), την οποία μπορείτε να αντιγράψετε και στη συνέχεια να υπογράψετε με π.χ. ένα πορτοφόλι %1 εκτός σύνδεσης ή ένα πορτοφόλι υλικού συμβατό με το PSBT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3482,10 +3359,6 @@ Go to File &gt; Open Wallet to load a wallet.
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Φόρτωση δεδομένων συναλλαγής</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>Φόρτωση δεδομένων συναλλαγής</translation>
     </message>
     <message>
         <source>Backup Wallet</source>

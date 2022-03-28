@@ -6,7 +6,7 @@ QT_TS = \
   qt/locale/bitcoin_bg.ts \
   qt/locale/bitcoin_bs.ts \
   qt/locale/bitcoin_ca.ts \
-  qt/locale/bitcoin_cmn.ts \
+  qt/locale/bitcoin_cs.ts \
   qt/locale/bitcoin_cy.ts \
   qt/locale/bitcoin_da.ts \
   qt/locale/bitcoin_de.ts \

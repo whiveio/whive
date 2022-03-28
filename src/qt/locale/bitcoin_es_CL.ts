@@ -77,12 +77,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 Usa el boton "Crear nueva direccion de recibimiento" en la pestaña de recibir para crear una nueva direccion.  Firmar es posible solo con la direccion del tipo "legado"</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Estas son sus direcciones de Bitcoin para recibir los pagos.
-Usa el boton "Crear nueva direccion de recibimiento" en la pestaña de recibir para crear una nueva direccion.  Firmar es posible solo con la direccion del tipo "legado"</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">Copiar dirección</translation>
     </message>
@@ -186,14 +180,6 @@ Usa el boton "Crear nueva direccion de recibimiento" en la pestaña de recibir p
         <translation type="unfinished">Introducir la vieja contraseña y la nueva contraseña para la billetera.</translation>
     </message>
     <message>
-        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Introducir la nueva contraseña para la billetera. Por favor usa una contraseña de diez o mas caracteres aleatorios, u ocho o mas palabras.</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>Introducir la vieja contraseña y la nueva contraseña para la billetera.</translation>
-    </message>
-    <message>
         <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">Recuerda que codificando tu billetera no garantiza mantener a salvo tus bitcoins en caso de tener virus en el computador.</translation>
     </message>
@@ -208,18 +194,6 @@ Usa el boton "Crear nueva direccion de recibimiento" en la pestaña de recibir p
     <message>
         <source>Your wallet is now encrypted. </source>
         <translation type="unfinished">Su billetera ahora esta encriptada.</translation>
-    </message>
-    <message>
-        <source>Wallet to be encrypted</source>
-        <translation>Billetera para ser encriptada</translation>
-    </message>
-    <message>
-        <source>Your wallet is about to be encrypted. </source>
-        <translation>Tu billetera esta por ser encriptada</translation>
-    </message>
-    <message>
-        <source>Your wallet is now encrypted. </source>
-        <translation>Su billetera ahora esta encriptada.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -408,14 +382,6 @@ Usa el boton "Crear nueva direccion de recibimiento" en la pestaña de recibir p
         <translation type="unfinished">Crear una nueva billetera</translation>
     </message>
     <message>
-        <source>Create Wallet...</source>
-        <translation>Crear Billetera...</translation>
-    </message>
-    <message>
-        <source>Create a new wallet</source>
-        <translation>Crear una nueva billetera</translation>
-    </message>
-    <message>
         <source>Wallet:</source>
         <translation type="unfinished">Billetera:</translation>
     </message>
@@ -554,10 +520,6 @@ Usa el boton "Crear nueva direccion de recibimiento" en la pestaña de recibir p
     <message>
         <source>default wallet</source>
         <translation type="unfinished">billetera predeterminada</translation>
-    </message>
-    <message>
-        <source>default wallet</source>
-        <translation>billetera predeterminada</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1309,14 +1271,6 @@ Usa el boton "Crear nueva direccion de recibimiento" en la pestaña de recibir p
         <translation type="unfinished">Monto total</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation>Cerrar</translation>
-    </message>
-    <message>
-        <source>Total Amount</source>
-        <translation>Monto total</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">o</translation>
     </message>
@@ -1646,10 +1600,6 @@ Usa el boton "Crear nueva direccion de recibimiento" en la pestaña de recibir p
         <translation type="unfinished">&amp;Crear una nueva dirección de recibo</translation>
     </message>
     <message>
-        <source>&amp;Create new receiving address</source>
-        <translation>&amp;Crear una nueva dirección de recibo</translation>
-    </message>
-    <message>
         <source>Clear all fields of the form.</source>
         <translation type="unfinished">Borre todos los campos del formulario.</translation>
     </message>
@@ -1905,10 +1855,6 @@ Usa el boton "Crear nueva direccion de recibimiento" en la pestaña de recibir p
     <message>
         <source>Total Amount</source>
         <translation type="unfinished">Monto total</translation>
-    </message>
-    <message>
-        <source>Total Amount</source>
-        <translation>Monto total</translation>
     </message>
     <message>
         <source>Confirm send coins</source>

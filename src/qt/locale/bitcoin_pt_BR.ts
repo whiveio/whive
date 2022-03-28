@@ -980,10 +980,6 @@ Somente é possível acessar com endereços do tipo 'legado'.</translation>
         <translation type="unfinished">Criar Carteira</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Carteira</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Nome da Carteira</translation>
     </message>
@@ -1002,10 +998,6 @@ Somente é possível acessar com endereços do tipo 'legado'.</translation>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Opções Avançadas</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Opções Avançadas</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>

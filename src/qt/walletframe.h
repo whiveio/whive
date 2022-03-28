@@ -52,7 +52,7 @@ Q_SIGNALS:
 private:
     QStackedWidget *walletStack;
     ClientModel *clientModel;
-    QMap<QString, WalletView*> mapWalletViews;
+    QMap<WalletModel*, WalletView*> mapWalletViews;
 
     bool bOutOfSync;
 
@@ -61,7 +61,8 @@ private:
     const QSize m_size_hint;
 
 public:
-    WalletView *currentWalletView();
+    WalletView* currentWalletView() const;
+    WalletModel* currentWalletModel() const;
 
 public Q_SLOTS:
     /** Switch to overview (home) page */

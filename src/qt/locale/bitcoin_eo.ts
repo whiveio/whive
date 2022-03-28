@@ -75,11 +75,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Jen viaj bitmonaj adresoj por ricevi pagojn. Estas konsilinde uzi apartan ricevan adreson por ĉiu transakcio.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Jen viaj bitmonaj adresoj por ricevi pagojn. Estas konsilinde uzi apartan ricevan adreson por ĉiu transakcio.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">&amp;Kopii Adreson</translation>
     </message>
@@ -193,26 +188,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Your wallet is now encrypted. </source>
         <translation type="unfinished">Via monujo ĵus estas ĉifrata.</translation>
-    </message>
-    <message>
-        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Enigi la novan pasfrazon por la monujo. &lt;br/&gt;Bonvolu uzi pasfrazon de &lt;b&gt;dek aŭ pli hazardaj signoj&lt;/b&gt;, aŭ &lt;b&gt;ok aŭ pli vortoj&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>Enigi la malnovan pasfrazon kaj la novan pasfrazon por la monujo.</translation>
-    </message>
-    <message>
-        <source>Wallet to be encrypted</source>
-        <translation>Monujo ĉifriĝota</translation>
-    </message>
-    <message>
-        <source>Your wallet is about to be encrypted. </source>
-        <translation>Via monujo estas ĉifriĝota.</translation>
-    </message>
-    <message>
-        <source>Your wallet is now encrypted. </source>
-        <translation>Via monujo ĵus estas ĉifrata.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -367,10 +342,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Show information about %1</source>
         <translation type="unfinished">Montri informojn pri %1</translation>
-    </message>
-    <message>
-        <source>Show information about %1</source>
-        <translation>Montri informojn pri %1</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
@@ -553,14 +524,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Averto: %1</translation>
     </message>
     <message>
-        <source>Error: %1</source>
-        <translation>Eraro: %1</translation>
-    </message>
-    <message>
-        <source>Warning: %1</source>
-        <translation>Averto: %1</translation>
-    </message>
-    <message>
         <source>Date: %1
 </source>
         <translation type="unfinished">Dato: %1
@@ -576,12 +539,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>Wallet: %1
 </source>
         <translation type="unfinished">Monujo: %1
-</translation>
-    </message>
-    <message>
-        <source>Wallet: %1
-</source>
-        <translation>Monujo: %1
 </translation>
     </message>
     <message>
@@ -948,10 +905,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Formularo</translation>
     </message>
     <message>
-        <source>Unknown...</source>
-        <translation>Nekonata...</translation>
-    </message>
-    <message>
         <source>Last block time</source>
         <translation type="unfinished">Horo de la lasta bloko</translation>
     </message>
@@ -974,30 +927,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>%1 is currently syncing.  It will download headers and blocks from peers and validate them until reaching the tip of the block chain.</source>
         <translation type="unfinished">%1 sinkronigadas. Ĝi elŝutos kapaĵojn kaj blokojn de samtavolanoj, kaj validigos ilin, ĝis ĝi atingas la pinton de la blokĉeno.</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation>Progreso</translation>
-    </message>
-    <message>
-        <source>Progress increase per hour</source>
-        <translation>Hora pligrandigo da progreso</translation>
-    </message>
-    <message>
-        <source>calculating...</source>
-        <translation>kalkuladas...</translation>
-    </message>
-    <message>
-        <source>Hide</source>
-        <translation>Kaŝi</translation>
-    </message>
-    <message>
-        <source>Esc</source>
-        <translation>Esk</translation>
-    </message>
-    <message>
-        <source>%1 is currently syncing.  It will download headers and blocks from peers and validate them until reaching the tip of the block chain.</source>
-        <translation>%1 sinkronigadas. Ĝi elŝutos kapaĵojn kaj blokojn de samtavolanoj, kaj validigos ilin, ĝis ĝi atingas la pinton de la blokĉeno.</translation>
     </message>
     </context>
 <context>
@@ -1036,14 +965,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
         <translation type="unfinished">IP-adreso de prokurilo (ekz. IPv4: 127.0.0.1 / IPv6: ::1)</translation>
-    </message>
-    <message>
-        <source>Number of script &amp;verification threads</source>
-        <translation>Kvanto da skriptaj kaj kontroleraraj fadenoj</translation>
-    </message>
-    <message>
-        <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
-        <translation>IP-adreso de prokurilo (ekz. IPv4: 127.0.0.1 / IPv6: ::1)</translation>
     </message>
     <message>
         <source>Reset all client options to default.</source>
@@ -1480,10 +1401,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Monujo:</translation>
     </message>
     <message>
-        <source>Wallet:</source>
-        <translation>Monujo:</translation>
-    </message>
-    <message>
         <source>Copy &amp;URI</source>
         <translation type="unfinished">Kopii &amp;URI</translation>
     </message>
@@ -1570,10 +1487,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Kaŝi</translation>
     </message>
     <message>
-        <source>Hide</source>
-        <translation>Kaŝi</translation>
-    </message>
-    <message>
         <source>Send to multiple recipients at once</source>
         <translation>Sendi samtempe al pluraj ricevantoj</translation>
     </message>
@@ -1654,16 +1567,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Totala Sumo</translation>
     </message>
     <message>
-        <source>Total Amount</source>
-        <translation>Totala Sumo</translation>
-    </message>
-    <message>
         <source>Confirm send coins</source>
         <translation type="unfinished">Konfirmi sendon de bitmono</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Sendi</translation>
     </message>
     <message>
         <source>The amount to pay must be larger than 0.</source>

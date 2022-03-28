@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Copiar o endereço selecionado para a área de transferência</translation>
+        <translation>Copiar o endereço selecionado para a área de transferência do sistema</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -27,45 +27,6 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-
-        <translation>Deletar o endereço selecionado da lista</translation>
-    </message>
-    <message>
-        <source>Export the data in the current tab to a file</source>
-        <translation>Exportar as informações da aba para um arquivo</translation>
-    </message>
-    <message>
-        <source>Sending addresses</source>
-        <translation>Enviando informações</translation>
-    </message>
-    <message>
-        <source>Receiving addresses</source>
-        <translation>Recebendo informações</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estas são suas informações para o envio de pagamentos por Bitcoins. Sempre cheque a quantia enviada e as informações do destinatário, antes de enviar os Bitcoins.</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Estas são suas informações para o recebimento de pagamentos por Bitcoins. É recomendado que seja feito o uso de um novo conjunto de informações para cada transação.</translation>
-    </message>
-    <message>
-        <source>Export Address List</source>
-        <translation>Exportar lista de endereços</translation>
-    </message>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>Ficheiro separado por vírgula (*.csv)</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>Falha na Exportação</translation>
-    </message>
-    <message>
-        <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>Ocorreu um erro ao tentar guardar a lista em %1. Por favor, tente novamente.</translation>
-
         <translation>Eliminar o endereço selecionado da lista</translation>
     </message>
     <message>
@@ -115,27 +76,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 Assinar só é possível com endereços do tipo "legado".</translation>
     </message>
     <message>
-
-
-<:src/qt/locale/bitcoin_pt_PT.ts
-        <source>These are your Bitcoin addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Estes são os seus endereços Bitcoin para receber pagamentos. É recomendado que utilize um endereço de receção novo para cada transação.</translation>
-
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Estes são os endereços Bitcoin para receiver pagamentos. Use o botão "Criar novo endereço para receiver" para crier novo endereço.</translation>
-:src/qt/locale/bitcoin_pt.ts
-
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Estes são seus endereços de Bitcoin para receber pagamentos. Use o botão 'Criar novo endereço de recebimento' na guia de recebimento para criar novos endereços.</translation>
-
-
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Estes são seus novos endereços Bitcoin para o recebimento de pagamentos. Use o botão "Criar novo endereço de recebimento" na aba "Receber"  para criar novos endereços.
-Assinar só é possível com endereços do tipo "legado".</translation>
->>>>>>> upstream/0.21
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">&amp;Copiar Endereço</translation>
     </message>
@@ -158,17 +98,12 @@ Assinar só é possível com endereços do tipo "legado".</translation>
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-<<<<<<< HEAD
-        <translation>Ocorreu um erro ao tentar guardar a lista de endereços para %1. Por favor, tente novamente.</translation>
->>>>>>> upstream/0.19
-=======
         <extracomment>An error message. %1 is a stand-in argument for the name of the file we attempted to save to.</extracomment>
         <translation type="unfinished">Ocorreu um erro ao tentar guardar a lista de endereços para %1. Por favor, tente novamente.</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
         <translation type="unfinished">Exportação Falhou</translation>
->>>>>>> upstream/22.x
     </message>
 </context>
 <context>
@@ -190,75 +125,6 @@ Assinar só é possível com endereços do tipo "legado".</translation>
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-
-        <translation>Diálogo senha</translation>
-    </message>
-    <message>
-        <source>Enter passphrase</source>
-        <translation>Insira a senha</translation>
-    </message>
-    <message>
-        <source>New passphrase</source>
-        <translation>Nova senha</translation>
-    </message>
-    <message>
-        <source>Repeat new passphrase</source>
-        <translation>Digite a nova senha novamente</translation>
-    </message>
-    <message>
-        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Insira a nova senha para a carteira.
-Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais palavras.</translation>
-    </message>
-    <message>
-        <source>Encrypt wallet</source>
-        <translation>Criptografar wallet</translation>
-    </message>
-    <message>
-        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Para esta operação se faz necessário o uso da sua senha da wallet para desbloquear a mesma.</translation>
-    </message>
-    <message>
-        <source>Unlock wallet</source>
-        <translation>Desbloquear a wallet</translation>
-    </message>
-    <message>
-        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Para esta operação se faz necessário o uso de sua senha wallet para descriptografar a mesma</translation>
-    </message>
-    <message>
-        <source>Decrypt wallet</source>
-        <translation>Descriptografar wallet</translation>
-    </message>
-    <message>
-        <source>Change passphrase</source>
-        <translation>Trocar senha</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase to the wallet.</source>
-        <translation>Insira a antiga e nova senha na wallet, respectivamente.</translation>
-    </message>
-    <message>
-        <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>Você tem certeza que deseja criptografar a sua wallet?</translation>
-    </message>
-    <message>
-        <source>Wallet encryption failed</source>
-        <translation>Falha ao criptografar a wallet</translation>
-    </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
-    </context>
-<context>
-    <name>BitcoinGUI</name>
-    </context>
-<context>
-    <name>CoinControlDialog</name>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>Copiar o ID de transação</translation>
-
         <translation>Janela da Frase de Segurança</translation>
     </message>
     <message>
@@ -310,13 +176,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation type="unfinished">Carteira encriptada</translation>
     </message>
     <message>
-
-<:src/qt/locale/bitcoin_pt_PT.ts
-        <source>Your wallet is now encrypted. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>A sua carteira está agora encriptada. Lembre-se que pelo facto da sua carteira estar encriptada, isto não protege totalmente os seus bitcoins de serem roubados por programas maliciosos se estes existirem no seu computador.</translation>
-
-
-
         <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation type="unfinished">Insira nova password para a carteira.&lt;br/&gt;Por favor use uma password de &lt;b&gt;dez ou mais caracteres&lt;/b&gt;, ou &lt;b&gt;oito ou mais palavras&lt;/b&gt;.</translation>
     </message>
@@ -543,11 +402,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation type="unfinished">Modificar opções de configuração para %1</translation>
     </message>
     <message>
-
-<:src/qt/locale/bitcoin_pt_PT.ts
-
-
-
         <source>Create a new wallet</source>
         <translation type="unfinished">Criar novo carteira</translation>
     </message>
@@ -602,7 +456,7 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>Criptografar as chaves privadas que pertencem à sua carteira</translation>
+        <translation>Encriptar as chaves privadas que pertencem à sua carteira</translation>
     </message>
     <message>
         <source>&amp;Backup Wallet…</source>
@@ -736,10 +590,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation>Atualizado</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file...</source>
-        <translation>&amp;Carregar Transação Bitcoin Parcialmente Assinada (TBPA/PSBT) do arquivo...</translation>
-    </message>
-    <message>
         <source>Load Partially Signed Bitcoin Transaction</source>
         <translation type="unfinished">Carregar transação de Bitcoin parcialmente assinada</translation>
     </message>
@@ -796,26 +646,10 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation type="unfinished">Mascare os valores na aba de visão geral</translation>
     </message>
     <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;Valores de Máscara</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>Mascare os valores na aba de visão geral</translation>
-    </message>
-    <message>
         <source>default wallet</source>
         <translation type="unfinished">carteira predefinida</translation>
     </message>
     <message>
-<:src/qt/locale/bitcoin_pt_PT.ts
-        <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>A abrir a carteira &lt;b&gt;%1&lt;/b&gt;...</translation>
-    </message>
-    <message>
-        <source>Open Wallet Failed</source>
-        <translation>A abertura da carteira falhou</translation>
-
         <source>No wallets available</source>
         <translation type="unfinished">Sem carteiras disponíveis</translation>
     </message>
@@ -832,13 +666,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation type="unfinished">Ampliar</translation>
     </message>
     <message>
-<:src/qt/locale/bitcoin_pt_PT.ts
-        <source>Restore</source>
-        <translation>Restaurar</translation>
-    </message>
-    <message>
-
-:src/qt/locale/bitcoin_pt.ts
         <source>Main Window</source>
         <translation type="unfinished">Janela principal</translation>
     </message>
@@ -1062,68 +889,12 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     </message>
     <message>
         <source>Can vary +/- %1 satoshi(s) per input.</source>
-<<<<<<< HEAD
-        <translation>Pode variar +/- %1 satoshi(s) por input.</translation>
->>>>>>> upstream/0.19
-=======
         <translation type="unfinished">Pode variar +/- %1 satoshi(s) por input.</translation>
->>>>>>> upstream/22.x
     </message>
     <message>
         <source>(no label)</source>
         <translation type="unfinished">(sem etiqueta)</translation>
     </message>
-
-    </context>
-<context>
-    <name>EditAddressDialog</name>
-    </context>
-<context>
-    <name>FreespaceChecker</name>
-    </context>
-<context>
-    <name>HelpMessageDialog</name>
-    </context>
-<context>
-    <name>Intro</name>
-    </context>
-<context>
-    <name>ModalOverlay</name>
-    </context>
-<context>
-    <name>OpenURIDialog</name>
-    </context>
-<context>
-    <name>OptionsDialog</name>
-    </context>
-<context>
-    <name>OverviewPage</name>
-    </context>
-<context>
-    <name>PaymentServer</name>
-    </context>
-<context>
-    <name>PeerTableModel</name>
-    </context>
-<context>
-    <name>QObject</name>
-    </context>
-<context>
-    <name>QObject::QObject</name>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
-    <name>RPCConsole</name>
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
-<context>
-    <name>ReceiveRequestDialog</name>
-    <message>
-
     <message>
         <source>change from %1 (%2)</source>
         <translation type="unfinished">troco de %1 (%2)</translation>
@@ -1197,10 +968,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
         <translation type="unfinished">Criar Carteira</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Carteira</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Nome da Carteira</translation>
     </message>
@@ -1243,14 +1010,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     <message>
         <source>Descriptor Wallet</source>
         <translation type="unfinished">Carteira de descritor</translation>
-    </message>
-    <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation>Use descritores para o gerenciamento de chaves públicas de script</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>Carteira de descritor</translation>
     </message>
     <message>
         <source>Create</source>
@@ -1692,14 +1451,6 @@ Por favor, utilize uma senha com dez ou mais caracteres, ou com oito ou mais pal
     <message>
         <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
         <translation type="unfinished">Use um proxy SOCKS5 separado para alcançar pares por meio dos serviços Tor onion:</translation>
-    </message>
-    <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Conecte-se a rede Bitcoin através de um proxy SOCKS5 separado para serviços Tor Onion</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
-        <translation>Use um proxy SOCKS5 separado para alcançar colegas por meio dos serviços Tor onion:</translation>
     </message>
     <message>
         <source>&amp;Third party transaction URLs</source>
@@ -2168,10 +1919,6 @@ ID transação: %1</translation>
         <translation type="unfinished">Altura atual do bloco</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>Altura atual do bloco</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">Abrir o ficheiro de registo de depuração %1 da pasta de dados atual. Isto pode demorar alguns segundos para ficheiros de registo maiores.</translation>
     </message>
@@ -2380,8 +2127,6 @@ ID transação: %1</translation>
         <translation type="unfinished">Uma quantia opcional a solicitar. Deixe em branco ou zero para não solicitar uma quantidade específica.</translation>
     </message>
     <message>
-
-
         <source>An optional label to associate with the new receiving address (used by you to identify an invoice).  It is also attached to the payment request.</source>
         <translation type="unfinished">Um legenda opcional para associar com o novo endereço de recebimento (usado por você para identificar uma fatura).  Ela é também anexada ao pedido de pagamento.</translation>
     </message>
@@ -2390,7 +2135,6 @@ ID transação: %1</translation>
         <translation type="unfinished">Uma mensagem opicional que é anexada ao pedido de pagamento e pode ser mostrada para o remetente.</translation>
     </message>
     <message>
-
         <source>&amp;Create new receiving address</source>
         <translation type="unfinished">&amp;Criar novo endereço para receber</translation>
     </message>
@@ -2509,63 +2253,6 @@ ID transação: %1</translation>
         <source>Request payment to %1</source>
         <translation type="unfinished">Requisitar Pagamento para %1</translation>
     </message>
-
-    <message>
-        <source>URI</source>
-        <translation>URI</translation>
-    </message>
-    <message>
->>>>>>> upstream/0.19
-        <source>Address</source>
-        <translation>Endereço</translation>
-    </message>
-    <message>
-
-        <source>Label</source>
-        <translation>Etiqueta</translation>
-    </message>
-    </context>
-<context>
-    <name>RecentRequestsTableModel</name>
-
-        <source>Amount</source>
-        <translation>Valor</translation>
-    </message>
->>>>>>> upstream/0.19
-    <message>
-        <source>Label</source>
-        <translation>Etiqueta</translation>
-    </message>
-    <message>
-
-        <source>(no label)</source>
-        <translation>(sem etiqueta)</translation>
-    </message>
-    </context>
-<context>
-    <name>SendCoinsDialog</name>
-    <message>
-
-        <source>Message</source>
-        <translation>Mensagem</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Carteira</translation>
-    </message>
-<:src/qt/locale/bitcoin_pt_PT.ts
-    <message>
-        <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>URI resultante muito longo. Tente reduzir o texto da etiqueta / mensagem.</translation>
-    </message>
-    <message>
-        <source>Error encoding URI into QR Code.</source>
-        <translation>Erro ao codificar URI em Código QR.</translation>
-    </message>
-
-:src/qt/locale/bitcoin_pt.ts
-
->>>>>>> upstream/0.21
 </context>
 <context>
     <name>RecentRequestsTableModel</name>
@@ -2765,8 +2452,6 @@ ID transação: %1</translation>
         <translation type="unfinished">%1 (%2 blocos)</translation>
     </message>
     <message>
-
-
         <source>Cr&amp;eate Unsigned</source>
         <translation type="unfinished">Criar não assinado</translation>
     </message>
@@ -2775,7 +2460,6 @@ ID transação: %1</translation>
         <translation type="unfinished">Cria uma transação de Bitcoin parcialmente assinada (PSBT)(sigla em inglês) para ser usada por exemplo com uma carteira %1 offline ou uma carteira de hardware compatível com PSBT.</translation>
     </message>
     <message>
-
         <source> from wallet '%1'</source>
         <translation type="unfinished">da carteira '%1'</translation>
     </message>
@@ -2879,8 +2563,6 @@ ID transação: %1</translation>
         <source>Payment request expired.</source>
         <translation type="unfinished">Pedido de pagamento expirado.</translation>
     </message>
-<:src/qt/locale/bitcoin_pt_PT.ts
-
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
         <translation>
@@ -2888,7 +2570,6 @@ ID transação: %1</translation>
             <numerusform />
         </translation>
     </message>
-:src/qt/locale/bitcoin_pt.ts
     <message>
         <source>Warning: Invalid Bitcoin address</source>
         <translation type="unfinished">Aviso: endereço Bitcoin inválido</translation>
@@ -2906,43 +2587,12 @@ ID transação: %1</translation>
         <translation type="unfinished">O endereço que selecionou para alterar não faz parte desta carteira. Qualquer ou todos os fundos na sua carteira podem ser enviados para este endereço. Tem certeza?</translation>
     </message>
     <message>
->>>>>>> upstream/0.19
         <source>(no label)</source>
         <translation type="unfinished">(sem etiqueta)</translation>
     </message>
 </context>
 <context>
     <name>SendCoinsEntry</name>
-
-    </context>
-<context>
-    <name>SendConfirmationDialog</name>
-    </context>
-<context>
-    <name>ShutdownWindow</name>
-    </context>
-<context>
-    <name>SignVerifyMessageDialog</name>
-    </context>
-<context>
-    <name>SplashScreen</name>
-    </context>
-<context>
-    <name>TrafficGraphWidget</name>
-    </context>
-<context>
-    <name>TransactionDesc</name>
-    </context>
-<context>
-    <name>TransactionDescDialog</name>
-    </context>
-<context>
-    <name>TransactionTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>Etiqueta</translation>
-    </message>
-
     <message>
         <source>A&amp;mount:</source>
         <translation>Qu&amp;antia:</translation>
@@ -3428,23 +3078,10 @@ ID transação: %1</translation>
         <source>(n/a)</source>
         <translation type="unfinished">(n/d)</translation>
     </message>
->>>>>>> upstream/0.19
     <message>
         <source>(no label)</source>
         <translation type="unfinished">(sem etiqueta)</translation>
     </message>
-
-    </context>
-<context>
-    <name>TransactionView</name>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>Copiar o ID de transação</translation>
-    </message>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>Ficheiro separado por vírgula (*.csv)</translation>
-
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
         <translation type="unfinished">Estado da transação. Passar o cursor por cima deste campo para mostrar o número de confirmações.</translation>
@@ -3567,12 +3204,7 @@ ID transação: %1</translation>
     </message>
     <message>
         <source>Type</source>
-<<<<<<< HEAD
-        <translation>Tipo</translation>
->>>>>>> upstream/0.19
-=======
         <translation type="unfinished">Tipo</translation>
->>>>>>> upstream/22.x
     </message>
     <message>
         <source>Label</source>
@@ -3583,34 +3215,6 @@ ID transação: %1</translation>
         <translation type="unfinished">Endereço</translation>
     </message>
     <message>
-
-        <source>Exporting Failed</source>
-        <translation>Falha na Exportação</translation>
-    </message>
-    </context>
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletController</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
-<context>
-    <name>WalletView</name>
-    <message>
-        <source>Export the data in the current tab to a file</source>
-        <translation>Exportar as informações da aba para um arquivo</translation>
-    </message>
-    </context>
-<context>
-    <name>bitcoin-core</name>
-    </context>
-
         <source>ID</source>
         <translation type="unfinished">Id.</translation>
     </message>
@@ -3804,63 +3408,12 @@ Ir para o arquivo &gt; Abrir carteira para carregar a carteira
         <translation type="unfinished">Distribuído sob licença de software MIT, veja o ficheiro %s ou %s</translation>
     </message>
     <message>
-<<<<<<< HEAD
-
-        <source>Error loading wallet %s. Duplicate -wallet filename specified.</source>
-        <translation>Erro ao carregar a carteira %s. Especificado nome de fichero -wallet em duplicado.</translation>
-    </message>
-    <message>
-<:src/qt/locale/bitcoin_pt_PT.ts
-        <source>Keypool ran out, please call keypoolrefill first</source>
-        <translation>A keypool esgotou-se, por favor execute primeiro keypoolrefill</translation>
-    </message>
-    <message>
-
-:src/qt/locale/bitcoin_pt.ts
-
->>>>>>> upstream/0.21
-        <source>Starting network threads...</source>
-        <translation>A iniciar threads de rede...</translation>
-    </message>
-    <message>
-        <source>The wallet will avoid paying less than the minimum relay fee.</source>
-        <translation>A carteira evitará pagar menos que a taxa minima de propagação.</translation>
-    </message>
-    <message>
-        <source>This is the minimum transaction fee you pay on every transaction.</source>
-        <translation>Esta é a taxa minima de transação que paga em cada transação.</translation>
-    </message>
-    <message>
-        <source>This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>Esta é a taxa de transação que irá pagar se enviar uma transação.</translation>
-    </message>
-    <message>
-        <source>Transaction amounts must not be negative</source>
-        <translation>Os valores da transação não devem ser negativos</translation>
-    </message>
-    <message>
-        <source>Transaction has too long of a mempool chain</source>
-        <translation>A transação é muito grande de uma cadeia do banco de memória</translation>
-    </message>
-    <message>
-        <source>Transaction must have at least one recipient</source>
-        <translation>A transação dever pelo menos um destinatário</translation>
-    </message>
-    <message>
-        <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Rede desconhecida especificada em -onlynet: '%s'</translation>
-    </message>
-    <message>
-        <source>Insufficient funds</source>
-        <translation>Fundos insuficientes</translation>
-=======
         <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
         <translation type="unfinished">Erro ao ler %s! Todas as chaves foram lidas corretamente, mas os dados de transação ou as entradas no livro de endereços podem não existir ou estarem incorretos.</translation>
     </message>
     <message>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
         <translation type="unfinished">Erro: a escuta de ligações de entrada falhou (escuta devolveu o erro %s)</translation>
->>>>>>> upstream/22.x
     </message>
     <message>
         <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
@@ -4304,5 +3857,4 @@ A pasta de blocos especificados "%s" não existe.</translation>
         <translation type="unfinished">A carteira precisou de ser reescrita: reinicie %s para completar</translation>
     </message>
 </context>
->>>>>>> upstream/0.19
 </TS>

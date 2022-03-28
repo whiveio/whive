@@ -595,7 +595,7 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
     </message>
     <message>
         <source>Last received block was generated %1 ago.</source>
-        <translation>Viimeisin vastaanotettu lohko tuotettu %1 sitten.</translation>
+        <translation>Viimeisin vastaanotettu lohko tuotettu %1.</translation>
     </message>
     <message>
         <source>Transactions after this will not yet be visible.</source>
@@ -1020,10 +1020,6 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
         <translation type="unfinished">Luo lompakko</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Lompakko</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Lompakon nimi</translation>
     </message>
@@ -1042,10 +1038,6 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Lisäasetukset</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Lisäasetukset</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1485,7 +1477,7 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
-        <translation>Välityspalvelimen &amp;IP:</translation>
+        <translation>Proxyn &amp;IP:</translation>
     </message>
     <message>
         <source>&amp;Port:</source>
@@ -1493,7 +1485,7 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
     </message>
     <message>
         <source>Port of the proxy (e.g. 9050)</source>
-        <translation>Välityspalvelimen Portti (esim. 9050)</translation>
+        <translation>Proxyn Portti (esim. 9050)</translation>
     </message>
     <message>
         <source>Used for reaching peers via:</source>
@@ -1621,7 +1613,7 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
     </message>
     <message>
         <source>The supplied proxy address is invalid.</source>
-        <translation>Antamasi välityspalvelimen osoite on virheellinen.</translation>
+        <translation>Antamasi proxy-osoite on virheellinen.</translation>
     </message>
 </context>
 <context>
@@ -2543,7 +2535,7 @@ Jos saat tämän virheen, pyydä kauppiasta antamaan BIP21-yhteensopiva URI.</tr
     </message>
     <message>
         <source>Send to multiple recipients at once</source>
-        <translation>Lähetä usealle vastaanottajalle kerralla</translation>
+        <translation>Lähetä usealla vastaanottajalle samanaikaisesti</translation>
     </message>
     <message>
         <source>Add &amp;Recipient</source>
@@ -3622,10 +3614,6 @@ Siirry osioon Tiedosto &gt; Avaa lompakko ladataksesi lompakon.
     <message>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
         <translation type="unfinished">Virhe: Saapuvien yhteyksien kuuntelu epäonnistui (kuuntelu palautti virheen %s)</translation>
-    </message>
-    <message>
-        <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
-        <translation>Muuta kuin HD-jaettua lompakkoa ei voi päivittää ilman päivitystä tukemaan esijaettua avainvarastoa. Käytä -upgradewallet = 169900 tai -upgradewallet ilman määritettyä versiota.</translation>
     </message>
     <message>
         <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>

@@ -7,7 +7,6 @@
         <file alias="bg">locale/bitcoin_bg.qm</file>
         <file alias="bs">locale/bitcoin_bs.qm</file>
         <file alias="ca">locale/bitcoin_ca.qm</file>
-        <file alias="cmn">locale/bitcoin_cmn.qm</file>
         <file alias="cs">locale/bitcoin_cs.qm</file>
         <file alias="cy">locale/bitcoin_cy.qm</file>
         <file alias="da">locale/bitcoin_da.qm</file>

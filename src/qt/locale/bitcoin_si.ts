@@ -46,10 +46,6 @@
         <translation type="unfinished">තෝරන්න</translation>
     </message>
     <message>
-        <source>C&amp;hoose</source>
-        <translation>තෝරන්න</translation>
-    </message>
-    <message>
         <source>Sending addresses</source>
         <translation type="unfinished">යවන ලිපින</translation>
     </message>
@@ -245,73 +241,6 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/qt/locale/bitcoin_si.ts
-========
-        <source>E&amp;xit</source>
-        <translation>Buda</translation>
-    </message>
-    <message>
-        <source>Quit application</source>
-        <translation>Vhara Application</translation>
-    </message>
-    <message>
-        <source>&amp;About %1</source>
-        <translation>&amp;Kuma %1</translation>
-    </message>
-    <message>
-        <source>Show information about %1</source>
-        <translation>Taridza ruzivo rwekuma %1</translation>
-    </message>
-    <message>
-        <source>Show information about Qt</source>
-        <translation>Taridza ruzivo rwe Qt</translation>
-    </message>
-    <message>
-        <source>Open &amp;URI...</source>
-        <translation>Vhura &amp;URI</translation>
-    </message>
-    <message>
-        <source>&amp;Send</source>
-        <translation>&amp;Tumira</translation>
-    </message>
-    <message>
-        <source>&amp;Receive</source>
-        <translation>&amp;Tambira</translation>
-    </message>
-    <message>
-        <source>&amp;Show / Hide</source>
-        <translation>&amp;Taridza/Usataridza</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Faira</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Rubatsiro</translation>
-    </message>
-    <message>
-        <source>%1 behind</source>
-        <translation>%1 kumashure</translation>
-    </message>
-    <message>
->>>>>>>> upstream/0.19:src/qt/locale/bitcoin_sn.ts
-=======
-        <source>Synchronizing with network...</source>
-        <translation>ජාලය සමග සමමුහුර්ත ව‌ෙමින්...</translation>
-=======
-        <source>Synchronizing with network...</source>
-        <translation>ජාලය සමග සමමුහුර්ත වෙමින්...</translation>
->>>>>>> upstream/0.20
-=======
-        <source>Synchronizing with network...</source>
-        <translation>ජාලය සමග සමමුහුර්ත ව‌ෙමින්...</translation>
->>>>>>> upstream/0.21
-    </message>
-    <message>
         <source>Browse transaction history</source>
         <translation>ගනුදෙනු ඉතිහාසය පිරික්සන්න</translation>
     </message>
@@ -323,13 +252,6 @@
         </translation>
     </message>
     <message>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> upstream/0.19
-=======
->>>>>>> upstream/0.20
-=======
->>>>>>> upstream/0.21
         <source>Warning</source>
         <translation>අවවාදය</translation>
     </message>
@@ -366,19 +288,7 @@
     </message>
     <message>
         <source>Amount</source>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/qt/locale/bitcoin_si.ts
-        <translation>අගය</translation>
-========
-        <translation>Marii</translation>
->>>>>>>> upstream/0.19:src/qt/locale/bitcoin_sn.ts
-=======
-        <translation>අගය</translation>
->>>>>>> upstream/0.19
-=======
         <translation type="unfinished">අගය</translation>
->>>>>>> upstream/22.x
     </message>
     <message>
         <source>Date</source>
@@ -426,110 +336,18 @@
 <context>
     <name>PeerTableModel</name>
     <message>
-<<<<<<< HEAD
-        <source>Amount</source>
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/qt/locale/bitcoin_si.ts
-        <translation>අගය</translation>
-========
-        <translation>Marii</translation>
-    </message>
-    <message>
-        <source>Enter a Bitcoin address (e.g. %1)</source>
-        <translation>Nyora kero ye Bitcoin (sekuti %1)</translation>
-    </message>
-    <message>
-        <source>%1 d</source>
-        <translation>%1 d</translation>
-    </message>
-    <message>
-        <source>%1 h</source>
-        <translation>%1 h</translation>
-    </message>
-    <message>
-        <source>%1 m</source>
-        <translation>%1 m</translation>
-    </message>
-    <message>
-        <source>%1 s</source>
-        <translation>%1 s</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Hapana</translation>
-    </message>
-    <message>
-        <source>N/A</source>
-        <translation>Hapana</translation>
->>>>>>>> upstream/0.19:src/qt/locale/bitcoin_sn.ts
-=======
-        <translation>අගය</translation>
->>>>>>> upstream/0.19
-    </message>
-    </context>
-<context>
-    <name>QRImageWidget</name>
-    </context>
-<context>
-    <name>RPCConsole</name>
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/qt/locale/bitcoin_si.ts
-========
-    <message>
-        <source>N/A</source>
-        <translation>Hapana</translation>
-    </message>
->>>>>>>> upstream/0.19:src/qt/locale/bitcoin_sn.ts
-=======
->>>>>>> upstream/0.19
-    </context>
-<context>
-    <name>ReceiveCoinsDialog</name>
-    </context>
-<context>
-=======
         <source>Address</source>
         <extracomment>Title of Peers Table column which contains the IP/Onion/I2P address of the connected peer.</extracomment>
         <translation type="unfinished">ලිපිනය</translation>
     </message>
     </context>
 <context>
->>>>>>> upstream/22.x
     <name>ReceiveRequestDialog</name>
     <message>
-<<<<<<< HEAD
-        <source>Address</source>
-        <translation>ලිපිනය</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/qt/locale/bitcoin_si.ts
-        <translation>අගය</translation>
-========
-        <translation>Marii</translation>
->>>>>>>> upstream/0.19:src/qt/locale/bitcoin_sn.ts
-=======
-        <translation>අගය</translation>
->>>>>>> upstream/0.19
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>ලේබලය</translation>
-=======
         <source>Amount:</source>
-<<<<<<< HEAD
-        <translation>අගය:</translation>
->>>>>>> upstream/0.21
-=======
         <translation type="unfinished">අගය:</translation>
->>>>>>> upstream/22.x
     </message>
-<<<<<<< HEAD
-</context>
-=======
     </context>
->>>>>>> upstream/0.19
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -597,19 +415,7 @@
     </message>
     <message>
         <source>Amount</source>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/qt/locale/bitcoin_si.ts
-        <translation>අගය</translation>
-========
-        <translation>Marii</translation>
->>>>>>>> upstream/0.19:src/qt/locale/bitcoin_sn.ts
-=======
-        <translation>අගය</translation>
->>>>>>> upstream/0.19
-=======
         <translation type="unfinished">අගය</translation>
->>>>>>> upstream/22.x
     </message>
     </context>
 <context>
@@ -637,28 +443,6 @@
 <context>
     <name>TransactionView</name>
     <message>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> upstream/0.20
-=======
->>>>>>> upstream/0.21
-        <source>Comma separated file (*.csv)</source>
-        <translation>කොමා වලින් වෙන් කරන ලද ගොනුව (* .csv)</translation>
-    </message>
-    <message>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> upstream/0.19
-=======
->>>>>>> upstream/0.20
-=======
->>>>>>> upstream/0.21
-=======
->>>>>>> upstream/22.x
         <source>Date</source>
         <translation type="unfinished">දිනය</translation>
     </message>
@@ -671,39 +455,4 @@
         <translation type="unfinished">ලිපිනය</translation>
     </message>
     </context>
-<<<<<<< HEAD
-<context>
-    <name>UnitDisplayStatusBarControl</name>
-    </context>
-<context>
-    <name>WalletController</name>
-    </context>
-<context>
-    <name>WalletFrame</name>
-    </context>
-<context>
-    <name>WalletModel</name>
-    </context>
-<context>
-    <name>WalletView</name>
-    </context>
-<context>
-    <name>bitcoin-core</name>
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/qt/locale/bitcoin_si.ts
-    <message>
-        <source>Information</source>
-        <translation>තොරතුර</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>අවවාදය</translation>
-    </message>
-========
->>>>>>>> upstream/0.19:src/qt/locale/bitcoin_sn.ts
-=======
->>>>>>> upstream/0.19
-    </context>
-=======
->>>>>>> upstream/22.x
 </TS>

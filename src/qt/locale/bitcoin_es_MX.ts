@@ -832,10 +832,6 @@ Solicitar pagos (genera códigos QR y bitcoin: URI)
         <translation type="unfinished">Crear una cartera </translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Cartera</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Nombre de la cartera </translation>
     </message>
@@ -854,10 +850,6 @@ Solicitar pagos (genera códigos QR y bitcoin: URI)
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Opciones avanzadas</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Opciones avanzadas</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1660,26 +1652,6 @@ Para obtener más información, escriba %6.
         <translation type="unfinished">Estado</translation>
     </message>
     <message>
-        <source>conflicted with a transaction with %1 confirmations</source>
-        <translation>conflicted with a transaction with %1 confirmations</translation>
-    </message>
-    <message>
-        <source>0/unconfirmed, %1</source>
-        <translation>0/unconfirmed, %1</translation>
-    </message>
-    <message>
-        <source>in memory pool</source>
-        <translation>in memory pool</translation>
-    </message>
-    <message>
-        <source>not in memory pool</source>
-        <translation>not in memory pool</translation>
-    </message>
-    <message>
-        <source>abandoned</source>
-        <translation>abandoned</translation>
-    </message>
-    <message>
         <source>Date</source>
         <translation type="unfinished">Fecha</translation>
     </message>
@@ -1786,34 +1758,6 @@ Para obtener más información, escriba %6.
     <message>
         <source>Mined</source>
         <translation type="unfinished">Minado </translation>
-    </message>
-    <message>
-        <source>Unconfirmed</source>
-        <translation>Unconfirmed</translation>
-    </message>
-    <message>
-        <source>Abandoned</source>
-        <translation>Abandoned</translation>
-    </message>
-    <message>
-        <source>Confirming (%1 of %2 recommended confirmations)</source>
-        <translation>Confirming (%1 of %2 recommended confirmations)</translation>
-    </message>
-    <message>
-        <source>Conflicted</source>
-        <translation>Conflicted</translation>
-    </message>
-    <message>
-        <source>Immature (%1 confirmations, will be available after %2)</source>
-        <translation>Immature (%1 confirmations, will be available after %2)</translation>
-    </message>
-    <message>
-        <source>Received from</source>
-        <translation>Received from</translation>
-    </message>
-    <message>
-        <source>watch-only</source>
-        <translation>watch-only</translation>
     </message>
     <message>
         <source>(no label)</source>

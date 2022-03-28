@@ -387,14 +387,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">創建一個新錢包</translation>
     </message>
     <message>
-        <source>Create Wallet...</source>
-        <translation>新增錢包...</translation>
-    </message>
-    <message>
-        <source>Create a new wallet</source>
-        <translation>創建一個新錢包</translation>
-    </message>
-    <message>
         <source>Wallet:</source>
         <translation type="unfinished">錢包:</translation>
     </message>
@@ -540,10 +532,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Open a bitcoin: URI</source>
         <translation type="unfinished">打開一個比特幣：URI</translation>
-    </message>
-    <message>
-        <source>Open a bitcoin: URI</source>
-        <translation>打開一個比特幣：URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -875,10 +863,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">新增錢包</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>錢包</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">錢包名稱</translation>
     </message>
@@ -897,10 +881,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">進階選項</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>進階選項</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -2537,14 +2517,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>The signature given when the message was signed</source>
         <translation type="unfinished">簽名訊息時給出的簽名</translation>
-    </message>
-    <message>
-        <source>The signed message to verify</source>
-        <translation>簽名訊息進行驗證</translation>
-    </message>
-    <message>
-        <source>The signature given when the message was signed</source>
-        <translation>簽名訊息時給出的簽名</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>

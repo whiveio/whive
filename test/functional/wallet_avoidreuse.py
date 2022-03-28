@@ -164,8 +164,8 @@ class AvoidReuseTest(BitcoinTestFramework):
 
     def test_sending_from_reused_address_without_avoid_reuse(self):
         '''
-        Test the same as test_sending_from_reused_address_fails, except send the 10 BTC with
-        the avoid_reuse flag set to false. This means the 10 BTC send should succeed,
+        Test the same as test_sending_from_reused_address_fails, except send the 10 WHIVE with
+        the avoid_reuse flag set to false. This means the 10 WHIVE send should succeed,
         where it fails in test_sending_from_reused_address_fails.
         '''
         self.log.info("Test sending from reused address with avoid_reuse=false")
@@ -216,11 +216,11 @@ class AvoidReuseTest(BitcoinTestFramework):
     def test_sending_from_reused_address_fails(self, second_addr_type):
         '''
         Test the simple case where [1] generates a new address A, then
-        [0] sends 10 BTC to A.
-        [1] spends 5 BTC from A. (leaving roughly 5 BTC useable)
-        [0] sends 10 BTC to A again.
-        [1] tries to spend 10 BTC (fails; dirty).
-        [1] tries to spend 4 BTC (succeeds; change address sufficient)
+        [0] sends 10 WHIVE to A.
+        [1] spends 5 WHIVE from A. (leaving roughly 5 WHIVE useable)
+        [0] sends 10 WHIVE to A again.
+        [1] tries to spend 10 WHIVE (fails; dirty).
+        [1] tries to spend 4 WHIVE (succeeds; change address sufficient)
         '''
         self.log.info("Test sending from reused {} address fails".format(second_addr_type))
 
@@ -316,10 +316,10 @@ class AvoidReuseTest(BitcoinTestFramework):
 
     def test_full_destination_group_is_preferred(self):
         '''
-        Test the case where [1] only has 101 outputs of 1 BTC in the same reused
-        address and tries to send a small payment of 0.5 BTC. The wallet
+        Test the case where [1] only has 101 outputs of 1 WHIVE in the same reused
+        address and tries to send a small payment of 0.5 WHIVE. The wallet
         should use 100 outputs from the reused address as inputs and not a
-        single 1 BTC input, in order to join several outputs from the reused
+        single 1 WHIVE input, in order to join several outputs from the reused
         address.
         '''
         self.log.info("Test that full destination groups are preferred in coin selection")
@@ -330,7 +330,7 @@ class AvoidReuseTest(BitcoinTestFramework):
         new_addr = self.nodes[1].getnewaddress()
         ret_addr = self.nodes[0].getnewaddress()
 
-        # Send 101 outputs of 1 BTC to the same, reused address in the wallet
+        # Send 101 outputs of 1 WHIVE to the same, reused address in the wallet
         for _ in range(101):
             self.nodes[0].sendtoaddress(new_addr, 1)
 
@@ -347,8 +347,8 @@ class AvoidReuseTest(BitcoinTestFramework):
 
     def test_all_destination_groups_are_used(self):
         '''
-        Test the case where [1] only has 202 outputs of 1 BTC in the same reused
-        address and tries to send a payment of 200.5 BTC. The wallet
+        Test the case where [1] only has 202 outputs of 1 WHIVE in the same reused
+        address and tries to send a payment of 200.5 WHIVE. The wallet
         should use all 202 outputs from the reused address as inputs.
         '''
         self.log.info("Test that all destination groups are used")
@@ -359,7 +359,7 @@ class AvoidReuseTest(BitcoinTestFramework):
         new_addr = self.nodes[1].getnewaddress()
         ret_addr = self.nodes[0].getnewaddress()
 
-        # Send 202 outputs of 1 BTC to the same, reused address in the wallet
+        # Send 202 outputs of 1 WHIVE to the same, reused address in the wallet
         for _ in range(202):
             self.nodes[0].sendtoaddress(new_addr, 1)
 

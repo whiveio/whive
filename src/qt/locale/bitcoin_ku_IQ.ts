@@ -18,10 +18,6 @@
         <translation>کۆپیکردنی ناونیشانی هەڵبژێردراوی ئێستا بۆ کلیپ بۆردی سیستەم</translation>
     </message>
     <message>
-        <source>Copy the currently selected address to the system clipboard</source>
-        <translation>کۆپیکردنی ناونیشانی هەڵبژێردراوی ئێستا بۆ کلیپ بۆردی سیستەم</translation>
-    </message>
-    <message>
         <source>&amp;Copy</source>
         <translation type="unfinished">&amp;ڕوونووس</translation>
     </message>
@@ -36,18 +32,6 @@
     <message>
         <source>Enter address or label to search</source>
         <translation type="unfinished">ناونیشانێک بنووسە یان پێناسەیەک داخڵ بکە بۆ گەڕان</translation>
-    </message>
-    <message>
-        <source>Export the data in the current tab to a file</source>
-        <translation>ناردنی داتا لە خشتەبەندی ئێستا بۆ فایلێک</translation>
-    </message>
-    <message>
-        <source>Delete the currently selected address from the list</source>
-        <translation>سڕینەوەی ناونیشانی هەڵبژێردراوی ئێستا لە لیستەکە</translation>
-    </message>
-    <message>
-        <source>Enter address or label to search</source>
-        <translation>ناونیشانێک بنووسە یان پێناسەیەک داخڵ بکە بۆ گەڕان</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
@@ -98,10 +82,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Copy &amp;Label</source>
         <translation type="unfinished">کۆپی &amp;ناونیشان</translation>
-    </message>
-    <message>
-        <source>Copy &amp;Label</source>
-        <translation>کۆپی &amp;ناونیشان</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -168,13 +148,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
         <translation type="unfinished">گرنگ: هەر پاڵپشتێکی پێشووت دروست کردووە لە فایلی جزدانەکەت دەبێت جێگۆڕکێی پێ بکرێت لەگەڵ فایلی جزدانی نهێنی تازە دروستکراو. لەبەر هۆکاری پاراستن، پاڵپشتەکانی پێشووی فایلی جزدانێکی نهێنی نەکراو بێ سوود دەبن هەر کە دەستت کرد بە بەکارهێنانی جزدانی نوێی کۆدکراو.</translation>
     </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(بێ ناونیشان)
-
-</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>QObject</name>
     <message>
@@ -230,14 +204,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </context>
 <context>
     <name>BitcoinGUI</name>
-    <message>
-        <source>Click to disable network activity.</source>
-        <translation>کرتە بکە بۆ ناچالاککردنی چالاکی تۆڕ.</translation>
-    </message>
-    <message>
-        <source>Click to enable network activity again.</source>
-        <translation>کرتە بکە بۆ چالاککردنی چالاکی تۆڕی دووبارە.</translation>
-    </message>
     <message>
         <source>&amp;Send</source>
         <translation>&amp;ناردن</translation>
@@ -308,42 +274,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">رێکەت</translation>
     </message>
     <message>
-        <source>Copy label</source>
-        <translation>Copy label</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Copy amount</translation>
-    </message>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>Copy transaction ID</translation>
-    </message>
-    <message>
-        <source>Copy quantity</source>
-        <translation>Copy quantity</translation>
-    </message>
-    <message>
-        <source>Copy fee</source>
-        <translation>Copy fee</translation>
-    </message>
-    <message>
-        <source>Copy after fee</source>
-        <translation>Copy after fee</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>Copy bytes</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>Copy dust</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>Copy change</translation>
-    </message>
-    <message>
         <source>yes</source>
         <translation type="unfinished">بەڵێ</translation>
     </message>
@@ -354,12 +284,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>(no label)</source>
         <translation type="unfinished">(بێ ناونیشان)
-
-</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(بێ ناونیشان)
 
 </translation>
     </message>
@@ -399,26 +323,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>%1 will download and store a copy of the Bitcoin block chain.</source>
         <translation type="unfinished">%1 کۆپیەکی زنجیرەی بلۆکی بیتکۆپ دائەبەزێنێت و خەزنی دەکات.</translation>
-    </message>
-    <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
-        <translation>کاتێک کرتە لە پەسەندە دەکەیت، %1 دەست دەکات بە داگرتن و پرۆسەی زنجیرەبلۆکی %4 (%2GB) بە سەرەتاییترین مامەڵەکان لە %3 دەست پێدەکات کاتێک %4 لە سەرەتادا دەستی پێکرد.</translation>
-    </message>
-    <message>
-        <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
-        <translation>دووبارە کردنەوەی ئەم ڕێکخستنە پێویستی بە دووبارە داگرتنی تەواوی بەربەستەکە هەیە. خێراترە بۆ داگرتنی زنجیرەی تەواو سەرەتا و داگرتنی دواتر. هەندێک تایبەتمەندی پێشکەوتوو لە کار دەهێنێت.</translation>
-    </message>
-    <message>
-        <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
-        <translation>ئەم هاوکاتکردنە سەرەتاییە زۆر داوای دەکات، و لەوانەیە کێشەکانی رەقەواڵە لەگەڵ کۆمپیوتەرەکەت دابخات کە پێشتر تێبینی نەکراو بوو. هەر جارێک کە %1 رادەدەیت، بەردەوام دەبێت لە داگرتن لەو شوێنەی کە بەجێی هێشت.</translation>
-    </message>
-    <message>
-        <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
-        <translation>ئەگەر تۆ دیاریت کردووە بۆ سنووردارکردنی کۆگە زنجیرەی بلۆک (کێڵکردن)، هێشتا داتای مێژووی دەبێت دابەزێنرێت و پرۆسەی بۆ بکرێت، بەڵام دواتر دەسڕدرێتەوە بۆ ئەوەی بەکارهێنانی دیسکەکەت کەم بێت.</translation>
-    </message>
-    <message>
-        <source>%1 will download and store a copy of the Bitcoin block chain.</source>
-        <translation>%1 کۆپیەکی زنجیرەی بلۆکی بیتکۆپ دائەبەزێنێت و خەزنی دەکات.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -503,10 +407,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 </context>
 <context>
     <name>PSBTOperationsDialog</name>
-    <message>
-        <source>Copy to Clipboard</source>
-        <translation>Copy to Clipboard</translation>
-    </message>
     <message>
         <source>or</source>
         <translation type="unfinished">یان</translation>
@@ -643,32 +543,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">پیشاندانی داواکارییە دیاریکراوەکان (هەمان کرتەی دووانی کرتەکردن دەکات لە تۆمارێک)</translation>
     </message>
     <message>
-        <source>Show the selected request (does the same as double clicking an entry)</source>
-        <translation>پیشاندانی داواکارییە دیاریکراوەکان (هەمان کرتەی دووانی کرتەکردن دەکات لە تۆمارێک)</translation>
-    </message>
-    <message>
         <source>Show</source>
         <translation type="unfinished">پیشاندان</translation>
     </message>
     <message>
         <source>Remove</source>
         <translation type="unfinished">سڕینەوە</translation>
-    </message>
-    <message>
-        <source>Copy URI</source>
-        <translation>Copy URI</translation>
-    </message>
-    <message>
-        <source>Copy label</source>
-        <translation>Copy label</translation>
-    </message>
-    <message>
-        <source>Copy message</source>
-        <translation>Copy message</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Copy amount</translation>
     </message>
     </context>
 <context>
@@ -680,14 +560,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Message:</source>
         <translation type="unfinished">پەیام:</translation>
-    </message>
-    <message>
-        <source>Copy &amp;URI</source>
-        <translation>Copy &amp;URI</translation>
-    </message>
-    <message>
-        <source>Copy &amp;Address</source>
-        <translation>Copy &amp;Address</translation>
     </message>
     </context>
 <context>
@@ -701,22 +573,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">پێناسەکردن</translation>
     </message>
     <message>
-        <source>Label</source>
-        <translation>پێناسەکردن</translation>
-    </message>
-    <message>
         <source>Message</source>
         <translation type="unfinished">پەیام</translation>
     </message>
     <message>
         <source>(no label)</source>
         <translation type="unfinished">(بێ ناونیشان)
-
-</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(بێ ناونیشان)
 
 </translation>
     </message>
@@ -738,42 +600,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
         <translation type="unfinished">کاتێک قەبارەی مامەڵە کەمتر بێت لە بۆشایی بلۆکەکان، لەوانەیە کانەکان و گرێکانی گواستنەوە کەمترین کرێ جێبەجێ بکەن. پێدانی تەنیا ئەم کەمترین کرێیە تەنیا باشە، بەڵام ئاگاداربە کە ئەمە دەتوانێت ببێتە هۆی ئەوەی کە هەرگیز مامەڵەیەکی پشتڕاستکردنەوە ئەنجام بدرێت جارێک داواکاری زیاتر هەیە بۆ مامەڵەکانی بیت کۆبیتکۆ لەوەی کە تۆڕەکە دەتوانێت ئەنجامی بدات.</translation>
-    </message>
-    <message>
-        <source>Hide transaction fee settings</source>
-        <translation>شاردنەوەی ڕێکخستنەکانی باجی مامەڵە</translation>
-    </message>
-    <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation>کاتێک قەبارەی مامەڵە کەمتر بێت لە بۆشایی بلۆکەکان، لەوانەیە کانەکان و گرێکانی گواستنەوە کەمترین کرێ جێبەجێ بکەن. پێدانی تەنیا ئەم کەمترین کرێیە تەنیا باشە، بەڵام ئاگاداربە کە ئەمە دەتوانێت ببێتە هۆی ئەوەی کە هەرگیز مامەڵەیەکی پشتڕاستکردنەوە ئەنجام بدرێت جارێک داواکاری زیاتر هەیە بۆ مامەڵەکانی بیت کۆبیتکۆ لەوەی کە تۆڕەکە دەتوانێت ئەنجامی بدات.</translation>
-    </message>
-    <message>
-        <source>Copy quantity</source>
-        <translation>Copy quantity</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Copy amount</translation>
-    </message>
-    <message>
-        <source>Copy fee</source>
-        <translation>Copy fee</translation>
-    </message>
-    <message>
-        <source>Copy after fee</source>
-        <translation>Copy after fee</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>Copy bytes</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>Copy dust</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>Copy change</translation>
     </message>
     <message>
         <source>or</source>
@@ -906,22 +732,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         </translation>
     </message>
     <message>
-        <source>Label</source>
-        <translation>پێناسەکردن</translation>
-    </message>
-    <message>
         <source>Sent to</source>
         <translation type="unfinished">ناردن بۆ</translation>
     </message>
     <message>
         <source>(no label)</source>
         <translation type="unfinished">(بێ ناونیشان)
-
-</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(بێ ناونیشان)
 
 </translation>
     </message>
@@ -937,30 +753,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ناونیشانێک بنووسە، ناسنامەی مامەڵە، یان ناولێنانێک بۆ گەڕان بنووسە</translation>
     </message>
     <message>
-        <source>Copy label</source>
-        <translation>Copy label</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>Copy amount</translation>
-    </message>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>Copy transaction ID</translation>
-    </message>
-    <message>
-        <source>Copy raw transaction</source>
-        <translation>Copy raw transaction</translation>
-    </message>
-    <message>
-        <source>Copy full transaction details</source>
-        <translation>Copy full transaction details</translation>
-    </message>
-    <message>
-        <source>Comma separated file (*.csv)</source>
-        <translation>فایلی جیاکراوە بە کۆما (*.csv)</translation>
-    </message>
-    <message>
         <source>Date</source>
         <translation type="unfinished">رێکەت</translation>
     </message>
@@ -973,20 +765,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">پێناسەکردن</translation>
     </message>
     <message>
-        <source>Label</source>
-        <translation>پێناسەکردن</translation>
-    </message>
-    <message>
         <source>Address</source>
         <translation type="unfinished">ناوونیشان</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
         <translation type="unfinished">هەناردەکردن سەرکەوتوو نەبوو</translation>
-    </message>
-    <message>
-        <source>Exporting Failed</source>
-        <translation>هەناردەکردن سەرکەوتوو نەبوو</translation>
     </message>
     <message>
         <source>to</source>
@@ -1002,10 +786,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Export the data in the current tab to a file</source>
         <translation type="unfinished">ناردنی داتا لە خشتەبەندی ئێستا بۆ فایلێک</translation>
-    </message>
-    <message>
-        <source>Export the data in the current tab to a file</source>
-        <translation>ناردنی داتا لە خشتەبەندی ئێستا بۆ فایلێک</translation>
     </message>
     <message>
         <source>Error</source>

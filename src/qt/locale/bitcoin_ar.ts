@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>أنشئ عنوانًا جديدًا</translation>
+        <translation>إنشاء عنوان جديد</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>انسخ العنوان المحدد حاليًا إلى الحافظة</translation>
+        <translation>نسخ العنوان المحدد حاليًا إلى حافظة النظام</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -1000,10 +1000,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">إنشاء محفظة</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>محفظة</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">إسم المحفظة</translation>
     </message>
@@ -1022,10 +1018,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">خيارات متقدمة</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>خيارات متقدمة</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1384,10 +1376,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">(0 = تلقائي, &lt;0 = اترك هذا العدد من الأنوية حر)</translation>
     </message>
     <message>
-        <source>(0 = auto, &lt;0 = leave that many cores free)</source>
-        <translation>(0 = تلقائي, &lt;0 = اترك هذا العدد من الأنوية حر)</translation>
-    </message>
-    <message>
         <source>W&amp;allet</source>
         <translation type="unfinished">&amp;محفظة</translation>
     </message>
@@ -1404,16 +1392,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">اذا قمت بتعطيل الانفاق من النقود الغير مؤكدة، النقود من معاملة غير مؤكدة لن تكون قابلة للاستعمال حتى تحتوي تلك المعاملة على الأقل على تأكيد واحد. هذا أيضا يؤثر على كيفية حساب رصيدك.</translation>
     </message>
     <message>
-        <source>If you disable the spending of unconfirmed change, the change from a transaction cannot be used until that transaction has at least one confirmation. This also affects how your balance is computed.</source>
-        <translation>اذا قمت بتعطيل الانفاق من النقود الغير مؤكدة، النقود من معاملة غير مؤكدة لن تكون قابلة للاستعمال حتى تحتوي تلك المعاملة على الأقل على تأكيد واحد. هذا أيضا يؤثر على كيفية حساب رصيدك.</translation>
-    </message>
-    <message>
         <source>&amp;Spend unconfirmed change</source>
         <translation type="unfinished">دفع الفكة غير المؤكدة</translation>
-    </message>
-    <message>
-        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>فتح منفذ خادم البتكوين تلقائيا على الموجه. هذا فقط يعمل عندما يكون الموجه الخاص بك يدعم UPnP ومفعل ايضا.</translation>
     </message>
     <message>
         <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
@@ -1754,14 +1734,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">دفع رسوم المعاملة:</translation>
     </message>
     <message>
-        <source>Unable to calculate transaction fee or total transaction amount.</source>
-        <translation>غير قادر على حساب رسوم المعاملة أو إجمالي مبلغ المعاملة.</translation>
-    </message>
-    <message>
-        <source>Pays transaction fee: </source>
-        <translation>دفع رسوم المعاملة:</translation>
-    </message>
-    <message>
         <source>Total Amount</source>
         <translation type="unfinished">القيمة الإجمالية</translation>
     </message>
@@ -1878,10 +1850,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">دعم كود الـQR غير متوفر.</translation>
     </message>
     <message>
-        <source>QR code support not available.</source>
-        <translation>دعم كود الـQR غير متوفر.</translation>
-    </message>
-    <message>
         <source>Save QR Code</source>
         <translation type="unfinished">حفظ رمز الاستجابة السريعة QR</translation>
     </message>
@@ -1916,10 +1884,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Blocksdir</source>
         <translation type="unfinished">ملف الكتل blocksdir</translation>
-    </message>
-    <message>
-        <source>Blocksdir</source>
-        <translation>ملف الكتل blocksdir</translation>
     </message>
     <message>
         <source>Startup time</source>
@@ -2010,14 +1974,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">تعيين AS</translation>
     </message>
     <message>
-        <source>The mapped Autonomous System used for diversifying peer selection.</source>
-        <translation>يستخدم النظام المستقل المعين لتنويع اختيار الأقران.</translation>
-    </message>
-    <message>
-        <source>Mapped AS</source>
-        <translation>تعيين AS</translation>
-    </message>
-    <message>
         <source>User Agent</source>
         <translation type="unfinished">وكيل المستخدم</translation>
     </message>
@@ -2028,10 +1984,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Current block height</source>
         <translation type="unfinished">ارتفاع الكتلة الحالي</translation>
-    </message>
-    <message>
-        <source>Current block height</source>
-        <translation>ارتفاع الكتلة الحالي</translation>
     </message>
     <message>
         <source>Decrease font size</source>
@@ -2213,14 +2165,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">رسالة اختيارية مرفقة بطلب الدفع ومن الممكن أن تعرض للمرسل.</translation>
     </message>
     <message>
-        <source>An optional label to associate with the new receiving address (used by you to identify an invoice).  It is also attached to the payment request.</source>
-        <translation>وُسم اختياري للربط مع عنوان الاستقبال (يستعمل من قبلك لتحديد فاتورة). هو أيضا مرفق بطلب الدفع.</translation>
-    </message>
-    <message>
-        <source>An optional message that is attached to the payment request and may be displayed to the sender.</source>
-        <translation>رسالة اختيارية مرفقة بطلب الدفع ومن الممكن أن تعرض للمرسل.</translation>
-    </message>
-    <message>
         <source>&amp;Create new receiving address</source>
         <translation type="unfinished">و إنشاء عناوين استقبال جديدة</translation>
     </message>
@@ -2239,14 +2183,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Generate native segwit (Bech32) address</source>
         <translation type="unfinished">توليد عنوان segwit ـ (Bech32)</translation>
-    </message>
-    <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
-        <translation>عناوين segwit (المعروفة بـBech32 أو BIP-173) تخفض من رسوم المعاملة لاحقا وتوفر حماية أفضل ضد الأخطاء المطبعية، لكن المحافظ القديمة لا تدعمهم. عندما يكون هذا الخيار غير محدد، سوف يتم إنشاء عنوان متوافق مع المحافظ القديمة عوضا عن ذلك.</translation>
-    </message>
-    <message>
-        <source>Generate native segwit (Bech32) address</source>
-        <translation>توليد عنوان segwit ـ (Bech32)</translation>
     </message>
     <message>
         <source>Requested payments history</source>
@@ -2290,10 +2226,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Label:</source>
         <translation type="unfinished">وسم:</translation>
-    </message>
-    <message>
-        <source>Label:</source>
-        <translation>وسم:</translation>
     </message>
     <message>
         <source>Message:</source>
@@ -2410,20 +2342,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">يمكن أن يؤدي استخدام الرسوم الاحتياطية إلى إرسال معاملة تستغرق عدة ساعات أو أيام (أو أبدًا) للتأكيد. ضع في اعتبارك اختيار الرسوم يدويًا أو انتظر حتى تتحقق من صحة السلسلة الكاملة.</translation>
     </message>
     <message>
-        <source>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</source>
-        <translation>يمكن أن يؤدي استخدام الرسوم الاحتياطية إلى إرسال معاملة تستغرق عدة ساعات أو أيام (أو أبدًا) للتأكيد. ضع في اعتبارك اختيار الرسوم يدويًا أو انتظر حتى تتحقق من صحة السلسلة الكاملة.</translation>
-    </message>
-    <message>
         <source>Warning: Fee estimation is currently not possible.</source>
         <translation type="unfinished">تحذير: تقدير الرسوم غير ممكن في الوقت الحالي.</translation>
-    </message>
-    <message>
-        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
-
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 satoshis.</source>
-        <translation>حدد رسوم مخصصة لكل كيلوبايت (1000 بايت) من حجم المعاملة الافتراضي.
-
-ملاحظة: باعتبار أن الرسوم تحسب على أساس لكل-بايت، رسوم قدرها "100 ساتوشي لكل كيلوبايت" لحجم معاملة يتكون من 500 بايت (نصف كيلوبايت) سوف يؤدي في النهاية الى رسوم قدرها 50 ساتوشي فقط.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
@@ -2468,18 +2388,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
         <translation type="unfinished">رسوم قليلة جدا من الممكن أن تؤدي الى معاملة لن تتأكد أبدا (اقرأ التلميح).</translation>
-    </message>
-    <message>
-        <source>Hide transaction fee settings</source>
-        <translation>اخفاء اعدادات رسوم المعاملة</translation>
-    </message>
-    <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation>عندما يكون هناك حجم معاملات أقل من الفراغ في الكتل، المعدنون وعقد الترحيل أيضا من الممكن أن يفرضوا الحد الأدنى للرسوم. دفع الحد الأدنى للرسوم قد يكون على ما يرام، لكن كن حذرا بأنه هذا الشيء قد يؤدي الى معاملة لن تتأكد أبدا بمجرد أن الطلب على معاملات البتكوين قد أصبح أكثر مما تتحمله الشبكة.</translation>
-    </message>
-    <message>
-        <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
-        <translation>رسوم قليلة جدا من الممكن أن تؤدي الى معاملة لن تتأكد أبدا (اقرأ التلميح).</translation>
     </message>
     <message>
         <source>Confirmation time target:</source>
@@ -2547,21 +2455,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
  </translation>
     </message>
     <message>
-        <source>Cr&amp;eate Unsigned</source>
-        <translation>إنشاء غير موقع
- </translation>
-    </message>
-    <message>
         <source>%1 to %2</source>
         <translation type="unfinished">%1 الى %2</translation>
     </message>
     <message>
         <source>Do you want to draft this transaction?</source>
         <translation type="unfinished">هل تريد صياغة هذه المعاملة؟</translation>
-    </message>
-    <message>
-        <source>Do you want to draft this transaction?</source>
-        <translation>هل تريد صياغة هذه المعاملة؟</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
@@ -2580,10 +2479,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation type="unfinished">تم حفظ PSBT</translation>
     </message>
     <message>
-        <source>PSBT saved</source>
-        <translation>تم حفظ PSBT</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">أو</translation>
     </message>
@@ -2594,10 +2489,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Please, review your transaction.</source>
         <translation type="unfinished">رجاء، راجع معاملتك.</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction.</source>
-        <translation>رجاء، راجع معاملتك.</translation>
     </message>
     <message>
         <source>Transaction fee</source>
@@ -2612,10 +2503,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation type="unfinished">القيمة الإجمالية</translation>
     </message>
     <message>
-        <source>To review recipient list click "Show Details..."</source>
-        <translation>لمراجعة قائمة المستلمين انقر على "اظهار التفاصيل..."</translation>
-    </message>
-    <message>
         <source>Confirm send coins</source>
         <translation type="unfinished">تأكيد الإرسال Coins</translation>
     </message>
@@ -2626,10 +2513,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>Watch-only balance:</source>
         <translation type="unfinished">رصيد للاستعراض فقط:</translation>
-    </message>
-    <message>
-        <source>Watch-only balance:</source>
-        <translation>رصيد للاستعراض فقط:</translation>
     </message>
     <message>
         <source>The recipient address is not valid. Please recheck.</source>
@@ -2691,10 +2574,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation type="unfinished">العنوان الذي قمت بتحديده للتغيير ليس جزءا من هذه المحفظة. أي أو جميع الأموال في محفظتك قد يتم إرسالها لهذا العنوان. هل أنت متأكد؟</translation>
     </message>
     <message>
-        <source>The address you selected for change is not part of this wallet. Any or all funds in your wallet may be sent to this address. Are you sure?</source>
-        <translation>العنوان الذي قمت بتحديده للتغيير ليس جزءا من هذه المحفظة. أي أو جميع الأموال في محفظتك قد يتم إرسالها لهذا العنوان. هل أنت متأكد؟</translation>
-    </message>
-    <message>
         <source>(no label)</source>
         <translation type="unfinished">(بدون وسم)</translation>
     </message>
@@ -2732,10 +2611,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>The amount to send in the selected unit</source>
         <translation type="unfinished">المبلغ للإرسال في الوحدة المحددة</translation>
-    </message>
-    <message>
-        <source>The amount to send in the selected unit</source>
-        <translation>المبلغ للإرسال في الوحدة المحددة</translation>
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
@@ -2853,14 +2728,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation type="unfinished">التوقيع يعطى عندما تكون الرسالة موقعة.</translation>
     </message>
     <message>
-        <source>The signed message to verify</source>
-        <translation>الرسالة الموقعة للتحقق.</translation>
-    </message>
-    <message>
-        <source>The signature given when the message was signed</source>
-        <translation>التوقيع يعطى عندما تكون الرسالة موقعة.</translation>
-    </message>
-    <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
         <translation>تحقق من الرسالة للتأكد من توقيعها مع عنوان البتكوين المحدد</translation>
     </message>
@@ -2895,10 +2762,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>No error</source>
         <translation type="unfinished">لا  يوجد خطأ</translation>
-    </message>
-    <message>
-        <source>No error</source>
-        <translation>لا  يوجد خطأ</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
@@ -3074,20 +2937,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation type="unfinished">حجم المعاملة الافتراضي</translation>
     </message>
     <message>
-        <source>Transaction virtual size</source>
-        <translation>حجم المعاملة الافتراضي</translation>
-    </message>
-    <message>
         <source>Output index</source>
         <translation type="unfinished">مؤشر المخرجات</translation>
     </message>
     <message>
         <source> (Certificate was not verified)</source>
         <translation type="unfinished">(لم يتم التحقق من الشهادة)</translation>
-    </message>
-    <message>
-        <source> (Certificate was not verified)</source>
-        <translation>(لم يتم التحقق من الشهادة)</translation>
     </message>
     <message>
         <source>Merchant</source>
@@ -3233,10 +3088,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
     <message>
         <source>User-defined intent/purpose of the transaction.</source>
         <translation type="unfinished">تحديد سبب المعاملة من المستخدم</translation>
-    </message>
-    <message>
-        <source>User-defined intent/purpose of the transaction.</source>
-        <translation>تحديد سبب المعاملة من المستخدم</translation>
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>
@@ -3393,10 +3244,6 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">هل تريد صياغة معاملة مع زيادة في الرسوم؟</translation>
     </message>
     <message>
-        <source>Do you want to draft a transaction with fee increase?</source>
-        <translation>هل تريد صياغة معاملة مع زيادة في الرسوم؟</translation>
-    </message>
-    <message>
         <source>Current fee:</source>
         <translation type="unfinished">الأجر الحالي:</translation>
     </message>
@@ -3419,14 +3266,6 @@ Go to File &gt; Open Wallet to load a wallet.
     <message>
         <source>PSBT copied</source>
         <translation type="unfinished">تم نسخ PSBT</translation>
-    </message>
-    <message>
-        <source>Can't draft transaction.</source>
-        <translation>لا يمكن صياغة المعاملة</translation>
-    </message>
-    <message>
-        <source>PSBT copied</source>
-        <translation>تم نسخ PSBT</translation>
     </message>
     <message>
         <source>Can't sign transaction.</source>
@@ -3474,26 +3313,6 @@ Go to File &gt; Open Wallet to load a wallet.
     <message>
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">غير قادر على فك تشفير PSBT</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>تعذر فك تشفير PSBT من الحافظة (base64 غير صالح)</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>تحميل بيانات المعاملة</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>معاملة موقعة جزئيا (psbt.*)</translation>
-    </message>
-    <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation>ملف PSBT يجب أن يكون أصغر من 100 ميجابايت</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT</source>
-        <translation>غير قادر على فك تشفير PSBT</translation>
     </message>
     <message>
         <source>Backup Wallet</source>
@@ -3551,14 +3370,6 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">رجاء تأكد من أن التاريخ والوقت في حاسوبك صحيحان! اذا كانت ساعتك خاطئة، %s لن يعمل كما بصورة صحيحة.</translation>
     </message>
     <message>
-        <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>خطأ في قراءة %s! جميع المفاتيح قرأت بشكل صحيح، لكن بيانات المعاملة أو إدخالات سجل العناوين قد تكون مفقودة أو غير صحيحة.</translation>
-    </message>
-    <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
-        <translation>رجاء تأكد من أن التاريخ والوقت في حاسوبك صحيحان! اذا كانت ساعتك خاطئة، %s لن يعمل كما بصورة صحيحة.</translation>
-    </message>
-    <message>
         <source>Please contribute if you find %s useful. Visit %s for further information about the software.</source>
         <translation type="unfinished">يرجى المساهمة إذا وجدت %s مفيداً. تفضل بزيارة %s لمزيد من المعلومات حول البرنامج.</translation>
     </message>
@@ -3577,18 +3388,6 @@ Go to File &gt; Open Wallet to load a wallet.
     <message>
         <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
         <translation type="unfinished">قاعدة بيانات الكتل تحتوي على كتلة يبدو أنها من المستقبل. قد يكون هذا بسبب أن التاريخ والوقت في حاسوبك قم ضبط بشكل غير صحيح. قم بإعادة بناء قاعدة بيانات الكتل في حال كنت متأكد من أن التاريخ والوقت قد تم ضبطهما بشكل صحيح.</translation>
-    </message>
-    <message>
-        <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
-        <translation>Error: Listening for incoming connections failed (listen returned error %s)</translation>
-    </message>
-    <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation>قيمة غير صالحة لـ -maxtxfee=&lt;amount&gt;: '%s' (يجب أن تحتوي على الحد الأدنى للعمولة من %s على الأقل لتجنب المعاملات العالقة.</translation>
     </message>
     <message>
         <source>The transaction amount is too small to send after the fee has been deducted</source>
@@ -3619,32 +3418,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">تحذير: لا يبدو أننا نتفق تمامًا مع أقراننا! قد تحتاج إلى الترقية ، أو قد تحتاج العقد الأخرى إلى الترقية.</translation>
     </message>
     <message>
-        <source>This error could occur if this wallet was not shutdown cleanly and was last loaded using a build with a newer version of Berkeley DB. If so, please use the software that last loaded this wallet</source>
-        <translation>This error could occur if this wallet was not shutdown cleanly and was last loaded using a build with a newer version of Berkeley DB. If so, please use the software that last loaded this wallet</translation>
-    </message>
-    <message>
-        <source>This is the maximum transaction fee you pay (in addition to the normal fee) to prioritize partial spend avoidance over regular coin selection.</source>
-        <translation>This is the maximum transaction fee you pay (in addition to the normal fee) to prioritize partial spend avoidance over regular coin selection.</translation>
-    </message>
-    <message>
-        <source>Transaction needs a change address, but we can't generate it. Please call keypoolrefill first.</source>
-        <translation>Transaction needs a change address, but we can't generate it. Please call keypoolrefill first.</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
         <translation type="unfinished">تحتاج إلى إعادة إنشاء قاعدة البيانات باستخدام -reindex للعودة إلى الوضعية الغير مجردة. هذا سوف يعيد تحميل سلسلة الكتل بأكملها</translation>
-    </message>
-    <message>
-        <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
-        <translation>-maxtxfee الموضوع عالي جدا! رسوم بهذا الحجم من الممكن أن تدفع على معاملة.</translation>
-    </message>
-    <message>
-        <source>This is the transaction fee you may pay when fee estimates are not available.</source>
-        <translation>هذه هي رسوم المعاملة التي قد تدفعها عندما تكون عملية حساب الرسوم غير متوفرة.</translation>
-    </message>
-    <message>
-        <source>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</source>
-        <translation>Total length of network version string (%i) exceeds maximum length (%i). Reduce the number or size of uacomments.</translation>
     </message>
     <message>
         <source>%s is set very high!</source>
@@ -3657,14 +3432,6 @@ Go to File &gt; Open Wallet to load a wallet.
     <message>
         <source>Cannot resolve -%s address: '%s'</source>
         <translation type="unfinished">لا يمكن الحل - %s العنوان:  '%s'</translation>
-    </message>
-    <message>
-        <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
-        <translation>عملية حساب الرسوم فشلت. الرسوم الاحتياطية غير مفعلة. انتظر عدة كتل أو مكن خيار الرسوم الاحتياطية.</translation>
-    </message>
-    <message>
-        <source>Warning: Private keys detected in wallet {%s} with disabled private keys</source>
-        <translation>تحذير: تم اكتشاف مفاتيح خاصة في المحفظة {%s} مع مفاتيح خاصة موقفة.</translation>
     </message>
     <message>
         <source>Cannot write to data directory '%s'; check permissions.</source>

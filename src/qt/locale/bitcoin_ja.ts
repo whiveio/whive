@@ -76,11 +76,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 署名は、タイプが「レガシー」のアドレスのみ可能です。</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>これらは支払いを受け取るための、あなたの Bitcoin アドレスです。新しいアドレスを作成するには受取タブ内の「新しい受取用アドレスを作成」ボタンを使用します。</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">アドレスをコピー(&amp;C)</translation>
     </message>
@@ -709,14 +704,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">概要タブにある値を隠す</translation>
     </message>
     <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;値を隠す</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>概要タブにある値を隠す</translation>
-    </message>
-    <message>
         <source>default wallet</source>
         <translation type="unfinished">デフォルトウォレット</translation>
     </message>
@@ -1078,10 +1065,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ウォレットを作成する</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>ウォレット</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">ウォレット名</translation>
     </message>
@@ -1100,10 +1083,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">高度なオプション</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>高度なオプション</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1138,14 +1117,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">外部署名者</translation>
     </message>
     <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation>scriptPubKeyの管理にDescriptorを使用します。</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>Descriptorウォレット</translation>
-    </message>
-    <message>
         <source>Create</source>
         <translation type="unfinished">作成</translation>
     </message>
@@ -1157,10 +1128,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>Compiled without external signing support (required for external signing)</source>
         <extracomment>"External signing" means using devices such as hardware wallets.</extracomment>
         <translation type="unfinished">外部署名なしで処理されました (外部署名が必要です)</translation>
-    </message>
-    <message>
-        <source>Compiled without sqlite support (required for descriptor wallets)</source>
-        <translation>（Descriptorウォレットに必要な）sqliteサポート無しでコンパイル</translation>
     </message>
 </context>
 <context>
@@ -1630,14 +1597,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Tor onion serviceを介してピアに到達するために別のSOCKS&amp;5プロキシを使用します:</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Tor onion service用の別のSOCKS5プロキシを介してBitcoinネットワークに接続します。</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
-        <translation>Tor onion serviceを介してピアに到達するために別のSOCKS&amp;5プロキシを使用します:</translation>
-    </message>
-    <message>
         <source>&amp;Third party transaction URLs</source>
         <translation type="unfinished">サードパーティの取引確認URL(&amp;T)</translation>
     </message>
@@ -1805,14 +1764,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Txをブロードキャスト</translation>
     </message>
     <message>
-        <source>Sign Tx</source>
-        <translation>署名されたトランザクション</translation>
-    </message>
-    <message>
-        <source>Broadcast Tx</source>
-        <translation>Txをブロードキャスト</translation>
-    </message>
-    <message>
         <source>Copy to Clipboard</source>
         <translation type="unfinished">クリップボードにコピー</translation>
     </message>
@@ -1841,22 +1792,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">%1個のインプットに署名しましたが、さらに多くの署名が必要です。</translation>
     </message>
     <message>
-        <source>Failed to load transaction: %1</source>
-        <translation>%1 : トランザクションの読込失敗</translation>
-    </message>
-    <message>
-        <source>Failed to sign transaction: %1</source>
-        <translation>%1 : トランザクション署名失敗</translation>
-    </message>
-    <message>
-        <source>Could not sign any more inputs.</source>
-        <translation>これ以上インプットに署名できませんでした。</translation>
-    </message>
-    <message>
-        <source>Signed %1 inputs, but more signatures are still required.</source>
-        <translation>%1個のインプットに署名しましたが、さらに多くの署名が必要です。</translation>
-    </message>
-    <message>
         <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
         <translation type="unfinished">トランザクションへの署名が成功しました。トランザクションのブロードキャストの準備ができています。</translation>
     </message>
@@ -1877,22 +1812,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">PSBTをクリップボードにコピーしました.</translation>
     </message>
     <message>
-        <source>Unknown error processing transaction.</source>
-        <translation>トランザクション処理中の不明なエラー</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast successfully! Transaction ID: %1</source>
-        <translation>トランザクションのブロードキャストに成功しました！トランザクションID: %1</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast failed: %1</source>
-        <translation>トランザクションのブロードキャストが失敗しました: %1</translation>
-    </message>
-    <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation>PSBTをクリップボードにコピーしました.</translation>
-    </message>
-    <message>
         <source>Save Transaction Data</source>
         <translation type="unfinished">トランザクションデータの保存</translation>
     </message>
@@ -1900,10 +1819,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>Partially Signed Transaction (Binary)</source>
         <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
         <translation type="unfinished">部分的に署名されたトランザクション（バイナリ）</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>部分的に署名されたトランザクションファイル (*.psbt)</translation>
     </message>
     <message>
         <source>PSBT saved to disk.</source>
@@ -1920,18 +1835,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Pays transaction fee: </source>
         <translation type="unfinished">トランザクション手数料: </translation>
-    </message>
-    <message>
-        <source> * Sends %1 to %2</source>
-        <translation> *  %1 から %2 へ送信</translation>
-    </message>
-    <message>
-        <source>Unable to calculate transaction fee or total transaction amount.</source>
-        <translation>取引手数料または合計取引金額を計算できません。</translation>
-    </message>
-    <message>
-        <source>Pays transaction fee: </source>
-        <translation>トランザクション手数料: </translation>
     </message>
     <message>
         <source>Total Amount</source>
@@ -2206,10 +2109,6 @@ BIP70には広範なセキュリティー上の問題があるので、ウォレ
         <translation type="unfinished">現在のブロック高</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>現在のブロック高</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">現在のデータディレクトリから %1 のデバッグ用ログファイルを開きます。ログファイルが巨大な場合、数秒かかることがあります。</translation>
     </message>
@@ -2236,10 +2135,6 @@ BIP70には広範なセキュリティー上の問題があるので、ウォレ
     <message>
         <source>The network protocol this peer is connected through: IPv4, IPv6, Onion, I2P, or CJDNS.</source>
         <translation type="unfinished">このピアと接続しているネットワーク: IPv4, IPv6, Onion, I2P, or CJDNS.</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>パーミッション</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2924,10 +2819,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">HWIのエラー</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation>未署名で作成</translation>
-    </message>
-    <message>
         <source>Save Transaction Data</source>
         <translation type="unfinished">トランザクションデータの保存</translation>
     </message>
@@ -2945,14 +2836,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Externalの残高:</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>部分的に署名されたトランザクションファイル (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>PSBTは保存されました。</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">または</translation>
     </message>
@@ -2963,10 +2846,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation type="unfinished">トランザクション提案を確認してください。これにより、部分的に署名されたビットコイン・トランザクション（PSBT）が作成されます。これを保存するかコピーして例えばオフラインの %1 ウォレットやPSBTを扱えるハードウェアウォレットで残りの署名が出来ます。</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>トランザクション提案を確認してください。これにより、部分的に署名されたビットコイン・トランザクション（PSBT）が作成されます。これを保存するかコピーして例えばオフラインの %1 ウォレットやPSBTを扱えるハードウェアウォレットで残りの署名が出来ます。</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -2995,10 +2874,6 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     <message>
         <source>Watch-only balance:</source>
         <translation type="unfinished">監視限定残高: </translation>
-    </message>
-    <message>
-        <source>Watch-only balance:</source>
-        <translation>監視限定残高</translation>
     </message>
     <message>
         <source>The recipient address is not valid. Please recheck.</source>
@@ -3846,26 +3721,6 @@ Go to File &gt; Open Wallet to load a wallet.
     <message>
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">PSBTファイルを復号できません</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>クリップボードのPSBTをデコードできません（無効なbase64）</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>トランザクションデータのロード</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>部分的に署名されたトランザクション (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation>PSBTファイルは、100MBより小さい必要があります.</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT</source>
-        <translation>PSBTファイルを復号できません.</translation>
     </message>
     <message>
         <source>Backup Wallet</source>

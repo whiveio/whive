@@ -471,18 +471,18 @@ was already being broken by the move to descriptors.
   is introduced to the `sendtoaddress`, `sendmany`, `fundrawtransaction` and
   `walletcreatefundedpsbt` RPCs as well as to the experimental new `send`
   RPC. The legacy `feeRate` option in `fundrawtransaction` and
-  `walletcreatefundedpsbt` still exists for setting a fee rate in BTC per 1,000
-  vbytes (BTC/kvB), but it is expected to be deprecated soon to avoid
-  confusion. For these RPCs, the fee rate error message is updated from BTC/kB
-  to sat/vB and the help documentation in BTC/kB is updated to BTC/kvB. The
+  `walletcreatefundedpsbt` still exists for setting a fee rate in WHIVE per 1,000
+  vbytes (WHIVE/kvB), but it is expected to be deprecated soon to avoid
+  confusion. For these RPCs, the fee rate error message is updated from WHIVE/kB
+  to sat/vB and the help documentation in WHIVE/kB is updated to WHIVE/kvB. The
   `send` and `sendtoaddress` RPC examples are updated to aid users in creating
   transactions with explicit fee rates. (#20305, #11413)
 
-- The `bumpfee` RPC `fee_rate` option is changed from BTC/kvB to sat/vB and the
+- The `bumpfee` RPC `fee_rate` option is changed from WHIVE/kvB to sat/vB and the
   help documentation is updated. Users are warned that this is a breaking API
   change, but it should be relatively benign: the large (100,000 times)
-  difference between BTC/kvB and sat/vB units means that a transaction with a
-  fee rate mistakenly calculated in BTC/kvB rather than sat/vB should raise an
+  difference between WHIVE/kvB and sat/vB units means that a transaction with a
+  fee rate mistakenly calculated in WHIVE/kvB rather than sat/vB should raise an
   error due to the fee rate being set too low. In the worst case, the
   transaction may send at 1 sat/vB, but as Replace-by-Fee (BIP125 RBF) is active
   by default when an explicit fee rate is used, the transaction fee can be

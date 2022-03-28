@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Copie la dirección actualmente seleccionada al portapapeles del sistema</translation>
+        <translation>Copiar la dirección seleccionada al portapapeles del sistema</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>Eliminar la dirección actualmente seleccionada de la lista</translation>
+        <translation>Borrar de la lista la dirección seleccionada</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -35,15 +35,15 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Exportar los datos de la pestaña actual a un archivo</translation>
+        <translation>Exportar a un archivo los datos de esta pestaña</translation>
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation>exportar</translation>
+        <translation>&amp;Exportar</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>Borrar</translation>
+        <translation>&amp;Borrar</translation>
     </message>
     <message>
         <source>Choose the address to send coins to</source>
@@ -120,7 +120,7 @@ Firmar solo es posible con direcciones del tipo Legacy.</translation>
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-        <translation>Diálogo de frase de contraseña</translation>
+        <translation>Diálogo de contraseña</translation>
     </message>
     <message>
         <source>Enter passphrase</source>
@@ -330,7 +330,7 @@ Firmar solo es posible con direcciones del tipo Legacy.</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
-        <translation>Navegar historial de transacciones</translation>
+        <translation>Examinar el historial de transacciones</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -541,7 +541,7 @@ Firmar solo es posible con direcciones del tipo Legacy.</translation>
     </message>
     <message>
         <source>Incoming transaction</source>
-        <translation>Incoming transaction</translation>
+        <translation>Transacción entrante</translation>
     </message>
     <message>
         <source>Original message:</source>
@@ -877,7 +877,7 @@ Firmar solo es posible con direcciones del tipo Legacy.</translation>
     <name>RPCConsole</name>
     <message>
         <source>Client version</source>
-        <translation>Client version</translation>
+        <translation>Versión del cliente</translation>
     </message>
     <message>
         <source>&amp;Information</source>
@@ -1227,10 +1227,6 @@ Vaya a Archivo&gt; Abrir monedero para cargar un monedero.
         <translation type="unfinished">No se puede decodificar PSBT desde el portapapeles (inválido base64)</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>No se puede decodificar PSBT desde el portapapeles (inválido base64)</translation>
-    </message>
-    <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Cargar datos de la transacción</translation>
     </message>
@@ -1280,10 +1276,6 @@ Vaya a Archivo&gt; Abrir monedero para cargar un monedero.
     <message>
         <source>Cannot set -peerblockfilters without -blockfilterindex.</source>
         <translation type="unfinished">No se puede establecer -peerblockfilters sin -blockfilterindex.</translation>
-    </message>
-    <message>
-        <source>Cannot set -peerblockfilters without -blockfilterindex.</source>
-        <translation>No se puede establecer -peerblockfilters sin -blockfilterindex.</translation>
     </message>
     <message>
         <source>Disk space is too low!</source>

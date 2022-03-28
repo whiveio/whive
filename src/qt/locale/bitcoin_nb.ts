@@ -39,7 +39,7 @@
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;Eksporter</translation>
+        <translation>&amp;Eksport</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -73,11 +73,6 @@
         <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Dette er dine Bitcoin adresser for å motta betalinger. Bruk 'Lag ny mottaksadresse' knappen i motta tabben for å lage nye adresser. Signering er bare mulig for adresser av typen 'legacy'.</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Dette er dine Bitcoin adresser for å motta betalinger. Bruk 'Lag ny mottaksadresse' knappen i motta tabben for å lage nye adresser. Signering er bare mulig for adresser av typen 'legacy'.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -650,14 +645,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Lukk alle lommebøker</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>Lukk alle lommebøker...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Lukk alle lommebøker</translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">Vis %1-hjelpemeldingen for å få en liste over mulige Bitcoin-kommandolinjealternativer</translation>
     </message>
@@ -668,14 +655,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Mask the values in the Overview tab</source>
         <translation type="unfinished">Masker verdiene i oversiktstabben</translation>
-    </message>
-    <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;Masker verdier</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>Masker verdiene i oversiktstabben</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -696,38 +675,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Main Window</source>
         <translation type="unfinished">Hovedvindu</translation>
-    </message>
-    <message>
-        <source>default wallet</source>
-        <translation>standard lommebok</translation>
-    </message>
-    <message>
-        <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>Åpner Lommebok &lt;b&gt;%1&lt;/b&gt;...</translation>
-    </message>
-    <message>
-        <source>Open Wallet Failed</source>
-        <translation>Åpning av Lommebok Feilet</translation>
-    </message>
-    <message>
-        <source>&amp;Window</source>
-        <translation>&amp;Vindu</translation>
-    </message>
-    <message>
-        <source>Minimize</source>
-        <translation>Minimer</translation>
-    </message>
-    <message>
-        <source>Zoom</source>
-        <translation>Zoom</translation>
-    </message>
-    <message>
-        <source>Restore</source>
-        <translation>Gjenopprett</translation>
-    </message>
-    <message>
-        <source>Main Window</source>
-        <translation>Hovedvindu</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -818,10 +765,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
         <translation type="unfinished">Privat nøkkel &lt;b&gt;deaktivert&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>Privat nøkkel &lt;b&gt;deaktivert&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
@@ -1050,10 +993,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Lag lommebok</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Lommebok</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Lommeboknavn</translation>
     </message>
@@ -1072,10 +1011,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Avanserte alternativer</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Avanserte alternativer</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1100,14 +1035,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Descriptor Wallet</source>
         <translation type="unfinished">Deskriptor lommebok</translation>
-    </message>
-    <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation>Bruk deskriptorer for scriptPubKey styring</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>Deskriptor lommebok</translation>
     </message>
     <message>
         <source>Create</source>
@@ -1554,14 +1481,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Bruk separate SOCKS&amp;5 proxy for å nå peers via Tor onion tjenester:</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Kobl til Bitcoin nettverket gjennom en separat SOCKS5 proxy for Tor onion tjenester. </translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
-        <translation>Bruk separate SOCKS&amp;5 proxy for å nå peers via Tor onion tjenester:</translation>
-    </message>
-    <message>
         <source>&amp;Third party transaction URLs</source>
         <translation type="unfinished">Tredjepart transaksjon URLer</translation>
     </message>
@@ -1783,86 +1702,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Pays transaction fee: </source>
         <translation type="unfinished">Betaler transasjonsgebyr:</translation>
-    </message>
-    <message>
-        <source>Sign Tx</source>
-        <translation>Signer Tx</translation>
-    </message>
-    <message>
-        <source>Broadcast Tx</source>
-        <translation>Kringkast Tx</translation>
-    </message>
-    <message>
-        <source>Copy to Clipboard</source>
-        <translation>Kopier til utklippstavle</translation>
-    </message>
-    <message>
-        <source>Save...</source>
-        <translation>Lagre...</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation>Lukk</translation>
-    </message>
-    <message>
-        <source>Failed to load transaction: %1</source>
-        <translation>Lasting av transaksjon: %1 feilet</translation>
-    </message>
-    <message>
-        <source>Failed to sign transaction: %1</source>
-        <translation>Signering av transaksjon: %1 feilet</translation>
-    </message>
-    <message>
-        <source>Could not sign any more inputs.</source>
-        <translation>Kunne ikke signere flere inputs.</translation>
-    </message>
-    <message>
-        <source>Signed %1 inputs, but more signatures are still required.</source>
-        <translation>Signerte %1 inputs, men flere signaturer kreves.</translation>
-    </message>
-    <message>
-        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
-        <translation>Signering av transaksjon var vellykket. Transaksjon er klar til å kringkastes.</translation>
-    </message>
-    <message>
-        <source>Unknown error processing transaction.</source>
-        <translation>Ukjent feil når den prossesserte transaksjonen.</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast successfully! Transaction ID: %1</source>
-        <translation>Kringkasting av transaksjon var vellykket! Transaksjon ID: %1</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast failed: %1</source>
-        <translation>Kringkasting av transaksjon feilet: %1</translation>
-    </message>
-    <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation>PSBT kopiert til utklippstavle.</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Lagre Transaksjonsdata</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Delvis Signert Transaksjon (Binær) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved to disk.</source>
-        <translation>PSBT lagret til disk.</translation>
-    </message>
-    <message>
-        <source> * Sends %1 to %2</source>
-        <translation>* Sender %1 til %2</translation>
-    </message>
-    <message>
-        <source>Unable to calculate transaction fee or total transaction amount.</source>
-        <translation>Klarte ikke å kalkulere transaksjonsavgift eller totalt transaksjonsbeløp.</translation>
-    </message>
-    <message>
-        <source>Pays transaction fee: </source>
-        <translation>Betaler transasjonsavgift:</translation>
     </message>
     <message>
         <source>Total Amount</source>
@@ -2129,10 +1968,6 @@ Hvis du får denne feilen burde du be forretningsdrivende om å tilby en BIP21 k
         <translation type="unfinished">Nåværende blokkhøyde</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>Nåværende blokkhøyde</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">Åpne %1-feilrettingsloggfila fra gjeldende datamappe. Dette kan ta et par sekunder for store loggfiler.</translation>
     </message>
@@ -2159,10 +1994,6 @@ Hvis du får denne feilen burde du be forretningsdrivende om å tilby en BIP21 k
     <message>
         <source>The network protocol this peer is connected through: IPv4, IPv6, Onion, I2P, or CJDNS.</source>
         <translation type="unfinished">Nettverksprotokollen som denne likemannen er tilkoblet gjennom: IPv4, IPv6, Onion, I2P eller CJDNS.</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Rettigheter</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2728,22 +2559,6 @@ Hvis du får denne feilen burde du be forretningsdrivende om å tilby en BIP21 k
         <translation type="unfinished">PSBT lagret</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation>Lag usignert</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Lagre Transaksjonsdata</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Delvis Signert Transaksjon (Binær) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>PSBT lagret</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">eller</translation>
     </message>
@@ -2754,10 +2569,6 @@ Hvis du får denne feilen burde du be forretningsdrivende om å tilby en BIP21 k
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation type="unfinished">Se over ditt transaksjonsforslag. Dette kommer til å produsere en Delvis Signert Bitcoin Transaksjon (PSBT) som du kan lagre eller kopiere og så signere med f.eks. en offline %1 lommebok, eller en PSBT kompatibel hardware lommebok.</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Se over ditt transaksjonsforslag. Dette kommer til å produsere en Delvis Signert Bitcoin Transaksjon (PSBT) som du kan lagre eller kopiere og så signere med f.eks. en offline %1 lommebok, eller en PSBT kompatibel hardware lommebok.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3586,26 +3397,6 @@ Gå til Fil &gt; Åpne lommebok for å laste en lommebok.
     <message>
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">Klarte ikke å dekode PSBT</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>Klarte ikke å dekode PSBT fra utklippstavle (ugyldig base64)</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>Last transaksjonsdata</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>Delvis signert transaksjon (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation>PSBT-fil må være mindre enn 100 MiB</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT</source>
-        <translation>Klarte ikke å dekode PSBT</translation>
     </message>
     <message>
         <source>Backup Wallet</source>

@@ -89,9 +89,6 @@ public Q_SLOTS:
     // to display payment requests to the user
     void uiReady();
 
-    // Submit Payment message to a merchant, get back PaymentACK:
-    void fetchPaymentACK(WalletModel* walletModel, const SendCoinsRecipient& recipient, QByteArray transaction);
-
     // Handle an incoming URI, URI with local file scheme or file
     void handleURIOrFile(const QString& s);
 

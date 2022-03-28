@@ -2,30 +2,30 @@
 
 *.exe
 *.pdb
-src/bitcoin
-src/bitcoind
-src/bitcoin-cli
-src/bitcoin-gui
-src/bitcoin-node
-src/bitcoin-tx
-src/bitcoin-util
-src/bitcoin-wallet
+src/whive
+src/whived
+src/whive-cli
+src/whive-gui
+src/whive-node
+src/whive-tx
+src/whive-util
+src/whive-wallet
 src/test/fuzz/fuzz
-src/test/test_bitcoin*.tar.gz
+src/test/test_whive*.tar.gz
 
 *.exe
 *.pdb
-src/bitcoin
-src/bitcoind
-src/bitcoin-cli
-src/bitcoin-gui
-src/bitcoin-node
-src/bitcoin-tx
-src/bitcoin-util
-src/bitcoin-wallet
+src/whive
+src/whived
+src/whive-cli
+src/whive-gui
+src/whive-node
+src/whive-tx
+src/whive-util
+src/whive-wallet
 src/test/fuzz/fuzz
-src/test/test_bitcoin
-src/qt/test/test_bitcoin-qt
+src/test/test_whive
+src/qt/test/test_whive-qt
 
 # autoreconf
 Makefile.in
@@ -64,11 +64,11 @@ src/qt/forms/ui_*.h
 
 src/qt/test/moc*.cpp
 
-src/qt/bitcoin-qt.config
-src/qt/bitcoin-qt.creator
-src/qt/bitcoin-qt.creator.user
-src/qt/bitcoin-qt.files
-src/qt/bitcoin-qt.includes
+src/qt/whive-qt.config
+src/qt/whive-qt.creator
+src/qt/whive-qt.creator.user
+src/qt/whive-qt.files
+src/qt/whive-qt.includes
 
 .deps
 .dirstamp
@@ -106,7 +106,7 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-src/qt/bitcoin-qt
+src/qt/whive-qt
 Bitcoin-Qt.app
 background.tiff*
 
@@ -115,7 +115,7 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-bitcoin-qt_test
+whive-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -131,7 +131,7 @@ releases
 *.gcno
 *.gcda
 /*.info
-test_bitcoin.coverage/
+test_whive.coverage/
 total.coverage/
 fuzz.coverage/
 coverage_percent.txt
@@ -150,7 +150,7 @@ test/.mypy_cache/
 
 /doc/doxygen/
 
-libbitcoinconsensus.pc
+libwhiveconsensus.pc
 contrib/devtools/split-debug.sh
 
 # Output from running db4 installation
@@ -164,7 +164,7 @@ dist/
 *.background.tiff
 
 /guix-build-*
-src/qt/test/test_bitcoin-qt
+src/qt/test/test_whive-qt
 src/qt/whive-qt
 src/whive-cli
 src/whive-tx
@@ -208,11 +208,11 @@ src/qt/forms/ui_*.h
 
 src/qt/test/moc*.cpp
 
-src/qt/bitcoin-qt.config
-src/qt/bitcoin-qt.creator
-src/qt/bitcoin-qt.creator.user
-src/qt/bitcoin-qt.files
-src/qt/bitcoin-qt.includes
+src/qt/whive-qt.config
+src/qt/whive-qt.creator
+src/qt/whive-qt.creator.user
+src/qt/whive-qt.files
+src/qt/whive-qt.includes
 
 .deps
 .dirstamp
@@ -259,7 +259,7 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-bitcoin-qt_test
+whive-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -275,7 +275,7 @@ releases
 *.gcno
 *.gcda
 /*.info
-test_bitcoin.coverage/
+test_whive.coverage/
 total.coverage/
 fuzz.coverage/
 coverage_percent.txt
@@ -294,7 +294,7 @@ test/.mypy_cache/
 
 /doc/doxygen/
 
-libbitcoinconsensus.pc
+libwhiveconsensus.pc
 contrib/devtools/split-debug.sh
 
 # Output from running db4 installation

@@ -76,12 +76,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Estas son tus direcciones Bitcoin para recibir pagos. Usa el botón 'Crear una nueva dirección para recibir' en la pestaña 'Recibir' para crear nuevas direcciones.
-Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">&amp;Copiar dirección</translation>
     </message>
@@ -204,30 +198,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>Your wallet is now encrypted. </source>
         <translation type="unfinished">Tu billetera ha sido cifrada.</translation>
-    </message>
-    <message>
-        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Introduce la contraseña nueva para la billetera. &lt;br/&gt;Por favor utiliza una contraseña de &lt;b&gt;diez o más caracteres aleatorios&lt;/b&gt;, u &lt;b&gt;ocho o más palabras&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>Ingresa la antigua frase de contraseña y la nueva frase de contraseña para la billetera.</translation>
-    </message>
-    <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>Recuerda que cifrar tu billetera no garantiza total protección de robo de tus bitcoins si tu ordenador es infectado con malware.</translation>
-    </message>
-    <message>
-        <source>Wallet to be encrypted</source>
-        <translation>Billetera a cifrar</translation>
-    </message>
-    <message>
-        <source>Your wallet is about to be encrypted. </source>
-        <translation>Tu billetera esta a punto de ser encriptada.</translation>
-    </message>
-    <message>
-        <source>Your wallet is now encrypted. </source>
-        <translation>Tu billetera ha sido cifrada.</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -406,14 +376,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>Create a new wallet</source>
         <translation type="unfinished">Crear una nueva billetera</translation>
-    </message>
-    <message>
-        <source>Create Wallet...</source>
-        <translation>Crear billetera...</translation>
-    </message>
-    <message>
-        <source>Create a new wallet</source>
-        <translation>Crear una nueva billetera</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -612,14 +574,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
         <translation type="unfinished">No hay billeteras disponibles</translation>
     </message>
     <message>
-        <source>default wallet</source>
-        <translation>billetera predeterminada</translation>
-    </message>
-    <message>
-        <source>No wallets available</source>
-        <translation>No hay billeteras disponibles</translation>
-    </message>
-    <message>
         <source>&amp;Window</source>
         <translation type="unfinished">y windows
 </translation>
@@ -631,10 +585,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>Zoom</source>
         <translation type="unfinished">Acercar</translation>
-    </message>
-    <message>
-        <source>Zoom</source>
-        <translation>Acercar</translation>
     </message>
     <message>
         <source>Main Window</source>
@@ -655,10 +605,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>Warning: %1</source>
         <translation type="unfinished">Advertencia: %1</translation>
-    </message>
-    <message>
-        <source>Warning: %1</source>
-        <translation>Advertencia: %1</translation>
     </message>
     <message>
         <source>Date: %1
@@ -942,18 +888,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>Create</source>
         <translation type="unfinished">Crear</translation>
-    </message>
-    <message>
-        <source>Make Blank Wallet</source>
-        <translation>Crear billetera vacía</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>Descriptor de la billetera</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>Crear</translation>
     </message>
     </context>
 <context>
@@ -1581,14 +1515,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
         <translation type="unfinished">(ninguno)</translation>
     </message>
     <message>
-        <source>Wallet: </source>
-        <translation>Billetera:</translation>
-    </message>
-    <message>
-        <source>(none)</source>
-        <translation>(ninguno)</translation>
-    </message>
-    <message>
         <source>&amp;Reset</source>
         <translation type="unfinished">&amp;Reestablecer</translation>
     </message>
@@ -1634,14 +1560,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
         <translation type="unfinished">Altura del bloque actual</translation>
     </message>
     <message>
-        <source>Node window</source>
-        <translation>Ventana del nodo</translation>
-    </message>
-    <message>
-        <source>Current block height</source>
-        <translation>Altura del bloque actual</translation>
-    </message>
-    <message>
         <source>Decrease font size</source>
         <translation type="unfinished">Disminuir tamaño de fuente</translation>
     </message>
@@ -1652,10 +1570,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>Permissions</source>
         <translation type="unfinished">Permisos</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Permisos</translation>
     </message>
     <message>
         <source>Services</source>
@@ -1856,10 +1770,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
         <translation type="unfinished">Etiqueta:</translation>
     </message>
     <message>
-        <source>Label:</source>
-        <translation>Etiqueta:</translation>
-    </message>
-    <message>
         <source>Message:</source>
         <translation type="unfinished">Mensaje:</translation>
     </message>
@@ -2003,10 +1913,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
         <translation type="unfinished">Esconder ajustes de la tarifa de transacción</translation>
     </message>
     <message>
-        <source>Hide transaction fee settings</source>
-        <translation>Esconder ajustes de la tarifa de transacción</translation>
-    </message>
-    <message>
         <source>Confirmation time target:</source>
         <translation type="unfinished">Objetivo de tiempo de confirmación</translation>
     </message>
@@ -2059,10 +1965,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
         <translation type="unfinished">desde la billetera '%1'</translation>
     </message>
     <message>
-        <source> from wallet '%1'</source>
-        <translation>desde la billetera '%1'</translation>
-    </message>
-    <message>
         <source>%1 to %2</source>
         <translation type="unfinished">%1 a %2</translation>
     </message>
@@ -2075,20 +1977,12 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
         <translation type="unfinished">Guardar datos de la transacción</translation>
     </message>
     <message>
-        <source>Save Transaction Data</source>
-        <translation>Guardar datos de la transacción</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">o</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
         <translation type="unfinished">Por favor, revise su transacción.</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction.</source>
-        <translation>Por favor, revise su transacción.</translation>
     </message>
     <message>
         <source>Transaction fee</source>
@@ -2099,24 +1993,12 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
         <translation type="unfinished">Monto total</translation>
     </message>
     <message>
-        <source>Total Amount</source>
-        <translation>Monto total</translation>
-    </message>
-    <message>
         <source>Confirm send coins</source>
         <translation type="unfinished">Confirmar el envió de monedas</translation>
     </message>
     <message>
         <source>Confirm transaction proposal</source>
         <translation type="unfinished">Confirmar la propuesta de transacción</translation>
-    </message>
-    <message>
-        <source>Confirm transaction proposal</source>
-        <translation>Confirmar la propuesta de transacción</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Enviar</translation>
     </message>
     <message>
         <source>The recipient address is not valid. Please recheck.</source>
@@ -2137,10 +2019,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>Duplicate address found: addresses should only be used once each.</source>
         <translation type="unfinished">Dirección duplicada encontrada: las direcciones sólo deben ser utilizadas una vez.</translation>
-    </message>
-    <message>
-        <source>Duplicate address found: addresses should only be used once each.</source>
-        <translation>Dirección duplicada encontrada: las direcciones sólo deben ser utilizadas una vez.</translation>
     </message>
     <message>
         <source>Transaction creation failed!</source>
@@ -2219,10 +2097,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>Use available balance</source>
         <translation type="unfinished">Usar el saldo disponible</translation>
-    </message>
-    <message>
-        <source>Use available balance</source>
-        <translation>Usar el saldo disponible</translation>
     </message>
     <message>
         <source>Message:</source>
@@ -2338,10 +2212,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>No error</source>
         <translation type="unfinished">No hay error</translation>
-    </message>
-    <message>
-        <source>No error</source>
-        <translation>No hay error</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
@@ -2821,10 +2691,6 @@ Firmar solo es posible con direcciones del tipo 'Legacy'.</translation>
     <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Cargar datos de la transacción</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>Cargar datos de la transacción</translation>
     </message>
     <message>
         <source>Backup Wallet</source>

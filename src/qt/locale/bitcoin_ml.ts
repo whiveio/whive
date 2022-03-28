@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>പുതിയ ഒരു വിലാസം സൃഷ്ടിക്കുക</translation>
+        <translation>ഒരു പുതിയ വിലാസം സൃഷ്ടിക്കുക</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -170,10 +170,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">വാലറ്റിൽ പുതിയ രഹസ്യവാക്യം നൽകുക.  പത്തോ അതിലധികമോ അക്ഷരങ്ങൾ  അല്ലെങ്കിൽ  എട്ടോ  കൂടുതലോ വാക്കുകൾ </translation>
     </message>
     <message>
-        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>വാലറ്റിൽ പുതിയ പാസ്ഫ്രെയ്സ് നൽകുക. &lt;br/&gt; &lt;b&gt; പത്തോ അതിലധികമോ റാൻഡം പ്രതീകങ്ങൾ &lt;/b&gt; അല്ലെങ്കിൽ  &lt;b&gt;എട്ട് അല്ലെങ്കിൽ അതിൽ കൂടുതൽ വാക്കുകൾ &lt;/b&gt; ഒരു പാസ്ഫ്രെയ്സ് ഉപയോഗിക്കുക.</translation>
-    </message>
-    <message>
         <source>Enter the old passphrase and new passphrase for the wallet.</source>
         <translation type="unfinished">വാലെറ്റിന്റെ പഴയ രഹസ്യപദവും പുതിയ രഹസ്യപദവും നൽകുക.</translation>
     </message>
@@ -248,59 +244,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ആന്തരിക പിശക്
  </translation>
     </message>
-    <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>നിങ്ങളുടെ വാലറ്റ് എൻ‌ക്രിപ്റ്റ് ചെയ്യുന്നതിലൂടെ നിങ്ങളുടെ കമ്പ്യൂട്ടറിനെ ബാധിക്കുന്ന ക്ഷുദ്രവെയർ‌ മോഷ്ടിക്കുന്നതിൽ‌ നിന്നും നിങ്ങളുടെ ബിറ്റ്കോയിനുകളെ പൂർണ്ണമായി സംരക്ഷിക്കാൻ‌ കഴിയില്ല.</translation>
-    </message>
-    <message>
-        <source>Wallet to be encrypted</source>
-        <translation>വാലറ്റ് എന്ക്രിപ്റ് ചെയ്യാൻ പോകുന്നു .</translation>
-    </message>
-    <message>
-        <source>Your wallet is about to be encrypted. </source>
-        <translation>വാലറ്റ് എന്ക്രിപ്റ് ചെയ്യാൻ പോകുന്നു .</translation>
-    </message>
-    <message>
-        <source>Your wallet is now encrypted. </source>
-        <translation>വാലറ്റ് എന്ക്രിപ്റ് ചെയ്തു കഴിഞ്ഞു .</translation>
-    </message>
-    <message>
-        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>പ്രധാനം: നിങ്ങളുടെ വാലറ്റ് ഫയലിൽ മുമ്പ് നിർമ്മിച്ച ഏതെങ്കിലും ബാക്കപ്പുകൾ പുതുതായി ജനറേറ്റുചെയ്ത, എൻ‌ക്രിപ്റ്റ് ചെയ്ത വാലറ്റ് ഫയൽ ഉപയോഗിച്ച് മാറ്റിസ്ഥാപിക്കണം. സുരക്ഷാ കാരണങ്ങളാൽ, നിങ്ങൾ പുതിയ, എൻ‌ക്രിപ്റ്റ് ചെയ്ത വാലറ്റ് ഉപയോഗിക്കാൻ ആരംഭിക്കുമ്പോൾ തന്നെ എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത വാലറ്റ് ഫയലിന്റെ മുമ്പത്തെ ബാക്കപ്പുകൾ ഉപയോഗശൂന്യമാകും.</translation>
-    </message>
-    <message>
-        <source>Wallet encryption failed</source>
-        <translation>വാലറ്റ് എന്ക്രിപ്റ് പരാജയപെട്ടു  .</translation>
-    </message>
-    <message>
-        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>ആന്തരിക പിശക് കാരണം വാലറ്റ് എൻ‌ക്രിപ്ഷൻ പരാജയപ്പെട്ടു. നിങ്ങളുടെ വാലറ്റ് എൻ‌ക്രിപ്റ്റ് ചെയ്തിട്ടില്ല.</translation>
-    </message>
-    <message>
-        <source>The supplied passphrases do not match.</source>
-        <translation>വിതരണം ചെയ്ത പാസ്‌ഫ്രെയ്‌സുകൾ പൊരുത്തപ്പെടുന്നില്ല.</translation>
-    </message>
-    <message>
-        <source>Wallet unlock failed</source>
-        <translation>വാലറ്റ് അൺലോക്ക് പരാജയപ്പെട്ടു</translation>
-    </message>
-    <message>
-        <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>വാലറ്റ് ഡീക്രിപ്ഷനായി നൽകിയ പാസ്‌ഫ്രേസ് തെറ്റാണ്.</translation>
-    </message>
-    <message>
-        <source>Wallet decryption failed</source>
-        <translation>വാലറ്റ് ഡീക്രിപ്ഷൻ പരാജയപ്പെട്ടു</translation>
-    </message>
-    <message>
-        <source>Wallet passphrase was successfully changed.</source>
-        <translation>വാലറ്റ് പാസ്‌ഫ്രെയ്‌സ് വിജയകരമായി മാറ്റി.</translation>
-    </message>
-    <message>
-        <source>Warning: The Caps Lock key is on!</source>
-        <translation>മുന്നറിയിപ്പ്: ക്യാപ്‌സ് ലോക്ക് കീ ഓണാണ്!</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>QObject</name>
     <message>
@@ -581,26 +525,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">അവലോകന ടാബിൽ മൂല്യങ്ങൾ മാസ്ക് ചെയ്യുക</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>എല്ലാ വാലറ്റുകളും അടയ്‌ക്കുക ...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>എല്ലാ വാലറ്റുകളും അടയ്‌ക്കുക ...</translation>
-    </message>
-    <message>
-        <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
-        <translation>സാധ്യമായ ബിറ്റ്കോയിൻ കമാൻഡ്-ലൈൻ ഓപ്ഷനുകളുള്ള ഒരു ലിസ്റ്റ് ലഭിക്കുന്നതിന് %1 സഹായ സന്ദേശം കാണിക്കുക</translation>
-    </message>
-    <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;മാസ്ക് മൂല്യങ്ങൾ</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>അവലോകന ടാബിൽ മൂല്യങ്ങൾ മാസ്ക് ചെയ്യുക</translation>
-    </message>
-    <message>
         <source>default wallet</source>
         <translation type="unfinished">സ്ഥിരം ആയ വാലറ്റ്</translation>
     </message>
@@ -611,10 +535,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>&amp;Window</source>
         <translation type="unfinished">&amp;ജാലകം </translation>
-    </message>
-    <message>
-        <source>&amp;Window</source>
-        <translation>&amp;ജാലകം </translation>
     </message>
     <message>
         <source>Minimize</source>
@@ -639,10 +559,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
             <numerusform />
             <numerusform />
         </translation>
-    </message>
-    <message>
-        <source>Catching up...</source>
-        <translation>കണ്ടുപിടിക്കുന്നു ...</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -674,12 +590,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>Type: %1
 </source>
         <translation type="unfinished">തരങ്ങൾ: %1
-</translation>
-    </message>
-    <message>
-        <source>Type: %1
-</source>
-        <translation>തരങ്ങൾ: %1
 </translation>
     </message>
     <message>
@@ -770,26 +680,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ട്രീ മോഡ്</translation>
     </message>
     <message>
-        <source>Dust:</source>
-        <translation>ഡസ്ട്:</translation>
-    </message>
-    <message>
-        <source>After Fee:</source>
-        <translation>ഫീസ് കഴിഞ്ഞ്:</translation>
-    </message>
-    <message>
-        <source>Change:</source>
-        <translation>മാറ്റം:</translation>
-    </message>
-    <message>
-        <source>(un)select all</source>
-        <translation>എല്ലാം തിരഞ്ഞു (എടുക്കുക /എടുക്കാതിരിക്കുക)</translation>
-    </message>
-    <message>
-        <source>Tree mode</source>
-        <translation>ട്രീ മോഡ്</translation>
-    </message>
-    <message>
         <source>List mode</source>
         <translation type="unfinished">പട്ടിക </translation>
     </message>
@@ -864,74 +754,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Can vary +/- %1 satoshi(s) per input.</source>
         <translation type="unfinished">ഒരു ഇൻപുട്ടിന് +/-%1 സതോഷി(കൾ) വ്യത്യാസം ഉണ്ടാകാം.</translation>
-    </message>
-    <message>
-        <source>Copy address</source>
-        <translation>വിലാസം പകർത്തുക</translation>
-    </message>
-    <message>
-        <source>Copy label</source>
-        <translation>പകർത്തുക  ലേബൽ</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>തുക പകർത്തുക</translation>
-    </message>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>ഇടപാട് ഐഡി പകർത്തുക</translation>
-    </message>
-    <message>
-        <source>Lock unspent</source>
-        <translation>ചെലവഴിക്കാത്തത് പൂട്ടുക</translation>
-    </message>
-    <message>
-        <source>Unlock unspent</source>
-        <translation>അൺസ്പെന്റുകൾ അൺലോക്ക് ചെയ്യുക </translation>
-    </message>
-    <message>
-        <source>Copy quantity</source>
-        <translation>നിര്‍ദ്ധിഷ്‌ടസംഖ്യ / അളവ് പകർത്തുക</translation>
-    </message>
-    <message>
-        <source>Copy fee</source>
-        <translation>പകർത്തു ഫീസ്</translation>
-    </message>
-    <message>
-        <source>Copy after fee</source>
-        <translation>ശേഷമുള്ള ഫീ പകർത്തു</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>ബൈറ്റ്സ് പകർത്തു</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>ഡസ്ട് പകർത്തു</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>ചേഞ്ച് പകർത്തു</translation>
-    </message>
-    <message>
-        <source>(%1 locked)</source>
-        <translation>(%1 ലോക്ക് ആക്കിയിരിക്കുന്നു)</translation>
-    </message>
-    <message>
-        <source>yes</source>
-        <translation>അതെ / ശരി</translation>
-    </message>
-    <message>
-        <source>no</source>
-        <translation>ഇല്ല</translation>
-    </message>
-    <message>
-        <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation>ഏതെങ്കിലും സ്വീകർത്താവിന് നിലവിലെ ഡസ്ട് പരിധിയേക്കാൾ ചെറിയ തുക ലഭിക്കുകയാണെങ്കിൽ ഈ ലേബൽ ചുവപ്പായി മാറുന്നു.</translation>
-    </message>
-    <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>ഒരു ഇൻപുട്ടിന് +/-%1 സതോഷി(കൾ) വ്യത്യാസം ഉണ്ടാകാം.</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1230,10 +1052,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>Wallet:</source>
         <translation type="unfinished">വാലറ്റ്:</translation>
     </message>
-    <message>
-        <source>Wallet:</source>
-        <translation>വാലറ്റ്:</translation>
-    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
@@ -1307,46 +1125,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Copy change</source>
         <translation type="unfinished">ചേഞ്ച് പകർത്തു</translation>
-    </message>
-    <message>
-        <source>After Fee:</source>
-        <translation>ഫീസ് കഴിഞ്ഞ്:</translation>
-    </message>
-    <message>
-        <source>Change:</source>
-        <translation>മാറ്റം</translation>
-    </message>
-    <message>
-        <source>Dust:</source>
-        <translation>പൊടി:</translation>
-    </message>
-    <message>
-        <source>Copy quantity</source>
-        <translation>നിര്‍ദ്ധിഷ്‌ടസംഖ്യ / അളവ് പകർത്തുക</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>തുക പകർത്തുക</translation>
-    </message>
-    <message>
-        <source>Copy fee</source>
-        <translation>പകർത്തു ഫീസ്</translation>
-    </message>
-    <message>
-        <source>Copy after fee</source>
-        <translation>ശേഷമുള്ള ഫീ പകർത്തു</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>ബൈറ്റ്സ് പകർത്തു</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>ഡസ്ട് പകർത്തു</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>ചേഞ്ച് പകർത്തു</translation>
     </message>
     <message>
         <source>Payment request expired.</source>
@@ -1450,10 +1228,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Exporting Failed</source>
         <translation type="unfinished">കയറ്റുമതി പരാജയപ്പെട്ടു</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>എല്ലാ വാലറ്റുകളും അടയ്‌ക്കുക ...</translation>
     </message>
     </context>
 <context>

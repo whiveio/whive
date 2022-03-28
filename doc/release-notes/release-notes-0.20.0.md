@@ -801,7 +801,7 @@ Build system
 - #18278 interfaces: Describe and follow some code conventions (ryanofsky)
 - #18283 Explain rebase policy in CONTRIBUTING.md (MarcoFalke)
 - #18340 Mention MAKE=gmake workaround when building on a BSD (fanquake)
-- #18341 Replace remaining literal BTC with `CURRENCY_UNIT` (domob1812)
+- #18341 Replace remaining literal WHIVE with `CURRENCY_UNIT` (domob1812)
 - #18342 Add fuzzing quickstart guides for libFuzzer and afl-fuzz (practicalswift)
 - #18344 Fix nit in getblockchaininfo (stevenroose)
 - #18379 Comment fix merkle.cpp (4d55397500)

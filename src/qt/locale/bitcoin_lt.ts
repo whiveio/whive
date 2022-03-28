@@ -70,10 +70,6 @@
         <translation type="unfinished">Tai yra jūsų Bitcoin adresai išeinantiems mokėjimams. Visada pasitikrinkite sumą ir gavėjo adresą prieš siunčiant lėšas.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Tai jūsų Bitcoin mokėjimų gavimo adresai. Naudokite 'Sukurti naują gavimo adresą' migtuką gavimų skirtuke kad sukurtumėt nauja adresą.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">&amp;Kopijuoti adresą</translation>
     </message>
@@ -522,10 +518,6 @@
         <translation type="unfinished">Uždaryti visas pinigines</translation>
     </message>
     <message>
-        <source>Close all wallets</source>
-        <translation>Uždaryti visas pinigines</translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">Rodyti %1 pagalbos žinutę su Bitcoin pasirinkimo komandomis</translation>
     </message>
@@ -847,10 +839,6 @@
         <translation type="unfinished">Sukurti Piniginę</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Piniginė</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Piniginės Pavadinimas</translation>
     </message>
@@ -869,10 +857,6 @@
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Išplėstiniai nustatymai</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Išplėstiniai nustatymai</translation>
     </message>
     <message>
         <source>Disable Private Keys</source>
@@ -1435,10 +1419,6 @@
         <translation type="unfinished">Uždaryti</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation>Uždaryti</translation>
-    </message>
-    <message>
         <source>Total Amount</source>
         <translation type="unfinished">Visas kiekis</translation>
     </message>
@@ -1652,10 +1632,6 @@
     <message>
         <source>Direction/Type</source>
         <translation type="unfinished">Kryptis/Tipas</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Leidimai</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2120,10 +2096,6 @@
     <message>
         <source>Sign failed</source>
         <translation type="unfinished">Registravimas nepavyko</translation>
-    </message>
-    <message>
-        <source>Create Unsigned</source>
-        <translation>Sukurti nepasirašytą</translation>
     </message>
     <message>
         <source>or</source>

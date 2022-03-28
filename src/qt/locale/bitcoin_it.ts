@@ -35,7 +35,7 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Trasferisci i dati contenuti nella tabella corrente in un file</translation>
+        <translation>Esporta su file i dati contenuti nella tabella corrente</translation>
     </message>
     <message>
         <source>&amp;Export</source>
@@ -996,10 +996,6 @@ E' possibile firmare solo con indirizzi di tipo "legacy".</translation>
         <translation type="unfinished">Crea Portafoglio.</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Portafoglio</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Nome Portafoglio</translation>
     </message>
@@ -1018,10 +1014,6 @@ E' possibile firmare solo con indirizzi di tipo "legacy".</translation>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Opzioni avanzate</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Opzioni avanzate</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1067,10 +1059,6 @@ E' possibile firmare solo con indirizzi di tipo "legacy".</translation>
         <source>Compiled without external signing support (required for external signing)</source>
         <extracomment>"External signing" means using devices such as hardware wallets.</extracomment>
         <translation type="unfinished">Compilato senza supporto per firmatario esterno (richiesto per firmare con periferiche)</translation>
-    </message>
-    <message>
-        <source>Compiled without sqlite support (required for descriptor wallets)</source>
-        <translation>Compilato senza il supporto a sqlite (richiesto per i wallet descrittori)</translation>
     </message>
 </context>
 <context>
@@ -3510,17 +3498,12 @@ Vai su File &gt; Apri Portafoglio per caricare un portafoglio.
         <translation type="unfinished">Non è possibile fornire connessioni specifiche e contemporaneamente usare addrman per trovare connessioni uscenti.</translation>
     </message>
     <message>
-<<<<<<< HEAD
-        <source>Starting network threads...</source>
-        <translation>Inizializzazione dei thread di rete...</translation>
-=======
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
         <translation type="unfinished">Distribuito sotto la licenza software del MIT, si veda il file %s o %s incluso</translation>
     </message>
     <message>
         <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
         <translation type="unfinished">Errore lettura %s! Tutte le chiavi sono state lette correttamente, ma i dati delle transazioni o della rubrica potrebbero essere mancanti o non corretti.</translation>
->>>>>>> upstream/22.x
     </message>
     <message>
         <source>Error: Listening for incoming connections failed (listen returned error %s)</source>

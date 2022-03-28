@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Skopírovať zvolenú adresu</translation>
+        <translation>Zkopírovať práve zvolenú adresu</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -73,11 +73,6 @@
         <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Toto sú vaše Bitcoin adresy pre prijímanie platieb. Pre vytvorenie nových adries kliknite na "Vytvoriť novú prijímaciu adresu" na karte "Prijať". Podpisovanie je možné iba s adresami typu "legacy".</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Toto sú vaše Bitcoin adresy pre prijímanie platieb. Pre vytvorenie nových adries kliknite na "Vytvoriť novú prijímaciu adresu" na karte "Prijať". Podpisovanie je možné iba s adresami typu "legacy".</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -581,14 +576,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Zatvoriť všetky peňaženky</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>Zatvoriť Všetky Peňaženky...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Zatvoriť všetky peňaženky</translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">Ukáž %1 zoznam možných nastavení Bitcoinu pomocou príkazového riadku</translation>
     </message>
@@ -599,14 +586,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Mask the values in the Overview tab</source>
         <translation type="unfinished">Skryť hodnoty v karte "Prehľad"</translation>
-    </message>
-    <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;Skryť hodnoty</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>Skryť hodnoty v karte "Prehľad"</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -916,10 +895,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Vytvoriť peňaženku</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Peňaženka</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Názov peňaženky</translation>
     </message>
@@ -938,10 +913,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Rozšírené nastavenia</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Rozšírené nastavenia</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1361,14 +1332,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Použiť samostatný SOCKS&amp;5 proxy server na nadviazanie spojenia s peer-mi cez službu Tor:</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Pripojiť k Bitcoin sieti skrz samostatnú SOCKS5 proxy pre službu Tor.</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
-        <translation>Použiť samostatný SOCKS&amp;5 proxy server na nadviazanie spojenia s peer-mi cez službu Tor:</translation>
-    </message>
-    <message>
         <source>&amp;Third party transaction URLs</source>
         <translation type="unfinished">URL transakcií tretích strán</translation>
     </message>
@@ -1586,70 +1549,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Pays transaction fee: </source>
         <translation type="unfinished">Zaplatí poplatok za transakciu:</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation>Zatvoriť</translation>
-    </message>
-    <message>
-        <source>Failed to load transaction: %1</source>
-        <translation>Nepodarilo sa načítať transakciu: %1</translation>
-    </message>
-    <message>
-        <source>Failed to sign transaction: %1</source>
-        <translation>Nepodarilo sa podpísať transakciu: %1</translation>
-    </message>
-    <message>
-        <source>Could not sign any more inputs.</source>
-        <translation>Nie je možné podpísať žiadne ďalšie vstupy.</translation>
-    </message>
-    <message>
-        <source>Signed %1 inputs, but more signatures are still required.</source>
-        <translation>Podpísaných %1 vstupov, no ešte sú požadované ďalšie podpisy.</translation>
-    </message>
-    <message>
-        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
-        <translation>Transakcia bola úspešne podpísaná a je pripravená na odoslanie.</translation>
-    </message>
-    <message>
-        <source>Unknown error processing transaction.</source>
-        <translation>Neznáma chyba pri spracovávaní transakcie</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast successfully! Transaction ID: %1</source>
-        <translation>Transakcia bola úspešne odoslaná! ID transakcie: %1</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast failed: %1</source>
-        <translation>Odosielanie transakcie zlyhalo: %1</translation>
-    </message>
-    <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation>PSBT bola skopírovaná.</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Uložiť údaje z transakcie</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Čiastočne podpísaná transakcia (binárna) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved to disk.</source>
-        <translation>PSBT bola uložená na disk.</translation>
-    </message>
-    <message>
-        <source> * Sends %1 to %2</source>
-        <translation>* Pošle %1 do %2</translation>
-    </message>
-    <message>
-        <source>Unable to calculate transaction fee or total transaction amount.</source>
-        <translation>Nepodarilo sa vypočítať poplatok za transakciu alebo celkovú sumu transakcie.</translation>
-    </message>
-    <message>
-        <source>Pays transaction fee: </source>
-        <translation>Zaplatí poplatok za transakciu:</translation>
     </message>
     <message>
         <source>Total Amount</source>
@@ -1916,10 +1815,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Aktuálne číslo bloku</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>Aktuálne číslo bloku</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">Otvoriť %1 ladiaci výpis z aktuálnej zložky. Pre veľké súbory to môže chvíľu trvať.</translation>
     </message>
@@ -1938,10 +1833,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Direction/Type</source>
         <translation type="unfinished">Cesta/Typ</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Povolenia</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2463,22 +2354,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>PSBT saved</source>
         <translation type="unfinished">PSBT uložená</translation>
-    </message>
-    <message>
-        <source>Create Unsigned</source>
-        <translation>Vytvoriť bez podpisu</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Uložiť údaje z transakcie</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Čiastočne podpísaná transakcia (binárna) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>PSBT uložená</translation>
     </message>
     <message>
         <source>or</source>
@@ -3311,26 +3186,6 @@ Choďte do Súbor &gt; Otvoriť Peňaženku, pre načítanie peňaženky.
     <message>
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">Nepodarilo sa dekódovať PSBT</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>Nepodarilo sa dekódovať skopírovanú PSBT (invalid base64)</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>Načítať údaje o transakcii</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>Čiastočne podpísaná transakcia (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation>Súbor PSBT musí byť menší než 100 MiB</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT</source>
-        <translation>Nepodarilo sa dekódovať PSBT</translation>
     </message>
     <message>
         <source>Backup Wallet</source>

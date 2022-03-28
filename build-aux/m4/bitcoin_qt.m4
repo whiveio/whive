@@ -3,21 +3,21 @@ dnl Distributed under the MIT software license, see the accompanying
 dnl file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 dnl Helper for cases where a qt dependency is not met.
-dnl Output: If qt version is auto, set bitcoin_enable_qt to false. Else, exit.
+dnl Output: If qt version is auto, set whive_enable_qt to false. Else, exit.
 AC_DEFUN([BITCOIN_QT_FAIL],[
-  if test "x$bitcoin_qt_want_version" = xauto && test "x$bitcoin_qt_force" != xyes; then
-    if test "x$bitcoin_enable_qt" != xno; then
-      AC_MSG_WARN([$1; bitcoin-qt frontend will not be built])
+  if test "x$whive_qt_want_version" = xauto && test "x$whive_qt_force" != xyes; then
+    if test "x$whive_enable_qt" != xno; then
+      AC_MSG_WARN([$1; whive-qt frontend will not be built])
     fi
-    bitcoin_enable_qt=no
-    bitcoin_enable_qt_test=no
+    whive_enable_qt=no
+    whive_enable_qt_test=no
   else
     AC_MSG_ERROR([$1])
   fi
 ])
 
 AC_DEFUN([BITCOIN_QT_CHECK],[
-  if test "x$bitcoin_enable_qt" != xno && test "x$bitcoin_qt_want_version" != xno; then
+  if test "x$whive_enable_qt" != xno && test "x$whive_qt_want_version" != xno; then
     true
     $1
   else
@@ -54,21 +54,21 @@ AC_DEFUN([BITCOIN_QT_INIT],[
   dnl enable qt support
   AC_ARG_WITH([gui],
     [AS_HELP_STRING([--with-gui@<:@=no|qt5|auto@:>@],
-    [build bitcoin-qt GUI (default=auto)])],
+    [build whive-qt GUI (default=auto)])],
     [
-     bitcoin_qt_want_version=$withval
-     if test "x$bitcoin_qt_want_version" = xyes; then
-       bitcoin_qt_force=yes
-       bitcoin_qt_want_version=auto
+     whive_qt_want_version=$withval
+     if test "x$whive_qt_want_version" = xyes; then
+       whive_qt_force=yes
+       whive_qt_want_version=auto
      fi
     ],
-    [bitcoin_qt_want_version=auto])
+    [whive_qt_want_version=auto])
 
   AS_IF([test "x$with_gui" = xqt5_debug],
         [AS_CASE([$host],
                  [*darwin*], [qt_lib_suffix=_debug],
                  [*mingw*], [qt_lib_suffix=d],
-                 [qt_lib_suffix= ]); bitcoin_qt_want_version=qt5],
+                 [qt_lib_suffix= ]); whive_qt_want_version=qt5],
         [qt_lib_suffix= ])
 
   AC_ARG_WITH([qt-incdir],[AS_HELP_STRING([--with-qt-incdir=INC_DIR],[specify qt include path (overridden by pkgconfig)])], [qt_include_path=$withval], [])
@@ -101,7 +101,7 @@ dnl   BITCOIN_QT_CONFIGURE([MINIMUM-VERSION])
 dnl
 dnl Outputs: See _BITCOIN_QT_FIND_LIBS
 dnl Outputs: Sets variables for all qt-related tools.
-dnl Outputs: bitcoin_enable_qt, bitcoin_enable_qt_dbus, bitcoin_enable_qt_test
+dnl Outputs: whive_enable_qt, whive_enable_qt_dbus, whive_enable_qt_test
 AC_DEFUN([BITCOIN_QT_CONFIGURE],[
   qt_version=">= $1"
   qt_lib_prefix="Qt5"
@@ -247,14 +247,14 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
   dnl enable qt support
   AC_MSG_CHECKING([whether to build ]AC_PACKAGE_NAME[ GUI])
   BITCOIN_QT_CHECK([
-    bitcoin_enable_qt=yes
-    bitcoin_enable_qt_test=yes
+    whive_enable_qt=yes
+    whive_enable_qt_test=yes
     if test "x$have_qt_test" = xno; then
-      bitcoin_enable_qt_test=no
+      whive_enable_qt_test=no
     fi
-    bitcoin_enable_qt_dbus=no
+    whive_enable_qt_dbus=no
     if test "x$use_dbus" != xno && test "x$have_qt_dbus" = xyes; then
-      bitcoin_enable_qt_dbus=yes
+      whive_enable_qt_dbus=yes
     fi
     if test "x$use_dbus" = xyes && test "x$have_qt_dbus" = xno; then
       AC_MSG_ERROR([libQtDBus not found. Install libQtDBus or remove --with-qtdbus.])
@@ -266,12 +266,12 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
       AC_MSG_WARN([lconvert tool is required to update Qt translations.])
     fi
   ],[
-    bitcoin_enable_qt=no
+    whive_enable_qt=no
   ])
-  if test x$bitcoin_enable_qt = xyes; then
-    AC_MSG_RESULT([$bitcoin_enable_qt ($qt_lib_prefix)])
+  if test x$whive_enable_qt = xyes; then
+    AC_MSG_RESULT([$whive_enable_qt ($qt_lib_prefix)])
   else
-    AC_MSG_RESULT([$bitcoin_enable_qt])
+    AC_MSG_RESULT([$whive_enable_qt])
   fi
 
   AC_SUBST(QT_PIE_FLAGS)
@@ -396,4 +396,3 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS],[
     fi
   ])
 ])
-

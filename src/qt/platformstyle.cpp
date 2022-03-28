@@ -132,6 +132,6 @@ const PlatformStyle *PlatformStyle::instantiate(const QString &platformId)
                     platform_style.useExtraSpacing);
         }
     }
-    return 0;
+    return nullptr;
 }
 

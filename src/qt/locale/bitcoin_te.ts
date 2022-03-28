@@ -70,10 +70,6 @@
         <translation type="unfinished">ఇవి మీరు పంపే చెల్లింపుల బిట్‌కాయిన్ చిరునామాలు. నాణేలు పంపే ముందు ప్రతిసారి అందుకునే చిరునామా మరియు చెల్లింపు మొత్తం సరిచూసుకోండి.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>చెల్లింపులు స్వీకరించడానికి ఇవి మీ బిట్‌కాయిన్ చిరునామాలు. క్రొత్త చిరునామాలను సృష్టించడానికి స్వీకరించు ట్యాబ్‌లోని 'క్రొత్త స్వీకరించే చిరునామాను సృష్టించండి' బటన్‌ను ఉపయోగించండి.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">చిరునామాను కాపీ చెయ్యండి</translation>
     </message>
@@ -193,14 +189,6 @@
         <translation type="unfinished">ముఖ్యమైనది: మీరు మీ వాలెట్ ఫైల్‌తో చేసిన మునుపటి బ్యాకప్‌లను కొత్తగా రూపొందించిన, గుప్తీకరించిన వాలెట్ ఫైల్‌తో భర్తీ చేయాలి. భద్రతా కారణాల దృష్ట్యా, మీరు క్రొత్త, గుప్తీకరించిన వాలెట్ ఉపయోగించడం ప్రారంభించిన వెంటనే గుప్తీకరించని వాలెట్ ఫైల్ యొక్క మునుపటి బ్యాకప్‌లు నిరుపయోగంగా మారతాయి.</translation>
     </message>
     <message>
-        <source>Your wallet is now encrypted. </source>
-        <translation>cheraveyu chirunama</translation>
-    </message>
-    <message>
-        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>ముఖ్యమైనది: మీరు మీ వాలెట్ ఫైల్‌తో చేసిన మునుపటి బ్యాకప్‌లను కొత్తగా రూపొందించిన, గుప్తీకరించిన వాలెట్ ఫైల్‌తో భర్తీ చేయాలి. భద్రతా కారణాల దృష్ట్యా, మీరు క్రొత్త, గుప్తీకరించిన వాలెట్ ఉపయోగించడం ప్రారంభించిన వెంటనే గుప్తీకరించని వాలెట్ ఫైల్ యొక్క మునుపటి బ్యాకప్‌లు నిరుపయోగంగా మారతాయి.</translation>
-    </message>
-    <message>
         <source>Wallet encryption failed</source>
         <translation type="unfinished">జోలె సంకేతపరచడం విఫలమయ్యింది</translation>
     </message>
@@ -292,35 +280,7 @@
             <numerusform />
         </translation>
     </message>
-    <message>
-        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>lopali tappidam valla mee yokka wallet encryption samapthamu avaledu</translation>
-    </message>
-    <message>
-        <source>The supplied passphrases do not match.</source>
-        <translation>సరఫరా చేసిన పాస్‌ఫ్రేజ్‌లు సరిపోలడం లేదు.</translation>
-    </message>
-    <message>
-        <source>Wallet unlock failed</source>
-        <translation>వాలెట్ అన్‌లాక్ విఫలమైంది</translation>
-    </message>
-    <message>
-        <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>వాలెట్ డిక్రిప్షన్ కోసం నమోదు చేసిన పాస్‌ఫ్రేజ్ తప్పు.</translation>
-    </message>
-    <message>
-        <source>Wallet decryption failed</source>
-        <translation>వాలెట్ డీక్రిప్షన్ విఫలమైంది</translation>
-    </message>
-    <message>
-        <source>Wallet passphrase was successfully changed.</source>
-        <translation>వాలెట్ పాస్‌ఫ్రేజ్ విజయవంతంగా మార్చబడింది.</translation>
-    </message>
-    <message>
-        <source>Warning: The Caps Lock key is on!</source>
-        <translation>హెచ్చరిక: క్యాప్స్ లాక్ కీ ఆన్‌లో ఉంది!</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>BitcoinGUI</name>
     <message>
@@ -445,10 +405,6 @@
     <message>
         <source>Amount</source>
         <translation type="unfinished">మొత్తం</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>మొత్తం</translation>
     </message>
     <message>
         <source>Date</source>

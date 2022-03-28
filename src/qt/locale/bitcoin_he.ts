@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>יצר כתובת חדשה</translation>
+        <translation>יצירת כתובת חדשה</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -415,14 +415,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Create a new wallet</source>
         <translation type="unfinished">יצירת ארנק חדש</translation>
-    </message>
-    <message>
-        <source>Create Wallet...</source>
-        <translation>צור ארנק...</translation>
-    </message>
-    <message>
-        <source>Create a new wallet</source>
-        <translation>צור ארנק חדש</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -851,10 +843,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>CreateWalletActivity</name>
     <message>
-        <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>כעת ביצירת הארנק &lt;b&gt;%1&lt;/b&gt; ...</translation>
-    </message>
-    <message>
         <source>Create wallet failed</source>
         <translation type="unfinished">יצירת הארנק נכשלה</translation>
     </message>
@@ -908,10 +896,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">יצירת ארנק</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>ארנק</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">שם הארנק</translation>
     </message>
@@ -930,10 +914,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">אפשרויות מתקדמות</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>אפשרויות מתקדמות</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -2371,10 +2351,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>PSBT saved</source>
         <translation type="unfinished">PSBT נשמרה</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>נא לסקור את העיסקה המוצעת. הדבר יצור עיסקת ביטקוין חתומה חלקית (PSBT) אותה ניתן להעתיק ואז לחתום עם למשל ארנק לא מקוון %1, או עם ארנק חומרה תואם-PSBT.</translation>
     </message>
     <message>
         <source>or</source>

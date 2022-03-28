@@ -165,20 +165,12 @@
         <translation type="unfinished">Въведете старата и новата паролна фраза за портфейла.</translation>
     </message>
     <message>
-        <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>Въведете старата и новата паролна фраза за портфейла.</translation>
-    </message>
-    <message>
         <source>Wallet to be encrypted</source>
         <translation type="unfinished">Портфейл за криптиране</translation>
     </message>
     <message>
         <source>Your wallet is about to be encrypted. </source>
         <translation type="unfinished">Портфейлът ви е на път да бъде шифрован.</translation>
-    </message>
-    <message>
-        <source>Your wallet is about to be encrypted. </source>
-        <translation>Портфейлът ви е на път да бъде шифрован.</translation>
     </message>
     <message>
         <source>Your wallet is now encrypted. </source>
@@ -719,10 +711,6 @@
     <message>
         <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
         <translation type="unfinished">Този етикет става червен ако някой получател получи количество, по-малко от текущия праг на прах</translation>
-    </message>
-    <message>
-        <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation>Този етикет става червен ако някой получател получи количество, по-малко от текущия праг на прах</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -1305,10 +1293,6 @@
     <message>
         <source>Node window</source>
         <translation type="unfinished">Прозорец на възела</translation>
-    </message>
-    <message>
-        <source>Node window</source>
-        <translation>Прозорец на възела</translation>
     </message>
     <message>
         <source>Services</source>

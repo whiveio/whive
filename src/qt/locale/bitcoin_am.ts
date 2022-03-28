@@ -404,108 +404,6 @@
         <translation type="unfinished">አድራሻ፥ %1
 </translation>
     </message>
-    <message>
-        <source>Create Wallet...</source>
-        <translation>ዋሌት ፍጠር</translation>
-    </message>
-    <message>
-        <source>Create a new wallet</source>
-        <translation>አዲስ ዋሌት ፍጠር</translation>
-    </message>
-    <message>
-        <source>Wallet:</source>
-        <translation>ዋሌት</translation>
-    </message>
-    <message>
-        <source>&amp;Send</source>
-        <translation>&amp;ላክ</translation>
-    </message>
-    <message>
-        <source>&amp;Receive</source>
-        <translation>&amp;ተቀበል</translation>
-    </message>
-    <message>
-        <source>&amp;Show / Hide</source>
-        <translation>&amp;አሳይ/ ደብቅ</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;ፋይል</translation>
-    </message>
-    <message>
-        <source>&amp;Settings</source>
-        <translation>&amp;ቅንብሮች</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;እርዳታ</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>ስህተት</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation>ማሳስቢያ</translation>
-    </message>
-    <message>
-        <source>Information</source>
-        <translation>መረጃ</translation>
-    </message>
-    <message>
-        <source>Open Wallet</source>
-        <translation>ዋሌት ክፈት</translation>
-    </message>
-    <message>
-        <source>Open a wallet</source>
-        <translation>ዋሌት ክፈት</translation>
-    </message>
-    <message>
-        <source>Close Wallet...</source>
-        <translation>ዋሌት ዝጋ</translation>
-    </message>
-    <message>
-        <source>Close wallet</source>
-        <translation>ዋሌት ዝጋ</translation>
-    </message>
-    <message>
-        <source>default wallet</source>
-        <translation>መደበኛ ዋሌት</translation>
-    </message>
-    <message>
-        <source>Minimize</source>
-        <translation>አሳንስ</translation>
-    </message>
-    <message>
-        <source>Zoom</source>
-        <translation>እሳድግ</translation>
-    </message>
-    <message>
-        <source>Error: %1</source>
-        <translation>ስህተት፥ %1</translation>
-    </message>
-    <message>
-        <source>Warning: %1</source>
-        <translation>ማሳሰቢያ፥ %1</translation>
-    </message>
-    <message>
-        <source>Date: %1
-</source>
-        <translation>ቀን፥ %1
-</translation>
-    </message>
-    <message>
-        <source>Amount: %1
-</source>
-        <translation>መጠን፥ %1
-</translation>
-    </message>
-    <message>
-        <source>Address: %1
-</source>
-        <translation>አድራሻ፥ %1
-</translation>
-    </message>
     </context>
 <context>
     <name>CoinControlDialog</name>
@@ -771,10 +669,6 @@
         <translation type="unfinished">ቀን</translation>
     </message>
     <message>
-        <source>Date</source>
-        <translation>ቀን</translation>
-    </message>
-    <message>
         <source>Label</source>
         <translation type="unfinished">መለያ ስም</translation>
     </message>
@@ -814,10 +708,6 @@
     <message>
         <source>Error</source>
         <translation type="unfinished">ስህተት</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>ስህተት</translation>
     </message>
     </context>
 </TS>

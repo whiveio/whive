@@ -1068,10 +1068,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">创建钱包</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>钱包</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">钱包名称</translation>
     </message>
@@ -1090,10 +1086,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">进阶设定</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>进阶设定</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1139,10 +1131,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>Compiled without external signing support (required for external signing)</source>
         <extracomment>"External signing" means using devices such as hardware wallets.</extracomment>
         <translation type="unfinished">编译时未启用外部签名支持 (外部签名需要这个功能)</translation>
-    </message>
-    <message>
-        <source>Compiled without sqlite support (required for descriptor wallets)</source>
-        <translation>编译时未启用SQLite支持（输出描述符钱包需要它）</translation>
     </message>
 </context>
 <context>
@@ -1474,10 +1462,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
         <translation type="unfinished">警告:还原此设置需要重新下载整个区块链。</translation>
-    </message>
-    <message>
-        <source>MiB</source>
-        <translation>MiB</translation>
     </message>
     <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>

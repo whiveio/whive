@@ -456,14 +456,6 @@
         <translation>Đã cập nhật</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file...</source>
-        <translation>&amp;Tải dữ liệu PSBT từ tệp...</translation>
-    </message>
-    <message>
-        <source>Load PSBT from clipboard...</source>
-        <translation>Tải dữ liệu PSBT từ bộ nhớ tạm...</translation>
-    </message>
-    <message>
         <source>Node window</source>
         <translation type="unfinished">Cửa sổ node</translation>
     </message>
@@ -500,24 +492,8 @@
         <translation type="unfinished">Đóng tất cả ví</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>Đóng tất cả các ví</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Đóng tất cả ví</translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">Hiển thị %1 tin nhắn hỗ trợ để nhận được danh sách Bitcoin command-line khả dụng</translation>
-    </message>
-    <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;Mask values</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>Mask the values in the Overview tab</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -618,11 +594,7 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>Ví thì &lt;b&gt;encrypted&lt;/b&gt; và hiện tại &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
-    <message>
-        <source>A fatal error occurred. %1 can no longer continue safely and will quit.</source>
-        <translation>Lỗi nghiêm trong. %1 không thể tiếp tục và sẽ thoát ra</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
@@ -792,10 +764,6 @@
     <message>
         <source>Create Wallet</source>
         <translation type="unfinished">Tạo Ví</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Ví</translation>
     </message>
     <message>
         <source>Wallet Name</source>
@@ -1255,11 +1223,7 @@
         <source>Current total balance in watch-only addresses</source>
         <translation type="unfinished">Tổng số dư hiện tại trong watch-only addresses</translation>
     </message>
-    <message>
-        <source>Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings-&gt;Mask values.</source>
-        <translation>Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings-&gt;Mask values.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>PSBTOperationsDialog</name>
     <message>
@@ -1321,18 +1285,6 @@
     <message>
         <source>Transaction is fully signed and ready for broadcast.</source>
         <translation type="unfinished">Giao dịch đã được đăng ký và chuẩn bị để phát lên</translation>
-    </message>
-    <message>
-        <source>Transaction still needs signature(s).</source>
-        <translation>Giao dịch cần chữ ký</translation>
-    </message>
-    <message>
-        <source>(But this wallet cannot sign transactions.)</source>
-        <translation>(Nhưng ví này không thể đăng ký giao dịch.)</translation>
-    </message>
-    <message>
-        <source>Transaction is fully signed and ready for broadcast.</source>
-        <translation>Giao dịch đã được đăng ký và chuẩn bị để phát lên</translation>
     </message>
     </context>
 <context>
@@ -1516,10 +1468,6 @@
         <translation type="unfinished">Kích thước khối hiện tại</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>Kích thước khối hiện tại</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">Mở cái %1 debug log file từ danh mục dữ liệu hiện tại. Điều này cần vài giây cho large log files.</translation>
     </message>
@@ -1534,10 +1482,6 @@
     <message>
         <source>Permissions</source>
         <translation type="unfinished">Cho phép</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Cho phép</translation>
     </message>
     <message>
         <source>Services</source>
@@ -1920,22 +1864,6 @@
         <translation type="unfinished">PSBT đã lưu</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation>Create Unsigned</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Lưu trữ giao dịch</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Partially Signed Transaction (Binary) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>PSBT đã lưu</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">hoặc</translation>
     </message>
@@ -2290,15 +2218,7 @@
         <source>Exporting Failed</source>
         <translation type="unfinished">Xuất Thất Bại</translation>
     </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Đóng tất cả ví</translation>
-    </message>
-    <message>
-        <source>Are you sure you wish to close all wallets?</source>
-        <translation>Bạn có chắc chắn muốn đóng tất cả ví không?</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>WalletFrame</name>
     <message>

@@ -114,7 +114,7 @@ if BUILD_BITCOIN_UTIL
 endif
 
 .PHONY: FORCE check-symbols check-security
-# bitcoin core #
+# whive core #
 BITCOIN_CORE_H = \
   addrdb.h \
   addrman.h \
@@ -726,10 +726,10 @@ whive_tx_LDADD += $(BOOST_LIBS)
 
 # whive-wallet binary #
 whive_wallet_SOURCES = bitcoin-wallet.cpp
-whive_wallet_CPPFLAGS = $(bitcoin_bin_cppflags)
-whive_wallet_CXXFLAGS = $(bitcoin_bin_cxxflags)
-whive_wallet_LDFLAGS = $(bitcoin_bin_ldflags)
-whive_wallet_LDADD = $(LIBBITCOIN_WALLET_TOOL) $(whived_bin_ldadd)
+whive_wallet_CPPFLAGS = $(whive_bin_cppflags)
+whive_wallet_CXXFLAGS = $(whive_bin_cxxflags)
+whive_wallet_LDFLAGS = $(whive_bin_ldflags)
+whive_wallet_LDADD = $(LIBBITCOIN_WALLET_TOOL) $(whive_bin_ldadd)
 
 if TARGET_WINDOWS
 whive_wallet_SOURCES += bitcoin-wallet-res.rc

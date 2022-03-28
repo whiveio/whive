@@ -70,10 +70,6 @@
         <translation type="unfinished">ეს არის თქვენი ბიტკოინ-მისამართები, რომელთაგანაც შეგიძლიათ გადახდა. აუცილებლად შეამოწმეთ თანხა და მიმღები მისამართი გაგზავნამდე.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>ეს არის თქვენი ბიტკოინის მისამართები გადახდების მისაღებად. ახალი მისამართების შესაქმნელად გამოიყენეთ ღილაკი 'ახალი მიმღების მისამართის შექმნა'.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">მისამართის კოპირება</translation>
     </message>
@@ -193,30 +189,6 @@
         <translation type="unfinished">თქვენი საფულე ახლა დაშიფრულია</translation>
     </message>
     <message>
-        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>შეიყვანეთ საფულის ახალი საიდუმლო ფრაზა .1 გამოიყენეთ მე –2 ან მეტი შემთხვევითი სიმბოლოების 2 ან 3 – ზე მეტი რვა ან მეტი სიტყვის პაროლი 3.</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>შეიყვანეთ ძველი საიდუმლო ფრაზა და ახალი საიდუმლო ფრაზა საფულისთვის</translation>
-    </message>
-    <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>გახსოვდეთ, რომ თქვენი საფულის დაშიფვრა ვერ უზრუნველყოფს სრულად დაიცვას თქვენი ბიტკოინების მოპარვა კომპიუტერში მავნე პროგრამებით.</translation>
-    </message>
-    <message>
-        <source>Wallet to be encrypted</source>
-        <translation>დაშიფრულია საფულე</translation>
-    </message>
-    <message>
-        <source>Your wallet is about to be encrypted. </source>
-        <translation>თქვენი საფულე იშიფრება</translation>
-    </message>
-    <message>
-        <source>Your wallet is now encrypted. </source>
-        <translation>თქვენი საფულე ახლა დაშიფრულია</translation>
-    </message>
-    <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
         <translation type="unfinished">მნიშვნელოვანი: ნებისმიერი საფულის წინა სარეზერვო კოპია, რომელიც თქვენ შექმენით, უნდა იყოს ჩანაცვლებული ახლად გენერირებული, დაშიფრული საფულის ფაილით. უსაფრთხოების მიზნებისთვის, დაუშიფრავი საფულის ფაილის წინა სარეზევო კოპიები გახდება გამოუყენებული იმ წამსვე, როდესაც დაიწყებთ ახალი, დაშიფრული საფულის გამოყენებას.</translation>
     </message>
@@ -332,24 +304,20 @@
             <numerusform />
         </translation>
     </message>
-    <message>
-        <source>Banned Until</source>
-        <translation>სანამ აიკრძალა</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>BitcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
-        <translation>მიმოხილვა</translation>
+        <translation>მიმ&amp;ოხილვა</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
-        <translation>მაჩვენე საფულის ზოგადი მიმოხილვა</translation>
+        <translation>საფულის ზოგადი მიმოხილვა</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>ტრანსაქციები</translation>
+        <translation>&amp;ტრანსაქციები</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -410,15 +378,15 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>გაგზავნა</translation>
+        <translation>&amp;გაგზავნა</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>მიღება</translation>
+        <translation>&amp;მიღება</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
-        <translation>ჩვენება/დაფარვა</translation>
+        <translation>&amp;ჩვენება/დაფარვა</translation>
     </message>
     <message>
         <source>Show or hide the main Window</source>
@@ -438,15 +406,15 @@
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>ფაილი</translation>
+        <translation>&amp;ფაილი</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>პარამეტრები</translation>
+        <translation>&amp;პარამეტრები</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>დახმარება</translation>
+        <translation>&amp;დახმარება</translation>
     </message>
     <message>
         <source>Tabs toolbar</source>
@@ -474,14 +442,6 @@
             <numerusform />
             <numerusform />
         </translation>
-    </message>
-    <message>
-        <source>Indexing blocks on disk...</source>
-        <translation>ინდექსაციის ბლოკები დისკზე </translation>
-    </message>
-    <message>
-        <source>Processing blocks on disk...</source>
-        <translation>დამუშავება ბლოკები დისკზე</translation>
     </message>
     <message>
         <source>%1 behind</source>
@@ -548,20 +508,12 @@
         <translation type="unfinished">არ არის ჩატვირთული საფულე.</translation>
     </message>
     <message>
-        <source>No wallets available</source>
-        <translation>არ არის ჩატვირთული საფულე.</translation>
-    </message>
-    <message>
         <source>&amp;Window</source>
         <translation type="unfinished">&amp;ფანჯარა</translation>
     </message>
     <message>
         <source>Main Window</source>
         <translation type="unfinished">ძირითადი ფანჯარა</translation>
-    </message>
-    <message>
-        <source>Main Window</source>
-        <translation>ძირითადი ფანჯარა</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -677,10 +629,6 @@
     <message>
         <source>Received with address</source>
         <translation type="unfinished">მიღებულია მისამართისამებრ</translation>
-    </message>
-    <message>
-        <source>Received with address</source>
-        <translation>მიღებულია მისამართისამებრ</translation>
     </message>
     <message>
         <source>Date</source>

@@ -353,10 +353,6 @@
         <translation type="unfinished">Proxya &lt;b&gt;gaituta&lt;/b&gt; dago : %1</translation>
     </message>
     <message>
-        <source>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</source>
-        <translation>Proxya &lt;b&gt;gaituta&lt;/b&gt; dago : %1</translation>
-    </message>
-    <message>
         <source>Send coins to a Bitcoin address</source>
         <translation>Bidali txanponak Bitcoin helbide batera</translation>
     </message>
@@ -476,10 +472,6 @@
         <translation type="unfinished">Ireki bitcoin bat: URI</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation>Ireki bitcoin bat: URI</translation>
-    </message>
-    <message>
         <source>Open Wallet</source>
         <translation type="unfinished">Diruzorroa zabaldu</translation>
     </message>
@@ -496,24 +488,12 @@
         <translation type="unfinished">Diruzorro guztiak itxi</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>Diruzorro guztiak itxi...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Diruzorro guztiak itxi</translation>
-    </message>
-    <message>
         <source>default wallet</source>
         <translation type="unfinished">Diruzorro lehenetsia</translation>
     </message>
     <message>
         <source>No wallets available</source>
         <translation type="unfinished">Ez dago diru-zorrorik eskura</translation>
-    </message>
-    <message>
-        <source>No wallets available</source>
-        <translation>Ez dago diru-zorrorik eskura</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -574,11 +554,6 @@
 </source>
         <translation type="unfinished">Mota: %1
 </translation>
-    </message>
-    <message>
-        <source>Type: %1
-</source>
-        <translation>Mota: %1</translation>
     </message>
     <message>
         <source>Label: %1
@@ -648,20 +623,12 @@
         <translation type="unfinished">Ordainketa:</translation>
     </message>
     <message>
-        <source>Fee:</source>
-        <translation>Ordainketa:</translation>
-    </message>
-    <message>
         <source>Dust:</source>
         <translation type="unfinished">Hautsa:</translation>
     </message>
     <message>
         <source>After Fee:</source>
         <translation type="unfinished">Ordaindu ondoren:</translation>
-    </message>
-    <message>
-        <source>After Fee:</source>
-        <translation>Ordaindu ondoren:</translation>
     </message>
     <message>
         <source>Change:</source>
@@ -676,14 +643,6 @@
         <translation type="unfinished">Zerrenda modua</translation>
     </message>
     <message>
-        <source>Tree mode</source>
-        <translation>Zuhaitz modua</translation>
-    </message>
-    <message>
-        <source>List mode</source>
-        <translation>Zerrenda modua</translation>
-    </message>
-    <message>
         <source>Amount</source>
         <translation type="unfinished">Kopurua</translation>
     </message>
@@ -694,14 +653,6 @@
     <message>
         <source>Received with address</source>
         <translation type="unfinished">Helbidearekin jasoa</translation>
-    </message>
-    <message>
-        <source>Received with label</source>
-        <translation>Etiketarekin jasoa</translation>
-    </message>
-    <message>
-        <source>Received with address</source>
-        <translation>Helbidearekin jasoa</translation>
     </message>
     <message>
         <source>Date</source>
@@ -738,42 +689,6 @@
     <message>
         <source>(%1 locked)</source>
         <translation type="unfinished">(%1 blokeatuta)</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>zenbatekoaren kopia</translation>
-    </message>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>Kopiatu transakzioaren IDa</translation>
-    </message>
-    <message>
-        <source>Lock unspent</source>
-        <translation>Blokeatu erabili gabe</translation>
-    </message>
-    <message>
-        <source>Unlock unspent</source>
-        <translation>Desblokeatu gastatu gabe</translation>
-    </message>
-    <message>
-        <source>Copy quantity</source>
-        <translation>Kopia kopurua</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>Kopiatu byte-ak</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>Kopiatu hautsa</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>Kopiatu aldaketa</translation>
-    </message>
-    <message>
-        <source>(%1 locked)</source>
-        <translation>(%1 blokeatuta)</translation>
     </message>
     <message>
         <source>yes</source>
@@ -828,20 +743,12 @@
         <source>Close all wallets</source>
         <translation type="unfinished">Diruzorro guztiak itxi</translation>
     </message>
-    <message>
-        <source>Create wallet warning</source>
-        <translation>Diru-zorroa sortzearen buruzko oharra</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CreateWalletDialog</name>
     <message>
         <source>Create Wallet</source>
         <translation type="unfinished">Diruzorroa sortu</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Diru-zorroa</translation>
     </message>
     <message>
         <source>Wallet Name</source>
@@ -866,18 +773,6 @@
     <message>
         <source>Descriptor Wallet</source>
         <translation type="unfinished">Deskriptorearen zorroa</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Aukera aurreratuak</translation>
-    </message>
-    <message>
-        <source>Disable Private Keys</source>
-        <translation>Desgaitu gako pribatuak</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>Deskriptorearen zorroa</translation>
     </message>
     <message>
         <source>Create</source>
@@ -985,10 +880,6 @@
     <message>
         <source>Hide</source>
         <translation type="unfinished">Izkutatu</translation>
-    </message>
-    <message>
-        <source>Esc</source>
-        <translation>Esc</translation>
     </message>
     </context>
 <context>
@@ -1109,14 +1000,6 @@
         <translation type="unfinished">Bezeroa berrabiarazi behar da aldaketak aktibatzeko.</translation>
     </message>
     <message>
-        <source>Confirm options reset</source>
-        <translation>Berretsi aukeren berrezarpena</translation>
-    </message>
-    <message>
-        <source>Client restart required to activate changes.</source>
-        <translation>Bezeroa berrabiarazi behar da aldaketak aktibatzeko.</translation>
-    </message>
-    <message>
         <source>Configuration options</source>
         <translation type="unfinished">Konfiguraketa aukerak</translation>
     </message>
@@ -1146,10 +1029,6 @@
     <message>
         <source>Pending:</source>
         <translation type="unfinished">Zai:</translation>
-    </message>
-    <message>
-        <source>Immature:</source>
-        <translation>Ez dago eskuragarri:</translation>
     </message>
     <message>
         <source>Immature:</source>
@@ -1234,10 +1113,6 @@
         <translation type="unfinished">&amp;Mezua:</translation>
     </message>
     <message>
-        <source>Copy amount</source>
-        <translation>zenbatekoaren kopia</translation>
-    </message>
-    <message>
         <source>Could not unlock wallet.</source>
         <translation type="unfinished">Ezin da diruzorroa desblokeatu.</translation>
     </message>
@@ -1305,14 +1180,6 @@
     <message>
         <source>After Fee:</source>
         <translation type="unfinished">Ordaindu ondoren:</translation>
-    </message>
-    <message>
-        <source>Fee:</source>
-        <translation>Ordainketa:</translation>
-    </message>
-    <message>
-        <source>After Fee:</source>
-        <translation>Ordaindu ondoren:</translation>
     </message>
     <message>
         <source>Change:</source>
@@ -1446,10 +1313,6 @@
         <translation type="unfinished">abandonatuta</translation>
     </message>
     <message>
-        <source>abandoned</source>
-        <translation>abandonatuta</translation>
-    </message>
-    <message>
         <source>%1/unconfirmed</source>
         <translation type="unfinished">%1/konfirmatu gabe</translation>
     </message>
@@ -1460,10 +1323,6 @@
     <message>
         <source>Status</source>
         <translation type="unfinished">Egoera</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation>Egoera</translation>
     </message>
     <message>
         <source>Date</source>
@@ -1480,18 +1339,6 @@
     <message>
         <source>From</source>
         <translation type="unfinished">Tik</translation>
-    </message>
-    <message>
-        <source>Source</source>
-        <translation>Iturria</translation>
-    </message>
-    <message>
-        <source>Generated</source>
-        <translation>Sortua</translation>
-    </message>
-    <message>
-        <source>From</source>
-        <translation>Tik</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1539,42 +1386,6 @@
     <message>
         <source>Total credit</source>
         <translation type="unfinished">Kreditu totala</translation>
-    </message>
-    <message>
-        <source>To</source>
-        <translation>Ra</translation>
-    </message>
-    <message>
-        <source>own address</source>
-        <translation>zure helbidea</translation>
-    </message>
-    <message>
-        <source>watch-only</source>
-        <translation>ikusi bakarrik</translation>
-    </message>
-    <message>
-        <source>label</source>
-        <translation>etiketa</translation>
-    </message>
-    <message>
-        <source>Credit</source>
-        <translation>Kreditua</translation>
-    </message>
-    <message>
-        <source>not accepted</source>
-        <translation>Onartu gabe</translation>
-    </message>
-    <message>
-        <source>Debit</source>
-        <translation>Zorrak</translation>
-    </message>
-    <message>
-        <source>Total debit</source>
-        <translation>Zor totala</translation>
-    </message>
-    <message>
-        <source>Total credit</source>
-        <translation>Kreditu totala</translation>
     </message>
     <message>
         <source>Message</source>
@@ -1743,10 +1554,6 @@
     <message>
         <source>Exporting Failed</source>
         <translation type="unfinished">Esportazioak huts egin du</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Diruzorro guztiak itxi</translation>
     </message>
     </context>
 <context>

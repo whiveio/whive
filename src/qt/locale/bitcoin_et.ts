@@ -491,10 +491,6 @@
         <translation type="unfinished">Tõrge %1</translation>
     </message>
     <message>
-        <source>Error: %1</source>
-        <translation>Tõrge %1</translation>
-    </message>
-    <message>
         <source>Date: %1
 </source>
         <translation type="unfinished">Kuupäev: %1

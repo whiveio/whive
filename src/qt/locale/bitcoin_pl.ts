@@ -601,14 +601,6 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
         <translation type="unfinished">Schowaj wartości w zakładce Podsumowanie</translation>
     </message>
     <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;Schowaj wartości</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>Schowaj wartości w zakładce Podsumowanie</translation>
-    </message>
-    <message>
         <source>default wallet</source>
         <translation type="unfinished">domyślny portfel</translation>
     </message>
@@ -916,10 +908,6 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
         <translation type="unfinished">Stwórz portfel</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Portfel</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Nazwa portfela</translation>
     </message>
@@ -940,10 +928,6 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
         <translation type="unfinished">Opcje Zaawansowane</translation>
     </message>
     <message>
-        <source>Advanced Options</source>
-        <translation>Opcje Zaawansowane</translation>
-    </message>
-    <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
         <translation type="unfinished">Wyłącz klucze prywatne dla tego portfela. Portfel z wyłączonymi kluczami prywatnymi nie może zawierać zaimportowanych kluczy prywatnych ani ustawionego seeda HD. Jest to idealne rozwiązanie dla portfeli śledzących (watch-only).</translation>
     </message>
@@ -962,10 +946,6 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
     <message>
         <source>Use descriptors for scriptPubKey management</source>
         <translation type="unfinished">Użyj deskryptorów do zarządzania scriptPubKey</translation>
-    </message>
-    <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation>Użyj deskryptorów do zarządzania scriptPubKey</translation>
     </message>
     <message>
         <source>Descriptor Wallet</source>
@@ -1397,14 +1377,6 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
         <translation type="unfinished">Użyj oddzielnego proxy SOCKS&amp;5 aby osiągnąć węzły w ukrytych usługach Tor:</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Połącz się z siecią Bitcoin przy pomocy oddzielnego SOCKS5 proxy dla sieci TOR.</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
-        <translation>Użyj oddzielnego proxy SOCKS&amp;5 aby osiągnąć węzły w ukrytych usługach Tor:</translation>
-    </message>
-    <message>
         <source>&amp;Third party transaction URLs</source>
         <translation type="unfinished">&amp;Zewnętrzny URL podglądu transakcji</translation>
     </message>
@@ -1551,14 +1523,6 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
         <translation type="unfinished">Rozgłoś transakcję (Tx)</translation>
     </message>
     <message>
-        <source>Sign Tx</source>
-        <translation>Podpisz transakcję (Tx)</translation>
-    </message>
-    <message>
-        <source>Broadcast Tx</source>
-        <translation>Rozgłoś transakcję (Tx)</translation>
-    </message>
-    <message>
         <source>Copy to Clipboard</source>
         <translation type="unfinished">Kopiuj do schowka</translation>
     </message>
@@ -1583,14 +1547,6 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
         <translation type="unfinished">Podpisano %1 wejść, ale potrzebnych jest więcej podpisów.</translation>
     </message>
     <message>
-        <source>Could not sign any more inputs.</source>
-        <translation>Nie udało się podpisać więcej wejść.</translation>
-    </message>
-    <message>
-        <source>Signed %1 inputs, but more signatures are still required.</source>
-        <translation>Podpisano %1 wejść, ale potrzebnych jest więcej podpisów.</translation>
-    </message>
-    <message>
         <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
         <translation type="unfinished">transakcja</translation>
     </message>
@@ -1603,20 +1559,12 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
         <translation type="unfinished">Nie udało się rozgłosić transakscji: %1</translation>
     </message>
     <message>
-        <source>Transaction broadcast failed: %1</source>
-        <translation>Nie udało się rozgłosić transakscji: %1</translation>
-    </message>
-    <message>
         <source>PSBT copied to clipboard.</source>
         <translation type="unfinished">PSBT skopiowane do schowka</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
         <translation type="unfinished">Zapisz dane transakcji</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Częściowo Podpisana Transakcja (*.psbt)</translation>
     </message>
     <message>
         <source>PSBT saved to disk.</source>
@@ -1649,14 +1597,6 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
     <message>
         <source>Transaction is missing some information about inputs.</source>
         <translation type="unfinished">Transakcja ma niekompletne informacje o niektórych wejściach.</translation>
-    </message>
-    <message>
-        <source>Transaction has %1 unsigned inputs.</source>
-        <translation>Transakcja ma %1 niepodpisane wejścia.</translation>
-    </message>
-    <message>
-        <source>Transaction is missing some information about inputs.</source>
-        <translation>Transakcja ma niekompletne informacje o niektórych wejściach.</translation>
     </message>
     <message>
         <source>Transaction still needs signature(s).</source>
@@ -1892,10 +1832,6 @@ Podpisywanie jest możliwe tylko z adresami typu „legacy”.</translation>
     <message>
         <source>Current block height</source>
         <translation type="unfinished">Obecna ilość bloków</translation>
-    </message>
-    <message>
-        <source>Current block height</source>
-        <translation>Obecna ilość bloków</translation>
     </message>
     <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
@@ -2435,10 +2371,6 @@ Korzystanie z opłaty domyślnej może skutkować wysłaniem transakcji, która 
         <translation type="unfinished">Zapisz dane transakcji</translation>
     </message>
     <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Częściowo Podpisana Transakcja (*.psbt)</translation>
-    </message>
-    <message>
         <source>PSBT saved</source>
         <translation type="unfinished">Zapisano PSBT</translation>
     </message>
@@ -2453,10 +2385,6 @@ Korzystanie z opłaty domyślnej może skutkować wysłaniem transakcji, która 
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation type="unfinished">Proszę przejrzeć propozycję transakcji. Zostanie utworzona częściowo podpisana transakcja (ang. PSBT), którą można skopiować, a następnie podpisać np. offline z portfelem %1 lub z innym portfelem zgodnym z PSBT.</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Proszę przejrzeć propozycję transakcji. Zostanie utworzona częściowo podpisana transakcja (ang. PSBT), którą można skopiować, a następnie podpisać np. offline z portfelem %1 lub z innym portfelem zgodnym z PSBT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3268,20 +3196,12 @@ Przejdź do Plik &gt; Otwórz Portfel aby wgrać portfel.
         <translation type="unfinished">Nie udało się załadować częściowo podpisanej transakcji (nieważny base64)</translation>
     </message>
     <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>Nie udało się załadować częściowo podpisanej transakcji (nieważny base64)</translation>
-    </message>
-    <message>
         <source>Load Transaction Data</source>
         <translation type="unfinished">Wczytaj dane transakcji</translation>
     </message>
     <message>
         <source>Partially Signed Transaction (*.psbt)</source>
         <translation type="unfinished">Częściowo Podpisana Transakcja (*.psbt)</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>Częściowo Podpisana Transakcja (*.psbt)</translation>
     </message>
     <message>
         <source>PSBT file must be smaller than 100 MiB</source>

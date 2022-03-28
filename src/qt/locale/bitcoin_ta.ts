@@ -76,12 +76,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 கையொப்பமிடுவது 'மரபு' வகையின் முகவரிகளால் மட்டுமே சாத்தியமாகும்.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>பிட்காயின் பெறுவதற்காக உங்கள் முகவரி இவை. புதிய முகவரிகளை உருவாக்க 'புதிய முகவரியை உருவாக்கு' என்ற பட்டனை கிளிக் செய்யவும்.
-கையொப்பமிடுவது 'மரபு' வகையின் முகவரிகளால் மட்டுமே சாத்தியமாகும்.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">&amp;காபி முகவரி</translation>
     </message>
@@ -537,14 +531,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">அனைத்து பணப்பைகள் மூடு</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>அனைத்து பணப்பைகள் மூடு...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>அனைத்து பணப்பைகள் மூடு</translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">சாத்தியமான Bitcoin கட்டளை-வரி விருப்பங்களைக் கொண்ட பட்டியலைப் பெற %1 உதவிச் செய்தியைக் காட்டு</translation>
     </message>
@@ -555,14 +541,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Mask the values in the Overview tab</source>
         <translation type="unfinished">கண்ணோட்டம் தாவலில் மதிப்புகளை மறைக்கவும்</translation>
-    </message>
-    <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;மதிப்புகளை மறைக்கவும்</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>கண்ணோட்டம் தாவலில் மதிப்புகளை மறைக்கவும்</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -861,10 +839,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Create Wallet</source>
         <translation type="unfinished">வாலட்டை உருவாக்கு</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>பணப்பை</translation>
     </message>
     <message>
         <source>Wallet Name</source>

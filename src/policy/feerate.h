@@ -12,7 +12,7 @@
 
 #include <string>
 
-const std::string CURRENCY_UNIT = "BTC"; // One formatted unit
+const std::string CURRENCY_UNIT = "WHIVE"; // One formatted unit
 const std::string CURRENCY_ATOM = "sat"; // One indivisible minimum value unit
 
 /* Used to determine type of fee estimation requested */
@@ -20,7 +20,7 @@ enum class FeeEstimateMode {
     UNSET,        //!< Use default settings based on other criteria
     ECONOMICAL,   //!< Force estimateSmartFee to use non-conservative estimates
     CONSERVATIVE, //!< Force estimateSmartFee to use conservative estimates
-    BTC_KVB,      //!< Use BTC/kvB fee rate unit
+    BTC_KVB,      //!< Use WHIVE/kvB fee rate unit
     SAT_VB,       //!< Use sat/vB fee rate unit
 };
 
@@ -44,7 +44,7 @@ public:
      *
      *  Passing a num_bytes value of COIN (1e8) returns a fee rate in satoshis per vB (sat/vB),
      *  e.g. (nFeePaid * 1e8 / 1e3) == (nFeePaid / 1e5),
-     *  where 1e5 is the ratio to convert from BTC/kvB to sat/vB.
+     *  where 1e5 is the ratio to convert from WHIVE/kvB to sat/vB.
      */
     CFeeRate(const CAmount& nFeePaid, uint32_t num_bytes);
     /**

@@ -327,7 +327,7 @@ void Intro::on_ellipsisButton_clicked()
 
 void Intro::on_dataDirDefault_clicked()
 {
-    setDataDirectory(getDefaultDataDirectory());
+    setDataDirectory(GUIUtil::getDefaultDataDirectory());
 }
 
 void Intro::on_dataDirCustom_clicked()

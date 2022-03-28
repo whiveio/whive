@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>Verwijder het huidige geselecteerde adres uit de lijst</translation>
+        <translation>Verwijder het geselecteerde adres van de lijst</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -452,7 +452,7 @@ Ondertekenen is alleen mogelijk met adressen van het type 'legacy'.</translation
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
-        <translation>munten Versturen naar een Bitcoin adres</translation>
+        <translation>Verstuur munten naar een Bitcoinadres</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -512,7 +512,7 @@ Ondertekenen is alleen mogelijk met adressen van het type 'legacy'.</translation
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Verifiëer berichten om te garanderen dat de berichten zijn ondertekend met de gespecificeerde Bitcoinadressen</translation>
+        <translation>Verifiëer handtekeningen om zeker te zijn dat de berichten zijn ondertekend met de gespecificeerde Bitcoinadressen</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
@@ -1028,10 +1028,6 @@ Ondertekenen is alleen mogelijk met adressen van het type 'legacy'.</translation
         <translation type="unfinished">Creëer wallet</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Portemonnee</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Wallet Naam</translation>
     </message>
@@ -1050,10 +1046,6 @@ Ondertekenen is alleen mogelijk met adressen van het type 'legacy'.</translation
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Geavanceerde Opties</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Geavanceerde Opties</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1100,10 +1092,6 @@ Dit is ideaal voor alleen-lezen portommonees.</translation>
         <source>Compiled without external signing support (required for external signing)</source>
         <extracomment>"External signing" means using devices such as hardware wallets.</extracomment>
         <translation type="unfinished">Gecompileerd zonder ondersteuning voor externe ondertekenaars (vereist voor extern ondertekenen)</translation>
-    </message>
-    <message>
-        <source>Compiled without sqlite support (required for descriptor wallets)</source>
-        <translation>Gecompileerd zonder ondersteuning van sqlite (noodzakelijk voor beschrijvende portemonees)</translation>
     </message>
 </context>
 <context>
@@ -1802,50 +1790,6 @@ Dit is ideaal voor alleen-lezen portommonees.</translation>
         <translation type="unfinished">Betaald transactiekosten:</translation>
     </message>
     <message>
-        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
-        <translation>Transactie succesvol getekend. Transactie is klaar voor verzending.</translation>
-    </message>
-    <message>
-        <source>Unknown error processing transaction.</source>
-        <translation>Onbekende fout bij verwerken van transactie.</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast successfully! Transaction ID: %1</source>
-        <translation>Transactie succesvol uitgezonden! Transactie-ID: %1</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast failed: %1</source>
-        <translation>Uitzenden transactie mislukt: %1</translation>
-    </message>
-    <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation>PSBT gekopieerd naar klembord.</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Transactiedata Opslaan</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Gedeeltelijk Ondertekende Transactie (Binair) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved to disk.</source>
-        <translation>PSBT opgeslagen op de schijf</translation>
-    </message>
-    <message>
-        <source> * Sends %1 to %2</source>
-        <translation>Verstuur %1 naar %2</translation>
-    </message>
-    <message>
-        <source>Unable to calculate transaction fee or total transaction amount.</source>
-        <translation>Onmogelijk om de transactie kost of totale bedrag te berekenen.</translation>
-    </message>
-    <message>
-        <source>Pays transaction fee: </source>
-        <translation>Betaald transactiekosten:</translation>
-    </message>
-    <message>
         <source>Total Amount</source>
         <translation type="unfinished">Totaalbedrag</translation>
     </message>
@@ -2091,10 +2035,6 @@ Als je deze fout ziet zou je de aanbieder moeten verzoeken om een BIP21 compatib
         <translation type="unfinished">Huidige block hoogte</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>Huidige block hoogte</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">Open het %1 debug-logbestand van de huidige gegevensmap. Dit kan een aantal seconden duren voor grote logbestanden.</translation>
     </message>
@@ -2121,10 +2061,6 @@ Als je deze fout ziet zou je de aanbieder moeten verzoeken om een BIP21 compatib
     <message>
         <source>The network protocol this peer is connected through: IPv4, IPv6, Onion, I2P, or CJDNS.</source>
         <translation type="unfinished">Het netwerkprotocol waarmee deze peer verbonden is: IPv4, IPv6, Onion, I2P, of CJDNS.</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Rechten</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2774,22 +2710,6 @@ Notitie: Omdat de vergoeding per byte wordt gerekend, zal een vergoeding van "10
         <translation type="unfinished">Extern tegoed:</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation>Creër ongetekende</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Transactiedata Opslaan</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Gedeeltelijk Ondertekende Tansactie (Binair) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>PSBT opgeslagen</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">of</translation>
     </message>
@@ -2800,11 +2720,6 @@ Notitie: Omdat de vergoeding per byte wordt gerekend, zal een vergoeding van "10
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation type="unfinished">Gelieve uw transactie voorstel te controleren. Deze actie zal een Gedeeltelijk Getekende Bitcoin Transactie (PSBT) produceren die je kan opslaan of kopiëre en vervolgends ondertekenen.
-Vb. een offline %1 portemonee, of een PSBT-combatiebele hardware portemonee.</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Gelieve uw transactie voorstel te controleren. Deze actie zal een Gedeeltelijk Getekende Bitcoin Transactie (PSBT) produceren die je kan opslaan of kopiëre en vervolgends ondertekenen.
 Vb. een offline %1 portemonee, of een PSBT-combatiebele hardware portemonee.</translation>
     </message>
     <message>
@@ -3638,26 +3553,6 @@ Ga naar Bestand &gt; Open portemonee om er één te openen.
     <message>
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">Niet in staat om de PSBT te decoderen</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>Onmogelijk om het PSBT te ontcijferen van het klembord (ongeldige base64)</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>Laad Transactie Data</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>Gedeeltelijk ondertekende transactie (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation>Het PSBT bestand moet kleiner dan 100 MiB te zijn.</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT</source>
-        <translation>Niet in staat om de PSBT te decoderen</translation>
     </message>
     <message>
         <source>Backup Wallet</source>

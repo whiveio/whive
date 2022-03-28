@@ -11,7 +11,7 @@
 class ArgsManager;
 
 /**
- * CBaseChainParams defines the base parameters (shared between bitcoin-cli and bitcoind)
+ * CBaseChainParams defines the base parameters (shared between whive-cli and whived)
  * of a given instance of the Bitcoin system.
  */
 class CBaseChainParams

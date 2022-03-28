@@ -884,10 +884,6 @@ Només és possible firmar amb adreces del tipus "legacy".</translation>
         <translation type="unfinished">Crear cartera</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Cartera</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Nom de la cartera</translation>
     </message>
@@ -906,10 +902,6 @@ Només és possible firmar amb adreces del tipus "legacy".</translation>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Opcions avançades</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Opcions avançades</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1576,66 +1568,6 @@ Això és ideal per a carteres de mode només lectura.</translation>
         <translation type="unfinished">Paga comissió de transacció:</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation>Tanca</translation>
-    </message>
-    <message>
-        <source>Failed to load transaction: %1</source>
-        <translation>Ha fallat la càrrega de la transacció: %1</translation>
-    </message>
-    <message>
-        <source>Failed to sign transaction: %1</source>
-        <translation>Ha fallat la firma de la transacció: %1</translation>
-    </message>
-    <message>
-        <source>Could not sign any more inputs.</source>
-        <translation>No s'han pogut firmar més entrades.</translation>
-    </message>
-    <message>
-        <source>Signed %1 inputs, but more signatures are still required.</source>
-        <translation>Firmades %1 entrades, però encara es requereixen més firmes.</translation>
-    </message>
-    <message>
-        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
-        <translation>La transacció s'ha firmat correctament. La transacció està a punt per emetre's.</translation>
-    </message>
-    <message>
-        <source>Unknown error processing transaction.</source>
-        <translation>Error desconnegut al processar la transacció.</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast failed: %1</source>
-        <translation>L'emissió de la transacció ha fallat: %1</translation>
-    </message>
-    <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation>PSBT copiada al porta-retalls.</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Guarda Dades de Transacció</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Transacció Parcialment Firmada (Binari) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved to disk.</source>
-        <translation>PSBT guardada al disc.</translation>
-    </message>
-    <message>
-        <source> * Sends %1 to %2</source>
-        <translation>*Envia %1 a %2</translation>
-    </message>
-    <message>
-        <source>Unable to calculate transaction fee or total transaction amount.</source>
-        <translation>Incapaç de calcular la comissió de transacció o la quantitat total de la transacció</translation>
-    </message>
-    <message>
-        <source>Pays transaction fee: </source>
-        <translation>Paga comissió de transacció:</translation>
-    </message>
-    <message>
         <source>Total Amount</source>
         <translation type="unfinished">Import total</translation>
     </message>
@@ -1891,10 +1823,6 @@ Si rebeu aquest error, haureu de sol·licitar al comerciant que proporcioni un U
         <translation type="unfinished">Altura actual de bloc</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>Altura actual de bloc</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">Obre el fitxer de registre de depuració %1 del directori de dades actual. Això pot trigar uns segons en fitxers de registre grans.</translation>
     </message>
@@ -1917,10 +1845,6 @@ Si rebeu aquest error, haureu de sol·licitar al comerciant que proporcioni un U
     <message>
         <source>Direction/Type</source>
         <translation type="unfinished">Direcció / Tipus</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Permisos</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2436,22 +2360,6 @@ Si rebeu aquest error, haureu de sol·licitar al comerciant que proporcioni un U
         <translation type="unfinished">PSBT guardada</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation>Creació sense firmar</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Guarda Dades de Transacció</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Transacció Parcialment Firmada (Binari) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>PSBT guardada</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">o</translation>
     </message>
@@ -2462,10 +2370,6 @@ Si rebeu aquest error, haureu de sol·licitar al comerciant que proporcioni un U
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation type="unfinished">Si us plau, revisa la teva proposta de transacció. Es produirà una transacció de Bitcoin amb firma parcial (PSBT) que podeu guardar o copiar i després firmar, per exemple, amb una cartera %1, o amb una cartera física compatible amb PSBT.</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Si us plau, revisa la teva proposta de transacció. Es produirà una transacció de Bitcoin amb firma parcial (PSBT) que podeu guardar o copiar i després firmar, per exemple, amb una cartera %1, o amb una cartera física compatible amb PSBT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3286,26 +3190,6 @@ Ves a Arxiu &gt; Obrir Cartera per a carregar cartera.
     <message>
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">Incapaç de descodificar la PSBT</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>Incapaç de descodificar la PSBT del porta-retalls (base64 invàlida)</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>Carrega dades de transacció</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>Transacció Parcialment Firmada (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation>L'arxiu PSBT ha de ser més petit que 100MiB</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT</source>
-        <translation>Incapaç de descodificar la PSBT</translation>
     </message>
     <message>
         <source>Backup Wallet</source>

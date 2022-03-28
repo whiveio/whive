@@ -352,9 +352,9 @@ Wallet
   failing until the first block is pruned. (#15870)
 
 - When creating a transaction with a fee above `-maxtxfee` (default 0.1
-  BTC), the RPC commands `walletcreatefundedpsbt` and
+  WHIVE), the RPC commands `walletcreatefundedpsbt` and
   `fundrawtransaction` will now fail instead of rounding down the fee.
-  Be aware that the `feeRate` argument is specified in BTC per 1,000
+  Be aware that the `feeRate` argument is specified in WHIVE per 1,000
   vbytes, not satoshi per vbyte. (#16257)
 
 - A new wallet flag `avoid_reuse` has been added (default off). When
@@ -545,7 +545,7 @@ Build system changes
 - #16251 Improve signrawtransaction error reporting (ajtowns)
 - #16873 fix regression in gettransaction (jonatack)
 - #16512 Shuffle inputs and outputs after joining psbts (achow101)
-- #16521 Use the default maxfeerate value as BTC/kB (Remagpie)
+- #16521 Use the default maxfeerate value as WHIVE/kB (Remagpie)
 - #16817 Fix casing in getblockchaininfo to be inline with other fields (dangershony)
 - #17131 fix -rpcclienttimeout 0 option (fjahr)
 - #17249 Add missing deque include to fix build (jbeich)
@@ -791,7 +791,7 @@ Build system changes
 - #16920 Fix extra_args in wallet_import_rescan.py (MarcoFalke)
 - #16918 Make PORT_MIN in test runner configurable (MarcoFalke)
 - #16941 travis: Disable feature_block in tsan run due to oom (MarcoFalke)
-- #16929 follow-up to rpc: default maxfeerate value as BTC/kB (jonatack)
+- #16929 follow-up to rpc: default maxfeerate value as WHIVE/kB (jonatack)
 - #16959 ci: Set $host before setting fallback values (MarcoFalke)
 - #16961 Remove python dead code linter (laanwj)
 - #16931 add unittests for CheckProofOfWork (soroosh-sdi)

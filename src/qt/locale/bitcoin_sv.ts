@@ -489,14 +489,6 @@ Försök igen.</translation>
         <translation>Uppdaterad</translation>
     </message>
     <message>
-        <source>&amp;Load PSBT from file...</source>
-        <translation>&amp;Läs in PSBT från fil...</translation>
-    </message>
-    <message>
-        <source>Load PSBT from clipboard...</source>
-        <translation>Läs in PSBT från urklipp...</translation>
-    </message>
-    <message>
         <source>Node window</source>
         <translation type="unfinished">Nod-fönster</translation>
     </message>
@@ -533,14 +525,6 @@ Försök igen.</translation>
         <translation type="unfinished">Stäng alla plånböcker</translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>Stäng alla plånböcker...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Stäng alla plånböcker</translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">Visa %1 hjälpmeddelande för att få en lista med möjliga Bitcoin kommandoradsalternativ.</translation>
     </message>
@@ -551,14 +535,6 @@ Försök igen.</translation>
     <message>
         <source>Mask the values in the Overview tab</source>
         <translation type="unfinished">Dölj värden i översiktsfliken</translation>
-    </message>
-    <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;Dölj värden</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>Dölj värden i översiktsfliken</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -861,10 +837,6 @@ Försök igen.</translation>
     <message>
         <source>Create Wallet</source>
         <translation type="unfinished">Skapa plånbok</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>Plånbok</translation>
     </message>
     <message>
         <source>Wallet Name</source>
@@ -2089,10 +2061,6 @@ Försök igen.</translation>
     <message>
         <source>Sign failed</source>
         <translation type="unfinished">Signering misslyckades</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Pleasetransaktion, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</translation>
     </message>
     <message>
         <source>or</source>

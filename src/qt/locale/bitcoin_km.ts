@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>ចម្លងអាសយដ្ឋានបច្ចុប្បន្នដែលបានជ្រើសទៅក្ដារប្រព័ន្ធក្តារម្រៀប</translation>
+        <translation>ចម្លងអាសយដ្ឋានបច្ចុប្បន្នដែលបានជ្រើសទៅក្ដារតម្រៀបរបស់ប្រព័ន្ធ</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -68,12 +68,6 @@
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished">ទាំងនេះ​គឺជាអាសយដ្ឋាន Bitcoin របស់អ្នកសម្រាប់ធ្វើការផ្ញើការបង់ប្រាក់។ តែងតែពិនិត្យមើលចំនួនប្រាក់ និងអាសយដ្ឋានដែលទទួល មុនពេលផ្ញើប្រាក់។</translation>
-    </message>
-    <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -174,10 +168,6 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation type="unfinished">វាយបញ្ចូលឃ្លាសម្ងាត់ចាស់ និងឃ្លាសសម្លាត់ថ្មី សម្រាប់កាបូបចល័តរបស់អ្នក។</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</translation>
-    </message>
-    <message>
         <source>Wallet to be encrypted</source>
         <translation type="unfinished">កាបូបចល័ត ដែលត្រូវបានអ៊ិនគ្រីប</translation>
     </message>
@@ -188,10 +178,6 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
         <source>Your wallet is now encrypted. </source>
         <translation type="unfinished">កាបូបចល័តរបស់អ្នក ឥឡូវត្រូវបានអ៊ិនគ្រីប។</translation>
-    </message>
-    <message>
-        <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -586,143 +572,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <source>Create wallet failed</source>
         <translation type="unfinished">បង្កើតកាបូបអេឡិចត្រូនិច មិនជោគជ័យ</translation>
     </message>
-    <message>
-        <source>Quantity:</source>
-        <translation>បរិមាណ</translation>
-    </message>
-    <message>
-        <source>Bytes:</source>
-        <translation>Bytes:</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>ចំនួន</translation>
-    </message>
-    <message>
-        <source>Fee:</source>
-        <translation>កម្រៃ​</translation>
-    </message>
-    <message>
-        <source>Dust:</source>
-        <translation>Dust:</translation>
-    </message>
-    <message>
-        <source>After Fee:</source>
-        <translation>After Fee:</translation>
-    </message>
-    <message>
-        <source>Change:</source>
-        <translation>Change:</translation>
-    </message>
-    <message>
-        <source>(un)select all</source>
-        <translation>(កុំ)ជ្រើសរើសទាំងអស់</translation>
-    </message>
-    <message>
-        <source>Tree mode</source>
-        <translation>Tree mode</translation>
-    </message>
-    <message>
-        <source>List mode</source>
-        <translation>List mode</translation>
-    </message>
-    <message>
-        <source>Amount</source>
-        <translation>ចំនួន</translation>
-    </message>
-    <message>
-        <source>Received with label</source>
-        <translation>បានទទួលជាមួយនឹងស្លាកសញ្ញា</translation>
-    </message>
-    <message>
-        <source>Received with address</source>
-        <translation>បានទទួលជាមួយនឹងអាសយដ្ឋាន</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>ថ្ងៃ</translation>
-    </message>
-    <message>
-        <source>Confirmations</source>
-        <translation>ការបញ្ចាក់</translation>
-    </message>
-    <message>
-        <source>Confirmed</source>
-        <translation>បានបញ្ចាក់</translation>
-    </message>
-    <message>
-        <source>Copy address</source>
-        <translation>ចម្លងអាសយដ្ឋាន</translation>
-    </message>
-    <message>
-        <source>Copy label</source>
-        <translation>ចម្លងស្លាក</translation>
-    </message>
-    <message>
-        <source>Copy amount</source>
-        <translation>ថតចម្លងចំនួន</translation>
-    </message>
-    <message>
-        <source>Copy transaction ID</source>
-        <translation>ថតចម្លងអត្តសញ្ញាណ​ប្រត្តិបត្តិការ</translation>
-    </message>
-    <message>
-        <source>Lock unspent</source>
-        <translation>បិទសោរ ប្រាក់មិនបានចំណាយ</translation>
-    </message>
-    <message>
-        <source>Unlock unspent</source>
-        <translation>បើកសោរ ប្រាក់មិនបានចំណាយ</translation>
-    </message>
-    <message>
-        <source>Copy quantity</source>
-        <translation>ថតចម្លងបរិមាណ</translation>
-    </message>
-    <message>
-        <source>Copy fee</source>
-        <translation>Copy fee</translation>
-    </message>
-    <message>
-        <source>Copy after fee</source>
-        <translation>Copy after fee</translation>
-    </message>
-    <message>
-        <source>Copy bytes</source>
-        <translation>Copy bytes</translation>
-    </message>
-    <message>
-        <source>Copy dust</source>
-        <translation>Copy dust</translation>
-    </message>
-    <message>
-        <source>Copy change</source>
-        <translation>Copy change</translation>
-    </message>
-    <message>
-        <source>yes</source>
-        <translation>បាទ ឬ ចាស</translation>
-    </message>
-    <message>
-        <source>no</source>
-        <translation>ទេ</translation>
-    </message>
-    <message>
-        <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation>ស្លាកសញ្ញានេះបង្ហាញពណ៌ក្រហម ប្រសិនបើអ្នកទទួល ទទួលបានចំនួនមួយតិចជាងចំនួនចាប់ផ្តើមបច្ចុប្បន្ន។</translation>
-    </message>
-    <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>Can vary +/- %1 satoshi(s) per input.</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(គ្មាន​ស្លាកសញ្ញា)</translation>
-    </message>
-    <message>
-        <source>(change)</source>
-        <translation>(ផ្លាស់ប្តូរ)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>OpenWalletActivity</name>
     <message>
@@ -756,14 +606,6 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation type="unfinished">បង្កើតកាបូប</translation>
     </message>
     <message>
-        <source>Message</source>
-        <translation>Message</translation>
-    </message>
-    <message>
-        <source>Wallet</source>
-        <translation>កាបូប</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">ឈ្មោះកាបូប</translation>
     </message>
@@ -791,51 +633,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <source>Create</source>
         <translation type="unfinished">បង្កើត</translation>
     </message>
-    <message>
-        <source>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</source>
-        <translation>បំលែងកាបូបអេឡិចត្រូនិចជាកូដ។ កាបំលែងនេះ រួមជាមួយនឹងឃ្លាសម្ងាត់ដែលអ្នកអាចជ្រើសរើសបាន។</translation>
-    </message>
-    <message>
-        <source>Encrypt Wallet</source>
-        <translation>បំលែងកាបូបអេឡិចត្រនិចទៅជាកូដ</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>ជម្រើសមានមុខងារច្រើន</translation>
-    </message>
-    <message>
-        <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
-        <translation>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</translation>
-    </message>
-    <message>
-        <source>Disable Private Keys</source>
-        <translation>Disable Private Keys</translation>
-    </message>
-    <message>
-        <source>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</source>
-        <translation>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</translation>
-    </message>
-    <message>
-        <source>Make Blank Wallet</source>
-        <translation>ធ្វើឲ្យកាបូបអេឡិចត្រូនិចទទេ</translation>
-    </message>
-    <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation>Use descriptors for scriptPubKey management</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>Descriptor Wallet</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>បង្កើត</translation>
-    </message>
-    <message>
-        <source>Compiled without sqlite support (required for descriptor wallets)</source>
-        <translation>Compiled without sqlite support (required for descriptor wallets)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -1067,19 +865,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <source>This change would require a client restart.</source>
         <translation type="unfinished">ការផ្លាស់ប្តូរនេះនឹងត្រូវការចាប់ផ្តើមម៉ាស៊ីនកុំព្យូទ័រឡើងវិញ។​</translation>
     </message>
-    <message>
-        <source>The configuration file could not be opened.</source>
-        <translation>The configuration file could not be opened.</translation>
-    </message>
-    <message>
-        <source>This change would require a client restart.</source>
-        <translation>ការផ្លាស់ប្តូរនេះនឹងត្រូវការចាប់ផ្តើមម៉ាស៊ីនកុំព្យូទ័រឡើងវិញ។​</translation>
-    </message>
-    <message>
-        <source>The supplied proxy address is invalid.</source>
-        <translation>The supplied proxy address is invalid.</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -1524,23 +1310,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <source>Payment information</source>
         <translation type="unfinished">ព័ត៏មានទូរទាត់ប្រាក់</translation>
     </message>
-    <message>
-        <source>Copy &amp;URI</source>
-        <translation>ថតចម្លង &amp;RUl</translation>
-    </message>
-    <message>
-        <source>Copy &amp;Address</source>
-        <translation>ថតចម្លង និង អាសយដ្ឋាន</translation>
-    </message>
-    <message>
-        <source>&amp;Save Image...</source>
-        <translation>&amp;Save Image...</translation>
-    </message>
-    <message>
-        <source>Payment information</source>
-        <translation>ព័ត៏មានទូរទាត់ប្រាក់</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
@@ -2166,22 +1936,6 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation type="unfinished">ប្រភេទ</translation>
     </message>
     <message>
-        <source>Confirmed</source>
-        <translation>បានបញ្ចាក់រួចរាល់</translation>
-    </message>
-    <message>
-        <source>Watch-only</source>
-        <translation>សម្រាប់តែមើល</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>ថ្ងៃ</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>ប្រភេទ</translation>
-    </message>
-    <message>
         <source>Label</source>
         <translation type="unfinished">ស្លាក​សញ្ញា</translation>
     </message>
@@ -2192,10 +1946,6 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
     <message>
         <source>ID</source>
         <translation type="unfinished">អត្តសញ្ញាណ</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation>អត្តសញ្ញាណ</translation>
     </message>
     <message>
         <source>Exporting Failed</source>

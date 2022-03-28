@@ -75,11 +75,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Disse er dine Bitcoin adresser til at modtage betalinger. Benyt 'Opret ny modtager adresse' knappen i modtag fanen for at oprette nye adresser.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
-Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation>Disse er dine Bitcoin adresser til at modtage betalinger. Benyt 'Opret ny modtager adresse' knappen i modtag fanen for at oprette nye adresser.</translation>
-    </message>
-    <message>
         <source>&amp;Copy Address</source>
         <translation type="unfinished">&amp;Kopiér adresse</translation>
     </message>
@@ -610,14 +605,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Luk alle tegnebøgerne </translation>
     </message>
     <message>
-        <source>Close All Wallets...</source>
-        <translation>Luk alle tegnebøgerne ...</translation>
-    </message>
-    <message>
-        <source>Close all wallets</source>
-        <translation>Luk alle tegnebøgerne </translation>
-    </message>
-    <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
         <translation type="unfinished">Vis %1 hjælpebesked for at få en liste over mulige tilvalg for Bitcoin kommandolinje</translation>
     </message>
@@ -628,14 +615,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Mask the values in the Overview tab</source>
         <translation type="unfinished">Maskér værdierne i Oversigt-fanebladet</translation>
-    </message>
-    <message>
-        <source>&amp;Mask values</source>
-        <translation>&amp;Maskér værdier</translation>
-    </message>
-    <message>
-        <source>Mask the values in the Overview tab</source>
-        <translation>Maskér værdierne i Oversigt-fanebladet</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -953,10 +932,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Opret tegnebog</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>Tegnebog</translation>
-    </message>
-    <message>
         <source>Wallet Name</source>
         <translation type="unfinished">Navn på tegnebog</translation>
     </message>
@@ -975,10 +950,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Advanced Options</source>
         <translation type="unfinished">Avancerede Indstillinger</translation>
-    </message>
-    <message>
-        <source>Advanced Options</source>
-        <translation>Avancerede Indstillinger</translation>
     </message>
     <message>
         <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
@@ -1003,14 +974,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Descriptor Wallet</source>
         <translation type="unfinished">Beskriver-Pung</translation>
-    </message>
-    <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation>Brug beskrivere til håndtering af scriptPubKey</translation>
-    </message>
-    <message>
-        <source>Descriptor Wallet</source>
-        <translation>Beskriver-Pung</translation>
     </message>
     <message>
         <source>Create</source>
@@ -1317,10 +1280,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Ændring af denne indstilling senere kræver download af hele blokkæden igen.</translation>
     </message>
     <message>
-        <source>MiB</source>
-        <translation>MiB</translation>
-    </message>
-    <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
         <translation type="unfinished">(0 = auto, &lt;0 = efterlad så mange kerner fri)</translation>
     </message>
@@ -1427,14 +1386,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
         <translation type="unfinished">Brug separate SOCKS&amp;5 proxy, for at nå fælle via Tor-onion-tjenester:</translation>
-    </message>
-    <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Opret forbindelse til Bitcoin-netværk igennem en separat SOCKS5 proxy til Tor-onion-tjenester.</translation>
-    </message>
-    <message>
-        <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
-        <translation>Brug separate SOCKS&amp;5 proxy, for at nå fælle via Tor-onion-tjenester:</translation>
     </message>
     <message>
         <source>&amp;Third party transaction URLs</source>
@@ -1649,86 +1600,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Pays transaction fee: </source>
         <translation type="unfinished">Betaler transaktionsgebyr</translation>
-    </message>
-    <message>
-        <source>Sign Tx</source>
-        <translation>Signér Tx</translation>
-    </message>
-    <message>
-        <source>Broadcast Tx</source>
-        <translation>Udsend Tx</translation>
-    </message>
-    <message>
-        <source>Copy to Clipboard</source>
-        <translation>Kopier til udklipsholder</translation>
-    </message>
-    <message>
-        <source>Save...</source>
-        <translation>Gem...</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation>Luk</translation>
-    </message>
-    <message>
-        <source>Failed to load transaction: %1</source>
-        <translation>Kunne ikke indlæse transaktion: %1</translation>
-    </message>
-    <message>
-        <source>Failed to sign transaction: %1</source>
-        <translation>Kunne ikke signere transaktion: %1</translation>
-    </message>
-    <message>
-        <source>Could not sign any more inputs.</source>
-        <translation>Kunne ikke signere flere input.</translation>
-    </message>
-    <message>
-        <source>Signed %1 inputs, but more signatures are still required.</source>
-        <translation>Signerede %1 input, men flere signaturer kræves endnu.</translation>
-    </message>
-    <message>
-        <source>Signed transaction successfully. Transaction is ready to broadcast.</source>
-        <translation>Signering af transaktion lykkedes. Transaktion er klar til udsendelse.</translation>
-    </message>
-    <message>
-        <source>Unknown error processing transaction.</source>
-        <translation>Ukendt fejl i behandling af transaktion.</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast successfully! Transaction ID: %1</source>
-        <translation>Udsendelse af transaktion lykkedes! Transaktions-ID: %1</translation>
-    </message>
-    <message>
-        <source>Transaction broadcast failed: %1</source>
-        <translation>Udsendelse af transaktion mislykkedes: %1</translation>
-    </message>
-    <message>
-        <source>PSBT copied to clipboard.</source>
-        <translation>PSBT kopieret til udklipsholder.</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Gem Transaktionsdata</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Partvist Signeret Transaktion (Binær) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved to disk.</source>
-        <translation>PSBT gemt på disk.</translation>
-    </message>
-    <message>
-        <source> * Sends %1 to %2</source>
-        <translation>* Sender %1 til %2</translation>
-    </message>
-    <message>
-        <source>Unable to calculate transaction fee or total transaction amount.</source>
-        <translation>Kunne ikke beregne transaktionsgebyr eller totalt transaktionsbeløb.</translation>
-    </message>
-    <message>
-        <source>Pays transaction fee: </source>
-        <translation>Betaler transaktionsgebyr</translation>
     </message>
     <message>
         <source>Total Amount</source>
@@ -1982,10 +1853,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Nuværende blokhøjde</translation>
     </message>
     <message>
-        <source>Current block height</source>
-        <translation>Nuværende blokhøjde</translation>
-    </message>
-    <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished">Åbn %1s fejlsøgningslogfil fra den aktuelle datamappe. Dette kan tage nogle få sekunder for store logfiler.</translation>
     </message>
@@ -2000,10 +1867,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Permissions</source>
         <translation type="unfinished">Tilladelser</translation>
-    </message>
-    <message>
-        <source>Permissions</source>
-        <translation>Tilladelser</translation>
     </message>
     <message>
         <source>Services</source>
@@ -2522,22 +2385,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">PSBT gemt</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation>Opret Usigneret</translation>
-    </message>
-    <message>
-        <source>Save Transaction Data</source>
-        <translation>Gem Transaktionsdata</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (Binary) (*.psbt)</source>
-        <translation>Partvist Signeret Transaktion (Binær) (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT saved</source>
-        <translation>PSBT gemt</translation>
-    </message>
-    <message>
         <source>or</source>
         <translation type="unfinished">eller</translation>
     </message>
@@ -2548,10 +2395,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation type="unfinished">Gennemse venligst dit transaktionsforslag. Dette vil producere en Partvist Signeret Bitcoin Transaktion (PSBT), som du kan gemme eller kopiere, og så signere med f.eks. en offline %1 pung, eller en PSBT-kompatibel maskinelpung.</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Gennemse venligst dit transaktionsforslag. Dette vil producere en Partvist Signeret Bitcoin Transaktion (PSBT), som du kan gemme eller kopiere, og så signere med f.eks. en offline %1 pung, eller en PSBT-kompatibel maskinelpung.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3360,26 +3203,6 @@ Gå til Fil &gt; Åbn Pung for, at indlæse en pung.
     <message>
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">Kunne ikke afkode PSBT</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT from clipboard (invalid base64)</source>
-        <translation>Kan ikke afkode PSBT fra udklipsholder (ugyldigt base64)</translation>
-    </message>
-    <message>
-        <source>Load Transaction Data</source>
-        <translation>Indlæs transaktions data</translation>
-    </message>
-    <message>
-        <source>Partially Signed Transaction (*.psbt)</source>
-        <translation>Partvist Signeret Transaktion (*.psbt)</translation>
-    </message>
-    <message>
-        <source>PSBT file must be smaller than 100 MiB</source>
-        <translation>PSBT-fil skal være mindre end 100 MiB</translation>
-    </message>
-    <message>
-        <source>Unable to decode PSBT</source>
-        <translation>Kunne ikke afkode PSBT</translation>
     </message>
     <message>
         <source>Backup Wallet</source>
