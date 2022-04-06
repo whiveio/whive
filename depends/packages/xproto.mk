@@ -9,6 +9,10 @@ $(package)_config_opts=--without-fop --without-xmlto --without-xsltproc --disabl
 $(package)_config_opts += --disable-dependency-tracking --enable-option-checking
 endef
 
+define $(package)_preprocess_cmds
+  cp -f $(BASEDIR)/config.guess $(BASEDIR)/config.sub .
+endef
+
 define $(package)_config_cmds
   $($(package)_autoconf)
 endef

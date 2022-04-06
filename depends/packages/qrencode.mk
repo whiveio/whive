@@ -12,6 +12,10 @@ $(package)_config_opts_linux=--with-pic
 $(package)_config_opts_android=--with-pic
 endef
 
+define $(package)_preprocess_cmds
+  cp -f $(BASEDIR)/config.guess $(BASEDIR)/config.sub use
+endef
+
 define $(package)_config_cmds
   $($(package)_autoconf)
 endef
