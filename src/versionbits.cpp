@@ -93,8 +93,6 @@ ThresholdState AbstractThresholdConditionChecker::GetStateFor(const CBlockIndex*
                 break;
             }
         }
-        //std::cout << "state:" << static_cast<std::underlying_type<ThresholdState>::type>(stateNext)
-	//	  << ":" << pindexPrev->nHeight  << ":" << pindexPrev->nVersion<< std::endl;
 
         cache[pindexPrev] = state = stateNext;
     }

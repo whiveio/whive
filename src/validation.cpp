@@ -2221,19 +2221,11 @@ void CChainState::UpdateTip(const CBlockIndex* pindexNew)
     if (!this->IsInitialBlockDownload()) {
         const CBlockIndex* pindex = pindexNew;
         for (int bit = 0; bit < VERSIONBITS_NUM_BITS; bit++) {
-           // std::cout << "SZ:" << warningcache[bit].size() << std::endl;
-	   //typedef std::map<const CBlockIndex*, ThresholdState> ThresholdConditionCache;
-            //for (const auto& i : warningcache[bit]) {
-           // }
-           //std::cout << static_cast<std::underlying_type<ThresholdState>::type>(warningcache[bit].second) << std::endl;
             WarningBitsConditionChecker checker(bit);
             ThresholdState state = checker.GetStateFor(pindex, m_params.GetConsensus(), warningcache[bit]);
 
 
             if (state == ThresholdState::ACTIVE || state == ThresholdState::LOCKED_IN) {
-		    std::cout << "HG:" <<checker.GetStateSinceHeightFor(pindex, m_params.GetConsensus(), warningcache[bit])<< std::endl;
-	        std::cout << pindex->phashBlock->ToString() << ":" << pindex->nHeight  << ":" << bit << std::endl;
-                std::cout << static_cast<std::underlying_type<ThresholdState>::type>(state) << "::" << std::endl;
                 const bilingual_str warning = strprintf(_("Unknown new rules activated (versionbit %i)"), bit);
                 if (state == ThresholdState::ACTIVE) {
                     DoWarning(warning);

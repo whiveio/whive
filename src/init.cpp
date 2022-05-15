@@ -1466,7 +1466,6 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
 
 
             if (!fReset) {
-                std::cout <<"RESET:WHY" << fReset<< std::endl;
                 LOCK(cs_main);
                 auto chainstates{chainman.GetAll()};
                 if (std::any_of(chainstates.begin(), chainstates.end(), [](const CChainState* cs) EXCLUSIVE_LOCKS_REQUIRED(cs_main) 

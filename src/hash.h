@@ -233,7 +233,6 @@ public:
           yespower_hash((const char*)buf.data(), (char*)&result);
         }
 
-        //std::cout << result.ToString() << std::endl;
         return result;
     }
 
