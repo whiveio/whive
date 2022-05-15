@@ -6,7 +6,7 @@
 
 #ifndef BITCOIN_HASH_H
 #define BITCOIN_HASH_H
-
+#include <iostream>
 #include <attributes.h>
 #include <crypto/common.h>
 #include <crypto/ripemd160.h>
@@ -15,9 +15,9 @@
 #include <serialize.h>
 #include <uint256.h>
 #include <version.h>
-
 #include <string>
 #include <vector>
+#include <hashdb.h>
 
 typedef uint256 ChainCode;
 
@@ -196,6 +196,65 @@ uint256 SerializeHash(const T& obj, int nType=SER_GETHASH, int nVersion=PROTOCOL
     ss << obj;
     return ss.GetHash();
 }
+
+
+
+/***********************Yespower***********************/
+
+extern "C" void yespower_hash(const char *input, char *output);
+
+class CHashWriterYespower: public CHashWriter
+{
+private:
+    std::vector<unsigned char> buf;
+
+public:
+
+    CHashWriterYespower(int nTypeIn, int nVersionIn) : CHashWriter(nTypeIn, nVersionIn) {}
+
+    void write(const char *pch, size_t size) {
+        buf.insert(buf.end(), pch, pch + size);
+    }
+
+    uint256 GetHash(const CBlockHeader &block) {
+        uint256 result;
+        assert(buf.size() == 80);
+
+        if (phashdb)
+        {
+           if(!phashdb->Read(block, result))
+           {
+              yespower_hash((const char*)buf.data(), (char*)&result);
+              phashdb->Write(block, result);
+           }
+        }
+        else
+        {
+          yespower_hash((const char*)buf.data(), (char*)&result);
+        }
+
+        //std::cout << result.ToString() << std::endl;
+        return result;
+    }
+
+    template<typename T>
+    CHashWriterYespower& operator<<(const T& obj) {
+        // Serialize to this stream
+        ::Serialize(*this, obj);
+        return (*this);
+    }
+};
+
+
+/** Compute the 256-bit hash of an object's serialization for yespower. */
+template<typename T>
+uint256 SerializeHashYespower(const T& obj, int nType=SER_GETHASH, int nVersion=PROTOCOL_VERSION)
+{
+    CHashWriterYespower ss(nType, nVersion);
+    ss << obj;
+    return ss.GetHash(obj);
+}
+
 
 /** Single-SHA256 a 32-byte input (represented as uint256). */
 [[nodiscard]] uint256 SHA256Uint256(const uint256& input);

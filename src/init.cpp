@@ -19,6 +19,7 @@
 #include <deploymentstatus.h>
 #include <fs.h>
 #include <hash.h>
+#include <hashdb.h>
 #include <httprpc.h>
 #include <httpserver.h>
 #include <index/blockfilterindex.h>
@@ -265,6 +266,7 @@ void Shutdown(NodeContext& node)
             }
         }
         pblocktree.reset();
+        phashdb.reset();
     }
     for (const auto& client : node.chain_clients) {
         client->stop();
@@ -1338,6 +1340,7 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
     bool fLoaded = false;
     while (!fLoaded && !ShutdownRequested()) {
         const bool fReset = fReindex;
+
         auto is_coinsview_empty = [&](CChainState* chainstate) EXCLUSIVE_LOCKS_REQUIRED(::cs_main) {
             return fReset || fReindexChainState || chainstate->CoinsTip().GetBestBlock().IsNull();
         };
@@ -1359,6 +1362,9 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
                 // fails if it's still open from the previous loop. Close it first:
                 pblocktree.reset();
                 pblocktree.reset(new CBlockTreeDB(nBlockTreeDBCache, false, fReset));
+                //leveldb cache
+                phashdb.reset();
+                phashdb.reset(new CHashDB(nBlockTreeDBCache, false, fReset));
 
                 if (fReset) {
                     pblocktree->WriteReindexing(true);
@@ -1458,11 +1464,14 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
                 break;
             }
 
+
             if (!fReset) {
+                std::cout <<"RESET:WHY" << fReset<< std::endl;
                 LOCK(cs_main);
                 auto chainstates{chainman.GetAll()};
-                if (std::any_of(chainstates.begin(), chainstates.end(),
-                                [](const CChainState* cs) EXCLUSIVE_LOCKS_REQUIRED(cs_main) { return cs->NeedsRedownload(); })) {
+                if (std::any_of(chainstates.begin(), chainstates.end(), [](const CChainState* cs) EXCLUSIVE_LOCKS_REQUIRED(cs_main) 
+					{ return cs->NeedsRedownload(); })) 
+		{
                     strLoadError = strprintf(_("Witness data for blocks after height %d requires validation. Please restart with -reindex."),
                                              chainparams.GetConsensus().SegwitHeight);
                     break;

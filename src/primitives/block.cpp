@@ -10,29 +10,15 @@
 #include <tinyformat.h>
 #include <util/strencodings.h>
 #include <crypto/common.h>
-#include <crypto/yespower/yespower.h>
-//#include <hashdb.h>
+#include <hashdb.h>
 #include <streams.h>
 #include <pow.h>
 #include <sync.h>
 
-//extern "C" void yespower_hash(const void *input, void *output);
-
 uint256 CBlockHeader::GetHash() const
 {
-    /* uint256 hash;
-    if (phashdb) {
-        if(!phashdb->Read(*this, hash)) {
-            yespower_hash(BEGIN(nVersion), &hash);
-            phashdb->Write(*this, hash);
-        }
-    } else {
-        yespower_hash(BEGIN(nVersion), &hash);
-    }
-    return hash; */
-    return SerializeHash(*this);
+    return SerializeHashYespower(*this);
 }
-
 
 
 std::string CBlock::ToString() const

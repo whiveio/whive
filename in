@@ -1,0 +1,1 @@
+make install-strip DESTDIR=/home/nmwaura/taproot/whive.stream/regtest

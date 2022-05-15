@@ -517,6 +517,10 @@ libwhive_consensus_a_SOURCES = \
   consensus/params.h \
   consensus/tx_check.cpp \
   consensus/validation.h \
+  dbwrapper.cpp \
+  dbwrapper.h \
+  hashdb.cpp \
+  hashdb.h \
   hash.cpp \
   hash.h \
   prevector.h \
@@ -719,6 +723,8 @@ whive_tx_LDADD = \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CONSENSUS) \
   $(LIBBITCOIN_CRYPTO) \
+  $(LIBLEVELDB) \
+  $(LIBMEMENV) \
   $(LIBSECP256K1)
 
 whive_tx_LDADD += $(BOOST_LIBS) 
@@ -752,6 +758,9 @@ whive_util_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_CONSENSUS) \
   $(LIBBITCOIN_CRYPTO) \
+  $(LIBLEVELDB) \
+  $(LIBLEVELDB_SSE42) \
+  $(LIBMEMENV) \
   $(LIBSECP256K1)
 
 whive_util_LDADD += $(BOOST_LIBS)

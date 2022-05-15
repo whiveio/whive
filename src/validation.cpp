@@ -2216,14 +2216,24 @@ void CChainState::UpdateTip(const CBlockIndex* pindexNew)
         g_best_block = pindexNew->GetBlockHash();
         g_best_block_cv.notify_all();
     }
-
     bilingual_str warning_messages;
+    
     if (!this->IsInitialBlockDownload()) {
         const CBlockIndex* pindex = pindexNew;
         for (int bit = 0; bit < VERSIONBITS_NUM_BITS; bit++) {
+           // std::cout << "SZ:" << warningcache[bit].size() << std::endl;
+	   //typedef std::map<const CBlockIndex*, ThresholdState> ThresholdConditionCache;
+            //for (const auto& i : warningcache[bit]) {
+           // }
+           //std::cout << static_cast<std::underlying_type<ThresholdState>::type>(warningcache[bit].second) << std::endl;
             WarningBitsConditionChecker checker(bit);
             ThresholdState state = checker.GetStateFor(pindex, m_params.GetConsensus(), warningcache[bit]);
+
+
             if (state == ThresholdState::ACTIVE || state == ThresholdState::LOCKED_IN) {
+		    std::cout << "HG:" <<checker.GetStateSinceHeightFor(pindex, m_params.GetConsensus(), warningcache[bit])<< std::endl;
+	        std::cout << pindex->phashBlock->ToString() << ":" << pindex->nHeight  << ":" << bit << std::endl;
+                std::cout << static_cast<std::underlying_type<ThresholdState>::type>(state) << "::" << std::endl;
                 const bilingual_str warning = strprintf(_("Unknown new rules activated (versionbit %i)"), bit);
                 if (state == ThresholdState::ACTIVE) {
                     DoWarning(warning);
@@ -2233,6 +2243,7 @@ void CChainState::UpdateTip(const CBlockIndex* pindexNew)
             }
         }
     }
+    
     LogPrintf("%s: new best=%s height=%d version=0x%08x log2_work=%f tx=%lu date='%s' progress=%f cache=%.1fMiB(%utxo)%s\n", __func__,
       pindexNew->GetBlockHash().ToString(), pindexNew->nHeight, pindexNew->nVersion,
       log(pindexNew->nChainWork.getdouble())/log(2.0), (unsigned long)pindexNew->nChainTx,
@@ -3249,6 +3260,7 @@ static bool ContextualCheckBlock(const CBlock& block, BlockValidationState& stat
             // already does not permit it, it is impossible to trigger in the
             // witness tree.
             if (block.vtx[0]->vin[0].scriptWitness.stack.size() != 1 || block.vtx[0]->vin[0].scriptWitness.stack[0].size() != 32) {
+
                 return state.Invalid(BlockValidationResult::BLOCK_MUTATED, "bad-witness-nonce-size", strprintf("%s : invalid witness reserved value size", __func__));
             }
             CHash256().Write(hashWitness).Write(block.vtx[0]->vin[0].scriptWitness.stack[0]).Finalize(hashWitness);

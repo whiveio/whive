@@ -1,1 +1,1 @@
-./configure --prefix=/ --disable-tests --disable-wallet --disable-gui-tests --disable-bench --disable-hardening --disable-man  --disable-largefile  --disable-shared --enable-static
+./configure --prefix=/ --disable-tests --disable-gui-tests --disable-bench --disable-hardening --disable-man  --disable-largefile  --disable-shared --enable-static BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PREFIX}/include" --enable-gprof
