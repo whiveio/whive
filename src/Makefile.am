@@ -38,6 +38,14 @@ LIBBITCOIN_CRYPTO_BASE=crypto/libwhive_crypto_base.a
 LIBBITCOINQT=qt/libwhiveqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
+
+if TARGET_WINDOWS
+LIBBITCOIN_CURL=../depends/x86_64-w64-mingw32/lib/libcurl-4.dll
+endif
+
+
+
+
 if ENABLE_ZMQ
 LIBBITCOIN_ZMQ=libwhive_zmq.a
 endif
@@ -506,7 +514,7 @@ crypto_libwhive_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
 crypto_libwhive_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
 
 # consensus: shared between all executables that validate any consensus rules.
-libwhive_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libwhive_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(LEVELDB_CPPFLAGS) $(LEVELDB_CPPFLAGS)
 libwhive_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libwhive_consensus_a_SOURCES = \
   amount.h \
@@ -725,6 +733,7 @@ whive_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
+  $(LIBBITCOIN_CURL) \
   $(LIBSECP256K1)
 
 whive_tx_LDADD += $(BOOST_LIBS) 
@@ -761,6 +770,7 @@ whive_util_LDADD = \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
+  $(LIBBITCOIN_CURL) \
   $(LIBSECP256K1)
 
 whive_util_LDADD += $(BOOST_LIBS)
@@ -777,7 +787,7 @@ endif
 
 libwhiveconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
 libwhiveconsensus_la_LIBADD = $(LIBSECP256K1)
-libwhiveconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libwhiveconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL $(LEVELDB_CPPFLAGS)
 libwhiveconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
@@ -889,8 +899,8 @@ CLEANFILES += $(libwhive_ipc_mpgen_output)
 endif
 
 if EMBEDDED_LEVELDB
-include Makefile.crc32c.include
 include Makefile.leveldb.include
+include Makefile.crc32c.include
 endif
 
 include Makefile.test_util.include
