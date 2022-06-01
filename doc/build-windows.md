@@ -77,11 +77,18 @@ Makefile.am
 add LIBBITCOIN_CURL
 
 if TARGET_WINDOWS
+<<<<<<< HEAD
 LIBBITCOIN_CURL=/usr/include/curl/libcurl.dll.a
 else
 LIBBITCOIN_CURL=/usr/include/curl/libcurl.a
 endif
 
+=======
+LIBBITCOIN_CURL=../depends/x86_64-w64-mingw32/lib/libcurl-4.dll
+endif
+
+
+>>>>>>> 45e49ae36cd16c5eb695619d1668e0ce894cbd9e
 whived_LDADD = \
   $(LIBBITCOIN_CURL) \
 

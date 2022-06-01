@@ -40,7 +40,7 @@ LIBSECP256K1=secp256k1/libsecp256k1.la
 
 
 if TARGET_WINDOWS
-LIBBITCOIN_CURL=/usr/include/curl/libcurl.dll.a
+LIBBITCOIN_CURL=../depends/x86_64-w64-mingw32/lib/libcurl-4.dll
 endif
 
 
@@ -733,6 +733,7 @@ whive_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
+  $(LIBBITCOIN_CURL) \
   $(LIBSECP256K1)
 
 whive_tx_LDADD += $(BOOST_LIBS) 
@@ -769,6 +770,7 @@ whive_util_LDADD = \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
+  $(LIBBITCOIN_CURL) \
   $(LIBSECP256K1)
 
 whive_util_LDADD += $(BOOST_LIBS)

@@ -1,4 +1,4 @@
-packages:=boost libevent
+packages:=boost libevent curl
 
 qrencode_packages = qrencode
 
