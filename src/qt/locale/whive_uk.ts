@@ -757,7 +757,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">%1 клієнт</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network.</source>
+        <source>%n active connection(s) to Whive network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform>%n активне з'єднання до мережі Біткоїн.</numerusform>
@@ -1372,7 +1372,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Форма</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</source>
         <translation type="unfinished">Нещодавні транзакції ще не відображаються, тому баланс вашого гаманця може бути неточним. Ця інформація буде вірною після того, як ваш гаманець завершить синхронізацію з мережею Біткоїн, враховуйте показники нижче.</translation>
     </message>
     <message>
@@ -1570,7 +1570,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Дозволити вхідні з'єднання</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Whive network through a SOCKS5 proxy.</source>
         <translation type="unfinished">Підключення до мережі Bitcoin через SOCKS5 проксі.</translation>
     </message>
     <message>
@@ -1642,7 +1642,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Показати або сховати керування входами.</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation type="unfinished">Підключитися до мережі Біткоїн через окремий проксі-сервер SOCKS5 для сервісів Tor.</translation>
     </message>
     <message>
@@ -1730,7 +1730,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
         <translation>Показана інформація вже може бути застарілою. Ваш гаманець буде автоматично синхронізовано з мережею Біткоїн після встановлення підключення, але цей процес ще не завершено.</translation>
     </message>
     <message>
@@ -2448,7 +2448,7 @@ For more information on using this console, type %6.
         <translation type="unfinished">&amp;Повідомлення:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
         <translation type="unfinished">Необов'язкове повідомлення на додаток до запиту платежу, котре буде показане під час відкриття запиту. Примітка: Це повідомлення не буде відправлено з платежем через мережу Bitcoin.</translation>
     </message>
     <message>
@@ -3057,7 +3057,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Введіть мітку для цієї адреси для додавання її в список використаних адрес</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
         <translation type="unfinished">Повідомлення, що було додане до bitcoin:URI та буде збережено разом з транзакцією для довідки. Примітка: Це повідомлення не буде відправлено в мережу Bitcoin.</translation>
     </message>
     <message>

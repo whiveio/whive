@@ -790,11 +790,11 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
         <context-group purpose="location"><context context-type="linenumber">935</context></context-group>
         <note annotates="source" from="developer">A substring of the tooltip.</note>
         <trans-unit id="_msg148[0]">
-          <source xml:space="preserve">%n active connection(s) to Bitcoin network.</source>
+          <source xml:space="preserve">%n active connection(s) to Whive network.</source>
           <target xml:space="preserve"></target>
         </trans-unit>
         <trans-unit id="_msg148[1]">
-          <source xml:space="preserve">%n active connection(s) to Bitcoin network.</source>
+          <source xml:space="preserve">%n active connection(s) to Whive network.</source>
           <target xml:space="preserve"></target>
         </trans-unit>
       </group>
@@ -1547,7 +1547,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
         <context-group purpose="location"><context context-type="linenumber">14</context></context-group>
       </trans-unit>
       <trans-unit id="_msg284">
-        <source xml:space="preserve">Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source xml:space="preserve">Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</source>
         <target xml:space="preserve"></target>
         <context-group purpose="location"><context context-type="linenumber">133</context></context-group>
       </trans-unit>
@@ -1823,7 +1823,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
         <context-group purpose="location"><context context-type="linenumber">308</context></context-group>
       </trans-unit>
       <trans-unit id="_msg335">
-        <source xml:space="preserve">Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <source xml:space="preserve">Connect to the Whive network through a SOCKS5 proxy.</source>
         <target xml:space="preserve"></target>
         <context-group purpose="location"><context context-type="linenumber">315</context></context-group>
       </trans-unit>
@@ -1931,7 +1931,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
         <context-group purpose="location"><context context-type="linenumber">212</context></context-group>
       </trans-unit>
       <trans-unit id="_msg356">
-        <source xml:space="preserve">Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source xml:space="preserve">Connect to the Whive network through a separate SOCKS5 proxy for Tor onion services.</source>
         <target xml:space="preserve"></target>
         <context-group purpose="location"><context context-type="linenumber">502</context></context-group>
       </trans-unit>
@@ -2051,8 +2051,8 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
         <context-group purpose="location"><context context-type="linenumber">14</context></context-group>
       </trans-unit>
       <trans-unit id="_msg378" approved="yes">
-        <source xml:space="preserve">The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
-        <target xml:space="preserve">The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</target>
+        <source xml:space="preserve">The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
+        <target xml:space="preserve">The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</target>
         <context-group purpose="location"><context context-type="linenumber">76</context></context-group>
         <context-group purpose="location"><context context-type="linenumber">411</context></context-group>
       </trans-unit>
@@ -3210,7 +3210,7 @@ For more information on using this console, type %6.
         <context-group purpose="location"><context context-type="linenumber">53</context></context-group>
       </trans-unit>
       <trans-unit id="_msg579">
-        <source xml:space="preserve">An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <source xml:space="preserve">An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
         <target xml:space="preserve"></target>
         <context-group purpose="location"><context context-type="linenumber">50</context></context-group>
       </trans-unit>
@@ -4003,7 +4003,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of &quot;100 
         <context-group purpose="location"><context context-type="linenumber">148</context></context-group>
       </trans-unit>
       <trans-unit id="_msg728">
-        <source xml:space="preserve">A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <source xml:space="preserve">A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
         <target xml:space="preserve"></target>
         <context-group purpose="location"><context context-type="linenumber">206</context></context-group>
       </trans-unit>

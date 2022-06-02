@@ -518,8 +518,8 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
             <numerusform>%n aktive Verbindungen zum whive-Netzwerk</numerusform>
         </translation>
 =======
-        <source>%n active connection(s) to Bitcoin network</source>
-        <translation><numerusform>%n active connection to Bitcoin network</numerusform><numerusform>%n active connections to Bitcoin network</numerusform></translation>
+        <source>%n active connection(s) to Whive network</source>
+        <translation><numerusform>%n active connection to Whive network</numerusform><numerusform>%n active connections to Whive network</numerusform></translation>
 >>>>>>> upstream/0.21:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
@@ -1286,8 +1286,8 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <source>Attempting to spend whives that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished">Versuche, CRPs aus noch nicht angezeigten Transaktionen auszugeben, werden vom Netzwerk nicht akzeptiert.</translation>
 =======
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</source>
+        <translation>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</translation>
     </message>
     <message>
         <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
@@ -1593,8 +1593,8 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <source>Connect to the Whive network through a SOCKS5 proxy.</source>
         <translation type="unfinished">Über einen SOCKS5-Proxy mit dem whive-Netzwerk verbinden.</translation>
 =======
-        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
-        <translation>Connect to the Bitcoin network through a SOCKS5 proxy.</translation>
+        <source>Connect to the Whive network through a SOCKS5 proxy.</source>
+        <translation>Connect to the Whive network through a SOCKS5 proxy.</translation>
 >>>>>>> upstream/0.21:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
@@ -1634,7 +1634,7 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
 <<<<<<< HEAD:src/qt/locale/whive_de.ts
         <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor hidden services.</source>
 =======
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor hidden services.</source>
 >>>>>>> upstream/0.19:src/qt/locale/bitcoin_de.ts
         <translation>Über einen separaten SOCKS5 Proxy für Tor Hidden Services mit dem Bitcoin-Netzwerk verbinden.</translation>
     </message>
@@ -1688,8 +1688,8 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <translation>Whether to show coin control features or not.</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</translation>
+        <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <translation>Connect to the Whive network through a separate SOCKS5 proxy for Tor onion services.</translation>
     </message>
     <message>
         <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
@@ -1768,8 +1768,8 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished">Die angezeigten Informationen sind möglicherweise nicht mehr aktuell. Ihre Wallet wird automatisch synchronisiert, nachdem eine Verbindung zum whive-Netzwerk hergestellt wurde. Dieser Prozess ist jedoch derzeit noch nicht abgeschlossen.</translation>
 =======
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
+        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</translation>
 >>>>>>> upstream/0.21:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
@@ -2734,8 +2734,8 @@ Signing is only possible with addresses of the type 'legacy'.</translation>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the whive network.</source>
         <translation type="unfinished">Eine optionale Nachricht, die an die Zahlungsanforderung angehängt wird. Sie wird angezeigt, wenn die Anforderung geöffnet wird. Hinweis: Diese Nachricht wird nicht mit der Zahlung über das whive-Netzwerk gesendet.</translation>
 =======
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
-        <translation>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
+        <translation>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</translation>
 >>>>>>> upstream/0.21:src/qt/locale/bitcoin_de.ts
     </message>
     <message>
@@ -3455,8 +3455,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <source>A message that was attached to the whive: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the whive network.</source>
         <translation type="unfinished">Eine an die &quot;whive:&quot;-URI angefügte Nachricht, die zusammen mit der Transaktion gespeichert wird. Hinweis: Diese Nachricht wird nicht über das whive-Netzwerk gesendet.</translation>
 =======
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
-        <translation>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</translation>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
+        <translation>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</translation>
 >>>>>>> upstream/0.21:src/qt/locale/bitcoin_de.ts
     </message>
     <message>

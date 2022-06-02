@@ -732,7 +732,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">%1 クライアント</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network.</source>
+        <source>%n active connection(s) to Whive network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform>Bitcoin Networkへの接続数: %n</numerusform>
@@ -1327,7 +1327,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">フォーム</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</source>
         <translation type="unfinished">最近の取引がまだ表示されていない可能性があります。そのため、ウォレットの残高が正しく表示されていないかもしれません。この情報は、ウォレットが Bitcoin ネットワークへの同期が完了すると正確なものとなります。詳細は下記を参照してください。</translation>
     </message>
     <message>
@@ -1517,7 +1517,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">外部からの接続を許可する(&amp;G)</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Whive network through a SOCKS5 proxy.</source>
         <translation type="unfinished">SOCKS5 プロキシ経由で Bitcoin ネットワークに接続する。</translation>
     </message>
     <message>
@@ -1589,7 +1589,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">コインコントロール機能を表示するかどうか。</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation type="unfinished">Tor onion service用の別のSOCKS5プロキシを介してBitcoinネットワークに接続します。</translation>
     </message>
     <message>
@@ -1677,7 +1677,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation>フォーム</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
         <translation>表示されている情報は古い可能性があります。ウォレットは接続確立後に Bitcoin ネットワークと自動的に同期しますが、同期処理はまだ完了していません。</translation>
     </message>
     <message>
@@ -2386,7 +2386,7 @@ For more information on using this console, type %6.
         <translation type="unfinished">メッセージ (&amp;M):</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
         <translation type="unfinished">支払いリクエストに添付するメッセージ（任意）。支払リクエスト開始時に表示されます。注意: メッセージは Bitcoin ネットワーク上へ送信されません。</translation>
     </message>
     <message>
@@ -2997,7 +2997,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">このアドレスに対するラベルを入力することで、送金したことがあるアドレスの一覧に追加することができます</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
         <translation type="unfinished">bitcoin URIに添付されていたメッセージです。これは参照用として取引とともに保存されます。注意: メッセージは Bitcoin ネットワーク上へ送信されません。</translation>
     </message>
     <message>

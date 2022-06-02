@@ -571,7 +571,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">%1 கிளையன்</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network.</source>
+        <source>%n active connection(s) to Whive network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />
@@ -1055,7 +1055,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">படிவம்</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</source>
         <translation type="unfinished">சமீபத்திய பரிவர்த்தனைகள் இன்னும் காணப்படாமல் இருக்கலாம், எனவே உங்கள் பணப்பையின் சமநிலை தவறாக இருக்கலாம். கீழே விவரிக்கப்பட்டுள்ளபடி, உங்கள் பணப்பை பிட்ஃபோனை நெட்வொர்க்குடன் ஒத்திசைக்க முடிந்ததும் இந்த தகவல் சரியாக இருக்கும்.</translation>
     </message>
     <message>
@@ -1206,7 +1206,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Incomin &amp; g இணைப்புகளை அனுமதிக்கவும்</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Whive network through a SOCKS5 proxy.</source>
         <translation type="unfinished">Bitcoin பிணையத்துடன் SOCKS5 ப்ராக்ஸி மூலம் இணைக்கவும்.</translation>
     </message>
     <message>
@@ -1333,7 +1333,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation>படிவம்</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
         <translation>காட்டப்படும் தகவல் காலாவதியானதாக இருக்கலாம். ஒரு இணைப்பு நிறுவப்பட்ட பிறகு, உங்கள் பணப்பை தானாக பிட்கோடு நெட்வொர்க்குடன் ஒத்திசைக்கிறது, ஆனால் இந்த செயல்முறை இன்னும் முடிவடையவில்லை.</translation>
     </message>
     <message>
@@ -1766,7 +1766,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;செய்தி:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
         <translation type="unfinished">கோரிக்கையை திறக்கும் போது காட்டப்படும் இது பணம் கோரிக்கை இணைக்க ஒரு விருப்ப செய்தி. குறிப்பு: Bitcoin நெட்வொர்க்கில் பணம் செலுத்தியவுடன் செய்தி அனுப்பப்படாது.</translation>
     </message>
     <message>
@@ -2213,7 +2213,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">இந்த முகவரியை பயன்படுத்தப்பட்ட முகவரிகளின் பட்டியலில் சேர்க்க ஒரு லேபிளை உள்ளிடவும்.</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
         <translation type="unfinished">பிட்காயினுடன் இணைக்கப்பட்ட செய்தி: உங்கள் எதிர்கால குறிப்புக்காக பரிவர்த்தனையுடன் யூஆர்ஐ சேமிக்கப்படும். குறிப்பு: இந்த செய்தி பிட்காயின் வலையமைப்பிற்கு அனுப்பப்படாது.</translation>
     </message>
     <message>

@@ -240,7 +240,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation>زانیاری</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network.</source>
+        <source>%n active connection(s) to Whive network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />

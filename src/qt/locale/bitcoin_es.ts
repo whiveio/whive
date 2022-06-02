@@ -513,7 +513,7 @@ Firmar solo es posible con direcciones del tipo Legacy.</translation>
         <translation type="unfinished">Minimizar</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network.</source>
+        <source>%n active connection(s) to Whive network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />
@@ -708,7 +708,7 @@ Firmar solo es posible con direcciones del tipo Legacy.</translation>
         <translation type="unfinished">Mostrar la bandeja del sistema.</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation type="unfinished">Conéctese a la red de Bitcoin a través de un proxy SOCKS5 separado para los servicios Tor ocultos.</translation>
     </message>
     <message>

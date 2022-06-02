@@ -694,7 +694,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">%1 klien</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network.</source>
+        <source>%n active connection(s) to Whive network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform>%n koneksi yang aktif ke jaringan Bitcoin</numerusform>
@@ -1261,7 +1261,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Formulir</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</source>
         <translation type="unfinished">Transaksi-transaksi terkini mungkin belum terlihat dan oleh karenanya, saldo dompet Anda mungkin tidak tepat. Informasi ini akan akurat ketika dompet Anda tersinkronisasi dengan jaringan Bitcoin, seperti rincian berikut.</translation>
     </message>
     <message>
@@ -1451,7 +1451,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Terima koneksi-koneksi masuk</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Whive network through a SOCKS5 proxy.</source>
         <translation type="unfinished">Hubungkan ke jaringan Bitcoin melalui SOCKS5 proxy.</translation>
     </message>
     <message>
@@ -1519,8 +1519,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Ingin menunjukkan cara pengaturan koin atau tidak.</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation type="unfinished">Hubungkan kepada Bitcoin network menggunakan proxy SOCKS5 yang terpisah untuk servis Tor onion</translation>
+        <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <translation type="unfinished">Hubungkan kepada Whive network menggunakan proxy SOCKS5 yang terpisah untuk servis Tor onion</translation>
     </message>
     <message>
         <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
@@ -1603,7 +1603,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation>Formulir</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
         <translation>Informasi terlampir mungkin sudah kedaluwarsa. Dompet Anda secara otomatis mensinkronisasi dengan jaringan Bitcoin ketika sebuah hubungan terbentuk, namun proses ini belum selesai.</translation>
     </message>
     <message>
@@ -2267,7 +2267,7 @@ Untuk informasi lebih lanjut tentang menggunakan konsol ini, ketik %6.
         <translation type="unfinished">&amp;Pesan:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
         <translation type="unfinished">Pesan opsional untuk dilampirkan ke permintaan pembayaran, yang akan ditampilkan ketika permintaan dibuka. Catatan: Pesan tidak akan dikirim dengan pembayaran melalui jaringan Bitcoin.</translation>
     </message>
     <message>
@@ -2846,7 +2846,7 @@ Catatan: Karena biaya dihitung berdasarkan per byte, tarif biaya "100 satoshi pe
         <translation type="unfinished">Masukkan label untuk alamat ini untuk dimasukan dalam daftar alamat yang pernah digunakan</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
         <translation type="unfinished">Pesan yang dilampirkan ke bitcoin: URI yang akan disimpan dengan transaksi untuk referensi Anda. Catatan: Pesan ini tidak akan dikirim melalui jaringan Bitcoin.</translation>
     </message>
     <message>

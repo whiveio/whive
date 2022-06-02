@@ -471,7 +471,7 @@
         <translation type="unfinished">តូច</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network.</source>
+        <source>%n active connection(s) to Whive network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />
@@ -744,7 +744,7 @@
         <translation type="unfinished">ទម្រង់</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</source>
         <translation type="unfinished">ប្រត្តិបត្តិការថ្មីៗនេះប្រហែលជាមិនអាចមើលឃើញ ហេតុដូច្នេះសមតុល្យនៅក្នងកាបូបអេឡិចត្រូនិចរបស់អ្នកប្រហែលជាមិនត្រឹមត្រូវ។ ព័ត៌មានត្រឹមត្រូវនៅពេលដែលកាបូបអេឡិចត្រូនិចរបស់អ្នកបានធ្វើសមកាលកម្មជាមួយបណ្តាញប៊ឺតខញ  សូមពិនិត្យព័ត៌មានលំម្អិតខាងក្រោម។</translation>
     </message>
     <message>
@@ -826,7 +826,7 @@
         <translation type="unfinished">អនុញ្ញាតឲ្យមានការតភ្ជាប់ដែលចូលមក</translation>
     </message>
     <message>
-        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
+        <source>Connect to the Whive network through a SOCKS5 proxy.</source>
         <translation type="unfinished">ភ្ជាប់ទៅកាន់បណ្តាញប៊ឺតខញតាមរយៈ​ SOCKS5 proxy។</translation>
     </message>
     <message>
@@ -873,7 +873,7 @@
         <translation>ទម្រង់</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
         <translation>ព័ត៏មានបានបង្ហាញអាចហួសសពុលភាព។ កាបូបអេឡិចត្រូនិចរបស់អ្នកធ្វើសមកាលកម្មជាមួយនឹងបណ្តាញប៊ីតខញដោយស្វ័យប្រវត្ត បន្ទាប់ពីមានការតភ្ជាប់ ប៉ុន្តែដំណើរការនេះមិនទាន់បានបញ្ចប់នៅឡើយ។</translation>
     </message>
     <message>
@@ -1216,7 +1216,7 @@
         <translation type="unfinished">&amp;សារ</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
         <translation type="unfinished">សារជាជម្រើសមួយក្នុងការភ្ជាប់ទៅនឹងសំណើរទូរទាត់ប្រាក់ ដែលនឹងត្រូវបង្ហាញនៅពេលដែលសំណើរត្រូវបានបើក។ កំណត់ចំណាំៈ សារនេះនឹងមិនត្រូវបានបញ្ចូនជាមួយការទូរទាត់ប្រាក់នៅលើបណ្តាញប៊ីតខញ។</translation>
     </message>
     <message>

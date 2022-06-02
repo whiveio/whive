@@ -879,7 +879,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
 =======
         <location line="+556"/>
 >>>>>>> upstream/0.21:src/qt/locale/bitcoin_en.ts
-        <source>%n active connection(s) to Bitcoin network</source>
+        <source>%n active connection(s) to Whive network</source>
         <translation>
             <numerusform>%n active connection to Whive network</numerusform>
             <numerusform>%n active connections to Whive network</numerusform>
@@ -1145,11 +1145,11 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
     </message>
     <message numerus="yes">
         <location line="+158"/>
-        <source>%n active connection(s) to Bitcoin network.</source>
+        <source>%n active connection(s) to Whive network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
-            <numerusform>%n active connection to Bitcoin network.</numerusform>
-            <numerusform>%n active connections to Bitcoin network.</numerusform>
+            <numerusform>%n active connection to Whive network.</numerusform>
+            <numerusform>%n active connections to Whive network.</numerusform>
         </translation>
     </message>
     <message>
@@ -2384,7 +2384,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
     </message>
     <message>
         <location line="+290"/>
-        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2545,8 +2545,8 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
 =======
         <location line="+335"/>
 >>>>>>> upstream/22.x:src/qt/locale/bitcoin_en.ts
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
+        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</translation>
 >>>>>>> upstream/0.21:src/qt/locale/bitcoin_en.ts
     </message>
     <message>
@@ -4083,7 +4083,7 @@ For more information on using this console, type %6.
         <location line="+46"/>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
 =======
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
 >>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
@@ -5035,7 +5035,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of &quot;100 
         <source>A message that was attached to the whive: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
 =======
         <location line="+58"/>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
 >>>>>>> upstream/0.20:src/qt/locale/bitcoin_en.ts
         <translation type="unfinished"></translation>
     </message>
