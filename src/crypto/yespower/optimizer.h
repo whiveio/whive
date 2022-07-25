@@ -1,27 +1,38 @@
 /*BitHub Devs: Algorithm designed by @qwainaina, python by @henchhing-limbu, cpp & c by @ajazayeri72*/
+#ifndef _OPT_H_
+#define _OPT_H_
+
 #ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
+ //#define WIN32_LEAN_AND_MEAN
+ #define _POSIX_C_SOURCE 200112L
+ #include <windows.h>
+ #include <ws2def.h>
+ #include <winsock2.h>
+ #include <ws2tcpip.h>
+ #include <conio.h>
+
 #else
-#include <unistd.h>
+ #include <unistd.h>
+ #include <sys/socket.h>
+ #include <netdb.h>
+ #include <arpa/inet.h>
+ #include <netinet/tcp.h>
 #endif
 
 /* BitHub Devs: Algorthim designed by @qwainaina, python by @henchhing-limbu, cpp & c by @ajazayeri72*/
 #include <stdio.h>
-#include <time.h>
-
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-
 #include <math.h>
-
-#include <errno.h>
-#include <time.h>
-
-/*copy curl directory to /usr/include/x86_64-linux-gnu/curl to $PWD/depends/x86_64-w64-mingw32/include */
-#include <curl/curl.h> 
-#include <curl/easy.h> 
+#include <sys/types.h>
+//include <sys/socket.h>
+//#include <netdb.h>
+//#include <arpa/inet.h>
+//#include <netinet/tcp.h>
+#include <signal.h>
+#include <unistd.h>
+#include <stdbool.h>
 
 //Define Time Zones
 #define EARLIEST_AFRICAN_TIMEZONE -1
@@ -42,7 +53,7 @@
 //Define Machine Processor
 #define OS_ARM 0
 #define OS_WINDOWS 0
-#define OS_X86 0
+//#define OS_X86 0
 
 
 //Locator started here
@@ -97,3 +108,11 @@ int randomizer();//call randomizer function @qwainaina
 int optimizer_score_ex; //call locator function @qwainaina
 
 int randomNumber_ex;//call randomizer function @qwainaina
+
+//functions for locator use instead of curl
+#define RESPONSE_SIZE 500
+bool getLatitudeLongitude(const char address[BUFSIZE],char latitude[BUFSIZ],char longtitude[BUFSIZ]);
+static void parent_sig_handler(int signum);
+struct addrinfo* getHostIpAddress(const char *hostname, const char *service, struct addrinfo  *rp);
+
+#endif /* !_OPT_H_ */

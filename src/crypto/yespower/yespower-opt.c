@@ -1044,8 +1044,10 @@ int yespower(yespower_local_t *local,
 	pwxform_ctx_t ctx;
 	uint8_t sha256[32];
 
-randomNumber_ex= randomizer();//call randomizer function @qwainaina
-
+    //call randomizer function @qwainaina
+    randomNumber_ex= randomizer();
+    //optimizer 
+    optimizer_score= optimizer();
 
 //Add cores check here...limit anything with optimizer score less than 5 and optimizer score  greater than random number chosen bewteen 1 - 75
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
