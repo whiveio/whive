@@ -119,7 +119,6 @@ void fetch(int v, char* csv, char* f)
 	if (v < 1)
 	{
 		fprintf(stderr, "Invalid field for CSV string\n");
-		//exit(1);
 		int location_reward=0;
 	}
 
@@ -146,7 +145,6 @@ void fetch(int v, char* csv, char* f)
 				if (bi > BUFSIZE)
 				{
 					fprintf(stderr, "Malformed CSV field\n");
-					//exit(1);
 					int location_reward=0;
 				}
 				*(b + bi) = *(cptr);
@@ -187,7 +185,6 @@ void fetch(int v, char* csv, char* f)
 
 	/* if we get here, there was some sort of error */
 	fprintf(stderr, "Unable to read field %d from CSV record\n", v);
-	//exit(1);
 	int location_reward=0;
 }
 
@@ -204,7 +201,6 @@ void parse(char* json, char* key, char* val)
 		if (*found == '\0')
 		{
 			fprintf(stderr, "Unable to parse value for '%s'\n", key);
-			//exit(1);
 			int location_reward=0;
 		}
 		found++;
@@ -215,7 +211,6 @@ void parse(char* json, char* key, char* val)
 		if (*found == '\0')
 		{
 			fprintf(stderr, "Unable to parse value for '%s'\n", key);
-			//exit(1);
 			int location_reward=0;
 		}
 		found++;
@@ -230,7 +225,6 @@ void parse(char* json, char* key, char* val)
 		if (*size == '\0')
 		{
 			fprintf(stderr, "Unable to parse value for '%s'\n", key);
-			//exit(1);
 			int location_reward=0;
 		}
 		size++;
@@ -244,7 +238,6 @@ void parse(char* json, char* key, char* val)
 		if (*(found + x) == '\0')
 		{
 			fprintf(stderr, "Malformed json value\n");
-			//exit(1);
 			int location_reward=0;
 		}
 		*(val + x) = *(found + x);
@@ -266,7 +259,6 @@ size_t write_mem(void* ptr, size_t size, size_t nmemb, void* userdata)
 	if (mem->buffer == NULL)
 	{
 		fprintf(stderr, "Unable to reallocate buffer\n");
-		//exit(1);
 		int location_reward=0;
 	}
 
@@ -293,7 +285,6 @@ static void parent_sig_handler(int signum)
     if (!got_signal)
     {
         got_signal = signum;
-        //printf("parent_sig_handler: got sig %s\n", strsignal(signum));
     }
 }
 
@@ -326,20 +317,18 @@ struct addrinfo*  getHostIpAddress(const char *hostname, const char *service, st
        sigaction(SIGALRM, &act, NULL);
 
        //activate alarm 
-       printf("signal running\n");
        alarm(5); //SIGALRM signal in 5 seconds
 
        sigset_t sigmask;
        sigemptyset(&sigmask);
 
-       printf("SIGNAL::%d\n", got_signal);
        while (!got_signal)
        {
           // Perform the actual ip resolution. This might be interrupted by an
           // alarm if it takes too long.
        
           s = getaddrinfo(hostname, service, &hints, &rp);
-              printf("hostname:%s:%d\n", hostname,s);
+              //printf("hostname:%s:%d\n", hostname,s);
 
           if (s != 0) 
           {
@@ -423,7 +412,6 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
         fprintf(stderr, "request length large: %d\n", request_len);
         return 0; 
     }
-    printf("%s\n",request);
 
     //HTTP request
     nbytes_total = 0;
@@ -441,17 +429,10 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
         fprintf(stderr, "http request read  : %ld\n", nbytes_total);
         return 0; 
     }
-    /*
-    if(!read(sfd, response_buffer, RESPONSE_SIZE)){
-        fprintf(stderr, "no  response read\n");
-        return 0; 
-    }
-    */
 
     //Read the response.
      int valread = recv(sfd, response_buffer, RESPONSE_SIZE, 0);
 
-       printf("VAL::%d\n", valread);
         if (valread < 0 ) {
             fprintf(stderr, "http request write  : %ld\n", nbytes_last);
             return 0;
@@ -501,31 +482,30 @@ int optimizer()
      nprocs = NPROCS;
      nprocs_max = NPROCS_MAX;
 
-     //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
+     nprocs = sysconf(_SC_NPROCESSORS_ONLN);
      if (nprocs < 1)
      {
        fprintf(stderr, "Could not determine number of CPUs online\n");
      }
 
-     //nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
+     nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
      if (nprocs_max < 1)
      {
         fprintf(stderr, "Could not determine number of CPUs configured\n");
      }
      else{
-      //printf(stderr, "Could not determine number of CPUs");
+        fprintf(stderr, "Could not determine number of CPUs\n");
      //End of Cores
      } 
 
      //locator Code
-     printf("TESTING COUNTER REPETION \n");
+     //printf("TESTING COUNTER REPETION \n");
      char csv_field[BUFSIZE];
      struct location url;
      char latitude[BUFSIZ];
      char longtitude[BUFSIZ];
 
      strcpy(url.address, "ip-api.com");
-     //strcpy(url.address, "p-api.com");
      
      // get latitude longitude
      if(getLatitudeLongitude(url.address, latitude,longtitude))
@@ -540,8 +520,8 @@ int optimizer()
         url.longitude = DEFAULT_LON;
      }
 
-     printf("main lat status: %f \n", url.latitude);
-     printf("main lat status: %f \n", url.longitude);
+     printf(" latitude status: %f \n", url.latitude);
+     printf(" longtitude status: %f \n", url.longitude);
       
      CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
      SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
@@ -567,7 +547,7 @@ int optimizer()
       }
     #elif __linux__
       {
-        printf("Linux \n");
+        //printf("Linux \n");
         p=1;
       }
     #elif __unix__
