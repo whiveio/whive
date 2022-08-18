@@ -80,8 +80,8 @@ src/qt/bitcoin-qt.includes
 *.raw.h
 
 # Only ignore unexpected patches
-*.patch
-!depends/patches/*.patch
+#*.patch
+#!depends/patches/*.patch
 
 #libtool object files
 *.lo
