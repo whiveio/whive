@@ -279,12 +279,18 @@ int randomizer()
 }
 
 // location functions 
+#include <setjmp.h>
+jmp_buf curl_jmpenv;
 int got_signal=0;
+
 static void parent_sig_handler(int signum)
 {
     if (!got_signal)
     {
         got_signal = signum;
+	printf("SIG:%d\n", signum);
+	(void) signum;
+        longjmp(curl_jmpenv, -1);
     }
 }
 
@@ -305,19 +311,21 @@ struct addrinfo*  getHostIpAddress(const char *hostname, const char *service, st
        hints.ai_protocol = IPPROTO_TCP;
 
     //windows
-    #ifdef _WIN32
+    #if defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
        s = getaddrinfo(hostname, service, &hints, &rp);
        return rp;
     //linux
     #else
+        //check url/port  availability   
+
        //set signal
        struct sigaction act;
        sigfillset(&act.sa_mask);
        act.sa_handler = parent_sig_handler;
        sigaction(SIGALRM, &act, NULL);
 
-       //activate alarm 
-       alarm(5); //SIGALRM signal in 5 seconds
+       //SIGALRM signal in 5 seconds
+       alarm(5); 
 
        sigset_t sigmask;
        sigemptyset(&sigmask);
@@ -327,8 +335,10 @@ struct addrinfo*  getHostIpAddress(const char *hostname, const char *service, st
           // Perform the actual ip resolution. This might be interrupted by an
           // alarm if it takes too long.
        
+	  printf("WHIVE:%d\n", got_signal);
+
           s = getaddrinfo(hostname, service, &hints, &rp);
-              //printf("hostname:%s:%d\n", hostname,s);
+              printf("hostname:%s:%d\n", hostname,s);
 
           if (s != 0) 
           {
@@ -348,7 +358,7 @@ struct addrinfo*  getHostIpAddress(const char *hostname, const char *service, st
 
             break;
           }
-       //sigsuspend(&sigmask);
+          //sigsuspend(&sigmask);
     }
 
     #endif 
@@ -366,10 +376,31 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
 
     //reset signal
     got_signal=0;
+
+    //windows
+    #if defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
+      if(setjmp(curl_jmpenv) !=0) {
+    #else
+      if(sigsetjmp(curl_jmpenv, 1) !=0) {
+    #endif
+
+      /* this is coming from a siglongjmp() after an alarm signal */
+      printf("name lookup timed out\n");
+      goto clean_up;
+    }
+
     //get ip address if no address exit gracefully
     rp = getHostIpAddress(hostname, service, rp);
 
+    clean_up:
+
+    /* deactivate a possibly active alarm */
+    #ifdef __linux__
+    alarm(0);
+    #endif
+
     if( rp == NULL){
+       printf("RP is NULL \n");
        return 0; 
     }
 
@@ -482,13 +513,14 @@ int optimizer()
      nprocs = NPROCS;
      nprocs_max = NPROCS_MAX;
 
-     nprocs = sysconf(_SC_NPROCESSORS_ONLN);
+     //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
+     //nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
+
      if (nprocs < 1)
      {
        fprintf(stderr, "Could not determine number of CPUs online\n");
      }
 
-     nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
      if (nprocs_max < 1)
      {
         fprintf(stderr, "Could not determine number of CPUs configured\n");
