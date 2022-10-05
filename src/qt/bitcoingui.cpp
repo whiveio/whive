@@ -600,6 +600,7 @@ void BitcoinGUI::createTrayIconMenu()
 #else
     // Note: On Mac, the dock icon is used to provide the tray's functionality.
     MacDockIconHandler *dockIconHandler = MacDockIconHandler::instance();
+    trayIconMenu = new QMenu(this);
     //dockIconHandler->setMainWindow(static_cast<QMainWindow*>(this));
     //trayIconMenu = dockIconHandler->dockMenu();
 #endif
