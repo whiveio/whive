@@ -92,8 +92,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
 #ifndef Q_OS_MAC
     QApplication::setWindowIcon(networkStyle->getTrayAndWindowIcon());
     setWindowIcon(networkStyle->getTrayAndWindowIcon());
-#else
-    MacDockIconHandler::instance()->setIcon(networkStyle->getAppIcon());
+    //MacDockIconHandler::instance()->setIcon(networkStyle->getAppIcon());
 #endif
     setWindowTitle(windowTitle);
 
@@ -601,8 +600,8 @@ void BitcoinGUI::createTrayIconMenu()
 #else
     // Note: On Mac, the dock icon is used to provide the tray's functionality.
     MacDockIconHandler *dockIconHandler = MacDockIconHandler::instance();
-    dockIconHandler->setMainWindow(static_cast<QMainWindow*>(this));
-    trayIconMenu = dockIconHandler->dockMenu();
+    //dockIconHandler->setMainWindow(static_cast<QMainWindow*>(this));
+    //trayIconMenu = dockIconHandler->dockMenu();
 #endif
 
     // Configuration of the tray icon (or dock icon) icon menu
@@ -1220,8 +1219,8 @@ static bool ThreadSafeMessageBox(BitcoinGUI *gui, const std::string& message, co
 void BitcoinGUI::subscribeToCoreSignals()
 {
     // Connect signals to client
-    m_handler_message_box = m_node.handleMessageBox(boost::bind(ThreadSafeMessageBox, this, _1, _2, _3));
-    m_handler_question = m_node.handleQuestion(boost::bind(ThreadSafeMessageBox, this, _1, _3, _4));
+    m_handler_message_box = m_node.handleMessageBox(boost::bind(ThreadSafeMessageBox, this, boost::placeholders::_1, boost::placeholders::_2, boost::placeholders::_3));
+    m_handler_question = m_node.handleQuestion(boost::bind(ThreadSafeMessageBox, this, boost::placeholders::_1, boost::placeholders::_3, boost::placeholders::_4));
 }
 
 void BitcoinGUI::unsubscribeFromCoreSignals()

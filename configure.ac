@@ -51,6 +51,7 @@ else
   CXXFLAGS_overridden=no
 fi
 AC_PROG_CXX
+dnl AC_PROG_CXX([gcc cl KCC CC cxx cc++ xlC aCC c++ g++])
 
 dnl By default, libtool for mingw refuses to link static libs into a dll for
 dnl fear of mixing pic/non-pic objects, and import/export complications. Since
@@ -413,6 +414,14 @@ AC_ARG_WITH([daemon],
 
 use_pkgconfig=yes
 case $host in
+   aarch64-*-*)
+     TARGET_OS=aarch64
+     ;;
+
+   arm*-*-linux*)
+     TARGET_OS=arm
+     ;;
+
   *mingw*)
 
      #pkgconfig does more harm than good with MinGW
@@ -1324,6 +1333,8 @@ fi
 AM_CONDITIONAL([TARGET_DARWIN], [test x$TARGET_OS = xdarwin])
 AM_CONDITIONAL([BUILD_DARWIN], [test x$BUILD_OS = xdarwin])
 AM_CONDITIONAL([TARGET_WINDOWS], [test x$TARGET_OS = xwindows])
+AM_CONDITIONAL([TARGET_AARCH64], [test x$TARGET_OS = xaarch64])
+AM_CONDITIONAL([TARGET_ARM], [test x$TARGET_OS = xarm])
 AM_CONDITIONAL([ENABLE_WALLET],[test x$enable_wallet = xyes])
 AM_CONDITIONAL([ENABLE_TESTS],[test x$BUILD_TEST = xyes])
 AM_CONDITIONAL([ENABLE_QT],[test x$bitcoin_enable_qt = xyes])

@@ -5,7 +5,7 @@ $(package)_download_path=https://github.com/curl/curl/releases/download/$(packag
 $(package)_file_name=$(package)-$($(package)_version).tar.gz
 $(package)_sha256_hash=ed936c0b02c06d42cf84b39dd12bb14b62d77c7c4e875ade022280df5dcc81d7
 define $(package)_set_vars
-   $(package)_config_opts=--disable-shared --without-ssl --disable-libevent-regress --disable-samples
+   $(package)_config_opts=--disable-shared --without-ssl --disable-libevent-regress --disable-samples --without-zstd
    $(package)_config_opts_release=--disable-debug-mode
    $(package)_config_opts_linux=--with-pic
 endef

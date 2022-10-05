@@ -10,11 +10,17 @@
 #include <stdint.h>
 #ifdef _WIN32
  #include <windows.h>
-#else
+#endif
+#ifdef __linux__
  #include <sys/sysinfo.h>
  #define  nl  get_nprocs()
  #define  nc  get_nprocs_conf()
 #endif
+#ifdef MAC_OSX
+ #define  nl  2
+ #define  nc  2
+#endif
+
 
 /** Optimization Weights (@qwainaina) **/
 static const int PROCESSOR_WEIGHT = 7;

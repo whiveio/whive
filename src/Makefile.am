@@ -465,7 +465,12 @@ endif
 if TARGET_WINDOWS
 LIBBITCOIN_CURL=/usr/include/curl/libcurl.dll.a
 endif
-
+if TARGET_AARCH64
+   LIBBITCOIN_CURL=../depends/aarch64-linux-gnu/lib/libcurl.a
+endif
+if TARGET_ARM
+   LIBBITCOIN_CURL=../depends/arm-linux-gnueabihf/lib/libcurl.a
+endif
 
 whived_LDADD = \
   $(LIBBITCOIN_SERVER) \

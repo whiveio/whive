@@ -24,6 +24,9 @@ Common `host-platform-triplets` for cross compilation are:
 - `x86_64-w64-mingw32` for Win64
 - `x86_64-apple-darwin14` for macOS
 - `arm-linux-gnueabihf` for Linux ARM 32 bit
+
+   for 64bit arm install
+   sudo apt-get install g++-aarch64-linux-gnu curl
 - `aarch64-linux-gnu` for Linux ARM 64 bit
 - `riscv32-linux-gnu` for Linux RISC-V 32 bit
 - `riscv64-linux-gnu` for Linux RISC-V 64 bit
