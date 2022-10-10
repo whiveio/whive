@@ -16,7 +16,8 @@
  #define  nl  get_nprocs()
  #define  nc  get_nprocs_conf()
 #endif
-#ifdef MAC_OSX
+
+#if defined(MAC_OSX) || defined(Q_OS_MACOS)
  #define  nl  2
  #define  nc  2
 #endif
