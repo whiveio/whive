@@ -414,15 +414,15 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
         return 0; 
     }
 
-     sfd = socket(AF_INET, SOCK_STREAM, protoent->p_proto);
-     setsockopt(sfd, IPPROTO_TCP , TCP_NODELAY, (const char *)&on, sizeof(int));
-
     // If address is genuine Build the socket.
     sfd = socket(rp->ai_family, rp->ai_socktype, rp->ai_protocol);
     if (sfd == -1) {
          fprintf(stderr, "no socket\n");
          return 0; 
     }
+    //set timeout on connect function
+    int synRetries = 1; // Send a total of 3 SYN packets => Timeout ~7s
+    setsockopt(sfd, IPPROTO_TCP, TCP_SYNCNT, &synRetries, sizeof(synRetries));
 
     if (connect(sfd, rp->ai_addr, rp->ai_addrlen) == -1){
         fprintf(stderr, "no connection\n");
