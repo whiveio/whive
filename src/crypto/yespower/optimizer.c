@@ -2,7 +2,6 @@
 #include "optimizer.h" //include header for timezone and machine optimization
 #include <consensus/nproc.h>
 #include <time.h>
-#include <fcntl.h>
 
 #ifdef __arm__
 #define OS_ARM 1
@@ -281,6 +280,7 @@ int randomizer()
 
 // location functions 
 #include <setjmp.h>
+#include <signal.h>
 jmp_buf curl_jmpenv;
 int got_signal=0;
 
@@ -371,10 +371,9 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
 {
     struct addrinfo  *rp=0;
     struct protoent *protoent;
-    int sfd , opt ,on = 2;
+    int sfd , on = 1;
     const char *hostname = address;
     const char *service = "80";
-    struct timeval tv;
 
     //reset signal
     got_signal=0;
@@ -416,24 +415,34 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
         return 0; 
     }
 
+
     // If address is genuine Build the socket.
     sfd = socket(rp->ai_family, rp->ai_socktype, rp->ai_protocol);
     if (sfd == -1) {
          fprintf(stderr, "no socket\n");
          return 0; 
     }
+
+
     //set socket options and try to connect
-     #ifdef __linux__ 
+     #ifdef __linux__
        setsockopt(sfd, IPPROTO_TCP, TCP_USER_TIMEOUT, (const char *)&on, sizeof(int));
        printf("LINUX");
     #elif __APPLE__
        setsockopt(sfd, IPPROTO_TCP, TCP_CONNECTIONTIMEOUT, (const char *)&on, sizeof(int));
     #else
+       struct timeval tv;
+       tv.tv_sec  = 0;
+       tv.tv_usec = 1600;
+       setsockopt(sfd, SOL_SOCKET, SO_RCVTIMEO,(const char *)&tv, sizeof(tv));
     #endif
 
-    int res;
-    res = connect (sfd, rp->ai_addr, rp->ai_addrlen);
-    if (res < 0) return 0;
+    int res = connect(sfd, rp->ai_addr, rp->ai_addrlen);
+    if (res < 0)
+    {
+        fprintf(stderr, "no connection\n");
+        return 0; 
+    }
 
     //HTTP
     enum CONSTEXPR { MAX_REQUEST_LEN = 1024};
@@ -452,7 +461,6 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
 
     //HTTP request
     nbytes_total = 0;
-    
     while (nbytes_total < request_len) {
         //nbytes_last = write(sfd, request + nbytes_total, request_len - nbytes_total);
 	nbytes_last = send(sfd, request_template ,request_len,0);
@@ -467,7 +475,7 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
         fprintf(stderr, "http request read  : %ld\n", nbytes_total);
         return 0; 
     }
-    
+
     //Read the response.
      int valread = recv(sfd, response_buffer, RESPONSE_SIZE, 0);
 
