@@ -8,12 +8,23 @@
 
 #include <stdlib.h>
 #include <stdint.h>
+
+
 #ifdef _WIN32
  #include <windows.h>
-#else
+#endif
+
+#ifdef __linux__
  #include <sys/sysinfo.h>
  #define  nl  get_nprocs()
  #define  nc  get_nprocs_conf()
+#endif
+
+#if defined(OS_MACOSX) || defined(MAC_OSX)
+ #include <sys/param.h>
+ #include <sys/sysctl.h>
+  #define  nl  sysconf( _SC_NPROCESSORS_ONLN )
+  #define  nc  sysconf(_SC_NPROCESSORS_CONF)
 #endif
 
 /** Optimization Weights (@qwainaina) **/
