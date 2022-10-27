@@ -49,8 +49,6 @@
  * no slowdown from the prefixes is generally observed on AMD CPUs supporting
  * XOP, some slowdown is sometimes observed on Intel CPUs with AVX.
  */
-#define __SSE2__ 1
-#define __AVX__ 1
 
 #ifdef __XOP__
 #warning "Note: XOP is enabled.  That's great."

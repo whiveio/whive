@@ -427,7 +427,6 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
     //set socket options and try to connect
      #ifdef __linux__
        setsockopt(sfd, IPPROTO_TCP, TCP_USER_TIMEOUT, (const char *)&on, sizeof(int));
-       printf("LINUX");
     #elif __APPLE__
        setsockopt(sfd, IPPROTO_TCP, TCP_CONNECTIONTIMEOUT, (const char *)&on, sizeof(int));
     #else
