@@ -291,7 +291,7 @@ static void parent_sig_handler(int signum)
         got_signal = signum;
 	printf("SIG:%d\n", signum);
 	(void) signum;
-        longjmp(curl_jmpenv, -1);
+        //longjmp(curl_jmpenv, -1);
     }
 }
 

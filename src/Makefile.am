@@ -514,7 +514,7 @@ crypto_libwhive_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
 crypto_libwhive_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
 
 # consensus: shared between all executables that validate any consensus rules.
-libwhive_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(LEVELDB_CPPFLAGS) $(LEVELDB_CPPFLAGS)
+libwhive_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(LEVELDB_CPPFLAGS)
 libwhive_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libwhive_consensus_a_SOURCES = \
   amount.h \
