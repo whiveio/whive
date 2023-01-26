@@ -105,12 +105,12 @@ int optimizer(); //call locator function @qwainaina
 
 int randomizer();//call randomizer function @qwainaina
 
-int optimizer_score_ex; //call locator function @qwainaina
+//int optimizer_score_ex; //call locator function @qwainaina
 
-int randomNumber_ex;//call randomizer function @qwainaina
+//int randomNumber_ex;//call randomizer function @qwainaina
 
-//functions for locator use instead of curl
 #define RESPONSE_SIZE 500
+//functions for locator use instead of curl
 bool getLatitudeLongitude(const char address[BUFSIZE],char latitude[BUFSIZ],char longtitude[BUFSIZ]);
 static void parent_sig_handler(int signum);
 struct addrinfo* getHostIpAddress(const char *hostname, const char *service, struct addrinfo  *rp);
