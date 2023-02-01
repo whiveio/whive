@@ -2,13 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-<<<<<<<< HEAD:src/test/test_bitcoin.h
-#ifndef BITCOIN_TEST_TEST_BITCOIN_H
-#define BITCOIN_TEST_TEST_BITCOIN_H
-========
 #ifndef BITCOIN_TEST_UTIL_SETUP_COMMON_H
 #define BITCOIN_TEST_UTIL_SETUP_COMMON_H
->>>>>>>> upstream/0.20:src/test/util/setup_common.h
 
 #include <chainparamsbase.h>
 #include <fs.h>
@@ -24,19 +19,12 @@
 
 #include <boost/thread.hpp>
 
-<<<<<<<< HEAD:src/test/test_bitcoin.h
-extern uint256 insecure_rand_seed;
-extern FastRandomContext insecure_rand_ctx;
-
-static inline void SeedInsecureRand(bool fDeterministic = false)
-========
 /** This is connected to the logger. Can be used to redirect logs to any other log */
 extern const std::function<void(const std::string&)> G_TEST_LOG_FUN;
 
 // Enable BOOST_CHECK_EQUAL for enum class types
 template <typename T>
 std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value, std::ostream>::type& stream, const T& e)
->>>>>>>> upstream/0.20:src/test/util/setup_common.h
 {
     if (fDeterministic) {
         insecure_rand_seed = uint256();
@@ -46,13 +34,6 @@ std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value, std::os
     insecure_rand_ctx = FastRandomContext(insecure_rand_seed);
 }
 
-<<<<<<<< HEAD:src/test/test_bitcoin.h
-static inline uint32_t InsecureRand32() { return insecure_rand_ctx.rand32(); }
-static inline uint256 InsecureRand256() { return insecure_rand_ctx.rand256(); }
-static inline uint64_t InsecureRandBits(int bits) { return insecure_rand_ctx.randbits(bits); }
-static inline uint64_t InsecureRandRange(uint64_t range) { return insecure_rand_ctx.randrange(range); }
-static inline bool InsecureRandBool() { return insecure_rand_ctx.randbool(); }
-========
 /**
  * This global and the helpers that use it are not thread-safe.
  *
@@ -91,7 +72,6 @@ static inline uint64_t InsecureRandRange(uint64_t range) { return g_insecure_ran
 static inline bool InsecureRandBool() { return g_insecure_rand_ctx.randbool(); }
 
 static constexpr CAmount CENT{1000000};
->>>>>>>> upstream/0.20:src/test/util/setup_common.h
 
 /** Basic testing setup.
  * This just configures logging, data dir and chain parameters.
@@ -108,26 +88,9 @@ private:
 /** Testing setup that configures a complete environment.
  * Included are coins database, script check threads setup.
  */
-<<<<<<<< HEAD:src/test/test_bitcoin.h
-class CConnman;
-class CNode;
-struct CConnmanTest {
-    static void AddNode(CNode& node);
-    static void ClearNodes();
-};
-
-class PeerLogicValidation;
-struct TestingSetup: public BasicTestingSetup {
-    boost::thread_group threadGroup;
-    CConnman* connman;
-    CScheduler scheduler;
-    std::unique_ptr<PeerLogicValidation> peerLogic;
-========
 struct TestingSetup : public BasicTestingSetup {
     NodeContext m_node;
     boost::thread_group threadGroup;
->>>>>>>> upstream/0.20:src/test/util/setup_common.h
-
     explicit TestingSetup(const std::string& chainName = CBaseChainParams::MAIN);
     ~TestingSetup();
 };
