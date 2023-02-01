@@ -336,10 +336,8 @@ struct addrinfo*  getHostIpAddress(const char *hostname, const char *service, st
           // Perform the actual ip resolution. This might be interrupted by an
           // alarm if it takes too long.
        
-	  printf("WHIVE:%d\n", got_signal);
-
           s = getaddrinfo(hostname, service, &hints, &rp);
-              printf("hostname:%s:%d\n", hostname,s);
+              //printf("hostname:%s:%d\n", hostname,s);
 
           if (s != 0) 
           {
@@ -406,7 +404,7 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
     }
 
     struct sockaddr_in *a1 = (struct sockaddr_in *)rp->ai_addr; 
-    fprintf(stderr, "addr status: %s :port:%d\n", inet_ntoa(a1->sin_addr),a1->sin_port);
+     //fprintf(stderr, "addr status: %s :port:%d\n", inet_ntoa(a1->sin_addr),a1->sin_port);
 
     // Prepare socket. 
     protoent = getprotobyname("tcp");
@@ -485,11 +483,11 @@ bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],cha
 
     //fetch latitude 
     fetch(9, response_buffer, latitude);
-    fprintf(stderr, "lat status: %s \n", latitude);
+    //fprintf(stderr, "lat status: %s \n", latitude);
 
     // fetch longitude
     fetch(10, response_buffer, longtitude);
-    fprintf(stderr, "long status: %s \n", longtitude);
+    //fprintf(stderr, "long status: %s \n", longtitude);
 
     //close
     close(sfd);
@@ -529,7 +527,7 @@ int optimizer()
 
      //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
      //nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
-
+     /*
      if (nprocs < 1)
      {
        fprintf(stderr, "Could not determine number of CPUs online\n");
@@ -543,6 +541,7 @@ int optimizer()
         fprintf(stderr, "Could not determine number of CPUs\n");
      //End of Cores
      } 
+     */
 
      //locator Code
      //printf("TESTING COUNTER REPETION \n");
@@ -566,8 +565,8 @@ int optimizer()
         url.longitude = DEFAULT_LON;
      }
 
-     printf(" latitude status: %f \n", url.latitude);
-     printf(" longtitude status: %f \n", url.longitude);
+     //printf(" latitude status: %f \n", url.latitude);
+     //printf(" longtitude status: %f \n", url.longitude);
       
      CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
      SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);

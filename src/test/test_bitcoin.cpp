@@ -2,12 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-<<<<<<<< HEAD:src/test/test_bitcoin.cpp
-#include <test/test_bitcoin.h>
-========
 #include <test/util/setup_common.h>
->>>>>>>> upstream/0.20:src/test/util/setup_common.cpp
-
 #include <chainparams.h>
 #include <consensus/consensus.h>
 #include <consensus/validation.h>
@@ -40,7 +35,6 @@ void CConnmanTest::AddNode(CNode& node)
     g_connman->vNodes.push_back(&node);
 }
 
-<<<<<<<< HEAD:src/test/test_bitcoin.cpp
 void CConnmanTest::ClearNodes()
 {
     LOCK(g_connman->cs_vNodes);
@@ -55,7 +49,6 @@ FastRandomContext insecure_rand_ctx(insecure_rand_seed);
 
 extern bool fPrintToConsole;
 extern void noui_connect();
-========
 FastRandomContext g_insecure_rand_ctx;
 /** Random context to get unique temp data dirs. Separate from g_insecure_rand_ctx, which can be seeded from a const env var */
 static FastRandomContext g_insecure_rand_ctx_temp_path;
@@ -78,8 +71,6 @@ void Seed(FastRandomContext& ctx)
     LogPrintf("%s: Setting random seed for current tests to %s=%s\n", __func__, RANDOM_CTX_SEED, seed.GetHex());
     ctx = FastRandomContext(seed);
 }
->>>>>>>> upstream/0.20:src/test/util/setup_common.cpp
-
 std::ostream& operator<<(std::ostream& os, const uint256& num)
 {
     os << num.ToString();
@@ -87,11 +78,7 @@ std::ostream& operator<<(std::ostream& os, const uint256& num)
 }
 
 BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
-<<<<<<<< HEAD:src/test/test_bitcoin.cpp
-    : m_path_root(fs::temp_directory_path() / "test_bitcoin" / strprintf("%lu_%i", (unsigned long)GetTime(), (int)(InsecureRandRange(1 << 30))))
-========
     : m_path_root{fs::temp_directory_path() / "test_common_" PACKAGE_NAME / g_insecure_rand_ctx_temp_path.rand256().ToString()}
->>>>>>>> upstream/0.20:src/test/util/setup_common.cpp
 {
     fs::create_directories(m_path_root);
     gArgs.ForceSetArg("-datadir", m_path_root.string());
@@ -132,20 +119,12 @@ TestingSetup::TestingSetup(const std::string& chainName) : BasicTestingSetup(cha
     g_rpc_node = &m_node;
     RegisterAllCoreRPCCommands(tableRPC);
 
-<<<<<<<< HEAD:src/test/test_bitcoin.cpp
-        // We have to run a scheduler thread to prevent ActivateBestChain
-        // from blocking due to queue overrun.
-        threadGroup.create_thread(boost::bind(&CScheduler::serviceQueue, &scheduler));
-        GetMainSignals().RegisterBackgroundSignalScheduler(scheduler);
-========
     m_node.scheduler = MakeUnique<CScheduler>();
 
     // We have to run a scheduler thread to prevent ActivateBestChain
     // from blocking due to queue overrun.
     threadGroup.create_thread([&]{ m_node.scheduler->serviceQueue(); });
     GetMainSignals().RegisterBackgroundSignalScheduler(*g_rpc_node->scheduler);
->>>>>>>> upstream/0.20:src/test/util/setup_common.cpp
-
     pblocktree.reset(new CBlockTreeDB(1 << 20, true));
     g_chainstate = MakeUnique<CChainState>();
     ::ChainstateActive().InitCoinsDB(
