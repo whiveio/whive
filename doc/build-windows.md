@@ -71,40 +71,6 @@ If you want to build the windows installer with `make deploy` you need [NSIS](ht
     sudo apt install nsis
 
 
-  for cross compling windows
----------------------------
-Makefile.am
-add LIBBITCOIN_CURL
-
-if TARGET_WINDOWS
-<<<<<<< HEAD
-LIBBITCOIN_CURL=/usr/include/curl/libcurl.dll.a
-else
-LIBBITCOIN_CURL=/usr/include/curl/libcurl.a
-endif
-
-=======
-LIBBITCOIN_CURL=../depends/x86_64-w64-mingw32/lib/libcurl-4.dll
-endif
-
-
->>>>>>> 45e49ae36cd16c5eb695619d1668e0ce894cbd9e
-whived_LDADD = \
-  $(LIBBITCOIN_CURL) \
-
-whive_tx_LDADD = \
-  $(LIBBITCOIN_CURL) \
-
-
-
-/*copy curl directory to /usr/include/x86_64-linux-gnu/curl to $PWD/depends/x86_64-w64-mingw32/include */
-
-/*modify Makefile.qt.include --->  qt_whive_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CONSENSUS) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) $(LIBBITCOIN_CURL) \   */
-
--------------------------------------------------------
-
-
-
 ## Building for 64-bit Windows
 
 The first step is to install the mingw-w64 cross-compilation tool chain:

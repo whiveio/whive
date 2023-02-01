@@ -92,25 +92,23 @@ public:
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        //consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
-        //consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008 	
-        //consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].min_activation_height = 4032; // No activation delay
 	consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = Consensus::BIP9Deployment::NEVER_ACTIVE;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].min_activation_height = 0; // No activation delay
 
-
-         
         // Deployment of Taproot (BIPs 340-342)
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].bit = 2;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartTime = 1619222400; // April 24th, 2021
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeout = 1654506000; // June 7th, 2022
-        //consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT; // August 11th, 2021
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].min_activation_height = 120763; // Approximately June 7th, 2022
+        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartTime = 1675333403; // Feb 2nd, 2023
+        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeout = 1684837403; // May 23rd, 2023
+	//Min block number for activation, the number must be divisible by 2016
+        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].min_activation_height = 177408; // Approximately July 11th, 2023
        
 
-        consensus.nMinimumChainWork = uint256S("0x0");
-        consensus.defaultAssumeValid = uint256S("0x0"); // 0
+	// The best chain should have at least this much work.
+        consensus.nMinimumChainWork  = uint256S("0x0000000000000000000000000000000000000000000000000000105a2324f520");
+
+        // By default assume that the signatures in ancestors of this block are valid.
+        consensus.defaultAssumeValid = uint256S("0x0000000216700af2d51c964a855639820bbac4e60dfb546f2d1e565595e2a012"); //135000
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
