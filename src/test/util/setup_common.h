@@ -2,13 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-<<<<<<<< HEAD:src/test/test_bitcoin.h
-#ifndef BITCOIN_TEST_TEST_BITCOIN_H
-#define BITCOIN_TEST_TEST_BITCOIN_H
-========
 #ifndef BITCOIN_TEST_UTIL_SETUP_COMMON_H
 #define BITCOIN_TEST_UTIL_SETUP_COMMON_H
->>>>>>>> upstream/0.20:src/test/util/setup_common.h
 
 #include <chainparamsbase.h>
 #include <fs.h>
@@ -26,26 +21,14 @@
 #include <type_traits>
 #include <vector>
 
-<<<<<<<< HEAD:src/test/test_bitcoin.h
-extern uint256 insecure_rand_seed;
-extern FastRandomContext insecure_rand_ctx;
-
-static inline void SeedInsecureRand(bool fDeterministic = false)
-========
 /** This is connected to the logger. Can be used to redirect logs to any other log */
 extern const std::function<void(const std::string&)> G_TEST_LOG_FUN;
 
 // Enable BOOST_CHECK_EQUAL for enum class types
 template <typename T>
 std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value, std::ostream>::type& stream, const T& e)
->>>>>>>> upstream/0.20:src/test/util/setup_common.h
 {
-    if (fDeterministic) {
-        insecure_rand_seed = uint256();
-    } else {
-        insecure_rand_seed = GetRandHash();
-    }
-    insecure_rand_ctx = FastRandomContext(insecure_rand_seed);
+    return stream << static_cast<typename std::underlying_type<T>::type>(e);
 }
 
 /**

@@ -53,23 +53,7 @@ Updated settings
 
 ### P2P
 
-<<<<<<< HEAD
-GUI changes
------------
-
-Low-level changes
-=================
-
-### P2P protocol and network code
-
-Tests
------
-
-22.0 change log
-===============
-=======
 ### RPC and other APIs
->>>>>>> 6fd35e2cb18d325221644a33b058c109aed3e767
 
 - #25237 rpc: Capture UniValue by ref for rpcdoccheck
 - #25983 Prevent data race for pathHandlers
