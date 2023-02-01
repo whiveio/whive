@@ -1,13 +1,16 @@
 //locator definitions 21/8/2020 @qwainaina
 #include "optimizer.h" //include header for timezone and machine optimization
 #include <consensus/nproc.h>
+#include <time.h>
 
 #ifdef __arm__
 #define OS_ARM 1
 #elif defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
 #define OS_WINDOWS 1
-#elif defined(_X86_) || defined(__X86_64__) || defined(__x86_64__) || defined(__amd64__)
-#define OS_X86 1
+#endif
+
+#if defined(_X86_) || defined(__X86_64__) || defined(__x86_64__) || defined(__amd64__)
+ #define OS_X86 1
 #endif
 
 struct coordinate
@@ -52,11 +55,11 @@ int get_processor_reward() {
 
 //Get Machine Timezone
 int get_timezone() {
-	time_t now = time(NULL);
+    time_t now = time(NULL);
     time_t tmp = time(&tmp);
     struct tm *utc = gmtime(&tmp);
     int diff = (now - mktime(utc)) / 3600;
-	return diff;
+    return diff;
 }
 
 //Set timezone score
@@ -116,7 +119,6 @@ void fetch(int v, char* csv, char* f)
 	if (v < 1)
 	{
 		fprintf(stderr, "Invalid field for CSV string\n");
-		//exit(1);
 		int location_reward=0;
 	}
 
@@ -143,7 +145,6 @@ void fetch(int v, char* csv, char* f)
 				if (bi > BUFSIZE)
 				{
 					fprintf(stderr, "Malformed CSV field\n");
-					//exit(1);
 					int location_reward=0;
 				}
 				*(b + bi) = *(cptr);
@@ -184,7 +185,6 @@ void fetch(int v, char* csv, char* f)
 
 	/* if we get here, there was some sort of error */
 	fprintf(stderr, "Unable to read field %d from CSV record\n", v);
-	//exit(1);
 	int location_reward=0;
 }
 
@@ -201,7 +201,6 @@ void parse(char* json, char* key, char* val)
 		if (*found == '\0')
 		{
 			fprintf(stderr, "Unable to parse value for '%s'\n", key);
-			//exit(1);
 			int location_reward=0;
 		}
 		found++;
@@ -212,7 +211,6 @@ void parse(char* json, char* key, char* val)
 		if (*found == '\0')
 		{
 			fprintf(stderr, "Unable to parse value for '%s'\n", key);
-			//exit(1);
 			int location_reward=0;
 		}
 		found++;
@@ -227,7 +225,6 @@ void parse(char* json, char* key, char* val)
 		if (*size == '\0')
 		{
 			fprintf(stderr, "Unable to parse value for '%s'\n", key);
-			//exit(1);
 			int location_reward=0;
 		}
 		size++;
@@ -241,7 +238,6 @@ void parse(char* json, char* key, char* val)
 		if (*(found + x) == '\0')
 		{
 			fprintf(stderr, "Malformed json value\n");
-			//exit(1);
 			int location_reward=0;
 		}
 		*(val + x) = *(found + x);
@@ -263,7 +259,6 @@ size_t write_mem(void* ptr, size_t size, size_t nmemb, void* userdata)
 	if (mem->buffer == NULL)
 	{
 		fprintf(stderr, "Unable to reallocate buffer\n");
-		//exit(1);
 		int location_reward=0;
 	}
 
@@ -283,6 +278,225 @@ int randomizer()
    return randomNumber;
 }
 
+// location functions 
+#include <setjmp.h>
+#include <signal.h>
+jmp_buf curl_jmpenv;
+int got_signal=0;
+
+static void parent_sig_handler(int signum)
+{
+    if (!got_signal)
+    {
+        got_signal = signum;
+	printf("SIG:%d\n", signum);
+	(void) signum;
+        //longjmp(curl_jmpenv, -1);
+    }
+}
+
+struct addrinfo*  getHostIpAddress(const char *hostname, const char *service, struct addrinfo  *rp)
+{
+     struct addrinfo hints ;
+     int s ;
+
+    //Obtain address matching host/port 
+    #ifdef _WIN32
+       ZeroMemory( &hints, sizeof(hints) );
+    #else
+       memset(&hints, 0, sizeof(struct addrinfo*));
+     #endif
+       hints.ai_family = AF_INET;    // Allow IPv4 or IPv6 
+       hints.ai_socktype = SOCK_STREAM; // Datagram socket
+       hints.ai_flags = 0;
+       hints.ai_protocol = IPPROTO_TCP;
+
+    //windows
+    #if defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
+       s = getaddrinfo(hostname, service, &hints, &rp);
+       return rp;
+    //linux
+    #else
+        //check url/port  availability   
+
+       //set signal
+       struct sigaction act;
+       sigfillset(&act.sa_mask);
+       act.sa_handler = parent_sig_handler;
+       sigaction(SIGALRM, &act, NULL);
+
+       //SIGALRM signal in 5 seconds
+       alarm(5); 
+
+       sigset_t sigmask;
+       sigemptyset(&sigmask);
+
+       while (!got_signal)
+       {
+          // Perform the actual ip resolution. This might be interrupted by an
+          // alarm if it takes too long.
+       
+	  printf("WHIVE:%d\n", got_signal);
+
+          s = getaddrinfo(hostname, service, &hints, &rp);
+              printf("hostname:%s:%d\n", hostname,s);
+
+          if (s != 0) 
+          {
+           fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(s));
+	   return NULL;
+          }
+          else{
+	  
+             //struct sockaddr_in *a1 = (struct sockaddr_in *)rp->ai_addr; 
+             //fprintf(stderr, "addr status: %s :port:%d\n", inet_ntoa(a1->sin_addr),a1->sin_port);
+	      char checkhost[BUFSIZE];
+              strcpy(checkhost, "ip-api.com");
+	      if (strcmp(hostname ,checkhost) == 0){
+                 signal(SIGALRM, SIG_IGN);
+                 sigfillset(&sigmask);
+	      }
+
+            break;
+          }
+          //sigsuspend(&sigmask);
+    }
+
+    #endif 
+
+    return rp; 
+}
+
+bool getLatitudeLongitude(const char address[BUFSIZE], char latitude[BUFSIZ],char longtitude[BUFSIZ])
+{
+    struct addrinfo  *rp=0;
+    struct protoent *protoent;
+    int sfd , on = 1;
+    const char *hostname = address;
+    const char *service = "80";
+
+    //reset signal
+    got_signal=0;
+
+    //windows
+    #if defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)
+      if(setjmp(curl_jmpenv) !=0) {
+    #else
+      if(sigsetjmp(curl_jmpenv, 1) !=0) {
+    #endif
+
+      /* this is coming from a siglongjmp() after an alarm signal */
+      printf("name lookup timed out\n");
+      goto clean_up;
+    }
+
+    //get ip address if no address exit gracefully
+    rp = getHostIpAddress(hostname, service, rp);
+
+    clean_up:
+
+    /* deactivate a possibly active alarm */
+    #ifdef __linux__
+    alarm(0);
+    #endif
+
+    if( rp == NULL){
+       printf("RP is NULL \n");
+       return 0; 
+    }
+
+    struct sockaddr_in *a1 = (struct sockaddr_in *)rp->ai_addr; 
+    fprintf(stderr, "addr status: %s :port:%d\n", inet_ntoa(a1->sin_addr),a1->sin_port);
+
+    // Prepare socket. 
+    protoent = getprotobyname("tcp");
+    if (protoent == NULL) {
+         fprintf(stderr, "no protocol\n");
+        return 0; 
+    }
+
+
+    // If address is genuine Build the socket.
+    sfd = socket(rp->ai_family, rp->ai_socktype, rp->ai_protocol);
+    if (sfd == -1) {
+         fprintf(stderr, "no socket\n");
+         return 0; 
+    }
+
+
+    //set socket options and try to connect
+     #ifdef __linux__
+       setsockopt(sfd, IPPROTO_TCP, TCP_USER_TIMEOUT, (const char *)&on, sizeof(int));
+    #elif __APPLE__
+       setsockopt(sfd, IPPROTO_TCP, TCP_CONNECTIONTIMEOUT, (const char *)&on, sizeof(int));
+    #else
+       struct timeval tv;
+       tv.tv_sec  = 0;
+       tv.tv_usec = 1600;
+       setsockopt(sfd, SOL_SOCKET, SO_RCVTIMEO,(const char *)&tv, sizeof(tv));
+    #endif
+
+    int res = connect(sfd, rp->ai_addr, rp->ai_addrlen);
+    if (res < 0)
+    {
+        fprintf(stderr, "no connection\n");
+        return 0; 
+    }
+
+    //HTTP
+    enum CONSTEXPR { MAX_REQUEST_LEN = 1024};
+    char response_buffer[RESPONSE_SIZE];
+    char request[MAX_REQUEST_LEN];
+    ssize_t nbytes_total, nbytes_last;
+    int request_len;
+    char request_template[] = "GET csv/ HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n";
+
+    //check request is ok
+    request_len = snprintf(request, MAX_REQUEST_LEN, request_template ,  hostname);
+    if (request_len >= MAX_REQUEST_LEN) {
+        fprintf(stderr, "request length large: %d\n", request_len);
+        return 0; 
+    }
+
+    //HTTP request
+    nbytes_total = 0;
+    while (nbytes_total < request_len) {
+        //nbytes_last = write(sfd, request + nbytes_total, request_len - nbytes_total);
+	nbytes_last = send(sfd, request_template ,request_len,0);
+        if (nbytes_last == -1) {
+            fprintf(stderr, "http request write  : %ld\n", nbytes_last);
+            return 0; 
+        }
+        nbytes_total += nbytes_last;
+    }
+
+    if (nbytes_total == -1) {
+        fprintf(stderr, "http request read  : %ld\n", nbytes_total);
+        return 0; 
+    }
+
+    //Read the response.
+     int valread = recv(sfd, response_buffer, RESPONSE_SIZE, 0);
+
+        if (valread < 0 ) {
+            fprintf(stderr, "http request write  : %ld\n", nbytes_last);
+            return 0;
+        }
+
+    //fetch latitude 
+    fetch(9, response_buffer, latitude);
+    fprintf(stderr, "lat status: %s \n", latitude);
+
+    // fetch longitude
+    fetch(10, response_buffer, longtitude);
+    fprintf(stderr, "long status: %s \n", longtitude);
+
+    //close
+    close(sfd);
+    freeaddrinfo(rp);
+
+    return true;
+}
 
 //Optimizer function
 int optimizer()
@@ -314,96 +528,47 @@ int optimizer()
      nprocs_max = NPROCS_MAX;
 
      //nprocs = sysconf(_SC_NPROCESSORS_ONLN);
+     //nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
+
      if (nprocs < 1)
      {
        fprintf(stderr, "Could not determine number of CPUs online\n");
      }
 
-     //nprocs_max = sysconf(_SC_NPROCESSORS_CONF);
      if (nprocs_max < 1)
      {
         fprintf(stderr, "Could not determine number of CPUs configured\n");
      }
      else{
-      //printf(stderr, "Could not determine number of CPUs");
+        fprintf(stderr, "Could not determine number of CPUs\n");
      //End of Cores
      } 
-     //printf("TESTING COUNTER REPETION \n");
+
      //locator Code
-     CURL* curl;
-     CURLcode res;
+     //printf("TESTING COUNTER REPETION \n");
      char csv_field[BUFSIZE];
      struct location url;
-     struct web_data curl_data;
+     char latitude[BUFSIZ];
+     char longtitude[BUFSIZ];
 
-     /* initialize structure */
-     /* curl_data and url structures must be kept separate or the
-      call the curl makes to write_mem() screws up */
-
-     curl_data.buffer =  (char *) malloc(1);
-     curl_data.size = 0;
-     url.latitude = DEFAULT_LAT;
-     url.longitude = DEFAULT_LON;
-
-     /* initialize locations */
-     strcpy(url.address, "http://ip-api.com/csv/");
-
-     /* initialize curl */
-     /* I use the same curl handle for all of the calls,
-     so only only statement is needed here */
-     curl = curl_easy_init();
-
-     /*---------------- FIRST READ ----------------*/
-     /* set options */
-     /* url to read */
-     curl_easy_setopt(curl, CURLOPT_URL, url.address);
-     /* The function to read in data chunks */
-     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_mem);
-     /* The structure to use for reading */
-     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &curl_data);
-
-     /* complete within 20 seconds */
-     curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5L);
-
-     /* make the call */
-     res = curl_easy_perform(curl);
-
-     /* confirm that the call was successful, bail if not */
-     if (res != CURLE_OK)
+     strcpy(url.address, "ip-api.com");
+     
+     // get latitude longitude
+     if(getLatitudeLongitude(url.address, latitude,longtitude))
      {
-        fprintf(stderr, "Curl read failed: %s\n", curl_easy_strerror(res));
+       url.latitude = strtod(latitude, NULL);
+       url.longitude = strtod(longtitude, NULL);
+     }
+     else {
+        printf("DEFAULT LATITUDE LONGITUDE\n");
+        printf("connection timedout\n");
+        url.latitude = DEFAULT_LAT;
+        url.longitude = DEFAULT_LON;
      }
 
-    /* At this point, the size of the data read is stored in curl_data.size
-    and the string read is in curl_data.buffer. The data is in CSV format,
-    which the fetch() function can read */
-     /* was the call successful? Fetch the first CSV item from the buffer and
-    store it in buffer 'csv_field' */
-    fetch(1, curl_data.buffer, csv_field);
-    /* if the string csv_field isn't 'success' then the call failed */
-    if (strncmp(csv_field, "success", 7) != 0)
-    {
-       fprintf(stderr, "Failed request from server: %s \n", url.address);
-       fprintf(stderr, "Retried status: %s \n", csv_field);
-    }
-
-     /* Get the latitude value & convert to double */
-     fetch(8, curl_data.buffer, csv_field);
-     url.latitude = strtod(csv_field, NULL);
-
-     /* Get the longitude value & convert to double */
-     fetch(9, curl_data.buffer, csv_field);
-     url.longitude = strtod(csv_field, NULL);
-
-
-     //Error Handling Making Sure no 0.000000 scores ever
-     if ((url.latitude == 0.000000) && (url.longitude == 0.000000)) //remember to fix the other files.
-     {
-        url.latitude = DEFAULT_LAT;  //-82.8628
-        url.longitude = DEFAULT_LON; //135.0000
-     }
-
-
+     printf(" latitude status: %f \n", url.latitude);
+     printf(" longtitude status: %f \n", url.longitude);
+      
      CARRIBEAN_REGION = RegionCoordiantes(-90, 30, -45, 15);
      SOUTH_AMERICAN_REGION = RegionCoordiantes(-90, 15, -30, -60);
      AFRICAN_REGION = RegionCoordiantes(-20, 30, 50, -45);
@@ -414,11 +579,10 @@ int optimizer()
      //forcing location reward 40% Africa, 20% Carribean, 20% SouthEastAsia, 10% Middle-east, 10% South America, 0% Europe, 0% Asia, 0% America
      int location_reward = get_machine_coordinates_reward(url.latitude,url.longitude); 
 
-     //Location code used to be here...
-
     //location_reward = 80; test with value...
     int timezone_reward = get_time_zone_reward();
     int process_reward = get_processor_reward();
+
 
     int p=0;
     //Penalize OS on processor

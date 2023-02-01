@@ -49,6 +49,7 @@
  * no slowdown from the prefixes is generally observed on AMD CPUs supporting
  * XOP, some slowdown is sometimes observed on Intel CPUs with AVX.
  */
+
 #ifdef __XOP__
 #warning "Note: XOP is enabled.  That's great."
 #elif defined(__AVX__)
@@ -1044,8 +1045,10 @@ int yespower(yespower_local_t *local,
 	pwxform_ctx_t ctx;
 	uint8_t sha256[32];
 
-randomNumber_ex= randomizer();//call randomizer function @qwainaina
-
+    //call randomizer function @qwainaina
+    int randomNumber_ex= randomizer();
+    //optimizer 
+    //optimizer_score= optimizer();
 
 //Add cores check here...limit anything with optimizer score less than 5 and optimizer score  greater than random number chosen bewteen 1 - 75
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
@@ -1134,8 +1137,10 @@ int yespower_tls(const uint8_t *src, size_t srclen,
 
 	if (!initialized) {
 		if (yespower_init_local(&local))
-			return -1;
+		   return -1;
 		initialized = 1;
+        //optimizer 
+          optimizer_score = optimizer();
 	}
 
 	return yespower(&local, src, srclen, params, dst, optimizer_score);

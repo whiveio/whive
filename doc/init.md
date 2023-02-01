@@ -20,9 +20,9 @@ The macOS configuration assumes whived will be set up for the current user.
 Configuration
 ---------------------------------
 
-At a bare minimum, whived requires that the rpcpassword setting be set
-when running as a daemon.  If the configuration file does not exist or this
-setting is not set, whived will shut down promptly after startup.
+Running whived as a daemon does not require any manual configuration. You may
+set the `rpcauth` setting in the `whive.conf` configuration file to override
+the default behaviour of using a special cookie for authentication.
 
 This password does not have to be remembered or typed as it is mostly used
 as a fixed token that whived and client programs read from the configuration
@@ -53,17 +53,19 @@ Paths
 
 All three configurations assume several paths that might need to be adjusted.
 
-Binary:              `/usr/bin/whived`  
-Configuration file:  `/etc/whive/whive.conf`  
-Data directory:      `/var/lib/whived`  
-PID file:            `/var/run/whive/whived.pid` (OpenRC and Upstart) or `/var/lib/whived/whived.pid` (systemd)  
-Lock file:           `/var/lock/subsys/whived` (CentOS)  
+Binary:              `/usr/bin/whived`
+Configuration file:  `/etc/whive/whive.conf`
+Data directory:      `/var/lib/whived`
+PID file:            `/var/run/whived/whived.pid` (OpenRC and
+Upstart) or 
+                     `/run/whived/whived.pid` (systemd)
+Lock file:           `/var/lock/subsys/whived` (CentOS)
 
-The configuration file, PID directory (if applicable) and data directory
-should all be owned by the whive user and group.  It is advised for security
-reasons to make the configuration file and data directory only readable by the
-whive user and group.  Access to whive-cli and other whived rpc clients
-can then be controlled by group membership.
+The PID directory (if applicable) and data directory should both be owned by the
+whive user and group. It is advised for security reasons to make the
+configuration file and data directory only readable by the whive user and
+group. Access to whive-cli and other whived rpc clients can then be
+controlled by group membership.
 
 ### macOS
 

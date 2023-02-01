@@ -6,5 +6,5 @@
 
 std::unique_ptr<CHashDB> phashdb;
 
-CHashDB::CHashDB(size_t nCacheSize, bool fMemory, bool fWipe) : CDBWrapper(GetDataDir() / "hashes", nCacheSize, fMemory, fWipe) {
+CHashDB::CHashDB(size_t nCacheSize, bool fMemory, bool fWipe) : CDBWrapper(gArgs.GetDataDirNet() / "hashes", nCacheSize, fMemory, fWipe) {
 }

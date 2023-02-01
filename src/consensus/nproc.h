@@ -8,6 +8,8 @@
 
 #include <stdlib.h>
 #include <stdint.h>
+
+
 #ifdef _WIN32
  #include <windows.h>
 #endif
@@ -17,11 +19,12 @@
  #define  nc  get_nprocs_conf()
 #endif
 
-#if defined(MAC_OSX) || defined(Q_OS_MACOS)
- #define  nl  2
- #define  nc  2
+#if defined(OS_MACOSX) || defined(MAC_OSX)
+ #include <sys/param.h>
+ #include <sys/sysctl.h>
+  #define  nl  sysconf( _SC_NPROCESSORS_ONLN )
+  #define  nc  sysconf(_SC_NPROCESSORS_CONF)
 #endif
-
 
 /** Optimization Weights (@qwainaina) **/
 static const int PROCESSOR_WEIGHT = 7;

@@ -1,13 +1,11 @@
-// Copyright (c) 2015-2018 The Bitcoin Core developers
-// Distributed under the MIT/X11 software license, see the accompanying
+// Copyright (c) 2015-2020 The Bitcoin Core developers
+// Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <chain.h>
 #include <chainparams.h>
 #include <pow.h>
-#include <random.h>
-#include <util.h>
-#include <test/test_bitcoin.h>
+#include <test/util/setup_common.h>
 
 #include <boost/test/unit_test.hpp>
 
@@ -16,71 +14,108 @@ BOOST_FIXTURE_TEST_SUITE(pow_tests, BasicTestingSetup)
 /* Test calculation of next difficulty target with DGW */
 BOOST_AUTO_TEST_CASE(get_next_work)
 {
-    SelectParams(CBaseChainParams::MAIN);
-    const Consensus::Params& params = Params().GetConsensus();
+    const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
+    int64_t nLastRetargetTime = 1261130161; // Block #30240
+    CBlockIndex pindexLast;
+    pindexLast.nHeight = 32255;
+    pindexLast.nTime = 1262152739;  // Block #32255
+    pindexLast.nBits = 0x1d00ffff;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1d00d86aU);
+}
 
-    // build the chain of 12 blocks
-    CBlockIndex blockIndexLast;
-    blockIndexLast.nHeight = 123456;
-    blockIndexLast.nTime = 1408732489;
-    blockIndexLast.nBits = 0x1b1418d4;
-    CBlockIndex blockIndexPrev1 = CBlockIndex();
-    blockIndexPrev1.nTime = 1408732257;  // Block #123455
-    blockIndexPrev1.nBits = 0x1b13b83f;
-    blockIndexLast.pprev = &blockIndexPrev1;
-    CBlockIndex blockIndexPrev2 = CBlockIndex();
-    blockIndexPrev2.nTime = 1408732229;  // Block #123454
-    blockIndexPrev2.nBits = 0x1b10460b;
-    blockIndexPrev1.pprev = &blockIndexPrev2;
-    CBlockIndex blockIndexPrev3 = CBlockIndex();
-    blockIndexPrev3.nTime = 1408731256;  // Block #123453
-    blockIndexPrev3.nBits = 0x1b113ff1;
-    blockIndexPrev2.pprev = &blockIndexPrev3;
-    CBlockIndex blockIndexPrev4 = CBlockIndex();
-    blockIndexPrev4.nTime = 1408731242;  // Block #123452
-    blockIndexPrev4.nBits = 0x1b0fed89;
-    blockIndexPrev3.pprev = &blockIndexPrev4;
-    CBlockIndex blockIndexPrev5 = CBlockIndex();
-    blockIndexPrev5.nTime = 1408730914;  // Block #123451
-    blockIndexPrev5.nBits = 0x1b10b864;
-    blockIndexPrev4.pprev = &blockIndexPrev5;
-    CBlockIndex blockIndexPrev6 = CBlockIndex();
-    blockIndexPrev6.nTime = 1408730862;  // Block #123450
-    blockIndexPrev6.nBits = 0x1b0dd168;
-    blockIndexPrev5.pprev = &blockIndexPrev6;
-    CBlockIndex blockIndexPrev7 = CBlockIndex();
-    blockIndexPrev7.nTime = 1408730179;  // Block #123449
-    blockIndexPrev7.nBits = 0x1b0c03d6;
-    blockIndexPrev6.pprev = &blockIndexPrev7;
-    CBlockIndex blockIndexPrev8 = CBlockIndex();
-    blockIndexPrev8.nTime = 1408729678;  // Block #123448
-    blockIndexPrev8.nBits = 0x1b0c9ab8;
-    blockIndexPrev7.pprev = &blockIndexPrev8;
-    CBlockIndex blockIndexPrev9 = CBlockIndex();
-    blockIndexPrev9.nTime = 1408729647;  // Block #123447
-    blockIndexPrev9.nBits = 0x1b0dfaff;
-    blockIndexPrev8.pprev = &blockIndexPrev9;
-    CBlockIndex blockIndexPrev10 = CBlockIndex();
-    blockIndexPrev10.nTime = 1408729587;  // Block #123446
-    blockIndexPrev10.nBits = 0x1b10e878;
-    blockIndexPrev9.pprev = &blockIndexPrev10;
-    CBlockIndex blockIndexPrev11 = CBlockIndex();
-    blockIndexPrev11.nTime = 1408729576;  // Block #123445
-    blockIndexPrev11.nBits = 0x1b1063d0;
-    blockIndexPrev10.pprev = &blockIndexPrev11;
-    CBlockIndex blockIndexPrev12 = CBlockIndex();
-    blockIndexPrev12.nTime = 1408729474;  // Block #123444
-    blockIndexPrev12.nBits = 0x1b104297;
-    blockIndexPrev11.pprev = &blockIndexPrev12;
+/* Test the constraint on the upper bound for next work */
+BOOST_AUTO_TEST_CASE(get_next_work_pow_limit)
+{
+    const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
+    int64_t nLastRetargetTime = 1231006505; // Block #0
+    CBlockIndex pindexLast;
+    pindexLast.nHeight = 2015;
+    pindexLast.nTime = 1233061996;  // Block #2015
+    pindexLast.nBits = 0x1d00ffff;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1d00ffffU);
+}
 
-    CBlockHeader blockHeader;
-    blockHeader.nTime = 1408732505; // Block #123457
-    BOOST_CHECK_EQUAL(GetNextWorkRequired(&blockIndexLast, &blockHeader, params), 0x1b2fed0e); // Block #123457 has 0x1b1441de
+/* Test the constraint on the lower bound for actual time taken */
+BOOST_AUTO_TEST_CASE(get_next_work_lower_limit_actual)
+{
+    const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
+    int64_t nLastRetargetTime = 1279008237; // Block #66528
+    CBlockIndex pindexLast;
+    pindexLast.nHeight = 68543;
+    pindexLast.nTime = 1279297671;  // Block #68543
+    pindexLast.nBits = 0x1c05a3f4;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1c0168fdU);
+}
+
+/* Test the constraint on the upper bound for actual time taken */
+BOOST_AUTO_TEST_CASE(get_next_work_upper_limit_actual)
+{
+    const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
+    int64_t nLastRetargetTime = 1263163443; // NOTE: Not an actual block time
+    CBlockIndex pindexLast;
+    pindexLast.nHeight = 46367;
+    pindexLast.nTime = 1269211443;  // Block #46367
+    pindexLast.nBits = 0x1c387f6f;
+    BOOST_CHECK_EQUAL(CalculateNextWorkRequired(&pindexLast, nLastRetargetTime, chainParams->GetConsensus()), 0x1d00e1fdU);
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_negative_target)
+{
+    const auto consensus = CreateChainParams(*m_node.args, CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits;
+    nBits = UintToArith256(consensus.powLimit).GetCompact(true);
+    hash.SetHex("0x1");
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_overflow_target)
+{
+    const auto consensus = CreateChainParams(*m_node.args, CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits = ~0x00800000;
+    hash.SetHex("0x1");
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_too_easy_target)
+{
+    const auto consensus = CreateChainParams(*m_node.args, CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits;
+    arith_uint256 nBits_arith = UintToArith256(consensus.powLimit);
+    nBits_arith *= 2;
+    nBits = nBits_arith.GetCompact();
+    hash.SetHex("0x1");
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_biger_hash_than_target)
+{
+    const auto consensus = CreateChainParams(*m_node.args, CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits;
+    arith_uint256 hash_arith = UintToArith256(consensus.powLimit);
+    nBits = hash_arith.GetCompact();
+    hash_arith *= 2; // hash > nBits
+    hash = ArithToUint256(hash_arith);
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
+}
+
+BOOST_AUTO_TEST_CASE(CheckProofOfWork_test_zero_target)
+{
+    const auto consensus = CreateChainParams(*m_node.args, CBaseChainParams::MAIN)->GetConsensus();
+    uint256 hash;
+    unsigned int nBits;
+    arith_uint256 hash_arith{0};
+    nBits = hash_arith.GetCompact();
+    hash = ArithToUint256(hash_arith);
+    BOOST_CHECK(!CheckProofOfWork(hash, nBits, consensus));
 }
 
 BOOST_AUTO_TEST_CASE(GetBlockProofEquivalentTime_test)
 {
-    const auto chainParams = CreateChainParams(CBaseChainParams::MAIN);
+    const auto chainParams = CreateChainParams(*m_node.args, CBaseChainParams::MAIN);
     std::vector<CBlockIndex> blocks(10000);
     for (int i = 0; i < 10000; i++) {
         blocks[i].pprev = i ? &blocks[i - 1] : nullptr;
@@ -98,6 +133,53 @@ BOOST_AUTO_TEST_CASE(GetBlockProofEquivalentTime_test)
         int64_t tdiff = GetBlockProofEquivalentTime(*p1, *p2, *p3, chainParams->GetConsensus());
         BOOST_CHECK_EQUAL(tdiff, p1->GetBlockTime() - p2->GetBlockTime());
     }
+}
+
+void sanity_check_chainparams(const ArgsManager& args, std::string chainName)
+{
+    const auto chainParams = CreateChainParams(args, chainName);
+    const auto consensus = chainParams->GetConsensus();
+
+    // hash genesis is correct
+    BOOST_CHECK_EQUAL(consensus.hashGenesisBlock, chainParams->GenesisBlock().GetHash());
+
+    // target timespan is an even multiple of spacing
+    BOOST_CHECK_EQUAL(consensus.nPowTargetTimespan % consensus.nPowTargetSpacing, 0);
+
+    // genesis nBits is positive, doesn't overflow and is lower than powLimit
+    arith_uint256 pow_compact;
+    bool neg, over;
+    pow_compact.SetCompact(chainParams->GenesisBlock().nBits, &neg, &over);
+    BOOST_CHECK(!neg && pow_compact != 0);
+    BOOST_CHECK(!over);
+    BOOST_CHECK(UintToArith256(consensus.powLimit) >= pow_compact);
+
+    // check max target * 4*nPowTargetTimespan doesn't overflow -- see pow.cpp:CalculateNextWorkRequired()
+    if (!consensus.fPowNoRetargeting) {
+        arith_uint256 targ_max("0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
+        targ_max /= consensus.nPowTargetTimespan*4;
+        BOOST_CHECK(UintToArith256(consensus.powLimit) < targ_max);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(ChainParams_MAIN_sanity)
+{
+    sanity_check_chainparams(*m_node.args, CBaseChainParams::MAIN);
+}
+
+BOOST_AUTO_TEST_CASE(ChainParams_REGTEST_sanity)
+{
+    sanity_check_chainparams(*m_node.args, CBaseChainParams::REGTEST);
+}
+
+BOOST_AUTO_TEST_CASE(ChainParams_TESTNET_sanity)
+{
+    sanity_check_chainparams(*m_node.args, CBaseChainParams::TESTNET);
+}
+
+BOOST_AUTO_TEST_CASE(ChainParams_SIGNET_sanity)
+{
+    sanity_check_chainparams(*m_node.args, CBaseChainParams::SIGNET);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

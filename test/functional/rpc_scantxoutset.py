@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018 The Bitcoin Core developers
+# Copyright (c) 2018-2020 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the scantxoutset rpc call."""
@@ -51,9 +51,17 @@ class ScantxoutsetTest(BitcoinTestFramework):
 
         self.log.info("Stop node, remove wallet, mine again some blocks...")
         self.stop_node(0)
-        shutil.rmtree(os.path.join(self.nodes[0].datadir, "regtest", 'wallets'))
-        self.start_node(0)
+        shutil.rmtree(os.path.join(self.nodes[0].datadir, self.chain, 'wallets'))
+        self.start_node(0, ['-nowallet'])
+        self.import_deterministic_coinbase_privkeys()
         self.nodes[0].generate(110)
+
+        scan = self.nodes[0].scantxoutset("start", [])
+        info = self.nodes[0].gettxoutsetinfo()
+        assert_equal(scan['success'], True)
+        assert_equal(scan['height'], info['height'])
+        assert_equal(scan['txouts'], info['txouts'])
+        assert_equal(scan['bestblock'], info['bestblock'])
 
         self.restart_node(0, ['-nowallet'])
         self.log.info("Test if we have found the non HD unspent outputs.")
@@ -90,6 +98,20 @@ class ScantxoutsetTest(BitcoinTestFramework):
         assert_equal(self.nodes[0].scantxoutset("start", [ {"desc": "combo(tprv8ZgxMBicQKsPd7Uf69XL1XwhmjHopUGep8GuEiJDZmbQz6o58LninorQAfcKZWARbtRtfnLcJ5MQ2AtHcQJCCRUcMRvmDUjyEmNUWwx8UbK/1/1/*)", "range": 1500}])['total_amount'], Decimal("28.672"))
         assert_equal(self.nodes[0].scantxoutset("start", [ {"desc": "combo(tpubD6NzVbkrYhZ4WaWSyoBvQwbpLkojyoTZPRsgXELWz3Popb3qkjcJyJUGLnL4qHHoQvao8ESaAstxYSnhyswJ76uZPStJRJCTKvosUCJZL5B/1/1/*)", "range": 1499}])['total_amount'], Decimal("12.288"))
         assert_equal(self.nodes[0].scantxoutset("start", [ {"desc": "combo(tpubD6NzVbkrYhZ4WaWSyoBvQwbpLkojyoTZPRsgXELWz3Popb3qkjcJyJUGLnL4qHHoQvao8ESaAstxYSnhyswJ76uZPStJRJCTKvosUCJZL5B/1/1/*)", "range": 1500}])['total_amount'], Decimal("28.672"))
+
+        # Check that status and abort don't need second arg
+        assert_equal(self.nodes[0].scantxoutset("status"), None)
+        assert_equal(self.nodes[0].scantxoutset("abort"), False)
+
+        # Check that second arg is needed for start
+        assert_raises_rpc_error(-1, "scanobjects argument is required for the start action", self.nodes[0].scantxoutset, "start")
+
+        # Check that status and abort don't need second arg
+        assert_equal(self.nodes[0].scantxoutset("status"), None)
+        assert_equal(self.nodes[0].scantxoutset("abort"), False)
+
+        # Check that second arg is needed for start
+        assert_raises_rpc_error(-1, "scanobjects argument is required for the start action", self.nodes[0].scantxoutset, "start")
 
 if __name__ == '__main__':
     ScantxoutsetTest().main()

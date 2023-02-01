@@ -1,26 +1,19 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2018 The Bitcoin Core developers
+# Copyright (c) 2014-2020 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the listtransactions API."""
 from decimal import Decimal
-from io import BytesIO
 
-from test_framework.messages import COIN, CTransaction
+from test_framework.messages import (
+    COIN,
+    tx_from_hex,
+)
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import (
     assert_array_result,
     assert_equal,
-    bytes_to_hex_str,
-    hex_str_to_bytes,
-    sync_mempools,
 )
-
-def tx_from_hex(hexstring):
-    tx = CTransaction()
-    f = BytesIO(hex_str_to_bytes(hexstring))
-    tx.deserialize(f)
-    return tx
 
 class ListTransactionsTest(BitcoinTestFramework):
     def set_test_params(self):
@@ -41,14 +34,15 @@ class ListTransactionsTest(BitcoinTestFramework):
                             {"txid": txid},
                             {"category": "receive", "amount": Decimal("0.1"), "confirmations": 0})
         # mine a block, confirmations should change:
-        self.nodes[0].generate(1)
+        blockhash = self.nodes[0].generate(1)[0]
+        blockheight = self.nodes[0].getblockheader(blockhash)['height']
         self.sync_all()
         assert_array_result(self.nodes[0].listtransactions(),
                             {"txid": txid},
-                            {"category": "send", "amount": Decimal("-0.1"), "confirmations": 1})
+                            {"category": "send", "amount": Decimal("-0.1"), "confirmations": 1, "blockhash": blockhash, "blockheight": blockheight})
         assert_array_result(self.nodes[1].listtransactions(),
                             {"txid": txid},
-                            {"category": "receive", "amount": Decimal("0.1"), "confirmations": 1})
+                            {"category": "receive", "amount": Decimal("0.1"), "confirmations": 1, "blockhash": blockhash, "blockheight": blockheight})
 
         # send-to-self:
         txid = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), 0.2)
@@ -91,16 +85,20 @@ class ListTransactionsTest(BitcoinTestFramework):
                             {"category": "receive", "amount": Decimal("0.44")},
                             {"txid": txid})
 
-        pubkey = self.nodes[1].getaddressinfo(self.nodes[1].getnewaddress())['pubkey']
-        multisig = self.nodes[1].createmultisig(1, [pubkey])
-        self.nodes[0].importaddress(multisig["redeemScript"], "watchonly", False, True)
-        txid = self.nodes[1].sendtoaddress(multisig["address"], 0.1)
-        self.nodes[1].generate(1)
-        self.sync_all()
-        assert len(self.nodes[0].listtransactions(label="watchonly", count=100, skip=0, include_watchonly=False)) == 0
-        assert_array_result(self.nodes[0].listtransactions(label="watchonly", count=100, skip=0, include_watchonly=True),
-                            {"category": "receive", "amount": Decimal("0.1")},
-                            {"txid": txid, "label": "watchonly"})
+        if not self.options.descriptors:
+            # include_watchonly is a legacy wallet feature, so don't test it for descriptor wallets
+            pubkey = self.nodes[1].getaddressinfo(self.nodes[1].getnewaddress())['pubkey']
+            multisig = self.nodes[1].createmultisig(1, [pubkey])
+            self.nodes[0].importaddress(multisig["redeemScript"], "watchonly", False, True)
+            txid = self.nodes[1].sendtoaddress(multisig["address"], 0.1)
+            self.nodes[1].generate(1)
+            self.sync_all()
+            assert_equal(len(self.nodes[0].listtransactions(label="watchonly", include_watchonly=True)), 1)
+            assert_equal(len(self.nodes[0].listtransactions(dummy="watchonly", include_watchonly=True)), 1)
+            assert len(self.nodes[0].listtransactions(label="watchonly", count=100, include_watchonly=False)) == 0
+            assert_array_result(self.nodes[0].listtransactions(label="watchonly", count=100, include_watchonly=True),
+                                {"category": "receive", "amount": Decimal("0.1")},
+                                {"txid": txid, "label": "watchonly"})
 
         self.run_rbf_opt_in_test()
 

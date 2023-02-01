@@ -48,7 +48,7 @@ The Whive protocol contains the following specifications:
 - The algorithm checks the processor, location, timezone and balance of all nodes attributing a higher optimization weight to nodes with higher balances, daylight threshold and desired CPU optimizations.
 - The protocol shall support between 7 - 20 transactions per second on a 1 - 2 MB block-size or a Segregated Witness (SegWit) enabled block-weight of 4 MB similar to Bitcoin.
 - The protocol shall over time keep up-to date with the latest Bitcoin source code updates after release of the final core features in version 3 of the protocol.
-- The protocol shall support Layer 2 Protocols such as Lightning to enable fast and micro-transactions on the Bitcoin network to ensure atomic-swap capabilities.
+- The protocol shall support Layer 2 Protocols such as Lightning to enable fast and micro-transactions on the Whive network to ensure atomic-swap capabilities.
 
 ***3. RoadMap***
 

@@ -2,26 +2,41 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+<<<<<<<< HEAD:src/test/test_bitcoin.h
 #ifndef BITCOIN_TEST_TEST_BITCOIN_H
 #define BITCOIN_TEST_TEST_BITCOIN_H
+========
+#ifndef BITCOIN_TEST_UTIL_SETUP_COMMON_H
+#define BITCOIN_TEST_UTIL_SETUP_COMMON_H
+>>>>>>>> upstream/0.20:src/test/util/setup_common.h
 
 #include <chainparamsbase.h>
 #include <fs.h>
 #include <key.h>
+#include <node/context.h>
 #include <pubkey.h>
 #include <random.h>
 #include <scheduler.h>
-#include <txdb.h>
 #include <txmempool.h>
+#include <util/string.h>
 
-#include <memory>
+#include <type_traits>
 
 #include <boost/thread.hpp>
 
+<<<<<<<< HEAD:src/test/test_bitcoin.h
 extern uint256 insecure_rand_seed;
 extern FastRandomContext insecure_rand_ctx;
 
 static inline void SeedInsecureRand(bool fDeterministic = false)
+========
+/** This is connected to the logger. Can be used to redirect logs to any other log */
+extern const std::function<void(const std::string&)> G_TEST_LOG_FUN;
+
+// Enable BOOST_CHECK_EQUAL for enum class types
+template <typename T>
+std::ostream& operator<<(typename std::enable_if<std::is_enum<T>::value, std::ostream>::type& stream, const T& e)
+>>>>>>>> upstream/0.20:src/test/util/setup_common.h
 {
     if (fDeterministic) {
         insecure_rand_seed = uint256();
@@ -31,30 +46,69 @@ static inline void SeedInsecureRand(bool fDeterministic = false)
     insecure_rand_ctx = FastRandomContext(insecure_rand_seed);
 }
 
+<<<<<<<< HEAD:src/test/test_bitcoin.h
 static inline uint32_t InsecureRand32() { return insecure_rand_ctx.rand32(); }
 static inline uint256 InsecureRand256() { return insecure_rand_ctx.rand256(); }
 static inline uint64_t InsecureRandBits(int bits) { return insecure_rand_ctx.randbits(bits); }
 static inline uint64_t InsecureRandRange(uint64_t range) { return insecure_rand_ctx.randrange(range); }
 static inline bool InsecureRandBool() { return insecure_rand_ctx.randbool(); }
+========
+/**
+ * This global and the helpers that use it are not thread-safe.
+ *
+ * If thread-safety is needed, the global could be made thread_local (given
+ * that thread_local is supported on all architectures we support) or a
+ * per-thread instance could be used in the multi-threaded test.
+ */
+extern FastRandomContext g_insecure_rand_ctx;
+
+/**
+ * Flag to make GetRand in random.h return the same number
+ */
+extern bool g_mock_deterministic_tests;
+
+enum class SeedRand {
+    ZEROS, //!< Seed with a compile time constant of zeros
+    SEED,  //!< Call the Seed() helper
+};
+
+/** Seed the given random ctx or use the seed passed in via an environment var */
+void Seed(FastRandomContext& ctx);
+
+static inline void SeedInsecureRand(SeedRand seed = SeedRand::SEED)
+{
+    if (seed == SeedRand::ZEROS) {
+        g_insecure_rand_ctx = FastRandomContext(/* deterministic */ true);
+    } else {
+        Seed(g_insecure_rand_ctx);
+    }
+}
+
+static inline uint32_t InsecureRand32() { return g_insecure_rand_ctx.rand32(); }
+static inline uint256 InsecureRand256() { return g_insecure_rand_ctx.rand256(); }
+static inline uint64_t InsecureRandBits(int bits) { return g_insecure_rand_ctx.randbits(bits); }
+static inline uint64_t InsecureRandRange(uint64_t range) { return g_insecure_rand_ctx.randrange(range); }
+static inline bool InsecureRandBool() { return g_insecure_rand_ctx.randbool(); }
+
+static constexpr CAmount CENT{1000000};
+>>>>>>>> upstream/0.20:src/test/util/setup_common.h
 
 /** Basic testing setup.
- * This just configures logging and chain parameters.
+ * This just configures logging, data dir and chain parameters.
  */
 struct BasicTestingSetup {
     ECCVerifyHandle globalVerifyHandle;
 
     explicit BasicTestingSetup(const std::string& chainName = CBaseChainParams::MAIN);
     ~BasicTestingSetup();
-
-    fs::path SetDataDir(const std::string& name);
-
 private:
     const fs::path m_path_root;
 };
 
 /** Testing setup that configures a complete environment.
- * Included are data directory, coins database, script check threads setup.
+ * Included are coins database, script check threads setup.
  */
+<<<<<<<< HEAD:src/test/test_bitcoin.h
 class CConnman;
 class CNode;
 struct CConnmanTest {
@@ -68,9 +122,20 @@ struct TestingSetup: public BasicTestingSetup {
     CConnman* connman;
     CScheduler scheduler;
     std::unique_ptr<PeerLogicValidation> peerLogic;
+========
+struct TestingSetup : public BasicTestingSetup {
+    NodeContext m_node;
+    boost::thread_group threadGroup;
+>>>>>>>> upstream/0.20:src/test/util/setup_common.h
 
     explicit TestingSetup(const std::string& chainName = CBaseChainParams::MAIN);
     ~TestingSetup();
+};
+
+/** Identical to TestingSetup, but chain set to regtest */
+struct RegTestingSetup : public TestingSetup {
+    RegTestingSetup()
+        : TestingSetup{CBaseChainParams::REGTEST} {}
 };
 
 class CBlock;
@@ -81,7 +146,7 @@ class CScript;
 // Testing fixture that pre-creates a
 // 100-block REGTEST-mode block chain
 //
-struct TestChain100Setup : public TestingSetup {
+struct TestChain100Setup : public RegTestingSetup {
     TestChain100Setup();
 
     // Create a new block with just given transactions, coinbase paying to
