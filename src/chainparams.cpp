@@ -104,8 +104,11 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].min_activation_height = 177408; // Approximately July 11th, 2023
        
 
-        consensus.nMinimumChainWork = uint256S("0x0");
-        consensus.defaultAssumeValid = uint256S("0x0"); // 0
+	// The best chain should have at least this much work.
+        consensus.nMinimumChainWork  = uint256S("0x0000000000000000000000000000000000000000000000000000105a2324f520");
+
+        // By default assume that the signatures in ancestors of this block are valid.
+        consensus.defaultAssumeValid = uint256S("0x0000000216700af2d51c964a855639820bbac4e60dfb546f2d1e565595e2a012"); //135000
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
