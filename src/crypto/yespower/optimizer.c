@@ -9,7 +9,7 @@
 #define OS_WINDOWS 1
 #endif
 
-#if defined(_X86_) || defined(__X86_64__) || defined(__x86_64__) || defined(__amd64__)
+#if defined(_X86_) || defined(__X86_64__) || defined(__x86_64__) || defined(__amd64__) || defined(__aarch64__)
  #define OS_X86 1
 #endif
 
