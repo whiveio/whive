@@ -13,7 +13,6 @@
 #ifdef _WIN32
  #include <windows.h>
 #endif
-
 #ifdef __linux__
  #include <sys/sysinfo.h>
  #define  nl  get_nprocs()
@@ -27,6 +26,12 @@
   #define  nc  sysconf(_SC_NPROCESSORS_CONF)
 #endif
 
+#if defined(__GNUC__) && defined(__ARM_NEON__)
+     /* GCC-compatible compiler, targeting ARM with NEON */
+ #include <arm_neon.h>
+  #define  nl  sysconf( _SC_NPROCESSORS_ONLN )
+  #define  nc  sysconf(_SC_NPROCESSORS_CONF)
+#endif 
 /** Optimization Weights (@qwainaina) **/
 static const int PROCESSOR_WEIGHT = 7;
 static const int STAKE_WEIGHT = 6;
