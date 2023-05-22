@@ -40,7 +40,7 @@ LIBSECP256K1=secp256k1/libsecp256k1.la
 
 
 if TARGET_WINDOWS
-LIBBITCOIN_CURL=../depends/x86_64-w64-mingw32/lib/libcurl-4.dll
+LIBBITCOIN_CURL=../depends/x86_64-w64-mingw32/bin/libcurl-4.dll
 endif
 
 

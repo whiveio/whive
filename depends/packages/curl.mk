@@ -9,10 +9,16 @@ define $(package)_set_vars
    $(package)_cxxflags=-std=c++17 -fvisibility=hidden
    $(package)_config_opts_release=--disable-debug-mode
    $(package)_config_opts_linux=--with-pic
+   $(package)_config_opts_mingw32 = -no-opengl
+   $(package)_config_opts_mingw32 += -no-dbus
+   $(package)_config_opts_linux+=--without-ssl 
+   $(package)_config_opts_mingw32=--without-ssl
+   $(package)_config_opts_darwin=--without-ssl
+
 endef
 
 define $(package)_config_cmds
-    ./configure --host=x86_64-w64-mingw32 --without-ssl 
+       $($(package)_autoconf)
 endef
 
 define $(package)_build_cmds
@@ -20,9 +26,7 @@ define $(package)_build_cmds
 endef
 
 define $(package)_stage_cmds
-  mkdir -p $($(package)_staging_prefix_dir)/include/curl $($(package)_staging_prefix_dir)/lib &&\
-        install $($(package)_extract_dir)/include/curl/*.h $($(package)_staging_prefix_dir)/include/curl &&\
-	install $($(package)_extract_dir)/lib/.libs/libcurl-4.dll $($(package)_staging_prefix_dir)/lib
+  $(MAKE) DESTDIR=$($(package)_staging_dir) install
 endef
 
 define $(package)_postprocess_cmds
