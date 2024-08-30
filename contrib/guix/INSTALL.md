@@ -88,6 +88,7 @@ To install:
 ```sh
 sudo apt install guix
 ```
+`guix pull`](#guix-pull-as-root).
 
 For up-to-date information on Debian and Ubuntu's release history:
 - [Debian release history](https://www.debian.org/releases/)
