@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2009-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,9 +7,7 @@
 
 #include <util/macros.h>
 
-#if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
-#endif //HAVE_CONFIG_H
+#include <config/bitcoin-config.h> // IWYU pragma: keep
 
 // Check that required client information is defined
 #if !defined(CLIENT_VERSION_MAJOR) || !defined(CLIENT_VERSION_MINOR) || !defined(CLIENT_VERSION_BUILD) || !defined(CLIENT_VERSION_IS_RELEASE) || !defined(COPYRIGHT_YEAR)
@@ -36,11 +34,15 @@ static const int CLIENT_VERSION =
                          +       1 * CLIENT_VERSION_BUILD;
 
 extern const std::string CLIENT_NAME;
-extern const std::string CLIENT_BUILD;
 
 
 std::string FormatFullVersion();
 std::string FormatSubVersion(const std::string& name, int nClientVersion, const std::vector<std::string>& comments);
+
+std::string CopyrightHolders(const std::string& strPrefix);
+
+/** Returns licensing information (for -version) */
+std::string LicenseInfo();
 
 #endif // WINDRES_PREPROC
 

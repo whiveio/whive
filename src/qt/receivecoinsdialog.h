@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2020 The Bitcoin Core developers
+// Copyright (c) 2011-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -51,7 +51,7 @@ public Q_SLOTS:
 
 private:
     Ui::ReceiveCoinsDialog *ui;
-    WalletModel *model;
+    WalletModel* model{nullptr};
     QMenu *contextMenu;
     QAction* copyLabelAction;
     QAction* copyMessageAction;

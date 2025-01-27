@@ -1,34 +1,32 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2018 The Bitcoin Core developers
+# Copyright (c) 2015-2021 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-import sys
-import os
-from random import SystemRandom
-import base64
+from argparse import ArgumentParser
+from getpass import getpass
+from secrets import token_hex, token_urlsafe
 import hmac
+import json
 
-def generate_salt():
-    # This uses os.urandom() underneath
-    cryptogen = SystemRandom()
-
-    # Create 16 byte hex salt
-    salt_sequence = [cryptogen.randrange(256) for _ in range(16)]
-    return ''.join([format(r, 'x') for r in salt_sequence])
+def generate_salt(size):
+    """Create size byte hex salt"""
+    return token_hex(size)
 
 def generate_password():
     """Create 32 byte b64 password"""
-    return base64.urlsafe_b64encode(os.urandom(32)).decode('utf-8')
+    return token_urlsafe(32)
 
 def password_to_hmac(salt, password):
-    m = hmac.new(bytearray(salt, 'utf-8'), bytearray(password, 'utf-8'), 'SHA256')
+    m = hmac.new(salt.encode('utf-8'), password.encode('utf-8'), 'SHA256')
     return m.hexdigest()
 
 def main():
-    if len(sys.argv) < 2:
-        sys.stderr.write('Please include username (and an optional password, will generate one if not provided) as an argument.\n')
-        sys.exit(0)
+    parser = ArgumentParser(description='Create login credentials for a JSON-RPC user')
+    parser.add_argument('username', help='the username for authentication')
+    parser.add_argument('password', help='leave empty to generate a random password or specify "-" to prompt for password', nargs='?')
+    parser.add_argument("-j", "--json", help="output to json instead of plain-text", action='store_true')
+    args = parser.parse_args()
 
     username = sys.argv[1]
 
@@ -39,9 +37,13 @@ def main():
         password = generate_password()
     password_hmac = password_to_hmac(salt, password)
 
-    print('String to be appended to bitcoin.conf:')
-    print('rpcauth={0}:{1}${2}'.format(username, salt, password_hmac))
-    print('Your password:\n{0}'.format(password))
+    if args.json:
+        odict={'username':args.username, 'password':args.password, 'rpcauth':f'{args.username}:{salt}${password_hmac}'}
+        print(json.dumps(odict))
+    else:
+        print('String to be appended to bitcoin.conf:')
+        print(f'rpcauth={args.username}:{salt}${password_hmac}')
+        print(f'Your password:\n{args.password}')
 
 if __name__ == '__main__':
     main()

@@ -9,6 +9,7 @@ Usage:
 
     ./rpcauth.py <username>
 
-in which case the script will generate a password. To specify a custom password do:
-
-    ./rpcauth.py <username> <password>
+optional arguments:
+  -h, --help  show this help message and exit
+  -j, --json   output data in json format
+  ```

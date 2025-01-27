@@ -2,30 +2,30 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <common/messages.h>
 #include <merkleblock.h>
+#include <node/types.h>
 #include <policy/fees.h>
 #include <rpc/util.h>
 #include <test/fuzz/FuzzedDataProvider.h>
 #include <test/fuzz/fuzz.h>
 #include <test/fuzz/util.h>
-#include <util/error.h>
 #include <util/translation.h>
 
 #include <array>
 #include <cstdint>
+#include <optional>
 #include <vector>
+
+using common::TransactionErrorString;
+using node::TransactionError;
 
 namespace {
 constexpr TransactionError ALL_TRANSACTION_ERROR[] = {
-    TransactionError::OK,
     TransactionError::MISSING_INPUTS,
-    TransactionError::ALREADY_IN_CHAIN,
-    TransactionError::P2P_DISABLED,
+    TransactionError::ALREADY_IN_UTXO_SET,
     TransactionError::MEMPOOL_REJECTED,
     TransactionError::MEMPOOL_ERROR,
-    TransactionError::INVALID_PSBT,
-    TransactionError::PSBT_MISMATCH,
-    TransactionError::SIGHASH_MISMATCH,
     TransactionError::MAX_FEE_EXCEEDED,
 };
 }; // namespace
@@ -46,11 +46,10 @@ FUZZ_TARGET(kitchen_sink)
 
     const OutputType output_type = fuzzed_data_provider.PickValueInArray(OUTPUT_TYPES);
     const std::string& output_type_string = FormatOutputType(output_type);
-    OutputType output_type_parsed;
-    const bool parsed = ParseOutputType(output_type_string, output_type_parsed);
+    const std::optional<OutputType> parsed = ParseOutputType(output_type_string);
     assert(parsed);
-    assert(output_type == output_type_parsed);
-    (void)ParseOutputType(fuzzed_data_provider.ConsumeRandomLengthString(64), output_type_parsed);
+    assert(output_type == parsed.value());
+    (void)ParseOutputType(fuzzed_data_provider.ConsumeRandomLengthString(64));
 
     const std::vector<uint8_t> bytes = ConsumeRandomLengthByteVector(fuzzed_data_provider);
     const std::vector<bool> bits = BytesToBits(bytes);

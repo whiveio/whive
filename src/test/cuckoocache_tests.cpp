@@ -1,10 +1,11 @@
-// Copyright (c) 2012-2020 The Bitcoin Core developers
+// Copyright (c) 2012-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
 #include <cuckoocache.h>
 #include <random.h>
 #include <script/sigcache.h>
-#include <test/test_bitcoin.h>
+#include <test/util/random.h>
 #include <test/util/setup_common.h>
 
 #include <boost/test/unit_test.hpp>
@@ -46,11 +47,11 @@ static void insecure_GetRandHash(uint256& t)
 
 /* Test that no values not inserted into the cache are read out of it.
  *
- * There are no repeats in the first 200000 insecure_GetRandHash calls
+ * There are no repeats in the first 200000 InsecureRand256() calls
  */
 BOOST_AUTO_TEST_CASE(test_cuckoocache_no_fakes)
 {
-    SeedInsecureRand(SeedRand::ZEROS);
+    SeedRandomForTest(SeedRand::ZEROS);
     CuckooCache::cache<uint256, SignatureCacheHasher> cc{};
     size_t megabytes = 4;
     cc.setup_bytes(megabytes << 20);
@@ -71,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_cuckoocache_no_fakes)
 template <typename Cache>
 static double test_cache(size_t megabytes, double load)
 {
-    SeedInsecureRand(SeedRand::ZEROS);
+    SeedRandomForTest(SeedRand::ZEROS);
     std::vector<uint256> hashes;
     Cache set{};
     size_t bytes = megabytes * (1 << 20);
@@ -142,7 +143,7 @@ template <typename Cache>
 static void test_cache_erase(size_t megabytes)
 {
     double load = 1;
-    SeedInsecureRand(SeedRand::ZEROS);
+    SeedRandomForTest(SeedRand::ZEROS);
     std::vector<uint256> hashes;
     Cache set{};
     size_t bytes = megabytes * (1 << 20);
@@ -205,7 +206,7 @@ template <typename Cache>
 static void test_cache_erase_parallel(size_t megabytes)
 {
     double load = 1;
-    SeedInsecureRand(SeedRand::ZEROS);
+    SeedRandomForTest(SeedRand::ZEROS);
     std::vector<uint256> hashes;
     Cache set{};
     size_t bytes = megabytes * (1 << 20);
@@ -307,7 +308,7 @@ static void test_cache_generations()
     // iterations with non-deterministic values, so it isn't "overfit" to the
     // specific entropy in FastRandomContext(true) and implementation of the
     // cache.
-    SeedInsecureRand(SeedRand::ZEROS);
+    SeedRandomForTest(SeedRand::ZEROS);
 
     // block_activity models a chunk of network activity. n_insert elements are
     // added to the cache. The first and last n/4 are stored for removal later

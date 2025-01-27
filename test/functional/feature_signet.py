@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019-2020 The Bitcoin Core developers
+# Copyright (c) 2019-2022 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test basic signet functionality"""
@@ -39,6 +39,14 @@ class SignetBasicTest(BitcoinTestFramework):
             shared_args3, shared_args3,
         ]
 
+    def setup_network(self):
+        self.setup_nodes()
+
+        # Setup the three signets, which are incompatible with each other
+        self.connect_nodes(0, 1)
+        self.connect_nodes(2, 3)
+        self.connect_nodes(4, 5)
+
     def run_test(self):
         self.log.info("basic tests using OP_TRUE challenge")
 
@@ -51,7 +59,7 @@ class SignetBasicTest(BitcoinTestFramework):
         assert_equal(mining_info['networkhashps'], Decimal('0'))
         assert_equal(mining_info['pooledtx'], 0)
 
-        self.nodes[0].generate(1)
+        self.generate(self.nodes[0], 1, sync_fun=self.no_op)
 
         self.log.info("pregenerated signet blocks check")
 
@@ -68,7 +76,10 @@ class SignetBasicTest(BitcoinTestFramework):
         self.log.info("test that signet logs the network magic on node start")
         with self.nodes[0].assert_debug_log(["Signet derived magic (message start)"]):
             self.restart_node(0)
+        self.stop_node(0)
+        self.nodes[0].assert_start_raises_init_error(extra_args=["-signetchallenge=abc"], expected_msg="Error: -signetchallenge must be hex, not 'abc'.")
+        self.nodes[0].assert_start_raises_init_error(extra_args=["-signetchallenge=abc"] * 2, expected_msg="Error: -signetchallenge cannot be multiple values.")
 
 
 if __name__ == '__main__':
-    SignetBasicTest().main()
+    SignetBasicTest(__file__).main()

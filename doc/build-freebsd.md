@@ -1,47 +1,20 @@
 # FreeBSD Build Guide
 
-**Updated for FreeBSD [12.2](https://www.freebsd.org/releases/12.2R/announce.html)**
+**Updated for FreeBSD [14.0](https://www.freebsd.org/releases/14.0R/announce/)**
 
 This guide describes how to build bitcoind, command-line utilities, and GUI on FreeBSD.
-
-## Dependencies
-
-The following dependencies are **required**:
-
- Library                                                               | Purpose    | Description
- ----------------------------------------------------------------------|------------|----------------------
- [autoconf](https://svnweb.freebsd.org/ports/head/devel/autoconf/)     | Build      | Automatically configure software source code
- [automake](https://svnweb.freebsd.org/ports/head/devel/automake/)     | Build      | Generate makefile (requires autoconf)
- [libtool](https://svnweb.freebsd.org/ports/head/devel/libtool/)       | Build      | Shared library support
- [pkgconf](https://svnweb.freebsd.org/ports/head/devel/pkgconf/)       | Build      | Configure compiler and linker flags
- [git](https://svnweb.freebsd.org/ports/head/devel/git/)               | Clone      | Version control system
- [gmake](https://svnweb.freebsd.org/ports/head/devel/gmake/)           | Compile    | Generate executables
- [boost-libs](https://svnweb.freebsd.org/ports/head/devel/boost-libs/) | Utility    | Library for threading, data structures, etc
- [libevent](https://svnweb.freebsd.org/ports/head/devel/libevent/)     | Networking | OS independent asynchronous networking
-
-
-The following dependencies are **optional**:
-
-  Library                                                                    | Purpose          | Description
-  ---------------------------------------------------------------------------|------------------|----------------------
-  [db5](https://svnweb.freebsd.org/ports/head/databases/db5/)                | Berkeley DB      | Wallet storage (only needed when wallet enabled)
-  [qt5](https://svnweb.freebsd.org/ports/head/devel/qt5/)                    | GUI              | GUI toolkit (only needed when GUI enabled)
-  [libqrencode](https://svnweb.freebsd.org/ports/head/graphics/libqrencode/) | QR codes in GUI  | Generating QR codes (only needed when GUI enabled)
-  [libzmq4](https://svnweb.freebsd.org/ports/head/net/libzmq4/)              | ZMQ notification | Allows generating ZMQ notifications (requires ZMQ version >= 4.0.0)
-  [sqlite3](https://svnweb.freebsd.org/ports/head/databases/sqlite3/)        | SQLite DB        | Wallet storage (only needed when wallet enabled)
-  [python3](https://svnweb.freebsd.org/ports/head/lang/python3/)             | Testing          | Python Interpreter (only needed when running the test suite)
-
-  See [dependencies.md](dependencies.md) for a complete overview.
 
 ## Preparation
 
 ### 1. Install Required Dependencies
-Install the required dependencies the usual way you [install software on FreeBSD](https://www.freebsd.org/doc/en/books/handbook/ports.html) - either with `pkg` or via the Ports collection. The example commands below use `pkg` which is usually run as `root` or via `sudo`. If you want to use `sudo`, and you haven't set it up: [use this guide](http://www.freebsdwiki.net/index.php/Sudo%2C_configuring) to setup `sudo` access on FreeBSD.
+Run the following as root to install the base dependencies for building.
 
 ```bash
 pkg install autoconf automake boost-libs git gmake libevent libtool pkgconf
 
 ```
+
+See [dependencies.md](dependencies.md) for a complete overview.
 
 ### 2. Clone Bitcoin Repo
 Now that `git` and all the required dependencies are installed, let's clone the Bitcoin Core repository to a directory. All build scripts and commands will run from this directory.
@@ -52,30 +25,50 @@ git clone https://github.com/bitcoin/bitcoin.git
 ### 3. Install Optional Dependencies
 
 #### Wallet Dependencies
-It is not necessary to build wallet functionality to run bitcoind or the GUI. To enable legacy wallets, you must install `db5`. To enable [descriptor wallets](https://github.com/bitcoin/bitcoin/blob/master/doc/descriptors.md), `sqlite3` is required. Skip `db5` if you intend to *exclusively* use descriptor wallets
-
-###### Legacy Wallet Support
-`db5` is required to enable support for legacy wallets. Skip if you don't intend to use legacy wallets
-
-```bash
-pkg install db5
-```
+It is not necessary to build wallet functionality to run either `bitcoind` or `bitcoin-qt`.
 
 ###### Descriptor Wallet Support
 
-`sqlite3` is required to enable support for descriptor wallets. Skip if you don't intend to use descriptor wallets.
+`sqlite3` is required to support [descriptor wallets](descriptors.md).
+Skip if you don't intend to use descriptor wallets.
 ``` bash
 pkg install sqlite3
 ```
----
+
+###### Legacy Wallet Support
+BerkeleyDB is only required if legacy wallet support is required.
+
+It is required to use Berkeley DB 4.8. You **cannot** use the BerkeleyDB library
+from ports. However, you can build DB 4.8 yourself [using depends](/depends).
+
+```
+gmake -C depends NO_BOOST=1 NO_LIBEVENT=1 NO_QT=1 NO_SQLITE=1 NO_NATPMP=1 NO_UPNP=1 NO_ZMQ=1 NO_USDT=1
+```
+
+When the build is complete, the Berkeley DB installation location will be displayed:
+
+```
+to: /path/to/bitcoin/depends/x86_64-unknown-freebsd[release-number]
+```
+
+Finally, set `BDB_PREFIX` to this path according to your shell:
+
+```
+csh: setenv BDB_PREFIX [path displayed above]
+```
+
+```
+sh/bash: export BDB_PREFIX=[path displayed above]
+```
 
 #### GUI Dependencies
 ###### Qt5
 
-Bitcoin Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, we need to install `qt5`. Skip if you don't intend to use the GUI.
+Bitcoin Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, we need to install the necessary parts of Qt. Skip if you don't intend to use the GUI.
 ```bash
-pkg install qt5
+pkg install qt5-buildtools qt5-core qt5-gui qt5-linguisttools qt5-testlib qt5-widgets
 ```
+
 ###### libqrencode
 
 The GUI can encode addresses in a QR Code. To build in QR support for the GUI, install `libqrencode`. Skip if not using the GUI or don't want QR code functionality.
@@ -84,12 +77,20 @@ pkg install libqrencode
 ```
 ---
 
+#### Notifications
+###### ZeroMQ
+
+Bitcoin Core can provide notifications via ZeroMQ. If the package is installed, support will be compiled in.
+```bash
+pkg install libzmq4
+```
+
 #### Test Suite Dependencies
 There is an included test suite that is useful for testing code changes when developing.
 To run the test suite (recommended), you will need to have Python 3 installed:
 
 ```bash
-pkg install python3
+pkg install python3 databases/py-sqlite3
 ```
 ---
 
@@ -105,22 +106,25 @@ git clone https://github.com/whiveio/whive
 ### 1. Configuration
 
 There are many ways to configure Bitcoin Core, here are a few common examples:
-##### Wallet (BDB + SQlite) Support, No GUI:
-This explicitly enables legacy wallet support and disables the GUI. If `sqlite3` is installed, then descriptor wallet support will be built.
-```bash
-./autogen.sh
-./configure --with-gui=no --with-incompatible-bdb \
-    BDB_LIBS="-ldb_cxx-5" \
-    BDB_CFLAGS="-I/usr/local/include/db5" \
-    MAKE=gmake
-```
 
-##### Wallet (only SQlite) and GUI Support:
-This explicitly enables the GUI and disables legacy wallet support. If `qt5` is not installed, this will throw an error. If `sqlite3` is installed then descriptor wallet functionality will be built. If `sqlite3` is not installed, then wallet functionality will be disabled.
+##### Descriptor Wallet and GUI:
+This explicitly enables the GUI and disables legacy wallet support, assuming `sqlite` and `qt` are installed.
 ```bash
 ./autogen.sh
 ./configure --without-bdb --with-gui=yes MAKE=gmake
 ```
+
+##### Descriptor & Legacy Wallet. No GUI:
+This enables support for both wallet types and disables the GUI, assuming
+`sqlite3` and `db4` are both installed.
+```bash
+./autogen.sh
+./configure --with-gui=no \
+    BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" \
+    BDB_CFLAGS="-I${BDB_PREFIX}/include" \
+    MAKE=gmake
+```
+
 ##### No Wallet or GUI
 ``` bash
 ./autogen.sh

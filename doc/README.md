@@ -44,8 +44,6 @@ The following are developer notes on how to build Whive Core on your native plat
 - [Windows Build Notes](build-windows.md)
 - [OpenBSD Build Notes](build-openbsd.md)
 - [NetBSD Build Notes](build-netbsd.md)
-- [Android Build Notes](build-android.md)
-- [Gitian Building Guide (External Link)](https://github.com/bitcoin-core/docs/blob/master/gitian-building.md)
 
 Development
 ---------------------
@@ -53,15 +51,16 @@ The Whive repo's [root README](/README.md) contains relevant information on the 
 
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)
-- [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
 - [Source Code Documentation (External Link)](https://doxygen.bitcoincore.org/)
 - [Translation Process](translation_process.md)
 - [Translation Strings Policy](translation_strings_policy.md)
 - [JSON-RPC Interface](JSON-RPC-interface.md)
 - [Unauthenticated REST Interface](REST-interface.md)
+- [BIPS](bips.md)
 - [Dnsseed Policy](dnsseed-policy.md)
 - [Benchmarking](benchmarking.md)
+- [Internal Design Docs](design/)
 
 ### Resources
 * Discuss on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Development & Technical Discussion board](https://bitcointalk.org/index.php?board=6.0).
@@ -69,15 +68,21 @@ The Whive repo's [root README](/README.md) contains relevant information on the 
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
-- [whive.conf Configuration File](whive-conf.md)
+- [whive.conf Configuration File](bitcoin-conf.md)
+- [CJDNS Support](cjdns.md)
 - [Files](files.md)
 - [Fuzz-testing](fuzzing.md)
 - [I2P Support](i2p.md)
 - [Init Scripts (systemd/upstart/openrc)](init.md)
+- [Managing Wallets](managing-wallets.md)
+- [Multisig Tutorial](multisig-tutorial.md)
+- [Offline Signing Tutorial](offline-signing-tutorial.md)
+- [P2P bad ports definition and list](p2p-bad-ports.md)
 - [PSBT support](psbt.md)
 - [Reduce Memory](reduce-memory.md)
 - [Reduce Traffic](reduce-traffic.md)
 - [Tor Support](tor.md)
+- [Transaction Relay Policy](policy/README.md)
 - [ZMQ](zmq.md)
 
 License

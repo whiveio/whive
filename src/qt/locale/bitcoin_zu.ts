@@ -10,12 +10,8 @@
         <translation type="unfinished">&amp;Kopisha</translation>
     </message>
     <message>
-        <source>Receiving addresses</source>
-        <translation type="unfinished">Amakheli ukuthola</translation>
-    </message>
-    <message>
         <source>Comma separated file</source>
-        <extracomment>Expanded name of the CSV file format. See https://en.wikipedia.org/wiki/Comma-separated_values</extracomment>
+        <extracomment>Expanded name of the CSV file format. See: https://en.wikipedia.org/wiki/Comma-separated_values.</extracomment>
         <translation type="unfinished">Ifayela elehlukaniswe ngo khefana.</translation>
     </message>
     </context>
@@ -36,50 +32,46 @@
         <source>%1 didn't yet exit safely…</source>
         <translation type="unfinished">%1Ingakatholakali ngokuphepha okwamanje.</translation>
     </message>
-    <message>
-        <source>Internal</source>
-        <translation type="unfinished">Okwangaphakathi</translation>
-    </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
+        <translation type="unfinished">
+            <numerusform>%n second(s)</numerusform>
+            <numerusform>%n second(s)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation>
-            <numerusform>%n imizuzu</numerusform>
-            <numerusform>%n imizuzu</numerusform>
+        <translation type="unfinished">
+            <numerusform>%n minute(s)</numerusform>
+            <numerusform>%n minute(s)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
         <translation type="unfinished">
-            <numerusform>%n amahora</numerusform>
-            <numerusform>%n amahora</numerusform>
+            <numerusform>%n hour(s)</numerusform>
+            <numerusform>%n hour(s)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
         <translation type="unfinished">
-            <numerusform>%n usuku</numerusform>
-            <numerusform>%nizinsuku</numerusform>
+            <numerusform>%n day(s)</numerusform>
+            <numerusform>%n day(s)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
         <translation type="unfinished">
-            <numerusform>%namaviki</numerusform>
-            <numerusform>%n amaviki</numerusform>
+            <numerusform>%n week(s)</numerusform>
+            <numerusform>%n week(s)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
         <translation type="unfinished">
-            <numerusform>%n iminyaka</numerusform>
-            <numerusform>%n iminyaka</numerusform>
+            <numerusform>%n year(s)</numerusform>
+            <numerusform>%n year(s)</numerusform>
         </translation>
     </message>
     </context>
@@ -115,17 +107,17 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation>
-            <numerusform />
-            <numerusform />
+        <translation type="unfinished">
+            <numerusform>Processed %n block(s) of transaction history.</numerusform>
+            <numerusform>Processed %n block(s) of transaction history.</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Bitcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
-            <numerusform />
-            <numerusform />
+            <numerusform>%n active connection(s) to Bitcoin network.</numerusform>
+            <numerusform>%n active connection(s) to Bitcoin network.</numerusform>
         </translation>
     </message>
     <message>
@@ -145,7 +137,7 @@
         <source>Can't list signers</source>
         <translation type="unfinished">Akukwazi ukwenza uhlu lwabasayini.</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>CreateWalletDialog</name>
     <message>
@@ -155,20 +147,33 @@
     </context>
 <context>
     <name>Intro</name>
-    <message>
-        <source>%1 GB of free space available</source>
-        <translation type="unfinished">%1 GB owesikhala otholakalayo</translation>
+    <message numerus="yes">
+        <source>%n GB of space available</source>
+        <translation type="unfinished">
+            <numerusform>%n GB of space available</numerusform>
+            <numerusform>%n GB of space available</numerusform>
+        </translation>
     </message>
-    <message>
-        <source>(of %1 GB needed)</source>
-        <translation type="unfinished">(ku %1 GB odingakalayo)</translation>
+    <message numerus="yes">
+        <source>(of %n GB needed)</source>
+        <translation type="unfinished">
+            <numerusform>(of %n GB needed)</numerusform>
+            <numerusform>(of %n GB needed)</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>(%n GB needed for full chain)</source>
+        <translation type="unfinished">
+            <numerusform>(%n GB needed for full chain)</numerusform>
+            <numerusform>(%n GB needed for full chain)</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <source>(sufficient to restore backups %n day(s) old)</source>
         <extracomment>Explanatory text on the capability of the current prune target.</extracomment>
         <translation type="unfinished">
-            <numerusform />
-            <numerusform />
+            <numerusform>(sufficient to restore backups %n day(s) old)</numerusform>
+            <numerusform>(sufficient to restore backups %n day(s) old)</numerusform>
         </translation>
     </message>
     </context>
@@ -188,36 +193,19 @@
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation>
-            <numerusform />
-            <numerusform />
+        <translation type="unfinished">
+            <numerusform>Estimated to begin confirmation within %n block(s).</numerusform>
+            <numerusform>Estimated to begin confirmation within %n block(s).</numerusform>
         </translation>
     </message>
     </context>
 <context>
     <name>TransactionDesc</name>
     <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-        </translation>
-    </message>
-    <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-        </translation>
-    </message>
-    </context>
-<context>
-    <name>TransactionTableModel</name>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
+        <translation type="unfinished">
+            <numerusform>matures in %n more block(s)</numerusform>
+            <numerusform>matures in %n more block(s)</numerusform>
         </translation>
     </message>
     </context>
@@ -225,8 +213,8 @@
     <name>TransactionView</name>
     <message>
         <source>Comma separated file</source>
-        <extracomment>Expanded name of the CSV file format. See https://en.wikipedia.org/wiki/Comma-separated_values</extracomment>
-        <translation type="unfinished">Ifayela elehlukaniswe nge khefu.</translation>
+        <extracomment>Expanded name of the CSV file format. See: https://en.wikipedia.org/wiki/Comma-separated_values.</extracomment>
+        <translation type="unfinished">Ifayela elehlukaniswe ngo khefana.</translation>
     </message>
     </context>
 <context>

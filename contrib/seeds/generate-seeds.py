@@ -3,13 +3,14 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 '''
-Script to generate list of seed nodes for chainparams.cpp.
+Script to generate list of seed nodes for kernel/chainparams.cpp.
 
-This script expects two text files in the directory that is passed as an
+This script expects three text files in the directory that is passed as an
 argument:
 
     nodes_main.txt
     nodes_test.txt
+    nodes_testnet4.txt
 
 These files must consist of lines in the format
 
@@ -29,7 +30,6 @@ These should be pasted into `src/chainparamsseeds.h`.
 
 from base64 import b32decode
 from enum import Enum
-import struct
 import sys
 import os
 import re
@@ -61,7 +61,7 @@ def name_to_bip155(addr):
             raise ValueError(f'Invalid I2P {vchAddr}')
     elif '.' in addr: # IPv4
         return (BIP155Network.IPV4, bytes((int(x) for x in addr.split('.'))))
-    elif ':' in addr: # IPv6
+    elif ':' in addr: # IPv6 or CJDNS
         sub = [[], []] # prefix, suffix
         x = 0
         addr = addr.split(':')
@@ -70,14 +70,21 @@ def name_to_bip155(addr):
                 if i == 0 or i == (len(addr)-1): # skip empty component at beginning or end
                     continue
                 x += 1 # :: skips to suffix
-                assert(x < 2)
+                assert x < 2
             else: # two bytes per component
                 val = int(comp, 16)
                 sub[x].append(val >> 8)
                 sub[x].append(val & 0xff)
         nullbytes = 16 - len(sub[0]) - len(sub[1])
-        assert((x == 0 and nullbytes == 0) or (x == 1 and nullbytes > 0))
-        return (BIP155Network.IPV6, bytes(sub[0] + ([0] * nullbytes) + sub[1]))
+        assert (x == 0 and nullbytes == 0) or (x == 1 and nullbytes > 0)
+        addr_bytes = bytes(sub[0] + ([0] * nullbytes) + sub[1])
+        if addr_bytes[0] == 0xfc:
+            # Assume that seeds with fc00::/8 addresses belong to CJDNS,
+            # not to the publicly unroutable "Unique Local Unicast" network, see
+            # RFC4193: https://datatracker.ietf.org/doc/html/rfc4193#section-8
+            return (BIP155Network.CJDNS, addr_bytes)
+        else:
+            return (BIP155Network.IPV6, addr_bytes)
     else:
         raise ValueError('Could not parse address %s' % addr)
 
@@ -108,13 +115,13 @@ def parse_spec(s):
 def ser_compact_size(l):
     r = b""
     if l < 253:
-        r = struct.pack("B", l)
+        r = l.to_bytes(1, "little")
     elif l < 0x10000:
-        r = struct.pack("<BH", 253, l)
+        r = (253).to_bytes(1, "little") + l.to_bytes(2, "little")
     elif l < 0x100000000:
-        r = struct.pack("<BI", 254, l)
+        r = (254).to_bytes(1, "little") + l.to_bytes(4, "little")
     else:
-        r = struct.pack("<BQ", 255, l)
+        r = (255).to_bytes(1, "little") + l.to_bytes(8, "little")
     return r
 
 def bip155_serialize(spec):
@@ -122,10 +129,10 @@ def bip155_serialize(spec):
     Serialize (networkID, addr, port) tuple to BIP155 binary format.
     '''
     r = b""
-    r += struct.pack('B', spec[0].value)
+    r += spec[0].value.to_bytes(1, "little")
     r += ser_compact_size(len(spec[1]))
     r += spec[1]
-    r += struct.pack('>H', spec[2])
+    r += spec[2].to_bytes(2, "big")
     return r
 
 def process_nodes(g, f, structname):
@@ -165,6 +172,9 @@ def main():
     g.write('\n')
     with open(os.path.join(indir,'nodes_test.txt'), 'r', encoding="utf8") as f:
         process_nodes(g, f, 'chainparams_seed_test')
+    g.write('\n')
+    with open(os.path.join(indir,'nodes_testnet4.txt'), 'r', encoding="utf8") as f:
+        process_nodes(g, f, 'chainparams_seed_testnet4')
     g.write('#endif // BITCOIN_CHAINPARAMSSEEDS_H\n')
 
 if __name__ == '__main__':

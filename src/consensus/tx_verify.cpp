@@ -1,17 +1,17 @@
-// Copyright (c) 2017-2020 The Bitcoin Core developers
+// Copyright (c) 2017-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <consensus/tx_verify.h>
 
-#include <consensus/consensus.h>
-#include <primitives/transaction.h>
-#include <script/interpreter.h>
-#include <consensus/validation.h>
-
-// TODO remove the following dependencies
 #include <chain.h>
 #include <coins.h>
+#include <consensus/amount.h>
+#include <consensus/consensus.h>
+#include <consensus/validation.h>
+#include <primitives/transaction.h>
+#include <script/interpreter.h>
+#include <util/check.h>
 #include <util/moneystr.h>
 
 bool IsFinalTx(const CTransaction &tx, int nBlockHeight, int64_t nBlockTime)
@@ -48,11 +48,7 @@ std::pair<int, int64_t> CalculateSequenceLocks(const CTransaction &tx, int flags
     int nMinHeight = -1;
     int64_t nMinTime = -1;
 
-    // tx.nVersion is signed integer so requires cast to unsigned otherwise
-    // we would be doing a signed comparison and half the range of nVersion
-    // wouldn't support BIP 68.
-    bool fEnforceBIP68 = static_cast<uint32_t>(tx.nVersion) >= 2
-                      && flags & LOCKTIME_VERIFY_SEQUENCE;
+    bool fEnforceBIP68 = tx.version >= 2 && flags & LOCKTIME_VERIFY_SEQUENCE;
 
     // Do not enforce sequence numbers as a relative lock time
     // unless we have been instructed to
@@ -75,7 +71,7 @@ std::pair<int, int64_t> CalculateSequenceLocks(const CTransaction &tx, int flags
         int nCoinHeight = prevHeights[txinIndex];
 
         if (txin.nSequence & CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG) {
-            int64_t nCoinTime = block.GetAncestor(std::max(nCoinHeight-1, 0))->GetMedianTimePast();
+            const int64_t nCoinTime{Assert(block.GetAncestor(std::max(nCoinHeight - 1, 0)))->GetMedianTimePast()};
             // NOTE: Subtract 1 to maintain nLockTime semantics
             // BIP 68 relative lock times have the semantics of calculating
             // the first block or time at which the transaction would be
@@ -144,7 +140,7 @@ unsigned int GetP2SHSigOpCount(const CTransaction& tx, const CCoinsViewCache& in
     return nSigOps;
 }
 
-int64_t GetTransactionSigOpCost(const CTransaction& tx, const CCoinsViewCache& inputs, int flags)
+int64_t GetTransactionSigOpCost(const CTransaction& tx, const CCoinsViewCache& inputs, uint32_t flags)
 {
     int64_t nSigOps = GetLegacySigOpCount(tx) * WITNESS_SCALE_FACTOR;
 

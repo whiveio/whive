@@ -1,15 +1,14 @@
-// Copyright (c) 2012-2020 The Bitcoin Core developers
+// Copyright (c) 2012-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <arith_uint256.h>
 #include <consensus/merkle.h>
 #include <merkleblock.h>
 #include <serialize.h>
 #include <streams.h>
+#include <test/util/random.h>
 #include <test/util/setup_common.h>
 #include <uint256.h>
-#include <version.h>
 
 #include <vector>
 
@@ -30,10 +29,10 @@ BOOST_FIXTURE_TEST_SUITE(pmt_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(pmt_test1)
 {
-    static const unsigned int nTxCounts[] = {1, 4, 7, 17, 56, 100, 127, 256, 312, 513, 1000, 4095};
+    static const unsigned int tx_counts[] = {1, 4, 7, 17, 56, 100, 127, 256, 312, 513, 1000, 4095};
 
     for (int i = 0; i < 12; i++) {
-        unsigned int nTx = nTxCounts[i];
+        unsigned int nTx = tx_counts[i];
 
         // build a block with some dummy transactions
         CBlock block;
@@ -70,7 +69,7 @@ BOOST_AUTO_TEST_CASE(pmt_test1)
             CPartialMerkleTree pmt1(vTxid, vMatch);
 
             // serialize
-            CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
+            DataStream ss{};
             ss << pmt1;
 
             // verify CPartialMerkleTree's size guarantees
@@ -107,13 +106,13 @@ BOOST_AUTO_TEST_CASE(pmt_test1)
 
 BOOST_AUTO_TEST_CASE(pmt_malleability)
 {
-    std::vector<uint256> vTxid = {
-        ArithToUint256(1), ArithToUint256(2),
-        ArithToUint256(3), ArithToUint256(4),
-        ArithToUint256(5), ArithToUint256(6),
-        ArithToUint256(7), ArithToUint256(8),
-        ArithToUint256(9), ArithToUint256(10),
-        ArithToUint256(9), ArithToUint256(10),
+    std::vector<uint256> vTxid{
+        uint256{1}, uint256{2},
+        uint256{3}, uint256{4},
+        uint256{5}, uint256{6},
+        uint256{7}, uint256{8},
+        uint256{9}, uint256{10},
+        uint256{9}, uint256{10},
     };
     std::vector<bool> vMatch = {false, false, false, false, false, false, false, false, false, true, true, false};
 
