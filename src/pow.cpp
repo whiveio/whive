@@ -11,62 +11,41 @@
 #include <primitives/block.h>
 #include <uint256.h>
 
-unsigned int static DarkGravityWaveCrane(const CBlockIndex* pindexLast, const Consensus::Params& params) {
-    /* current difficulty formula, dash - DarkGravity v3, written by Evan Duffield - evan@dash.org */
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
-    int64_t nPastBlocks = 12;
-
-    // make sure we have at least (nPastBlocks + 1) blocks, otherwise just return powLimit
-    if (!pindexLast || pindexLast->nHeight <= nPastBlocks) { // BitZeny legacy
-        return bnPowLimit.GetCompact();
+unsigned int static DarkGravityWaveCrane(const CBlockIndex* pindexLast, const Consensus::Params& params) {    
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);    
+    int64_t nPastBlocks = 12;    
+    if (!pindexLast || pindexLast->nHeight < nPastBlocks) {           
+        return bnPowLimit.GetCompact();   
     }
-		    
-    const CBlockIndex *pindex = pindexLast;
-    arith_uint256 bnPastTargetAvg = 0;
-
-    for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {
-        arith_uint256 bnTarget = arith_uint256().SetCompact(pindex->nBits);
-        bnPastTargetAvg += bnTarget;
-
-        assert(pindex->pprev); // should never fail
+    const CBlockIndex* pindex = pindexLast;    
+    arith_uint256 bnPastTargetAvg = 0;    
+    for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {       
+        arith_uint256 bnTarget = arith_uint256().SetCompact(pindex->nBits);        
+        bnPastTargetAvg += bnTarget / nPastBlocks;        
+        assert(pindex->pprev);        
         pindex = pindex->pprev;
-    }
-
-    bnPastTargetAvg /= nPastBlocks;
-
-    arith_uint256 bnNew(bnPastTargetAvg);
-
-    int64_t nActualTimespan = pindexLast->GetBlockTime() - pindex->GetBlockTime();
-    // NOTE: is this accurate? nActualTimespan counts it for (nPastBlocks - 1) blocks only...
-    int64_t nTargetTimespan = nPastBlocks * params.nPowTargetSpacing;
-	 
-    if (nActualTimespan < nTargetTimespan/3)
-        nActualTimespan = nTargetTimespan/3;
-    if (nActualTimespan > nTargetTimespan*3)
-        nActualTimespan = nTargetTimespan*3;
-    // Retarget
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
-    arith_uint256 bnNew;
-
-    // Special difficulty rule for Testnet4
-    if (params.enforce_BIP94) {
-        // Here we use the first block of the difficulty period. This way
-        // the real difficulty is always preserved in the first block as
-        // it is not allowed to use the min-difficulty exception.
-        int nHeightFirst = pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
-        const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
-        bnNew.SetCompact(pindexFirst->nBits);
-    } else {
-        bnNew.SetCompact(pindexLast->nBits);
-    }
-
-    bnNew *= nActualTimespan;
-    bnNew /= nTargetTimespan;
-
-    if (bnNew > bnPowLimit) {
-        bnNew = bnPowLimit;
-    }
-
+    }      
+    int64_t nActualTimespan = pindexLast->GetBlockTime() - pindex->pprev->GetBlockTime();       
+    int64_t nTargetTimespan = nPastBlocks * params.nPowTargetSpacing;    
+    if (nActualTimespan < nTargetTimespan / 3) nActualTimespan = nTargetTimespan / 3;    
+    if (nActualTimespan > nTargetTimespan * 3) nActualTimespan = nTargetTimespan * 3;    
+    arith_uint256 bnNew = bnPastTargetAvg;    
+    bnNew *= nActualTimespan;    
+    bnNew /= nTargetTimespan;    
+    if (params.enforce_BIP94 && (pindexLast->nHeight % params.nMinerConfirmationWindow == 0)) {        
+        int nHeightFirst = pindexLast->nHeight - (params.nMinerConfirmationWindow - 1);        
+        const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);        
+        if (pindexFirst) {            
+            arith_uint256 bnBaseline = arith_uint256().SetCompact(pindexFirst->nBits);            
+            if (bnNew > bnBaseline) bnNew = bnBaseline;        
+        }    
+    }    
+    arith_uint256 bnOld = arith_uint256().SetCompact(pindexLast->nBits);    
+    arith_uint256 bnMaxUp = bnOld * 125 / 100;    
+    arith_uint256 bnMaxDown = bnOld * 75 / 100;    
+    if (bnNew > bnMaxUp) bnNew = bnMaxUp;    
+    if (bnNew < bnMaxDown) bnNew = bnMaxDown;    
+    if (bnNew > bnPowLimit) bnNew = bnPowLimit;    
     return bnNew.GetCompact();
 }
 
