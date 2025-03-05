@@ -5,6 +5,13 @@
 #include <hashdb.h>
 
 std::unique_ptr<CHashDB> phashdb;
+CHashDB::CHashDB(size_t nCacheSize, bool fMemory, bool fWipe) :
+       CDBWrapper{DBParams{
+             .path = gArgs.GetDataDirNet() / "hashes",
+             .cache_bytes = nCacheSize,
+             .memory_only = fMemory,
+             .wipe_data = fWipe}}
 
-CHashDB::CHashDB(size_t nCacheSize, bool fMemory, bool fWipe) : CDBWrapper(gArgs.GetDataDirNet() / "hashes", nCacheSize, fMemory, fWipe) {
+{
+
 }

@@ -97,7 +97,7 @@ struct CompressedHeader {
  * permanent memory usage, while choosing N to minimize memory use during the
  * sync (temporary, per-peer storage).
  */
-
+class ChainstateManager; // Forward declaration
 class HeadersSyncState {
 public:
     ~HeadersSyncState() = default;
@@ -136,7 +136,7 @@ public:
      * minimum_required_work: amount of chain work required to accept the chain
      */
     HeadersSyncState(NodeId id, const Consensus::Params& consensus_params,
-            const CBlockIndex* chain_start, const arith_uint256& minimum_required_work);
+            const CBlockIndex* chain_start, const arith_uint256& minimum_required_work,ChainstateManager& chainman);
 
     /** Result data structure for ProcessNextHeaders. */
     struct ProcessingResult {
@@ -206,7 +206,9 @@ private:
 
     /** Return a set of headers that satisfy our proof-of-work threshold */
     std::vector<CBlockHeader> PopHeadersReadyForAcceptance();
-
+    
+    /*Add reference to ChainstateManage */
+    ChainstateManager& m_chainman; 
 private:
     /** NodeId of the peer (used for log messages) **/
     const NodeId m_id;

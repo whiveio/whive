@@ -63,13 +63,8 @@ python build_msvc\msvc-autogen.py
 
 3. To build from the command-line with the Visual Studio toolchain use:
 
-<<<<<<< HEAD
-```
-msbuild /m bitcoin.sln /p:Platform=x64 /p:Configuration=Release /p:PlatformToolset=v141 /t:build
-=======
 ```cmd
 msbuild build_msvc\bitcoin.sln -property:Configuration=Release -maxCpuCount -verbosity:minimal
->>>>>>> v28.0
 ```
 
 Alternatively, open the `build_msvc/bitcoin.sln` file in Visual Studio.

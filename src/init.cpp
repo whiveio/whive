@@ -360,6 +360,10 @@ void Shutdown(NodeContext& node)
             }
         }
     }
+
+    node.chainman.reset();
+    phashdb.reset();
+
     for (const auto& client : node.chain_clients) {
         client->stop();
     }

@@ -614,7 +614,6 @@ crypto_libwhive_crypto_base_la_SOURCES = \
   crypto/yespower/yespower-platform_c.h \
   crypto/yespower/optimizer.c \
   crypto/yespower/yespower-opt.c
-  support/cleanse.cpp
 
 # See explanation for -static in crypto_libwhive_crypto_base_la's LDFLAGS and
 # CXXFLAGS above
@@ -654,7 +653,7 @@ crypto_libwhive_crypto_arm_shani_la_SOURCES = crypto/sha256_arm_shani.cpp
 #
 
 # consensus #
-libwhive_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libwhive_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(LEVELDB_CPPFLAGS)
 libwhive_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libwhive_consensus_a_SOURCES = \
   arith_uint256.cpp \
@@ -755,6 +754,7 @@ libwhive_util_a_SOURCES = \
   random.cpp \
   randomenv.cpp \
   streams.cpp \
+  support/cleanse.cpp \
   sync.cpp \
   util/asmap.cpp \
   util/batchpriority.cpp \
@@ -821,7 +821,7 @@ whive_bin_ldadd = \
 
 whive_bin_ldadd += $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(SQLITE_LIBS)
 
-whived_SOURCES = $(whive_daemon_sources) init/whived.cpp
+whived_SOURCES = $(whive_daemon_sources) init/bitcoind.cpp
 whived_CPPFLAGS = $(whive_bin_cppflags)
 whived_CXXFLAGS = $(whive_bin_cxxflags)
 whived_LDFLAGS = $(whive_bin_ldflags)
@@ -889,6 +889,10 @@ whive_wallet_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_CONSENSUS) \
   $(LIBBITCOIN_CRYPTO) \
+  $(LIBLEVELDB) \
+  $(LIBLEVELDB_SSE42) \
+  $(LIBMEMENV) \
+  $(LIBBITCOIN_CURL) \
   $(LIBSECP256K1) \
   $(BDB_LIBS) \
   $(SQLITE_LIBS)
@@ -918,8 +922,8 @@ whive_util_LDADD = \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
   $(LIBBITCOIN_CURL) \
-  $(LIBSECP256K1)
-#
+  $(LIBSECP256K1) \
+  $(whive_bin_ldadd)
 
 # whive-chainstate binary #
 whive_chainstate_SOURCES = bitcoin-chainstate.cpp

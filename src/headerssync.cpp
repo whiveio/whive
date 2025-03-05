@@ -8,7 +8,8 @@
 #include <util/check.h>
 #include <util/time.h>
 #include <util/vector.h>
-
+#include <kernel/chainparams.h>
+#include <validation.h>
 // The two constants below are computed using the simulation script in
 // contrib/devtools/headerssync-params.py.
 
@@ -24,14 +25,15 @@ constexpr size_t REDOWNLOAD_BUFFER_SIZE{14621}; // 14621/615 = ~23.8 commitments
 static_assert(sizeof(CompressedHeader) == 48);
 
 HeadersSyncState::HeadersSyncState(NodeId id, const Consensus::Params& consensus_params,
-        const CBlockIndex* chain_start, const arith_uint256& minimum_required_work) :
+        const CBlockIndex* chain_start, const arith_uint256& minimum_required_work,ChainstateManager& chainman) :
     m_commit_offset(FastRandomContext().randrange<unsigned>(HEADER_COMMITMENT_PERIOD)),
     m_id(id), m_consensus_params(consensus_params),
     m_chain_start(chain_start),
     m_minimum_required_work(minimum_required_work),
     m_current_chain_work(chain_start->nChainWork),
     m_last_header_received(m_chain_start->GetBlockHeader()),
-    m_current_height(chain_start->nHeight)
+    m_current_height(chain_start->nHeight),
+    m_chainman(chainman)
 {
     // Estimate the number of blocks that could possibly exist on the peer's
     // chain *right now* using 6 blocks/second (fastest blockrate given the MTP
@@ -187,12 +189,43 @@ bool HeadersSyncState::ValidateAndProcessSingleHeader(const CBlockHeader& curren
     // work chain if they compress the work into as few blocks as possible,
     // so don't let anyone give a chain that would violate the difficulty
     // adjustment maximum.
-    if (!PermittedDifficultyTransition(m_consensus_params, next_height,
-                m_last_header_received.nBits, current.nBits)) {
+    
+    // Acquire the cs_main lock for thread safety
+    LOCK(::cs_main);
+
+    const uint256& current_blockhash = current.GetHash();
+     // Check if the header is already known
+    const CBlockIndex* pindex = m_chainman.m_blockman.LookupBlockIndex(current_blockhash);
+    if (pindex != nullptr) {
+        // Header is already indexed; skip further processing
+        return true;
+    }
+
+    // Handle PRESYNC state: Validate and store headers temporarily
+    if (m_download_state == State::PRESYNC) {
+        BlockValidationState state;
+        if (!m_chainman.ProcessNewBlockHeaders({current}, true, state, nullptr)){
+            LogPrint(BCLog::NET, "Invalid header during presync: %s\n", state.ToString());
+            return false;
+        }
+
+        // Re-check if the header is now indexed
+        pindex = m_chainman.m_blockman.LookupBlockIndex(current_blockhash);
+
+        if (!pindex) {
+            // Header validation passed, but it's not yet added to the index (normal in PRESYNC)
+            LogPrint(BCLog::NET, "Header accepted but not yet indexed (presync phase)\n");
+            return true; // Or adjust based on your logic
+        }
+    }
+
+    const CChainParams& chainparams = Params();
+    uint32_t genesis_nbits = chainparams.GenesisBlock().nBits;
+
+    if (!PermittedDifficultyTransition(m_consensus_params, next_height, m_last_header_received.nBits, current.nBits,pindex)) {
         LogPrint(BCLog::NET, "Initial headers sync aborted with peer=%d: invalid difficulty transition at height=%i (presync phase)\n", m_id, next_height);
         return false;
     }
-
     if (next_height % HEADER_COMMITMENT_PERIOD == m_commit_offset) {
         // Add a commitment.
         m_header_commitments.push_back(m_hasher(current.GetHash()) & 1);

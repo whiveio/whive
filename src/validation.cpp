@@ -4397,6 +4397,7 @@ bool ChainstateManager::ProcessNewBlockHeaders(const std::vector<CBlockHeader>& 
             CheckBlockIndex();
 
             if (!accepted) {
+		    printf("Synchronizing blockheaders NOTACCEPTED:\n");
                 return false;
             }
             if (ppindex) {

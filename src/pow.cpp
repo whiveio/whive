@@ -11,43 +11,67 @@
 #include <primitives/block.h>
 #include <uint256.h>
 
-unsigned int static DarkGravityWaveCrane(const CBlockIndex* pindexLast, const Consensus::Params& params) {    
-    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);    
-    int64_t nPastBlocks = 12;    
-    if (!pindexLast || pindexLast->nHeight < nPastBlocks) {           
-        return bnPowLimit.GetCompact();   
+#include <vector>
+#include <algorithm>
+
+unsigned int static DarkGravityWaveCrane(const CBlockIndex* pindexLast, const Consensus::Params& params) {
+    /* current difficulty formula, dash - DarkGravity v3, written by Evan Duffield - evan@dash.org */
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
+    int64_t nPastBlocks = 12;
+
+    // make sure we have at least (nPastBlocks + 1) blocks, otherwise just return powLimit
+    if (!pindexLast || pindexLast->nHeight <= nPastBlocks) { // BitZeny legacy
+        return bnPowLimit.GetCompact();
     }
-    const CBlockIndex* pindex = pindexLast;    
-    arith_uint256 bnPastTargetAvg = 0;    
-    for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {       
-        arith_uint256 bnTarget = arith_uint256().SetCompact(pindex->nBits);        
-        bnPastTargetAvg += bnTarget / nPastBlocks;        
-        assert(pindex->pprev);        
+		    
+    const CBlockIndex *pindex = pindexLast;
+    arith_uint256 bnPastTargetAvg = 0;
+
+    for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {
+        arith_uint256 bnTarget = arith_uint256().SetCompact(pindex->nBits);
+        bnPastTargetAvg += bnTarget;
+
+        assert(pindex->pprev); // should never fail
         pindex = pindex->pprev;
-    }      
-    int64_t nActualTimespan = pindexLast->GetBlockTime() - pindex->pprev->GetBlockTime();       
-    int64_t nTargetTimespan = nPastBlocks * params.nPowTargetSpacing;    
-    if (nActualTimespan < nTargetTimespan / 3) nActualTimespan = nTargetTimespan / 3;    
-    if (nActualTimespan > nTargetTimespan * 3) nActualTimespan = nTargetTimespan * 3;    
-    arith_uint256 bnNew = bnPastTargetAvg;    
-    bnNew *= nActualTimespan;    
-    bnNew /= nTargetTimespan;    
-    if (params.enforce_BIP94 && (pindexLast->nHeight % params.nMinerConfirmationWindow == 0)) {        
-        int nHeightFirst = pindexLast->nHeight - (params.nMinerConfirmationWindow - 1);        
-        const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);        
-        if (pindexFirst) {            
-            arith_uint256 bnBaseline = arith_uint256().SetCompact(pindexFirst->nBits);            
-            if (bnNew > bnBaseline) bnNew = bnBaseline;        
-        }    
-    }    
-    arith_uint256 bnOld = arith_uint256().SetCompact(pindexLast->nBits);    
-    arith_uint256 bnMaxUp = bnOld * 125 / 100;    
-    arith_uint256 bnMaxDown = bnOld * 75 / 100;    
-    if (bnNew > bnMaxUp) bnNew = bnMaxUp;    
-    if (bnNew < bnMaxDown) bnNew = bnMaxDown;    
-    if (bnNew > bnPowLimit) bnNew = bnPowLimit;    
+    }
+
+    bnPastTargetAvg /= nPastBlocks;
+
+    arith_uint256 bnNew(bnPastTargetAvg);
+
+    int64_t nActualTimespan = pindexLast->GetBlockTime() - pindex->GetBlockTime();
+    // NOTE: is this accurate? nActualTimespan counts it for (nPastBlocks - 1) blocks only...
+    int64_t nTargetTimespan = nPastBlocks * params.nPowTargetSpacing;
+	 
+    if (nActualTimespan < nTargetTimespan/3)
+        nActualTimespan = nTargetTimespan/3;
+    if (nActualTimespan > nTargetTimespan*3)
+        nActualTimespan = nTargetTimespan*3;
+
+
+    // Special difficulty rule for Testnet4
+    if (params.enforce_BIP94) {
+        // Here we use the first block of the difficulty period. This way
+        // the real difficulty is always preserved in the first block as
+        // it is not allowed to use the min-difficulty exception.
+        int nHeightFirst = pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
+        const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
+        bnNew.SetCompact(pindexFirst->nBits);
+    }
+
+
+    // Retarget
+    bnNew *= nActualTimespan;
+    bnNew /= nTargetTimespan;
+
+    if (bnNew > bnPowLimit) {
+        bnNew = bnPowLimit;
+    }
+
     return bnNew.GetCompact();
 }
+
+
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
@@ -121,4 +145,73 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
         return false;
      
     return true;
+}
+
+bool PermittedDifficultyTransition(const Consensus::Params& params, int next_height, unsigned int previous_nBits, unsigned int current_nBits, const CBlockIndex* pindexLast) {
+    // Ensure we have a valid previous block index
+    if (pindexLast == nullptr) {
+        return true; // Genesis block
+    }
+
+    //if (!pindexLast) {
+     //   printf("PermittedDifficultyTransition: pindexLast is null. Cannot calculate difficulty.\n");
+      //  return false;
+    //}
+
+    // Compute the expected difficulty using DarkGravityWaveCrane
+    unsigned int nBitsExpected = DarkGravityWaveCrane(pindexLast->pprev, params);
+
+    // Convert nBits values to full 256-bit targets for accurate comparison
+    arith_uint256 bnTargetExpected;
+    arith_uint256 bnTargetCurrent;
+    bool fNegative1, fOverflow1, fNegative2, fOverflow2;
+
+    bnTargetExpected.SetCompact(nBitsExpected, &fNegative1, &fOverflow1);
+    bnTargetCurrent.SetCompact(current_nBits, &fNegative2, &fOverflow2);
+
+    // Validate difficulty transition by checking if the calculated target matches the new block's target
+    if (fNegative1 || fOverflow1 || fNegative2 || fOverflow2 || bnTargetCurrent != bnTargetExpected) {
+        printf("PermittedDifficultyTransition: Difficulty mismatch at height %d! Expected: %08x, Found: %08x\n",
+                  next_height, nBitsExpected, current_nBits);
+        return false;
+    }
+
+    return true;
+}
+
+unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
+{
+    if (params.fPowNoRetargeting)
+        return pindexLast->nBits;
+
+    // Limit adjustment step
+    int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
+    if (nActualTimespan < params.nPowTargetTimespan/4)
+        nActualTimespan = params.nPowTargetTimespan/4;
+    if (nActualTimespan > params.nPowTargetTimespan*4)
+        nActualTimespan = params.nPowTargetTimespan*4;
+
+    // Retarget
+    const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
+    arith_uint256 bnNew;
+
+    // Special difficulty rule for Testnet4
+    if (params.enforce_BIP94) {
+        // Here we use the first block of the difficulty period. This way
+        // the real difficulty is always preserved in the first block as
+        // it is not allowed to use the min-difficulty exception.
+        int nHeightFirst = pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
+        const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
+        bnNew.SetCompact(pindexFirst->nBits);
+    } else {
+        bnNew.SetCompact(pindexLast->nBits);
+    }
+
+    bnNew *= nActualTimespan;
+    bnNew /= params.nPowTargetTimespan;
+
+    if (bnNew > bnPowLimit)
+        bnNew = bnPowLimit;
+
+    return bnNew.GetCompact();
 }

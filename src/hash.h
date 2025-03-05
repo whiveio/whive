@@ -18,6 +18,7 @@
 #include <string>
 #include <vector>
 #include <hashdb.h>
+#include <node/protocol_version.h>
 
 typedef uint256 ChainCode;
 
@@ -210,18 +211,20 @@ public:
 
 extern "C" void yespower_hash(const char *input, char *output);
 
-class CHashWriterYespower: public CHashWriter
+class CHashWriterYespower: public HashWriter
 {
 private:
     std::vector<unsigned char> buf;
 
 public:
 
-    CHashWriterYespower(int nTypeIn, int nVersionIn) : CHashWriter(nTypeIn, nVersionIn) {}
+    CHashWriterYespower(int nTypeIn, int nVersionIn) : HashWriter() {}
 
-    void write(const char *pch, size_t size) {
-        buf.insert(buf.end(), pch, pch + size);
+    void write(Span<const std::byte> src)
+    {
+        buf.insert(buf.end(), UCharCast(src.data()), UCharCast(src.data()) + src.size());
     }
+
 
     uint256 GetHash(const CBlockHeader &block) {
         uint256 result;
@@ -251,6 +254,12 @@ public:
     }
 };
 
+
+enum
+{
+    // primary actions
+    SER_GETHASH         = (1 << 2),
+};
 
 /** Compute the 256-bit hash of an object's serialization for yespower. */
 template<typename T>

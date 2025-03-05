@@ -458,9 +458,4 @@ class ProxyTest(BitcoinTestFramework):
             os.unlink(socket_path)
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     ProxyTest().main()
-
-=======
-    ProxyTest(__file__).main()
->>>>>>> v28.0

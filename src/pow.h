@@ -34,5 +34,5 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
  * such as regtest/testnet.
  */
 bool PermittedDifficultyTransition(const Consensus::Params& params, int64_t height, uint32_t old_nbits, uint32_t new_nbits);
-
+bool PermittedDifficultyTransition(const Consensus::Params& params, int next_height, unsigned int previous_nBits, unsigned int current_nBits, const CBlockIndex* pindex);
 #endif // BITCOIN_POW_H

@@ -145,7 +145,6 @@ bool BlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, s
             break;
         }
     }
-
     return true;
 }
 } // namespace kernel

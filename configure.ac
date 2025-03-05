@@ -606,9 +606,10 @@ AC_ARG_ENABLE([experimental-util-chainstate],
   [build_whive_chainstate=$enableval],
   [build_whive_chainstate=no])
 
+  dnl [build experimental bitcoinkernel library (default is to build if we're building the experimental build-chainstate executable)])],
 AC_ARG_WITH([experimental-kernel-lib],
   [AS_HELP_STRING([--with-experimental-kernel-lib],
-  [build experimental bitcoinkernel library (default is to build if we're building the experimental build-chainstate executable)])],
+  [build experimental bitcoinkernel library (default=no)])],
   [build_experimental_kernel_lib=$withval],
   [build_experimental_kernel_lib=auto])
 

@@ -318,13 +318,8 @@ static RPCHelpMan addnode()
                 },
                 RPCResult{RPCResult::Type::NONE, "", ""},
                 RPCExamples{
-<<<<<<< HEAD
-                    HelpExampleCli("addnode", "\"192.168.0.6:8372\" \"onetry\"")
-            + HelpExampleRpc("addnode", "\"192.168.0.6:8372\", \"onetry\"")
-=======
                     HelpExampleCli("addnode", "\"192.168.0.6:8333\" \"onetry\" true")
-            + HelpExampleRpc("addnode", "\"192.168.0.6:8333\", \"onetry\" true")
->>>>>>> v28.0
+                    + HelpExampleRpc("addnode", "\"192.168.0.6:8333\", \"onetry\" true")
                 },
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {

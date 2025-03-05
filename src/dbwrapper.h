@@ -9,6 +9,9 @@
 #include <serialize.h>
 #include <span.h>
 #include <streams.h>
+#include <common/system.h>
+#include <common/args.h>
+
 #include <util/check.h>
 #include <util/fs.h>
 
