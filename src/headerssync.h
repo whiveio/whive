@@ -207,8 +207,6 @@ private:
     /** Return a set of headers that satisfy our proof-of-work threshold */
     std::vector<CBlockHeader> PopHeadersReadyForAcceptance();
     
-    /*Add reference to ChainstateManage */
-    ChainstateManager& m_chainman; 
 private:
     /** NodeId of the peer (used for log messages) **/
     const NodeId m_id;
@@ -243,6 +241,9 @@ private:
 
     /** Height of m_last_header_received */
     int64_t m_current_height{0};
+
+    /*Add reference to ChainstateManage */
+    ChainstateManager& m_chainman; 
 
     /** During phase 2 (REDOWNLOAD), we buffer redownloaded headers in memory
      *  until enough commitments have been verified; those are stored in

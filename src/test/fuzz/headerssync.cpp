@@ -13,10 +13,17 @@
 #include <iterator>
 #include <vector>
 
+namespace {
+const TestingSetup* g_setup;
+};
+
 static void initialize_headers_sync_state_fuzz()
 {
-    static const auto testing_setup = MakeNoLogFileContext<>(
+    static const auto test_setup = MakeNoLogFileContext<>(
         /*chain_type=*/ChainType::MAIN);
+    static const auto testing_setup = MakeNoLogFileContext<const TestingSetup>();
+    g_setup = testing_setup.get();
+
 }
 
 void MakeHeadersContinuous(
@@ -40,7 +47,7 @@ class FuzzedHeadersSyncState : public HeadersSyncState
 {
 public:
     FuzzedHeadersSyncState(const unsigned commit_offset, const CBlockIndex* chain_start, const arith_uint256& minimum_required_work)
-        : HeadersSyncState(/*id=*/0, Params().GetConsensus(), chain_start, minimum_required_work)
+        : HeadersSyncState(/*id=*/0, Params().GetConsensus(), chain_start, minimum_required_work,*g_setup->m_node.chainman)
     {
         const_cast<unsigned&>(m_commit_offset) = commit_offset;
     }

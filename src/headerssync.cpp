@@ -8,7 +8,6 @@
 #include <util/check.h>
 #include <util/time.h>
 #include <util/vector.h>
-#include <kernel/chainparams.h>
 #include <validation.h>
 // The two constants below are computed using the simulation script in
 // contrib/devtools/headerssync-params.py.
@@ -218,9 +217,6 @@ bool HeadersSyncState::ValidateAndProcessSingleHeader(const CBlockHeader& curren
             return true; // Or adjust based on your logic
         }
     }
-
-    const CChainParams& chainparams = Params();
-    uint32_t genesis_nbits = chainparams.GenesisBlock().nBits;
 
     if (!PermittedDifficultyTransition(m_consensus_params, next_height, m_last_header_received.nBits, current.nBits,pindex)) {
         LogPrint(BCLog::NET, "Initial headers sync aborted with peer=%d: invalid difficulty transition at height=%i (presync phase)\n", m_id, next_height);
