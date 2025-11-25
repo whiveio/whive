@@ -1,10 +1,10 @@
 AC_PREREQ([2.69])
-define(_CLIENT_VERSION_MAJOR, 28)
+define(_CLIENT_VERSION_MAJOR, 29)
 define(_CLIENT_VERSION_MINOR, 0)
 define(_CLIENT_VERSION_BUILD, 0)
 define(_CLIENT_VERSION_RC, 0)
 define(_CLIENT_VERSION_IS_RELEASE, true)
-define(_COPYRIGHT_YEAR, 2024)
+define(_COPYRIGHT_YEAR, 2025)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
 define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Whive Core]])
 AC_INIT([Whive Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_BUILD)m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC),[https://github.com/whiveio/whive/issues],[whive],[https://whive.io/])
@@ -29,12 +29,12 @@ if test -n "$PKG_CONFIG_LIBDIR"; then
   PKG_CONFIG="env PKG_CONFIG_LIBDIR=$PKG_CONFIG_LIBDIR $PKG_CONFIG"
 fi
 
-BITCOIN_DAEMON_NAME=bitcoind
-BITCOIN_GUI_NAME=bitcoin-qt
+BITCOIN_DAEMON_NAME=whived
+BITCOIN_GUI_NAME=whive-qt
 BITCOIN_TEST_NAME=test_bitcoin
-BITCOIN_CLI_NAME=bitcoin-cli
-BITCOIN_TX_NAME=bitcoin-tx
-BITCOIN_UTIL_NAME=bitcoin-util
+BITCOIN_CLI_NAME=whive-cli
+BITCOIN_TX_NAME=whive-tx
+BITCOIN_UTIL_NAME=whive-util
 BITCOIN_CHAINSTATE_NAME=bitcoin-chainstate
 BITCOIN_WALLET_TOOL_NAME=bitcoin-wallet
 dnl Multi Process

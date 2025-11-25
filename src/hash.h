@@ -229,20 +229,11 @@ public:
     uint256 GetHash(const CBlockHeader &block) {
         uint256 result;
         assert(buf.size() == 80);
-
-        if (phashdb)
-        {
-           if(!phashdb->Read(block, result))
-           {
-              yespower_hash((const char*)buf.data(), (char*)&result);
-              phashdb->Write(block, result);
-           }
-        }
-        else
-        {
+          // Compute yespower hash directly here. Avoid referencing the global
+          // phashdb from this header-level inline implementation so that
+          // consumers of this header (for example the consensus library)
+          // don't introduce a hard link-time dependency on the DB code.
           yespower_hash((const char*)buf.data(), (char*)&result);
-          //std::cout << result.ToString() << std::endl;
-        }
         return result;
     }
 

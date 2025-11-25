@@ -76,6 +76,12 @@ void static inline WriteBE32(unsigned char* ptr, uint32_t x)
     memcpy(ptr, &v, 4);
 }
 
+void static inline WriteBE16(unsigned char* ptr, uint16_t x)
+{
+    uint16_t v = htobe16_internal(x);
+    memcpy(ptr, &v, 2);
+}
+
 void static inline WriteBE64(unsigned char* ptr, uint64_t x)
 {
     uint64_t v = htobe64_internal(x);

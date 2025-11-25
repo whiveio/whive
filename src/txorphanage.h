@@ -27,6 +27,31 @@ static constexpr auto ORPHAN_TX_EXPIRE_INTERVAL{5min};
  */
 class TxOrphanage {
 public:
+    /** Public lightweight view of an orphan transaction for callers that need to inspect orphans. */
+    struct OrphanTxBase {
+        CTransactionRef tx;
+        NodeId fromPeer;
+    };
+
+    /** Return the transaction for a given wtxid if present, otherwise nullptr. */
+    CTransactionRef GetTx(const Wtxid& wtxid) const;
+
+    /** Record that a peer announced this orphan transaction (additional announcers).
+     *  Mostly used to track which peers can be asked for orphan resolution. */
+    void AddAnnouncer(const Wtxid& wtxid, NodeId peer);
+
+    /** Check whether a given wtxid was announced by a given peer. */
+    bool HaveTxFromPeer(const Wtxid& wtxid, NodeId peer) const;
+
+    /** Count how many orphans originate from this peer. */
+    size_t UsageByPeer(NodeId peer) const;
+
+    /** Total number of orphan entries. */
+    size_t TotalOrphanUsage() const;
+
+    /** Return a vector of lightweight orphan entries for inspection. */
+    std::vector<OrphanTxBase> GetOrphanTransactions() const;
+
     /** Add a new orphan transaction */
     bool AddTx(const CTransactionRef& tx, NodeId peer);
 
@@ -104,6 +129,9 @@ protected:
 
     /** Orphan transactions in vector for quick random eviction */
     std::vector<OrphanMap::iterator> m_orphan_list;
+
+    /** Additional map to track announcers for an orphan (wtxid -> set of announcers). */
+    std::map<Wtxid, std::set<NodeId>> m_announcers;
 
     /** Timestamp for the next scheduled sweep of expired orphans */
     NodeSeconds m_next_sweep{0s};

@@ -134,7 +134,7 @@ public:
 
     int Connect(const sockaddr* sa, socklen_t sa_len) const override {
         CService service;
-        if (service.SetSockAddr(sa, sa_len) && service == CService(m_gateway_ip, 5351)) {
+        if (service.SetSockAddr(sa) && service == CService(m_gateway_ip, 5351)) {
             if (m_bound.IsBindAny()) { // If bind-any, bind to local ip.
                 m_bound = CService(m_local_ip, 0);
             }
@@ -149,7 +149,7 @@ public:
 
     int Bind(const sockaddr* sa, socklen_t sa_len) const override {
         CService service;
-        if (service.SetSockAddr(sa, sa_len)) {
+        if (service.SetSockAddr(sa)) {
             // Can only bind to one of our local ips
             if (!service.IsBindAny() && service != m_local_ip) {
                 return -1;

@@ -23,7 +23,7 @@
 bool PreCheckEphemeralTx(const CTransaction& tx, CFeeRate dust_relay_rate, CAmount base_fee, CAmount mod_fee, TxValidationState& state)
 {
     // We never want to give incentives to mine this transaction alone
-    if ((base_fee != 0 || mod_fee != 0) && !GetDust(tx, dust_relay_rate).empty()) {
+    if ((base_fee != 0 || mod_fee != 0) && std::any_of(tx.vout.begin(), tx.vout.end(), [&](const auto& out){ return IsDust(out, dust_relay_rate); })) {
         return state.Invalid(TxValidationResult::TX_NOT_STANDARD, "dust", "tx with dust output must be 0-fee");
     }
 

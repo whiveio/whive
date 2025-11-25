@@ -9,6 +9,9 @@
 include(CheckCXXSymbolExists)
 check_cxx_symbol_exists(F_FULLFSYNC "fcntl.h" HAVE_FULLFSYNC)
 
+include(TestBigEndian)
+test_big_endian(LEVELDB_IS_BIG_ENDIAN)
+
 add_library(leveldb STATIC EXCLUDE_FROM_ALL
   ${PROJECT_SOURCE_DIR}/src/leveldb/db/builder.cc
   ${PROJECT_SOURCE_DIR}/src/leveldb/db/c.cc
@@ -60,6 +63,7 @@ target_compile_definitions(leveldb
     HAVE_FULLFSYNC=$<BOOL:${HAVE_FULLFSYNC}>
     HAVE_O_CLOEXEC=$<BOOL:${HAVE_O_CLOEXEC}>
     FALLTHROUGH_INTENDED=[[fallthrough]]
+    LEVELDB_IS_BIG_ENDIAN=$<BOOL:${LEVELDB_IS_BIG_ENDIAN}>
     $<$<NOT:$<BOOL:${WIN32}>>:LEVELDB_PLATFORM_POSIX>
     $<$<BOOL:${WIN32}>:LEVELDB_PLATFORM_WINDOWS>
     $<$<BOOL:${WIN32}>:_UNICODE;UNICODE>

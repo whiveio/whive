@@ -171,7 +171,7 @@ std::optional<CNetAddr> FromSockAddr(const struct sockaddr* addr)
 {
     // Fill in a CService from the sockaddr, then drop the port part.
     CService service;
-    if (service.SetSockAddr(addr, addr->sa_len)) {
+    if (service.SetSockAddr(addr)) {
         return (CNetAddr)service;
     }
     return std::nullopt;

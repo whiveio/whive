@@ -333,7 +333,7 @@ void TxDownloadManagerImpl::MempoolAcceptedTx(const CTransactionRef& tx)
     m_txrequest.ForgetTxHash(tx->GetHash());
     m_txrequest.ForgetTxHash(tx->GetWitnessHash());
 
-    m_orphanage.AddChildrenToWorkSet(*tx, m_opts.m_rng);
+    m_orphanage.AddChildrenToWorkSet(*tx);
     // If it came from the orphanage, remove it. No-op if the tx is not in txorphanage.
     m_orphanage.EraseTx(tx->GetWitnessHash());
 }
@@ -412,8 +412,11 @@ node::RejectedTxTodo TxDownloadManagerImpl::MempoolRejectedTx(const CTransaction
                 //
                 // Search by txid and, if the tx has a witness, wtxid
                 std::vector<NodeId> orphan_resolution_candidates{nodeid};
-                m_txrequest.GetCandidatePeers(ptx->GetHash().ToUint256(), orphan_resolution_candidates);
-                if (ptx->HasWitness()) m_txrequest.GetCandidatePeers(ptx->GetWitnessHash().ToUint256(), orphan_resolution_candidates);
+                // TxRequestTracker does not expose a way to query which peers announced a specific txhash.
+                // Fall back to considering all connected peers as potential orphan resolution candidates.
+                orphan_resolution_candidates.clear();
+                orphan_resolution_candidates.reserve(m_peer_info.size());
+                for (const auto& p : m_peer_info) orphan_resolution_candidates.push_back(p.first);
 
                 for (const auto& nodeid : orphan_resolution_candidates) {
                     if (MaybeAddOrphanResolutionCandidate(unique_parents, ptx->GetWitnessHash(), nodeid, now)) {

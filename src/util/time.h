@@ -9,6 +9,8 @@
 #include <chrono> // IWYU pragma: export
 #include <cstdint>
 #include <string>
+#include <atomic>
+#include <optional>
 
 using namespace std::chrono_literals;
 
@@ -28,6 +30,40 @@ using SteadyMilliseconds = std::chrono::time_point<std::chrono::steady_clock, st
 using SteadyMicroseconds = std::chrono::time_point<std::chrono::steady_clock, std::chrono::microseconds>;
 
 using SystemClock = std::chrono::system_clock;
+
+/** Mockable steady clock used by tests. The clock returns millisecond precision time_points and
+ *  allows tests to set/clear a mock time. In production the clock forwards to std::chrono::steady_clock.
+ */
+struct MockableSteadyClock {
+    using clock = std::chrono::steady_clock;
+    using duration = std::chrono::milliseconds;
+    using time_point = std::chrono::time_point<clock, duration>;
+
+    static constexpr duration INITIAL_MOCK_TIME{0ms};
+
+    static time_point now() noexcept
+    {
+        int64_t m = s_mock_time_ms.load(std::memory_order_acquire);
+        if (m >= 0) return time_point{duration(m)};
+        // Convert steady_clock::now() to milliseconds-based time_point
+        auto now_ms = std::chrono::time_point_cast<duration>(clock::now());
+        return time_point{now_ms.time_since_epoch()};
+    }
+
+    static void SetMockTime(duration t)
+    {
+        s_mock_time_ms.store(static_cast<int64_t>(t.count()), std::memory_order_release);
+    }
+
+    static void ClearMockTime()
+    {
+        s_mock_time_ms.store(-1, std::memory_order_release);
+    }
+
+private:
+    // -1 indicates no mocked time set.
+    static inline std::atomic<int64_t> s_mock_time_ms{-1};
+};
 
 void UninterruptibleSleep(const std::chrono::microseconds& n);
 

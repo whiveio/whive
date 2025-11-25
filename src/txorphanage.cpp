@@ -42,6 +42,8 @@ bool TxOrphanage::AddTx(const CTransactionRef& tx, NodeId peer)
 
     LogPrint(BCLog::TXPACKAGES, "stored orphan tx %s (wtxid=%s), weight: %u (mapsz %u outsz %u)\n", hash.ToString(), wtxid.ToString(), sz,
              m_orphans.size(), m_outpoint_to_orphan_it.size());
+    // Record initial announcer
+    m_announcers[wtxid].insert(peer);
     return true;
 }
 
@@ -145,6 +147,54 @@ void TxOrphanage::AddChildrenToWorkSet(const CTransaction& tx)
             }
         }
     }
+}
+
+CTransactionRef TxOrphanage::GetTx(const Wtxid& wtxid) const
+{
+    auto it = m_orphans.find(wtxid);
+    if (it != m_orphans.end()) return it->second.tx;
+    return nullptr;
+}
+
+void TxOrphanage::AddAnnouncer(const Wtxid& wtxid, NodeId peer)
+{
+    auto it = m_orphans.find(wtxid);
+    if (it == m_orphans.end()) return;
+    m_announcers[wtxid].insert(peer);
+}
+
+bool TxOrphanage::HaveTxFromPeer(const Wtxid& wtxid, NodeId peer) const
+{
+    auto it = m_announcers.find(wtxid);
+    if (it != m_announcers.end()) return it->second.count(peer) > 0;
+    // Fallback: check original source peer
+    auto it2 = m_orphans.find(wtxid);
+    if (it2 != m_orphans.end()) return it2->second.fromPeer == peer;
+    return false;
+}
+
+size_t TxOrphanage::UsageByPeer(NodeId peer) const
+{
+    size_t cnt = 0;
+    for (const auto& kv : m_orphans) {
+        if (kv.second.fromPeer == peer) ++cnt;
+    }
+    return cnt;
+}
+
+size_t TxOrphanage::TotalOrphanUsage() const
+{
+    return m_orphans.size();
+}
+
+std::vector<TxOrphanage::OrphanTxBase> TxOrphanage::GetOrphanTransactions() const
+{
+    std::vector<OrphanTxBase> v;
+    v.reserve(m_orphans.size());
+    for (const auto& kv : m_orphans) {
+        v.push_back(OrphanTxBase{kv.second.tx, kv.second.fromPeer});
+    }
+    return v;
 }
 
 bool TxOrphanage::HaveTx(const Wtxid& wtxid) const
