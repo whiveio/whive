@@ -8,6 +8,7 @@
 #include <chain.h>
 #include <coins.h>
 #include <consensus/params.h>
+#include <hashdb.h>
 #include <logging.h>
 #include <node/blockstorage.h>
 #include <node/caches.h>
@@ -48,10 +49,10 @@ static ChainstateLoadResult CompleteChainstateInitialization(
         .wipe_data = options.wipe_block_tree_db,
         .options = chainman.m_options.block_tree_db});
 
-    //leveldb cache
-    phashdb.reset();
-    phashdb.reset(new CHashDB(cache_sizes.block_tree_db, false, options.wipe_block_tree_db));
-    
+    // Hashdb disabled - causes 100% CPU hang during block index loading in v29
+    // phashdb.reset();
+    // phashdb.reset(new CHashDB(cache_sizes.block_tree_db, false, options.wipe_block_tree_db));
+
     if (options.wipe_block_tree_db) {
         pblocktree->WriteReindexing(true);
         chainman.m_blockman.m_blockfiles_indexed = false;

@@ -117,7 +117,10 @@ bool BlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, s
             CDiskBlockIndex diskindex;
             if (pcursor->GetValue(diskindex)) {
                 // Construct block index object
-                CBlockIndex* pindexNew = insertBlockIndex(diskindex.ConstructBlockHash());
+                // Use the hash from the database key instead of recomputing it via ConstructBlockHash()
+                // This avoids expensive Yespower hash computation for every block during startup
+                const uint256& hashBlock = key.second;
+                CBlockIndex* pindexNew = insertBlockIndex(hashBlock);
                 pindexNew->pprev          = insertBlockIndex(diskindex.hashPrev);
                 pindexNew->nHeight        = diskindex.nHeight;
                 pindexNew->nFile          = diskindex.nFile;
