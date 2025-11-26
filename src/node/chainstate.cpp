@@ -49,9 +49,8 @@ static ChainstateLoadResult CompleteChainstateInitialization(
         .wipe_data = options.wipe_block_tree_db,
         .options = chainman.m_options.block_tree_db});
 
-    // Hashdb disabled - causes 100% CPU hang during block index loading in v29
-    // phashdb.reset();
-    // phashdb.reset(new CHashDB(cache_sizes.block_tree_db, false, options.wipe_block_tree_db));
+    // Hashdb initialization moved to after LoadBlockIndex() to avoid startup hang
+    // See line 74 where it's initialized after block index is fully loaded
 
     if (options.wipe_block_tree_db) {
         pblocktree->WriteReindexing(true);
@@ -71,6 +70,12 @@ static ChainstateLoadResult CompleteChainstateInitialization(
         if (chainman.m_interrupt) return {ChainstateLoadStatus::INTERRUPTED, {}};
         return {ChainstateLoadStatus::FAILURE, _("Error loading block database")};
     }
+
+    // Initialize hashdb AFTER block index loading completes to avoid startup hang
+    // This enables hash caching for sync operations while preventing deadlock during LoadBlockIndex
+    phashdb.reset();
+    phashdb.reset(new CHashDB(cache_sizes.block_tree_db, false, options.wipe_block_tree_db));
+    LogPrintf("Initialized Yespower hash cache database\n");
 
     if (!chainman.BlockIndex().empty() &&
             !chainman.m_blockman.LookupBlockIndex(chainman.GetConsensus().hashGenesisBlock)) {

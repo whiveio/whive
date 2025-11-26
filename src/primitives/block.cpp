@@ -17,11 +17,20 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-    // Hashdb caching disabled - causes 100% CPU hang during block index loading in v29
-    // The block loading process in Bitcoin Core v29 calls GetHash() extensively during
-    // initialization, which triggers massive Read/Write operations that freeze the node
-    // TODO: Investigate alternative caching approaches that don't interfere with block loading
-    return SerializeHashYespower(*this);
+    uint256 hash;
+    if (phashdb) {
+        // Use hashdb cache if available
+        if (!phashdb->Read(*this, hash)) {
+            // Cache miss - compute and store
+            hash = SerializeHashYespower(*this);
+            phashdb->Write(*this, hash);
+        }
+    } else {
+        // Hashdb not initialized yet (during block index loading)
+        // Compute hash directly without caching
+        hash = SerializeHashYespower(*this);
+    }
+    return hash;
 }
 
 

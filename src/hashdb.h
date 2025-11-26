@@ -14,10 +14,6 @@ class CHashDB : public CDBWrapper
 {
     public:
         CHashDB(size_t nCacheSize, bool fMemory = false, bool fWipe = false);
-
-        // Disabled for now - causes deadlock during block loading
-        // TODO: Implement proper async caching
-        // uint256 GetHash(const CBlockHeader &block);
 };
 
 extern std::unique_ptr<CHashDB> phashdb;
