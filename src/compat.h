@@ -7,7 +7,7 @@
 #define BITCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
-#include <bitcoin-build-config.h>
+#include <whive-build-config.h>
 #endif
 
 #include <type_traits>

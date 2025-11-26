@@ -36,7 +36,7 @@
 #include <warnings.h>
 
 #if defined(HAVE_CONFIG_H)
-#include <bitcoin-build-config.h>
+#include <whive-build-config.h>
 #endif
 #ifdef ENABLE_WALLET
 #include <wallet/fees.h>
