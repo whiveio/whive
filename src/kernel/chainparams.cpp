@@ -470,7 +470,7 @@ public:
         consensus.nRuleChangeActivationThreshold = 1815; // 90% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.MinBIP9WarningHeight = 0;
-        consensus.powLimit = uint256{"00000377ae000000000000000000000000000000000000000000000000000000"};
+        consensus.powLimit = uint256{"7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"};
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = Consensus::BIP9Deployment::NEVER_ACTIVE;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
@@ -491,10 +491,10 @@ public:
         nDefaultPort = 38333;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1598918400, 52613770, 0x1e0377ae, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1598918400, 0, 0x207fffff, 1, 200 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-	assert(consensus.hashGenesisBlock == uint256{"ce6defd8991ee7dde8efea066b36a44992676715e0befe87ec47edec4a64f3d5"});
-        assert(genesis.hashMerkleRoot == uint256{"7abebde470f860eb3f416984697d565643e43f4833250c69b88b994437ecf45e"});
+        assert(consensus.hashGenesisBlock == uint256{"49c2829c52c050fcf804d0426047e30da99db94c748578ef30328f7702a5a468"});
+        assert(genesis.hashMerkleRoot == uint256{"b8044cb70912edd89be0c1149740e02ec0f56aea172f2344db5b5ce4b8834cab"});
 
         vFixedSeeds.clear();
 
@@ -513,7 +513,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "tb";
+        bech32_hrp = "twv"; // Whive signet prefix
 
         fDefaultConsistencyChecks = false;
         m_is_mockable_chain = false;
@@ -597,10 +597,10 @@ public:
             consensus.vDeployments[deployment_pos].min_activation_height = version_bits_params.min_activation_height;
         }
 
-        genesis = CreateGenesisBlock(1296688602, 2, 0x207fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1296688602, 4, 0x207fffff, 1, 200 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-	assert(consensus.hashGenesisBlock == uint256{"7c11c094afee83906f3c366bd935eccef9274a3e293a6327ac3b7826311db9d9"});
-        assert(genesis.hashMerkleRoot == uint256{"7abebde470f860eb3f416984697d565643e43f4833250c69b88b994437ecf45e"});
+        assert(consensus.hashGenesisBlock == uint256{"26aced0e5050a125ec5348ab71fb6948b0cc68256d8170f57e3395c6c1cdd4c1"});
+        assert(genesis.hashMerkleRoot == uint256{"b8044cb70912edd89be0c1149740e02ec0f56aea172f2344db5b5ce4b8834cab"});
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();
@@ -611,7 +611,7 @@ public:
 
         checkpointData = {
             {
-                {0, uint256{"0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"}},
+                {0, uint256{"26aced0e5050a125ec5348ab71fb6948b0cc68256d8170f57e3395c6c1cdd4c1"}},
             }
         };
 
@@ -650,7 +650,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "bcrt";
+        bech32_hrp = "wvrt"; // Whive regtest prefix
     }
 };
 
