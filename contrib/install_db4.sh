@@ -54,7 +54,7 @@ http_get() {
   if [ -f "${2}" ]; then
     echo "File ${2} already exists; not downloading again"
   elif check_exists curl; then
-    curl --insecure "${1}" -o "${2}"
+    curl -L --insecure "${1}" -o "${2}"
   else
     wget --no-check-certificate "${1}" -O "${2}"
   fi
@@ -236,6 +236,7 @@ cd build_unix/
 
 "${BDB_PREFIX}/${BDB_VERSION}/dist/configure" \
   --enable-cxx --disable-shared --disable-replication --with-pic --prefix="${BDB_PREFIX}" \
+  --with-mutex=POSIX/pthreads/library \
   "${@}"
 
 make install
