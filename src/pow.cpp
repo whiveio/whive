@@ -75,6 +75,8 @@ unsigned int static DarkGravityWaveCrane(const CBlockIndex* pindexLast, const Co
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
+    if (params.fPowNoRetargeting)
+        return pindexLast->nBits;
     return DarkGravityWaveCrane(pindexLast, params);
 }
 // Check that on difficulty adjustments, the new difficulty does not increase
