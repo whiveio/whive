@@ -11,23 +11,21 @@
 #include <primitives/block.h>
 #include <uint256.h>
 
-#include <vector>
-#include <algorithm>
-
 unsigned int static DarkGravityWaveCrane(const CBlockIndex* pindexLast, const Consensus::Params& params) {
     /* current difficulty formula, dash - DarkGravity v3, written by Evan Duffield - evan@dash.org */
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
     int64_t nPastBlocks = 12;
 
     // make sure we have at least (nPastBlocks + 1) blocks, otherwise just return powLimit
-    if (!pindexLast || pindexLast->nHeight <= nPastBlocks) { // BitZeny legacy
+    if (!pindexLast || pindexLast->nHeight <= nPastBlocks) {
         return bnPowLimit.GetCompact();
     }
-		    
+
     const CBlockIndex *pindex = pindexLast;
     arith_uint256 bnPastTargetAvg = 0;
 
     for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {
+        if (!pindex) return bnPowLimit.GetCompact(); // defensive: avoid null deref
         arith_uint256 bnTarget = arith_uint256().SetCompact(pindex->nBits);
         bnPastTargetAvg += bnTarget;
 
@@ -49,17 +47,6 @@ unsigned int static DarkGravityWaveCrane(const CBlockIndex* pindexLast, const Co
         nActualTimespan = nTargetTimespan*3;
 
 
-    // Special difficulty rule for Testnet4
-    if (params.enforce_BIP94) {
-        // Here we use the first block of the difficulty period. This way
-        // the real difficulty is always preserved in the first block as
-        // it is not allowed to use the min-difficulty exception.
-        int nHeightFirst = pindexLast->nHeight - (params.DifficultyAdjustmentInterval()-1);
-        const CBlockIndex* pindexFirst = pindexLast->GetAncestor(nHeightFirst);
-        bnNew.SetCompact(pindexFirst->nBits);
-    }
-
-
     // Retarget
     bnNew *= nActualTimespan;
     bnNew /= nTargetTimespan;
@@ -75,8 +62,20 @@ unsigned int static DarkGravityWaveCrane(const CBlockIndex* pindexLast, const Co
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
+    assert(pindexLast != nullptr);
+    unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
+
+    // Regtest: no retargeting, keep constant difficulty
     if (params.fPowNoRetargeting)
         return pindexLast->nBits;
+
+    // Testnet: allow minimum difficulty blocks when block time exceeds
+    // twice the target spacing
+    if (params.fPowAllowMinDifficultyBlocks) {
+        if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing * 2)
+            return nProofOfWorkLimit;
+    }
+
     return DarkGravityWaveCrane(pindexLast, params);
 }
 // Check that on difficulty adjustments, the new difficulty does not increase
@@ -150,20 +149,15 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
 }
 
 bool PermittedDifficultyTransition(const Consensus::Params& params, int next_height, unsigned int previous_nBits, unsigned int current_nBits, const CBlockIndex* pindexLast) {
-    // Ensure we have a valid previous block index
+    if (params.fPowAllowMinDifficultyBlocks) return true;
+    if (params.fPowNoRetargeting) return previous_nBits == current_nBits;
+
     if (pindexLast == nullptr) {
-        return true; // Genesis block
+        return true;
     }
 
-    //if (!pindexLast) {
-     //   printf("PermittedDifficultyTransition: pindexLast is null. Cannot calculate difficulty.\n");
-      //  return false;
-    //}
-
-    // Compute the expected difficulty using DarkGravityWaveCrane
     unsigned int nBitsExpected = DarkGravityWaveCrane(pindexLast->pprev, params);
 
-    // Convert nBits values to full 256-bit targets for accurate comparison
     arith_uint256 bnTargetExpected;
     arith_uint256 bnTargetCurrent;
     bool fNegative1, fOverflow1, fNegative2, fOverflow2;
@@ -171,10 +165,7 @@ bool PermittedDifficultyTransition(const Consensus::Params& params, int next_hei
     bnTargetExpected.SetCompact(nBitsExpected, &fNegative1, &fOverflow1);
     bnTargetCurrent.SetCompact(current_nBits, &fNegative2, &fOverflow2);
 
-    // Validate difficulty transition by checking if the calculated target matches the new block's target
     if (fNegative1 || fOverflow1 || fNegative2 || fOverflow2 || bnTargetCurrent != bnTargetExpected) {
-        printf("PermittedDifficultyTransition: Difficulty mismatch at height %d! Expected: %08x, Found: %08x\n",
-                  next_height, nBitsExpected, current_nBits);
         return false;
     }
 
