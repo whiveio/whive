@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>Жаңа мекенжай құру</translation>
+        <translation type="unfinished">Жаңа мекенжай құру</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Таңдалған мекенжайды жүйенің айырбастау буферіне көшіру</translation>
+        <translation type="unfinished">Таңдалған мекенжайды жүйенің айырбастау буферіне көшіру</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>Таңдалған мекенжайды тізімнен жою</translation>
+        <translation type="unfinished">Таңдалған мекенжайды тізімнен жою</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -35,15 +35,15 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Қазіргі қойыншадағы деректерді файлға экспорттау</translation>
+        <translation type="unfinished">Қазіргі қойыншадағы деректерді файлға экспорттау</translation>
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;Экспорттау</translation>
+        <translation type="unfinished">&amp;Экспорттау</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>&amp;Жою</translation>
+        <translation type="unfinished">&amp;Жою</translation>
     </message>
     <message>
         <source>Choose the address to send coins to</source>
@@ -56,14 +56,6 @@
     <message>
         <source>C&amp;hoose</source>
         <translation type="unfinished">Т&amp;аңдау</translation>
-    </message>
-    <message>
-        <source>Sending addresses</source>
-        <translation type="unfinished">Жіберуші мекенжайлар</translation>
-    </message>
-    <message>
-        <source>Receiving addresses</source>
-        <translation type="unfinished">Қабылдаушы мекенжайлар</translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
@@ -87,7 +79,7 @@
     </message>
     <message>
         <source>Comma separated file</source>
-        <extracomment>Expanded name of the CSV file format. See https://en.wikipedia.org/wiki/Comma-separated_values</extracomment>
+        <extracomment>Expanded name of the CSV file format. See: https://en.wikipedia.org/wiki/Comma-separated_values.</extracomment>
         <translation type="unfinished">Үтірмен бөлінген файл</translation>
     </message>
     <message>
@@ -119,19 +111,19 @@
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-        <translation>Құпиясөйлем диалогі</translation>
+        <translation type="unfinished">Құпиясөйлем диалогі</translation>
     </message>
     <message>
         <source>Enter passphrase</source>
-        <translation>Құпиясөйлем енгізу</translation>
+        <translation type="unfinished">Құпиясөйлем енгізу</translation>
     </message>
     <message>
         <source>New passphrase</source>
-        <translation>Жаңа құпиясөйлем</translation>
+        <translation type="unfinished">Жаңа құпиясөйлем</translation>
     </message>
     <message>
         <source>Repeat new passphrase</source>
-        <translation>Жаңа құпиясөйлемді қайталаңыз</translation>
+        <translation type="unfinished">Жаңа құпиясөйлемді қайталаңыз</translation>
     </message>
     <message>
         <source>Show passphrase</source>
@@ -243,20 +235,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation type="unfinished">Қате: берілген "%1" дерек директориясы жоқ.</translation>
-    </message>
-    <message>
-        <source>Error: Cannot parse configuration file: %1.</source>
-        <translation type="unfinished">Қате: конфигурация файлы талданбайды: %1.</translation>
-    </message>
-    <message>
         <source>Error: %1</source>
         <translation type="unfinished">Қате: %1</translation>
-    </message>
-    <message>
-        <source>Error initializing settings: %1</source>
-        <translation type="unfinished">Баптау қосу қатесі: %1</translation>
     </message>
     <message>
         <source>%1 didn't yet exit safely…</source>
@@ -264,18 +244,18 @@
     </message>
     <message>
         <source>Amount</source>
-        <translation type="unfinished">Саны</translation>
+        <translation type="unfinished">Сан</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
@@ -317,27 +297,27 @@
     <name>BitcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Шолу</translation>
+        <translation type="unfinished">&amp;Шолу</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
-        <translation>Негізгі әмиян шолуды көрсету</translation>
+        <translation type="unfinished">Негізгі әмиян шолуды көрсету</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Транзакциялар</translation>
+        <translation type="unfinished">&amp;Транзакциялар</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
-        <translation>Транзакция тарихын шолу</translation>
+        <translation type="unfinished">Транзакция тарихын шолу</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>Ш&amp;ығу</translation>
+        <translation type="unfinished">Ш&amp;ығу</translation>
     </message>
     <message>
         <source>Quit application</source>
-        <translation>Қосымшадан шығу</translation>
+        <translation type="unfinished">Қосымшадан шығу</translation>
     </message>
     <message>
         <source>&amp;About %1</source>
@@ -349,11 +329,11 @@
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation>Qt &amp;туралы</translation>
+        <translation type="unfinished">Qt &amp;туралы</translation>
     </message>
     <message>
         <source>Show information about Qt</source>
-        <translation>Qt туралы ақпаратты көрсету</translation>
+        <translation type="unfinished">Qt туралы ақпаратты көрсету</translation>
     </message>
     <message>
         <source>Modify configuration options for %1</source>
@@ -378,35 +358,27 @@
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
-        <translation>Bitcoin мекенжайына тиын жіберу</translation>
+        <translation type="unfinished">Bitcoin мекенжайына тиын жіберу</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
-        <translation>Басқа локацияға әмиянның резервтік көшірмесін жасау</translation>
+        <translation type="unfinished">Басқа локацияға әмиянның резервтік көшірмесін жасау</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>Әмиян шифрлауға қолданылған құпиясөйлемді өзгерту</translation>
+        <translation type="unfinished">Әмиян шифрлауға қолданылған құпиясөйлемді өзгерту</translation>
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Жіберу</translation>
+        <translation type="unfinished">&amp;Жіберу</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Қабылдау</translation>
+        <translation type="unfinished">&amp;Қабылдау</translation>
     </message>
     <message>
         <source>&amp;Options…</source>
         <translation type="unfinished">&amp;Баптау…</translation>
-    </message>
-    <message>
-        <source>&amp;Show / Hide</source>
-        <translation>&amp;Көрсету / Жасыру</translation>
-    </message>
-    <message>
-        <source>Show or hide the main Window</source>
-        <translation>Бас Терезені көрсету немесе жасыру</translation>
     </message>
     <message>
         <source>&amp;Encrypt Wallet…</source>
@@ -414,7 +386,7 @@
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>Әмияныңызға тиесілі жеке кілттерді шифрлау</translation>
+        <translation type="unfinished">Әмияныңызға тиесілі жеке кілттерді шифрлау</translation>
     </message>
     <message>
         <source>&amp;Backup Wallet…</source>
@@ -430,7 +402,7 @@
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Хатқа Bitcoin мекенжайларын қосып, олар сізге тиесілі екенін дәлелдеу</translation>
+        <translation type="unfinished">Хатқа Bitcoin мекенжайларын қосып, олар сізге тиесілі екенін дәлелдеу</translation>
     </message>
     <message>
         <source>&amp;Verify message…</source>
@@ -438,15 +410,11 @@
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Хат тексеріп, берілген Bitcoin мекенжайлары қосылғанына көз жеткізу</translation>
+        <translation type="unfinished">Хат тексеріп, берілген Bitcoin мекенжайлары қосылғанына көз жеткізу</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
         <translation type="unfinished">&amp;Файлдан PSBT жүктеу…</translation>
-    </message>
-    <message>
-        <source>Load PSBT from clipboard…</source>
-        <translation type="unfinished">Айырбастау буферінен PSBT жүктеу...</translation>
     </message>
     <message>
         <source>Open &amp;URI…</source>
@@ -466,19 +434,19 @@
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
+        <translation type="unfinished">Файл</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Баптау</translation>
+        <translation type="unfinished">&amp;Баптау</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Көмек</translation>
+        <translation type="unfinished">Көмек</translation>
     </message>
     <message>
         <source>Tabs toolbar</source>
-        <translation>Қойынша құралдар тақтасы</translation>
+        <translation type="unfinished">Қойынша құралдар тақтасы</translation>
     </message>
     <message>
         <source>Syncing Headers (%1%)…</source>
@@ -491,10 +459,6 @@
     <message>
         <source>Indexing blocks on disk…</source>
         <translation type="unfinished">Дискідегі блоктар инедекстелуде...</translation>
-    </message>
-    <message>
-        <source>Reindexing blocks on disk…</source>
-        <translation type="unfinished">Дискідегі блоктар қайта индекстелуде…</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
@@ -510,14 +474,14 @@
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
     </message>
     <message>
         <source>%1 behind</source>
-        <translation>%1 артта</translation>
+        <translation type="unfinished">%1 қалмады</translation>
     </message>
     <message>
         <source>Catching up…</source>
@@ -525,19 +489,19 @@
     </message>
     <message>
         <source>Error</source>
-        <translation>Қате</translation>
+        <translation type="unfinished">қате</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Ескерту</translation>
+        <translation type="unfinished">Ескерту</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>Ақпарат</translation>
+        <translation type="unfinished">Информация</translation>
     </message>
     <message>
         <source>Up to date</source>
-        <translation>Жаңартылған</translation>
+        <translation type="unfinished">Жаңартылған</translation>
     </message>
     <message>
         <source>Open a wallet</source>
@@ -556,7 +520,7 @@
         <translation type="unfinished">&amp;Терезе</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Whive network.</source>
+        <source>%n active connection(s) to Bitcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />
@@ -579,16 +543,12 @@
         <translation type="unfinished">Комиссия</translation>
     </message>
     <message>
-        <source>Dust:</source>
-        <translation type="unfinished">Шаң</translation>
-    </message>
-    <message>
         <source>After Fee:</source>
         <translation type="unfinished">Комиссия алу кейін</translation>
     </message>
     <message>
         <source>Amount</source>
-        <translation type="unfinished">Саны</translation>
+        <translation type="unfinished">Сан</translation>
     </message>
     <message>
         <source>Date</source>
@@ -601,10 +561,6 @@
     <message>
         <source>Confirmed</source>
         <translation type="unfinished">Растық</translation>
-    </message>
-    <message>
-        <source>yes</source>
-        <translation type="unfinished">Иа</translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -633,11 +589,11 @@
     <name>EditAddressDialog</name>
     <message>
         <source>&amp;Label</source>
-        <translation>таңба</translation>
+        <translation type="unfinished">&amp;Белгі</translation>
     </message>
     <message>
         <source>&amp;Address</source>
-        <translation>Адрес</translation>
+        <translation type="unfinished">Адрес</translation>
     </message>
     </context>
 <context>
@@ -645,6 +601,27 @@
     <message>
         <source>Bitcoin</source>
         <translation type="unfinished">Биткоин</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n GB of space available</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>(of %n GB needed)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>(%n GB needed for full chain)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
     </message>
     <message numerus="yes">
         <source>(sufficient to restore backups %n day(s) old)</source>
@@ -660,7 +637,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation>қате</translation>
+        <translation type="unfinished">Қате</translation>
     </message>
     <message>
         <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
@@ -671,7 +648,7 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation>Баптау</translation>
+        <translation type="unfinished">Баптау</translation>
     </message>
     <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
@@ -683,15 +660,15 @@
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
-        <translation>UPnP арқылы порт &amp;сәйкестендіру</translation>
+        <translation type="unfinished">UPnP арқылы порт &amp;сәйкестендіру</translation>
     </message>
     <message>
         <source>&amp;Window</source>
-        <translation>&amp;Терезе</translation>
+        <translation type="unfinished">&amp;Терезе</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">қате</translation>
+        <translation type="unfinished">Қате</translation>
     </message>
     </context>
 <context>
@@ -713,11 +690,11 @@
     <name>RPCConsole</name>
     <message>
         <source>&amp;Information</source>
-        <translation>Информация</translation>
+        <translation type="unfinished">Информация</translation>
     </message>
     <message>
         <source>Number of connections</source>
-        <translation>Қосылымдар саны</translation>
+        <translation type="unfinished">Қосылымдар саны</translation>
     </message>
     <message>
         <source>Decrease font size</source>
@@ -779,13 +756,9 @@
         <source>After Fee:</source>
         <translation type="unfinished">Комиссия алу кейін</translation>
     </message>
-    <message>
-        <source>Dust:</source>
-        <translation type="unfinished">Шаң</translation>
-    </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
@@ -799,14 +772,14 @@
     <name>SendCoinsEntry</name>
     <message>
         <source>A&amp;mount:</source>
-        <translation>Саны</translation>
+        <translation type="unfinished">Саны</translation>
     </message>
     </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
         <source>Verify &amp;Message</source>
-        <translation>Хат &amp;тексеру</translation>
+        <translation type="unfinished">Хат &amp;тексеру</translation>
     </message>
     <message>
         <source>Message verification failed.</source>
@@ -815,31 +788,20 @@
     </context>
 <context>
     <name>TransactionDesc</name>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-        </translation>
-    </message>
-    <message>
-        <source>0/unconfirmed, %1</source>
-        <translation type="unfinished">0/расталмаған, %1</translation>
-    </message>
     <message>
         <source>Date</source>
         <translation type="unfinished">Күні</translation>
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
     </message>
     <message>
         <source>Amount</source>
-        <translation type="unfinished">Саны</translation>
+        <translation type="unfinished">Сан</translation>
     </message>
     </context>
 <context>
@@ -851,13 +813,6 @@
     <message>
         <source>Label</source>
         <translation type="unfinished">Белгі</translation>
-    </message>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-        </translation>
     </message>
     <message>
         <source>(no label)</source>
@@ -872,7 +827,7 @@
     </message>
     <message>
         <source>Comma separated file</source>
-        <extracomment>Expanded name of the CSV file format. See https://en.wikipedia.org/wiki/Comma-separated_values</extracomment>
+        <extracomment>Expanded name of the CSV file format. See: https://en.wikipedia.org/wiki/Comma-separated_values.</extracomment>
         <translation type="unfinished">Үтірмен бөлінген файл</translation>
     </message>
     <message>
@@ -902,28 +857,24 @@
         <source>Create a new wallet</source>
         <translation type="unfinished">Жаңа әмиян құру</translation>
     </message>
-</context>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Қате</translation>
+    </message>
+    </context>
 <context>
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
-        <translation type="unfinished">Экспорт</translation>
+        <translation type="unfinished">&amp;Экспорттау</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
         <translation type="unfinished">Қазіргі қойыншадағы деректерді файлға экспорттау</translation>
     </message>
-    <message>
-        <source>Error</source>
-        <translation type="unfinished">қате</translation>
-    </message>
     </context>
 <context>
     <name>bitcoin-core</name>
-    <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation type="unfinished">-fallbackfee=&lt;amount&gt; үшін қате сан: "%s"</translation>
-    </message>
     <message>
         <source>Transaction amount too small</source>
         <translation type="unfinished">Транзакция өте кішкентай</translation>

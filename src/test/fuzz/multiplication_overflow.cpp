@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Bitcoin Core developers
+// Copyright (c) 2020-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,14 +10,6 @@
 #include <string>
 #include <vector>
 
-#if defined(__has_builtin)
-#if __has_builtin(__builtin_mul_overflow)
-#define HAVE_BUILTIN_MUL_OVERFLOW
-#endif
-#elif defined(__GNUC__)
-#define HAVE_BUILTIN_MUL_OVERFLOW
-#endif
-
 namespace {
 template <typename T>
 void TestMultiplicationOverflow(FuzzedDataProvider& fuzzed_data_provider)
@@ -25,7 +17,7 @@ void TestMultiplicationOverflow(FuzzedDataProvider& fuzzed_data_provider)
     const T i = fuzzed_data_provider.ConsumeIntegral<T>();
     const T j = fuzzed_data_provider.ConsumeIntegral<T>();
     const bool is_multiplication_overflow_custom = MultiplicationOverflow(i, j);
-#if defined(HAVE_BUILTIN_MUL_OVERFLOW)
+#ifndef _MSC_VER
     T result_builtin;
     const bool is_multiplication_overflow_builtin = __builtin_mul_overflow(i, j, &result_builtin);
     assert(is_multiplication_overflow_custom == is_multiplication_overflow_builtin);

@@ -1,4 +1,4 @@
-// Copyright (c) 2019-2020 The Bitcoin Core developers
+// Copyright (c) 2019-2021 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,28 +10,29 @@
 #include <uint256.h>
 #include <univalue.h>
 #include <util/strencodings.h>
+#include <util/transaction_identifier.h>
 
 #include <cassert>
 #include <cstdint>
 #include <string>
 #include <vector>
 
-void initialize_hex()
-{
-    static const ECCVerifyHandle verify_handle;
-}
-
-FUZZ_TARGET_INIT(hex, initialize_hex)
+FUZZ_TARGET(hex)
 {
     const std::string random_hex_string(buffer.begin(), buffer.end());
     const std::vector<unsigned char> data = ParseHex(random_hex_string);
+    const std::vector<std::byte> bytes{ParseHex<std::byte>(random_hex_string)};
+    assert(AsBytes(Span{data}) == Span{bytes});
     const std::string hex_data = HexStr(data);
     if (IsHex(random_hex_string)) {
         assert(ToLower(random_hex_string) == hex_data);
     }
     (void)IsHexNumber(random_hex_string);
-    uint256 result;
-    (void)ParseHashStr(random_hex_string, result);
+    if (uint256::FromHex(random_hex_string)) {
+        assert(random_hex_string.length() == 64);
+        assert(Txid::FromHex(random_hex_string));
+        assert(Wtxid::FromHex(random_hex_string));
+    }
     (void)uint256S(random_hex_string);
     try {
         (void)HexToPubKey(random_hex_string);

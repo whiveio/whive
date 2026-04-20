@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2018-2022 Whive Core developers
+// Copyright (c) 2009-2022 The Bitcoin Core developers
+// Copyright (c) 2018-2024 Whive Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <consensus/amount.h>
 #include <policy/feerate.h>
-
 #include <tinyformat.h>
 
 #include <cmath>

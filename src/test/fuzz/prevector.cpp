@@ -1,17 +1,15 @@
-// Copyright (c) 2015-2020 The Bitcoin Core developers
+// Copyright (c) 2015-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <prevector.h>
+#include <serialize.h>
+#include <streams.h>
 #include <test/fuzz/FuzzedDataProvider.h>
 #include <test/fuzz/fuzz.h>
 
-#include <prevector.h>
+#include <ranges>
 #include <vector>
-
-#include <reverse_iterator.h>
-#include <serialize.h>
-#include <streams.h>
-
 namespace {
 
 template <unsigned int N, typename T>
@@ -47,7 +45,7 @@ public:
             assert(v == real_vector[pos]);
             ++pos;
         }
-        for (const T& v : reverse_iterate(pre_vector)) {
+        for (const T& v : pre_vector | std::views::reverse) {
             --pos;
             assert(v == real_vector[pos]);
         }
@@ -55,12 +53,12 @@ public:
             assert(v == real_vector[pos]);
             ++pos;
         }
-        for (const T& v : reverse_iterate(const_pre_vector)) {
+        for (const T& v : const_pre_vector | std::views::reverse) {
             --pos;
             assert(v == real_vector[pos]);
         }
-        CDataStream ss1(SER_DISK, 0);
-        CDataStream ss2(SER_DISK, 0);
+        DataStream ss1{};
+        DataStream ss2{};
         ss1 << real_vector;
         ss2 << pre_vector;
         assert(ss1.size() == ss2.size());
@@ -161,7 +159,7 @@ public:
         pre_vector.shrink_to_fit();
     }
 
-    void swap()
+    void swap() noexcept
     {
         real_vector.swap(real_vector_alt);
         pre_vector.swap(pre_vector_alt);
@@ -209,7 +207,8 @@ FUZZ_TARGET(prevector)
     FuzzedDataProvider prov(buffer.data(), buffer.size());
     prevector_tester<8, int> test;
 
-    while (prov.remaining_bytes()) {
+    LIMITED_WHILE(prov.remaining_bytes(), 3000)
+    {
         switch (prov.ConsumeIntegralInRange<int>(0, 13 + 3 * (test.size() > 0))) {
         case 0:
             test.insert(prov.ConsumeIntegralInRange<size_t>(0, test.size()), prov.ConsumeIntegral<int>());

@@ -35,16 +35,18 @@ it will use a special cookie file for authentication. The cookie is generated wi
 content when the daemon starts, and deleted when it exits. Read access to this file
 controls who can access it through RPC.
 
-By default the cookie is stored in the data directory, but it's location can be overridden
-with the option '-rpccookiefile'.
+By default the cookie is stored in the data directory, but its location can be
+overridden with the option `-rpccookiefile`. Default file permissions for the
+cookie are "owner" (i.e. user read/writeable) via default application-wide file
+umask of `0077`, but these can be overridden with the `-rpccookieperms` option.
 
 This allows for running whived without having to do any manual configuration.
 
 `conf`, `pid`, and `wallet` accept relative paths which are interpreted as
 relative to the data directory. `wallet` *only* supports relative paths.
 
-For an example configuration file that describes the configuration settings,
-see `share/examples/whive.conf`.
+To generate an example configuration file that describes the configuration settings,
+see [contrib/devtools/README.md](../contrib/devtools/README.md#gen-whive-confsh).
 
 Paths
 ---------------------------------
@@ -66,6 +68,22 @@ whive user and group. It is advised for security reasons to make the
 configuration file and data directory only readable by the whive user and
 group. Access to whive-cli and other whived rpc clients can then be
 controlled by group membership.
+
+NOTE: When using the systemd .service file, the creation of the aforementioned
+directories and the setting of their permissions is automatically handled by
+systemd. Directories are given a permission of 710, giving the whive group
+access to files under it _if_ the files themselves give permission to the
+whive group to do so. This does not allow
+for the listing of files under the directory.
+
+NOTE: It is not currently possible to override `datadir` in
+`/etc/whive/whive.conf` with the current systemd, OpenRC, and Upstart init
+files out-of-the-box. This is because the command line options specified in the
+init files take precedence over the configurations in
+`/etc/whive/whive.conf`. However, some init systems have their own
+configuration mechanisms that would allow for overriding the command line
+options specified in the init files (e.g. setting `BITCOIND_DATADIR` for
+OpenRC).
 
 ### macOS
 

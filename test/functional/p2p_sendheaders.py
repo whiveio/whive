@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2020 The Bitcoin Core developers
+# Copyright (c) 2014-2021 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test behavior of headers messages to announce blocks.
@@ -71,19 +71,13 @@ f. Announce 1 more header that builds on that fork.
    Expect: no response.
 
 Part 5: Test handling of headers that don't connect.
-a. Repeat 10 times:
+a. Repeat 100 times:
    1. Announce a header that doesn't connect.
       Expect: getheaders message
    2. Send headers chain.
       Expect: getdata for the missing blocks, tip update.
-b. Then send 9 more headers that don't connect.
+b. Then send 99 more headers that don't connect.
    Expect: getheaders message each time.
-c. Announce a header that does connect.
-   Expect: no response.
-d. Announce 49 headers that don't connect.
-   Expect: getheaders message each time.
-e. Announce one more that doesn't connect.
-   Expect: disconnect.
 """
 from test_framework.blocktools import create_block, create_coinbase
 from test_framework.messages import CInv
@@ -208,7 +202,7 @@ class SendHeadersTest(BitcoinTestFramework):
 
         # Clear out block announcements from each p2p listener
         [x.clear_block_announcements() for x in self.nodes[0].p2ps]
-        self.nodes[0].generate(count)
+        self.generatetoaddress(self.nodes[0], count, self.nodes[0].get_deterministic_priv_key().address)
         return int(self.nodes[0].getbestblockhash(), 16)
 
     def mine_reorg(self, length):
@@ -218,8 +212,8 @@ class SendHeadersTest(BitcoinTestFramework):
         to-be-reorged-out blocks are mined, so that we don't break later tests.
         return the list of block hashes newly mined."""
 
-        self.nodes[0].generate(length)  # make sure all invalidated blocks are node0's
-        sync_blocks(self.nodes, wait=0.1)
+        # make sure all invalidated blocks are node0's
+        self.generatetoaddress(self.nodes[0], length, self.nodes[0].get_deterministic_priv_key().address)
         for x in self.nodes[0].p2ps:
             x.wait_for_block_announcement(int(self.nodes[0].getbestblockhash(), 16))
             x.clear_block_announcements()
@@ -227,8 +221,7 @@ class SendHeadersTest(BitcoinTestFramework):
         tip_height = self.nodes[1].getblockcount()
         hash_to_invalidate = self.nodes[1].getblockhash(tip_height - (length - 1))
         self.nodes[1].invalidateblock(hash_to_invalidate)
-        all_hashes = self.nodes[1].generate(length + 1)  # Must be longer than the orig chain
-        sync_blocks(self.nodes, wait=0.1)
+        all_hashes = self.generatetoaddress(self.nodes[1], length + 1, self.nodes[1].get_deterministic_priv_key().address)  # Must be longer than the orig chain
         return [int(x, 16) for x in all_hashes]
 
     def run_test(self):
@@ -242,7 +235,7 @@ class SendHeadersTest(BitcoinTestFramework):
         self.test_nonnull_locators(test_node, inv_node)
 
     def test_null_locators(self, test_node, inv_node):
-        tip = self.nodes[0].getblockheader(self.nodes[0].generate(1)[0])
+        tip = self.nodes[0].getblockheader(self.generatetoaddress(self.nodes[0], 1, self.nodes[0].get_deterministic_priv_key().address)[0])
         tip_hash = int(tip["hash"], 16)
 
         inv_node.check_last_inv_announcement(inv=[tip_hash])
@@ -315,6 +308,7 @@ class SendHeadersTest(BitcoinTestFramework):
 
         # Now that we've synced headers, headers announcements should work
         tip = self.mine_blocks(1)
+        expected_hash = tip
         inv_node.check_last_inv_announcement(inv=[tip])
         test_node.check_last_headers_announcement(headers=[tip])
 
@@ -338,7 +332,10 @@ class SendHeadersTest(BitcoinTestFramework):
                 if j == 0:
                     # Announce via inv
                     test_node.send_block_inv(tip)
-                    test_node.wait_for_getheaders()
+                    if i == 0:
+                        test_node.wait_for_getheaders(block_hash=expected_hash)
+                    else:
+                        assert "getheaders" not in test_node.last_message
                     # Should have received a getheaders now
                     test_node.send_header_for_blocks(blocks)
                     # Test that duplicate inv's won't result in duplicate
@@ -525,7 +522,9 @@ class SendHeadersTest(BitcoinTestFramework):
         self.log.info("Part 5: Testing handling of unconnecting headers")
         # First we test that receipt of an unconnecting header doesn't prevent
         # chain sync.
-        for i in range(10):
+        expected_hash = tip
+        NUM_HEADERS = 100
+        for i in range(NUM_HEADERS):
             self.log.debug("Part 5.{}: starting...".format(i))
             test_node.last_message.pop("getdata", None)
             blocks = []
@@ -537,60 +536,39 @@ class SendHeadersTest(BitcoinTestFramework):
                 block_time += 1
                 height += 1
             # Send the header of the second block -> this won't connect.
-            with p2p_lock:
-                test_node.last_message.pop("getheaders", None)
             test_node.send_header_for_blocks([blocks[1]])
-            test_node.wait_for_getheaders()
+            test_node.wait_for_getheaders(block_hash=expected_hash)
             test_node.send_header_for_blocks(blocks)
             test_node.wait_for_getdata([x.sha256 for x in blocks])
             [test_node.send_message(msg_block(x)) for x in blocks]
             test_node.sync_with_ping()
             assert_equal(int(self.nodes[0].getbestblockhash(), 16), blocks[1].sha256)
+            expected_hash = blocks[1].sha256
 
         blocks = []
         # Now we test that if we repeatedly don't send connecting headers, we
         # don't go into an infinite loop trying to get them to connect.
-        MAX_UNCONNECTING_HEADERS = 10
-        for _ in range(MAX_UNCONNECTING_HEADERS + 1):
+        for _ in range(NUM_HEADERS + 1):
             blocks.append(create_block(tip, create_coinbase(height), block_time))
             blocks[-1].solve()
             tip = blocks[-1].sha256
             block_time += 1
             height += 1
 
-        for i in range(1, MAX_UNCONNECTING_HEADERS):
-            # Send a header that doesn't connect, check that we get a getheaders.
+        for i in range(1, NUM_HEADERS):
             with p2p_lock:
                 test_node.last_message.pop("getheaders", None)
+            # Send an empty header as a failed response to the received getheaders
+            # (from the previous iteration). Otherwise, the new headers will be
+            # treated as a response instead of as an announcement.
+            test_node.send_header_for_blocks([])
+            # Send the actual unconnecting header, which should trigger a new getheaders.
             test_node.send_header_for_blocks([blocks[i]])
-            test_node.wait_for_getheaders()
-
-        # Next header will connect, should re-set our count:
-        test_node.send_header_for_blocks([blocks[0]])
-
-        # Remove the first two entries (blocks[1] would connect):
-        blocks = blocks[2:]
-
-        # Now try to see how many unconnecting headers we can send
-        # before we get disconnected.  Should be 5*MAX_UNCONNECTING_HEADERS
-        for i in range(5 * MAX_UNCONNECTING_HEADERS - 1):
-            # Send a header that doesn't connect, check that we get a getheaders.
-            with p2p_lock:
-                test_node.last_message.pop("getheaders", None)
-            test_node.send_header_for_blocks([blocks[i % len(blocks)]])
-            test_node.wait_for_getheaders()
-
-        # Eventually this stops working.
-        test_node.send_header_for_blocks([blocks[-1]])
-
-        # Should get disconnected
-        test_node.wait_for_disconnect()
-
-        self.log.info("Part 5: success!")
+            test_node.wait_for_getheaders(block_hash=expected_hash)
 
         # Finally, check that the inv node never received a getdata request,
         # throughout the test
         assert "getdata" not in inv_node.last_message
 
 if __name__ == '__main__':
-    SendHeadersTest().main()
+    SendHeadersTest(__file__).main()

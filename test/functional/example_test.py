@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2020 The Bitcoin Core developers
+# Copyright (c) 2017-2022 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """An example functional test
@@ -13,9 +13,16 @@ is testing and *how* it's being tested
 # libraries then local imports).
 from collections import defaultdict
 
-# Avoid wildcard * imports if possible
-from test_framework.blocktools import (create_block, create_coinbase)
-from test_framework.messages import CInv, MSG_BLOCK
+# Avoid wildcard * imports
+# Use lexicographically sorted multi-line imports
+from test_framework.blocktools import (
+    create_block,
+    create_coinbase,
+)
+from test_framework.messages import (
+    CInv,
+    MSG_BLOCK,
+)
 from test_framework.p2p import (
     P2PInterface,
     msg_block,
@@ -71,6 +78,9 @@ class ExampleTest(BitcoinTestFramework):
 
     # Override the set_test_params(), skip_test_if_missing_module(), add_options(), setup_chain(), setup_network()
     # and setup_nodes() methods to customize the test setup as required.
+
+    def add_options(self, parser):
+        self.add_wallet_options(parser)
 
     def set_test_params(self):
         """Override test parameters for your individual test.
@@ -139,8 +149,7 @@ class ExampleTest(BitcoinTestFramework):
         peer_messaging = self.nodes[0].add_p2p_connection(BaseNode())
 
         # Generating a block on one of the nodes will get us out of IBD
-        blocks = [int(self.nodes[0].generate(nblocks=1)[0], 16)]
-        self.sync_all([self.nodes[0:2]])
+        blocks = [int(self.generate(self.nodes[0], sync_fun=lambda: self.sync_all(self.nodes[0:2]), nblocks=1)[0], 16)]
 
         # Notice above how we called an RPC by calling a method with the same
         # name on the node object. Notice also how we used a keyword argument
@@ -214,4 +223,4 @@ class ExampleTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    ExampleTest().main()
+    ExampleTest(__file__).main()

@@ -1,30 +1,35 @@
-// Copyright (c) 2012-2020 The Bitcoin Core developers
+// Copyright (c) 2012-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <key.h>
 
+#include <common/system.h>
 #include <key_io.h>
+#include <span.h>
 #include <streams.h>
+#include <secp256k1_extrakeys.h>
+#include <test/util/random.h>
 #include <test/util/setup_common.h>
 #include <uint256.h>
 #include <util/strencodings.h>
 #include <util/string.h>
-#include <util/system.h>
 
 #include <string>
 #include <vector>
 
 #include <boost/test/unit_test.hpp>
 
-static const std::string strSecret1 = "58Eo3mRkLa9gsSuuWzCmAVfxaA9ZUUv5MUYDLyqohVDn3iKtP8i";
-static const std::string strSecret2 = "59ULmac4UncwM9NQr926ic1qSoU1poYHWAdNo2qV3DEHV8cbZix";
-static const std::string strSecret1C = "KCwtFD6EHPKLyfNWoMUuvuYxHMNnLJDGDNYmVBtR7hZPppfRAfVT";
-static const std::string strSecret2C = "KJPgFmKkMeMcsuwWFtPrEdYgpt6EdzR5qjVZCB6zkkydkssrALpt";
-static const std::string addr1 = "CfijQPpGx8Y1wXCezKDVtiVSPrYs1TqKcS";
-static const std::string addr2 = "CWYreGRKEf45tmDJru2G9zG5fPSN7JN6T1";
-static const std::string addr1C = "CeGCRrDwqS9rZLCKzGmys6FLUede24ZV4o";
-static const std::string addr2C = "CTtcbLKQtFW3tR4x2ADdqrbiJVfZQD9cFm";
+using util::ToString;
+
+static const std::string strSecret1 = "5HxWvvfubhXpYYpS3tJkw6fq9jE9j18THftkZjHHfmFiWtmAbrj";
+static const std::string strSecret2 = "5KC4ejrDjv152FGwP386VD1i2NYc5KkfSMyv1nGy1VGDxGHqVY3";
+static const std::string strSecret1C = "Kwr371tjA9u2rFSMZjTNun2PXXP3WPZu2afRHTcta6KxEUdm1vEw";
+static const std::string strSecret2C = "L3Hq7a8FEQwJkW1M2GNKDW28546Vp5miewcCzSqUD9kCAXrJdS3g";
+static const std::string addr1 = "1QFqqMUD55ZV3PJEJZtaKCsQmjLT6JkjvJ";
+static const std::string addr2 = "1F5y5E5FMc5YzdJtB9hLaUe43GDxEKXENJ";
+static const std::string addr1C = "1NoJrossxPBKfCHuJXT4HadJrXRE9Fxiqs";
+static const std::string addr2C = "1CRj2HyM1CXWzHAXLQtiGLyggNT9WQqsDs";
 
 static const std::string strAddressBad = "CYx2uePwFLYVqrxzRqz6ceWGPK5PmEWfWD";
 
@@ -199,41 +204,9 @@ BOOST_AUTO_TEST_CASE(key_signature_tests)
     BOOST_CHECK(found_small);
 }
 
-BOOST_AUTO_TEST_CASE(key_key_negation)
-{
-    // create a dummy hash for signature comparison
-    unsigned char rnd[8];
-    std::string str = "Bitcoin key verification\n";
-    GetRandBytes(rnd, sizeof(rnd));
-    uint256 hash;
-    CHash256().Write(MakeUCharSpan(str)).Write(rnd).Finalize(hash);
-
-    // import the static test key
-    CKey key = DecodeSecret(strSecret1C);
-
-    // create a signature
-    std::vector<unsigned char> vch_sig;
-    std::vector<unsigned char> vch_sig_cmp;
-    key.Sign(hash, vch_sig);
-
-    // negate the key twice
-    BOOST_CHECK(key.GetPubKey().data()[0] == 0x03);
-    key.Negate();
-    // after the first negation, the signature must be different
-    key.Sign(hash, vch_sig_cmp);
-    BOOST_CHECK(vch_sig_cmp != vch_sig);
-    BOOST_CHECK(key.GetPubKey().data()[0] == 0x02);
-    key.Negate();
-    // after the second negation, we should have the original key and thus the
-    // same signature
-    key.Sign(hash, vch_sig_cmp);
-    BOOST_CHECK(vch_sig_cmp == vch_sig);
-    BOOST_CHECK(key.GetPubKey().data()[0] == 0x03);
-}
-
 static CPubKey UnserializePubkey(const std::vector<uint8_t>& data)
 {
-    CDataStream stream{SER_NETWORK, INIT_PROTO_VERSION};
+    DataStream stream{};
     stream << data;
     CPubKey pubkey;
     stream >> pubkey;
@@ -251,7 +224,7 @@ static unsigned int GetLen(unsigned char chHeader)
 
 static void CmpSerializationPubkey(const CPubKey& pubkey)
 {
-    CDataStream stream{SER_NETWORK, INIT_PROTO_VERSION};
+    DataStream stream{};
     stream << pubkey;
     CPubKey pubkey2;
     stream >> pubkey2;
@@ -321,11 +294,18 @@ BOOST_AUTO_TEST_CASE(bip340_test_vectors)
         key.Set(sec.begin(), sec.end(), true);
         XOnlyPubKey pubkey(key.GetPubKey());
         BOOST_CHECK(std::equal(pubkey.begin(), pubkey.end(), pub.begin(), pub.end()));
-        bool ok = key.SignSchnorr(msg256, sig64, nullptr, &aux256);
+        bool ok = key.SignSchnorr(msg256, sig64, nullptr, aux256);
         BOOST_CHECK(ok);
         BOOST_CHECK(std::vector<unsigned char>(sig64, sig64 + 64) == sig);
         // Verify those signatures for good measure.
         BOOST_CHECK(pubkey.VerifySchnorr(msg256, sig64));
+
+        // Repeat the same check, but use the KeyPair directly without any merkle tweak
+        KeyPair keypair = key.ComputeKeyPair(/*merkle_root=*/nullptr);
+        bool kp_ok = keypair.SignSchnorr(msg256, sig64, aux256);
+        BOOST_CHECK(kp_ok);
+        BOOST_CHECK(pubkey.VerifySchnorr(msg256, sig64));
+        BOOST_CHECK(std::vector<unsigned char>(sig64, sig64 + 64) == sig);
 
         // Do 10 iterations where we sign with a random Merkle root to tweak,
         // and compare against the resulting tweaked keys, with random aux.
@@ -337,11 +317,73 @@ BOOST_AUTO_TEST_CASE(bip340_test_vectors)
             BOOST_CHECK(tweaked);
             XOnlyPubKey tweaked_key = tweaked->first;
             aux256 = InsecureRand256();
-            bool ok = key.SignSchnorr(msg256, sig64, &merkle_root, &aux256);
+            bool ok = key.SignSchnorr(msg256, sig64, &merkle_root, aux256);
             BOOST_CHECK(ok);
+            BOOST_CHECK(tweaked_key.VerifySchnorr(msg256, sig64));
+
+            // Repeat the same check, but use the KeyPair class directly
+            KeyPair keypair = key.ComputeKeyPair(&merkle_root);
+            bool kp_ok = keypair.SignSchnorr(msg256, sig64, aux256);
+            BOOST_CHECK(kp_ok);
             BOOST_CHECK(tweaked_key.VerifySchnorr(msg256, sig64));
         }
     }
+}
+
+BOOST_AUTO_TEST_CASE(key_ellswift)
+{
+    for (const auto& secret : {strSecret1, strSecret2, strSecret1C, strSecret2C}) {
+        CKey key = DecodeSecret(secret);
+        BOOST_CHECK(key.IsValid());
+
+        uint256 ent32 = InsecureRand256();
+        auto ellswift = key.EllSwiftCreate(AsBytes(Span{ent32}));
+
+        CPubKey decoded_pubkey = ellswift.Decode();
+        if (!key.IsCompressed()) {
+            // The decoding constructor returns a compressed pubkey. If the
+            // original was uncompressed, we must decompress the decoded one
+            // to compare.
+            decoded_pubkey.Decompress();
+        }
+        BOOST_CHECK(key.GetPubKey() == decoded_pubkey);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(bip341_test_h)
+{
+    std::vector<unsigned char> G_uncompressed = ParseHex("0479be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8");
+    HashWriter hw;
+    hw.write(MakeByteSpan(G_uncompressed));
+    XOnlyPubKey H{hw.GetSHA256()};
+    BOOST_CHECK(XOnlyPubKey::NUMS_H == H);
+}
+
+BOOST_AUTO_TEST_CASE(key_schnorr_tweak_smoke_test)
+{
+    // Sanity check to ensure we get the same tweak using CPubKey vs secp256k1 functions
+    secp256k1_context* secp256k1_context_sign = secp256k1_context_create(SECP256K1_CONTEXT_NONE);
+
+    CKey key;
+    key.MakeNewKey(true);
+    uint256 merkle_root = InsecureRand256();
+
+    // secp256k1 functions
+    secp256k1_keypair keypair;
+    BOOST_CHECK(secp256k1_keypair_create(secp256k1_context_sign, &keypair, UCharCast(key.begin())));
+    secp256k1_xonly_pubkey xonly_pubkey;
+    BOOST_CHECK(secp256k1_keypair_xonly_pub(secp256k1_context_sign, &xonly_pubkey, nullptr, &keypair));
+    unsigned char xonly_bytes[32];
+    BOOST_CHECK(secp256k1_xonly_pubkey_serialize(secp256k1_context_sign, xonly_bytes, &xonly_pubkey));
+    uint256 tweak_old = XOnlyPubKey(xonly_bytes).ComputeTapTweakHash(&merkle_root);
+
+    // CPubKey
+    CPubKey pubkey = key.GetPubKey();
+    uint256 tweak_new = XOnlyPubKey(pubkey).ComputeTapTweakHash(&merkle_root);
+
+    BOOST_CHECK_EQUAL(tweak_old, tweak_new);
+
+    secp256k1_context_destroy(secp256k1_context_sign);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

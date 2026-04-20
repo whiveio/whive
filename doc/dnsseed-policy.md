@@ -41,6 +41,11 @@ details of their operating practices.
 7. A reachable email contact address must be published for inquiries
 related to the DNS seed operation.
 
+If these expectations cannot be satisfied the operator should
+discontinue providing services and contact the active Bitcoin
+Core development team as well as posting on
+[bitcoin-dev](https://groups.google.com/g/bitcoindev).
+
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
 

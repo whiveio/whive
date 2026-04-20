@@ -30,13 +30,17 @@ class CompactBlocksConnectionTest(BitcoinTestFramework):
     def relay_block_through(self, peer):
         """Relay a new block through peer peer, and return HB status between 1 and [2,3,4,5]."""
         self.connect_nodes(peer, 0)
-        self.nodes[0].generate(1)
-        self.sync_blocks()
+        self.generate(self.nodes[0], 1)
         self.disconnect_nodes(peer, 0)
-        status_to = [self.peer_info(1, i)['bip152_hb_to'] for i in range(2, 6)]
-        status_from = [self.peer_info(i, 1)['bip152_hb_from'] for i in range(2, 6)]
-        assert_equal(status_to, status_from)
-        return status_to
+
+        def status_to():
+            return [self.peer_info(1, i)['bip152_hb_to'] for i in range(2, 6)]
+
+        def status_from():
+            return [self.peer_info(i, 1)['bip152_hb_from'] for i in range(2, 6)]
+
+        self.wait_until(lambda: status_to() == status_from())
+        return status_to()
 
     def run_test(self):
         self.log.info("Testing reserved high-bandwidth mode slot for outbound peer...")
@@ -44,8 +48,7 @@ class CompactBlocksConnectionTest(BitcoinTestFramework):
         # Connect everyone to node 0, and mine some blocks to get all nodes out of IBD.
         for i in range(1, 6):
             self.connect_nodes(i, 0)
-        self.nodes[0].generate(2)
-        self.sync_blocks()
+        self.generate(self.nodes[0], 2)
         for i in range(1, 6):
             self.disconnect_nodes(i, 0)
 
@@ -94,4 +97,4 @@ class CompactBlocksConnectionTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    CompactBlocksConnectionTest().main()
+    CompactBlocksConnectionTest(__file__).main()

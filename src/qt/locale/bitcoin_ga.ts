@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>Cruthaigh seoladh nua</translation>
+        <translation type="unfinished">Cruthaigh seoladh nua</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Cóipeáil an seoladh atá roghnaithe faoi láthair chuig gearrthaisce an chórais</translation>
+        <translation type="unfinished">Cóipeáil an seoladh atá roghnaithe faoi láthair chuig gearrthaisce an chórais</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>Scrios an seoladh atá roghnaithe faoi láthair ón liosta</translation>
+        <translation type="unfinished">Scrios an seoladh atá roghnaithe faoi láthair ón liosta</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -35,15 +35,15 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Easpórtáil na sonraí sa táb reatha chuig comhad</translation>
+        <translation type="unfinished">Easpórtáil na sonraí sa táb reatha chuig comhad</translation>
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;Easpórtáil</translation>
+        <translation type="unfinished">&amp;Easpórtáil</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>&amp;Scrios</translation>
+        <translation type="unfinished">&amp;Scrios</translation>
     </message>
     <message>
         <source>Choose the address to send coins to</source>
@@ -56,14 +56,6 @@
     <message>
         <source>C&amp;hoose</source>
         <translation type="unfinished">&amp;Roghnaigh</translation>
-    </message>
-    <message>
-        <source>Sending addresses</source>
-        <translation type="unfinished">Seoltaí seoladh</translation>
-    </message>
-    <message>
-        <source>Receiving addresses</source>
-        <translation type="unfinished">Seoltaí glacadh</translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
@@ -93,7 +85,7 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Comma separated file</source>
-        <extracomment>Expanded name of the CSV file format. See https://en.wikipedia.org/wiki/Comma-separated_values</extracomment>
+        <extracomment>Expanded name of the CSV file format. See: https://en.wikipedia.org/wiki/Comma-separated_values.</extracomment>
         <translation type="unfinished">Comhad athróige camógdheighilte</translation>
     </message>
     <message>
@@ -120,19 +112,19 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-        <translation>Dialóg Pasfhrása</translation>
+        <translation type="unfinished">Dialóg Pasfhrása</translation>
     </message>
     <message>
         <source>Enter passphrase</source>
-        <translation>Cuir isteach pasfhrása</translation>
+        <translation type="unfinished">Cuir isteach pasfhrása</translation>
     </message>
     <message>
         <source>New passphrase</source>
-        <translation>Pasfhrása nua</translation>
+        <translation type="unfinished">Pasfhrása nua</translation>
     </message>
     <message>
         <source>Repeat new passphrase</source>
-        <translation>Athdhéan pasfhrása nua</translation>
+        <translation type="unfinished">Athdhéan pasfhrása nua</translation>
     </message>
     <message>
         <source>Show passphrase</source>
@@ -179,6 +171,14 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Cuir isteach an sean pasfhrása agus an pasfhrása nua don sparán.</translation>
     </message>
     <message>
+        <source>Continue</source>
+        <translation type="unfinished">Leanúint ar aghaidh</translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished">Ar ais</translation>
+    </message>
+    <message>
         <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">Cuimhnigh nach dtugann chriptiú do sparán cosaint go hiomlán do do bitcoins ó bheith goidte ag bogearraí mailíseacha atá ag ionfhabhtú do ríomhaire.</translation>
     </message>
@@ -223,6 +223,14 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Athraíodh pasfhrása sparán go rathúil.</translation>
     </message>
     <message>
+        <source>Passphrase change failed</source>
+        <translation type="unfinished">Theip ar athrú pasfhocail</translation>
+    </message>
+    <message>
+        <source>The old passphrase entered for the wallet decryption is incorrect. It contains a null character (ie - a zero byte). If the passphrase was set with a version of this software prior to 25.0, please try again with only the characters up to — but not including — the first null character.</source>
+        <translation type="unfinished">Tá an seanphasfhrása a cuireadh isteach le haghaidh díchriptithe an sparán mícheart. Tá carachtar nialasach ann (ie - beart nialasach). Má socraíodh an pasfhrása le leagan den bhogearra seo roimh 25.0, bain triail eile as gan ach na carachtair suas go dtí — ach gan a bheith san áireamh — an chéad charachtar null.</translation>
+    </message>
+    <message>
         <source>Warning: The Caps Lock key is on!</source>
         <translation type="unfinished">Rabhadh: Tá an eochair Glas Ceannlitreacha ar!</translation>
     </message>
@@ -241,31 +249,53 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
 <context>
     <name>BitcoinApplication</name>
     <message>
+        <source>Runaway exception</source>
+        <translation type="unfinished">Eisceacht runaway</translation>
+    </message>
+    <message>
         <source>A fatal error occurred. %1 can no longer continue safely and will quit.</source>
         <translation type="unfinished">Tharla earráid mharfach. Ní féidir le %1 leanúint ar aghaidh go sábháilte agus scoirfidh sé.</translation>
+    </message>
+    <message>
+        <source>Internal error</source>
+        <translation type="unfinished">Earráid inmheánach</translation>
     </message>
     </context>
 <context>
     <name>QObject</name>
     <message>
-        <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation type="unfinished">Earráid: Níl eolaire sonraí sainithe "%1" ann.</translation>
+        <source>Do you want to reset settings to default values, or to abort without making changes?</source>
+        <extracomment>Explanatory text shown on startup when the settings file cannot be read. Prompts user to make a choice between resetting or aborting.</extracomment>
+        <translation type="unfinished">Ar mhaith leat socruithe a athshocrú go luachanna réamhshocraithe, nó deireadh a chur leis gan athruithe a dhéanamh?</translation>
     </message>
     <message>
-        <source>Error: Cannot parse configuration file: %1.</source>
-        <translation type="unfinished">Earráid: Ní féidir parsáil comhad cumraíochta: %1.</translation>
+        <source>A fatal error occurred. Check that settings file is writable, or try running with -nosettings.</source>
+        <extracomment>Explanatory text shown on startup when the settings file could not be written. Prompts user to check that we have the ability to write to the file. Explains that the user has the option of running without a settings file.</extracomment>
+        <translation type="unfinished">Tharla earráid mharfach. Cinntigh go bhfuil an comhad socruithe inscríofa, nó bain triail as rith le -nosettings.</translation>
     </message>
     <message>
         <source>Error: %1</source>
         <translation type="unfinished">Earráid: %1</translation>
     </message>
     <message>
-        <source>Error initializing settings: %1</source>
-        <translation type="unfinished">Earráid túsú socruithe: %1</translation>
+        <source>%1 didn't yet exit safely…</source>
+        <translation type="unfinished">Níor scoir %1 go sábháilte fós…</translation>
     </message>
     <message>
         <source>unknown</source>
         <translation type="unfinished">neamhaithnid</translation>
+    </message>
+    <message>
+        <source>Embedded "%1"</source>
+        <translation type="unfinished">Leabaithe "%1"</translation>
+    </message>
+    <message>
+        <source>Default system font "%1"</source>
+        <translation type="unfinished">Cló réamhshocraithe an chórais "%1"</translation>
+    </message>
+    <message>
+        <source>Custom…</source>
+        <translation type="unfinished">Saincheaptha…</translation>
     </message>
     <message>
         <source>Amount</source>
@@ -276,12 +306,49 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Iontráil seoladh Bitcoin (m.sh.%1)</translation>
     </message>
     <message>
+        <source>Unroutable</source>
+        <translation type="unfinished">Dothreoraithe</translation>
+    </message>
+    <message>
+        <source>Onion</source>
+        <comment>network name</comment>
+        <extracomment>Name of Tor network in peer info</extracomment>
+        <translation type="unfinished">Oinniún</translation>
+    </message>
+    <message>
         <source>Inbound</source>
+        <extracomment>An inbound connection from a peer. An inbound connection is a connection initiated by a peer.</extracomment>
         <translation type="unfinished">Isteach</translation>
     </message>
     <message>
         <source>Outbound</source>
+        <extracomment>An outbound connection to a peer. An outbound connection is a connection initiated by us.</extracomment>
         <translation type="unfinished">Amach</translation>
+    </message>
+    <message>
+        <source>Full Relay</source>
+        <extracomment>Peer connection type that relays all network information.</extracomment>
+        <translation type="unfinished">Sealaíocht Iomlán</translation>
+    </message>
+    <message>
+        <source>Block Relay</source>
+        <extracomment>Peer connection type that relays network information about blocks and not transactions or addresses.</extracomment>
+        <translation type="unfinished">Sealaíocht Bloc</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <extracomment>Peer connection type established manually through one of several methods.</extracomment>
+        <translation type="unfinished">Lámhleabhar</translation>
+    </message>
+    <message>
+        <source>Feeler</source>
+        <extracomment>Short-lived peer connection type that tests the aliveness of known addresses.</extracomment>
+        <translation type="unfinished">Fearacht</translation>
+    </message>
+    <message>
+        <source>Address Fetch</source>
+        <extracomment>Short-lived peer connection type that solicits known addresses from a peer.</extracomment>
+        <translation type="unfinished">Seoladh Fetch</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -305,42 +372,42 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-            <numerusform />
+        <translation type="unfinished">
+            <numerusform>%n soicind(í)</numerusform>
+            <numerusform>%n soicind(í)</numerusform>
+            <numerusform>%n soicind(í)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-            <numerusform />
+        <translation type="unfinished">
+            <numerusform>%n nóiméad(a)</numerusform>
+            <numerusform>%n nóiméad(a)</numerusform>
+            <numerusform>%n nóiméad(a)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
         <translation type="unfinished">
-            <numerusform />
-            <numerusform />
-            <numerusform />
+            <numerusform>%n uair(eanta)</numerusform>
+            <numerusform>%n uair(eanta)</numerusform>
+            <numerusform>%n uair(eanta)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
         <translation type="unfinished">
-            <numerusform />
-            <numerusform />
-            <numerusform />
+            <numerusform>%n lá(/a)</numerusform>
+            <numerusform>%n lá(/a)</numerusform>
+            <numerusform>%n lá(/a)</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
         <translation type="unfinished">
-            <numerusform />
-            <numerusform />
-            <numerusform />
+            <numerusform>%n seachtain(/a)</numerusform>
+            <numerusform>%n seachtain(/a)</numerusform>
+            <numerusform>%n seachtain(/a)</numerusform>
         </translation>
     </message>
     <message>
@@ -350,53 +417,69 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message numerus="yes">
         <source>%n year(s)</source>
         <translation type="unfinished">
-            <numerusform />
-            <numerusform />
-            <numerusform />
+            <numerusform>%n bliain(/a)</numerusform>
+            <numerusform>%n bliain(/a)</numerusform>
+            <numerusform>%n bliain(/a)</numerusform>
         </translation>
     </message>
-    </context>
+    <message>
+        <source>default wallet</source>
+        <translation type="unfinished">sparán réamhshocraithe</translation>
+    </message>
+</context>
 <context>
     <name>BitcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Forléargas </translation>
+        <translation type="unfinished">&amp;Forléargas </translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
-        <translation>Taispeáin forbhreathnú ginearálta den sparán</translation>
+        <translation type="unfinished">Taispeáin forbhreathnú ginearálta den sparán</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Idirbheart</translation>
+        <translation type="unfinished">&amp;Idirbheart</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
-        <translation>Brabhsáil stair an idirbhirt</translation>
+        <translation type="unfinished">Brabhsáil stair an idirbhirt</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>&amp;Scoir</translation>
+        <translation type="unfinished">&amp;Scoir</translation>
     </message>
     <message>
         <source>Quit application</source>
-        <translation>Scoir feidhm</translation>
+        <translation type="unfinished">Scoir feidhm</translation>
     </message>
     <message>
         <source>&amp;About %1</source>
         <translation type="unfinished">&amp;Maidir le %1</translation>
     </message>
     <message>
+        <source>Show information about %1</source>
+        <translation type="unfinished">Taispeáin faisnéis faoi %1</translation>
+    </message>
+    <message>
         <source>About &amp;Qt</source>
-        <translation>Maidir le &amp;Qt</translation>
+        <translation type="unfinished">Maidir le &amp;Qt</translation>
     </message>
     <message>
         <source>Show information about Qt</source>
-        <translation>Taispeáin faisnéis faoi Qt</translation>
+        <translation type="unfinished">Taispeáin faisnéis faoi Qt</translation>
+    </message>
+    <message>
+        <source>Modify configuration options for %1</source>
+        <translation type="unfinished">Mionathraigh roghanna cumraíochta do %1</translation>
     </message>
     <message>
         <source>Create a new wallet</source>
         <translation type="unfinished">Cruthaigh sparán nua</translation>
+    </message>
+    <message>
+        <source>&amp;Minimize</source>
+        <translation type="unfinished">&amp;Íoslaghdaigh</translation>
     </message>
     <message>
         <source>Wallet:</source>
@@ -413,59 +496,115 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Send coins to a Bitcoin address</source>
-        <translation>Seol boinn chuig seoladh Bitcoin</translation>
+        <translation type="unfinished">Seol boinn chuig seoladh Bitcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
-        <translation>Cúltacaigh Sparán chuig suíomh eile</translation>
+        <translation type="unfinished">Cúltacaigh Sparán chuig suíomh eile</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>Athraigh an pasfhrása a úsáidtear le haghaidh criptiú sparán</translation>
+        <translation type="unfinished">Athraigh an pasfhrása a úsáidtear le haghaidh criptiú sparán</translation>
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Seol</translation>
+        <translation type="unfinished">&amp;Seol</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Glac</translation>
+        <translation type="unfinished">&amp;Glac</translation>
     </message>
     <message>
-        <source>&amp;Show / Hide</source>
-        <translation>&amp;Taispeáin / Folaigh</translation>
+        <source>&amp;Options…</source>
+        <translation type="unfinished">&amp;Roghanna…</translation>
     </message>
     <message>
-        <source>Show or hide the main Window</source>
-        <translation>Taispeáin nó folaigh an phríomhfhuinneog</translation>
+        <source>&amp;Encrypt Wallet…</source>
+        <translation type="unfinished">&amp;Criptigh Sparán…</translation>
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>Criptigh na heochracha príobháideacha a bhaineann le do sparán</translation>
+        <translation type="unfinished">Criptigh na heochracha príobháideacha a bhaineann le do sparán</translation>
+    </message>
+    <message>
+        <source>&amp;Backup Wallet…</source>
+        <translation type="unfinished">&amp;Sparán Cúltaca…</translation>
+    </message>
+    <message>
+        <source>&amp;Change Passphrase…</source>
+        <translation type="unfinished">&amp;Athraigh Pasfhocal…</translation>
+    </message>
+    <message>
+        <source>Sign &amp;message…</source>
+        <translation type="unfinished">Sínigh &amp;teachtaireacht…</translation>
     </message>
     <message>
         <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation>Sínigh teachtaireachtaí le do sheoltaí Bitcoin chun a chruthú gur leat iad</translation>
+        <translation type="unfinished">Sínigh teachtaireachtaí le do sheoltaí Bitcoin chun a chruthú gur leat iad</translation>
+    </message>
+    <message>
+        <source>&amp;Verify message…</source>
+        <translation type="unfinished">&amp;Fíoraigh teachtaireacht…</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation>Teachtaireachtaí a fhíorú lena chinntiú go raibh siad sínithe le seoltaí sainithe Bitcoin</translation>
+        <translation type="unfinished">Teachtaireachtaí a fhíorú lena chinntiú go raibh siad sínithe le seoltaí sainithe Bitcoin</translation>
+    </message>
+    <message>
+        <source>&amp;Load PSBT from file…</source>
+        <translation type="unfinished">&amp;Lódáil PSBT ón gcomhad…</translation>
+    </message>
+    <message>
+        <source>Open &amp;URI…</source>
+        <translation type="unfinished">Oscail &amp;URI…</translation>
+    </message>
+    <message>
+        <source>Close Wallet…</source>
+        <translation type="unfinished">Dún Sparán…</translation>
+    </message>
+    <message>
+        <source>Create Wallet…</source>
+        <translation type="unfinished">Cruthaigh Sparán…</translation>
+    </message>
+    <message>
+        <source>Close All Wallets…</source>
+        <translation type="unfinished">Dún Gach Sparán…</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Comhad</translation>
+        <translation type="unfinished">&amp;Comhad</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;Socruithe</translation>
+        <translation type="unfinished">&amp;Socruithe</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>C&amp;abhair</translation>
+        <translation type="unfinished">C&amp;abhair</translation>
     </message>
     <message>
         <source>Tabs toolbar</source>
-        <translation>Barra uirlisí cluaisíní</translation>
+        <translation type="unfinished">Barra uirlisí cluaisíní</translation>
+    </message>
+    <message>
+        <source>Syncing Headers (%1%)…</source>
+        <translation type="unfinished">Ceanntásca á Sioncronú (%1 %)…</translation>
+    </message>
+    <message>
+        <source>Synchronizing with network…</source>
+        <translation type="unfinished">Ag sioncronú le líonra…</translation>
+    </message>
+    <message>
+        <source>Indexing blocks on disk…</source>
+        <translation type="unfinished">Bloic á n-innéacsú ar an diosca…</translation>
+    </message>
+    <message>
+        <source>Processing blocks on disk…</source>
+        <translation type="unfinished">Bloic ar diosca á bpróiseáil…</translation>
+    </message>
+    <message>
+        <source>Connecting to peers…</source>
+        <translation type="unfinished">Ag nascadh le piaraí…</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
@@ -485,43 +624,51 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-            <numerusform />
+        <translation type="unfinished">
+            <numerusform>Próiseáladh %n bloc de stair na n-idirbheart.</numerusform>
+            <numerusform>Próiseáladh %n bloc de stair na n-idirbheart.</numerusform>
+            <numerusform>Próiseáladh %n bloc de stair na n-idirbheart.</numerusform>
         </translation>
     </message>
     <message>
         <source>%1 behind</source>
-        <translation>%1 taobh thiar</translation>
+        <translation type="unfinished">%1 taobh thiar</translation>
+    </message>
+    <message>
+        <source>Catching up…</source>
+        <translation type="unfinished">Ag teacht suas…</translation>
     </message>
     <message>
         <source>Last received block was generated %1 ago.</source>
-        <translation>Gineadh an bloc deireanach a fuarthas %1 ó shin.</translation>
+        <translation type="unfinished">Gineadh an bloc deireanach a fuarthas %1 ó shin.</translation>
     </message>
     <message>
         <source>Transactions after this will not yet be visible.</source>
-        <translation>Ní bheidh idirbhearta ina dhiaidh seo le feiceáil go fóill.</translation>
+        <translation type="unfinished">Ní bheidh idirbhearta ina dhiaidh seo le feiceáil go fóill.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Earráid</translation>
+        <translation type="unfinished">Earráid</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Rabhadh</translation>
+        <translation type="unfinished">Rabhadh</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>Faisnéis</translation>
+        <translation type="unfinished">Faisnéis</translation>
     </message>
     <message>
         <source>Up to date</source>
-        <translation>Suas chun dáta</translation>
+        <translation type="unfinished">Suas chun dáta</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction</source>
         <translation type="unfinished">Lódáil Idirbheart Bitcoin Sínithe go Páirteach</translation>
+    </message>
+    <message>
+        <source>Load PSBT from &amp;clipboard…</source>
+        <translation type="unfinished">Luchtaigh PSBT ón &amp;gearrthaisce…</translation>
     </message>
     <message>
         <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
@@ -560,8 +707,26 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Dún sparán</translation>
     </message>
     <message>
+        <source>Restore Wallet…</source>
+        <extracomment>Name of the menu item that restores wallet from a backup file.</extracomment>
+        <translation type="unfinished">Athchóirigh Sparán…</translation>
+    </message>
+    <message>
+        <source>Restore a wallet from a backup file</source>
+        <extracomment>Status tip for Restore Wallet menu item</extracomment>
+        <translation type="unfinished">Athchóirigh sparán ó chomhad cúltaca</translation>
+    </message>
+    <message>
         <source>Close all wallets</source>
         <translation type="unfinished">Dún gach sparán</translation>
+    </message>
+    <message>
+        <source>Migrate Wallet</source>
+        <translation type="unfinished">Imirce Sparán</translation>
+    </message>
+    <message>
+        <source>Migrate a wallet</source>
+        <translation type="unfinished">Imirce sparán</translation>
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Bitcoin command-line options</source>
@@ -576,20 +741,32 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Masc na luachanna sa gcluaisín Forléargas</translation>
     </message>
     <message>
-        <source>default wallet</source>
-        <translation type="unfinished">sparán réamhshocraithe</translation>
-    </message>
-    <message>
         <source>No wallets available</source>
         <translation type="unfinished">Níl aon sparán ar fáil</translation>
     </message>
     <message>
-        <source>&amp;Window</source>
-        <translation type="unfinished">&amp;Fuinneog</translation>
+        <source>Wallet Data</source>
+        <extracomment>Name of the wallet data file format.</extracomment>
+        <translation type="unfinished">Sonraí Sparán</translation>
     </message>
     <message>
-        <source>Minimize</source>
-        <translation type="unfinished">Íoslaghdaigh</translation>
+        <source>Load Wallet Backup</source>
+        <extracomment>The title for Restore Wallet File Windows</extracomment>
+        <translation type="unfinished">Luchtaigh Cúltaca Sparán</translation>
+    </message>
+    <message>
+        <source>Restore Wallet</source>
+        <extracomment>Title of pop-up window shown when the user is attempting to restore a wallet.</extracomment>
+        <translation type="unfinished">Athchóirigh Sparán</translation>
+    </message>
+    <message>
+        <source>Wallet Name</source>
+        <extracomment>Label of the input field where the name of the wallet is entered.</extracomment>
+        <translation type="unfinished">Ainm Sparán</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation type="unfinished">&amp;Fuinneog</translation>
     </message>
     <message>
         <source>Zoom</source>
@@ -603,14 +780,54 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <source>%1 client</source>
         <translation type="unfinished">%1 cliaint</translation>
     </message>
+    <message>
+        <source>&amp;Hide</source>
+        <translation type="unfinished">&amp;Folaigh</translation>
+    </message>
+    <message>
+        <source>S&amp;how</source>
+        <translation type="unfinished">S&amp;conas</translation>
+    </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Whive network.</source>
+        <source>%n active connection(s) to Bitcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
-            <numerusform />
-            <numerusform />
-            <numerusform />
+            <numerusform>%n nasc(í) gníomhacha le líonra Bitcoin.</numerusform>
+            <numerusform>%n nasc(í) gníomhacha le líonra Bitcoin.</numerusform>
+            <numerusform>%n nasc(í) gníomhacha le líonra Bitcoin.</numerusform>
         </translation>
+    </message>
+    <message>
+        <source>Click for more actions.</source>
+        <extracomment>A substring of the tooltip. "More actions" are available via the context menu.</extracomment>
+        <translation type="unfinished">Cliceáil le haghaidh tuilleadh gníomhartha.</translation>
+    </message>
+    <message>
+        <source>Show Peers tab</source>
+        <extracomment>A context menu item. The "Peers tab" is an element of the "Node window".</extracomment>
+        <translation type="unfinished">Taispeáin cluaisín Piaraí</translation>
+    </message>
+    <message>
+        <source>Disable network activity</source>
+        <extracomment>A context menu item.</extracomment>
+        <translation type="unfinished">Díchumasaigh gníomhaíocht líonra</translation>
+    </message>
+    <message>
+        <source>Enable network activity</source>
+        <extracomment>A context menu item. The network activity was disabled previously.</extracomment>
+        <translation type="unfinished">Cumasaigh gníomhaíocht líonra</translation>
+    </message>
+    <message>
+        <source>Pre-syncing Headers (%1%)…</source>
+        <translation type="unfinished">Ceanntásca a réamhshioncronú (%1 %)…</translation>
+    </message>
+    <message>
+        <source>Error creating wallet</source>
+        <translation type="unfinished">Earráid agus sparán á chruthú</translation>
+    </message>
+    <message>
+        <source>Cannot create new wallet, the software was compiled without sqlite support (required for descriptor wallets)</source>
+        <translation type="unfinished">Ní féidir sparán nua a chruthú, tiomsaíodh na bogearraí gan tacaíocht sqlite (riachtanach le haghaidh sparán tuairisceora)</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -658,11 +875,11 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Sent transaction</source>
-        <translation>Idirbheart seolta</translation>
+        <translation type="unfinished">Idirbheart seolta</translation>
     </message>
     <message>
         <source>Incoming transaction</source>
-        <translation>Idirbheart ag teacht isteach</translation>
+        <translation type="unfinished">Idirbheart ag teacht isteach</translation>
     </message>
     <message>
         <source>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</source>
@@ -678,11 +895,11 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>Sparán &lt;b&gt;criptithe&lt;/b&gt;agus &lt;b&gt;díghlasáilte&lt;/b&gt;faoi láthair</translation>
+        <translation type="unfinished">Sparán &lt;b&gt;criptithe&lt;/b&gt;agus &lt;b&gt;díghlasáilte&lt;/b&gt;faoi láthair</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation>Sparán &lt;b&gt;criptithe&lt;/b&gt; agus &lt;b&gt;glasáilte&lt;/b&gt; faoi láthair</translation>
+        <translation type="unfinished">Sparán &lt;b&gt;criptithe&lt;/b&gt; agus &lt;b&gt;glasáilte&lt;/b&gt; faoi láthair</translation>
     </message>
     <message>
         <source>Original message:</source>
@@ -717,10 +934,6 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>Fee:</source>
         <translation type="unfinished">Táille:</translation>
-    </message>
-    <message>
-        <source>Dust:</source>
-        <translation type="unfinished">Dusta:</translation>
     </message>
     <message>
         <source>After Fee:</source>
@@ -771,6 +984,30 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Cóipeáil suim</translation>
     </message>
     <message>
+        <source>&amp;Copy address</source>
+        <translation type="unfinished">&amp;Cóipeáil seoladh</translation>
+    </message>
+    <message>
+        <source>Copy &amp;label</source>
+        <translation type="unfinished">Cóipeáil &amp;lipéad</translation>
+    </message>
+    <message>
+        <source>Copy &amp;amount</source>
+        <translation type="unfinished">Cóipeáil &amp; méid</translation>
+    </message>
+    <message>
+        <source>Copy transaction &amp;ID and output index</source>
+        <translation type="unfinished">Cóipeáil idirbheart &amp; ID agus innéacs aschuir</translation>
+    </message>
+    <message>
+        <source>L&amp;ock unspent</source>
+        <translation type="unfinished">L&amp;ocáil neamhchaite</translation>
+    </message>
+    <message>
+        <source>&amp;Unlock unspent</source>
+        <translation type="unfinished">L&amp;ocáil neamhchaite</translation>
+    </message>
+    <message>
         <source>Copy quantity</source>
         <translation type="unfinished">Cóipeáil méid</translation>
     </message>
@@ -787,28 +1024,12 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Cóipeáíl bearta</translation>
     </message>
     <message>
-        <source>Copy dust</source>
-        <translation type="unfinished">Cóipeáíl dusta</translation>
-    </message>
-    <message>
         <source>Copy change</source>
         <translation type="unfinished">Cóipeáíl sóinseáil</translation>
     </message>
     <message>
         <source>(%1 locked)</source>
         <translation type="unfinished">(%1 glasáilte)</translation>
-    </message>
-    <message>
-        <source>yes</source>
-        <translation type="unfinished">tá</translation>
-    </message>
-    <message>
-        <source>no</source>
-        <translation type="unfinished">níl</translation>
-    </message>
-    <message>
-        <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation type="unfinished">Casann an lipéad seo dearg má fhaigheann aon fhaighteoir méid níos lú ná an tairseach reatha dusta.</translation>
     </message>
     <message>
         <source>Can vary +/- %1 satoshi(s) per input.</source>
@@ -830,7 +1051,13 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
 <context>
     <name>CreateWalletActivity</name>
     <message>
+        <source>Create Wallet</source>
+        <extracomment>Title of window indicating the progress of creation of a new wallet.</extracomment>
+        <translation type="unfinished">Cruthaigh Sparán</translation>
+    </message>
+    <message>
         <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;…</source>
+        <extracomment>Descriptive text of the create wallet progress window which indicates to the user which wallet is currently being created.</extracomment>
         <translation type="unfinished">Sparán a Chruthú &lt;b&gt;%1&lt;/b&gt;...</translation>
     </message>
     <message>
@@ -841,7 +1068,79 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <source>Create wallet warning</source>
         <translation type="unfinished">Rabhadh cruthú  sparán</translation>
     </message>
-    </context>
+    <message>
+        <source>Can't list signers</source>
+        <translation type="unfinished">Ní féidir sínitheoirí a liostú</translation>
+    </message>
+    <message>
+        <source>Too many external signers found</source>
+        <translation type="unfinished">Fuarthas an iomarca sínitheoirí seachtracha</translation>
+    </message>
+</context>
+<context>
+    <name>LoadWalletsActivity</name>
+    <message>
+        <source>Load Wallets</source>
+        <extracomment>Title of progress window which is displayed when wallets are being loaded.</extracomment>
+        <translation type="unfinished">Luchtaigh Sparán</translation>
+    </message>
+    <message>
+        <source>Loading wallets…</source>
+        <extracomment>Descriptive text of the load wallets progress window which indicates to the user that wallets are currently being loaded.</extracomment>
+        <translation type="unfinished">Sparán á lódáil…</translation>
+    </message>
+</context>
+<context>
+    <name>MigrateWalletActivity</name>
+    <message>
+        <source>Migrate wallet</source>
+        <translation type="unfinished">Imirce sparán</translation>
+    </message>
+    <message>
+        <source>Are you sure you wish to migrate the wallet &lt;i&gt;%1&lt;/i&gt;?</source>
+        <translation type="unfinished">An bhfuil tú cinnte gur mian leat an sparán &lt;i&gt;%1 &lt;/i&gt;?</translation>
+    </message>
+    <message>
+        <source>Migrating the wallet will convert this wallet to one or more descriptor wallets. A new wallet backup will need to be made.
+If this wallet contains any watchonly scripts, a new wallet will be created which contains those watchonly scripts.
+If this wallet contains any solvable but not watched scripts, a different and new wallet will be created which contains those scripts.
+
+The migration process will create a backup of the wallet before migrating. This backup file will be named &lt;wallet name&gt;-&lt;timestamp&gt;.legacy.bak and can be found in the directory for this wallet. In the event of an incorrect migration, the backup can be restored with the "Restore Wallet" functionality.</source>
+        <translation type="unfinished">Má dhéantar an sparán a aistriú, déanfar an sparán seo a thiontú go sparán tuairisceora amháin nó níos mó. Beidh gá le cúltaca sparán nua.
+Má tá aon scripteanna faire amháin sa sparán seo, cruthófar sparán nua ina mbeidh na scripteanna faire amháin sin.
+Má tá aon scripteanna intuaslagtha ach nach bhfuil faire orthu sa sparán seo, cruthófar sparán difriúil agus nua ina mbeidh na scripteanna sin.
+
+Cruthóidh an próiseas imirce cúltaca den sparán roimh imirce. Ainmneofar an comhad cúltaca seo &lt;wallet name&gt;-&lt;timestamp&gt;.legacy.bak agus is féidir é a fháil san eolaire don sparán seo. I gcás imirce mícheart, is féidir an cúltaca a chur ar ais leis an bhfeidhmiúlacht "Athchóirigh Sparán".</translation>
+    </message>
+    <message>
+        <source>Migrate Wallet</source>
+        <translation type="unfinished">Imirce Sparán</translation>
+    </message>
+    <message>
+        <source>Migrating Wallet &lt;b&gt;%1&lt;/b&gt;…</source>
+        <translation type="unfinished">Sparán á Ascnamh &lt;b&gt;%1&lt;/b&gt;…</translation>
+    </message>
+    <message>
+        <source>The wallet '%1' was migrated successfully.</source>
+        <translation type="unfinished">D'éirigh le haistriú an sparán '%1'.</translation>
+    </message>
+    <message>
+        <source>Watchonly scripts have been migrated to a new wallet named '%1'.</source>
+        <translation type="unfinished">Aistríodh scripteanna faire amháin go sparán nua darb ainm '%1'.</translation>
+    </message>
+    <message>
+        <source>Solvable but not watched scripts have been migrated to a new wallet named '%1'.</source>
+        <translation type="unfinished">Aistríodh scripteanna intuaslagtha ach nach bhfuiltear ag faire orthu go sparán nua darb ainm '%1'.</translation>
+    </message>
+    <message>
+        <source>Migration failed</source>
+        <translation type="unfinished">Theip ar an imirce</translation>
+    </message>
+    <message>
+        <source>Migration Successful</source>
+        <translation type="unfinished">D'éirigh leis an Imirce</translation>
+    </message>
+</context>
 <context>
     <name>OpenWalletActivity</name>
     <message>
@@ -853,10 +1152,44 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Rabhadh oscail sparán</translation>
     </message>
     <message>
-        <source>default wallet</source>
-        <translation type="unfinished">sparán réamhshocraithe</translation>
+        <source>Open Wallet</source>
+        <extracomment>Title of window indicating the progress of opening of a wallet.</extracomment>
+        <translation type="unfinished">Oscail Sparán</translation>
     </message>
-    </context>
+    <message>
+        <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;…</source>
+        <extracomment>Descriptive text of the open wallet progress window which indicates to the user which wallet is currently being opened.</extracomment>
+        <translation type="unfinished">Sparán Oscailte&lt;b&gt;%1&lt;/b&gt;…</translation>
+    </message>
+</context>
+<context>
+    <name>RestoreWalletActivity</name>
+    <message>
+        <source>Restore Wallet</source>
+        <extracomment>Title of progress window which is displayed when wallets are being restored.</extracomment>
+        <translation type="unfinished">Athchóirigh Sparán</translation>
+    </message>
+    <message>
+        <source>Restoring Wallet &lt;b&gt;%1&lt;/b&gt;…</source>
+        <extracomment>Descriptive text of the restore wallets progress window which indicates to the user that wallets are currently being restored.</extracomment>
+        <translation type="unfinished">Sparán á Athchóiriú&lt;b&gt;%1&lt;/b&gt;…</translation>
+    </message>
+    <message>
+        <source>Restore wallet failed</source>
+        <extracomment>Title of message box which is displayed when the wallet could not be restored.</extracomment>
+        <translation type="unfinished">Theip ar athchóiriú an sparán</translation>
+    </message>
+    <message>
+        <source>Restore wallet warning</source>
+        <extracomment>Title of message box which is displayed when the wallet is restored with some warning.</extracomment>
+        <translation type="unfinished">Athchóirigh rabhadh sparán</translation>
+    </message>
+    <message>
+        <source>Restore wallet message</source>
+        <extracomment>Title of message box which is displayed when the wallet is successfully restored.</extracomment>
+        <translation type="unfinished">Athchóirigh teachtaireacht sparán</translation>
+    </message>
+</context>
 <context>
     <name>WalletController</name>
     <message>
@@ -885,6 +1218,14 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>Create Wallet</source>
         <translation type="unfinished">Cruthaigh Sparán</translation>
+    </message>
+    <message>
+        <source>You are one step away from creating your new wallet!</source>
+        <translation type="unfinished">Tá tú céim amháin ar shiúl ó chruthú do sparán nua!</translation>
+    </message>
+    <message>
+        <source>Please provide a name and, if desired, enable any advanced options</source>
+        <translation type="unfinished">Tabhair ainm le do thoil agus, más mian leat, cumasaigh aon ardroghanna</translation>
     </message>
     <message>
         <source>Wallet Name</source>
@@ -923,31 +1264,32 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Déan Sparán Glan</translation>
     </message>
     <message>
-        <source>Use descriptors for scriptPubKey management</source>
-        <translation type="unfinished">Úsáid tuairisceoirí le haghaidh bainistíochta scriptPubKey</translation>
+        <source>Use an external signing device such as a hardware wallet. Configure the external signer script in wallet preferences first.</source>
+        <translation type="unfinished">Bain úsáid as gléas sínithe seachtrach cosúil le sparán crua-earraí. Cumraigh an script sínitheora sheachtraigh i sainroghanna an sparán ar dtús.</translation>
     </message>
     <message>
-        <source>Descriptor Wallet</source>
-        <translation type="unfinished">Sparán Tuairisceoir</translation>
+        <source>External signer</source>
+        <translation type="unfinished">Sínitheoir seachtrach</translation>
     </message>
     <message>
         <source>Create</source>
         <translation type="unfinished">Cruthaigh</translation>
     </message>
     <message>
-        <source>Compiled without sqlite support (required for descriptor wallets)</source>
-        <translation type="unfinished">Tiomsaithe gan tacíocht sqlite (riachtanach do sparán tuairisceora)</translation>
+        <source>Compiled without external signing support (required for external signing)</source>
+        <extracomment>"External signing" means using devices such as hardware wallets.</extracomment>
+        <translation type="unfinished">Tiomsaithe gan tacaíocht sínithe seachtrach (riachtanach le haghaidh síniú seachtrach)</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>EditAddressDialog</name>
     <message>
         <source>Edit Address</source>
-        <translation>Eagarthóireacht Seoladh</translation>
+        <translation type="unfinished">Eagarthóireacht Seoladh</translation>
     </message>
     <message>
         <source>&amp;Label</source>
-        <translation>&amp;Lipéad</translation>
+        <translation type="unfinished">&amp;Lipéad</translation>
     </message>
     <message>
         <source>The label associated with this address list entry</source>
@@ -959,7 +1301,7 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>&amp;Address</source>
-        <translation>&amp;Seoladh</translation>
+        <translation type="unfinished">&amp;Seoladh</translation>
     </message>
     <message>
         <source>New sending address</source>
@@ -994,27 +1336,55 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <name>FreespaceChecker</name>
     <message>
         <source>A new data directory will be created.</source>
-        <translation>Cruthófar eolaire sonraíocht nua.</translation>
+        <translation type="unfinished">Cruthófar eolaire sonraíocht nua.</translation>
     </message>
     <message>
         <source>name</source>
-        <translation>ainm</translation>
+        <translation type="unfinished">ainm</translation>
     </message>
     <message>
         <source>Directory already exists. Add %1 if you intend to create a new directory here.</source>
-        <translation>Tá eolaire ann cheana féin. Cuir %1 leis má tá sé ar intinn agat eolaire nua a chruthú anseo.</translation>
+        <translation type="unfinished">Tá eolaire ann cheana féin. Cuir %1 leis má tá sé ar intinn agat eolaire nua a chruthú anseo.</translation>
     </message>
     <message>
         <source>Path already exists, and is not a directory.</source>
-        <translation>Tá cosán ann cheana, agus ní eolaire é.</translation>
+        <translation type="unfinished">Tá cosán ann cheana, agus ní eolaire é.</translation>
     </message>
     <message>
         <source>Cannot create data directory here.</source>
-        <translation>Ní féidir eolaire sonraíocht a chruthú anseo.</translation>
+        <translation type="unfinished">Ní féidir eolaire sonraíocht a chruthú anseo.</translation>
     </message>
 </context>
 <context>
     <name>Intro</name>
+    <message numerus="yes">
+        <source>%n GB of space available</source>
+        <translation type="unfinished">
+            <numerusform>%n GB de spás ar fáil</numerusform>
+            <numerusform>%n GB de spás ar fáil</numerusform>
+            <numerusform>%n GB de spás ar fáil</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>(of %n GB needed)</source>
+        <translation type="unfinished">
+            <numerusform>(de %n GB teastáil)</numerusform>
+            <numerusform>(de %n GB teastáil)</numerusform>
+            <numerusform>(de %n GB teastáil)</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>(%n GB needed for full chain)</source>
+        <translation type="unfinished">
+            <numerusform>(%n GB teastáil do slabhra iomlán)</numerusform>
+            <numerusform>(%n GB teastáil do slabhra iomlán)</numerusform>
+            <numerusform>(%n GB teastáil do slabhra iomlán)</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Choose data directory</source>
+        <translation type="unfinished">Roghnaigh eolaire sonraí</translation>
+    </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
         <translation type="unfinished">Ar a laghad stórálfar %1 GB de shonraí  sa comhadlann seo, agus fásfaidh sé le himeacht ama.</translation>
@@ -1027,9 +1397,9 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <source>(sufficient to restore backups %n day(s) old)</source>
         <extracomment>Explanatory text on the capability of the current prune target.</extracomment>
         <translation type="unfinished">
-            <numerusform />
-            <numerusform />
-            <numerusform />
+            <numerusform>(leor chun cúltacaí a aischur %n lá(laethanta) d'aois)</numerusform>
+            <numerusform>(leor chun cúltacaí a aischur %n lá(laethanta) d'aois)</numerusform>
+            <numerusform>(leor chun cúltacaí a aischur %n lá(laethanta) d'aois)</numerusform>
         </translation>
     </message>
     <message>
@@ -1046,11 +1416,11 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Earráid</translation>
+        <translation type="unfinished">Earráid</translation>
     </message>
     <message>
         <source>Welcome</source>
-        <translation>Fáilte</translation>
+        <translation type="unfinished">Fáilte</translation>
     </message>
     <message>
         <source>Welcome to %1.</source>
@@ -1061,8 +1431,8 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Mar gurb é seo an chéad uair a lainseáil an clár, is féidir leat a roghnú cá stórálfaidh %1 a chuid sonraí.</translation>
     </message>
     <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
-        <translation type="unfinished">Nuair a chliceálann tú Togha, tosóidh %1 ag íoslódáil agus ag próiseáil an blocshlabhra iomlán %4 (%2GB) ag tosú leis na hidirbhearta is luaithe %3 nuair a lainseáil %4 i dtosach.</translation>
+        <source>Limit block chain storage to</source>
+        <translation type="unfinished">Teorainn a chur le blocshlabhra stórála go</translation>
     </message>
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
@@ -1073,16 +1443,20 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Tá an sioncrónú tosaigh seo an-dhian, agus d’fhéadfadh sé fadhbanna crua-earraí a nochtadh le do ríomhaire nach tugadh faoi deara roimhe seo. Gach uair a ritheann tú %1, leanfaidh sé ar aghaidh ag íoslódáil san áit ar fhág sé as.</translation>
     </message>
     <message>
+        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2 GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
+        <translation type="unfinished">Nuair a chliceálann tú OK, tosóidh %1 ag íosluchtú agus ag próiseáil slabhra iomlán %4 (%2 GB) ag tosú leis na hidirbhearta is luaithe i %3 nuair a seoladh %4 ar dtús.</translation>
+    </message>
+    <message>
         <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
         <translation type="unfinished">Má roghnaigh tú stóráil blocshlabhra a theorannú (bearradh), fós caithfear na sonraí stairiúla a íoslódáil agus a phróiseáil, ach scriosfar iad ina dhiaidh sin chun d’úsáid diosca a choinneáil íseal.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
-        <translation>Úsáid an comhadlann sonraí réamhshocrú</translation>
+        <translation type="unfinished">Úsáid an comhadlann sonraí réamhshocrú</translation>
     </message>
     <message>
         <source>Use a custom data directory:</source>
-        <translation>Úsáid comhadlann sonraí saincheaptha:</translation>
+        <translation type="unfinished">Úsáid comhadlann sonraí saincheaptha:</translation>
     </message>
 </context>
 <context>
@@ -1103,6 +1477,10 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
+        <source>%1 is shutting down…</source>
+        <translation type="unfinished">Tá %1 ag múchadh…</translation>
+    </message>
+    <message>
         <source>Do not shut down the computer until this window disappears.</source>
         <translation type="unfinished">Ná múch an ríomhaire go dtí go n-imíonn an fhuinneog seo.</translation>
     </message>
@@ -1114,7 +1492,7 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Foirm</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the whive network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
         <translation type="unfinished">B’fhéidir nach mbeidh idirbhearta dheireanacha le feiceáil fós, agus dá bhrí sin d’fhéadfadh go mbeadh iarmhéid do sparán mícheart. Beidh an faisnéis seo ceart nuair a bheidh do sparán críochnaithe ag sioncrónú leis an líonra bitcoin, mar atá luaite thíos.</translation>
     </message>
     <message>
@@ -1124,6 +1502,14 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>Number of blocks left</source>
         <translation type="unfinished">Líon na mbloic fágtha</translation>
+    </message>
+    <message>
+        <source>Unknown…</source>
+        <translation type="unfinished">Anaithnid…</translation>
+    </message>
+    <message>
+        <source>calculating…</source>
+        <translation type="unfinished">ag ríomh…</translation>
     </message>
     <message>
         <source>Last block time</source>
@@ -1149,23 +1535,36 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <source>%1 is currently syncing.  It will download headers and blocks from peers and validate them until reaching the tip of the block chain.</source>
         <translation type="unfinished">Tá %1 ag sioncronú faoi láthair. Déanfaidh sé é a íoslódáil agus a fíorú ar ceanntásca agus bloic ó phiaraí go dtí barr an blocshlabhra.</translation>
     </message>
-    </context>
+    <message>
+        <source>Unknown. Syncing Headers (%1, %2%)…</source>
+        <translation type="unfinished">Anaithnid. Ceanntásca á Sioncronú (%1, %2 %)…</translation>
+    </message>
+    <message>
+        <source>Unknown. Pre-syncing Headers (%1, %2%)…</source>
+        <translation type="unfinished">Anaithnid. Ceanntásca a Réamhshioncronú (%1, %2 %)…</translation>
+    </message>
+</context>
 <context>
     <name>OpenURIDialog</name>
     <message>
         <source>Open bitcoin URI</source>
         <translation type="unfinished">Oscail URI bitcoin</translation>
     </message>
-    </context>
+    <message>
+        <source>Paste address from clipboard</source>
+        <extracomment>Tooltip text for button that allows you to paste an address that is in your clipboard.</extracomment>
+        <translation type="unfinished">Greamaigh seoladh ón gearrthaisce</translation>
+    </message>
+</context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation>Roghanna</translation>
+        <translation type="unfinished">Roghanna</translation>
     </message>
     <message>
         <source>&amp;Main</source>
-        <translation>&amp;Príomh</translation>
+        <translation type="unfinished">&amp;Príomh</translation>
     </message>
     <message>
         <source>Automatically start %1 after logging in to the system.</source>
@@ -1176,12 +1575,20 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">&amp;Tosaigh %1 ar logáil isteach an chórais</translation>
     </message>
     <message>
+        <source>Enabling pruning significantly reduces the disk space required to store transactions. All blocks are still fully validated. Reverting this setting requires re-downloading the entire blockchain.</source>
+        <translation type="unfinished">Laghdaítear go mór an spás diosca a theastaíonn chun idirbhearta a stóráil má dhéantar bearradh a chumasú. Tá gach bloc fós bailíochtaithe go hiomlán. Chun an socrú seo a thabhairt ar ais ní mór an blockchain iomlán a athíoslódáil.</translation>
+    </message>
+    <message>
         <source>Size of &amp;database cache</source>
         <translation type="unfinished">Méid taisce &amp;bunachar sonraí</translation>
     </message>
     <message>
         <source>Number of script &amp;verification threads</source>
         <translation type="unfinished">Líon snáitheanna &amp;fíorú scripte</translation>
+    </message>
+    <message>
+        <source>Full path to a %1 compatible script (e.g. C:\Downloads\hwi.exe or /Users/you/Downloads/hwi.py). Beware: malware can steal your coins!</source>
+        <translation type="unfinished">Conair iomlán chuig script comhoiriúnach %1 (m.sh. C:\Downloads\hwi.exe nó /Users/you/Downloads/hwi.py). Tabhair aire: is féidir le malware do bhoinn a ghoid!</translation>
     </message>
     <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
@@ -1196,8 +1603,12 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Íoslaghdaigh in ionad scoir an feidhmchlár nuair a bhíonn an fhuinneog dúnta. Nuair a chumasófar an rogha seo, ní dhúnfar an feidhmchlár ach amháin tar éis Scoir a roghnú sa roghchlár.</translation>
     </message>
     <message>
-        <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
-        <translation type="unfinished">URLanna tríú páirtí (e.g. taiscéalaí bloc) atá le feiceáil sa chluaisín idirbhearta mar mhíreanna roghchláir comhthéacs. Cuirtear hais idirbheart in ionad %s san URL. Tá URLanna iolracha scartha le barra ingearach |.</translation>
+        <source>Font in the Overview tab: </source>
+        <translation type="unfinished">Cló sa chluaisín Forbhreathnú:</translation>
+    </message>
+    <message>
+        <source>Options set in this dialog are overridden by the command line:</source>
+        <translation type="unfinished">Tá na roghanna atá socraithe sa dialóg seo sáraithe ag an líne ordaithe:</translation>
     </message>
     <message>
         <source>Open the %1 configuration file from the working directory.</source>
@@ -1209,15 +1620,15 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Reset all client options to default.</source>
-        <translation>Athshocraigh gach rogha cliant chuig réamhshocraithe.</translation>
+        <translation type="unfinished">Athshocraigh gach rogha cliant chuig réamhshocraithe.</translation>
     </message>
     <message>
         <source>&amp;Reset Options</source>
-        <translation>&amp;Roghanna Athshocraigh</translation>
+        <translation type="unfinished">&amp;Roghanna Athshocraigh</translation>
     </message>
     <message>
         <source>&amp;Network</source>
-        <translation>&amp;Líonra</translation>
+        <translation type="unfinished">&amp;Líonra</translation>
     </message>
     <message>
         <source>Prune &amp;block storage to</source>
@@ -1228,12 +1639,42 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Teastaíonn an blocshlabhra iomlán a íoslódáil arís chun an socrú seo a fhilleadh.</translation>
     </message>
     <message>
+        <source>Maximum database cache size. A larger cache can contribute to faster sync, after which the benefit is less pronounced for most use cases. Lowering the cache size will reduce memory usage. Unused mempool memory is shared for this cache.</source>
+        <extracomment>Tooltip text for Options window setting that sets the size of the database cache. Explains the corresponding effects of increasing/decreasing this value.</extracomment>
+        <translation type="unfinished">Uasmhéid taisce bunachar sonraí. Is féidir le taisce níos mó cur le sioncrónú níos tapúla, agus ina dhiaidh sin ní bhíonn an tairbhe chomh soiléir don chuid is mó de chásanna úsáide. Laghdófar úsáid chuimhne má laghdaítear méid an taisce. Roinntear cuimhne mempool neamhúsáidte don taisce seo.</translation>
+    </message>
+    <message>
+        <source>Set the number of script verification threads. Negative values correspond to the number of cores you want to leave free to the system.</source>
+        <extracomment>Tooltip text for Options window setting that sets the number of script verification threads. Explains that negative values mean to leave these many cores free to the system.</extracomment>
+        <translation type="unfinished">Socraigh líon na snáitheanna fíoraithe scripte. Freagraíonn luachanna diúltacha do líon na gcroíthe is mian leat a fhágáil saor sa chóras.</translation>
+    </message>
+    <message>
         <source>(0 = auto, &lt;0 = leave that many cores free)</source>
         <translation type="unfinished">(0 = uath, &lt;0 = fág an méid sin cóir saor)</translation>
     </message>
     <message>
+        <source>This allows you or a third party tool to communicate with the node through command-line and JSON-RPC commands.</source>
+        <extracomment>Tooltip text for Options window setting that enables the RPC server.</extracomment>
+        <translation type="unfinished">Ligeann sé seo duit féin nó d’uirlis tríú páirtí cumarsáid a dhéanamh leis an nód trí orduithe ordú-líne agus JSON-RPC.</translation>
+    </message>
+    <message>
+        <source>Enable R&amp;PC server</source>
+        <extracomment>An Options window setting to enable the RPC server.</extracomment>
+        <translation type="unfinished">Cumasaigh freastalaí R&amp;PC</translation>
+    </message>
+    <message>
         <source>W&amp;allet</source>
         <translation type="unfinished">Sp&amp;arán</translation>
+    </message>
+    <message>
+        <source>Whether to set subtract fee from amount as default or not.</source>
+        <extracomment>Tooltip text for Options window setting that sets subtracting the fee from a sending amount as default.</extracomment>
+        <translation type="unfinished">Cibé an táille a dhealú ón méid a shocrú mar réamhshocrú nó nach bhfuil.</translation>
+    </message>
+    <message>
+        <source>Subtract &amp;fee from amount by default</source>
+        <extracomment>An Options window setting to set subtracting the fee from a sending amount as default.</extracomment>
+        <translation type="unfinished">Dealaigh &amp;táille ón méid de réir réamhshocraithe</translation>
     </message>
     <message>
         <source>Expert</source>
@@ -1252,12 +1693,38 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Caith &amp;sóinseáil neamhdheimhnithe</translation>
     </message>
     <message>
+        <source>Enable &amp;PSBT controls</source>
+        <extracomment>An options window setting to enable PSBT controls.</extracomment>
+        <translation type="unfinished">Cumasaigh &amp; rialuithe PSBT</translation>
+    </message>
+    <message>
+        <source>Whether to show PSBT controls.</source>
+        <extracomment>Tooltip text for options window setting that enables PSBT controls.</extracomment>
+        <translation type="unfinished">Cibé ar cheart rialuithe PSBT a thaispeáint.</translation>
+    </message>
+    <message>
+        <source>External Signer (e.g. hardware wallet)</source>
+        <translation type="unfinished">Sínitheoir Seachtrach (m.sh. sparán crua-earraí)</translation>
+    </message>
+    <message>
+        <source>&amp;External signer script path</source>
+        <translation type="unfinished">&amp;Conair scripte sínithe seachtraí</translation>
+    </message>
+    <message>
         <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Oscail port cliant Bitcoin go huathoibríoch ar an ródaire. Ní oibríonn sé seo ach nuair a thacaíonn do ródaire le UPnP agus nuair a chumasaítear é.</translation>
+        <translation type="unfinished">Oscail port cliant Bitcoin go huathoibríoch ar an ródaire. Ní oibríonn sé seo ach nuair a thacaíonn do ródaire le UPnP agus nuair a chumasaítear é.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
-        <translation>Mapáil port ag úsáid &amp;UPnP</translation>
+        <translation type="unfinished">Mapáil port ag úsáid &amp;UPnP</translation>
+    </message>
+    <message>
+        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation type="unfinished">Oscail calafort cliant Bitcoin go huathoibríoch ar an ródaire. Ní oibríonn sé seo ach amháin nuair a thacaíonn do ródaire le NAT-PMP agus go bhfuil sé cumasaithe. D'fhéadfadh an port seachtrach a bheith randamach.</translation>
+    </message>
+    <message>
+        <source>Map port using NA&amp;T-PMP</source>
+        <translation type="unfinished">Port léarscáil le NA&amp;T-PMP</translation>
     </message>
     <message>
         <source>Accept connections from outside.</source>
@@ -1268,7 +1735,7 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Ceadai&amp;gh naisc isteach</translation>
     </message>
     <message>
-        <source>Connect to the Whive network through a SOCKS5 proxy.</source>
+        <source>Connect to the Bitcoin network through a SOCKS5 proxy.</source>
         <translation type="unfinished">Ceangail leis an líonra Bitcoin trí sheachfhreastalaí SOCKS5.</translation>
     </message>
     <message>
@@ -1277,11 +1744,11 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
-        <translation>Seachfhreastalaí &amp;IP:</translation>
+        <translation type="unfinished">Seachfhreastalaí &amp;IP:</translation>
     </message>
     <message>
         <source>Port of the proxy (e.g. 9050)</source>
-        <translation>Port an seachfhreastalaí (m.sh. 9050)</translation>
+        <translation type="unfinished">Port an seachfhreastalaí (m.sh. 9050)</translation>
     </message>
     <message>
         <source>Used for reaching peers via:</source>
@@ -1289,27 +1756,35 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
-        <translation>&amp;Fuinneog</translation>
+        <translation type="unfinished">&amp;Fuinneog</translation>
+    </message>
+    <message>
+        <source>Show the icon in the system tray.</source>
+        <translation type="unfinished">Taispeáin an deilbhín i dtráidire an chórais.</translation>
+    </message>
+    <message>
+        <source>&amp;Show tray icon</source>
+        <translation type="unfinished">&amp;Taispeáin íocón an tráidire</translation>
     </message>
     <message>
         <source>Show only a tray icon after minimizing the window.</source>
-        <translation>Ná taispeáin ach deilbhín tráidire t'éis an fhuinneog a íoslaghdú.</translation>
+        <translation type="unfinished">Ná taispeáin ach deilbhín tráidire t'éis an fhuinneog a íoslaghdú.</translation>
     </message>
     <message>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>&amp;Íoslaghdaigh an tráidire in ionad an tascbharra</translation>
+        <translation type="unfinished">&amp;Íoslaghdaigh an tráidire in ionad an tascbharra</translation>
     </message>
     <message>
         <source>M&amp;inimize on close</source>
-        <translation>Í&amp;oslaghdaigh ar dhúnadh</translation>
+        <translation type="unfinished">Í&amp;oslaghdaigh ar dhúnadh</translation>
     </message>
     <message>
         <source>&amp;Display</source>
-        <translation>&amp;Taispeáin</translation>
+        <translation type="unfinished">&amp;Taispeáin</translation>
     </message>
     <message>
         <source>User Interface &amp;language:</source>
-        <translation>T&amp;eanga Chomhéadain Úsáideora:</translation>
+        <translation type="unfinished">T&amp;eanga Chomhéadain Úsáideora:</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting %1.</source>
@@ -1317,18 +1792,26 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp;Aonad chun suimeanna a thaispeáint:</translation>
+        <translation type="unfinished">&amp;Aonad chun suimeanna a thaispeáint:</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>Roghnaigh an t-aonad foroinnte réamhshocraithe le taispeáint sa chomhéadan agus nuair a sheoltar boinn.</translation>
+        <translation type="unfinished">Roghnaigh an t-aonad foroinnte réamhshocraithe le taispeáint sa chomhéadan agus nuair a sheoltar boinn.</translation>
+    </message>
+    <message>
+        <source>Third-party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
+        <translation type="unfinished">URLanna tríú páirtí (m.sh. taiscéalaí bloc) atá le feiceáil sa chluaisín idirbheart mar mhíreanna roghchláir comhthéacs. Cuirtear hais idirbhirt in ionad%s sa URL. Déantar URLanna iolracha a dheighilt le barra ingearach |.</translation>
+    </message>
+    <message>
+        <source>&amp;Third-party transaction URLs</source>
+        <translation type="unfinished">URLanna idirbheart tríú páirtí</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
         <translation type="unfinished">Gnéithe rialúchán bonn a thaispeáint nó nach.</translation>
     </message>
     <message>
-        <source>Connect to the Whive network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <source>Connect to the Bitcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
         <translation type="unfinished">Ceangail le líonra Bitcoin trí seachfhreastalaí SOCKS5 ar leith do sheirbhísí Tor oinniún.</translation>
     </message>
     <message>
@@ -1336,24 +1819,21 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Úsáid seachfhreastalaí SOCKS5 ar leith chun sroicheadh piaraí trí sheirbhísí Tor oinniún:</translation>
     </message>
     <message>
-        <source>&amp;Third party transaction URLs</source>
-        <translation type="unfinished">&amp;URLanna idirbheart tríú páirtí</translation>
-    </message>
-    <message>
-        <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
-        <translation type="unfinished">Tá na roghanna socraithe sa dialóg seo sáraithe ag líne na n-orduithe nó sa chomhad cumraíochta:</translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
-        <translation>&amp;Togha</translation>
+        <translation type="unfinished">&amp;Togha</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>&amp;Cealaigh</translation>
+        <translation type="unfinished">&amp;Cealaigh</translation>
+    </message>
+    <message>
+        <source>Compiled without external signing support (required for external signing)</source>
+        <extracomment>"External signing" means using devices such as hardware wallets.</extracomment>
+        <translation type="unfinished">Tiomsaithe gan tacaíocht sínithe seachtrach (riachtanach le haghaidh síniú seachtrach)</translation>
     </message>
     <message>
         <source>default</source>
-        <translation>réamhshocrú</translation>
+        <translation type="unfinished">réamhshocrú</translation>
     </message>
     <message>
         <source>none</source>
@@ -1361,23 +1841,41 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Confirm options reset</source>
-        <translation>Deimhnigh athshocrú roghanna</translation>
+        <extracomment>Window title text of pop-up window shown when the user has chosen to reset options.</extracomment>
+        <translation type="unfinished">Deimhnigh athshocrú roghanna</translation>
     </message>
     <message>
         <source>Client restart required to activate changes.</source>
+        <extracomment>Text explaining that the settings changed will not come into effect until the client is restarted.</extracomment>
         <translation type="unfinished">Atosú cliant ag teastáil chun athruithe a ghníomhachtú.</translation>
     </message>
     <message>
+        <source>Current settings will be backed up at "%1".</source>
+        <extracomment>Text explaining to the user that the client's current settings will be backed up at a specific location. %1 is a stand-in argument for the backup location's path.</extracomment>
+        <translation type="unfinished">Déanfar cúltaca de na socruithe reatha ag "%1".</translation>
+    </message>
+    <message>
         <source>Client will be shut down. Do you want to proceed?</source>
+        <extracomment>Text asking the user to confirm if they would like to proceed with a client shutdown.</extracomment>
         <translation type="unfinished">Múchfar an cliant. Ar mhaith leat dul ar aghaidh?</translation>
     </message>
     <message>
         <source>Configuration options</source>
+        <extracomment>Window title text of pop-up box that allows opening up of configuration file.</extracomment>
         <translation type="unfinished">Roghanna cumraíochta</translation>
     </message>
     <message>
         <source>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</source>
+        <extracomment>Explanatory text about the priority order of instructions considered by client. The order from high to low being: command-line, configuration file, GUI settings.</extracomment>
         <translation type="unfinished">Úsáidtear an comhad cumraíochta chun ardroghanna úsáideora a shonrú a sháraíonn socruithe GUI. Freisin, sáróidh aon roghanna líne na n-orduithe an comhad cumraíochta seo.</translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished">Leanúint ar aghaidh</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Cealaigh</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1393,18 +1891,25 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>The supplied proxy address is invalid.</source>
-        <translation>Tá an seoladh seachfhreastalaí soláthartha neamhbhailí.</translation>
+        <translation type="unfinished">Tá an seoladh seachfhreastalaí soláthartha neamhbhailí.</translation>
+    </message>
+</context>
+<context>
+    <name>OptionsModel</name>
+    <message>
+        <source>Could not read setting "%1", %2.</source>
+        <translation type="unfinished">Níorbh fhéidir socrú "%1", %2 a léamh.</translation>
     </message>
 </context>
 <context>
     <name>OverviewPage</name>
     <message>
         <source>Form</source>
-        <translation>Foirm</translation>
+        <translation type="unfinished">Foirm</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Whive network after a connection is established, but this process has not completed yet.</source>
-        <translation>Féadfaidh an fhaisnéis a thaispeántar a bheith as dáta. Déanann do sparán sioncrónú go huathoibríoch leis an líonra Bitcoin tar éis nasc a bhunú, ach níl an próiseas seo críochnaithe fós.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation type="unfinished">Féadfaidh an fhaisnéis a thaispeántar a bheith as dáta. Déanann do sparán sioncrónú go huathoibríoch leis an líonra Bitcoin tar éis nasc a bhunú, ach níl an próiseas seo críochnaithe fós.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1416,7 +1921,7 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Your current spendable balance</source>
-        <translation>D'iarmhéid reatha inchaite</translation>
+        <translation type="unfinished">D'iarmhéid reatha inchaite</translation>
     </message>
     <message>
         <source>Pending:</source>
@@ -1424,15 +1929,15 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Total of transactions that have yet to be confirmed, and do not yet count toward the spendable balance</source>
-        <translation>Iomlán na n-idirbheart nár deimhniú fós, agus nach bhfuil fós ag comhaireamh i dtreo an iarmhéid inchaite.</translation>
+        <translation type="unfinished">Iomlán na n-idirbheart nár deimhniú fós, agus nach bhfuil fós ag comhaireamh i dtreo an iarmhéid inchaite.</translation>
     </message>
     <message>
         <source>Immature:</source>
-        <translation>Neamhaibí:</translation>
+        <translation type="unfinished">Neamhaibí:</translation>
     </message>
     <message>
         <source>Mined balance that has not yet matured</source>
-        <translation>Iarmhéid mianadóireacht nach bhfuil fós aibithe</translation>
+        <translation type="unfinished">Iarmhéid mianadóireacht nach bhfuil fós aibithe</translation>
     </message>
     <message>
         <source>Balances</source>
@@ -1440,11 +1945,11 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Total:</source>
-        <translation>Iomlán:</translation>
+        <translation type="unfinished">Iomlán:</translation>
     </message>
     <message>
         <source>Your current total balance</source>
-        <translation>D'iarmhéid iomlán reatha</translation>
+        <translation type="unfinished">D'iarmhéid iomlán reatha</translation>
     </message>
     <message>
         <source>Your current balance in watch-only addresses</source>
@@ -1478,8 +1983,8 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
 <context>
     <name>PSBTOperationsDialog</name>
     <message>
-        <source>Dialog</source>
-        <translation type="unfinished">Dialóg</translation>
+        <source>PSBT Operations</source>
+        <translation type="unfinished">Oibríochtaí PSBT</translation>
     </message>
     <message>
         <source>Sign Tx</source>
@@ -1494,6 +1999,10 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Cóipeáil chuig Gearrthaisce</translation>
     </message>
     <message>
+        <source>Save…</source>
+        <translation type="unfinished">Sábháil…</translation>
+    </message>
+    <message>
         <source>Close</source>
         <translation type="unfinished">Dún</translation>
     </message>
@@ -1504,6 +2013,10 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>Failed to sign transaction: %1</source>
         <translation type="unfinished">Theip ar síniú idirbheart: %1</translation>
+    </message>
+    <message>
+        <source>Cannot sign inputs while wallet is locked.</source>
+        <translation type="unfinished">Ní féidir ionchuir a shíniú agus an sparán glasáilte.</translation>
     </message>
     <message>
         <source>Could not sign any more inputs.</source>
@@ -1538,12 +2051,21 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Sábháil Sonraí Idirbheart</translation>
     </message>
     <message>
+        <source>Partially Signed Transaction (Binary)</source>
+        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <translation type="unfinished">Idirbheart Páirt-Sínithe (Dénártha)</translation>
+    </message>
+    <message>
         <source>PSBT saved to disk.</source>
         <translation type="unfinished">IBSP sábháilte ar dhiosca.</translation>
     </message>
     <message>
-        <source> * Sends %1 to %2</source>
-        <translation type="unfinished"> * Seolann %1 chuig %2</translation>
+        <source>Sends %1 to %2</source>
+        <translation type="unfinished">Seoltar %1 go %2</translation>
+    </message>
+    <message>
+        <source>own address</source>
+        <translation type="unfinished">seoladh féin</translation>
     </message>
     <message>
         <source>Unable to calculate transaction fee or total transaction amount.</source>
@@ -1572,6 +2094,10 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>Transaction still needs signature(s).</source>
         <translation type="unfinished">Tá síni(ú/the) fós ag teastáil ón idirbheart.</translation>
+    </message>
+    <message>
+        <source>(But no wallet is loaded.)</source>
+        <translation type="unfinished">(Ach níl aon sparán luchtaithe.)</translation>
     </message>
     <message>
         <source>(But this wallet cannot sign transactions.)</source>
@@ -1609,6 +2135,14 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Ní URI bailí é 'bitcoin://'. Úsáid 'bitcoin:' ina ionad.</translation>
     </message>
     <message>
+        <source>Cannot process payment request because BIP70 is not supported.
+Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.
+If you are receiving this error you should request the merchant provide a BIP21 compatible URI.</source>
+        <translation type="unfinished">Ní féidir iarratas íocaíochta a phróiseáil toisc nach dtacaítear le BIP70.
+De bharr lochtanna slándála forleathan in BIP70, moltar go láidir neamhaird a dhéanamh d’aon treoracha ceannaithe chun sparán a athrú.
+Má tá an earráid seo á fáil agat ba cheart duit iarraidh ar an díoltóir URI atá comhoiriúnach le BIP21 a sholáthar.</translation>
+    </message>
+    <message>
         <source>URI cannot be parsed! This can be caused by an invalid Bitcoin address or malformed URI parameters.</source>
         <translation type="unfinished">Ní féidir URI a pharsáil! Is féidir le seoladh neamhbhailí Bitcoin nó paraiméadair URI drochfhoirmithe a bheith mar an chúis.</translation>
     </message>
@@ -1623,6 +2157,21 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <source>User Agent</source>
         <extracomment>Title of Peers Table column which contains the peer's User Agent string.</extracomment>
         <translation type="unfinished">Gníomhaire Úsáideora</translation>
+    </message>
+    <message>
+        <source>Peer</source>
+        <extracomment>Title of Peers Table column which contains a unique number used to identify a connection.</extracomment>
+        <translation type="unfinished">Piaraí</translation>
+    </message>
+    <message>
+        <source>Age</source>
+        <extracomment>Title of Peers Table column which indicates the duration (length of time) since the peer connection started.</extracomment>
+        <translation type="unfinished">Aois</translation>
+    </message>
+    <message>
+        <source>Direction</source>
+        <extracomment>Title of Peers Table column which indicates the direction the peer connection was initiated from.</extracomment>
+        <translation type="unfinished">Treo</translation>
     </message>
     <message>
         <source>Sent</source>
@@ -1649,9 +2198,23 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <extracomment>Title of Peers Table column which states the network the peer connected through.</extracomment>
         <translation type="unfinished">Líonra</translation>
     </message>
+    <message>
+        <source>Inbound</source>
+        <extracomment>An Inbound Connection from a Peer.</extracomment>
+        <translation type="unfinished">Isteach</translation>
+    </message>
+    <message>
+        <source>Outbound</source>
+        <extracomment>An Outbound Connection to a Peer.</extracomment>
+        <translation type="unfinished">Amach</translation>
+    </message>
 </context>
 <context>
     <name>QRImageWidget</name>
+    <message>
+        <source>&amp;Save Image…</source>
+        <translation type="unfinished">&amp;Sábháil Íomhá…</translation>
+    </message>
     <message>
         <source>&amp;Copy Image</source>
         <translation type="unfinished">&amp;Cóipeáil Íomhá</translation>
@@ -1672,20 +2235,25 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <source>Save QR Code</source>
         <translation type="unfinished">Sabháil cód QR.</translation>
     </message>
-    </context>
+    <message>
+        <source>PNG Image</source>
+        <extracomment>Expanded name of the PNG file format. See: https://en.wikipedia.org/wiki/Portable_Network_Graphics.</extracomment>
+        <translation type="unfinished">Íomhá PNG</translation>
+    </message>
+</context>
 <context>
     <name>RPCConsole</name>
     <message>
         <source>N/A</source>
-        <translation>N/B</translation>
+        <translation type="unfinished">N/B</translation>
     </message>
     <message>
         <source>Client version</source>
-        <translation>Leagan cliant</translation>
+        <translation type="unfinished">Leagan cliant</translation>
     </message>
     <message>
         <source>&amp;Information</source>
-        <translation>&amp;Faisnéis</translation>
+        <translation type="unfinished">&amp;Faisnéis</translation>
     </message>
     <message>
         <source>General</source>
@@ -1709,11 +2277,11 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Startup time</source>
-        <translation>Am tosaithe</translation>
+        <translation type="unfinished">Am tosaithe</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation>Líonra</translation>
+        <translation type="unfinished">Líonra</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1721,11 +2289,19 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Number of connections</source>
-        <translation>Líon naisc</translation>
+        <translation type="unfinished">Líon naisc</translation>
+    </message>
+    <message>
+        <source>Local Addresses</source>
+        <translation type="unfinished">Seoltaí Áitiúla</translation>
+    </message>
+    <message>
+        <source>Network addresses that your Bitcoin node is currently using to communicate with other nodes.</source>
+        <translation type="unfinished">Seoltaí líonra go bhfuil do nód Bitcoin úsáid faoi láthair chun cumarsáid a dhéanamh le nóid eile.</translation>
     </message>
     <message>
         <source>Block chain</source>
-        <translation>Blocshlabhra</translation>
+        <translation type="unfinished">Blocshlabhra</translation>
     </message>
     <message>
         <source>Memory Pool</source>
@@ -1772,8 +2348,32 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Roghnaigh piara chun faisnéis mhionsonraithe a fheiceáil.</translation>
     </message>
     <message>
+        <source>Hide Peers Detail</source>
+        <translation type="unfinished">Folaigh Sonraí na bPiaraí</translation>
+    </message>
+    <message>
+        <source>The transport layer version: %1</source>
+        <translation type="unfinished">Leagan na sraithe iompair: %1</translation>
+    </message>
+    <message>
+        <source>Transport</source>
+        <translation type="unfinished">Iompar</translation>
+    </message>
+    <message>
+        <source>Session ID</source>
+        <translation type="unfinished">Aitheantas an tseisiúin</translation>
+    </message>
+    <message>
         <source>Version</source>
         <translation type="unfinished">Leagan</translation>
+    </message>
+    <message>
+        <source>Whether we relay transactions to this peer.</source>
+        <translation type="unfinished">Cibé an ndéanaimid idirbhearta a athsheoladh chuig an bpiaraí seo.</translation>
+    </message>
+    <message>
+        <source>Transaction Relay</source>
+        <translation type="unfinished">Leaschraolacháin Idirbheart</translation>
     </message>
     <message>
         <source>Starting Block</source>
@@ -1788,12 +2388,46 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Bloic Sioncronaithe</translation>
     </message>
     <message>
+        <source>Last Transaction</source>
+        <translation type="unfinished">Idirbheart Deiridh</translation>
+    </message>
+    <message>
         <source>The mapped Autonomous System used for diversifying peer selection.</source>
         <translation type="unfinished">An Córas Uathrialach mapáilte a úsáidtear chun roghnú piaraí a éagsúlú.</translation>
     </message>
     <message>
         <source>Mapped AS</source>
         <translation type="unfinished">CU Mapáilte</translation>
+    </message>
+    <message>
+        <source>Whether we relay addresses to this peer.</source>
+        <extracomment>Tooltip text for the Address Relay field in the peer details area, which displays whether we relay addresses to this peer (Yes/No).</extracomment>
+        <translation type="unfinished">Cibé an gcuirfimid seoltaí chuig an bpiaraí seo.</translation>
+    </message>
+    <message>
+        <source>Address Relay</source>
+        <extracomment>Text title for the Address Relay field in the peer details area, which displays whether we relay addresses to this peer (Yes/No).</extracomment>
+        <translation type="unfinished">Sealaíocht Seoladh</translation>
+    </message>
+    <message>
+        <source>The total number of addresses received from this peer that were processed (excludes addresses that were dropped due to rate-limiting).</source>
+        <extracomment>Tooltip text for the Addresses Processed field in the peer details area, which displays the total number of addresses received from this peer that were processed (excludes addresses that were dropped due to rate-limiting).</extracomment>
+        <translation type="unfinished">Líon iomlán na seoltaí a fuarthas ón bpiaraí seo a próiseáladh (ní áirítear seoltaí a laghdaíodh mar gheall ar theorannú rátaí).</translation>
+    </message>
+    <message>
+        <source>The total number of addresses received from this peer that were dropped (not processed) due to rate-limiting.</source>
+        <extracomment>Tooltip text for the Addresses Rate-Limited field in the peer details area, which displays the total number of addresses received from this peer that were dropped (not processed) due to rate-limiting.</extracomment>
+        <translation type="unfinished">Líon iomlán na seoltaí a fuarthas ón bpiaraí seo a thit (nár próiseáladh) mar gheall ar theorannú rátaí.</translation>
+    </message>
+    <message>
+        <source>Addresses Processed</source>
+        <extracomment>Text title for the Addresses Processed field in the peer details area, which displays the total number of addresses received from this peer that were processed (excludes addresses that were dropped due to rate-limiting).</extracomment>
+        <translation type="unfinished">Seoltaí Próiseáilte</translation>
+    </message>
+    <message>
+        <source>Addresses Rate-Limited</source>
+        <extracomment>Text title for the Addresses Rate-Limited field in the peer details area, which displays the total number of addresses received from this peer that were dropped (not processed) due to rate-limiting.</extracomment>
+        <translation type="unfinished">Seoltaí Ráta-Teoranta</translation>
     </message>
     <message>
         <source>User Agent</source>
@@ -1824,12 +2458,49 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Ceadanna</translation>
     </message>
     <message>
+        <source>The direction and type of peer connection: %1</source>
+        <translation type="unfinished">Treo agus cineál an naisc phiara: %1</translation>
+    </message>
+    <message>
+        <source>Direction/Type</source>
+        <translation type="unfinished">Treo/Cineál</translation>
+    </message>
+    <message>
+        <source>The BIP324 session ID string in hex.</source>
+        <translation type="unfinished">Teaghrán ID an tseisiúin BIP324 i heicsidheachúlach.</translation>
+    </message>
+    <message>
+        <source>The network protocol this peer is connected through: IPv4, IPv6, Onion, I2P, or CJDNS.</source>
+        <translation type="unfinished">An prótacal líonra a bhfuil an piara seo ceangailte trí: IPv4, IPv6, Oinniún, I2P, nó CJDNS.</translation>
+    </message>
+    <message>
         <source>Services</source>
         <translation type="unfinished">Seirbhísí</translation>
     </message>
     <message>
+        <source>High bandwidth BIP152 compact block relay: %1</source>
+        <translation type="unfinished">Bandaleithead ard BIP152 sealaíochta bloc dhlúth: %1</translation>
+    </message>
+    <message>
+        <source>High Bandwidth</source>
+        <translation type="unfinished">Bandaleithid Ard</translation>
+    </message>
+    <message>
         <source>Connection Time</source>
         <translation type="unfinished">Am Ceangail</translation>
+    </message>
+    <message>
+        <source>Elapsed time since a novel block passing initial validity checks was received from this peer.</source>
+        <translation type="unfinished">Tá achar ama caite ó fuarthas bloc úrscéil a rinne na seiceálacha bailíochta tosaigh ón gcomhghleacaí seo.</translation>
+    </message>
+    <message>
+        <source>Last Block</source>
+        <translation type="unfinished">Bloc Deireanach</translation>
+    </message>
+    <message>
+        <source>Elapsed time since a novel transaction accepted into our mempool was received from this peer.</source>
+        <extracomment>Tooltip text for the Last Transaction field in the peer details area.</extracomment>
+        <translation type="unfinished">Chuaigh an t-am caite ó fuarthas idirbheart úrnua a glacadh isteach inár mempool ón bpiaraí seo.</translation>
     </message>
     <message>
         <source>Last Send</source>
@@ -1861,15 +2532,15 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Last block time</source>
-        <translation>Am bloc deireanach</translation>
+        <translation type="unfinished">Am bloc deireanach</translation>
     </message>
     <message>
         <source>&amp;Open</source>
-        <translation>&amp;Oscail</translation>
+        <translation type="unfinished">&amp;Oscail</translation>
     </message>
     <message>
         <source>&amp;Console</source>
-        <translation>&amp;Consól</translation>
+        <translation type="unfinished">&amp;Consól</translation>
     </message>
     <message>
         <source>&amp;Network Traffic</source>
@@ -1881,11 +2552,11 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Debug log file</source>
-        <translation>Comhad logála dífhabhtaigh</translation>
+        <translation type="unfinished">Comhad logála dífhabhtaigh</translation>
     </message>
     <message>
         <source>Clear console</source>
-        <translation>Glan consól</translation>
+        <translation type="unfinished">Glan consól</translation>
     </message>
     <message>
         <source>In:</source>
@@ -1896,12 +2567,73 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Amach:</translation>
     </message>
     <message>
+        <source>Inbound: initiated by peer</source>
+        <extracomment>Explanatory text for an inbound peer connection.</extracomment>
+        <translation type="unfinished">Isteach: arna thionscnamh ag piaraí</translation>
+    </message>
+    <message>
+        <source>Outbound Full Relay: default</source>
+        <extracomment>Explanatory text for an outbound peer connection that relays all network information. This is the default behavior for outbound connections.</extracomment>
+        <translation type="unfinished">Sealaíocht Iomlán Amach: réamhshocraithe</translation>
+    </message>
+    <message>
+        <source>Outbound Block Relay: does not relay transactions or addresses</source>
+        <extracomment>Explanatory text for an outbound peer connection that relays network information about blocks and not transactions or addresses.</extracomment>
+        <translation type="unfinished">Leaschraolacháin Bloc Amach: ní athsheoltar idirbhearta ná seoltaí</translation>
+    </message>
+    <message>
+        <source>Outbound Feeler: short-lived, for testing addresses</source>
+        <extracomment>Explanatory text for a short-lived outbound peer connection that is used to test the aliveness of known addresses.</extracomment>
+        <translation type="unfinished">Feeler Amach: gearrthéarmach, le haghaidh seoltaí tástála</translation>
+    </message>
+    <message>
+        <source>Outbound Address Fetch: short-lived, for soliciting addresses</source>
+        <extracomment>Explanatory text for a short-lived outbound peer connection that is used to request addresses from a peer.</extracomment>
+        <translation type="unfinished">Faigh Seoladh Amach: gearrthéarmach, chun seoltaí a lorg</translation>
+    </message>
+    <message>
+        <source>detecting: peer could be v1 or v2</source>
+        <extracomment>Explanatory text for "detecting" transport type.</extracomment>
+        <translation type="unfinished">bhrath: d’fhéadfadh v1 nó v2 a bheith i gcomhghleacaí</translation>
+    </message>
+    <message>
+        <source>v1: unencrypted, plaintext transport protocol</source>
+        <extracomment>Explanatory text for v1 transport type.</extracomment>
+        <translation type="unfinished">v1: prótacal iompair gnáththéacs gan chriptiú</translation>
+    </message>
+    <message>
+        <source>v2: BIP324 encrypted transport protocol</source>
+        <extracomment>Explanatory text for v2 transport type.</extracomment>
+        <translation type="unfinished">v2: BIP324 prótacal iompair criptithe</translation>
+    </message>
+    <message>
+        <source>we selected the peer for high bandwidth relay</source>
+        <translation type="unfinished">roghnaigh muid an piaraí le haghaidh sealaíochta bandaleithead ard</translation>
+    </message>
+    <message>
+        <source>the peer selected us for high bandwidth relay</source>
+        <translation type="unfinished">roghnaigh an piaraí sinn le haghaidh sealaíochta bandaleithead ard</translation>
+    </message>
+    <message>
+        <source>no high bandwidth relay selected</source>
+        <translation type="unfinished">níor roghnaíodh aon sealaíochta bandaleithead ard</translation>
+    </message>
+    <message>
+        <source>&amp;Copy address</source>
+        <extracomment>Context menu action to copy the address of a peer.</extracomment>
+        <translation type="unfinished">&amp;Cóipeáil seoladh</translation>
+    </message>
+    <message>
         <source>&amp;Disconnect</source>
         <translation type="unfinished">&amp;Scaoil</translation>
     </message>
     <message>
         <source>1 &amp;hour</source>
         <translation type="unfinished">1 &amp;uair</translation>
+    </message>
+    <message>
+        <source>1 d&amp;ay</source>
+        <translation type="unfinished">1 l&amp;á</translation>
     </message>
     <message>
         <source>1 &amp;week</source>
@@ -1912,6 +2644,11 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">1 &amp;bhliain</translation>
     </message>
     <message>
+        <source>&amp;Copy IP/Netmask</source>
+        <extracomment>Context menu action to copy the IP/Netmask of a banned peer. IP/Netmask is the combination of a peer's IP address and its Netmask. For IP address, see: https://en.wikipedia.org/wiki/IP_address.</extracomment>
+        <translation type="unfinished">&amp;Cóipeáil IP/Netmask</translation>
+    </message>
+    <message>
         <source>&amp;Unban</source>
         <translation type="unfinished">&amp;Díchosc</translation>
     </message>
@@ -1920,12 +2657,46 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Gníomhaíocht líonra díchumasaithe</translation>
     </message>
     <message>
+        <source>None</source>
+        <translation type="unfinished">Faic</translation>
+    </message>
+    <message>
         <source>Executing command without any wallet</source>
         <translation type="unfinished">Ag rith ordú gan aon sparán</translation>
     </message>
     <message>
+        <source>Node window - [%1]</source>
+        <translation type="unfinished">Fuinneog nód - [%1]</translation>
+    </message>
+    <message>
         <source>Executing command using "%1" wallet</source>
         <translation type="unfinished">Ag rith ordú ag úsáid sparán "%1"</translation>
+    </message>
+    <message>
+        <source>Welcome to the %1 RPC console.
+Use up and down arrows to navigate history, and %2 to clear screen.
+Use %3 and %4 to increase or decrease the font size.
+Type %5 for an overview of available commands.
+For more information on using this console, type %6.
+
+%7WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.%8</source>
+        <extracomment>RPC console welcome message. Placeholders %7 and %8 are style tags for the warning content, and they are not space separated from the rest of the text intentionally.</extracomment>
+        <translation type="unfinished">Fáilte go consól RPC %1.
+Úsáid saigheada suas agus síos chun an stair a nascleanúint, agus %2 chun an scáileán a ghlanadh.
+Úsáid %3 agus %4 chun an clómhéid a mhéadú nó a laghdú.
+Clóscríobh %5 le haghaidh forbhreathnú ar na horduithe atá ar fáil.
+Chun tuilleadh eolais a fháil faoin gconsól seo a úsáid, clóscríobh %6.
+
+%7 RABHADH: Bhí scamadóirí gníomhach, ag rá le húsáideoirí orduithe a chlóscríobh anseo, ag goid a n-inneachar sparán. Ná húsáid an consól seo gan iarmhairtí ordaithe a thuiscint go hiomlán.%8</translation>
+    </message>
+    <message>
+        <source>Executing…</source>
+        <extracomment>A console message indicating an entered command is currently being executed.</extracomment>
+        <translation type="unfinished">Ag rith…</translation>
+    </message>
+    <message>
+        <source>(peer: %1)</source>
+        <translation type="unfinished">(piara: %1)</translation>
     </message>
     <message>
         <source>via %1</source>
@@ -1952,6 +2723,10 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Cosc do</translation>
     </message>
     <message>
+        <source>Never</source>
+        <translation type="unfinished">Riamh</translation>
+    </message>
+    <message>
         <source>Unknown</source>
         <translation type="unfinished">Anaithnid</translation>
     </message>
@@ -1971,7 +2746,7 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">&amp;Teachtaireacht</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Whive network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Bitcoin network.</source>
         <translation type="unfinished">Teachtaireacht roghnach le ceangal leis an iarratas íocaíocht, a thaispeánfar nuair a osclaítear an iarraidh. Nóta: Ní sheolfar an teachtaireacht leis an íocaíocht thar líonra Bitcoin.</translation>
     </message>
     <message>
@@ -2007,14 +2782,6 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Glan</translation>
     </message>
     <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
-        <translation type="unfinished">Laghdaíonn seoltaí dúchasacha segwit (nó mar is fearr aithne Bech32 nó BIP-173) do tháillí idirbhirt ar ball agus tugann siad cosaint níos fearr i gcoinne earráid chló, ach ní thacaíonn sean-sparán leo. Nuair atá díthiceáilte, cruthófar seoladh atá comhoiriúnach le sparán níos sine.</translation>
-    </message>
-    <message>
-        <source>Generate native segwit (Bech32) address</source>
-        <translation type="unfinished">Cruthaigh seoladh dúchasach segwit (Bech32)</translation>
-    </message>
-    <message>
         <source>Requested payments history</source>
         <translation type="unfinished">Stair na n-íocaíochtaí iarrtha</translation>
     </message>
@@ -2039,6 +2806,46 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Cóipeáil &amp;URI</translation>
     </message>
     <message>
+        <source>&amp;Copy address</source>
+        <translation type="unfinished">&amp;Cóipeáil seoladh</translation>
+    </message>
+    <message>
+        <source>Copy &amp;label</source>
+        <translation type="unfinished">Cóipeáil &amp;lipéad</translation>
+    </message>
+    <message>
+        <source>Copy &amp;message</source>
+        <translation type="unfinished">Cóipeáil &amp; teachtaireacht</translation>
+    </message>
+    <message>
+        <source>Copy &amp;amount</source>
+        <translation type="unfinished">Cóipeáil &amp; méid</translation>
+    </message>
+    <message>
+        <source>Base58 (Legacy)</source>
+        <translation type="unfinished">Bonn58 (Oidhreacht)</translation>
+    </message>
+    <message>
+        <source>Not recommended due to higher fees and less protection against typos.</source>
+        <translation type="unfinished">Ní mholtar mar gheall ar tháillí níos airde agus cosaint níos lú i gcoinne typos.</translation>
+    </message>
+    <message>
+        <source>Base58 (P2SH-SegWit)</source>
+        <translation type="unfinished">Base58 (P2SH- SegWit)</translation>
+    </message>
+    <message>
+        <source>Generates an address compatible with older wallets.</source>
+        <translation type="unfinished">Gineann seoladh atá comhoiriúnach le sparán níos sine.</translation>
+    </message>
+    <message>
+        <source>Generates a native segwit address (BIP-173). Some old wallets don't support it.</source>
+        <translation type="unfinished">Gineann sé seoladh segwit dúchais (BIP-173). Ní thacaíonn roinnt sean-sparán leis.</translation>
+    </message>
+    <message>
+        <source>Bech32m (BIP-350) is an upgrade to Bech32, wallet support is still limited.</source>
+        <translation type="unfinished">Is uasghrádú é Bech32m (BIP-350) go Bech32, tá tacaíocht sparán fós teoranta.</translation>
+    </message>
+    <message>
         <source>Could not unlock wallet.</source>
         <translation type="unfinished">Níorbh fhéidir sparán a dhíghlasáil.</translation>
     </message>
@@ -2049,6 +2856,10 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
 </context>
 <context>
     <name>ReceiveRequestDialog</name>
+    <message>
+        <source>Request payment to …</source>
+        <translation type="unfinished">Iarr íocaíocht chuig…</translation>
+    </message>
     <message>
         <source>Address:</source>
         <translation type="unfinished">Seoladh:</translation>
@@ -2076,6 +2887,18 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>Copy &amp;Address</source>
         <translation type="unfinished">Cóipeáil &amp;Seoladh</translation>
+    </message>
+    <message>
+        <source>&amp;Verify</source>
+        <translation type="unfinished">&amp;Fíoraigh</translation>
+    </message>
+    <message>
+        <source>Verify this address on e.g. a hardware wallet screen</source>
+        <translation type="unfinished">Fíoraigh an seoladh seo ar e.g. scáileán sparán crua-earraí</translation>
+    </message>
+    <message>
+        <source>&amp;Save Image…</source>
+        <translation type="unfinished">&amp;Sábháil Íomhá…</translation>
     </message>
     <message>
         <source>Payment information</source>
@@ -2121,7 +2944,7 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>Seol Boinn</translation>
+        <translation type="unfinished">Seol Boinn</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -2197,23 +3020,35 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Send to multiple recipients at once</source>
-        <translation>Seol chuig faighteoirí iolracha ag an am céanna</translation>
+        <translation type="unfinished">Seol chuig faighteoirí iolracha ag an am céanna</translation>
     </message>
     <message>
         <source>Add &amp;Recipient</source>
-        <translation>Cuir &amp;Faighteoir</translation>
+        <translation type="unfinished">Cuir &amp;Faighteoir</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
         <translation type="unfinished">Glan gach réimse den fhoirm.</translation>
     </message>
     <message>
-        <source>Dust:</source>
-        <translation type="unfinished">Dusta:</translation>
+        <source>Inputs…</source>
+        <translation type="unfinished">Ionchuir…</translation>
+    </message>
+    <message>
+        <source>Choose…</source>
+        <translation type="unfinished">Roghnaigh…</translation>
     </message>
     <message>
         <source>Hide transaction fee settings</source>
         <translation type="unfinished">Folaigh socruithe táillí idirbhirt</translation>
+    </message>
+    <message>
+        <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+
+Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satoshis per kvB" for a transaction size of 500 virtual bytes (half of 1 kvB) would ultimately yield a fee of only 50 satoshis.</source>
+        <translation type="unfinished">Sonraigh táille shaincheaptha in aghaidh an kB (1,000 beart) de mhéid fíorúil an idirbhirt.
+
+Nóta: Ós rud é go ríomhtar an táille ar bhonn in aghaidh an bheart, ní thabharfadh ráta táille "100 satoshis in aghaidh an kvB" le haghaidh méid idirbhirt 500 beart fíorúil (leath de 1 kvB) táille ach 50 satoshis ar deireadh thiar.</translation>
     </message>
     <message>
         <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
@@ -2222,6 +3057,10 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
         <translation type="unfinished">D’fhéadfadh idirbheart nach ndeimhnítear riamh a bheith mar thoradh ar tháille ró-íseal (léigh an leid uirlise)</translation>
+    </message>
+    <message>
+        <source>(Smart fee not initialized yet. This usually takes a few blocks…)</source>
+        <translation type="unfinished">(Níor cuireadh tús leis an táille chliste go fóill. Tógann sé seo cúpla bloc de ghnáth...)</translation>
     </message>
     <message>
         <source>Confirmation time target:</source>
@@ -2237,19 +3076,19 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
-        <translation>&amp;Glan Gach</translation>
+        <translation type="unfinished">&amp;Glan Gach</translation>
     </message>
     <message>
         <source>Balance:</source>
-        <translation>Iarmhéid</translation>
+        <translation type="unfinished">Iarmhéid</translation>
     </message>
     <message>
         <source>Confirm the send action</source>
-        <translation>Deimhnigh an gníomh seol</translation>
+        <translation type="unfinished">Deimhnigh an gníomh seol</translation>
     </message>
     <message>
         <source>S&amp;end</source>
-        <translation>S&amp;eol</translation>
+        <translation type="unfinished">S&amp;eol</translation>
     </message>
     <message>
         <source>Copy quantity</source>
@@ -2272,16 +3111,26 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Cóipeáíl bearta</translation>
     </message>
     <message>
-        <source>Copy dust</source>
-        <translation type="unfinished">Cóipeáíl dusta</translation>
-    </message>
-    <message>
         <source>Copy change</source>
         <translation type="unfinished">Cóipeáíl sóinseáil</translation>
     </message>
     <message>
         <source>%1 (%2 blocks)</source>
         <translation type="unfinished">%1 (%2 bloic)</translation>
+    </message>
+    <message>
+        <source>Sign on device</source>
+        <extracomment>"device" usually means a hardware wallet.</extracomment>
+        <translation type="unfinished">Sínigh ar an ngléas</translation>
+    </message>
+    <message>
+        <source>Connect your hardware wallet first.</source>
+        <translation type="unfinished">Ceangail do sparán crua-earraí ar dtús.</translation>
+    </message>
+    <message>
+        <source>Set external signer script path in Options -&gt; Wallet</source>
+        <extracomment>"External signer" means using devices such as hardware wallets.</extracomment>
+        <translation type="unfinished">Socraigh cosán script sínitheora seachtrach i Roghanna -&gt; Sparán</translation>
     </message>
     <message>
         <source>Cr&amp;eate Unsigned</source>
@@ -2292,10 +3141,6 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Cruthaíonn Idirbheart Bitcoin Sínithe go Páirteach (IBSP) le húsáid le e.g. sparán as líne %1, nó sparán crua-earraí atá comhoiriúnach le IBSP.</translation>
     </message>
     <message>
-        <source> from wallet '%1'</source>
-        <translation type="unfinished">ó sparán '%1'</translation>
-    </message>
-    <message>
         <source>%1 to '%2'</source>
         <translation type="unfinished">%1 go '%2'</translation>
     </message>
@@ -2304,24 +3149,40 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">%1 go %2</translation>
     </message>
     <message>
-        <source>Do you want to draft this transaction?</source>
-        <translation type="unfinished">Ar mhaith leat an t-idirbheart seo a dhréachtú?</translation>
+        <source>To review recipient list click "Show Details…"</source>
+        <translation type="unfinished">Chun liosta na bhfaighteoirí a athbhreithniú cliceáil "Taispeáin Sonraí…"</translation>
     </message>
     <message>
-        <source>Are you sure you want to send?</source>
-        <translation type="unfinished">An bhfuil tú cinnte gur mhaith leat seoladh?</translation>
+        <source>Sign failed</source>
+        <translation type="unfinished">Theip ar an síniú</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
-        <translation type="unfinished">Cruthaigh Gan Sín</translation>
+        <source>External signer not found</source>
+        <extracomment>"External signer" means using devices such as hardware wallets.</extracomment>
+        <translation type="unfinished">Níor aimsíodh sínitheoir seachtrach</translation>
+    </message>
+    <message>
+        <source>External signer failure</source>
+        <extracomment>"External signer" means using devices such as hardware wallets.</extracomment>
+        <translation type="unfinished">Teip sínitheora sheachtraigh</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
         <translation type="unfinished">Sábháil Sonraí Idirbheart</translation>
     </message>
     <message>
+        <source>Partially Signed Transaction (Binary)</source>
+        <extracomment>Expanded name of the binary PSBT file format. See: BIP 174.</extracomment>
+        <translation type="unfinished">Idirbheart Páirt-Sínithe (Dénártha)</translation>
+    </message>
+    <message>
         <source>PSBT saved</source>
+        <extracomment>Popup message when a PSBT has been saved to a file</extracomment>
         <translation type="unfinished">IBSP sábháilte</translation>
+    </message>
+    <message>
+        <source>External balance:</source>
+        <translation type="unfinished">Iarmhéid seachtrach:</translation>
     </message>
     <message>
         <source>or</source>
@@ -2333,10 +3194,21 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
         <translation type="unfinished">Le do thoil, déan athbhreithniú ar do thogra idirbhirt. Tabharfaidh sé seo Idirbheart Bitcoin Sínithe go Páirteach (IBSP) ar féidir leat a shábháil nó a chóipeáil agus a shíniú ansin le m.sh. sparán as líne %1, nó sparán crua-earraí atá comhoiriúnach le IBSP.</translation>
     </message>
     <message>
+        <source>%1 from wallet '%2'</source>
+        <translation type="unfinished">%1 ó sparán '%2'</translation>
+    </message>
+    <message>
+        <source>Do you want to create this transaction?</source>
+        <extracomment>Message displayed when attempting to create a transaction. Cautionary text to prompt the user to verify that the displayed transaction details represent the transaction the user intends to create.</extracomment>
+        <translation type="unfinished">Ar mhaith leat an t-idirbheart seo a chruthú?</translation>
+    </message>
+    <message>
         <source>Please, review your transaction.</source>
+        <extracomment>Text to prompt a user to review the details of the transaction they are attempting to send.</extracomment>
         <translation type="unfinished">Le do thoil, déan athbhreithniú ar d’idirbheart.</translation>
     </message>
     <message>
@@ -2352,12 +3224,22 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Iomlán</translation>
     </message>
     <message>
-        <source>Confirm send coins</source>
-        <translation type="unfinished">Deimhnigh seol boinn</translation>
+        <source>Unsigned Transaction</source>
+        <comment>PSBT copied</comment>
+        <extracomment>Caption of "PSBT has been copied" messagebox</extracomment>
+        <translation type="unfinished">Idirbheart Gan Sínithe</translation>
     </message>
     <message>
-        <source>Confirm transaction proposal</source>
-        <translation type="unfinished">Deimhnigh togra idirbhirt</translation>
+        <source>The PSBT has been copied to the clipboard. You can also save it.</source>
+        <translation type="unfinished">Tá an PSBT cóipeáilte chuig an ngearrthaisce. Is féidir leat é a shábháil freisin.</translation>
+    </message>
+    <message>
+        <source>PSBT saved to disk</source>
+        <translation type="unfinished">PSBT sábháilte ar diosca</translation>
+    </message>
+    <message>
+        <source>Confirm send coins</source>
+        <translation type="unfinished">Deimhnigh seol boinn</translation>
     </message>
     <message>
         <source>Watch-only balance:</source>
@@ -2391,16 +3273,12 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <source>A fee higher than %1 is considered an absurdly high fee.</source>
         <translation type="unfinished">Meastar gur táille áiféiseach ard í táille níos airde ná %1.</translation>
     </message>
-    <message>
-        <source>Payment request expired.</source>
-        <translation type="unfinished">Iarratas íocaíocht éagtha.</translation>
-    </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-            <numerusform />
+        <translation type="unfinished">
+            <numerusform>Meastar go dtosóidh an deimhniú laistigh de %n bloc(s).</numerusform>
+            <numerusform>Meastar go dtosóidh an deimhniú laistigh de %n bloc(s).</numerusform>
+            <numerusform>Meastar go dtosóidh an deimhniú laistigh de %n bloc(s).</numerusform>
         </translation>
     </message>
     <message>
@@ -2428,15 +3306,15 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <name>SendCoinsEntry</name>
     <message>
         <source>A&amp;mount:</source>
-        <translation>&amp;Suim:</translation>
+        <translation type="unfinished">&amp;Suim:</translation>
     </message>
     <message>
         <source>Pay &amp;To:</source>
-        <translation>Íoc &amp;Chuig:</translation>
+        <translation type="unfinished">Íoc &amp;Chuig:</translation>
     </message>
     <message>
         <source>&amp;Label:</source>
-        <translation>&amp;Lipéad</translation>
+        <translation type="unfinished">&amp;Lipéad</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2448,7 +3326,7 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
-        <translation>Greamaigh seoladh ón gearrthaisce</translation>
+        <translation type="unfinished">Greamaigh seoladh ón gearrthaisce</translation>
     </message>
     <message>
         <source>Remove this entry</source>
@@ -2475,43 +3353,38 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Teachtaireacht:</translation>
     </message>
     <message>
-        <source>This is an unauthenticated payment request.</source>
-        <translation type="unfinished">Iarratas íocaíocht neamhfíordheimhnithe é seo.</translation>
-    </message>
-    <message>
-        <source>This is an authenticated payment request.</source>
-        <translation type="unfinished">Iarratas íocaíocht fíordheimhnithe é seo.</translation>
-    </message>
-    <message>
         <source>Enter a label for this address to add it to the list of used addresses</source>
         <translation type="unfinished">Iontráil lipéad don seoladh seo chun é a chur le liosta na seoltaí úsáidte</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Whive network.</source>
+        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Bitcoin network.</source>
         <translation type="unfinished">Teachtaireacht a bhí ceangailte leis an bitcoin: URI a stórálfar leis an idirbheart le haghaidh do thagairt. Nóta: Ní sheolfar an teachtaireacht seo thar líonra Bitcoin.</translation>
     </message>
+</context>
+<context>
+    <name>SendConfirmationDialog</name>
     <message>
-        <source>Pay To:</source>
-        <translation type="unfinished">Íoc chuig:</translation>
+        <source>Send</source>
+        <translation type="unfinished">Seol</translation>
     </message>
     <message>
-        <source>Memo:</source>
-        <translation type="unfinished">Meamram:</translation>
+        <source>Create Unsigned</source>
+        <translation type="unfinished">Cruthaigh Gan Sín</translation>
     </message>
 </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
         <source>Signatures - Sign / Verify a Message</source>
-        <translation>Sínithe - Sínigh / Dearbhaigh Teachtaireacht</translation>
+        <translation type="unfinished">Sínithe - Sínigh / Dearbhaigh Teachtaireacht</translation>
     </message>
     <message>
         <source>&amp;Sign Message</source>
-        <translation>&amp;Sínigh Teachtaireacht</translation>
+        <translation type="unfinished">&amp;Sínigh Teachtaireacht</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation type="unfinished">Féadfaidh tú teachtaireachtaí / comhaontuithe a shíniú le do sheoltaí chun a chruthú gur féidir leat bitcoins a sheoltear chucu a fháil. Bí cúramach gan aon rud doiléir nó randamach a shíniú, mar d’fhéadfadh ionsaithe fioscaireachta iarracht ar d’aitheantas a shíniú chucu. Ná sínigh ach ráitis lán-mhionsonraithe a aontaíonn tú leo.</translation>
+        <source>You can sign messages/agreements with your legacy (P2PKH) addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation type="unfinished">Is féidir leat teachtaireachtaí/comhaontuithe a shíniú le do sheoltaí oidhreachta (P2PKH) lena chruthú gur féidir leat bitcoins a sheoltar chucu a fháil. Bí cúramach gan aon rud doiléir nó randamach a shíniú, mar seans go ndéanfaidh ionsaithe fioscaireachta iarracht tú a mhealladh chun d'aitheantas a shíniú leo. Ná sínigh ach ráitis mhionsonraithe a n-aontaíonn tú leo.</translation>
     </message>
     <message>
         <source>The Bitcoin address to sign the message with</source>
@@ -2523,39 +3396,39 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
-        <translation>Greamaigh seoladh ón gearrthaisce</translation>
+        <translation type="unfinished">Greamaigh seoladh ón gearrthaisce</translation>
     </message>
     <message>
         <source>Enter the message you want to sign here</source>
-        <translation>Iontráil an teachtaireacht a theastaíonn uait a shíniú anseo</translation>
+        <translation type="unfinished">Iontráil an teachtaireacht a theastaíonn uait a shíniú anseo</translation>
     </message>
     <message>
         <source>Signature</source>
-        <translation>Síniú</translation>
+        <translation type="unfinished">Síniú</translation>
     </message>
     <message>
         <source>Copy the current signature to the system clipboard</source>
-        <translation>Cóipeáil an síniú reatha chuig gearrthaisce an chórais</translation>
+        <translation type="unfinished">Cóipeáil an síniú reatha chuig gearrthaisce an chórais</translation>
     </message>
     <message>
         <source>Sign the message to prove you own this Bitcoin address</source>
-        <translation>Sínigh an teachtaireacht chun a chruthú gur leat an seoladh Bitcoin seo</translation>
+        <translation type="unfinished">Sínigh an teachtaireacht chun a chruthú gur leat an seoladh Bitcoin seo</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
-        <translation>Sínigh &amp;Teachtaireacht</translation>
+        <translation type="unfinished">Sínigh &amp;Teachtaireacht</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
-        <translation>Athshocraigh gach réimse sínigh teachtaireacht</translation>
+        <translation type="unfinished">Athshocraigh gach réimse sínigh teachtaireacht</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
-        <translation>&amp;Glan Gach</translation>
+        <translation type="unfinished">&amp;Glan Gach</translation>
     </message>
     <message>
         <source>&amp;Verify Message</source>
-        <translation>&amp;Fíoraigh Teachtaireacht</translation>
+        <translation type="unfinished">&amp;Fíoraigh Teachtaireacht</translation>
     </message>
     <message>
         <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
@@ -2575,15 +3448,15 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Bitcoin address</source>
-        <translation>Fíoraigh an teachtaireacht lena chinntiú go raibh sí sínithe leis an seoladh Bitcoin sainithe </translation>
+        <translation type="unfinished">Fíoraigh an teachtaireacht lena chinntiú go raibh sí sínithe leis an seoladh Bitcoin sainithe </translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
-        <translation>Fíoraigh &amp;Teachtaireacht</translation>
+        <translation type="unfinished">Fíoraigh &amp;Teachtaireacht</translation>
     </message>
     <message>
         <source>Reset all verify message fields</source>
-        <translation>Athshocraigh gach réimse fíorú teachtaireacht</translation>
+        <translation type="unfinished">Athshocraigh gach réimse fíorú teachtaireacht</translation>
     </message>
     <message>
         <source>Click "Sign Message" to generate signature</source>
@@ -2596,10 +3469,6 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>Please check the address and try again.</source>
         <translation type="unfinished">Seiceáil an seoladh le do thoil agus triail arís.</translation>
-    </message>
-    <message>
-        <source>The entered address does not refer to a key.</source>
-        <translation type="unfinished">Ní thagraíonn an seoladh a iontráladh d’eochair.</translation>
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
@@ -2643,45 +3512,46 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
 </context>
 <context>
-    <name>TransactionDesc</name>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-            <numerusform />
-        </translation>
+    <name>SplashScreen</name>
+    <message>
+        <source>(press q to shutdown and continue later)</source>
+        <translation type="unfinished">(brúigh q chun múchadh agus lean ar aghaidh ar ball)</translation>
     </message>
     <message>
-        <source>Open until %1</source>
-        <translation type="unfinished">Oscailte go dtí %1</translation>
+        <source>press q to shutdown</source>
+        <translation type="unfinished">brúigh q chun múchadh</translation>
     </message>
+</context>
+<context>
+    <name>TransactionDesc</name>
     <message>
         <source>conflicted with a transaction with %1 confirmations</source>
+        <extracomment>Text explaining the current status of a transaction, shown in the status field of the details window for this transaction. This status represents an unconfirmed transaction that conflicts with a confirmed transaction.</extracomment>
         <translation type="unfinished">faoi choimhlint le idirbheart le %1 dearbhuithe</translation>
     </message>
     <message>
-        <source>0/unconfirmed, %1</source>
-        <translation type="unfinished">0/neamhdheimhnithe, %1</translation>
+        <source>0/unconfirmed, in memory pool</source>
+        <extracomment>Text explaining the current status of a transaction, shown in the status field of the details window for this transaction. This status represents an unconfirmed transaction that is in the memory pool.</extracomment>
+        <translation type="unfinished">0/neamhdhearbhaithe, i linn cuimhne</translation>
     </message>
     <message>
-        <source>in memory pool</source>
-        <translation type="unfinished">i linn cuimhne</translation>
-    </message>
-    <message>
-        <source>not in memory pool</source>
-        <translation type="unfinished">ní i linn cuimhne</translation>
+        <source>0/unconfirmed, not in memory pool</source>
+        <extracomment>Text explaining the current status of a transaction, shown in the status field of the details window for this transaction. This status represents an unconfirmed transaction that is not in the memory pool.</extracomment>
+        <translation type="unfinished">0/neamhdhearbhaithe, ní sa linn cuimhne</translation>
     </message>
     <message>
         <source>abandoned</source>
+        <extracomment>Text explaining the current status of a transaction, shown in the status field of the details window for this transaction. This status represents an abandoned transaction.</extracomment>
         <translation type="unfinished">tréigthe</translation>
     </message>
     <message>
         <source>%1/unconfirmed</source>
+        <extracomment>Text explaining the current status of a transaction, shown in the status field of the details window for this transaction. This status represents a transaction confirmed in at least one block, but less than 6 blocks.</extracomment>
         <translation type="unfinished">%1/neamhdheimhnithe</translation>
     </message>
     <message>
         <source>%1 confirmations</source>
+        <extracomment>Text explaining the current status of a transaction, shown in the status field of the details window for this transaction. This status represents a transaction confirmed in 6 or more blocks.</extracomment>
         <translation type="unfinished">%1 dearbhuithe</translation>
     </message>
     <message>
@@ -2730,10 +3600,10 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-            <numerusform />
+        <translation type="unfinished">
+            <numerusform>aibíonn i %n bloc(anna) eile</numerusform>
+            <numerusform>aibíonn i %n bloc(anna) eile</numerusform>
+            <numerusform>aibíonn i %n bloc(anna) eile</numerusform>
         </translation>
     </message>
     <message>
@@ -2785,8 +3655,8 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Innéacs aschuir</translation>
     </message>
     <message>
-        <source> (Certificate was not verified)</source>
-        <translation type="unfinished">(Níor fíoraíodh teastas)</translation>
+        <source>%1 (Certificate was not verified)</source>
+        <translation type="unfinished">%1 (Níor fíoraíodh an teastas)</translation>
     </message>
     <message>
         <source>Merchant</source>
@@ -2825,7 +3695,7 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <name>TransactionDescDialog</name>
     <message>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation>Taispeánann an phána seo mionchuntas den idirbheart</translation>
+        <translation type="unfinished">Taispeánann an phána seo mionchuntas den idirbheart</translation>
     </message>
     <message>
         <source>Details for %1</source>
@@ -2845,18 +3715,6 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>Label</source>
         <translation type="unfinished">Lipéad</translation>
-    </message>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-            <numerusform />
-        </translation>
-    </message>
-    <message>
-        <source>Open until %1</source>
-        <translation type="unfinished">Oscailte go dtí %1</translation>
     </message>
     <message>
         <source>Unconfirmed</source>
@@ -2897,10 +3755,6 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
     <message>
         <source>Sent to</source>
         <translation type="unfinished">Seolta chuig</translation>
-    </message>
-    <message>
-        <source>Payment to yourself</source>
-        <translation type="unfinished">Íocaíocht chugat féin</translation>
     </message>
     <message>
         <source>Mined</source>
@@ -2978,10 +3832,6 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Seolta chuig</translation>
     </message>
     <message>
-        <source>To yourself</source>
-        <translation type="unfinished">Chugat fhéin</translation>
-    </message>
-    <message>
         <source>Mined</source>
         <translation type="unfinished">Mianáilte</translation>
     </message>
@@ -2994,12 +3844,61 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Íosmhéid</translation>
     </message>
     <message>
+        <source>Range…</source>
+        <translation type="unfinished">Raon…</translation>
+    </message>
+    <message>
+        <source>&amp;Copy address</source>
+        <translation type="unfinished">&amp;Cóipeáil seoladh</translation>
+    </message>
+    <message>
+        <source>Copy &amp;label</source>
+        <translation type="unfinished">Cóipeáil &amp;lipéad</translation>
+    </message>
+    <message>
+        <source>Copy &amp;amount</source>
+        <translation type="unfinished">Cóipeáil &amp; méid</translation>
+    </message>
+    <message>
+        <source>Copy transaction &amp;ID</source>
+        <translation type="unfinished">Cóipeáil idirbheart &amp;ID</translation>
+    </message>
+    <message>
+        <source>Copy &amp;raw transaction</source>
+        <translation type="unfinished">Cóipeáil &amp;amh-idirbheart</translation>
+    </message>
+    <message>
+        <source>Copy full transaction &amp;details</source>
+        <translation type="unfinished">Cóipeáil idirbheart agus sonraí iomlána</translation>
+    </message>
+    <message>
+        <source>&amp;Show transaction details</source>
+        <translation type="unfinished">&amp;Taispeáin sonraí idirbhirt</translation>
+    </message>
+    <message>
+        <source>Increase transaction &amp;fee</source>
+        <translation type="unfinished">Méadaigh idirbheart &amp; táille</translation>
+    </message>
+    <message>
+        <source>A&amp;bandon transaction</source>
+        <translation type="unfinished">Idirbheart&amp;tréigean</translation>
+    </message>
+    <message>
+        <source>&amp;Edit address label</source>
+        <translation type="unfinished">&amp;Cuir lipéad seolta in eagar</translation>
+    </message>
+    <message>
+        <source>Show in %1</source>
+        <extracomment>Transactions table context menu action to show the selected transaction in a third-party block explorer. %1 is a stand-in argument for the URL of the explorer.</extracomment>
+        <translation type="unfinished">Taispeáin i %1</translation>
+    </message>
+    <message>
         <source>Export Transaction History</source>
         <translation type="unfinished">Easpórtáil Stair Idirbheart</translation>
     </message>
     <message>
         <source>Comma separated file</source>
-        <extracomment>Expanded name of the CSV file format. See https://en.wikipedia.org/wiki/Comma-separated_values</extracomment>
+        <extracomment>Expanded name of the CSV file format. See: https://en.wikipedia.org/wiki/Comma-separated_values.</extracomment>
         <translation type="unfinished">Comhad athróige camógdheighilte</translation>
     </message>
     <message>
@@ -3043,6 +3942,10 @@ Ní féidir síniú ach le seoltaí 'oidhreachta'.</translation>
         <translation type="unfinished">Easpórtáil Rathúil</translation>
     </message>
     <message>
+        <source>The transaction history was successfully saved to %1.</source>
+        <translation type="unfinished">Sábháladh stair an idirbhirt go rathúil chuig %1.</translation>
+    </message>
+    <message>
         <source>Range:</source>
         <translation type="unfinished">Raon:</translation>
     </message>
@@ -3064,76 +3967,6 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
     <message>
         <source>Create a new wallet</source>
         <translation type="unfinished">Cruthaigh sparán nua</translation>
-    </message>
-</context>
-<context>
-    <name>WalletModel</name>
-    <message>
-        <source>Send Coins</source>
-        <translation type="unfinished">Seol Boinn</translation>
-    </message>
-    <message>
-        <source>Fee bump error</source>
-        <translation type="unfinished">Earráid preab táille</translation>
-    </message>
-    <message>
-        <source>Increasing transaction fee failed</source>
-        <translation type="unfinished">Theip ar méadú táille idirbhirt</translation>
-    </message>
-    <message>
-        <source>Do you want to increase the fee?</source>
-        <translation type="unfinished">Ar mhaith leat an táille a mhéadú?</translation>
-    </message>
-    <message>
-        <source>Do you want to draft a transaction with fee increase?</source>
-        <translation type="unfinished">Ar mhaith leat idirbheart a dhréachtú le táillí ardaithe?</translation>
-    </message>
-    <message>
-        <source>Current fee:</source>
-        <translation type="unfinished">Táille reatha:</translation>
-    </message>
-    <message>
-        <source>Increase:</source>
-        <translation type="unfinished">Méadú:</translation>
-    </message>
-    <message>
-        <source>New fee:</source>
-        <translation type="unfinished">Táille nua:</translation>
-    </message>
-    <message>
-        <source>Confirm fee bump</source>
-        <translation type="unfinished">Dearbhaigh preab táille</translation>
-    </message>
-    <message>
-        <source>Can't draft transaction.</source>
-        <translation type="unfinished">Ní féidir dréachtú idirbheart.</translation>
-    </message>
-    <message>
-        <source>PSBT copied</source>
-        <translation type="unfinished">IBSP cóipeáilte</translation>
-    </message>
-    <message>
-        <source>Can't sign transaction.</source>
-        <translation type="unfinished">Ní féidir síniú idirbheart.</translation>
-    </message>
-    <message>
-        <source>Could not commit transaction</source>
-        <translation type="unfinished">Níorbh fhéidir feidhmiú idirbheart</translation>
-    </message>
-    <message>
-        <source>default wallet</source>
-        <translation type="unfinished">sparán réamhshocraithe</translation>
-    </message>
-</context>
-<context>
-    <name>WalletView</name>
-    <message>
-        <source>&amp;Export</source>
-        <translation type="unfinished">&amp;Easpórtáil</translation>
-    </message>
-    <message>
-        <source>Export the data in the current tab to a file</source>
-        <translation type="unfinished">Easpórtáil na sonraí sa táb reatha chuig comhad</translation>
     </message>
     <message>
         <source>Error</source>
@@ -3159,9 +3992,93 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <source>Unable to decode PSBT</source>
         <translation type="unfinished">Ní féidir díchódú IBSP</translation>
     </message>
+</context>
+<context>
+    <name>WalletModel</name>
+    <message>
+        <source>Send Coins</source>
+        <translation type="unfinished">Seol Boinn</translation>
+    </message>
+    <message>
+        <source>Fee bump error</source>
+        <translation type="unfinished">Earráid preab táille</translation>
+    </message>
+    <message>
+        <source>Increasing transaction fee failed</source>
+        <translation type="unfinished">Theip ar méadú táille idirbhirt</translation>
+    </message>
+    <message>
+        <source>Do you want to increase the fee?</source>
+        <extracomment>Asks a user if they would like to manually increase the fee of a transaction that has already been created.</extracomment>
+        <translation type="unfinished">Ar mhaith leat an táille a mhéadú?</translation>
+    </message>
+    <message>
+        <source>Current fee:</source>
+        <translation type="unfinished">Táille reatha:</translation>
+    </message>
+    <message>
+        <source>Increase:</source>
+        <translation type="unfinished">Méadú:</translation>
+    </message>
+    <message>
+        <source>New fee:</source>
+        <translation type="unfinished">Táille nua:</translation>
+    </message>
+    <message>
+        <source>Warning: This may pay the additional fee by reducing change outputs or adding inputs, when necessary. It may add a new change output if one does not already exist. These changes may potentially leak privacy.</source>
+        <translation type="unfinished">Rabhadh: D’fhéadfadh sé seo an táille bhreise a íoc trí aschuir athraithe a laghdú nó trí ionchuir a chur leis, nuair is gá. Féadfaidh sé aschur athraithe nua a chur leis mura bhfuil ceann ann cheana. D'fhéadfadh na hathruithe seo príobháideacht a sceitheadh.</translation>
+    </message>
+    <message>
+        <source>Confirm fee bump</source>
+        <translation type="unfinished">Dearbhaigh preab táille</translation>
+    </message>
+    <message>
+        <source>Can't draft transaction.</source>
+        <translation type="unfinished">Ní féidir dréachtú idirbheart.</translation>
+    </message>
+    <message>
+        <source>PSBT copied</source>
+        <translation type="unfinished">IBSP cóipeáilte</translation>
+    </message>
+    <message>
+        <source>Fee-bump PSBT copied to clipboard</source>
+        <translation type="unfinished">Cóipeáil PSBT bump táille chuig an ngearrthaisce</translation>
+    </message>
+    <message>
+        <source>Can't sign transaction.</source>
+        <translation type="unfinished">Ní féidir síniú idirbheart.</translation>
+    </message>
+    <message>
+        <source>Could not commit transaction</source>
+        <translation type="unfinished">Níorbh fhéidir feidhmiú idirbheart</translation>
+    </message>
+    <message>
+        <source>Signer error</source>
+        <translation type="unfinished">Earráid sínitheora</translation>
+    </message>
+    <message>
+        <source>Can't display address</source>
+        <translation type="unfinished">Ní féidir an seoladh a thaispeáint</translation>
+    </message>
+</context>
+<context>
+    <name>WalletView</name>
+    <message>
+        <source>&amp;Export</source>
+        <translation type="unfinished">&amp;Easpórtáil</translation>
+    </message>
+    <message>
+        <source>Export the data in the current tab to a file</source>
+        <translation type="unfinished">Easpórtáil na sonraí sa táb reatha chuig comhad</translation>
+    </message>
     <message>
         <source>Backup Wallet</source>
         <translation type="unfinished">Sparán Chúltaca</translation>
+    </message>
+    <message>
+        <source>Wallet Data</source>
+        <extracomment>Name of the wallet data file format.</extracomment>
+        <translation type="unfinished">Sonraí Sparán</translation>
     </message>
     <message>
         <source>Backup Failed</source>
@@ -3195,44 +4112,84 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Tá %s truaillithe. Triail an uirlis sparán bitcoin-wallet a úsáid chun tharrtháil nó chun cúltaca a athbhunú.</translation>
     </message>
     <message>
-        <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
-        <translation type="unfinished">Tá -maxtxfee socraithe an-ard! D’fhéadfaí íoc ar tháillí chomh ard seo in idirbheart amháin.</translation>
+        <source>%s failed to validate the -assumeutxo snapshot state. This indicates a hardware problem, or a bug in the software, or a bad software modification that allowed an invalid snapshot to be loaded. As a result of this, the node will shut down and stop using any state that was built on the snapshot, resetting the chain height from %d to %d. On the next restart, the node will resume syncing from %d without using any snapshot data. Please report this incident to %s, including how you obtained the snapshot. The invalid snapshot chainstate will be left on disk in case it is helpful in diagnosing the issue that caused this error.</source>
+        <translation type="unfinished">Theip ar %s an staid snapshot -assumeutxo a bhailíochtú. Léiríonn sé seo fadhb crua-earraí, nó fabht sna bogearraí, nó droch-mhodhnú bogearraí a cheadaigh pictiúr neamhbhailí a luchtú. Mar thoradh air seo, stopfar an nód agus stopfaidh sé de úsáid a bhaint as staid ar bith a tógadh ar an seat, ag athshocrú airde an tslabhra ó%dgo%d. Ar an gcéad atosú eile, athchromfar ar an nód ag sioncronú ó %d gan úsáid a bhaint as sonraí seat. Tuairiscigh an teagmhas seo do %s lena n-áirítear conas a fuair tú an pictiúr. Fágfar an slabhrashlabhra neamhbhailí ar an diosca ar eagla go mbeadh sé ina chuidiú leis an tsaincheist ba chúis leis an earráid seo a dhiagnóisiú.</translation>
+    </message>
+    <message>
+        <source>%s request to listen on port %u. This port is considered "bad" and thus it is unlikely that any peer will connect to it. See doc/p2p-bad-ports.md for details and a full list.</source>
+        <translation type="unfinished">Iarraidh %s éisteacht ar phort %u. Meastar go bhfuil an port seo "olc" agus dá bhrí sin ní dócha go nascfaidh piaraí ar bith leis. Féach doc/p2p-bad-ports.md le haghaidh sonraí agus liosta iomlán.</translation>
+    </message>
+    <message>
+        <source>Cannot downgrade wallet from version %i to version %i. Wallet version unchanged.</source>
+        <translation type="unfinished">Ní féidir an sparán a íosghrádú ó leagan %igo leagan%i. Leagan sparán gan athrú.</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
         <translation type="unfinished">Ní féidir glas a fháil ar eolaire sonraí %s. Is dócha go bhfuil %s ag rith cheana.</translation>
     </message>
     <message>
-        <source>Cannot provide specific connections and have addrman find outgoing connections at the same.</source>
-        <translation type="unfinished">Ní féidir naisc shonracha a sholáthar agus addrman ar thóir naisc amach ag an am céanna.</translation>
+        <source>Cannot upgrade a non HD split wallet from version %i to version %i without upgrading to support pre-split keypool. Please use version %i or no version specified.</source>
+        <translation type="unfinished">Ní féidir sparán scoilte neamh-HD a uasghrádú ó leagan%igo leagan%i gan uasghrádú chun tacú le heochrach réamh-scoilte. Úsáid leagan %i nó níl aon leagan sonraithe.</translation>
+    </message>
+    <message>
+        <source>Disk space for %s may not accommodate the block files. Approximately %u GB of data will be stored in this directory.</source>
+        <translation type="unfinished">Ní féidir spás diosca le haghaidh %sa chur san áireamh sna blocchomhaid. Stórálfar thart ar %u GB de shonraí san eolaire seo.</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
         <translation type="unfinished">Dáilte faoin gceadúnas bogearraí MIT, féach na comhad atá in éindí %s nó %s</translation>
     </message>
     <message>
-        <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation type="unfinished">Earráid ag léamh %s! Léigh gach eochair i gceart, ach d’fhéadfadh sonraí idirbhirt nó iontrálacha leabhar seoltaí a bheidh in easnamh nó mícheart.</translation>
+        <source>Error loading wallet. Wallet requires blocks to be downloaded, and software does not currently support loading wallets while blocks are being downloaded out of order when using assumeutxo snapshots. Wallet should be able to load successfully after node sync reaches height %s</source>
+        <translation type="unfinished">Earráid agus an sparán á lódáil. Éilíonn Sparán go n-íoslódálfar bloic, agus ní thacaíonn bogearraí faoi láthair le sparán a luchtú agus bloic á n-íoslódáil as ord nuair a úsáidtear snapshots assumeutxo. Ba cheart go mbeadh Sparán in ann luchtú go rathúil nuair a shroicheann sioncronú nód an airde %s</translation>
     </message>
     <message>
-        <source>Error: Listening for incoming connections failed (listen returned error %s)</source>
-        <translation type="unfinished">Earráid: Theip ar éisteacht le naisc teacht-isteach (chuir éist earráid %s ar ais)</translation>
+        <source>Error reading %s! Transaction data may be missing or incorrect. Rescanning wallet.</source>
+        <translation type="unfinished">Earráid agus %s á léamh! Seans go bhfuil sonraí idirbhirt in easnamh nó mícheart. Sparán athscanadh.</translation>
     </message>
     <message>
-        <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
-        <translation type="unfinished">Theip ar mheastachán táillí. Tá fallbackfee díchumasaithe. Fan cúpla bloc nó cumasaigh -fallbackfee.</translation>
+        <source>Error: Dumpfile format record is incorrect. Got "%s", expected "format".</source>
+        <translation type="unfinished">Earráid agus%s á léamh! Seans go bhfuil sonraí idirbhirt in easnamh nó mícheart. Sparán athscanadh.</translation>
     </message>
     <message>
-        <source>Invalid amount for -maxtxfee=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
-        <translation type="unfinished">Suim neamhbhailí do -maxtxfee =&lt;amount&gt;: '%s' (caithfidh ar a laghad an táille minrelay de %s chun idirbhearta greamaithe a chosc)</translation>
+        <source>Error: Dumpfile identifier record is incorrect. Got "%s", expected "%s".</source>
+        <translation type="unfinished">Earráid: Tá taifead aitheantóra Dumpfile mícheart. Fuair ​​​​tú "%s", bhíothas ag súil le "%s".</translation>
+    </message>
+    <message>
+        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation type="unfinished">Earráid: Ní thacaítear leis an leagan Dumpfile. Ní thacaíonn an leagan seo de bitcoin-sparán ach le leagan 1 dumpfiles. Fuair ​​​​tú dumpfile le leagan %s</translation>
+    </message>
+    <message>
+        <source>Error: Legacy wallets only support the "legacy", "p2sh-segwit", and "bech32" address types</source>
+        <translation type="unfinished">Earráid: Ní thacaíonn sparán oidhreachta ach na cineálacha seoltaí "oidhreacht", "p2sh-segwit", agus "bech32"</translation>
+    </message>
+    <message>
+        <source>Error: Unable to produce descriptors for this legacy wallet. Make sure to provide the wallet's passphrase if it is encrypted.</source>
+        <translation type="unfinished">Earráid: Ní féidir tuairisceoirí a tháirgeadh don sparán oidhreachta seo. Bí cinnte pasfhrása an sparán a sholáthar má tá sé criptithe.</translation>
+    </message>
+    <message>
+        <source>File %s already exists. If you are sure this is what you want, move it out of the way first.</source>
+        <translation type="unfinished">Tá comhad %s ann cheana. Má tá tú cinnte gurb é seo a theastaíonn uait, bog é as an mbealach ar dtús.</translation>
+    </message>
+    <message>
+        <source>Invalid or corrupt peers.dat (%s). If you believe this is a bug, please report it to %s. As a workaround, you can move the file (%s) out of the way (rename, move, or delete) to have a new one created on the next start.</source>
+        <translation type="unfinished">Peers.dat neamhbhailí nó truaillithe (%s). Má chreideann tú gur fabht é seo, cuir in iúl do %s é le do thoil. Mar shruth oibre, is féidir leat an comhad (%s) a bhogadh as an mbealach (athainmnigh, bog nó scrios) chun ceann nua a chruthú ar an gcéad thús eile.</translation>
     </message>
     <message>
         <source>More than one onion bind address is provided. Using %s for the automatically created Tor onion service.</source>
         <translation type="unfinished">Tá níos mó ná seoladh ceangail oinniún amháin curtha ar fáil. Ag baint úsáide as %s don tseirbhís Tor oinniún a cruthaíodh go huathoibríoch.</translation>
     </message>
     <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
-        <translation type="unfinished">Le do thoil seiceáil go bhfuil dáta agus am do ríomhaire ceart! Má tá do chlog mícheart, ní oibreoidh %s i gceart.</translation>
+        <source>No dump file provided. To use createfromdump, -dumpfile=&lt;filename&gt; must be provided.</source>
+        <translation type="unfinished">Níor soláthraíodh aon chomhad dumpála. Chun createfromdump a úsáid, ní mór -dumpfile=&lt;filename&gt; a sholáthar.</translation>
+    </message>
+    <message>
+        <source>No dump file provided. To use dump, -dumpfile=&lt;filename&gt; must be provided.</source>
+        <translation type="unfinished">Níor soláthraíodh aon chomhad dumpála. Chun Dumpáil a úsáid, ní mór -dumpfile=&lt;filename&gt; a sholáthar.</translation>
+    </message>
+    <message>
+        <source>No wallet file format provided. To use createfromdump, -format=&lt;format&gt; must be provided.</source>
+        <translation type="unfinished">Níor soláthraíodh formáid comhaid sparán. Chun createfromdump a úsáid, ní mór -format=&lt;format&gt; a sholáthar.</translation>
     </message>
     <message>
         <source>Please contribute if you find %s useful. Visit %s for further information about the software.</source>
@@ -3243,8 +4200,16 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Bearradh cumraithe faoi bhun an íosmhéid %d MiB. Úsáid uimhir níos airde le do thoil.</translation>
     </message>
     <message>
+        <source>Prune mode is incompatible with -reindex-chainstate. Use full -reindex instead.</source>
+        <translation type="unfinished">Níl an modh prúnaí ag luí le -reindex-chainstate. Úsáid lán-reindex ina ionad sin.</translation>
+    </message>
+    <message>
         <source>Prune: last wallet synchronisation goes beyond pruned data. You need to -reindex (download the whole blockchain again in case of pruned node)</source>
         <translation type="unfinished">Bearradh: téann sioncrónú deireanach an sparán thar sonraí bearrtha. Ní mór duit -reindex (déan an blockchain iomlán a íoslódáil arís i gcás nód bearrtha)</translation>
+    </message>
+    <message>
+        <source>Rename of '%s' -&gt; '%s' failed. You should resolve this by manually moving or deleting the invalid snapshot directory %s, otherwise you will encounter the same error again on the next startup.</source>
+        <translation type="unfinished">Theip ar athainmniú '%s' -&gt; '%s'. Ba cheart duit é seo a réiteach tríd an gcomhadlann achomair neamhbhailí %s a bhogadh nó a scriosadh de láimh, nó beidh an earráid chéanna agat arís ar an gcéad tosaithe eile.</translation>
     </message>
     <message>
         <source>SQLiteDatabase: Unknown sqlite wallet schema version %d. Only version %d is supported</source>
@@ -3287,12 +4252,40 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Ní féidir bloic a aithrise. Beidh ort an bunachar sonraí a atógáil ag úsáid -reindex-chainstate.</translation>
     </message>
     <message>
+        <source>Unknown wallet file format "%s" provided. Please provide one of "bdb" or "sqlite".</source>
+        <translation type="unfinished">Cuireadh formáid comhaid sparán anaithnid "%s" ar fáil. Tabhair ceann de "bdb" nó "sqlite".</translation>
+    </message>
+    <message>
+        <source>Unsupported category-specific logging level %1$s=%2$s. Expected %1$s=&lt;category&gt;:&lt;loglevel&gt;. Valid categories: %3$s. Valid loglevels: %4$s.</source>
+        <translation type="unfinished">Leibhéal logála catagóir ar leith nach dtacaítear leis%11$s=%2$s. Bhíothas ag súil le %1$s=1:2. Catagóirí bailí: %3$s. Leibhéil loga bailí: %4$s.</translation>
+    </message>
+    <message>
+        <source>Unsupported chainstate database format found. Please restart with -reindex-chainstate. This will rebuild the chainstate database.</source>
+        <translation type="unfinished">Aimsíodh formáid bhunachar sonraí chainstáit nach dtacaítear léi. Atosaigh le -reindex-chainstate. Déanfaidh sé seo an bunachar sonraí slabhrach a atógáil.</translation>
+    </message>
+    <message>
+        <source>Wallet created successfully. The legacy wallet type is being deprecated and support for creating and opening legacy wallets will be removed in the future.</source>
+        <translation type="unfinished">Sparán cruthaithe go rathúil. Tá an cineál sparán oidhreachta á dhímheas agus bainfear an tacaíocht chun sparán oidhreachta a chruthú agus a oscailt amach anseo.</translation>
+    </message>
+    <message>
+        <source>Wallet loaded successfully. The legacy wallet type is being deprecated and support for creating and opening legacy wallets will be removed in the future. Legacy wallets can be migrated to a descriptor wallet with migratewallet.</source>
+        <translation type="unfinished">D'éirigh leis an sparán a lódáil. Tá an cineál sparán oidhreachta á dhímheas agus bainfear an tacaíocht chun sparán oidhreachta a chruthú agus a oscailt amach anseo. Is féidir sparán oidhreachta a aistriú chuig sparán tuairisceora le sparán imirceach.</translation>
+    </message>
+    <message>
+        <source>Warning: Dumpfile wallet format "%s" does not match command line specified format "%s".</source>
+        <translation type="unfinished">Rabhadh: Ní mheaitseálann formáid sparán Dumpfile "%s" an fhormáid ordaithe sonraithe "%s".</translation>
+    </message>
+    <message>
         <source>Warning: Private keys detected in wallet {%s} with disabled private keys</source>
         <translation type="unfinished">Rabhadh: Eochracha príobháideacha braite i sparán {%s} le heochracha príobháideacha díchumasaithe</translation>
     </message>
     <message>
         <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
         <translation type="unfinished">Rabhadh: Is cosúil nach n-aontaímid go hiomlán lenár piaraí! B’fhéidir go mbeidh ort uasghrádú a dhéanamh, nó b’fhéidir go mbeidh ar nóid eile uasghrádú.</translation>
+    </message>
+    <message>
+        <source>Witness data for blocks after height %d requires validation. Please restart with -reindex.</source>
+        <translation type="unfinished">Teastaíonn bailíochtú sonraí finné maidir le bloic tar éis airde %d. Atosaigh le -reindex le do thoil.</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to go back to unpruned mode.  This will redownload the entire blockchain</source>
@@ -3307,12 +4300,12 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Caithfidh -maxmempool a bheith ar a laghad %d MB</translation>
     </message>
     <message>
-        <source>A fatal internal error occurred, see debug.log for details</source>
-        <translation type="unfinished">Tharla earráid mharfach inmheánach, féach debug.log le haghaidh sonraí</translation>
-    </message>
-    <message>
         <source>Cannot resolve -%s address: '%s'</source>
         <translation type="unfinished">Ní féidir réiteach seoladh -%s: '%s'</translation>
+    </message>
+    <message>
+        <source>Cannot set -forcednsseed to true when setting -dnsseed to false.</source>
+        <translation type="unfinished">Ní féidir -forcednsseed a shocrú go fíor agus -dnsseed á shocrú go bréagach.</translation>
     </message>
     <message>
         <source>Cannot set -peerblockfilters without -blockfilterindex.</source>
@@ -3323,8 +4316,169 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Ní féidir scríobh chuig eolaire sonraí '%s'; seiceáil ceadanna.</translation>
     </message>
     <message>
-        <source>Change index out of range</source>
-        <translation type="unfinished">Innéacs sóinseáil as raon</translation>
+        <source>%s is set very high! Fees this large could be paid on a single transaction.</source>
+        <translation type="unfinished">Tá%s socraithe an-ard! D’fhéadfaí táillí chomh mór seo a íoc ar idirbheart amháin.</translation>
+    </message>
+    <message>
+        <source>Cannot provide specific connections and have addrman find outgoing connections at the same time.</source>
+        <translation type="unfinished">Ní féidir naisc ar leith a sholáthar agus tá addrman chun naisc amach a aimsiú ag an am céanna.</translation>
+    </message>
+    <message>
+        <source>Error loading %s: External signer wallet being loaded without external signer support compiled</source>
+        <translation type="unfinished">Earráid agus %s á lódáil: sparán an tsínitheora sheachtraigh á luchtú gan tacaíocht sínitheoir seachtrach a chur le chéile</translation>
+    </message>
+    <message>
+        <source>Error reading %s! All keys read correctly, but transaction data or address metadata may be missing or incorrect.</source>
+        <translation type="unfinished">Earráid agus %s á léamh! Léann na heochracha go léir i gceart, ach seans go bhfuil sonraí idirbhirt nó meiteashonraí seolta in easnamh nó mícheart.</translation>
+    </message>
+    <message>
+        <source>Error: Address book data in wallet cannot be identified to belong to migrated wallets</source>
+        <translation type="unfinished">Earráid: Ní féidir sonraí an leabhair seoltaí sa sparán a shainaithint mar go mbaineann siad le sparán aistrithe</translation>
+    </message>
+    <message>
+        <source>Error: Duplicate descriptors created during migration. Your wallet may be corrupted.</source>
+        <translation type="unfinished">Earráid: Tuairisceoirí dúblacha a cruthaíodh le linn imirce. Seans go bhfuil do sparán truaillithe.</translation>
+    </message>
+    <message>
+        <source>Error: Transaction %s in wallet cannot be identified to belong to migrated wallets</source>
+        <translation type="unfinished">Earráid: Ní féidir idirbheart %s sa sparán a aithint gur le sparán aistrithe é</translation>
+    </message>
+    <message>
+        <source>Failed to calculate bump fees, because unconfirmed UTXOs depend on enormous cluster of unconfirmed transactions.</source>
+        <translation type="unfinished">Theip ar tháillí tuairte a ríomh, toisc go mbraitheann UTXOanna neamhdhearbhaithe ar bhraisle ollmhór idirbheart neamhdheimhnithe.</translation>
+    </message>
+    <message>
+        <source>Failed to remove snapshot chainstate dir (%s). Manually remove it before restarting.
+</source>
+        <translation type="unfinished">Theip ar bhaint an tsainstáit seat seat (%s). Bain de láimh é roimh atosú.</translation>
+    </message>
+    <message>
+        <source>Failed to rename invalid peers.dat file. Please move or delete it and try again.</source>
+        <translation type="unfinished">Theip ar an gcomhad peers.dat neamhbhailí a athainmniú. Bog nó scrios é agus bain triail eile as.</translation>
+    </message>
+    <message>
+        <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable %s.</source>
+        <translation type="unfinished">Theip ar mheastachán na dtáillí. Tá fallbackfee díchumasaithe. Fan cúpla bloc nó cumasaigh %s.</translation>
+    </message>
+    <message>
+        <source>Flushing block file to disk failed. This is likely the result of an I/O error.</source>
+        <translation type="unfinished">Theip ar chomhad blocála a shruthlú go diosca. Is dócha gur earráid I/O é seo.</translation>
+    </message>
+    <message>
+        <source>Flushing undo file to disk failed. This is likely the result of an I/O error.</source>
+        <translation type="unfinished">Theip ar shruthlú an chomhaid chealaigh go diosca. Is dócha gur earráid I/O é seo.</translation>
+    </message>
+    <message>
+        <source>Incompatible options: -dnsseed=1 was explicitly specified, but -onlynet forbids connections to IPv4/IPv6</source>
+        <translation type="unfinished">Roghanna neamh-chomhoiriúnacha: -dnsseed=1 sonraíodh go sainráite, ach cuireann -onlynet cosc ​​ar naisc le IPv4/IPv6</translation>
+    </message>
+    <message>
+        <source>Invalid amount for %s=&lt;amount&gt;: '%s' (must be at least the minrelay fee of %s to prevent stuck transactions)</source>
+        <translation type="unfinished">Méid neamhbhailí le haghaidh %s=1: '%s' (ní mór an táille sealaíochta nóiméad de %s a bheith ann ar a laghad chun idirbhearta bhfostú a chosc)</translation>
+    </message>
+    <message>
+        <source>Maximum transaction weight is less than transaction weight without inputs</source>
+        <translation type="unfinished">Tá an t-uasmheáchan idirbhirt níos lú ná meáchan idirbhirt gan ionchuir</translation>
+    </message>
+    <message>
+        <source>Maximum transaction weight is too low, can not accommodate change output</source>
+        <translation type="unfinished">Tá meáchan uasta idirbheart ró-íseal, ní féidir freastal ar aschur athraithe</translation>
+    </message>
+    <message>
+        <source>Outbound connections restricted to CJDNS (-onlynet=cjdns) but -cjdnsreachable is not provided</source>
+        <translation type="unfinished">Naisc amach teoranta do CJDNS (-onlynet=cjdns) ach ní chuirtear -cjdnsreachable ar fáil</translation>
+    </message>
+    <message>
+        <source>Outbound connections restricted to Tor (-onlynet=onion) but the proxy for reaching the Tor network is explicitly forbidden: -onion=0</source>
+        <translation type="unfinished">Tá naisc amach teoranta do Tor (-onlynet=onion) ach tá cosc ​​sainráite ar an seachfhreastalaí chun líonra Tor a bhaint amach: -onion=0</translation>
+    </message>
+    <message>
+        <source>Outbound connections restricted to Tor (-onlynet=onion) but the proxy for reaching the Tor network is not provided: none of -proxy, -onion or -listenonion is given</source>
+        <translation type="unfinished">Naisc amach teoranta do Tor (-onlynet=onion) ach ní thugtar an seachfhreastalaí chun líonra Tor a bhaint amach: ní thugtar aon seachfhreastalaí, -oinniún nó -listenonion</translation>
+    </message>
+    <message>
+        <source>Outbound connections restricted to i2p (-onlynet=i2p) but -i2psam is not provided</source>
+        <translation type="unfinished">Tá naisc amach teoranta do i2p (-onlynet=i2p) ach ní chuirtear -i2psam ar fáil</translation>
+    </message>
+    <message>
+        <source>Rename of '%s' -&gt; '%s' failed. Cannot clean up the background chainstate leveldb directory.</source>
+        <translation type="unfinished">Theip ar athainmniú '%s' -&gt; '%s'. Ní féidir eolaire leveldb an tslabhra cúlra a ghlanadh.</translation>
+    </message>
+    <message>
+        <source>The combination of the pre-selected inputs and the wallet automatic inputs selection exceeds the transaction maximum weight. Please try sending a smaller amount or manually consolidating your wallet's UTXOs</source>
+        <translation type="unfinished">Sáraíonn meascán na n-ionchur réamhroghnaithe agus an rogha ionchuir uathoibríoch sparán an t-uasmheáchan idirbhirt. Bain triail as méid níos lú a sheoladh nó UTXO do sparán a chomhdhlúthú de láimh</translation>
+    </message>
+    <message>
+        <source>The inputs size exceeds the maximum weight. Please try sending a smaller amount or manually consolidating your wallet's UTXOs</source>
+        <translation type="unfinished">Sáraíonn méid an ionchuir an t-uasmheáchan. Bain triail as méid níos lú a sheoladh nó UTXO do sparán a chomhdhlúthú de láimh</translation>
+    </message>
+    <message>
+        <source>The preselected coins total amount does not cover the transaction target. Please allow other inputs to be automatically selected or include more coins manually</source>
+        <translation type="unfinished">Ní chlúdaíonn méid iomlán na monaí réamhroghnaithe sprioc an idirbhirt. Ceadaigh le do thoil ionchuir eile a roghnú go huathoibríoch nó cuir níos mó bonn san áireamh de láimh</translation>
+    </message>
+    <message>
+        <source>Transaction requires one destination of non-0 value, a non-0 feerate, or a pre-selected input</source>
+        <translation type="unfinished">Éilíonn an t-idirbheart ceann scríbe amháin de luach neamh-0, táille neamh-0, nó ionchur réamhroghnaithe</translation>
+    </message>
+    <message>
+        <source>UTXO snapshot failed to validate. Restart to resume normal initial block download, or try loading a different snapshot.</source>
+        <translation type="unfinished">Theip ar bhailíochtú a dhéanamh ar achomair UTXO. Atosaigh chun gnáthíoslódáil na mbloc tosaigh a atosú, nó bain triail as pictiúr eile a lódáil.</translation>
+    </message>
+    <message>
+        <source>Unconfirmed UTXOs are available, but spending them creates a chain of transactions that will be rejected by the mempool</source>
+        <translation type="unfinished">Tá UTXOanna neamhdheimhnithe ar fáil, ach cruthaítear slabhra idirbheart a ndiúltóidh an mempool dóibh má dhéantar iad a chaitheamh</translation>
+    </message>
+    <message>
+        <source>Unexpected legacy entry in descriptor wallet found. Loading wallet %s
+
+The wallet might have been tampered with or created with malicious intent.
+</source>
+        <translation type="unfinished">Fuarthas iontráil oidhreachta gan choinne sa sparán tuairisceora. Sparán %s á lódáil
+
+Seans gur cuireadh isteach ar an sparán nó gur cruthaíodh é le hintinn mhailíseach.</translation>
+    </message>
+    <message>
+        <source>Unrecognized descriptor found. Loading wallet %s
+
+The wallet might had been created on a newer version.
+Please try running the latest software version.
+</source>
+        <translation type="unfinished">Tuairisceoir neamhaitheanta aimsithe. Sparán %s á lódáil
+
+Seans gur cruthaíodh an sparán ar leagan níos nuaí.
+Bain triail as an leagan bogearraí is déanaí a rith.</translation>
+    </message>
+    <message>
+        <source>Your computer's date and time appear to be more than %d minutes out of sync with the network, this may lead to consensus failure. After you've confirmed your computer's clock, this message should no longer appear when you restart your node. Without a restart, it should stop showing automatically after you've connected to a sufficient number of new outbound peers, which may take some time. You can inspect the `timeoffset` field of the `getpeerinfo` and `getnetworkinfo` RPC methods to get more info.</source>
+        <translation type="unfinished">Is cosúil go bhfuil dáta agus am do ríomhaire níos mó ná %d nóiméad as sioncronú leis an líonra, seans go dteipfidh ar chomhdhearcadh dá bharr. Tar éis duit clog do ríomhaire a dheimhniú, níor cheart go mbeadh an teachtaireacht seo le feiceáil a thuilleadh nuair a atosóidh tú do nód. Gan atosú, ba cheart go stopfadh sé ag taispeáint go huathoibríoch tar éis duit nasc a dhéanamh le líon imleor piaraí nua amach, a d'fhéadfadh roinnt ama a ghlacadh. Is féidir leat an réimse `timeoffset` de na modhanna RPC `getpeerinfo` agus `getnetworkinfo` a iniúchadh chun tuilleadh faisnéise a fháil.</translation>
+    </message>
+    <message>
+        <source>
+Unable to cleanup failed migration</source>
+        <translation type="unfinished">
+Ní féidir an t-imirce theip a ghlanadh</translation>
+    </message>
+    <message>
+        <source>
+Unable to restore backup of wallet.</source>
+        <translation type="unfinished">
+Ní féidir cúltaca an sparán a chur ar ais.</translation>
+    </message>
+    <message>
+        <source>whitebind may only be used for incoming connections ("out" was passed)</source>
+        <translation type="unfinished">ní féidir ceangaltán bán a úsáid ach amháin le haghaidh naisc isteach (ritheadh ​​​​"amach")</translation>
+    </message>
+    <message>
+        <source>A fatal internal error occurred, see debug.log for details: </source>
+        <translation type="unfinished">Tharla earráid mharfach inmheánach, féach debug.log le haghaidh sonraí:</translation>
+    </message>
+    <message>
+        <source>Assumeutxo data not found for the given blockhash '%s'.</source>
+        <translation type="unfinished">Ní bhfuarthas sonraí Assumeutxo don bhlocshlabhra '%s' a tugadh.</translation>
+    </message>
+    <message>
+        <source>Block verification was interrupted</source>
+        <translation type="unfinished">Cuireadh isteach ar an bhfíorú blocála</translation>
     </message>
     <message>
         <source>Config setting for %s only applied on %s network when in [%s] section.</source>
@@ -3333,6 +4487,10 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
     <message>
         <source>Copyright (C) %i-%i</source>
         <translation type="unfinished">Cóipcheart (C) %i-%i</translation>
+    </message>
+    <message>
+        <source>Corrupt block found indicating potential hardware failure.</source>
+        <translation type="unfinished">Bloc truaillithe aimsithe a léirigh teip crua-earraí féideartha.</translation>
     </message>
     <message>
         <source>Corrupted block database detected</source>
@@ -3357,6 +4515,22 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
     <message>
         <source>Done loading</source>
         <translation type="unfinished">Lódáil déanta</translation>
+    </message>
+    <message>
+        <source>Dump file %s does not exist.</source>
+        <translation type="unfinished">Níl an comhad dumpála %s ann.</translation>
+    </message>
+    <message>
+        <source>Elliptic curve cryptography sanity check failure. %s is shutting down.</source>
+        <translation type="unfinished">Teip seiceála sláintíochta cripteagrafaíochta cuar éilipseach. Tá %s ag múchadh.</translation>
+    </message>
+    <message>
+        <source>Error committing db txn for wallet transactions removal</source>
+        <translation type="unfinished">Earráid agus db txn á dhéanamh chun idirbhearta sparán a bhaint</translation>
+    </message>
+    <message>
+        <source>Error creating %s</source>
+        <translation type="unfinished">Earráid cruthaithe %s</translation>
     </message>
     <message>
         <source>Error initializing block database</source>
@@ -3391,32 +4565,160 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Earráid ag oscailt bunachar sonraí bloic</translation>
     </message>
     <message>
+        <source>Error reading configuration file: %s</source>
+        <translation type="unfinished">Earráid agus an comhad cumraíochta á léamh: %s</translation>
+    </message>
+    <message>
         <source>Error reading from database, shutting down.</source>
         <translation type="unfinished">Earráid ag léamh ón mbunachar sonraí, ag múchadh.</translation>
     </message>
     <message>
-        <source>Error upgrading chainstate database</source>
-        <translation type="unfinished">Earráid ag uasghrádú bunachar sonraí chainstate</translation>
+        <source>Error reading next record from wallet database</source>
+        <translation type="unfinished">Earráid agus an chéad taifead eile á léamh ón mbunachar sonraí sparán</translation>
+    </message>
+    <message>
+        <source>Error starting db txn for wallet transactions removal</source>
+        <translation type="unfinished">Earráid agus db txn á thosú chun idirbhearta sparán a bhaint</translation>
+    </message>
+    <message>
+        <source>Error: Cannot extract destination from the generated scriptpubkey</source>
+        <translation type="unfinished">Earráid: Ní féidir an ceann scríbe a bhaint as an scriptpubkey ginte</translation>
+    </message>
+    <message>
+        <source>Error: Couldn't create cursor into database</source>
+        <translation type="unfinished">Earráid: Níorbh fhéidir an cúrsóir a chruthú sa bhunachar sonraí</translation>
     </message>
     <message>
         <source>Error: Disk space is low for %s</source>
         <translation type="unfinished">Earráid: Tá spás ar diosca íseal do %s</translation>
     </message>
     <message>
+        <source>Error: Dumpfile checksum does not match. Computed %s, expected %s</source>
+        <translation type="unfinished">Earráid: Ní hionann seiceála Dumpfile. Ríomh %s, bhíothas ag súil le %s</translation>
+    </message>
+    <message>
+        <source>Error: Failed to create new watchonly wallet</source>
+        <translation type="unfinished">Earráid: Theip ar chruthú sparán faire amháin nua</translation>
+    </message>
+    <message>
+        <source>Error: Got key that was not hex: %s</source>
+        <translation type="unfinished">Earráid: Fuair ​​​​tú eochair nach heicsidheachúlach í: %s</translation>
+    </message>
+    <message>
+        <source>Error: Got value that was not hex: %s</source>
+        <translation type="unfinished">Earráid: Fuair ​​tú luach nach heicsidheachúlach é: %s</translation>
+    </message>
+    <message>
         <source>Error: Keypool ran out, please call keypoolrefill first</source>
         <translation type="unfinished">Earráid: Rith keypool amach, glaoigh ar keypoolrefill ar dtús</translation>
+    </message>
+    <message>
+        <source>Error: Missing checksum</source>
+        <translation type="unfinished">Earráid: Seiceáil in easnamh</translation>
+    </message>
+    <message>
+        <source>Error: No %s addresses available.</source>
+        <translation type="unfinished">Earráid: Níl seoladh %s ar fáil.</translation>
+    </message>
+    <message>
+        <source>Error: This wallet already uses SQLite</source>
+        <translation type="unfinished">Earráid: Úsáideann an sparán seo SQLite cheana féin</translation>
+    </message>
+    <message>
+        <source>Error: This wallet is already a descriptor wallet</source>
+        <translation type="unfinished">Earráid: Is sparán tuairisceora é an sparán seo cheana féin</translation>
+    </message>
+    <message>
+        <source>Error: Unable to begin reading all records in the database</source>
+        <translation type="unfinished">Earráid: Ní féidir tosú ag léamh gach taifead sa bhunachar sonraí</translation>
+    </message>
+    <message>
+        <source>Error: Unable to make a backup of your wallet</source>
+        <translation type="unfinished">Earráid: Ní féidir cúltaca a dhéanamh de do sparán</translation>
+    </message>
+    <message>
+        <source>Error: Unable to parse version %u as a uint32_t</source>
+        <translation type="unfinished">Earráid: Ní féidir leagan%u a pharsáil mar uint32_t</translation>
+    </message>
+    <message>
+        <source>Error: Unable to read all records in the database</source>
+        <translation type="unfinished">Earráid: Ní féidir gach taifead sa bhunachar sonraí a léamh</translation>
+    </message>
+    <message>
+        <source>Error: Unable to read wallet's best block locator record</source>
+        <translation type="unfinished">Earráid: Ní féidir an taifead aimsitheoir bloc is fearr sa sparán a léamh</translation>
+    </message>
+    <message>
+        <source>Error: Unable to remove watchonly address book data</source>
+        <translation type="unfinished">Earráid: Ní féidir sonraí leabhar seoltaí faire amháin a bhaint</translation>
+    </message>
+    <message>
+        <source>Error: Unable to write record to new wallet</source>
+        <translation type="unfinished">Earráid: Ní féidir taifead a scríobh chuig an sparán nua</translation>
+    </message>
+    <message>
+        <source>Error: Unable to write solvable wallet best block locator record</source>
+        <translation type="unfinished">Earráid: Ní féidir an taifead aimsitheoir bloc is fearr ar an sparán intuaslagtha a scríobh</translation>
+    </message>
+    <message>
+        <source>Error: Unable to write watchonly wallet best block locator record</source>
+        <translation type="unfinished">Earráid: Ní féidir an taifead aimsitheoir bloc is fearr le sparán faire amháin a scríobh</translation>
+    </message>
+    <message>
+        <source>Error: address book copy failed for wallet %s</source>
+        <translation type="unfinished">Earráid: theip ar chóip leabhar seoltaí do sparán %s</translation>
+    </message>
+    <message>
+        <source>Error: database transaction cannot be executed for wallet %s</source>
+        <translation type="unfinished">Earráid: ní féidir idirbheart bunachar sonraí a chur i gcrích le haghaidh sparán %s</translation>
+    </message>
+    <message>
+        <source>Failed to connect best block (%s).</source>
+        <translation type="unfinished">Theip ar nascadh an bhloc is fearr (%s).</translation>
+    </message>
+    <message>
+        <source>Failed to disconnect block.</source>
+        <translation type="unfinished">Theip ar dhínascadh an bhloc.</translation>
     </message>
     <message>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
         <translation type="unfinished">Theip ar éisteacht ar aon phort. Úsáid -listen=0 más é seo atá uait.</translation>
     </message>
     <message>
+        <source>Failed to read block.</source>
+        <translation type="unfinished">Theip ar léamh an bhloc.</translation>
+    </message>
+    <message>
         <source>Failed to rescan the wallet during initialization</source>
         <translation type="unfinished">Theip athscanadh ar an sparán le linn túsúchán</translation>
     </message>
     <message>
+        <source>Failed to start indexes, shutting down..</source>
+        <translation type="unfinished">Theip ar thús a chur leis na hinnéacsanna, dúnadh.</translation>
+    </message>
+    <message>
         <source>Failed to verify database</source>
         <translation type="unfinished">Theip ar fhíorú an mbunachar sonraí</translation>
+    </message>
+    <message>
+        <source>Failed to write block.</source>
+        <translation type="unfinished">Theip ar scríobh an bhloc.</translation>
+    </message>
+    <message>
+        <source>Failed to write to block index database.</source>
+        <translation type="unfinished">Theip ar scríobh chuig an mbunachar sonraí innéacs bloc.</translation>
+    </message>
+    <message>
+        <source>Failed to write to coin database.</source>
+        <translation type="unfinished">Theip ar scríobh chuig an mbunachar sonraí boinn.</translation>
+    </message>
+    <message>
+        <source>Failed to write undo data.</source>
+        <translation type="unfinished">Theip ar scríobh sonraí cealaigh.</translation>
+    </message>
+    <message>
+        <source>Failure removing transaction: %s</source>
+        <translation type="unfinished">Teip ag baint an idirbhirt: %s</translation>
     </message>
     <message>
         <source>Fee rate (%s) is lower than the minimum fee rate setting (%s)</source>
@@ -3427,6 +4729,10 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Neamhaird ar sparán dhúbailt %s.</translation>
     </message>
     <message>
+        <source>Importing…</source>
+        <translation type="unfinished">Á iompórtáil…</translation>
+    </message>
+    <message>
         <source>Incorrect or no genesis block found. Wrong datadir for network?</source>
         <translation type="unfinished">Bloc geineasas mícheart nó ní aimsithe. datadir mícheart don líonra?</translation>
     </message>
@@ -3435,8 +4741,20 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Theip ar seiceáil slánchiall túsúchán. Tá %s ag múchadh.</translation>
     </message>
     <message>
+        <source>Input not found or already spent</source>
+        <translation type="unfinished">Ionchur gan aimsiú nó caite cheana féin</translation>
+    </message>
+    <message>
+        <source>Insufficient dbcache for block verification</source>
+        <translation type="unfinished">Dbcache neamhleor le haghaidh fíorú blocála</translation>
+    </message>
+    <message>
         <source>Insufficient funds</source>
         <translation type="unfinished">Neamhleor ciste</translation>
+    </message>
+    <message>
+        <source>Invalid -i2psam address or hostname: '%s'</source>
+        <translation type="unfinished">Seoladh neamhbhailí -i2psam nó óstainm: '%s'</translation>
     </message>
     <message>
         <source>Invalid -onion address or hostname: '%s'</source>
@@ -3451,36 +4769,84 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Cead neamhbhailí P2P: '%s'</translation>
     </message>
     <message>
+        <source>Invalid amount for %s=&lt;amount&gt;: '%s' (must be at least %s)</source>
+        <translation type="unfinished">Méid neamhbhailí le haghaidh %s=1: '%s' (ar a laghad %s)</translation>
+    </message>
+    <message>
+        <source>Invalid amount for %s=&lt;amount&gt;: '%s'</source>
+        <translation type="unfinished">Méid neamhbhailí le haghaidh %s=&lt;amount&gt;: '%s'</translation>
+    </message>
+    <message>
         <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
         <translation type="unfinished">Suim neamhbhailí do -%s=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -discardfee=&lt;amount&gt;: '%s'</source>
-        <translation type="unfinished">Suim neamhbhailí do -discardfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -fallbackfee=&lt;amount&gt;: '%s'</source>
-        <translation type="unfinished">Suim neamhbhailí do -fallbackfee=&lt;amount&gt;: '%s'</translation>
-    </message>
-    <message>
-        <source>Invalid amount for -paytxfee=&lt;amount&gt;: '%s' (must be at least %s)</source>
-        <translation type="unfinished">Suim neamhbhailí do -paytxfee =&lt;amount&gt;: '%s' (caithfidh sé a bheith %s ar a laghad)</translation>
     </message>
     <message>
         <source>Invalid netmask specified in -whitelist: '%s'</source>
         <translation type="unfinished">Mascghréas neamhbhailí sonraithe sa geal-liosta: '%s'</translation>
     </message>
     <message>
+        <source>Invalid port specified in %s: '%s'</source>
+        <translation type="unfinished">Port neamhbhailí sonraithe i %s: '%s'</translation>
+    </message>
+    <message>
+        <source>Invalid pre-selected input %s</source>
+        <translation type="unfinished">Ionchur réamhroghnaithe %s neamhbhailí</translation>
+    </message>
+    <message>
+        <source>Listening for incoming connections failed (listen returned error %s)</source>
+        <translation type="unfinished">Theip ar éisteacht le naisc isteach (éisteacht ar ais earráid %s)</translation>
+    </message>
+    <message>
+        <source>Loading P2P addresses…</source>
+        <translation type="unfinished">Seoltaí P2P á lódáil…</translation>
+    </message>
+    <message>
+        <source>Loading banlist…</source>
+        <translation type="unfinished">Liosta toirmeasc á lódáil…</translation>
+    </message>
+    <message>
+        <source>Loading block index…</source>
+        <translation type="unfinished">Innéacs bloc á lódáil…</translation>
+    </message>
+    <message>
+        <source>Loading wallet…</source>
+        <translation type="unfinished">Sparán á lódáil…</translation>
+    </message>
+    <message>
+        <source>Maximum transaction weight must be between %d and %d</source>
+        <translation type="unfinished">Caithfidh uasmheáchan an idirbhirt a bheith idir %d agus %d</translation>
+    </message>
+    <message>
+        <source>Missing amount</source>
+        <translation type="unfinished">Méid ar iarraidh</translation>
+    </message>
+    <message>
+        <source>Missing solving data for estimating transaction size</source>
+        <translation type="unfinished">Sonraí réitigh ar iarraidh le haghaidh meastachán a dhéanamh ar mhéid an idirbhirt</translation>
+    </message>
+    <message>
         <source>Need to specify a port with -whitebind: '%s'</source>
         <translation type="unfinished">Is gá port a shainiú le -whitebind: '%s'</translation>
     </message>
     <message>
-        <source>No proxy server specified. Use -proxy=&lt;ip&gt; or -proxy=&lt;ip:port&gt;.</source>
-        <translation type="unfinished">Níl seachfhreastalaí sainithe. Úsáid -proxy=&lt;ip&gt; nó -proxy=&lt;ip:port&gt;.</translation>
+        <source>No addresses available</source>
+        <translation type="unfinished">Níl aon seoltaí ar fáil</translation>
     </message>
     <message>
         <source>Not enough file descriptors available.</source>
         <translation type="unfinished">Níl dóthain tuairisceoirí comhaid ar fáil.</translation>
+    </message>
+    <message>
+        <source>Not found pre-selected input %s</source>
+        <translation type="unfinished">Níor aimsíodh ionchur réamhroghnaithe %s</translation>
+    </message>
+    <message>
+        <source>Not solvable pre-selected input %s</source>
+        <translation type="unfinished">Ní féidir ionchur réamhroghnaithe %s a réiteach</translation>
+    </message>
+    <message>
+        <source>Only direction was set, no permissions: '%s'</source>
+        <translation type="unfinished">Níor socraíodh ach treo, gan cead: '%s'</translation>
     </message>
     <message>
         <source>Prune cannot be configured with a negative value.</source>
@@ -3491,8 +4857,20 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Tá an mód bearrtha neamh-chomhoiriúnach le -txindex.</translation>
     </message>
     <message>
+        <source>Pruning blockstore…</source>
+        <translation type="unfinished">Blocsiopa á bhearradh…</translation>
+    </message>
+    <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
         <translation type="unfinished">Laghdú -maxconnections ó %d go %d, mar gheall ar shrianadh an chórais.</translation>
+    </message>
+    <message>
+        <source>Replaying blocks…</source>
+        <translation type="unfinished">Bloic á n-athsheinn…</translation>
+    </message>
+    <message>
+        <source>Rescanning…</source>
+        <translation type="unfinished">Á athscanadh…</translation>
     </message>
     <message>
         <source>SQLiteDatabase: Failed to execute statement to verify database: %s</source>
@@ -3515,6 +4893,18 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Ní aithnítear rannán [%s].</translation>
     </message>
     <message>
+        <source>Signer did not echo address</source>
+        <translation type="unfinished">Níor thug an sínitheoir macalla don seoladh</translation>
+    </message>
+    <message>
+        <source>Signer echoed unexpected address %s</source>
+        <translation type="unfinished">D'fhreagair an sínitheoir seoladh %s gan choinne</translation>
+    </message>
+    <message>
+        <source>Signer returned error: %s</source>
+        <translation type="unfinished">Earráid faighte ag sínitheoir: %s</translation>
+    </message>
+    <message>
         <source>Signing transaction failed</source>
         <translation type="unfinished">Theip ar síniú idirbheart</translation>
     </message>
@@ -3535,8 +4925,32 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Níl eolaire bloic shonraithe "%s" ann.</translation>
     </message>
     <message>
+        <source>Specified data directory "%s" does not exist.</source>
+        <translation type="unfinished">Níl comhadlann sonraí sonraithe "%s" ann.</translation>
+    </message>
+    <message>
+        <source>Starting network threads…</source>
+        <translation type="unfinished">Snáitheanna líonra á dtosú…</translation>
+    </message>
+    <message>
+        <source>System error while flushing: %s</source>
+        <translation type="unfinished">Earráid chórais agus é á shruthlú: %s</translation>
+    </message>
+    <message>
+        <source>System error while loading external block file: %s</source>
+        <translation type="unfinished">Earráid chórais agus blocchomhad seachtrach á luchtú: %s</translation>
+    </message>
+    <message>
+        <source>System error while saving block to disk: %s</source>
+        <translation type="unfinished">Earráid chórais agus an bloc á shábháil ar an diosca: %s</translation>
+    </message>
+    <message>
         <source>The source code is available from %s.</source>
         <translation type="unfinished">Tá an cód foinseach ar fáil ó %s.</translation>
+    </message>
+    <message>
+        <source>The specified config file %s does not exist</source>
+        <translation type="unfinished">Níl an comhad cumraíochta sonraithe %s ann</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
@@ -3545,6 +4959,10 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
     <message>
         <source>The wallet will avoid paying less than the minimum relay fee.</source>
         <translation type="unfinished">Seachnóidh an sparán níos lú ná an táille athsheachadán íosta a íoc.</translation>
+    </message>
+    <message>
+        <source>There is no ScriptPubKeyManager for this address</source>
+        <translation type="unfinished">Níl aon Bhainisteoir ScriptPubKey ann don seoladh seo</translation>
     </message>
     <message>
         <source>This is experimental software.</source>
@@ -3559,6 +4977,10 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Seo an táille idirbhirt a íocfaidh tú má sheolann tú idirbheart.</translation>
     </message>
     <message>
+        <source>Transaction %s does not belong to this wallet</source>
+        <translation type="unfinished">Ní bhaineann an t-idirbheart %s leis an sparán seo</translation>
+    </message>
+    <message>
         <source>Transaction amount too small</source>
         <translation type="unfinished">Méid an idirbhirt ró-bheag</translation>
     </message>
@@ -3567,12 +4989,16 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Níor cheart go mbeadh suimeanna idirbhirt diúltach</translation>
     </message>
     <message>
-        <source>Transaction has too long of a mempool chain</source>
-        <translation type="unfinished">Tá slabhra mempool ró-fhada ag an idirbheart</translation>
+        <source>Transaction change output index out of range</source>
+        <translation type="unfinished">Innéacs aschuir athraithe idirbhirt as raon</translation>
     </message>
     <message>
         <source>Transaction must have at least one recipient</source>
         <translation type="unfinished">Caithfidh ar a laghad faighteoir amháin a bheith ag idirbheart</translation>
+    </message>
+    <message>
+        <source>Transaction needs a change address, but we can't generate it.</source>
+        <translation type="unfinished">Teastaíonn seoladh athraithe ón idirbheart, ach ní féidir linn é a ghiniúint.</translation>
     </message>
     <message>
         <source>Transaction too large</source>
@@ -3591,6 +5017,10 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Níorbh fhéidir cruthú comhad PID '%s': %s</translation>
     </message>
     <message>
+        <source>Unable to find UTXO for external input</source>
+        <translation type="unfinished">Ní féidir UTXO a aimsiú le haghaidh ionchur seachtrach</translation>
+    </message>
+    <message>
         <source>Unable to generate initial keys</source>
         <translation type="unfinished">Ní féidir eochracha tosaigh a ghiniúint</translation>
     </message>
@@ -3599,8 +5029,20 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Ní féidir eochracha a ghiniúint</translation>
     </message>
     <message>
+        <source>Unable to open %s for writing</source>
+        <translation type="unfinished">Ní féidir %s a oscailt chun scríobh</translation>
+    </message>
+    <message>
+        <source>Unable to parse -maxuploadtarget: '%s'</source>
+        <translation type="unfinished">Ní féidir a pharsáil -maxuploadtarget: '%s'</translation>
+    </message>
+    <message>
         <source>Unable to start HTTP server. See debug log for details.</source>
         <translation type="unfinished">Ní féidir freastalaí HTTP a thosú. Féach loga dífhabhtúcháin le tuilleadh sonraí.</translation>
+    </message>
+    <message>
+        <source>Unable to unload the wallet before migrating</source>
+        <translation type="unfinished">Ní féidir an sparán a dhíluchtú roimh aistriú</translation>
     </message>
     <message>
         <source>Unknown -blockfilterindex value %s.</source>
@@ -3619,24 +5061,60 @@ Téigh go Comhad &gt; Oscail Sparán chun sparán a lódáil.
         <translation type="unfinished">Líonra anaithnid sonraithe san -onlynet: '%s'</translation>
     </message>
     <message>
+        <source>Unknown new rules activated (versionbit %i)</source>
+        <translation type="unfinished">Rialacha nua anaithnid curtha i ngníomh (leagan giotán %ii)</translation>
+    </message>
+    <message>
+        <source>Unrecognised option "%s" provided in -test=&lt;option&gt;.</source>
+        <translation type="unfinished">Rogha neamhaitheanta "%s" curtha ar fáil i -test=1.</translation>
+    </message>
+    <message>
+        <source>Unsupported global logging level %s=%s. Valid values: %s.</source>
+        <translation type="unfinished">Leibhéal logála domhanda nach dtacaítear leis %s=%s. Luachanna bailí: %s.</translation>
+    </message>
+    <message>
+        <source>Wallet file creation failed: %s</source>
+        <translation type="unfinished">Theip ar chruthú comhaid sparán: %s</translation>
+    </message>
+    <message>
+        <source>acceptstalefeeestimates is not supported on %s chain.</source>
+        <translation type="unfinished">ní thacaítear le acceptstalefeeestimates ar slabhra %s.</translation>
+    </message>
+    <message>
         <source>Unsupported logging category %s=%s.</source>
         <translation type="unfinished">Catagóir logáil gan tacaíocht %s=%s.</translation>
     </message>
     <message>
-        <source>Upgrading UTXO database</source>
-        <translation type="unfinished">Ag uasghrádú bunachar sonraí UTXO</translation>
+        <source>Error: Could not add watchonly tx %s to watchonly wallet</source>
+        <translation type="unfinished">Earráid: Níorbh fhéidir watch amháin tx %s a chur le sparán faire amháin</translation>
     </message>
     <message>
-        <source>Upgrading txindex database</source>
-        <translation type="unfinished">Ag uasghrádú bunachar sonraí txindex</translation>
+        <source>Error: Could not delete watchonly transactions. </source>
+        <translation type="unfinished">Earráid: Níorbh fhéidir idirbhearta faire amháin a scriosadh.</translation>
     </message>
     <message>
         <source>User Agent comment (%s) contains unsafe characters.</source>
         <translation type="unfinished">Tá carachtair neamhshábháilte i nóta tráchta (%s) Gníomhaire Úsáideora.</translation>
     </message>
     <message>
+        <source>Verifying blocks…</source>
+        <translation type="unfinished">Bloic á bhfíorú…</translation>
+    </message>
+    <message>
+        <source>Verifying wallet(s)…</source>
+        <translation type="unfinished">Sparán(aí) á fhíorú…</translation>
+    </message>
+    <message>
         <source>Wallet needed to be rewritten: restart %s to complete</source>
         <translation type="unfinished">Ba ghá an sparán a athscríobh: atosaigh %s chun críochnú</translation>
+    </message>
+    <message>
+        <source>Settings file could not be read</source>
+        <translation type="unfinished">Níorbh fhéidir an comhad socruithe a léamh</translation>
+    </message>
+    <message>
+        <source>Settings file could not be written</source>
+        <translation type="unfinished">Níorbh fhéidir an comhad socruithe a scríobh</translation>
     </message>
 </context>
 </TS>

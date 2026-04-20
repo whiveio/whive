@@ -1,13 +1,15 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2020 The Bitcoin Core developers
+// Copyright (c) 2009-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <banman.h>
 
+#include <common/system.h>
+#include <logging.h>
 #include <netaddress.h>
-#include <node/ui_interface.h>
-#include <util/system.h>
+#include <node/interface_ui.h>
+#include <sync.h>
 #include <util/time.h>
 #include <util/translation.h>
 
@@ -15,20 +17,7 @@
 BanMan::BanMan(fs::path ban_file, CClientUIInterface* client_interface, int64_t default_ban_time)
     : m_client_interface(client_interface), m_ban_db(std::move(ban_file)), m_default_ban_time(default_ban_time)
 {
-    if (m_client_interface) m_client_interface->InitMessage(_("Loading banlist…").translated);
-
-    int64_t n_start = GetTimeMillis();
-    if (m_ban_db.Read(m_banned, m_is_dirty)) {
-        SweepBanned(); // sweep out unused entries
-
-        LogPrint(BCLog::NET, "Loaded %d banned node addresses/subnets  %dms\n", m_banned.size(),
-                 GetTimeMillis() - n_start);
-    } else {
-        LogPrintf("Recreating the banlist database\n");
-        m_banned = {};
-        m_is_dirty = true;
-    }
-
+    LoadBanlist();
     DumpBanlist();
 }
 
@@ -37,28 +26,53 @@ BanMan::~BanMan()
     DumpBanlist();
 }
 
+void BanMan::LoadBanlist()
+{
+    LOCK(m_banned_mutex);
+
+    if (m_client_interface) m_client_interface->InitMessage(_("Loading banlist…").translated);
+
+    const auto start{SteadyClock::now()};
+    if (m_ban_db.Read(m_banned)) {
+        SweepBanned(); // sweep out unused entries
+
+        LogPrint(BCLog::NET, "Loaded %d banned node addresses/subnets  %dms\n", m_banned.size(),
+                 Ticks<std::chrono::milliseconds>(SteadyClock::now() - start));
+    } else {
+        LogPrintf("Recreating the banlist database\n");
+        m_banned = {};
+        m_is_dirty = true;
+    }
+}
+
 void BanMan::DumpBanlist()
 {
-    SweepBanned(); // clean unused entries (if bantime has expired)
-
-    if (!BannedSetIsDirty()) return;
-
-    int64_t n_start = GetTimeMillis();
+    static Mutex dump_mutex;
+    LOCK(dump_mutex);
 
     banmap_t banmap;
-    GetBanned(banmap);
-    if (m_ban_db.Write(banmap)) {
-        SetBannedSetDirty(false);
+    {
+        LOCK(m_banned_mutex);
+        SweepBanned();
+        if (!m_is_dirty) return;
+        banmap = m_banned;
+        m_is_dirty = false;
+    }
+
+    const auto start{SteadyClock::now()};
+    if (!m_ban_db.Write(banmap)) {
+        LOCK(m_banned_mutex);
+        m_is_dirty = true;
     }
 
     LogPrint(BCLog::NET, "Flushed %d banned node addresses/subnets to disk  %dms\n", banmap.size(),
-             GetTimeMillis() - n_start);
+             Ticks<std::chrono::milliseconds>(SteadyClock::now() - start));
 }
 
 void BanMan::ClearBanned()
 {
     {
-        LOCK(m_cs_banned);
+        LOCK(m_banned_mutex);
         m_banned.clear();
         m_is_dirty = true;
     }
@@ -68,14 +82,14 @@ void BanMan::ClearBanned()
 
 bool BanMan::IsDiscouraged(const CNetAddr& net_addr)
 {
-    LOCK(m_cs_banned);
+    LOCK(m_banned_mutex);
     return m_discouraged.contains(net_addr.GetAddrBytes());
 }
 
 bool BanMan::IsBanned(const CNetAddr& net_addr)
 {
     auto current_time = GetTime();
-    LOCK(m_cs_banned);
+    LOCK(m_banned_mutex);
     for (const auto& it : m_banned) {
         CSubNet sub_net = it.first;
         CBanEntry ban_entry = it.second;
@@ -90,7 +104,7 @@ bool BanMan::IsBanned(const CNetAddr& net_addr)
 bool BanMan::IsBanned(const CSubNet& sub_net)
 {
     auto current_time = GetTime();
-    LOCK(m_cs_banned);
+    LOCK(m_banned_mutex);
     banmap_t::iterator i = m_banned.find(sub_net);
     if (i != m_banned.end()) {
         CBanEntry ban_entry = (*i).second;
@@ -109,7 +123,7 @@ void BanMan::Ban(const CNetAddr& net_addr, int64_t ban_time_offset, bool since_u
 
 void BanMan::Discourage(const CNetAddr& net_addr)
 {
-    LOCK(m_cs_banned);
+    LOCK(m_banned_mutex);
     m_discouraged.insert(net_addr.GetAddrBytes());
 }
 
@@ -126,7 +140,7 @@ void BanMan::Ban(const CSubNet& sub_net, int64_t ban_time_offset, bool since_uni
     ban_entry.nBanUntil = (normalized_since_unix_epoch ? 0 : GetTime()) + normalized_ban_time_offset;
 
     {
-        LOCK(m_cs_banned);
+        LOCK(m_banned_mutex);
         if (m_banned[sub_net].nBanUntil < ban_entry.nBanUntil) {
             m_banned[sub_net] = ban_entry;
             m_is_dirty = true;
@@ -148,7 +162,7 @@ bool BanMan::Unban(const CNetAddr& net_addr)
 bool BanMan::Unban(const CSubNet& sub_net)
 {
     {
-        LOCK(m_cs_banned);
+        LOCK(m_banned_mutex);
         if (m_banned.erase(sub_net) == 0) return false;
         m_is_dirty = true;
     }
@@ -159,7 +173,7 @@ bool BanMan::Unban(const CSubNet& sub_net)
 
 void BanMan::GetBanned(banmap_t& banmap)
 {
-    LOCK(m_cs_banned);
+    LOCK(m_banned_mutex);
     // Sweep the banlist so expired bans are not returned
     SweepBanned();
     banmap = m_banned; //create a thread safe copy
@@ -167,37 +181,26 @@ void BanMan::GetBanned(banmap_t& banmap)
 
 void BanMan::SweepBanned()
 {
+    AssertLockHeld(m_banned_mutex);
+
     int64_t now = GetTime();
     bool notify_ui = false;
-    {
-        LOCK(m_cs_banned);
-        banmap_t::iterator it = m_banned.begin();
-        while (it != m_banned.end()) {
-            CSubNet sub_net = (*it).first;
-            CBanEntry ban_entry = (*it).second;
-            if (!sub_net.IsValid() || now > ban_entry.nBanUntil) {
-                m_banned.erase(it++);
-                m_is_dirty = true;
-                notify_ui = true;
-                LogPrint(BCLog::NET, "Removed banned node address/subnet: %s\n", sub_net.ToString());
-            } else
-                ++it;
+    banmap_t::iterator it = m_banned.begin();
+    while (it != m_banned.end()) {
+        CSubNet sub_net = (*it).first;
+        CBanEntry ban_entry = (*it).second;
+        if (!sub_net.IsValid() || now > ban_entry.nBanUntil) {
+            m_banned.erase(it++);
+            m_is_dirty = true;
+            notify_ui = true;
+            LogPrint(BCLog::NET, "Removed banned node address/subnet: %s\n", sub_net.ToString());
+        } else {
+            ++it;
         }
     }
+
     // update UI
     if (notify_ui && m_client_interface) {
         m_client_interface->BannedListChanged();
     }
-}
-
-bool BanMan::BannedSetIsDirty()
-{
-    LOCK(m_cs_banned);
-    return m_is_dirty;
-}
-
-void BanMan::SetBannedSetDirty(bool dirty)
-{
-    LOCK(m_cs_banned); //reuse m_banned lock for the m_is_dirty flag
-    m_is_dirty = dirty;
 }

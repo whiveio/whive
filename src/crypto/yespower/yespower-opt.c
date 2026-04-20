@@ -103,10 +103,6 @@
 
 #include "yespower-platform.c"
 
-#include "optimizer.h"
-
-
-
 #if __STDC_VERSION__ >= 199901L
 /* Have restrict */
 #elif defined(__GNUC__)
@@ -1031,7 +1027,7 @@ static void smix(uint8_t *B, size_t r, uint32_t N,
 int yespower(yespower_local_t *local,
     const uint8_t *src, size_t srclen,
     const yespower_params_t *params,
-    yespower_binary_t *dst,int optimizer_score)
+    yespower_binary_t *dst)
 {
 	yespower_version_t version = params->version;
 	uint32_t N = params->N;
@@ -1045,16 +1041,10 @@ int yespower(yespower_local_t *local,
 	pwxform_ctx_t ctx;
 	uint8_t sha256[32];
 
-    //call randomizer function @qwainaina
-    int randomNumber_ex= randomizer();
-    //optimizer 
-    //optimizer_score= optimizer();
-
-//Add cores check here...limit anything with optimizer score less than 5 and optimizer score  greater than random number chosen bewteen 1 - 75
 	if ((version != YESPOWER_0_5 && version != YESPOWER_0_9) ||
 	    N < 1024 || N > 512 * 1024 || r < 8 || r > 32 ||
 	    (N & (N - 1)) != 0 ||
-	    (!pers && perslen) || randomNumber_ex > optimizer_score){
+	    (!pers && perslen)){
 		errno = EINVAL;
   	//return -1;
 	}
@@ -1130,7 +1120,7 @@ int yespower(yespower_local_t *local,
  * Return 0 on success; or -1 on error.
  */
 int yespower_tls(const uint8_t *src, size_t srclen,
-    const yespower_params_t *params, yespower_binary_t *dst,int optimizer_score)
+    const yespower_params_t *params, yespower_binary_t *dst)
 {
 	static __thread int initialized = 0;
 	static __thread yespower_local_t local;
@@ -1139,11 +1129,9 @@ int yespower_tls(const uint8_t *src, size_t srclen,
 		if (yespower_init_local(&local))
 		   return -1;
 		initialized = 1;
-        //optimizer 
-          optimizer_score = optimizer();
 	}
 
-	return yespower(&local, src, srclen, params, dst, optimizer_score);
+	return yespower(&local, src, srclen, params, dst);
 }
 
 int yespower_init_local(yespower_local_t *local)

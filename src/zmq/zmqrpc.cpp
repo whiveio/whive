@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2020 The Bitcoin Core developers
+// Copyright (c) 2018-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,6 +9,11 @@
 #include <zmq/zmqnotificationinterface.h>
 
 #include <univalue.h>
+
+#include <list>
+#include <string>
+
+class JSONRPCRequest;
 
 namespace {
 
@@ -40,7 +45,8 @@ static RPCHelpMan getzmqnotifications()
             UniValue obj(UniValue::VOBJ);
             obj.pushKV("type", n->GetType());
             obj.pushKV("address", n->GetAddress());
-            result.push_back(obj);
+            obj.pushKV("hwm", n->GetOutboundMessageHighWaterMark());
+            result.push_back(std::move(obj));
         }
     }
 
@@ -49,10 +55,8 @@ static RPCHelpMan getzmqnotifications()
     };
 }
 
-const CRPCCommand commands[] =
-{ //  category           actor (function)
-  //  -----------------  -----------------------
-    { "zmq",             &getzmqnotifications,    },
+const CRPCCommand commands[]{
+    {"zmq", &getzmqnotifications},
 };
 
 } // anonymous namespace

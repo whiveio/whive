@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 The Bitcoin Core developers
+# Copyright (c) 2020-2021 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """
@@ -8,8 +8,10 @@ Test BIP 37
 
 from test_framework.messages import (
     CInv,
+    COIN,
     MAX_BLOOM_FILTER_SIZE,
     MAX_BLOOM_HASH_FUNCS,
+    MSG_WTX,
     MSG_BLOCK,
     MSG_FILTERED_BLOCK,
     msg_filteradd,
@@ -28,11 +30,15 @@ from test_framework.p2p import (
 )
 from test_framework.script import MAX_SCRIPT_ELEMENT_SIZE
 from test_framework.test_framework import BitcoinTestFramework
+from test_framework.wallet import (
+    MiniWallet,
+    getnewdestination,
+)
 
 
 class P2PBloomFilter(P2PInterface):
     # This is a P2SH watch-only wallet
-    watch_script_pubkey = 'a914ffffffffffffffffffffffffffffffffffffffff87'
+    watch_script_pubkey = bytes.fromhex('a914ffffffffffffffffffffffffffffffffffffffff87')
     # The initial filter (n=10, fp=0.000001) with just the above scriptPubKey added
     watch_filter_init = msg_filterload(
         data=
@@ -88,13 +94,15 @@ class P2PBloomFilter(P2PInterface):
 class FilterTest(BitcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
+        # whitelist peers to speed up tx relay / mempool sync
+        self.noban_tx_relay = True
         self.extra_args = [[
             '-peerbloomfilters',
-            '-whitelist=noban@127.0.0.1',  # immediate tx relay
         ]]
 
-    def skip_test_if_missing_module(self):
-        self.skip_if_no_wallet()
+    def generatetoscriptpubkey(self, scriptpubkey):
+        """Helper to generate a single block to the given scriptPubKey."""
+        return self.generatetodescriptor(self.nodes[0], 1, f'raw({scriptpubkey.hex()})')[0]
 
     def test_size_limits(self, filter_peer):
         self.log.info('Check that too large filter is rejected')
@@ -129,72 +137,77 @@ class FilterTest(BitcoinTestFramework):
         self.log.info("Check that a node with bloom filters enabled services p2p mempool messages")
         filter_peer = P2PBloomFilter()
 
-        self.log.debug("Create a tx relevant to the peer before connecting")
-        filter_address = self.nodes[0].decodescript(filter_peer.watch_script_pubkey)['address']
-        txid = self.nodes[0].sendtoaddress(filter_address, 90)
+        self.log.info("Create two tx before connecting, one relevant to the node another that is not")
+        rel_txid = self.wallet.send_to(from_node=self.nodes[0], scriptPubKey=filter_peer.watch_script_pubkey, amount=1 * COIN)["txid"]
+        irr_result = self.wallet.send_to(from_node=self.nodes[0], scriptPubKey=getnewdestination()[1], amount=2 * COIN)
+        irr_txid = irr_result["txid"]
+        irr_wtxid = irr_result["wtxid"]
 
-        self.log.debug("Send a mempool msg after connecting and check that the tx is received")
+        self.log.info("Send a mempool msg after connecting and check that the relevant tx is announced")
         self.nodes[0].add_p2p_connection(filter_peer)
         filter_peer.send_and_ping(filter_peer.watch_filter_init)
         filter_peer.send_message(msg_mempool())
-        filter_peer.wait_for_tx(txid)
+        filter_peer.wait_for_tx(rel_txid)
+
+        self.log.info("Request the irrelevant transaction even though it was not announced")
+        filter_peer.send_message(msg_getdata([CInv(t=MSG_WTX, h=int(irr_wtxid, 16))]))
+        self.log.info("We should get it anyway because it was in the mempool on connection to peer")
+        filter_peer.wait_for_tx(irr_txid)
 
     def test_frelay_false(self, filter_peer):
         self.log.info("Check that a node with fRelay set to false does not receive invs until the filter is set")
         filter_peer.tx_received = False
-        filter_address = self.nodes[0].decodescript(filter_peer.watch_script_pubkey)['address']
-        self.nodes[0].sendtoaddress(filter_address, 90)
+        self.wallet.send_to(from_node=self.nodes[0], scriptPubKey=filter_peer.watch_script_pubkey, amount=9 * COIN)
         # Sync to make sure the reason filter_peer doesn't receive the tx is not p2p delays
         filter_peer.sync_with_ping()
         assert not filter_peer.tx_received
 
         # Clear the mempool so that this transaction does not impact subsequent tests
-        self.nodes[0].generate(1)
+        self.generate(self.nodes[0], 1)
 
     def test_filter(self, filter_peer):
         # Set the bloomfilter using filterload
         filter_peer.send_and_ping(filter_peer.watch_filter_init)
         # If fRelay is not already True, sending filterload sets it to True
         assert self.nodes[0].getpeerinfo()[0]['relaytxes']
-        filter_address = self.nodes[0].decodescript(filter_peer.watch_script_pubkey)['address']
 
         self.log.info('Check that we receive merkleblock and tx if the filter matches a tx in a block')
-        block_hash = self.nodes[0].generatetoaddress(1, filter_address)[0]
+        block_hash = self.generatetoscriptpubkey(filter_peer.watch_script_pubkey)
         txid = self.nodes[0].getblock(block_hash)['tx'][0]
         filter_peer.wait_for_merkleblock(block_hash)
         filter_peer.wait_for_tx(txid)
 
         self.log.info('Check that we only receive a merkleblock if the filter does not match a tx in a block')
         filter_peer.tx_received = False
-        block_hash = self.nodes[0].generatetoaddress(1, self.nodes[0].getnewaddress())[0]
+        block_hash = self.generatetoscriptpubkey(getnewdestination()[1])
         filter_peer.wait_for_merkleblock(block_hash)
         assert not filter_peer.tx_received
 
         self.log.info('Check that we not receive a tx if the filter does not match a mempool tx')
         filter_peer.merkleblock_received = False
         filter_peer.tx_received = False
-        self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), 90)
-        filter_peer.sync_send_with_ping()
+        self.wallet.send_to(from_node=self.nodes[0], scriptPubKey=getnewdestination()[1], amount=7 * COIN)
+        filter_peer.sync_with_ping()
         assert not filter_peer.merkleblock_received
         assert not filter_peer.tx_received
 
         self.log.info('Check that we receive a tx if the filter matches a mempool tx')
         filter_peer.merkleblock_received = False
-        txid = self.nodes[0].sendtoaddress(filter_address, 90)
+        txid = self.wallet.send_to(from_node=self.nodes[0], scriptPubKey=filter_peer.watch_script_pubkey, amount=9 * COIN)["txid"]
         filter_peer.wait_for_tx(txid)
         assert not filter_peer.merkleblock_received
 
         self.log.info('Check that after deleting filter all txs get relayed again')
         filter_peer.send_and_ping(msg_filterclear())
         for _ in range(5):
-            txid = self.nodes[0].sendtoaddress(self.nodes[0].getnewaddress(), 7)
+            txid = self.wallet.send_to(from_node=self.nodes[0], scriptPubKey=getnewdestination()[1], amount=7 * COIN)["txid"]
             filter_peer.wait_for_tx(txid)
 
         self.log.info('Check that request for filtered blocks is ignored if no filter is set')
         filter_peer.merkleblock_received = False
         filter_peer.tx_received = False
         with self.nodes[0].assert_debug_log(expected_msgs=['received getdata']):
-            block_hash = self.nodes[0].generatetoaddress(1, self.nodes[0].getnewaddress())[0]
+            block_hash = self.generatetoscriptpubkey(getnewdestination()[1])
             filter_peer.wait_for_inv([CInv(MSG_BLOCK, int(block_hash, 16))])
             filter_peer.sync_with_ping()
             assert not filter_peer.merkleblock_received
@@ -210,6 +223,8 @@ class FilterTest(BitcoinTestFramework):
         self.nodes[0].disconnect_p2ps()
 
     def run_test(self):
+        self.wallet = MiniWallet(self.nodes[0])
+
         filter_peer = self.nodes[0].add_p2p_connection(P2PBloomFilter())
         self.log.info('Test filter size limits')
         self.test_size_limits(filter_peer)
@@ -237,4 +252,4 @@ class FilterTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    FilterTest().main()
+    FilterTest(__file__).main()

@@ -1,6 +1,8 @@
-// Copyright (c) 2016-2020 The Bitcoin Core developers
+// Copyright (c) 2016-2022 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+#include <config/bitcoin-config.h> // IWYU pragma: keep
 
 #include <qt/modaloverlay.h>
 #include <qt/forms/ui_modaloverlay.h>
@@ -12,13 +14,10 @@
 #include <QPropertyAnimation>
 #include <QResizeEvent>
 
-ModalOverlay::ModalOverlay(bool enable_wallet, QWidget *parent) :
-QWidget(parent),
-ui(new Ui::ModalOverlay),
-bestHeaderHeight(0),
-bestHeaderDate(QDateTime()),
-layerIsVisible(false),
-userClosed(false)
+ModalOverlay::ModalOverlay(bool enable_wallet, QWidget* parent)
+    : QWidget(parent),
+      ui(new Ui::ModalOverlay),
+      bestHeaderDate(QDateTime())
 {
     ui->setupUi(this);
     connect(ui->closeButton, &QPushButton::clicked, this, &ModalOverlay::closeClicked);
@@ -26,6 +25,7 @@ userClosed(false)
         parent->installEventFilter(this);
         raise();
     }
+    ui->closeButton->installEventFilter(this);
 
     blockProcessTime.clear();
     setVisible(false);
@@ -61,6 +61,11 @@ bool ModalOverlay::eventFilter(QObject * obj, QEvent * ev) {
             raise();
         }
     }
+
+    if (obj == ui->closeButton && ev->type() == QEvent::FocusOut && layerIsVisible) {
+        ui->closeButton->setFocus(Qt::OtherFocusReason);
+    }
+
     return QWidget::eventFilter(obj, ev);
 }
 
@@ -78,12 +83,15 @@ bool ModalOverlay::event(QEvent* ev) {
     return QWidget::event(ev);
 }
 
-void ModalOverlay::setKnownBestHeight(int count, const QDateTime& blockDate)
+void ModalOverlay::setKnownBestHeight(int count, const QDateTime& blockDate, bool presync)
 {
-    if (count > bestHeaderHeight) {
+    if (!presync && count > bestHeaderHeight) {
         bestHeaderHeight = count;
         bestHeaderDate = blockDate;
         UpdateHeaderSyncLabel();
+    }
+    if (presync) {
+        UpdateHeaderPresyncLabel(count, blockDate);
     }
 }
 
@@ -108,7 +116,7 @@ void ModalOverlay::tipUpdate(int count, const QDateTime& blockDate, double nVeri
             if (sample.first < (currentDate.toMSecsSinceEpoch() - 500 * 1000) || i == blockProcessTime.size() - 1) {
                 progressDelta = blockProcessTime[0].second - sample.second;
                 timeDelta = blockProcessTime[0].first - sample.first;
-                progressPerHour = progressDelta / (double) timeDelta * 1000 * 3600;
+                progressPerHour = (progressDelta > 0) ? progressDelta / (double)timeDelta * 1000 * 3600 : 0;
                 remainingMSecs = (progressDelta > 0) ? remainingProgress / progressDelta * timeDelta : -1;
                 break;
             }
@@ -158,6 +166,11 @@ void ModalOverlay::UpdateHeaderSyncLabel() {
     ui->numberOfBlocksLeft->setText(tr("Unknown. Syncing Headers (%1, %2%)…").arg(bestHeaderHeight).arg(QString::number(100.0 / (bestHeaderHeight + est_headers_left) * bestHeaderHeight, 'f', 1)));
 }
 
+void ModalOverlay::UpdateHeaderPresyncLabel(int height, const QDateTime& blockDate) {
+    int est_headers_left = blockDate.secsTo(QDateTime::currentDateTime()) / Params().GetConsensus().nPowTargetSpacing;
+    ui->numberOfBlocksLeft->setText(tr("Unknown. Pre-syncing Headers (%1, %2%)…").arg(height).arg(QString::number(100.0 / (height + est_headers_left) * height, 'f', 1)));
+}
+
 void ModalOverlay::toggleVisibility()
 {
     showHide(layerIsVisible, true);
@@ -180,6 +193,10 @@ void ModalOverlay::showHide(bool hide, bool userRequested)
     m_animation.setEndValue(QPoint(0, hide ? height() : 0));
     m_animation.start(QAbstractAnimation::KeepWhenStopped);
     layerIsVisible = !hide;
+
+    if (layerIsVisible) {
+        ui->closeButton->setFocus(Qt::OtherFocusReason);
+    }
 }
 
 void ModalOverlay::closeClicked()

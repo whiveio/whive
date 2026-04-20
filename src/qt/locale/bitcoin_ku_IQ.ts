@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>ناوونیشانێکی نوێ دروست بکە</translation>
+        <translation type="unfinished">ناوونیشانێکی نوێ دروست بکە</translation>
     </message>
     <message>
         <source>&amp;New</source>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>کۆپیکردنی ناونیشانی هەڵبژێردراوی ئێستا بۆ کلیپ بۆردی سیستەم</translation>
+        <translation type="unfinished">کۆپیکردنی ناونیشانی هەڵبژێردراوی ئێستا بۆ کلیپ بۆردی سیستەم</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>سڕینەوەی ناونیشانی هەڵبژێردراوی ئێستا لە لیستەکە</translation>
+        <translation type="unfinished">سڕینەوەی ناونیشانی هەڵبژێردراوی ئێستا لە لیستەکە</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -35,15 +35,15 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>ناردنی داتا لە خشتەبەندی ئێستا بۆ فایلێک</translation>
+        <translation type="unfinished">ناردنی داتا لە خشتەبەندی ئێستا بۆ فایلێک</translation>
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;هەناردن</translation>
+        <translation type="unfinished">&amp;هەناردن</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>&amp;سڕینەوە</translation>
+        <translation type="unfinished">&amp;سڕینەوە</translation>
     </message>
     <message>
         <source>Choose the address to send coins to</source>
@@ -56,14 +56,6 @@
     <message>
         <source>C&amp;hoose</source>
         <translation type="unfinished">&amp;هەڵبژێرە</translation>
-    </message>
-    <message>
-        <source>Sending addresses</source>
-        <translation type="unfinished">ناردنی ناونیشانەکان</translation>
-    </message>
-    <message>
-        <source>Receiving addresses</source>
-        <translation type="unfinished">وەرگرتنی ناونیشانەکان</translation>
     </message>
     <message>
         <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
@@ -113,28 +105,30 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>(no label)</source>
-        <translation type="unfinished">(بێ ناونیشان)
-
-</translation>
+        <translation type="unfinished">(ناونیشان نییە)</translation>
     </message>
 </context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-        <translation>دیالۆگی دەستەواژەی تێپەڕبوون</translation>
+        <translation type="unfinished">دیالۆگی دەستەواژەی تێپەڕبوون</translation>
     </message>
     <message>
         <source>Enter passphrase</source>
-        <translation>دەستەواژەی تێپەڕبوون بنووسە</translation>
+        <translation type="unfinished">دەستەواژەی تێپەڕبوون بنووسە</translation>
     </message>
     <message>
         <source>New passphrase</source>
-        <translation>دەستەواژەی تێپەڕی نوێ</translation>
+        <translation type="unfinished">دەستەواژەی تێپەڕی نوێ</translation>
     </message>
     <message>
         <source>Repeat new passphrase</source>
-        <translation>دووبارەکردنەوەی دەستەواژەی تێپەڕی نوێ</translation>
+        <translation type="unfinished">دووبارەکردنەوەی دەستەواژەی تێپەڕی نوێ</translation>
+    </message>
+    <message>
+        <source>Show passphrase</source>
+        <translation type="unfinished">نیشان دانا ناوه چونه</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
@@ -145,12 +139,28 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">او شوله بو ور کرنا کیف پاره گرکه رمزا کیفه وؤ یه پاره بزانی</translation>
     </message>
     <message>
+        <source>Unlock wallet</source>
+        <translation type="unfinished">Kilîda cizdên veke</translation>
+    </message>
+    <message>
+        <source>Change passphrase</source>
+        <translation type="unfinished">Pêborînê biguherîne</translation>
+    </message>
+    <message>
+        <source>Confirm wallet encryption</source>
+        <translation type="unfinished">Şîfrekirina cizdên bipejirîne</translation>
+    </message>
+    <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
         <translation type="unfinished">به راستی اون هشیارن کا دخازن بو کیف خو یه پاره رمزه دانین</translation>
     </message>
     <message>
+        <source>Wallet encrypted</source>
+        <translation type="unfinished">Cizdan hate şîfrekirin</translation>
+    </message>
+    <message>
         <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation type="unfinished">دەستەواژەی تێپەڕەوی نوێ تێبنووسە بۆ جزدان.1 تکایە دەستەواژەی تێپەڕێک بەکاربێنە لە 2ten یان زیاتر لە هێما هەڕەمەکیەکان2، یان 38 یان زیاتر ووشەکان3.</translation>
+        <translation type="unfinished">دەستەواژەی تێپەڕەوی نوێ بنووسە بۆ جزدان. &lt;br/&gt;تکایە دەستەواژەی تێپەڕێک بەکاربێنە لە &lt;b&gt;دە یان زیاتر لە هێما هەڕەمەکییەکان&lt;/b&gt;یان &lt;b&gt;هەشت یان وشەی زیاتر&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
@@ -164,23 +174,19 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>QObject</name>
     <message>
-        <source>Error initializing settings: %1</source>
-        <translation type="unfinished">هەڵە لە دەستپێکردنی ڕێکخستنەکان: %1</translation>
-    </message>
-    <message>
         <source>Amount</source>
         <translation type="unfinished">سەرجەم</translation>
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
@@ -217,42 +223,50 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>BitcoinGUI</name>
     <message>
+        <source>&amp;About %1</source>
+        <translation type="unfinished">&amp;دەربارەی %1</translation>
+    </message>
+    <message>
+        <source>Wallet:</source>
+        <translation type="unfinished">Cizdan:</translation>
+    </message>
+    <message>
         <source>&amp;Send</source>
-        <translation>&amp;ناردن</translation>
+        <translation type="unfinished">&amp;ناردن</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;پەرگە</translation>
+        <translation type="unfinished">&amp;پەرگە</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
-        <translation>&amp;سازکارییەکان</translation>
+        <translation type="unfinished">&amp;سازکارییەکان</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;یارمەتی</translation>
+        <translation type="unfinished">&amp;یارمەتی</translation>
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>هەڵە</translation>
+        <translation type="unfinished">هەڵە</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>ئاگاداری</translation>
+        <translation type="unfinished">ئاگاداری</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>زانیاری</translation>
+        <translation type="unfinished">زانیاری</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Whive network.</source>
+        <source>%n active connection(s) to Bitcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />
@@ -264,7 +278,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <name>UnitDisplayStatusBarControl</name>
     <message>
         <source>Unit to show amounts in. Click to select another unit.</source>
-        <translation type="unfinished">یەکە بۆ نیشاندانی بڕی کرتە بکە بۆ دیاریکردنی یەکەیەکی تر.</translation>
+        <translation type="unfinished">یەکە بۆ نیشاندانی بڕی لەناو. کرتە بکە بۆ دیاریکردنی یەکەیەکی تر.</translation>
     </message>
 </context>
 <context>
@@ -286,18 +300,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">رێکەت</translation>
     </message>
     <message>
-        <source>yes</source>
-        <translation type="unfinished">بەڵێ</translation>
-    </message>
-    <message>
-        <source>no</source>
-        <translation type="unfinished">نەخێر</translation>
-    </message>
-    <message>
         <source>(no label)</source>
-        <translation type="unfinished">(بێ ناونیشان)
-
-</translation>
+        <translation type="unfinished">(ناونیشان نییە)</translation>
     </message>
     </context>
 <context>
@@ -311,19 +315,40 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <name>FreespaceChecker</name>
     <message>
         <source>name</source>
-        <translation>ناو</translation>
+        <translation type="unfinished">ناو</translation>
     </message>
     <message>
         <source>Directory already exists. Add %1 if you intend to create a new directory here.</source>
-        <translation>دایەرێکتۆری پێش ئێستا هەیە. %1 زیاد بکە ئەگەر بەتەما بیت لێرە ڕێنیشاندەرێکی نوێ دروست بکەیت.</translation>
+        <translation type="unfinished">دایەرێکتۆری پێش ئێستا هەیە. %1 زیاد بکە ئەگەر بەتەما بیت لێرە ڕێنیشاندەرێکی نوێ دروست بکەیت.</translation>
     </message>
     <message>
         <source>Cannot create data directory here.</source>
-        <translation>ناتوانیت لێرە داتا دروست بکەیت.</translation>
+        <translation type="unfinished">ناتوانیت لێرە داتا دروست بکەیت.</translation>
     </message>
 </context>
 <context>
     <name>Intro</name>
+    <message numerus="yes">
+        <source>%n GB of space available</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>(of %n GB needed)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>(%n GB needed for full chain)</source>
+        <translation type="unfinished">
+            <numerusform />
+            <numerusform />
+        </translation>
+    </message>
     <message numerus="yes">
         <source>(sufficient to restore backups %n day(s) old)</source>
         <extracomment>Explanatory text on the capability of the current prune target.</extracomment>
@@ -338,15 +363,11 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Error</source>
-        <translation>هەڵە</translation>
+        <translation type="unfinished">هەڵە</translation>
     </message>
     <message>
         <source>Welcome</source>
-        <translation>بەخێربێن</translation>
-    </message>
-    <message>
-        <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
-        <translation type="unfinished">کاتێک کرتە لە پەسەندە دەکەیت، %1 دەست دەکات بە داگرتن و پرۆسەی زنجیرەبلۆکی %4 (%2GB) بە سەرەتاییترین مامەڵەکان لە %3 دەست پێدەکات کاتێک %4 لە سەرەتادا دەستی پێکرد.</translation>
+        <translation type="unfinished">بەخێربێن</translation>
     </message>
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
@@ -379,11 +400,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation>هەڵبژاردنەکان</translation>
-    </message>
-    <message>
-        <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
-        <translation type="unfinished">یو ئێڕ ئێڵەکانی لایەنی سێیەم. (بۆ وێنە گەڕاڵی بلۆک) کە لە تابی مامەڵەکان وەک بڕگەکان پێرستی دەق دەردەکەوێت. %s لە URL دا جێگەی دەگۆڕدرێتەوە بە هاش.. چەندین URL جیاکراونەتەوە بە شریتی ستوونی |.</translation>
+        <translation type="unfinished">هەڵبژاردنەکان</translation>
     </message>
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
@@ -391,7 +408,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>User Interface &amp;language:</source>
-        <translation>ڕووکاری بەکارهێنەر &amp;زمان:</translation>
+        <translation type="unfinished">ڕووکاری بەکارهێنەر &amp;زمان:</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting %1.</source>
@@ -399,6 +416,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</source>
+        <extracomment>Explanatory text about the priority order of instructions considered by client. The order from high to low being: command-line, configuration file, GUI settings.</extracomment>
         <translation type="unfinished">فایلی شێوەپێدان بەکاردێت بۆ دیاریکردنی هەڵبژاردنەکانی بەکارهێنەری پێشکەوتوو کە زیادەڕەوی لە ڕێکخستنەکانی GUI دەکات. لەگەڵ ئەوەش، هەر بژاردەکانی هێڵی فەرمان زیادەڕەوی دەکات لە سەر ئەم فایلە شێوەپێدانە.</translation>
     </message>
     <message>
@@ -410,7 +428,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <name>OverviewPage</name>
     <message>
         <source>Total:</source>
-        <translation>گشتی</translation>
+        <translation type="unfinished">گشتی</translation>
     </message>
     <message>
         <source>Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings-&gt;Mask values.</source>
@@ -453,7 +471,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <extracomment>Title of Peers Table column which states the network the peer connected through.</extracomment>
         <translation type="unfinished">تۆڕ</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>QRImageWidget</name>
     <message>
@@ -465,7 +483,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <name>RPCConsole</name>
     <message>
         <source>&amp;Information</source>
-        <translation>&amp;زانیاری</translation>
+        <translation type="unfinished">&amp;زانیاری</translation>
     </message>
     <message>
         <source>General</source>
@@ -473,7 +491,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Network</source>
-        <translation>تۆڕ</translation>
+        <translation type="unfinished">تۆڕ</translation>
     </message>
     <message>
         <source>Name</source>
@@ -493,7 +511,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>&amp;Open</source>
-        <translation>&amp;کردنەوە</translation>
+        <translation type="unfinished">&amp;کردنەوە</translation>
     </message>
     <message>
         <source>Totals</source>
@@ -573,6 +591,10 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>Message:</source>
         <translation type="unfinished">پەیام:</translation>
     </message>
+    <message>
+        <source>Wallet:</source>
+        <translation type="unfinished">Cizdan:</translation>
+    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
@@ -619,10 +641,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Please, review your transaction proposal. This will produce a Partially Signed Bitcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
         <translation type="unfinished">تکایە، پێداچوونەوە بکە بە پێشنیارەکانی مامەڵەکەت. ئەمە مامەڵەیەکی بیتکۆپەکی کەبەشیونکراو (PSBT) بەرهەمدەهێنێت کە دەتوانیت پاشەکەوتی بکەیت یان کۆپی بکەیت و پاشان واژووی بکەیت لەگەڵ بۆ ئەوەی بە دەرهێڵی %1 جزدانێک، یان جزدانێکی رەقەواڵەی گونجاو بە PSBT.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
+        <extracomment>Text to prompt a user to review the details of the transaction they are attempting to send.</extracomment>
         <translation type="unfinished">تکایە، چاو بە مامەڵەکەتدا بخشێنەوە.</translation>
     </message>
     <message>
@@ -631,7 +655,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
@@ -671,13 +695,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </context>
 <context>
     <name>TransactionDesc</name>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-        </translation>
-    </message>
     <message>
         <source>Status</source>
         <translation type="unfinished">بارودۆخ</translation>
@@ -700,7 +717,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation>
+        <translation type="unfinished">
             <numerusform />
             <numerusform />
         </translation>
@@ -735,13 +752,6 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     <message>
         <source>Label</source>
         <translation type="unfinished">پێناسەکردن</translation>
-    </message>
-    <message numerus="yes">
-        <source>Open for %n more block(s)</source>
-        <translation>
-            <numerusform />
-            <numerusform />
-        </translation>
     </message>
     <message>
         <source>Sent to</source>
@@ -790,6 +800,13 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 </context>
 <context>
+    <name>WalletFrame</name>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">هەڵە</translation>
+    </message>
+    </context>
+<context>
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
@@ -799,21 +816,9 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <source>Export the data in the current tab to a file</source>
         <translation type="unfinished">ناردنی داتا لە خشتەبەندی ئێستا بۆ فایلێک</translation>
     </message>
-    <message>
-        <source>Error</source>
-        <translation type="unfinished">هەڵە</translation>
-    </message>
     </context>
 <context>
     <name>bitcoin-core</name>
-    <message>
-        <source>Cannot provide specific connections and have addrman find outgoing connections at the same.</source>
-        <translation type="unfinished">ناتوانێت گرێدانێکی تایبەت دابین بکات و پەیوەندی دەرکەوی هەبێت لە هەمان کاتدا.</translation>
-    </message>
-    <message>
-        <source>Please check that your computer's date and time are correct! If your clock is wrong, %s will not work properly.</source>
-        <translation type="unfinished">تکایە بپشکنە کە بەروار و کاتی کۆمپیوتەرەکەت ڕاستە! ئەگەر کاژێرەکەت هەڵە بوو، %s بە دروستی کار ناکات.</translation>
-    </message>
     <message>
         <source>Please contribute if you find %s useful. Visit %s for further information about the software.</source>
         <translation type="unfinished">تکایە بەشداری بکە ئەگەر %s بەسوودت دۆزیەوە. سەردانی %s بکە بۆ زانیاری زیاتر دەربارەی نەرمواڵەکە.</translation>
