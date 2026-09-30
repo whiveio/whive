@@ -102,4 +102,8 @@ Useful links
 * Twitter:        https://twitter.com/whiveio
 * Telegram   :    http://t.me/whiveio
 
+## Whive contributor review draft
 
+See the [repository proposal](doc/proposals/consensus-preserving-modernization.md) for the reviewed source base, proposed implementation, compatibility/recovery requirements and acceptance evidence. This is a draft, not a claim of current support, completed testing or deployment.
+
+The [proposed fork security reporting policy](doc/proposals/security-reporting-policy.md) records the contact and ownership checks needed before adopting a Whive-specific reporting route.
