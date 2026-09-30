@@ -49,6 +49,13 @@ Development
 ---------------------
 The Whive repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
+### Integration review draft
+
+The [v29 integration readiness proposal](proposals/v29-integration-readiness.md)
+records this branch's source base and the historical replay, header-sync,
+snapshot-provenance and activation-measurement gates. It is a draft for
+contributor review, not a claim of release readiness or a consensus change.
+
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)
 - [Release Process](release-process.md)
