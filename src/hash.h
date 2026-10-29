@@ -11,6 +11,7 @@
 #include <crypto/common.h>
 #include <crypto/ripemd160.h>
 #include <crypto/sha256.h>
+#include <crypto/yespower/yespower.h>
 #include <prevector.h>
 #include <serialize.h>
 #include <uint256.h>
@@ -201,7 +202,6 @@ uint256 SerializeHash(const T& obj, int nType=SER_GETHASH, int nVersion=PROTOCOL
 
 /***********************Yespower***********************/
 
-extern "C" void yespower_hash(const char *input, char *output);
 
 class CHashWriterYespower: public CHashWriter
 {

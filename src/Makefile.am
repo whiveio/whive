@@ -487,8 +487,6 @@ crypto_libwhive_crypto_base_a_SOURCES = \
   crypto/yespower/sha256.c \
   crypto/yespower/sysendian.h \
   crypto/yespower/insecure_memzero.h \
-  crypto/yespower/yespower-platform_c.h \
-  crypto/yespower/optimizer.c \
   crypto/yespower/yespower-opt.c
 
 if USE_ASM
@@ -822,6 +820,8 @@ CLEANFILES += zmq/*.gcda zmq/*.gcno
 CLEANFILES += obj/build.h
 
 EXTRA_DIST = $(CTAES_DIST)
+# Included by yespower-opt.c; it is not an independent translation unit.
+EXTRA_DIST += crypto/yespower/yespower-platform.c
 
 
 config/bitcoin-config.h: config/stamp-h1
