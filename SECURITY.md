@@ -1,20 +1,37 @@
 # Security Policy
 
+Whive Core is a fork of Bitcoin Core. Whive maintainers, not the Bitcoin Core
+project, are responsible for Whive releases and for Whive-specific changes.
+Do not send Whive vulnerability reports to Bitcoin Core.
+
 ## Supported Versions
 
-See our website for versions of Bitcoin Core that are currently supported with
-security updates: https://bitcoincore.org/en/lifecycle/#schedule
+| Version | Status |
+|---------|--------|
+| 22.2.2 | Latest release and minimum compatible version. It contains a location lookup that sends your IP address to ip-api.com over plain HTTP at startup; maintenance builds from source remove it. |
+| Earlier than 22.2.2 | Not supported. These releases enforce a different block subsidy after block 210,000 (see [doc/release-notes/release-notes-22.2.2.md](doc/release-notes/release-notes-22.2.2.md)). |
 
 ## Reporting a Vulnerability
 
-To report security issues send an email to security@bitcoincore.org (not for support).
+> **CONTACT PLACEHOLDER — not yet confirmed by the Whive maintainers.**
+> A private reporting address and encryption key will be published here once
+> the maintainers confirm who receives reports, how they are kept confidential
+> and how reporters can verify the channel. Until then, there is no confirmed
+> private channel.
 
-The following keys may be used to communicate sensitive information to developers:
+While the placeholder stands:
 
-| Name | Fingerprint |
-|------|-------------|
-| Wladimir van der Laan | 71A3 B167 3540 5025 D447  E8F2 7481 0B01 2346 C9A6 |
-| Jonas Schnelli | 32EE 5C4C 3FA1 5CCA DB46  ABE5 29D4 BCB6 416F 53EC |
-| Pieter Wuille | 133E AC17 9436 F14A 5CF1  B794 860F EB80 4E66 9320 |
+- Do not post exploit details, proof-of-concept code or affected-node lists in
+  public issues, pull requests or chat.
+- Never send seeds, private keys, wallet files or passwords to anyone. No Whive
+  maintainer will ask for them.
+- If a problem also affects upstream Bitcoin Core, report that part to Bitcoin
+  Core under its own security policy, and only the parts that apply to Bitcoin
+  Core.
 
-You can import a key by running the following command with that individual’s fingerprint: `gpg --recv-keys "<fingerprint>"` Ensure that you put quotes around fingerprints containing spaces.
+## What happens after a report
+
+Once the contact is confirmed, the maintainers intend to acknowledge reports,
+triage them, prepare and review a fix, publish recovery guidance where needed,
+and coordinate disclosure with the reporter. No response time is promised until
+the maintainers confirm they have capacity to meet it.
