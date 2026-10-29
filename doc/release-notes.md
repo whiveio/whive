@@ -1,3 +1,10 @@
+Whive compatibility
+===================
+
+22.2.2 is the minimum compatible Whive Core version: it changed the block
+subsidy halving interval from 1,000,000 to 210,000 blocks. See
+[release-notes-22.2.2.md](release-notes/release-notes-22.2.2.md).
+
 22.1 Release Notes
 ==================
 
