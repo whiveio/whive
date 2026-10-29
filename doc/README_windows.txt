@@ -14,10 +14,15 @@ Setup
 Unpack the files into a directory and run whive-qt.exe.
 
 Whive Core is the original Whive client and it builds the backbone of the network.
-However, it downloads and stores the entire history of Whive transactions;
-depending on the speed of your computer and network connection, the synchronization
-process can take anywhere from a few hours to a day or more.
+It downloads and stores the entire history of Whive transactions. Disk use and
+synchronization time have not been measured for this release; after syncing,
+the getblockchaininfo command (Window > Console) reports the space used as
+size_on_disk.
 
-See the Whive wiki at:
-  https://forum/whive.org
-for more help and information.
+To mine, follow the quick-start in doc/mining.md:
+  https://github.com/whiveio/whive/blob/master/doc/mining.md
+
+For help and information:
+  https://whive.io
+  https://github.com/whiveio/whive/issues (bug reports)
+  https://t.me/whiveio (community chat)

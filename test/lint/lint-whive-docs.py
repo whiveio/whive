@@ -11,7 +11,8 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-BITCOIN_SUPPORT = re.compile(r"bitcoincore\.org|bitcoin\.stackexchange|bitcointalk\.org|libera\.chat/#bitcoin|#bitcoin")
+# Upstream developer references (doxygen, Gitian) may stay; user support may not.
+BITCOIN_SUPPORT = re.compile(r"(?<!doxygen\.)bitcoincore\.org|bitcoin\.stackexchange|bitcointalk\.org|libera\.chat/#bitcoin|#bitcoin")
 
 
 def read(name):

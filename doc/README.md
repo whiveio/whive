@@ -3,9 +3,13 @@ Whive Core
 
 Setup
 ---------------------
-Whive Core is the original Whive client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Whive transactions, which requires a few hundred gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Whive Core is the original Whive client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Whive transactions. Disk use and synchronization time have not been measured for this release. After syncing, `whive-cli getblockchaininfo` reports the space used as `size_on_disk`; starting with `-prune=<MiB>` reduces it.
 
-To download Whive Core, visit [whive.org](https://whive.io/).
+Use 22.2.2 or later: older releases enforce a different block subsidy (see [release-notes-22.2.2.md](release-notes/release-notes-22.2.2.md)).
+
+To download Whive Core, visit [whive.io](https://whive.io/) or the [releases page](https://github.com/whiveio/whive/releases).
+
+To mine, start with the [mining quick-start](mining.md).
 
 Running
 ---------------------
@@ -28,11 +32,10 @@ Drag Whive Core to your applications folder, and then run Whive Core.
 
 ### Need Help?
 
-* See the documentation at the [Whive Forum](https://forum.whive.org)
-for help and more information.
-* Ask for help on [Bitcoin StackExchange](https://bitcoin.stackexchange.com).
-* Ask for help on #bitcoin on Libera Chat. If you don't have an IRC client, you can use [web.libera.chat](https://web.libera.chat/#bitcoin).
-* Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Technical Support board](https://bitcointalk.org/index.php?board=4.0).
+* Read the [mining quick-start](mining.md) and the rest of this documentation.
+* Report bugs on the [Whive Core issue tracker](https://github.com/whiveio/whive/issues). Do not post security problems there; see [SECURITY.md](/SECURITY.md).
+* Ask the community on [Telegram](https://t.me/whiveio).
+* Visit [whive.io](https://whive.io/).
 
 Building
 ---------------------
@@ -45,7 +48,7 @@ The following are developer notes on how to build Whive Core on your native plat
 - [OpenBSD Build Notes](build-openbsd.md)
 - [NetBSD Build Notes](build-netbsd.md)
 - [Android Build Notes](build-android.md)
-- [Gitian Building Guide (External Link)](https://github.com/bitcoin-core/docs/blob/master/gitian-building.md)
+- [Gitian Building Guide (upstream Bitcoin Core, external link)](https://github.com/bitcoin-core/docs/blob/master/gitian-building.md)
 
 Development
 ---------------------
@@ -55,7 +58,7 @@ The Whive repo's [root README](/README.md) contains relevant information on the 
 - [Productivity Notes](productivity.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://doxygen.bitcoincore.org/)
+- [Source Code Documentation (upstream Bitcoin Core, external link)](https://doxygen.bitcoincore.org/)
 - [Translation Process](translation_process.md)
 - [Translation Strings Policy](translation_strings_policy.md)
 - [JSON-RPC Interface](JSON-RPC-interface.md)
@@ -64,8 +67,8 @@ The Whive repo's [root README](/README.md) contains relevant information on the 
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Development & Technical Discussion board](https://bitcointalk.org/index.php?board=6.0).
-* Discuss project-specific development on #bitcoin-core-dev on Libera Chat. If you don't have an IRC client, you can use [web.libera.chat](https://web.libera.chat/#bitcoin-core-dev).
+* Discuss Whive Core development in [issues and pull requests](https://github.com/whiveio/whive/issues).
+* Whive improvement proposals live in the [WIP repository](https://github.com/whiveio/wips).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
