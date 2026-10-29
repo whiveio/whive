@@ -37,6 +37,14 @@ def checks():
     yield "doc/README.md has no unmeasured 'few hundred gigabytes' claim", readme and "few hundred gigabytes" not in readme
     yield "doc/README.md links the mining quick-start", "mining.md" in readme
 
+    # master still builds optimizer.c, so only the named maintenance build avoids the lookup.
+    for name in ("SECURITY.md", "doc/mining.md", "doc/release-notes/release-notes-22.2.2.md"):
+        text = read(name)
+        unsafe = re.search(r"builds? from source", text, re.IGNORECASE)
+        yield f"{name} does not call any build from source safe", text and not unsafe
+        yield f"{name} names the maintenance build that removes the lookup", (
+            "d67c152882" in text and "work/whive-22.2.2-maintenance-candidate-2026-10-29" in text)
+
     mining = read("doc/mining.md")
     for term in ("whived", "getnewaddress", "wv1q", "W...", "minerd -c", "--benchmark"):
         yield f"doc/mining.md covers {term}", term in mining

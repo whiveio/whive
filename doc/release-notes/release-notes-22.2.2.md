@@ -38,5 +38,7 @@ Release 22.2.2 contains a location lookup (`optimizer()` in
 `src/crypto/yespower/optimizer.c`). At startup, and in each new hashing thread,
 it sends a plain HTTP request to ip-api.com on port 80, which reveals the
 node's IP address to that service. It parses the unauthenticated reply without
-bounds checks, and the result is not used. Maintenance builds from source
-remove it; no release without it has been published yet.
+bounds checks, and the result is not used. `master` still contains it. Until
+it is merged, only the maintenance branch
+`work/whive-22.2.2-maintenance-candidate-2026-10-29` (commit `d67c152882`)
+removes it. No release without it has been published yet.

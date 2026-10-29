@@ -13,8 +13,11 @@ subsidy and mine blocks that current nodes reject (see
 [release-notes-22.2.2.md](release-notes/release-notes-22.2.2.md)).
 
 Release 22.2.2 sends your IP address to ip-api.com over plain HTTP when it
-starts. To avoid that, build from source that no longer contains
-`src/crypto/yespower/optimizer.c` (see the [build notes](README.md#building)).
+starts, and so does a node built from `master`, which still contains
+`src/crypto/yespower/optimizer.c`. Until it is merged, only the maintenance
+branch `work/whive-22.2.2-maintenance-candidate-2026-10-29` (commit `d67c152882`) removes the lookup. Build that branch with the
+[build notes](README.md#building) and check that `optimizer.c` is absent before
+you start the node.
 
 Create `whive.conf` in the data directory (see [whive-conf.md](whive-conf.md)
 for its location) and make it readable only by you:

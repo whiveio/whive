@@ -8,7 +8,7 @@ Do not send Whive vulnerability reports to Bitcoin Core.
 
 | Version | Status |
 |---------|--------|
-| 22.2.2 | Latest release and minimum compatible version. It contains a location lookup that sends your IP address to ip-api.com over plain HTTP at startup; maintenance builds from source remove it. |
+| 22.2.2 | Latest release and minimum compatible version. It contains a location lookup that sends your IP address to ip-api.com over plain HTTP at startup; `master` still contains it. Only the maintenance branch `work/whive-22.2.2-maintenance-candidate-2026-10-29` (commit `d67c152882`) removes it, until that branch is merged. |
 | Earlier than 22.2.2 | Not supported. These releases enforce a different block subsidy after block 210,000 (see [doc/release-notes/release-notes-22.2.2.md](doc/release-notes/release-notes-22.2.2.md)). |
 
 ## Reporting a Vulnerability
